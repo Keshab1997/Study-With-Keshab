@@ -695,3 +695,17 @@ footer {
     }
     .social-icons { justify-content: center; }
 }
+.profile-contact ul {
+    list-style: none;
+    padding-left: 0;
+}
+.profile-contact li {
+    margin-bottom: 8px;
+}
+.profile-contact a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+.profile-contact a:hover {
+    text-decoration: underline;
+}
