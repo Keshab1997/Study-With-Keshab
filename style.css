@@ -699,13 +699,77 @@ footer {
     list-style: none;
     padding-left: 0;
 }
-.profile-contact li {
-    margin-bottom: 8px;
+/* --- যোগাযোগ (Contact) সেকশন উন্নত ডিজাইন --- */
+.profile-contact, #contact {
+    max-width: 520px;
+    margin: 4rem auto 4rem auto;
+    background: linear-gradient(135deg, #eaf2ff 0%, #fff 100%);
+    box-shadow: 0 8px 32px rgba(0,82,204,0.07);
+    border-radius: 18px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    transition: box-shadow 0.3s;
 }
-.profile-contact a {
-    color: #1a73e8;
+
+.profile-contact h2, #contact h2 {
+    font-family: var(--heading-font);
+    font-size: 2.2rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.profile-contact p, #contact p {
+    font-size: 1.08rem;
+    color: var(--grey-text);
+    margin-bottom: 1.1rem;
+}
+
+.profile-contact ul, #contact ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.2rem;
+}
+
+.profile-contact li, #contact li {
+    margin-bottom: 15px;
+    font-size: 1.09rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.profile-contact strong, #contact strong {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.profile-contact a, #contact a {
+    color: #2076e0;
+    background: rgba(32, 118, 224, 0.07);
+    padding: 3px 10px;
+    border-radius: 6px;
     text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    font-weight: 500;
 }
-.profile-contact a:hover {
+
+.profile-contact a:hover, #contact a:hover {
+    background: #2076e0;
+    color: #fff;
     text-decoration: underline;
+}
+
+.profile-contact::before, #contact::before {
+    content: "✉️";
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    opacity: 0.12;
 }
