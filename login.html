@@ -1,178 +1,230 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>লগইন করুন - Study With Keshab</title>
+    <title>Login Page</title>
     
-    <!-- === পরিবর্তন: বেস ট্যাগ যুক্ত করা হয়েছে === -->
-    <base href="/Study-With-Keshab/">
-
-    <!-- Google Fonts & Font Awesome -->
+    <!-- Google Fonts (Poppins) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
     <style>
+        /* CSS ভেরিয়েবলস (রং পরিবর্তন করতে সহজ) */
         :root {
-            --bg-start: #e0f7fa;
-            --bg-end: #b2ebf2;
+            --bg-grad-start: #29B6F6; /* Background Gradient Start Color */
+            --bg-grad-end: #9C27B0;   /* Background Gradient End Color */
             --form-bg: #ffffff;
-            --primary-color: #00796b;
-            --primary-hover: #004d40;
-            --text-color: #37474f;
-            --border-color: #cfd8dc;
-            --error-color: #d32f2f;
+            --text-color: #555;
+            --label-color: #888;
+            --border-color: #e0e0e0;
+            --button-grad-start: #00E5FF; /* Button Gradient Start */
+            --button-grad-end: #E040FB;   /* Button Gradient End */
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* General Body Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
-            background-size: 200% 200%;
-            animation: gradient-animation 15s ease infinite;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--bg-grad-start), var(--bg-grad-end));
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
         }
-        @keyframes gradient-animation {
-            0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
-        }
+
+        /* Login Card Container */
         .login-card {
             width: 100%;
-            max-width: 420px;
-            padding: 40px;
-            background: var(--form-bg);
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            background-color: var(--form-bg);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             text-align: center;
+        }
+
+        .login-card h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* Input Group Styles */
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--label-color);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .input-group .icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ccc;
+            margin-top: 10px; /* Adjusting for label height */
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 12px 12px 45px;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 16px;
             color: var(--text-color);
-            animation: fadeIn 0.6s ease-out;
-            border-top: 5px solid var(--primary-color);
+            transition: border-color 0.3s;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); }
+
+        .input-group input:focus {
+            outline: none;
+            border-bottom-color: var(--bg-grad-end);
         }
-        .logo-container { margin-bottom: 20px; }
-        .logo-container img { max-width: 80px; border-radius: 50%; }
-        .login-card h2 { margin-bottom: 25px; font-size: 24px; font-weight: 600; }
-        .input-group { position: relative; margin-bottom: 20px; text-align: left; }
-        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #90a4ae; }
-        .input-group input { width: 100%; padding: 14px 14px 14px 45px; background-color: #eceff1; border: 1px solid transparent; border-radius: 8px; color: var(--text-color); font-size: 16px; transition: border-color 0.3s, box-shadow 0.3s; }
-        .input-group input:focus { outline: none; background-color: var(--form-bg); border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.15); }
-        .login-button { width: 100%; padding: 14px; background-color: var(--primary-color); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: 600; transition: background-color 0.3s, transform 0.2s; position: relative; overflow: hidden; margin-top: 10px; }
-        .login-button:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
-        .login-button .spinner { display: none; border: 3px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top-color: var(--form-bg); width: 20px; height: 20px; animation: rotate 1s linear infinite; margin: -2px auto; }
-        .login-button.loading .btn-text { display: none; } .login-button.loading .spinner { display: block; }
-        @keyframes rotate { to { transform: rotate(360deg); } }
-        #error-message { color: var(--error-color); margin-top: 15px; min-height: 20px; font-weight: 500; }
-        .signup-link { margin-top: 25px; font-size: 15px; }
-        .signup-link a { color: var(--primary-color); text-decoration: none; font-weight: 600; }
+        
+        /* Forgot Password Link */
+        .forgot-password {
+            text-align: right;
+            margin-top: -15px;
+            margin-bottom: 20px;
+        }
+
+        .forgot-password a {
+            color: var(--label-color);
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        /* Login Button Styles */
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(to right, var(--button-grad-start), var(--button-grad-end));
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 25px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Divider Text */
+        .divider {
+            color: var(--label-color);
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        /* Social Login Buttons */
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .facebook { background-color: #3b5998; }
+        .twitter { background-color: #1da1f2; }
+        .google { background-color: #db4437; }
+
+        /* Sign Up Link */
+        .signup-link {
+            font-size: 14px;
+            color: var(--label-color);
+        }
+
+        .signup-link a {
+            color: var(--button-grad-end);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="login-card">
-        <div class="logo-container">
-            <!-- === পরিবর্তন: লোগোর পাথ ঠিক করা হয়েছে === -->
-            <img src="images/logo.jpg" alt="Logo">
+        <h1>Login</h1>
+        <form>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <i class="fas fa-user icon"></i>
+                <input type="text" id="username" placeholder="Type your username" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <i class="fas fa-lock icon"></i>
+                <input type="password" id="password" placeholder="Type your password" required>
+            </div>
+
+            <div class="forgot-password">
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="login-btn">LOGIN</button>
+        </form>
+
+        <p class="divider">Or Sign Up Using</p>
+
+        <div class="social-login">
+            <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-btn google"><i class="fab fa-google"></i></a>
         </div>
-        <h2>লগইন করুন</h2>
-        
-        <div class="input-group">
-            <i class="fa-solid fa-envelope"></i>
-            <input type="email" id="email-input" placeholder="আপনার ইমেল" required>
-        </div>
-        
-        <div class="input-group">
-            <i class="fa-solid fa-lock"></i>
-            <input type="password" id="password-input" placeholder="আপনার পাসওয়ার্ড" required>
-        </div>
-        
-        <button id="login-button" class="login-button">
-            <span class="btn-text">লগইন</span>
-            <div class="spinner"></div>
-        </button>
-        
-        <p id="error-message"></p>
-        
+
         <p class="signup-link">
-            অ্যাকাউন্ট নেই? <a href="signup.html">এখানে সাইন আপ করুন</a>
+            Don't have an account? <a href="#">SIGN UP</a>
         </p>
+
     </div>
 
-    <!-- Audio Elements -->
-    <audio id="click-sound" src="audio/click-sound.mp3" preload="auto"></audio>
-    <audio id="error-sound" src="audio/error-sound.mp3" preload="auto"></audio>
-
-    <!-- Firebase Scripts -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-    <script src="js/firebase-config.js"></script>
-
-    <!-- Login Logic Script (No changes needed here, it's correct) -->
-    <script>
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        const loginButton = document.getElementById('login-button');
-        const emailInput = document.getElementById('email-input');
-        const passwordInput = document.getElementById('password-input');
-        const errorMessage = document.getElementById('error-message');
-        
-        const clickSound = document.getElementById('click-sound');
-        const errorSound = document.getElementById('error-sound');
-
-        loginButton.addEventListener('click', () => {
-            const email = emailInput.value;
-            const password = passwordInput.value;
-            
-            clickSound.currentTime = 0;
-            clickSound.play();
-
-            if (!email || !password) {
-                errorMessage.textContent = 'দয়া করে ইমেল এবং পাসওয়ার্ড দিন।';
-                errorSound.currentTime = 0;
-                errorSound.play();
-                return;
-            }
-
-            errorMessage.textContent = '';
-            loginButton.classList.add('loading');
-
-            auth.signInWithEmailAndPassword(email, password)
-                .then(userCredential => {
-                    const user = userCredential.user;
-                    // এখন আমরা ব্যবহারকারীর role চেক করব
-                    return db.collection('users').doc(user.uid).get();
-                })
-                .then(doc => {
-                    if (doc.exists && doc.data().role === 'admin') {
-                        // যদি ব্যবহারকারী অ্যাডমিন হয়
-                        console.log('Admin user detected. Redirecting to admin dashboard.');
-                        window.location.href = 'admin-dashboard.html';
-                    } else {
-                        // যদি সাধারণ ব্যবহারকারী (student) হয়
-                        console.log('Student user detected. Redirecting to home page.');
-                        window.location.href = 'index.html';
-                    }
-                })
-                .catch(error => {
-                    errorSound.currentTime = 0;
-                    errorSound.play();
-                    loginButton.classList.remove('loading');
-                    
-                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
-                        errorMessage.textContent = 'আপনার ইমেল বা পাসওয়ার্ড সঠিক নয়।';
-                    } else {
-                        errorMessage.textContent = 'একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।';
-                    }
-                    console.error("Login error:", error);
-                });
-        });
-    </script>
 </body>
 </html>
