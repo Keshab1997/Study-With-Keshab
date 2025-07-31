@@ -4,65 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Scores</title>
-    <!-- আপনার ওয়েবসাইটের স্টাইলশিট -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- ড্যাশবোর্ডের জন্য অতিরিক্ত স্টাইল -->
+    <!-- Google Fonts for Bengali -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary-color: #2c5ff6;
+            --secondary-color: #f4f7f6;
+            --text-color: #333;
+            --border-color: #e0e0e0;
+            --white-color: #ffffff;
+            --danger-color: #dc3545;
+        }
+
         body {
             font-family: 'Hind Siliguri', sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.6;
         }
+        
         .dashboard-container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 30px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
         }
+
         .dashboard-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
             margin-bottom: 30px;
         }
+        
         .dashboard-header h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 32px;
+            font-weight: 700;
         }
+
         #logout-btn {
-            background-color: #dc3545;
-            color: white;
+            background-color: var(--danger-color);
+            color: var(--white-color);
             border: none;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s;
         }
+        
         #logout-btn:hover {
             background-color: #c82333;
+            transform: translateY(-2px);
         }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: var(--white-color);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 36px;
+            font-weight: 700;
+        }
+        
+        .table-container {
+            background-color: var(--white-color);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow-x: auto; /* For responsiveness on small screens */
+        }
+
         #scores-table {
             width: 100%;
             border-collapse: collapse;
         }
+        
         #scores-table th, #scores-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
+            padding: 15px;
             text-align: left;
+            border-bottom: 1px solid var(--border-color);
         }
-        #scores-table th {
+        
+        #scores-table thead th {
             background-color: #f8f9fa;
             font-weight: 600;
+            font-size: 16px;
+            color: #555;
         }
+
+        #scores-table tbody tr:hover {
+            background-color: #f1f5fe;
+        }
+
         #loading-message {
             text-align: center;
             font-size: 18px;
-            padding: 40px;
+            padding: 50px;
             color: #777;
         }
     </style>
@@ -74,14 +135,30 @@
             <h1>অ্যাডমিন ড্যাশবোর্ড</h1>
             <button id="logout-btn">লগ আউট</button>
         </div>
-        
-        <h2>কুইজের স্কোরসমূহ</h2>
 
-        <div id="scores-data">
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <div class="card">
+                <h3>মোট স্কোর</h3>
+                <p id="total-scores">0</p>
+            </div>
+            <div class="card">
+                <h3>মোট ব্যবহারকারী</h3>
+                <p id="total-users">0</p>
+            </div>
+            <div class="card">
+                <h3>গড় স্কোর</h3>
+                <p id="average-score">0</p>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <h2>ব্যবহারকারীদের স্কোর</h2>
             <table id="scores-table">
                 <thead>
                     <tr>
                         <th>ব্যবহারকারীর ইমেল</th>
+                        <th>কুইজের নাম</th>
                         <th>স্কোর</th>
                         <th>সময়</th>
                     </tr>
@@ -94,7 +171,7 @@
         </div>
     </div>
 
-    <!-- === প্রয়োজনীয় Firebase Script === -->
+    <!-- === Firebase Script === -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
@@ -104,31 +181,25 @@
     <script>
         const auth = firebase.auth();
         const db = firebase.firestore();
-        const logoutButton = document.getElementById('logout-btn');
-        const scoresTableBody = document.getElementById('scores-tbody');
-        const loadingMessage = document.getElementById('loading-message');
 
-        // ১. পেজ লোড হওয়ার সাথে সাথে ব্যবহারকারী লগইন করা আছে কিনা তা চেক করা
+        // Check user auth state
         auth.onAuthStateChanged(user => {
             if (user) {
-                // যদি ব্যবহারকারী লগইন করা থাকে
-                console.log("Admin is logged in:", user.email);
-                fetchScores(); // স্কোরগুলো নিয়ে আসার ফাংশন কল করা
+                fetchScores();
             } else {
-                // যদি লগইন করা না থাকে, তাহলে তাকে লগইন পেজে পাঠিয়ে দেওয়া হবে
-                console.log("No user is logged in. Redirecting to login page.");
                 window.location.href = 'login.html';
             }
         });
 
-        // ২. ডেটাবেস থেকে সব স্কোর নিয়ে আসার ফাংশন
+        // Fetch scores from Firestore
         async function fetchScores() {
-            loadingMessage.style.display = 'block'; // "Loading..." মেসেজ দেখানো
-            scoresTableBody.innerHTML = ''; // টেবিল খালি করা
+            const loadingMessage = document.getElementById('loading-message');
+            const scoresTableBody = document.getElementById('scores-tbody');
+            
+            loadingMessage.style.display = 'block';
+            scoresTableBody.innerHTML = '';
 
             try {
-                // 'quiz_scores' কালেকশন থেকে সব ডকুমেন্ট (স্কোর) আনা হচ্ছে
-                // সময় অনুযায়ী সাজানোর জন্য orderBy ব্যবহার করা হয়েছে
                 const snapshot = await db.collection('quiz_scores').orderBy('timestamp', 'desc').get();
                 
                 if (snapshot.empty) {
@@ -136,24 +207,42 @@
                     return;
                 }
                 
-                loadingMessage.style.display = 'none'; // "Loading..." মেসেজ লুকানো
+                loadingMessage.style.display = 'none';
+
+                let totalScores = 0;
+                let totalScoreValue = 0;
+                const userEmails = new Set();
 
                 snapshot.forEach(doc => {
                     const scoreData = doc.data();
                     
-                    // সময়কে পড়ার উপযোগী ফরম্যাটে আনা
-                    const date = scoreData.timestamp.toDate().toLocaleString('bn-BD');
+                    const date = scoreData.timestamp ? scoreData.timestamp.toDate().toLocaleString('bn-BD') : 'N/A';
                     
-                    // টেবিলের জন্য একটি নতুন রো (row) তৈরি করা
+                    // এখানে `quizName` field টি ডেটাবেস থেকে নেওয়া হচ্ছে।
+                    // যদি ডেটাবেসে এই ফিল্ড না থাকে, তাহলে 'অজানা' দেখাবে।
+                    const quizName = scoreData.quizName || 'অজানা'; 
+
                     const row = `
                         <tr>
                             <td>${scoreData.email}</td>
+                            <td>${quizName}</td>
                             <td>${scoreData.score}</td>
                             <td>${date}</td>
                         </tr>
                     `;
-                    scoresTableBody.innerHTML += row; // টেবিলে নতুন রো যোগ করা
+                    scoresTableBody.innerHTML += row;
+
+                    // Update summary data
+                    totalScores++;
+                    totalScoreValue += Number(scoreData.score);
+                    userEmails.add(scoreData.email);
                 });
+                
+                // Update summary cards
+                document.getElementById('total-scores').textContent = totalScores;
+                document.getElementById('total-users').textContent = userEmails.size;
+                document.getElementById('average-score').textContent = (totalScoreValue / totalScores).toFixed(2);
+
 
             } catch (error) {
                 console.error("স্কোর আনতে সমস্যা হয়েছে:", error);
@@ -161,11 +250,10 @@
             }
         }
 
-        // ৩. লগ আউট বাটনে ক্লিক করলে কী হবে
-        logoutButton.addEventListener('click', () => {
+        // Logout functionality
+        document.getElementById('logout-btn').addEventListener('click', () => {
             auth.signOut().then(() => {
-                console.log("User signed out successfully.");
-                window.location.href = 'index.html'; // লগ আউট করে হোম পেজে পাঠানো
+                window.location.href = 'index.html';
             }).catch(error => {
                 console.error("Sign out error", error);
             });
