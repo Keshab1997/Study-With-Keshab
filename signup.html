@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অ্যাকাউন্ট তৈরি করুন - Study With Keshab</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-start: #e0f7fa;
+            --bg-end: #b2ebf2;
+            --form-bg: #ffffff;
+            --primary-color: #00796b;
+            --primary-hover: #004d40;
+            --text-color: #37474f;
+            --border-color: #cfd8dc;
+            --error-color: #d32f2f;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            background-size: 200% 200%;
+            animation: gradient-animation 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .signup-card {
+            width: 100%;
+            max-width: 420px;
+            padding: 40px;
+            background: var(--form-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: var(--text-color);
+            animation: fadeIn 0.6s ease-out;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            max-width: 80px; /* আপনার লোগোর সাইজ অনুযায়ী পরিবর্তন করুন */
+            border-radius: 50%;
+        }
+
+        .signup-card h2 {
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .input-group { position: relative; margin-bottom: 20px; text-align: left; }
+        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #90a4ae; }
+        .input-group input {
+            width: 100%;
+            padding: 14px 14px 14px 45px;
+            background-color: #eceff1;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            color: var(--text-color);
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .input-group input:focus {
+            outline: none;
+            background-color: var(--form-bg);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.15);
+        }
+        
+        .signup-button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .signup-button:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+        
+        .signup-button .spinner { display: none; border: 3px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top-color: var(--form-bg); width: 20px; height: 20px; animation: rotate 1s linear infinite; margin: -2px auto; }
+        .signup-button.loading .btn-text { display: none; }
+        .signup-button.loading .spinner { display: block; }
+        @keyframes rotate { to { transform: rotate(360deg); } }
+
+        #error-message { color: var(--error-color); margin-top: 15px; min-height: 20px; font-weight: 500; }
+        .login-link { margin-top: 25px; font-size: 15px; }
+        .login-link a { color: var(--primary-color); text-decoration: none; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <div class="signup-card">
+        <div class="logo-container">
+            <!-- আপনার লোগোর পথ দিন। না থাকলে এই লাইনটি মুছে দিতে পারেন -->
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        <h2>অ্যাকাউন্ট তৈরি করুন</h2>
+        
+        <div class="input-group">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="name-input" placeholder="আপনার পুরো নাম" required>
+        </div>
+        
+        <div class="input-group">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="email-input" placeholder="আপনার ইমেল" required>
+        </div>
+        
+        <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="password-input" placeholder="নতুন পাসওয়ার্ড দিন (কমপক্ষে ৬ অক্ষর)" required>
+        </div>
+        
+        <button id="signup-button" class="signup-button">
+            <span class="btn-text">সাইন আপ করুন</span>
+            <div class="spinner"></div>
+        </button>
+        
+        <p id="error-message"></p>
+        
+        <p class="login-link">
+            ইতিমধ্যেই অ্যাকাউন্ট আছে? <a href="login.html">এখানে লগইন করুন</a>
+        </p>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="click-sound" src="audio/click-sound.mp3" preload="auto"></audio>
+    <audio id="error-sound" src="audio/error-sound.mp3" preload="auto"></audio>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+
+    <!-- Signup Logic Script -->
+    <script>
+        const signupButton = document.getElementById('signup-button');
+        const nameInput = document.getElementById('name-input');
+        const emailInput = document.getElementById('email-input');
+        const passwordInput = document.getElementById('password-input');
+        const errorMessage = document.getElementById('error-message');
+        
+        const clickSound = document.getElementById('click-sound');
+        const errorSound = document.getElementById('error-sound');
+
+        signupButton.addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+            
+            // ভুলের জন্য সাউন্ড প্লে করার ফাংশন
+            function playErrorSound() {
+                errorSound.currentTime = 0;
+                errorSound.play();
+            }
+
+            if (!name || !email || !password) {
+                errorMessage.textContent = 'দয়া করে সব ঘর পূরণ করুন।';
+                playErrorSound();
+                return;
+            }
+            if (password.length < 6) {
+                errorMessage.textContent = 'পাসওয়ার্ডটি অন্তত ৬ অক্ষরের হতে হবে।';
+                playErrorSound();
+                return;
+            }
+
+            // বাটন ক্লিকে সাউন্ড প্লে
+            clickSound.currentTime = 0;
+            clickSound.play();
+            
+            errorMessage.textContent = '';
+            signupButton.classList.add('loading');
+
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    const user = userCredential.user;
+                    return firebase.firestore().collection('users').doc(user.uid).set({
+                        name: name,
+                        email: email,
+                        role: 'student',
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                })
+                .then(() => {
+                    alert('আপনার অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে! আপনাকে লগইন পেজে নিয়ে যাওয়া হচ্ছে।');
+                    window.location.href = 'login.html';
+                })
+                .catch(error => {
+                    playErrorSound();
+                    if (error.code === 'auth/email-already-in-use') {
+                        errorMessage.textContent = 'এই ইমেল ঠিকানাটি ইতিমধ্যেই ব্যবহার করা হয়েছে।';
+                    } else if (error.code === 'auth/invalid-email') {
+                        errorMessage.textContent = 'দয়া করে একটি সঠিক ইমেল ঠিকানা দিন।';
+                    } else if (error.code === 'auth/weak-password') {
+                        errorMessage.textContent = 'পাসওয়ার্ডটি খুব দুর্বল। আরও শক্তিশালী পাসওয়ার্ড দিন।';
+                    } else {
+                        errorMessage.textContent = 'একটি সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।';
+                    }
+                })
+                .finally(() => {
+                    signupButton.classList.remove('loading');
+                });
+        });
+    </script>
+</body>
+</html>
