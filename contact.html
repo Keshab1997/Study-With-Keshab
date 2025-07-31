@@ -12,9 +12,12 @@
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- আপনার মূল স্টাইলশিট -->
+    <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* --- CSS ভ্যারিয়েবলস --- */
+        /* এই পেজের জন্য নির্দিষ্ট কিছু স্টাইল */
         :root {
             --primary-blue: #0052cc;
             --secondary-dark: #192335;
@@ -32,15 +35,8 @@
         }
 
         /* --- বেসিক রিসেট ও বডি স্টাইল --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: var(--body-font);
@@ -57,240 +53,83 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        /* --- হেডার স্টাইল (অন্যান্য পেজের সাথে সামঞ্জস্যপূর্ণ) --- */
+        
+        /* --- হেডার স্টাইল (style.css থেকে আসা উচিত, এখানে বেসিক স্টাইল) --- */
         .site-header {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
-            padding: 15px 0;
+            padding: 10px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo-link { text-decoration: none; }
-        .logo-img {
-            width: 45px; height: 45px; border-radius: 50%; object-fit: cover;
-            border: 2px solid var(--primary-blue); transition: transform 0.3s ease;
-        }
-        .logo-img:hover { transform: scale(1.1) rotate(10deg); }
-        .main-nav ul { list-style: none; display: flex; gap: 2rem; }
-        .main-nav a {
-            color: var(--secondary-dark); text-decoration: none; font-family: var(--heading-font);
-            font-weight: 600; font-size: 1.1rem; transition: color 0.3s ease; position: relative; padding: 5px 0;
-        }
-        .main-nav a::after {
-            content: ''; position: absolute; width: 0; height: 2px; background: var(--primary-blue);
-            bottom: 0; left: 50%; transform: translateX(-50%); transition: width 0.3s ease;
-        }
-        .main-nav a:hover, .main-nav a.active { color: var(--primary-blue); }
-        .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
-        .main-nav a i { margin-right: 8px; }
 
         /* --- কন্টাক্ট সেকশন --- */
-        .contact-section {
-            padding: 100px 0;
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .section-title h1 {
-            font-family: var(--heading-font);
-            font-size: 2.8rem;
-            color: var(--secondary-dark);
-            position: relative;
-            padding-bottom: 15px;
-            display: inline-block;
-        }
-        .section-title h1::after {
-            content: ''; position: absolute; width: 80px; height: 4px;
-            background: var(--primary-blue); bottom: 0; left: 50%;
-            transform: translateX(-50%); border-radius: 2px;
-        }
-        .section-title p {
-            max-width: 600px;
-            margin: 1rem auto 0;
-            font-size: 1.1rem;
-            color: var(--grey-text);
-        }
-
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
-            background: var(--white-color);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 82, 204, 0.1);
-        }
-
-        /* কন্টাক্ট ইনফো (বাম পাশ) */
-        .contact-info h2 {
-            font-family: var(--heading-font);
-            font-size: 1.8rem;
-            color: var(--primary-blue);
-            margin-bottom: 2rem;
-        }
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .info-item .icon {
-            font-size: 1.5rem;
-            color: var(--primary-blue);
-            background: #eaf2ff;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-        }
-        .info-item-text strong {
-            display: block;
-            color: var(--secondary-dark);
-            font-weight: 600;
-        }
-        .info-item-text a {
-            color: var(--grey-text);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .info-item-text a:hover {
-            color: var(--primary-blue);
-        }
-        .social-links {
-            margin-top: 3rem;
-            display: flex;
-            gap: 1rem;
-        }
-        .social-links a {
-            color: var(--primary-blue);
-            font-size: 1.2rem;
-            width: 40px;
-            height: 40px;
-            display: grid;
-            place-items: center;
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .social-links a:hover {
-            background-color: var(--primary-blue);
-            color: var(--white-color);
-        }
-
-        /* কন্টাক্ট ফর্ম (ডান পাশ) */
-        .contact-form h2 {
-            font-family: var(--heading-font);
-            font-size: 1.8rem;
-            color: var(--secondary-dark);
-            margin-bottom: 2rem;
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--secondary-dark);
-        }
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            font-family: var(--body-font);
-            font-size: 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--bg-light);
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.15);
-        }
-        textarea.form-control {
-            resize: vertical;
-            min-height: 120px;
-        }
-        .btn-submit {
-            display: inline-block;
-            background: var(--gradient-primary);
-            color: var(--white-color);
-            padding: 12px 30px;
-            border: none;
-            border-radius: 50px;
-            font-family: var(--heading-font);
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 82, 204, 0.2);
-        }
-        .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 82, 204, 0.3);
-        }
+        .contact-section { padding: 80px 0; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h1 { font-family: var(--heading-font); font-size: 2.8rem; color: var(--secondary-dark); position: relative; padding-bottom: 15px; display: inline-block; }
+        .section-title h1::after { content: ''; position: absolute; width: 80px; height: 4px; background: var(--primary-blue); bottom: 0; left: 50%; transform: translateX(-50%); border-radius: 2px; }
+        .section-title p { max-width: 600px; margin: 1rem auto 0; font-size: 1.1rem; color: var(--grey-text); }
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; background: var(--white-color); padding: 40px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0, 82, 204, 0.1); }
+        .contact-info h2 { font-family: var(--heading-font); font-size: 1.8rem; color: var(--primary-blue); margin-bottom: 2rem; }
+        .info-item { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+        .info-item .icon { font-size: 1.5rem; color: var(--primary-blue); background: #eaf2ff; width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; }
+        .info-item-text strong { display: block; color: var(--secondary-dark); font-weight: 600; }
+        .info-item-text a { color: var(--grey-text); text-decoration: none; transition: color 0.3s; }
+        .info-item-text a:hover { color: var(--primary-blue); }
+        .social-links { margin-top: 3rem; display: flex; gap: 1rem; }
+        .social-links a { color: var(--primary-blue); font-size: 1.2rem; width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--border-color); border-radius: 50%; transition: background-color 0.3s, color 0.3s; }
+        .social-links a:hover { background-color: var(--primary-blue); color: var(--white-color); }
+        .contact-form h2 { font-family: var(--heading-font); font-size: 1.8rem; color: var(--secondary-dark); margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--secondary-dark); }
+        .form-control { width: 100%; padding: 12px 15px; font-family: var(--body-font); font-size: 1rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-light); transition: border-color 0.3s, box-shadow 0.3s; }
+        .form-control:focus { outline: none; border-color: var(--primary-blue); box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.15); }
+        textarea.form-control { resize: vertical; min-height: 120px; }
+        .btn-submit { display: inline-block; background: var(--gradient-primary); color: var(--white-color); padding: 12px 30px; border: none; border-radius: 50px; font-family: var(--heading-font); font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 5px 15px rgba(0, 82, 204, 0.2); }
+        .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 82, 204, 0.3); }
 
         /* --- ফুটার স্টাইল --- */
-        footer {
-            background-color: var(--secondary-dark);
-            color: var(--bg-light);
-            padding: 40px 0;
-            text-align: center;
-            margin-top: 100px;
-        }
+        .footer { background-color: var(--secondary-dark); color: var(--bg-light); padding: 40px 0 20px; text-align: center; margin-top: 80px; }
 
-        /* --- রেসপন্সিভ ডিজাইন --- */
-        @media (max-width: 992px) {
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-        }
-        @media (max-width: 768px) {
-            .site-header .header-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .main-nav ul {
-                gap: 1.5rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .contact-section {
-                padding: 60px 0;
-            }
-            .contact-wrapper {
-                padding: 30px;
-            }
-        }
+        /* রেসপন্সিভ স্টাইলগুলো আপনার মূল style.css ফাইলে থাকা উচিত */
     </style>
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="container header-container">
+    <!-- এই হেডারটি এখন ডাইনামিক এবং সব পেজে একই রকম থাকবে -->
+    <header class="site-header" id="header">
+        <div class="header-grid container">
             <a href="index.html" class="logo-link">
-                <img src="images/logo.jpg" class="logo-img" alt="Study With Keshab Logo">
+                <img src="images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
             </a>
-            <nav class="main-nav">
+            
+            <nav class="primary-navigation">
                 <ul>
                     <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="about.html"><i class="fas fa-user"></i> About Me</a></li>
-                    <li><a href="index.html#subjects"><i class="fas fa-book"></i> Subjects</a></li>
-                    <li><a href="contact.html" class="active"><i class="fas fa-headset"></i> Contact</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Me</a></li>
+                    <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
+                    <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact</a></li>
+                    
+                    <li class="auth-link" id="guest-link-desktop">
+                        <a href="login.html" class="login"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a>
+                    </li>
+                    <li class="auth-link" id="user-link-desktop" style="display: none;">
+                        <a href="#" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a>
+                    </li>
+                    <li class="auth-link" id="logout-link-desktop" style="display: none;">
+                        <a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
+                    </li>
                 </ul>
             </nav>
+            
+            <div class="header-actions">
+                <span id="user-name-display" class="nav-user-name"></span>
+                <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
+                    <span class="sr-only">Menu</span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -305,28 +144,9 @@
                 <div class="contact-wrapper">
                     <div class="contact-info">
                         <h2>সরাসরি যোগাযোগ</h2>
-                        <div class="info-item">
-                            <div class="icon"><i class="fas fa-phone-alt"></i></div>
-                            <div class="info-item-text">
-                                <strong>ফোন / হোয়াটসঅ্যাপ</strong>
-                                <a href="tel:+919382284190">+91 9382284190</a>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <div class="icon"><i class="fas fa-envelope"></i></div>
-                            <div class="info-item-text">
-                                <strong>ইমেইল</strong>
-                                <a href="mailto:keshabsarkar2018@gmail.com">keshabsarkar2018@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="info-item-text">
-                                <strong>ঠিকানা</strong>
-                                <span>মেরতলা, পূর্ব বর্ধমান, পশ্চিমবঙ্গ</span>
-                            </div>
-                        </div>
-                        
+                        <div class="info-item"><div class="icon"><i class="fas fa-phone-alt"></i></div><div class="info-item-text"><strong>ফোন / হোয়াটসঅ্যাপ</strong><a href="tel:+919382284190">+91 9382284190</a></div></div>
+                        <div class="info-item"><div class="icon"><i class="fas fa-envelope"></i></div><div class="info-item-text"><strong>ইমেইল</strong><a href="mailto:keshabsarkar2018@gmail.com">keshabsarkar2018@gmail.com</a></div></div>
+                        <div class="info-item"><div class="icon"><i class="fas fa-map-marker-alt"></i></div><div class="info-item-text"><strong>ঠিকানা</strong><span>মেরতলা, পূর্ব বর্ধমান, পশ্চিমবঙ্গ</span></div></div>
                         <div class="social-links">
                              <a href="#" target="_blank" aria-label="Facebook Profile"><i class="fab fa-facebook-f"></i></a>
                              <a href="#" target="_blank" aria-label="YouTube Channel"><i class="fab fa-youtube"></i></a>
@@ -337,27 +157,11 @@
 
                     <div class="contact-form">
                         <h2>আমাকে একটি বার্তা পাঠান</h2>
-                        <!-- 
-                          গুরুত্বপূর্ণ: ফর্মটি কাজ করার জন্য, Formspree.io তে একটি অ্যাকাউন্ট তৈরি করুন, 
-                          একটি নতুন ফর্ম তৈরি করুন এবং নিচের action URL টি আপনার ফর্মের URL দিয়ে পরিবর্তন করুন।
-                        -->
                         <form action="https://formspree.io/f/xyzpppzy" method="POST">
-                            <div class="form-group">
-                                <label for="name">আপনার নাম</label>
-                                <input type="text" id="name" name="name" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">আপনার ইমেইল</label>
-                                <input type="email" id="email" name="email" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">বিষয়</label>
-                                <input type="text" id="subject" name="subject" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">আপনার বার্তা</label>
-                                <textarea id="message" name="message" class="form-control" required></textarea>
-                            </div>
+                            <div class="form-group"><label for="name">আপনার নাম</label><input type="text" id="name" name="name" class="form-control" required></div>
+                            <div class="form-group"><label for="email">আপনার ইমেইল</label><input type="email" id="email" name="email" class="form-control" required></div>
+                            <div class="form-group"><label for="subject">বিষয়</label><input type="text" id="subject" name="subject" class="form-control" required></div>
+                            <div class="form-group"><label for="message">আপনার বার্তা</label><textarea id="message" name="message" class="form-control" required></textarea></div>
                             <button type="submit" class="btn-submit">বার্তা পাঠান</button>
                         </form>
                     </div>
@@ -366,11 +170,42 @@
         </section>
     </main>
 
-    <footer>
+    <footer class="footer">
         <div class="container">
             © 2025 | Study With Keshab | সর্বস্বত্ব সংরক্ষিত
         </div>
     </footer>
+
+    <!-- === পেজ প্রটেকশন স্ক্রিপ্ট শুরু === -->
+    <script>
+        (function() {
+            const checkAuth = () => {
+                if (typeof firebase !== 'undefined' && firebase.auth) {
+                    const auth = firebase.auth();
+                    auth.onAuthStateChanged(user => {
+                        if (!user) {
+                            console.log('User not logged in. Redirecting to login page...');
+                            window.location.href = 'login.html'; 
+                        }
+                    });
+                }
+            };
+            const interval = setInterval(() => {
+                if (typeof firebase !== 'undefined' && firebase.auth) {
+                    clearInterval(interval);
+                    checkAuth();
+                }
+            }, 100);
+        })();
+    </script>
+    <!-- === পেজ প্রটেকশন স্ক্রিপ্ট শেষ === -->
+
+    <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 </html>
