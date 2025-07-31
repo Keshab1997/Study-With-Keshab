@@ -189,7 +189,60 @@
     &copy; 2025 | Study With Keshab | সর্বস্বত্ব সংরক্ষিত
   </div>
 </footer>
+<!-- === নতুন: পেজ প্রটেকশন স্ক্রিপ্ট শুরু === -->
+<script>
+    // এই IIFE (Immediately Invoked Function Expression) টি পেজ লোড হওয়ার সাথে সাথে চলবে
+    (function() {
+        // Firebase Auth অবজেক্ট ইনিশিয়ালাইজ করার জন্য একটি সাময়িক ব্যবস্থা
+        // আসল অবজেক্টটি firebase-auth-compat.js লোড হওয়ার পর পাওয়া যাবে
+        let authInitialized = false;
+        const checkAuth = () => {
+            if (typeof firebase !== 'undefined' && firebase.auth) {
+                authInitialized = true;
+                const auth = firebase.auth();
 
+                // বর্তমান পেজের পাথ বা URL চেক করা
+                const currentPage = window.location.pathname.split('/').pop();
+                const publicPages = ['login.html', 'signup.html'];
+
+                if (publicPages.includes(currentPage) || currentPage === '') {
+                     // login.html, signup.html বা রুট পেজ হলে কিছু করার দরকার নেই (যদি রুট পেজ পাবলিক হয়)
+                    // যেহেতু আপনি index.html কেই প্রটেক্ট করতে চাইছেন, তাই currentPage === '' চেকটি তুলে দেওয়া যায়
+                    // তবে login.html বা signup.html এর জন্য এটি জরুরি
+                     if (publicPages.includes(currentPage)) return;
+                }
+
+                // ব্যবহারকারীর লগইন স্ট্যাটাস চেক করা
+                auth.onAuthStateChanged(user => {
+                    if (!user) {
+                        // যদি ব্যবহারকারী লগইন করা না থাকে
+                        console.log('User not logged in. Redirecting to login page...');
+                        // তাকে login.html পেজে পাঠিয়ে দেওয়া হবে
+                        window.location.href = 'login.html'; 
+                    }
+                    // যদি লগইন করা থাকে, তাহলে পেজটি দেখতে দেওয়া হবে
+                });
+            }
+        };
+        
+        // Firebase লোড হওয়ার জন্য অপেক্ষা করা
+        const interval = setInterval(() => {
+            if (typeof firebase !== 'undefined' && firebase.auth) {
+                clearInterval(interval);
+                checkAuth();
+            }
+        }, 100);
+
+        // একটি নির্দিষ্ট সময় পরেও যদি লোড না হয়, তাহলে ইন্টারভাল বন্ধ করা
+        setTimeout(() => {
+            if (!authInitialized) {
+                clearInterval(interval);
+                console.error("Firebase auth did not initialize in time.");
+            }
+        }, 5000);
+    })();
+</script>
+<!-- === পেজ প্রটেকশন স্ক্রিপ্ট শেষ === -->
 <!-- === Firebase Script শুরু === -->
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
