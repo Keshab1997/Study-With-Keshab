@@ -200,7 +200,9 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
     .header-grid { padding: 0 15px; height: 70px; }
     .primary-navigation { display: none; } /* ডেস্কটপ মেনু হাইড */
     .header-actions { margin-left: auto; } /* অ্যাকশন আইকন ডানদিকে */
-    .nav-user-name, #show-notification-btn { display: none; } /* মোবাইলে ইউজারনেম ও বেল হাইড */
+    .nav-user-name {
+    display: none; /* শুধুমাত্র ইউজারনেম মোবাইলে হাইড থাকবে */
+}
 
     .mobile-nav-toggle {
         display: block;
