@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Scores</title>
+    <!-- আপনার ওয়েবসাইটের স্টাইলশিট -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- ড্যাশবোর্ডের জন্য অতিরিক্ত স্টাইল -->
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .dashboard-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .dashboard-header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        #logout-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        #logout-btn:hover {
+            background-color: #c82333;
+        }
+        #scores-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        #scores-table th, #scores-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        #scores-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        #loading-message {
+            text-align: center;
+            font-size: 18px;
+            padding: 40px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>অ্যাডমিন ড্যাশবোর্ড</h1>
+            <button id="logout-btn">লগ আউট</button>
+        </div>
+        
+        <h2>কুইজের স্কোরসমূহ</h2>
+
+        <div id="scores-data">
+            <table id="scores-table">
+                <thead>
+                    <tr>
+                        <th>ব্যবহারকারীর ইমেল</th>
+                        <th>স্কোর</th>
+                        <th>সময়</th>
+                    </tr>
+                </thead>
+                <tbody id="scores-tbody">
+                    <!-- স্কোরগুলো এখানে JavaScript দিয়ে যোগ করা হবে -->
+                </tbody>
+            </table>
+            <p id="loading-message">স্কোর লোড হচ্ছে...</p>
+        </div>
+    </div>
+
+    <!-- === প্রয়োজনীয় Firebase Script === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+
+    <!-- === ড্যাশবোর্ডের জন্য স্ক্রিপ্ট === -->
+    <script>
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const logoutButton = document.getElementById('logout-btn');
+        const scoresTableBody = document.getElementById('scores-tbody');
+        const loadingMessage = document.getElementById('loading-message');
+
+        // ১. পেজ লোড হওয়ার সাথে সাথে ব্যবহারকারী লগইন করা আছে কিনা তা চেক করা
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                // যদি ব্যবহারকারী লগইন করা থাকে
+                console.log("Admin is logged in:", user.email);
+                fetchScores(); // স্কোরগুলো নিয়ে আসার ফাংশন কল করা
+            } else {
+                // যদি লগইন করা না থাকে, তাহলে তাকে লগইন পেজে পাঠিয়ে দেওয়া হবে
+                console.log("No user is logged in. Redirecting to login page.");
+                window.location.href = 'login.html';
+            }
+        });
+
+        // ২. ডেটাবেস থেকে সব স্কোর নিয়ে আসার ফাংশন
+        async function fetchScores() {
+            loadingMessage.style.display = 'block'; // "Loading..." মেসেজ দেখানো
+            scoresTableBody.innerHTML = ''; // টেবিল খালি করা
+
+            try {
+                // 'quiz_scores' কালেকশন থেকে সব ডকুমেন্ট (স্কোর) আনা হচ্ছে
+                // সময় অনুযায়ী সাজানোর জন্য orderBy ব্যবহার করা হয়েছে
+                const snapshot = await db.collection('quiz_scores').orderBy('timestamp', 'desc').get();
+                
+                if (snapshot.empty) {
+                    loadingMessage.textContent = 'এখনও কোনো স্কোর সেভ করা হয়নি।';
+                    return;
+                }
+                
+                loadingMessage.style.display = 'none'; // "Loading..." মেসেজ লুকানো
+
+                snapshot.forEach(doc => {
+                    const scoreData = doc.data();
+                    
+                    // সময়কে পড়ার উপযোগী ফরম্যাটে আনা
+                    const date = scoreData.timestamp.toDate().toLocaleString('bn-BD');
+                    
+                    // টেবিলের জন্য একটি নতুন রো (row) তৈরি করা
+                    const row = `
+                        <tr>
+                            <td>${scoreData.email}</td>
+                            <td>${scoreData.score}</td>
+                            <td>${date}</td>
+                        </tr>
+                    `;
+                    scoresTableBody.innerHTML += row; // টেবিলে নতুন রো যোগ করা
+                });
+
+            } catch (error) {
+                console.error("স্কোর আনতে সমস্যা হয়েছে:", error);
+                loadingMessage.textContent = 'স্কোর আনতে সমস্যা হয়েছে।';
+            }
+        }
+
+        // ৩. লগ আউট বাটনে ক্লিক করলে কী হবে
+        logoutButton.addEventListener('click', () => {
+            auth.signOut().then(() => {
+                console.log("User signed out successfully.");
+                window.location.href = 'index.html'; // লগ আউট করে হোম পেজে পাঠানো
+            }).catch(error => {
+                console.error("Sign out error", error);
+            });
+        });
+    </script>
+</body>
+</html>

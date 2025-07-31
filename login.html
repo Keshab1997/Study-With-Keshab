@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Study With Keshab</title>
+    <!-- আপনার ওয়েবসাইটের স্টাইলশিট যোগ করুন (প্রয়োজনে পথ পরিবর্তন করুন) -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- লগইন পেজের জন্য কিছু অতিরিক্ত স্টাইল -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        .login-container {
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        .login-container h2 {
+            margin-bottom: 25px;
+            color: #333;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box; /* Important for padding */
+        }
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+        #error-message {
+            color: red;
+            margin-top: 15px;
+            min-height: 20px; /* To prevent layout shift */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>অ্যাডমিন লগইন</h2>
+        <input type="email" id="email-input" placeholder="আপনার ইমেল দিন" required>
+        <input type="password" id="password-input" placeholder="আপনার পাসওয়ার্ড দিন" required>
+        <button id="login-button">লগইন করুন</button>
+        <p id="error-message"></p>
+    </div>
+
+    <!-- === প্রয়োজনীয় Firebase Script === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <!-- আপনার কনফিগারেশন ফাইল (পথটি সঠিক আছে কিনা দেখুন) -->
+    <script src="js/firebase-config.js"></script>
+
+    <!-- === লগইন লজিকের জন্য স্ক্রিপ্ট === -->
+    <script>
+        // এলিমেন্টগুলো সিলেক্ট করা
+        const loginButton = document.getElementById('login-button');
+        const emailInput = document.getElementById('email-input');
+        const passwordInput = document.getElementById('password-input');
+        const errorMessage = document.getElementById('error-message');
+
+        // লগইন বাটনে ক্লিক করলে কী হবে
+        loginButton.addEventListener('click', async () => {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            // ইনপুট ভ্যালিডেশন
+            if (!email || !password) {
+                errorMessage.textContent = 'দয়া করে ইমেল এবং পাসওয়ার্ড দিন।';
+                return;
+            }
+
+            // এরর মেসেজ রিসেট করা
+            errorMessage.textContent = ''; 
+
+            try {
+                // Firebase ব্যবহার করে লগইন করার চেষ্টা
+                const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+                console.log("সফলভাবে লগইন হয়েছে:", userCredential.user);
+                
+                // লগইন সফল হলে অ্যাডমিন ড্যাশবোর্ড পেজে পাঠানো হবে
+                alert('লগইন সফল হয়েছে! আপনাকে ড্যাশবোর্ডে নিয়ে যাওয়া হচ্ছে।');
+                window.location.href = "admin-dashboard.html"; // এই ফাইলটি আমরা পরে তৈরি করব
+
+            } catch (error) {
+                // যদি কোনো ভুল হয়
+                console.error("লগইন করতে সমস্যা হয়েছে:", error);
+                if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                    errorMessage.textContent = 'আপনার ইমেল বা পাসওয়ার্ড ভুল।';
+                } else {
+                    errorMessage.textContent = 'একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

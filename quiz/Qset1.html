@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - কার্য, ক্ষমতা ও শক্তি</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/quiz_style.css"> <!-- External common styles -->
+
+    <!-- === Firebase Script Section (NEW) === -->
+    <!-- এই স্ক্রিপ্টগুলো Firebase-এর বিভিন্ন সার্ভিস লোড করবে -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <!-- আপনার কনফিগারেশন ফাইল (সঠিক পথসহ) -->
+    <!-- যেহেতু এই ফাইলটি 'quiz' ফোল্ডারের ভেতরে, তাই দুই ধাপ বাইরে যেতে ../../ ব্যবহার করা হয়েছে -->
+    <script src="../../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        <div id="quiz-container"></div>
+        <div class="page-navigation">
+            <!-- পূর্ববর্তী বাটনের জন্য লজিক প্রয়োজন হলে যোগ করা যেতে পারে -->
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <!-- হোম পেজের সঠিক পথ দিন, যেমন ../index.html -->
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    <script>
+        const quizSet = {
+            name: "কার্য, ক্ষমতা ও শক্তি - Set 1 (প্রশ্ন ১-১০)",
+            questions: [
+                {
+                    question: "যদি বল (Force) শূন্য হয়, তাহলে কৃত কার্য (work) কত হবে? *(RRB GROUP-D 31.10.2018)*",
+                    options: ["20", "1", "0", "100"],
+                    answer: 2,
+                    explanation: "কার্যের সূত্র হলো, কার্য (W) = বল (F) × সরণ (S)। যদি বলের মান শূন্য (F=0) হয়, তাহলে কৃত কার্যও শূন্য হবে।"
+                },
+                {
+                    question: "25 N-এর একটি বল কোনো বস্তুর উপর কাজ করছে এবং বস্তুটি বলের দিকে 5 m সরে গেল। বলের দ্বারা কৃত কার্য কত? *(SSC CGL (Tier-1))*",
+                    options: ["125 W", "125 N", "125 J", "125 Pa"],
+                    answer: 2,
+                    explanation: "কার্য (W) = বল (F) × সরণ (S) = 25 N × 5 m = 125 জুল (J)।"
+                },
+                {
+                    question: "যখন একজন মানুষ একটি দেয়ালকে ধাক্কা দেয় কিন্তু সেটিকে সরাতে ব্যর্থ হয়, তখন— *(SSC CHSL)*",
+                    options: ["ধনাত্মক কার্য হয়", "ঋণাত্মক কার্য হয়", "সর্বোচ্চ ধনাত্মক কার্য হয়", "কোনো কার্য হয় না"],
+                    answer: 3,
+                    explanation: "পদার্থবিজ্ঞানের ভাষায়, বল প্রয়োগ করা সত্ত্বেও যদি বস্তুর সরণ না ঘটে (S=0), তাহলে কৃত কার্যের পরিমাণ শূন্য হয়।"
+                },
+                {
+                    question: "যখন কোনো ব্যক্তি 12 N বল প্রয়োগ করে 4 মিটার পথ যান, তখন কৃত কার্য কত? *(RRB GROUP-D 12.12.2018)*",
+                    options: ["6 J", "2 J", "48 J", "3 J"],
+                    answer: 2,
+                    explanation: "কার্য (W) = বল (F) × সরণ (S) = 12 N × 4 m = 48 জুল।"
+                },
+                {
+                    question: "বল ও সরণের গুণফলকে কী বলা হয়? *(RRB group-d 19.09.2018)*",
+                    options: ["গতিবেগ", "কার্য", "ত্বরণ", "ভার"],
+                    answer: 1,
+                    explanation: "কার্যের সংজ্ঞা অনুযায়ী, কার্য হলো বল এবং বলের দিকে সরণের গুণফল।"
+                },
+                {
+                    question: "প্রযুক্ত বল এবং সরণের দিকের মধ্যে কোণ 90° হলে কৃত কার্য কত হবে? *(RRB GROUP-D 10.12.2018)*",
+                    options: ["অসংজ্ঞাত", "ঋণাত্মক", "শূন্য", "ধনাত্মক"],
+                    answer: 2,
+                    explanation: "কার্যের সূত্র W = F × S × cosθ। এখানে θ = 90° হলে, cos 90° = 0 হয়। তাই কৃত কার্যও শূন্য হবে।"
+                },
+                {
+                    question: "একটি চলন্ত গাড়ি বিপরীত দিক থেকে আসা বাতাসের সম্মুখীন হয়। গাড়ির উপর বাতাস দ্বারা কৃত কার্য কী হবে? *(RRB GROUP-D 01.10.2018)*",
+                    options: ["ঋণাত্মক", "শূন্য", "অসীম", "ধনাত্মক"],
+                    answer: 0,
+                    explanation: "গাড়ির সরণ সামনের দিকে কিন্তু বাতাসের বল তার বিপরীত দিকে। বল ও সরণ পরস্পর বিপরীতমুখী (θ = 180°) হলে কৃত কার্য ঋণাত্মক হয়।"
+                },
+                {
+                    question: "যদি কেউ 500 N-এর একটি স্থির বল প্রয়োগ করে 15 কিলোমিটার দূরত্ব অতিক্রম করে, তাহলে কৃত কার্য গণনা করুন। *(RRB GROUP-D 13.12.2018)*",
+                    options: ["75,00,000 J", "75,000 J", "7,50,000 J", "7,500 J"],
+                    answer: 0,
+                    explanation: "সরণ (S) = 15 কিমি = 15,000 মিটার। কার্য (W) = F × S = 500 N × 15,000 m = 75,00,000 জুল।"
+                },
+                {
+                    question: "10 N-এর একটি অনুভূমিক বল একটি বস্তুকে 5 মিটার দূরত্বে সরালে বল দ্বারা কৃত কার্য কত হবে? *(RRB GROUP-D 20.09.2018)*",
+                    options: ["20 J", "5 J", "50 J", "100 J"],
+                    answer: 2,
+                    explanation: "কার্য (W) = বল (F) × সরণ (S) = 10 N × 5 m = 50 জুল।"
+                },
+                {
+                    question: "একটি বস্তু যখন 10 N বলের দিকে 10 মিটার সরে যায়, তখন কত কার্য করা হয়? *(RRB GROUP-D 31.10.2018)*",
+                    options: ["1 J", "10 J", "100 J", "0.01 J"],
+                    answer: 2,
+                    explanation: "কার্য (W) = বল (F) × সরণ (S) = 10 N × 10 m = 100 জুল।"
+                }
+            ]
+        };
+    </script>
+    <!-- আপনার কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="js/quiz_script.js"></script>
+</body>
+</html>

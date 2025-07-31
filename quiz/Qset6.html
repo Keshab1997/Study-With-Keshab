@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৬ - কার্য, ক্ষমতা ও শক্তি</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/quiz_style.css">
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        <div id="quiz-container"></div>
+        <div class="page-navigation">
+            <a href="Qset5.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset7.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    <script>
+        const quizSet = {
+            name: "কার্য, ক্ষমতা ও শক্তি - Set 6 (প্রশ্ন ৫১-৬০)",
+            questions: [
+                {
+                    question: "গড় ক্ষমতা (Average power) হলো— *(Railway NTPC 2020)*",
+                    options: ["মোট কার্য / মোট সময়", "বল × বেগ", "গতিশক্তি / সময়", "স্থিতিশক্তি / ভর"],
+                    answer: 0,
+                    explanation: "এটি গড় ক্ষমতার সংজ্ঞা।"
+                },
+                {
+                    question: "ক্ষমতা স্থির থাকলে, কৃতকার্য কিসের সমানুপাতিক? *(SSC MTS 2019)*",
+                    options: ["সময়", "দূরত্ব", "বল", "ভর"],
+                    answer: 0,
+                    explanation: "W = P × t। P স্থির থাকলে, W ∝ t।"
+                },
+                {
+                    question: "ওয়াট এককটি কিসের সমতুল্য? *(IBPS PO 2019)*",
+                    options: ["J/s", "N/m", "kg m/s²", "m/s"],
+                    answer: 0,
+                    explanation: "ক্ষমতা = কার্য/সময়, তাই এর একক ওয়াট = জুল/সেকেন্ড।"
+                },
+                {
+                    question: "কোনো বস্তুর গতিশক্তির রাশিমালা হলো— *(SSC CGL 2016)*",
+                    options: ["½ mv²", "mgh", "F × s", "P × t"],
+                    answer: 0,
+                    explanation: "এটি গতিশক্তির সূত্র।"
+                },
+                {
+                    question: "স্থিতিশক্তি সঞ্চিত থাকে কিসের কারণে? *(UPSC Prelims 2017)*",
+                    options: ["গতি", "অবস্থান", "বেগ", "ত্বরণ"],
+                    answer: 1,
+                    explanation: "কোনো বস্তুর অবস্থান বা আকৃতির পরিবর্তনের জন্য স্থিতিশক্তি সঞ্চিত হয়।"
+                },
+                {
+                    question: "শক্তির সংরক্ষণ সূত্র অনুযায়ী, শক্তিকে— *(Railway RRB 2018)*",
+                    options: ["সৃষ্টি করা যায়", "ধ্বংস করা যায়", "কেবল রূপান্তরিত করা যায়", "উপরের সবকটি"],
+                    answer: 2,
+                    explanation: "শক্তিকে সৃষ্টি বা ধ্বংস করা যায় না, কেবল এক রূপ থেকে অন্য রূপে পরিবর্তন করা যায়।"
+                },
+                {
+                    question: "স্থির অবস্থায় থাকা কোনো বস্তুর মধ্যে যে শক্তি থাকে তা হলো— *(SSC CHSL 2019)*",
+                    options: ["গতিশক্তি", "স্থিতিশক্তি", "শূন্য", "অসীম"],
+                    answer: 1,
+                    explanation: "কোনো বস্তুর অবস্থানের জন্য তার মধ্যে স্থিতিশক্তি থাকতে পারে।"
+                },
+                {
+                    question: "শক্তির SI একক কী? *(SBI PO 2020)*",
+                    options: ["জুল", "ওয়াট", "নিউটন", "পাস্কাল"],
+                    answer: 0,
+                    explanation: "শক্তি ও কার্যের একক একই, যা হলো জুল।"
+                },
+                {
+                    question: "একটি সরল দোলকের ক্ষেত্রে মোট যান্ত্রিক শক্তি— *(SSC JE 2017)*",
+                    options: ["ধ্রুবক থাকে", "বাড়ে", "কমে", "শূন্য থাকে"],
+                    answer: 0,
+                    explanation: "শক্তির সংরক্ষণ সূত্র অনুযায়ী, মোট যান্ত্রিক শক্তি ধ্রুবক থাকে।"
+                },
+                {
+                    question: "স্থিতিস্থাপক স্থিতিশক্তির (Elastic potential energy) রাশিমালা হলো— *(UPSC CDS 2021)*",
+                    options: ["½ kx²", "mgh", "½ mv²", "F × t"],
+                    answer: 0,
+                    explanation: "এটি কোনো স্প্রিং বা স্থিতিস্থাপক বস্তুর স্থিতিশক্তির সূত্র।"
+                }
+            ]
+        };
+    </script>
+        <script src="js/quiz_script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>আমাদের সম্পর্কে - কেশব সরকার</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- CSS ভ্যারিয়েবলস --- */
+        :root {
+            --primary-blue: #0052cc;
+            --secondary-dark: #192335;
+            --text-color: #333;
+            --grey-text: #5f6c7b;
+            --bg-light: #f8f9fa;
+            --white-color: #ffffff;
+            --border-color: #e7e9ec;
+            --gradient-primary: linear-gradient(135deg, #0052cc 0%, #007bff 100%);
+            
+            --heading-font: 'Baloo Da 2', cursive;
+            --body-font: 'Hind Siliguri', sans-serif;
+            --special-font: 'Poppins', sans-serif;
+        }
+
+        /* --- বেসিক রিসেট ও বডি স্টাইল --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body-font);
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- হেডার স্টাইল --- */
+        .site-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .site-header.scrolled {
+             box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-blue);
+            transition: transform 0.3s ease-in-out;
+        }
+        .logo-img:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .main-nav a {
+            color: var(--secondary-dark);
+            text-decoration: none;
+            font-family: var(--heading-font);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .main-nav a:hover, .main-nav a.active {
+            color: var(--primary-blue);
+        }
+        .main-nav a:hover::after, .main-nav a.active::after {
+            width: 100%;
+        }
+        .main-nav a i {
+            margin-right: 8px;
+        }
+
+        /* --- অ্যাবাউট সেকশন --- */
+        .about-section {
+            padding: 100px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            text-align: center;
+        }
+
+        .about-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            border: 10px solid var(--white-color);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .about-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 310px;
+            height: 310px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            z-index: 1;
+            transition: transform 0.4s ease;
+        }
+        .about-image-wrapper:hover::before {
+             transform: translate(-50%, -50%) scale(1.08);
+        }
+
+        .about-content h1 {
+            font-family: var(--special-font);
+            font-weight: 700;
+            font-size: 3rem;
+            color: var(--secondary-dark);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .about-content h1 span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        .about-content .intro-text {
+            font-size: 1.1rem;
+            color: var(--grey-text);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .info-card {
+            background: var(--white-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 82, 204, 0.1);
+        }
+        .info-card i {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+        }
+        .info-card-text strong {
+            display: block;
+            color: var(--secondary-dark);
+            font-weight: 600;
+        }
+        .info-card-text span {
+            font-size: 0.9rem;
+            color: var(--grey-text);
+        }
+        
+        /* --- সেকশন টাইটেল --- */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-family: var(--heading-font);
+            font-size: 2.8rem;
+            color: var(--secondary-dark);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-blue);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        /* --- Journey/Timeline Section --- */
+        .journey-section {
+            background-color: var(--white-color);
+            padding: 100px 0;
+        }
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: var(--border-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            z-index: 1;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            z-index: 2;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--white-color);
+            border: 4px solid var(--primary-blue);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .timeline-item.left {
+            left: 0;
+        }
+        .timeline-item.right {
+            left: 50%;
+        }
+        .timeline-item.right::after {
+            left: -10px;
+        }
+        .timeline-content {
+            padding: 20px 30px;
+            background: var(--bg-light);
+            position: relative;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.3s ease;
+        }
+        .timeline-content:hover {
+            box-shadow: 0 10px 30px rgba(0, 82, 204, 0.1);
+        }
+        .timeline-content h3 {
+            font-family: var(--heading-font);
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+        }
+        .timeline-content p {
+            font-size: 1rem;
+            color: var(--grey-text);
+        }
+
+        /* --- লোকেশন সেকশন --- */
+        .location-section {
+            padding: 100px 0;
+        }
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            border: 5px solid var(--white-color);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- ফুটার স্টাইল --- */
+        footer {
+            background-color: var(--secondary-dark);
+            color: var(--bg-light);
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+        .footer-content h3 {
+            font-family: var(--heading-font);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .social-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .social-links a {
+            color: var(--white-color);
+            font-size: 1.5rem;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .social-links a:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+        .footer-bottom {
+            font-size: 0.9rem;
+            color: var(--grey-text);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+        }
+
+        /* --- রেসপন্সিভ ডিজাইন --- */
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+            .about-image-wrapper {
+                margin: 0 auto;
+            }
+            .about-content .intro-text {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .info-cards {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .main-nav ul {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .about-section, .journey-section, .location-section {
+                padding: 60px 0;
+            }
+            .about-content h1 {
+                font-size: 2.5rem;
+            }
+            .about-image {
+                width: 250px;
+                height: 250px;
+            }
+            .about-image-wrapper::before {
+                width: 260px;
+                height: 260px;
+            }
+            
+            /* Timeline on mobile */
+            .timeline-container::after {
+                left: 31px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item.right {
+                left: 0%;
+            }
+            .timeline-item.left::after, .timeline-item.right::after {
+                left: 21px;
+            }
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-nav ul {
+                gap: 1rem;
+            }
+            .main-nav a {
+                font-size: 1rem;
+            }
+            .about-content h1 {
+                font-size: 2rem;
+            }
+            .about-image {
+                width: 200px;
+                height: 200px;
+            }
+            .about-image-wrapper::before {
+                width: 210px;
+                height: 210px;
+            }
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header" id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo.jpg" class="logo-img" alt="Study With Keshab Logo">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#about-section" class="active"><i class="fas fa-user"></i> About Me</a></li>
+                    <li><a href="#journey-section"><i class="fas fa-road"></i> My Journey</a></li>
+                    <li><a href="#location-section"><i class="fas fa-map-marker-alt"></i> Location</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about-section" class="about-section">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-image-wrapper">
+                        <img src="images/keshab_sarkar.jpg" alt="কেশব সরকার" class="about-image">
+                    </div>
+                    <div class="about-content">
+                        <h1>স্বাগতম! আমি <span>কেশব সরকার</span></h1>
+                        <p class="intro-text">আমি একজন উৎসাহী শিক্ষানুরাগী এবং কর্মঠ মানুষ। জ্ঞান অর্জন এবং বাস্তব অভিজ্ঞতার সমন্বয়ে জীবনকে সফল করার লক্ষ্যে আমি এগিয়ে চলেছি।</p>
+                        <p>এই প্ল্যাটফর্মটি আমার জ্ঞান ও অভিজ্ঞতা আপনাদের সাথে ভাগ করে নেওয়ার একটি প্রচেষ্টা। আশা করি, আপনারা উপকৃত হবেন এবং আমাকে আপনাদের যাত্রায় পাশে পাবেন।</p>
+                        
+                        <div class="info-cards">
+                            <div class="info-card">
+                                <i class="fas fa-graduation-cap"></i>
+                                <div class="info-card-text">
+                                    <strong>শিক্ষাগত যোগ্যতা</strong>
+                                    <span>গ্র্যাজুয়েশন সম্পন্ন</span>
+                                </div>
+                            </div>
+                            <div class="info-card">
+                                <i class="fas fa-briefcase"></i>
+                                <div class="info-card-text">
+                                    <strong>বর্তমান পেশা</strong>
+                                    <span>চাকরির প্রস্তুতি ও পার্ট-টাইম কর্মী</span>
+                                </div>
+                            </div>
+                            <div class="info-card">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="info-card-text">
+                                    <strong>বাসস্থান</strong>
+                                    <span>মেরতলা, পূর্ব বর্ধমান</span>
+                                </div>
+                            </div>
+                            <div class="info-card">
+                                <i class="fas fa-bullseye"></i>
+                                <div class="info-card-text">
+                                    <strong>লক্ষ্য</strong>
+                                    <span>সরকারি চাকরিতে যোগদান</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="journey-section" class="journey-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>আমার পথচলা</h2>
+                </div>
+                <div class="timeline-container">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>গ্র্যাজুয়েশন সম্পন্ন</h3>
+                            <p>সফলভাবে আমার স্নাতক ডিগ্রী সম্পন্ন করি, যা আমার জ্ঞান এবং দৃষ্টিভঙ্গিকে প্রসারিত করেছে।</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>কর্মজীবনের অভিজ্ঞতা</h3>
+                            <p>পড়াশোনার পাশাপাশি একটি রেস্টুরেন্টে পার্ট-টাইম কাজ শুরু করি। এটি আমাকে আর্থিক স্বাধীনতা ও বাস্তব জীবনের দক্ষতা দিয়েছে।</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>লক্ষ্যের দিকে যাত্রা</h3>
+                            <p>বর্তমানে আমি முழு উদ্যমে সরকারি চাকরির পরীক্ষার জন্য প্রস্তুতি নিচ্ছি এবং নিজের স্বপ্ন পূরণের দিকে এগিয়ে চলেছি।</p>
+                        </div>
+                    </div>
+                     <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>জ্ঞান ভাগ করার প্রচেষ্টা</h3>
+                            <p>এই প্ল্যাটফর্মের মাধ্যমে আমার অর্জিত জ্ঞান ও অভিজ্ঞতা সবার সাথে ভাগ করে নিচ্ছি, যাতে সবাই উপকৃত হতে পারে।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="location-section" class="location-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>আমার অবস্থান</h2>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.405788487372!2d88.24353457424683!3d23.63372279093848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8d16717a63753%3A0x33b1e32d1f94578b!2sMertala%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1701389445123!5m2!1sen!2sin"
+                            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>Keshab Sarkar</h3>
+                <ul class="social-links">
+                    <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                    <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 | Study With Keshab | সর্বস্বত্ব সংরক্ষিত
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

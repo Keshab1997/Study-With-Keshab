@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - কার্য, ক্ষমতা ও শক্তি</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/quiz_style.css">
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        <div id="quiz-container"></div>
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset4.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    <script>
+        const quizSet = {
+            name: "কার্য, ক্ষমতা ও শক্তি - Set 3 (প্রশ্ন ২১-৩০)",
+            questions: [
+                {
+                    question: "একজন মানুষ 20 কেজি ওজনের বস্তু মাটি থেকে তুলে তার মাথার উপর 2 মিটার উঁচুতে রাখলেন। লোকটির দ্বারা কৃত কার্য কত? (g=10 m/s²) *(RRB GROUP-D 24.09.2018)*",
+                    options: ["350 J", "200 J", "400 J", "150 J"],
+                    answer: 2,
+                    explanation: "কার্য (W) = mgh = 20 কেজি × 10 m/s² × 2 m = 400 জুল।"
+                },
+                {
+                    question: "যখন কোনো বস্তু 1 N বল দ্বারা বলের দিকে 1 m সরে যায়, তখন কৃত কার্য কত হবে? *(RRB ALP&TEC. 20.08.2018)*",
+                    options: ["10 J", "100 J", "0.01 J", "1 J"],
+                    answer: 3,
+                    explanation: "কার্য (W) = বল (F) × সরণ (S) = 1 N × 1 m = 1 জুল।"
+                },
+                {
+                    question: "10 কেজি স্যুটকেস ধরে একটি প্ল্যাটফর্মে দাঁড়িয়ে থাকা একজন ব্যক্তির দ্বারা কৃত কার্য কত? *(RRB ALP & TEC. 21.08.2018)*",
+                    options: ["100 J", "98 J", "0 J", "980 J"],
+                    answer: 2,
+                    explanation: "ব্যক্তিটি দাঁড়িয়ে আছে, তার কোনো সরণ হচ্ছে না (S=0)। তাই কৃত কার্য শূন্য।"
+                },
+                {
+                    question: "একটি 4.0 কেজি বস্তু 5.0 m/s গতিতে চলছে। এর গতি 10 m/s-এ বাড়ানোর জন্য যে কার্য করতে হবে তা হল: *(RRB ALP & TEC. 09.08.2018)*",
+                    options: ["150 J", "100 J", "75 J", "50 J"],
+                    answer: 0,
+                    explanation: "কৃত কার্য = গতিশক্তির পরিবর্তন = ½m(v₂² - v₁²) = ½ × 4 × (10² - 5²) = 150 জুল।"
+                },
+                {
+                    question: "0.1 কিলোগ্রাম ওজনের একটি বল স্থির অবস্থান থেকে 2 মিটার দূরত্ব পড়লে মাধ্যাকর্ষণ বল দ্বারা কৃত কার্য কত? (g=9.8 m/s²) *(RRB ALP& TEC 10.08.2018)*",
+                    options: ["1.96 J", "-1.96 J", "-0.98 J", "0.98 J"],
+                    answer: 0,
+                    explanation: "কার্য (W) = mgh = 0.1 কেজি × 9.8 m/s² × 2 m = 1.96 জুল।"
+                },
+                {
+                    question: "যখন কোনো বস্তুর উপর বল প্রয়োগ করা হয় কিন্তু তার সরণ শূন্য থাকে, তখন কৃত কার্য হবে— *(RRB ALP & TEC. 21.08.2018)*",
+                    options: ["ঋণাত্মক", "ধনাত্মক", "শূন্য", "নিরপেক্ষ"],
+                    answer: 2,
+                    explanation: "সরণ (S=0) শূন্য হলে, কৃত কার্যও শূন্য হয়।"
+                },
+                {
+                    question: "একটি ছেলে 120 N ওজনের একটি বাক্স 2 মিটার উচ্চতায় তুলল। ছেলেটির দ্বারা কৃত কার্য কত? *(RRB ALP& TEC. 20.09.2018)*",
+                    options: ["60 J", "120 J", "240 J", "180 J"],
+                    answer: 2,
+                    explanation: "কার্য (W) = বল (ওজন) × উচ্চতা = 120 N × 2 m = 240 জুল।"
+                },
+                {
+                    question: "কাজ করার সামর্থ্যকে কী বলা হয়? *(RRB ALP& TEC 31.08.2018)*",
+                    options: ["ক্ষমতা", "চাপ", "শক্তি", "বল"],
+                    answer: 2,
+                    explanation: "সংজ্ঞা অনুযায়ী, কাজ করার সামর্থ্যকে শক্তি (Energy) বলে।"
+                },
+                {
+                    question: "নিচের কোন ক্ষেত্রে কোনো কার্য করা হয়নি? *(RRB GROUP-D 19.09.2018)*",
+                    options: ["কপিল তার কাঁধে 10 কেজি ওজন নিয়ে দাঁড়িয়ে আছে", "শচীন ৪ কিমি হাঁটে", "একজন কুলি বাস থেকে গাড়িতে ওজন বহন করে", "অরুণ মাঠে ক্রিকেট খেলে"],
+                    answer: 0,
+                    explanation: "দাঁড়িয়ে থাকার অর্থ হলো সরণ শূন্য। তাই কোনো কার্য করা হয়নি।"
+                },
+                {
+                    question: "নিচের কোনটিতে কাজ করা হয় না? *(CDS)*",
+                    options: ["একটি উইন্ডমিল কূপ থেকে জল তুলছে", "একটি গাধা তার পিঠে ভার নিয়ে দাঁড়িয়ে আছে", "সুমন একটি পুলে সাঁতার কাটছে", "একটি ইঞ্জিন একটি ট্রেনকে টানছে"],
+                    answer: 1,
+                    explanation: "গাধাটি ভার নিয়ে দাঁড়িয়ে আছে, কিন্তু তার কোনো সরণ হচ্ছে না, তাই কৃত কার্য শূন্য।"
+                }
+            ]
+        };
+    </script>
+    <script src="js/quiz_script.js"></script>
+</body>
+</html>

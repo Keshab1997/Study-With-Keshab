@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>জীববিজ্ঞান অধ্যায় - Study With Keshab</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --text-color: #192335;
+      --bg-light: #f7fcf8; /* A very light green tint */
+      --bg-white: #ffffff;
+      --footer-bg: #0b172a;
+      --footer-text: #a0b3d1;
+    }
+
+    body {
+      font-family: 'Baloo Da 2', cursive;
+      background-color: var(--bg-light);
+      margin: 0;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 50px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #27ae60;
+    }
+
+    .chapter-page {
+      padding: 5rem 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      background: linear-gradient(45deg, #1d976c, #93f9b9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+
+    .chapter-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .chapter-card {
+      background: var(--bg-white);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-color);
+      text-decoration: none;
+      border: 1px solid #e8f5e9;
+      transition: all 0.35s ease-in-out;
+      box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chapter-card i {
+      display: block;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      transition: all 0.35s ease-in-out;
+    }
+    
+    /* Unique colors for each icon */
+    .chapter-list a:nth-child(1) i { color: #4caf50; } /* Green */
+    .chapter-list a:nth-child(2) i { color: #2196f3; } /* Blue */
+    .chapter-list a:nth-child(3) i { color: #9c27b0; } /* Purple */
+    .chapter-list a:nth-child(4) i { color: #f44336; } /* Red */
+    .chapter-list a:nth-child(5) i { color: #ff9800; } /* Orange */
+    .chapter-list a:nth-child(6) i { color: #e91e63; } /* Pink */
+    .chapter-list a:nth-child(7) i { color: #00bcd4; } /* Cyan */
+    .chapter-list a:nth-child(8) i { color: #ff5722; } /* Deep Orange */
+    .chapter-list a:nth-child(9) i { color: #8bc34a; } /* Light Green */
+    .chapter-list a:nth-child(10) i { color: #607d8b; } /* Blue Grey */
+    .chapter-list a:nth-child(11) i { color: #795548; } /* Brown */
+    .chapter-list a:nth-child(12) i { color: #ffeb3b; } /* Yellow */
+    .chapter-list a:nth-child(13) i { color: #3f51b5; } /* Indigo */
+    .chapter-list a:nth-child(14) i { color: #009688; } /* Teal */
+    
+    .chapter-card:hover {
+      transform: translateY(-10px);
+      color: #fff;
+      background-image: linear-gradient(45deg, #11998e 0%, #38ef7d 100%);
+      box-shadow: 0 15px 35px rgba(17, 153, 142, 0.3);
+    }
+
+    .chapter-card:hover i {
+      color: #fff;
+      transform: scale(1.1) rotate(-5deg);
+    }
+
+    footer {
+      background: var(--footer-bg);
+      text-align: center;
+      color: var(--footer-text);
+      padding: 2.5rem 1rem;
+      margin-top: 4rem;
+      border-top: 2px solid #38ef7d;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <a href="index.html"><img src="../images/logo.jpg" class="logo-img" alt="Logo"></a>
+      <nav>
+        <ul>
+          <li><a href="../index.html"><i class="fas fa-home"></i> হোম</a></li>
+<li><a href="../index.html#subjects"><i class="fas fa-book"></i> বিষয়সমূহ</a></li>
+<li><a href="../index.html#features"><i class="fas fa-star"></i> বৈশিষ্ট্য</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="chapter-page">
+    <div class="container">
+      <h1 class="section-title">🧬 জীববিজ্ঞান - অধ্যায় তালিকা</h1>
+      <div class="chapter-list">
+        <a href="lifescience-ch1.html" class="chapter-card"><i class="fas fa-leaf"></i> অধ্যায় ১: জীবন পাঠ</a>
+        <a href="lifescience-ch2.html" class="chapter-card"><i class="fas fa-microscope"></i> অধ্যায় ২: জীবকোষ ও টিস্যু</a>
+        <a href="lifescience-ch3.html" class="chapter-card"><i class="fas fa-share-nodes"></i> অধ্যায় ৩: কোষ বিভাজন</a>
+        <a href="lifescience-ch4.html" class="chapter-card"><i class="fas fa-sun"></i> অধ্যায় ৪: জীবনীশক্তি</a>
+        <a href="https://keshab1997.github.io/food-nutrition/" class="chapter-card"><i class="fas fa-utensils"></i> অধ্যায় ৫: খাদ্য, পুষ্টি এবং পরিপাক</a>
+        <a href="lifescience-ch6.html" class="chapter-card"><i class="fas fa-heart-pulse"></i> অধ্যায় ৬: জীবে পরিবহন</a>
+        <a href="lifescience-ch7.html" class="chapter-card"><i class="fas fa-lungs"></i> অধ্যায় ৭: গ্যাসীয় বিনিময়</a>
+        <a href="lifescience-ch8.html" class="chapter-card"><i class="fas fa-filter"></i> অধ্যায় ৮: মানব রেচন</a>
+        <a href="lifescience-ch9.html" class="chapter-card"><i class="fas fa-bone"></i> অধ্যায় ৯: দৃঢ়তা প্রদান ও চলন</a>
+        <a href="lifescience-ch10.html" class="chapter-card"><i class="fas fa-brain"></i> অধ্যায় ১০: সমন্বয়</a>
+        <a href="lifescience-ch11.html" class="chapter-card"><i class="fas fa-seedling"></i> অধ্যায় ১১: জীবে প্রজনন</a>
+        <a href="lifescience-ch12.html" class="chapter-card"><i class="fas fa-dna"></i> অধ্যায় ১২: জীবের বংশগতি ও বিবর্তন</a>
+        <a href="lifescience-ch13.html" class="chapter-card"><i class="fas fa-globe-asia"></i> অধ্যায় ১৩: জীবের পরিবেশ</a>
+        <a href="lifescience-ch14.html" class="chapter-card"><i class="fas fa-syringe"></i> অধ্যায় ১৪: জীব প্রযুক্তি</a>
+		<a href="chaya porkashoni.html" class="chapter-card"><i class="fas fa-cogs"></i> ছায়া প্রকাশনী</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © ২০২৫ | জীববিজ্ঞান বিভাগ | Study With Keshab
+  </footer>
+<script src="script.js"></script>
+</body>
+</html>
