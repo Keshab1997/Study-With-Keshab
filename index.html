@@ -16,33 +16,50 @@
     <a href="index.html" class="logo-link">
       <img src="images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
     </a>
-    <!-- ডেস্কটপ নেভিগেশন -->
+    
+    <!-- === নতুন ডাইনামিক ডেস্কটপ নেভিগেশন শুরু === -->
     <nav class="primary-navigation">
-      <ul>
-        <li><a href="index.html" class="home"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="about.html" class="about"><i class="fas fa-info-circle"></i> About Me</a></li>
-        <li><a href="#subjects" class="services"><i class="fas fa-book-open"></i> Subjects</a></li>
-        <li><a href="#features" class="blog"><i class="fas fa-star"></i> Features</a></li>
-        <li><a href="contact.html" class="contact"><i class="fas fa-envelope"></i> Contact</a></li>
-        <li><a href="#feedback-module" class="feedback"><i class="fas fa-comment-alt"></i> Feedback</a></li>
-        <!-- === লগইন পেজের লিংক যোগ করা হলো === -->
-        <li><a href="login.html" class="login"><i class="fas fa-user-shield"></i> Admin Login</a></li>
-      </ul>
+        <ul>
+            <li><a href="index.html" class="home"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html" class="about"><i class="fas fa-info-circle"></i> About Me</a></li>
+            <li><a href="#subjects" class="services"><i class="fas fa-book-open"></i> Subjects</a></li>
+            <li><a href="#features" class="blog"><i class="fas fa-star"></i> Features</a></li>
+            <li><a href="contact.html" class="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="#feedback-module" class="feedback"><i class="fas fa-comment-alt"></i> Feedback</a></li>
+            
+            <!-- গেস্ট ব্যবহারকারীর জন্য লিঙ্ক -->
+            <li class="auth-link" id="guest-link-desktop">
+                <a href="login.html" class="login"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a>
+            </li>
+            
+            <!-- লগইন করা ব্যবহারকারীর জন্য লিঙ্ক (শুরুতে লুকানো থাকবে) -->
+            <li class="auth-link" id="user-link-desktop" style="display: none;">
+                <a href="#" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a>
+            </li>
+            <li class="auth-link" id="logout-link-desktop" style="display: none;">
+                <a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
+            </li>
+        </ul>
     </nav>
+    
     <div class="header-actions">
-      <button id="show-notification-btn" title="নোটিফিকেশন" class="notification-bell-btn">
-        <i class="fa-solid fa-bell"></i>
-        <span id="notification-badge"></span>
-      </button>
-      <!-- মোবাইল মেনু টগল বাটন -->
-      <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
-         <span class="sr-only">Menu</span>
-      </button>
+        <!-- ব্যবহারকারীর নাম এখানে দেখানো হবে -->
+        <span id="user-name-display" class="nav-user-name"></span>
+        
+        <button id="show-notification-btn" title="নোটিফিকেশন" class="notification-bell-btn">
+            <i class="fa-solid fa-bell"></i>
+            <span id="notification-badge"></span>
+        </button>
+        <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+        </button>
     </div>
+    <!-- === ডেস্কটপ নেভিগেশন শেষ === -->
+
   </div>
 </header>
 
-<!-- মোবাইল নেভিগেশন মেনু (HTML এ যোগ করা হল) -->
+<!-- === নতুন ডাইনামিক মোবাইল নেভিগেশন মেনু শুরু === -->
 <nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
     <ul>
         <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
@@ -51,10 +68,23 @@
         <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
         <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
         <li><a href="#feedback-module"><i class="fas fa-comment-alt"></i> Feedback</a></li>
-        <!-- === লগইন পেজের লিংক যোগ করা হলো === -->
-        <li><a href="login.html"><i class="fas fa-user-shield"></i> Admin Login</a></li>
+        
+        <!-- গেস্ট ব্যবহারকারীর জন্য লিঙ্ক -->
+        <li class="auth-link" id="guest-link-mobile">
+            <a href="login.html"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a>
+        </li>
+
+        <!-- লগইন করা ব্যবহারকারীর জন্য লিঙ্ক (শুরুতে লুকানো থাকবে) -->
+        <li class="auth-link" id="user-link-mobile" style="display: none;">
+            <a href="#" id="dashboard-link-mobile"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a>
+        </li>
+        <li class="auth-link" id="logout-link-mobile" style="display: none;">
+            <a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
+        </li>
     </ul>
 </nav>
+<!-- === মোবাইল নেভিগেশন মেনু শেষ === -->
+
 
 <main>
   <section id="home" class="hero-section-new">
@@ -113,7 +143,6 @@
       <h2 class="section-title">আপনার মতামত দিন</h2>
       <p>আমাদের প্ল্যাটফর্ম সম্পর্কে আপনার যেকোনো প্রশ্ন, পরামর্শ বা অভিজ্ঞতা জানাতে পারেন। আপনার মতামত আমাদের সেবাকে আরও উন্নত করতে সাহায্য করবে।</p>
       <div class="feedback-form-container">
-        <!-- ফর্মের লিঙ্ক ঠিক করা হয়েছে -->
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfq_fPzhJ2h2pSgZPlabLa9-p0BKcb8EYFVouN-CeUpkDPW1w/viewform?embedded=true" width="640" height="510" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         <p class="feedback-note">আপনি যদি সরাসরি ফর্ম পূরণ করতে না পারেন, তবে এই লিংকে ক্লিক করুন: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfq_fPzhJ2h2pSgZPlabLa9-p0BKcb8EYFVouN-CeUpkDPW1w/viewform" target="_blank">ফিডব্যাক ফর্ম</a></p>
       </div>
@@ -162,11 +191,9 @@
 </footer>
 
 <!-- === Firebase Script শুরু === -->
-<!-- এই ৩টি স্ক্রিপ্ট Firebase এর বিভিন্ন টুলস (লগইন, ডেটাবেস) লোড করবে -->
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-<!-- এই স্ক্রিপ্টটি আপনার Firebase "চাবি" বা কনফিগারেশন লোড করবে -->
 <script src="js/firebase-config.js"></script>
 <!-- === Firebase Script শেষ === -->
 
