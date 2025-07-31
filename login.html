@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>লগইন করুন - Study With Keshab</title>
     
+    <!-- === পরিবর্তন: বেস ট্যাগ যুক্ত করা হয়েছে === -->
+    <base href="/Study-With-Keshab/">
+
     <!-- Google Fonts & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,7 +76,8 @@
 
     <div class="login-card">
         <div class="logo-container">
-            <img src="images/logo.png" alt="Logo">
+            <!-- === পরিবর্তন: লোগোর পাথ ঠিক করা হয়েছে === -->
+            <img src="images/logo.jpg" alt="Logo">
         </div>
         <h2>লগইন করুন</h2>
         
@@ -109,7 +113,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
     <script src="js/firebase-config.js"></script>
 
-    <!-- Login Logic Script -->
+    <!-- Login Logic Script (No changes needed here, it's correct) -->
     <script>
         const auth = firebase.auth();
         const db = firebase.firestore();
