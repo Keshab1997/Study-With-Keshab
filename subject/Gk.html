@@ -8,7 +8,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+  <!-- মূল CSS ফাইল (পথ ঠিক করা হয়েছে) -->
+  <link rel="stylesheet" href="../css/style.css">
+  
   <style>
+    /* এই পেজের জন্য নির্দিষ্ট কিছু স্টাইল */
     :root {
       --text-color: #192335;
       --bg-light: #f7f9fc;
@@ -30,49 +34,11 @@
       margin: 0 auto;
       padding: 0 20px;
     }
-
-    header {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      padding: 1rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo-img {
-      height: 50px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #e91e63;
-    }
+    
+    /* হেডার স্টাইল (style.css থেকে আসবে) */
 
     .chapter-page {
-      padding: 5rem 2rem;
+      padding: 4rem 2rem;
     }
 
     .section-title {
@@ -135,7 +101,7 @@
       transform: scale(1.1) rotate(-5deg);
     }
 
-    footer {
+    .footer {
       background: var(--footer-bg);
       text-align: center;
       color: var(--footer-text);
@@ -147,18 +113,43 @@
 </head>
 <body>
 
-  <header>
-    <div class="container">
-      <a href="index.html"><img src="../images/logo.jpg" class="logo-img" alt="Logo"></a>
-      <nav>
-        <ul>
-          <li><a href="../index.html"><i class="fas fa-home"></i> হোম</a></li>
-<li><a href="../index.html#subjects"><i class="fas fa-book"></i> বিষয়সমূহ</a></li>
-<li><a href="../index.html#features"><i class="fas fa-star"></i> বৈশিষ্ট্য</a></li>
-        </ul>
-      </nav>
+  <!-- === নতুন ডাইনামিক হেডার শুরু === -->
+  <header class="site-header">
+    <div class="header-grid container">
+        <a href="../index.html" class="logo-link">
+            <!-- পথ ঠিক করা হয়েছে -->
+            <img src="../images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
+        </a>
+        
+        <nav class="primary-navigation">
+            <ul>
+                <!-- সব পথের আগে ../ যোগ করা হয়েছে -->
+                <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="../about.html"><i class="fas fa-info-circle"></i> About Me</a></li>
+                <li><a href="../index.html#subjects" class="active"><i class="fas fa-book-open"></i> Subjects</a></li>
+                <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                
+                <li class="auth-link" id="guest-link-desktop">
+                    <a href="../login.html" class="login"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a>
+                </li>
+                <li class="auth-link" id="user-link-desktop" style="display: none;">
+                    <a href="#" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a>
+                </li>
+                <li class="auth-link" id="logout-link-desktop" style="display: none;">
+                    <a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="header-actions">
+            <span id="user-name-display" class="nav-user-name"></span>
+            <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
+                <span class="sr-only">Menu</span>
+            </button>
+        </div>
     </div>
   </header>
+  <!-- === হেডার শেষ === -->
 
   <main class="chapter-page">
     <div class="container">
@@ -172,9 +163,43 @@
     </div>
   </main>
 
-  <footer>
+  <footer class="footer">
     © ২০২৫ | General Knowledge | Study With Keshab
   </footer>
   
+  <!-- === পেজ প্রটেকশন স্ক্রিপ্ট শুরু === -->
+  <script>
+    (function() {
+        const checkAuth = () => {
+            if (typeof firebase !== 'undefined' && firebase.auth) {
+                const auth = firebase.auth();
+                // বর্তমান পেজের URL চেক করে লগইন পেজের পাথ ঠিক করা
+                const loginPageUrl = window.location.pathname.includes('/subject/') ? '../login.html' : 'login.html';
+                
+                auth.onAuthStateChanged(user => {
+                    if (!user) {
+                        console.log('User not logged in. Redirecting to login page...');
+                        window.location.href = loginPageUrl; 
+                    }
+                });
+            }
+        };
+        const interval = setInterval(() => {
+            if (typeof firebase !== 'undefined' && firebase.auth) {
+                clearInterval(interval);
+                checkAuth();
+            }
+        }, 100);
+    })();
+  </script>
+  <!-- === পেজ প্রটেকশন স্ক্রিপ্ট শেষ === -->
+
+  <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট (পথ ঠিক করা হয়েছে) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/script.js"></script>
+
 </body>
 </html>
