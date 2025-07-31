@@ -6,17 +6,14 @@
     <title>কুইজ সেট ১ - কার্য, ক্ষমতা ও শক্তি</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/quiz_style.css"> <!-- External common styles -->
+    <!-- === পরিবর্তন: CSS ফাইলের পাথ ঠিক করা হয়েছে === -->
+    <link rel="stylesheet" href="css/quiz_style.css"> 
 
-    <!-- === Firebase Script Section (NEW) === -->
-    <!-- এই স্ক্রিপ্টগুলো Firebase-এর বিভিন্ন সার্ভিস লোড করবে -->
+    <!-- === পরিবর্তন: Firebase স্ক্রিপ্টের পাথ ঠিক করা হয়েছে === -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-    <!-- আপনার কনফিগারেশন ফাইল (সঠিক পথসহ) -->
-    <!-- যেহেতু এই ফাইলটি 'quiz' ফোল্ডারের ভেতরে, তাই দুই ধাপ বাইরে যেতে ../../ ব্যবহার করা হয়েছে -->
-    <script src="../../js/firebase-config.js"></script>
-    <!-- === End of Firebase Script Section === -->
+    <script src="js/firebase-config.js"></script>
 
 </head>
 <body class="day-mode">
@@ -32,16 +29,17 @@
         </header>
         <div id="quiz-container"></div>
         <div class="page-navigation">
-            <!-- পূর্ববর্তী বাটনের জন্য লজিক প্রয়োজন হলে যোগ করা যেতে পারে -->
             <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
-            <!-- হোম পেজের সঠিক পথ দিন, যেমন ../index.html -->
+            <!-- === পরিবর্তন: হোমপেজের পাথ ঠিক করা হয়েছে === -->
             <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
             <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
         </div>
     </main>
     <script>
+        // === পরিবর্তন: quizSet অবজেক্টে subject এবং name যোগ করা হয়েছে ===
         const quizSet = {
-            name: "কার্য, ক্ষমতা ও শক্তি - Set 1 (প্রশ্ন ১-১০)",
+            subject: "পদার্থবিদ্যা (Physics)",
+            name: "কার্য, ক্ষমতা ও শক্তি - সেট ১",
             questions: [
                 {
                     question: "যদি বল (Force) শূন্য হয়, তাহলে কৃত কার্য (work) কত হবে? *(RRB GROUP-D 31.10.2018)*",
@@ -106,7 +104,7 @@
             ]
         };
     </script>
-    <!-- আপনার কুইজ স্ক্রিপ্ট ফাইল -->
+    <!-- === পরিবর্তন: quiz_script.js এর পাথ ঠিক করা হয়েছে === -->
     <script src="js/quiz_script.js"></script>
 </body>
 </html>
