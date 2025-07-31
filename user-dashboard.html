@@ -4,19 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>আমার ড্যাশবোর্ড - Study With Keshab</title>
-    
-    <!-- === নতুন: বেস ট্যাগ যুক্ত করা হয়েছে === -->
     <base href="/Study-With-Keshab/">
-
-    <!-- Google Fonts & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-    
-    <!-- আপনার মূল CSS ফাইল -->
     <link rel="stylesheet" href="css/style.css">
-
     <style>
         :root {
             --primary-color: #00796b;
@@ -29,7 +22,7 @@
         body {
             background-color: var(--bg-light);
             font-family: 'Hind Siliguri', sans-serif;
-            display: none; /* === নতুন: অথরিটি চেক না হওয়া পর্যন্ত বডি হাইড থাকবে === */
+            display: none;
         }
         .dashboard-container { max-width: 1100px; margin: 40px auto; padding: 20px; }
         .profile-card { background-color: var(--white-color); border-radius: 12px; padding: 30px; display: flex; align-items: center; gap: 25px; box-shadow: 0 5px 25px rgba(0,0,0,0.05); margin-bottom: 30px; }
@@ -51,7 +44,6 @@
     </style>
 </head>
 <body>
-    
     <!-- ড্যাশবোর্ডের হেডার -->
     <header class="site-header" id="header">
         <div class="header-grid container">
@@ -82,7 +74,13 @@
         <div class="scores-section">
             <h2><i class="fas fa-award"></i> আমার কুইজের ফলাফল</h2>
             <table id="scores-table">
-                <thead><tr><th>কুইজের বিষয়</th><th>অধ্যায়ের নাম</th><th>স্কোর</th><th>তারিখ</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>কুইজের নাম</th>
+                        <th>স্কোর</th>
+                        <th>তারিখ</th>
+                    </tr>
+                </thead>
                 <tbody id="scores-tbody"></tbody>
             </table>
             <p id="loading-message">আপনার স্কোর লোড হচ্ছে...</p>
@@ -95,7 +93,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
     <script src="js/firebase-config.js"></script>
     
-    <!-- === উন্নত ড্যাশবোর্ড স্ক্রিপ্ট === -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const auth = firebase.auth();
@@ -110,28 +107,37 @@
 
             auth.onAuthStateChanged(async (user) => {
                 if (user) {
-                    document.body.style.display = 'block'; // পেজ দৃশ্যমান করা
-                    
+                    document.body.style.display = 'block';
                     try {
                         const doc = await db.collection('users').doc(user.uid).get();
                         if (doc.exists) {
                             const userData = doc.data();
-                            userGreeting.textContent = `স্বাগতম, ${userData.name}!`;
-                            userEmailDisplay.textContent = userData.email;
+                            userGreeting.textContent = `স্বাগতম, ${userData.name || "User"}!`;
+                            userEmailDisplay.textContent = userData.email || user.email;
                             if (userData.name) {
                                 profileAvatar.textContent = userData.name.charAt(0).toUpperCase();
+                            } else {
+                                profileAvatar.textContent = user.email.charAt(0).toUpperCase();
                             }
+                        } else {
+                            userGreeting.textContent = `স্বাগতম, ${user.email.split('@')[0]}!`;
+                            userEmailDisplay.textContent = user.email;
+                            profileAvatar.textContent = user.email.charAt(0).toUpperCase();
                         }
                         fetchUserScores(user.uid);
                     } catch (error) {
                         console.error("Error fetching user data:", error);
                         userGreeting.textContent = 'স্বাগতম!';
+                        userEmailDisplay.textContent = user.email;
+                        profileAvatar.textContent = user.email.charAt(0).toUpperCase();
+                        fetchUserScores(user.uid);
                     }
                 } else {
                     window.location.href = 'login.html';
                 }
             });
 
+            // === Updated fetchUserScores function ===
             async function fetchUserScores(userId) {
                 loadingMessage.style.display = 'block';
                 scoresTableBody.innerHTML = '';
@@ -148,17 +154,17 @@
 
                     snapshot.forEach(doc => {
                         const scoreData = doc.data();
-                        const date = scoreData.timestamp ? scoreData.timestamp.toDate().toLocaleString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' }) : 'N/A';
-                        
-                        // === নতুন: অধ্যায়ের নাম ও বিষয়ের জন্য কলাম যোগ করা ===
-                        const subject = scoreData.subject || 'অজানা বিষয়';
-                        const chapter = scoreData.chapter || 'সাধারণ'; // quizName এর পরিবর্তে chapter ব্যবহার করা যেতে পারে
-
+                        const quizName = scoreData.quizName || 'অজানা কুইজ';
+                        const score = scoreData.score ?? 'N/A';
+                        const totalQuestions = scoreData.totalQuestions ?? '';
+                        let date = 'N/A';
+                        if (scoreData.timestamp && typeof scoreData.timestamp.toDate === 'function') {
+                            date = scoreData.timestamp.toDate().toLocaleString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+                        }
                         const row = `
                             <tr>
-                                <td>${subject}</td>
-                                <td>${chapter}</td>
-                                <td class="score-highlight">${scoreData.score}</td>
+                                <td>${quizName}</td>
+                                <td class="score-highlight">${score}${totalQuestions ? ' / ' + totalQuestions : ''}</td>
                                 <td>${date}</td>
                             </tr>
                         `;
