@@ -7,12 +7,11 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+
   <!-- মূল CSS ফাইল (পথ ঠিক করা হয়েছে) -->
   <link rel="stylesheet" href="../css/style.css">
 
   <style>
-    /* এই পেজের জন্য নির্দিষ্ট কিছু স্টাইল */
     :root {
       --text-color: #192335;
       --bg-light: #f7f9fc;
@@ -36,7 +35,7 @@
     }
 
     /* হেডার স্টাইল (style.css থেকে আসবে) */
-    
+
     .chapter-page {
       padding: 4rem 2rem;
     }
@@ -81,7 +80,7 @@
       margin-bottom: 1rem;
       transition: all 0.35s ease-in-out;
     }
-    
+
     /* Unique colors for each icon */
     .chapter-list a:nth-child(1) i { color: #f44336; }
     .chapter-list a:nth-child(2) i { color: #9c27b0; }
@@ -118,6 +117,93 @@
       margin-top: 4rem;
       border-top: 2px solid #2575fc;
     }
+
+    /* ====== মোবাইল মেনু CSS ====== */
+    .mobile-nav-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: none;
+      font-size: 2rem;
+      color: var(--text-color);
+      margin-left: 1rem;
+    }
+    .mobile-nav-toggle .fa-bars {
+      font-size: 2rem;
+    }
+    @media (max-width: 900px) {
+      .header-grid {
+        flex-wrap: wrap;
+      }
+      .primary-navigation {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--bg-white);
+        box-shadow: 0 8px 24px rgba(149, 157, 165, 0.13);
+        z-index: 100;
+      }
+      .primary-navigation.open {
+        display: block;
+      }
+      .mobile-nav-toggle {
+        display: inline-block;
+      }
+      .primary-navigation ul {
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+      }
+      .primary-navigation ul li {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      .primary-navigation ul li:last-child {
+        border-bottom: none;
+      }
+    }
+    .header-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    .logo-img {
+      height: 55px;
+      border-radius: 50%;
+      margin: 10px 0;
+    }
+    .primary-navigation ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+    .primary-navigation ul li a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .primary-navigation ul li a.active, .primary-navigation ul li a:hover {
+      background: #e3e9f9;
+      color: #2575fc;
+    }
+    .nav-user-name {
+      font-weight: 600;
+      color: #2575fc;
+      margin-left: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -126,18 +212,20 @@
   <header class="site-header">
     <div class="header-grid container">
         <a href="../index.html" class="logo-link">
-            <!-- পথ ঠিক করা হয়েছে -->
             <img src="../images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
         </a>
-        
-        <nav class="primary-navigation">
+
+        <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+
+        <nav class="primary-navigation" id="mobile-navigation-menu">
             <ul>
-                <!-- সব পথের আগে ../ যোগ করা হয়েছে -->
                 <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="../about.html"><i class="fas fa-info-circle"></i> About Me</a></li>
                 <li><a href="../index.html#subjects" class="active"><i class="fas fa-book-open"></i> Subjects</a></li>
                 <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-                
                 <li class="auth-link" id="guest-link-desktop">
                     <a href="../login.html" class="login"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a>
                 </li>
@@ -149,12 +237,9 @@
                 </li>
             </ul>
         </nav>
-        
+
         <div class="header-actions">
             <span id="user-name-display" class="nav-user-name"></span>
-            <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
-                <span class="sr-only">Menu</span>
-            </button>
         </div>
     </div>
   </header>
@@ -173,7 +258,7 @@
         <a href="https://keshab1997.github.io/Physics-Magnet/"target="_blank" class="chapter-card"><i class="fas fa-magnet"></i>  চৌম্বকত্ব</a>
         <a href="physics-ch9.html" class="chapter-card"><i class="fas fa-bolt"></i> বিকিরণ ও পারমাণবিক শক্তি</a>
         <a href="physics-ch10.html" class="chapter-card"><i class="fas fa-cogs"></i> যন্ত্র ও প্রযুক্তি</a>
-        
+
         <!-- Newly Added Chapters -->
         <a href="physics-ch-motion.html" class="chapter-card"><i class="fas fa-tachometer-alt"></i> বস্তুর গতি</a>
         <a href="https://keshab1997.github.io/Physics-Gravitation/" class="chapter-card"><i class="fas fa-apple-alt"></i> অভিকর্ষ ও মহাকর্ষ</a>
@@ -182,7 +267,7 @@
         <a href="https://keshab1997.github.io/physics-padathor-gathon-o-darmo/"target="_blank" class="chapter-card"><i class="fas fa-shapes"></i> পদার্থের গঠন ও ধর্ম</a>
 
         <!-- Other Links -->
-		    <a href="https://keshab1997.github.io/chhaya-prakashani-physics/" target="_blank" class="chapter-card"><i class="fas fa-book-open"></i> ছায়া প্রকাশনী</a>
+        <a href="https://keshab1997.github.io/chhaya-prakashani-physics/" target="_blank" class="chapter-card"><i class="fas fa-book-open"></i> ছায়া প্রকাশনী</a>
       </div>
     </div>
   </main>
@@ -190,20 +275,18 @@
   <footer class="footer">
     © ২০২৫ | পদার্থবিজ্ঞান বিভাগ | Study With Keshab
   </footer>
-  
+
   <!-- === পেজ প্রটেকশন স্ক্রিপ্ট শুরু === -->
   <script>
     (function() {
         const checkAuth = () => {
             if (typeof firebase !== 'undefined' && firebase.auth) {
                 const auth = firebase.auth();
-                // বর্তমান পেজের URL চেক করে লগইন পেজের পাথ ঠিক করা
                 const loginPageUrl = window.location.pathname.includes('/subject/') ? '../login.html' : 'login.html';
-                
                 auth.onAuthStateChanged(user => {
                     if (!user) {
                         console.log('User not logged in. Redirecting to login page...');
-                        window.location.href = loginPageUrl; 
+                        window.location.href = loginPageUrl;
                     }
                 });
             }
@@ -217,6 +300,30 @@
     })();
   </script>
   <!-- === পেজ প্রটেকশন স্ক্রিপ্ট শেষ === -->
+
+  <!-- মোবাইল মেনু টগল স্ক্রিপ্ট -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileToggle = document.querySelector('.mobile-nav-toggle');
+      const mobileMenu = document.getElementById('mobile-navigation-menu');
+
+      if (mobileToggle && mobileMenu) {
+        mobileToggle.addEventListener('click', function() {
+          const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+          this.setAttribute('aria-expanded', !expanded);
+          mobileMenu.classList.toggle('open');
+        });
+
+        // মোবাইল মেনুতে কোনো লিঙ্কে ক্লিক করলে মেনু বন্ধ হবে
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+    });
+  </script>
 
   <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট (পথ ঠিক করা হয়েছে) -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
