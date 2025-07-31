@@ -3,217 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login - Study With Keshab</title>
+    <title>লগইন করুন - Study With Keshab</title>
     
-    <!-- Google Fonts for Bengali -->
+    <!-- Google Fonts & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --dark-bg: #1a1a2e;
-            --purple: #e94560;
-            --light-purple: #c471ed;
-            --blue: #f64f59;
-            --white-color: #ffffff;
-            --text-color: #e0e0e0;
-            --border-color: rgba(255, 255, 255, 0.3);
-            --error-color: #ff9a9a;
+            --bg-start: #e0f7fa;
+            --bg-end: #b2ebf2;
+            --form-bg: #ffffff;
+            --primary-color: #00796b;
+            --primary-hover: #004d40;
+            --text-color: #37474f;
+            --border-color: #cfd8dc;
+            --error-color: #d32f2f;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Hind Siliguri', sans-serif;
-            background-color: var(--dark-bg);
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            background-size: 200% 200%;
+            animation: gradient-animation 15s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden;
-            position: relative;
+            padding: 20px;
         }
-
-        /* --- Particle Animation Background --- */
-        .particle {
-            position: absolute;
-            bottom: -200px;
-            background-color: var(--purple);
-            border-radius: 50%;
-            opacity: 0;
-            animation: rise 10s infinite linear;
+        @keyframes gradient-animation {
+            0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
         }
-        @keyframes rise {
-            to {
-                transform: translateY(-120vh);
-                opacity: 1;
-            }
-        }
-        .particle:nth-child(1){ width: 80px; height: 80px; left: 10%; animation-duration: 15s; }
-        .particle:nth-child(2){ width: 20px; height: 20px; left: 20%; animation-duration: 10s; animation-delay: 1s; }
-        .particle:nth-child(3){ width: 50px; height: 50px; left: 35%; animation-duration: 20s; animation-delay: 3s; background-color: var(--blue); }
-        .particle:nth-child(4){ width: 100px; height: 100px; left: 50%; animation-duration: 18s; animation-delay: 2s; }
-        .particle:nth-child(5){ width: 10px; height: 10px; left: 65%; animation-duration: 8s; animation-delay: 5s; background-color: var(--light-purple); }
-        .particle:nth-child(6){ width: 40px; height: 40px; left: 80%; animation-duration: 12s; }
-        .particle:nth-child(7){ width: 60px; height: 60px; left: 90%; animation-duration: 16s; animation-delay: 4s; background-color: var(--blue); }
-
         .login-card {
             width: 100%;
             max-width: 420px;
-            padding: 50px 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 40px;
+            background: var(--form-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
-            color: var(--white-color);
-            animation: fadeInSlideUp 0.8s ease-out forwards;
-            z-index: 2;
+            color: var(--text-color);
+            animation: fadeIn 0.6s ease-out;
+            border-top: 5px solid var(--primary-color);
         }
-
-        @keyframes fadeInSlideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); }
         }
-
-        .login-card h2 { margin-bottom: 30px; font-size: 28px; font-weight: 600; }
-        .input-group { position: relative; margin-bottom: 25px; }
-        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-color); }
-        .input-group input { width: 100%; padding: 15px 15px 15px 45px; background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); border-radius: 10px; color: var(--white-color); font-size: 16px; transition: background 0.3s, border-color 0.3s; }
-        .input-group input::placeholder { color: var(--text-color); }
-        .input-group input:focus { outline: none; background: rgba(255, 255, 255, 0.2); border-color: var(--white-color); }
-
-        .login-button { width: 100%; padding: 15px; background: linear-gradient(90deg, var(--purple), var(--blue)); color: var(--white-color); border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
-        .login-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-        
-        .login-button .spinner { display: none; border: 3px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top-color: var(--white-color); width: 20px; height: 20px; animation: rotate 1s linear infinite; margin: -2px auto; }
-        .login-button.loading .btn-text { display: none; }
-        .login-button.loading .spinner { display: block; }
+        .logo-container { margin-bottom: 20px; }
+        .logo-container img { max-width: 80px; border-radius: 50%; }
+        .login-card h2 { margin-bottom: 25px; font-size: 24px; font-weight: 600; }
+        .input-group { position: relative; margin-bottom: 20px; text-align: left; }
+        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #90a4ae; }
+        .input-group input { width: 100%; padding: 14px 14px 14px 45px; background-color: #eceff1; border: 1px solid transparent; border-radius: 8px; color: var(--text-color); font-size: 16px; transition: border-color 0.3s, box-shadow 0.3s; }
+        .input-group input:focus { outline: none; background-color: var(--form-bg); border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.15); }
+        .login-button { width: 100%; padding: 14px; background-color: var(--primary-color); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: 600; transition: background-color 0.3s, transform 0.2s; position: relative; overflow: hidden; margin-top: 10px; }
+        .login-button:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+        .login-button .spinner { display: none; border: 3px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top-color: var(--form-bg); width: 20px; height: 20px; animation: rotate 1s linear infinite; margin: -2px auto; }
+        .login-button.loading .btn-text { display: none; } .login-button.loading .spinner { display: block; }
         @keyframes rotate { to { transform: rotate(360deg); } }
-
-        #error-message { color: var(--error-color); margin-top: 20px; min-height: 20px; font-weight: 500; }
-
-        #sound-toggle-btn { position: fixed; top: 20px; right: 20px; background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); color: var(--white-color); width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 20px; display: flex; justify-content: center; align-items: center; z-index: 10; transition: background 0.3s; }
-        #sound-toggle-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        #error-message { color: var(--error-color); margin-top: 15px; min-height: 20px; font-weight: 500; }
+        .signup-link { margin-top: 25px; font-size: 15px; }
+        .signup-link a { color: var(--primary-color); text-decoration: none; font-weight: 600; }
     </style>
 </head>
 <body>
-    
-    <!-- Particle Background Elements -->
-    <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
 
     <div class="login-card">
-        <h2>অ্যাডমিন লগইন</h2>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        <h2>লগইন করুন</h2>
+        
         <div class="input-group">
             <i class="fa-solid fa-envelope"></i>
-            <input type="email" id="email-input" placeholder="আপনার ইমেল দিন" required>
+            <input type="email" id="email-input" placeholder="আপনার ইমেল" required>
         </div>
+        
         <div class="input-group">
             <i class="fa-solid fa-lock"></i>
-            <input type="password" id="password-input" placeholder="আপনার পাসওয়ার্ড দিন" required>
+            <input type="password" id="password-input" placeholder="আপনার পাসওয়ার্ড" required>
         </div>
+        
         <button id="login-button" class="login-button">
-            <span class="btn-text">লগইন করুন</span>
+            <span class="btn-text">লগইন</span>
             <div class="spinner"></div>
         </button>
+        
         <p id="error-message"></p>
+        
+        <p class="signup-link">
+            অ্যাকাউন্ট নেই? <a href="signup.html">এখানে সাইন আপ করুন</a>
+        </p>
     </div>
 
-    <!-- Sound Control Button -->
-    <button id="sound-toggle-btn">
-        <i id="sound-icon" class="fa-solid fa-volume-xmark"></i>
-    </button>
-
-    <!-- Audio Elements (Hidden) -->
+    <!-- Audio Elements -->
     <audio id="click-sound" src="audio/click-sound.mp3" preload="auto"></audio>
-    <audio id="bg-sound" src="audio/ambient-sound.mp3" preload="auto" loop></audio>
-    <!-- নতুন এরর সাউন্ডের জন্য এই লাইনটি যোগ করা হয়েছে -->
     <audio id="error-sound" src="audio/error-sound.mp3" preload="auto"></audio>
 
-    <!-- Firebase & Logic Scripts -->
+    <!-- Firebase Scripts -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
     <script src="js/firebase-config.js"></script>
 
+    <!-- Login Logic Script -->
     <script>
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
         const loginButton = document.getElementById('login-button');
         const emailInput = document.getElementById('email-input');
         const passwordInput = document.getElementById('password-input');
         const errorMessage = document.getElementById('error-message');
         
-        // Sound Elements
         const clickSound = document.getElementById('click-sound');
-        const bgSound = document.getElementById('bg-sound');
-        const errorSound = document.getElementById('error-sound'); // এরর সাউন্ড এলিমেন্ট সিলেক্ট করা
-        const soundToggleButton = document.getElementById('sound-toggle-btn');
-        const soundIcon = document.getElementById('sound-icon');
-        let isSoundOn = false;
+        const errorSound = document.getElementById('error-sound');
 
-        // Sound Toggle Logic
-        soundToggleButton.addEventListener('click', () => {
-            isSoundOn = !isSoundOn;
-            if (isSoundOn) {
-                bgSound.play().catch(e => console.log("Background sound blocked by browser."));
-                soundIcon.classList.replace('fa-volume-xmark', 'fa-volume-high');
-            } else {
-                bgSound.pause();
-                soundIcon.classList.replace('fa-volume-high', 'fa-volume-xmark');
-            }
-        });
-
-        // Login Logic
-        loginButton.addEventListener('click', async () => {
-            if (isSoundOn) {
-                clickSound.currentTime = 0;
-                clickSound.play();
-            }
-
+        loginButton.addEventListener('click', () => {
             const email = emailInput.value;
             const password = passwordInput.value;
+            
+            clickSound.currentTime = 0;
+            clickSound.play();
 
             if (!email || !password) {
                 errorMessage.textContent = 'দয়া করে ইমেল এবং পাসওয়ার্ড দিন।';
-                if (isSoundOn) {
-                    errorSound.currentTime = 0;
-                    errorSound.play();
-                }
+                errorSound.currentTime = 0;
+                errorSound.play();
                 return;
             }
 
-            errorMessage.textContent = ''; 
+            errorMessage.textContent = '';
             loginButton.classList.add('loading');
 
-            try {
-                const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-                window.location.href = "admin-dashboard.html";
-            } catch (error) {
-                // ভুলের ক্ষেত্রে এরর সাউন্ড প্লে করা হবে
-                if (isSoundOn) {
+            auth.signInWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    const user = userCredential.user;
+                    // এখন আমরা ব্যবহারকারীর role চেক করব
+                    return db.collection('users').doc(user.uid).get();
+                })
+                .then(doc => {
+                    if (doc.exists && doc.data().role === 'admin') {
+                        // যদি ব্যবহারকারী অ্যাডমিন হয়
+                        console.log('Admin user detected. Redirecting to admin dashboard.');
+                        window.location.href = 'admin-dashboard.html';
+                    } else {
+                        // যদি সাধারণ ব্যবহারকারী (student) হয়
+                        console.log('Student user detected. Redirecting to home page.');
+                        window.location.href = 'index.html';
+                    }
+                })
+                .catch(error => {
                     errorSound.currentTime = 0;
                     errorSound.play();
-                }
-                
-                if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
-                    errorMessage.textContent = 'আপনার ইমেল বা পাসওয়ার্ড ভুল।';
-                } else {
-                    errorMessage.textContent = 'একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।';
-                }
-            } finally {
-                loginButton.classList.remove('loading');
-            }
+                    loginButton.classList.remove('loading');
+                    
+                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                        errorMessage.textContent = 'আপনার ইমেল বা পাসওয়ার্ড সঠিক নয়।';
+                    } else {
+                        errorMessage.textContent = 'একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।';
+                    }
+                    console.error("Login error:", error);
+                });
         });
-        
-        passwordInput.addEventListener('keyup', e => e.key === 'Enter' && loginButton.click());
     </script>
 </body>
 </html>
