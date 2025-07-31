@@ -1,6 +1,6 @@
 /* ==================================================
-  সম্পূর্ণ ওয়েবসাইট স্টাইলশিট (সংস্করণ ২.৩ - সংশোধিত)
-  KESHAAB দ্বারা সমাধানকৃত এবং অপ্টিমাইজড
+  সম্পূর্ণ ওয়েবসাইট স্টাইলশিট (সংস্করণ ৩.০ - ফাইনাল ডিজাইন)
+  ডেস্কটপ ও মোবাইল রেসপন্সিভ ডিজাইন উন্নত করা হয়েছে
 ================================================== */
 
 /* --- ১. ভ্যারিয়েবলস ও বেসিক স্টাইল --- */
@@ -29,27 +29,35 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
 /* --- ২. হেডার ডিজাইন --- */
 .site-header { position: sticky; top: 0; left: 0; width: 100%; z-index: 1000; background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); transition: box-shadow 0.3s ease; }
 .site-header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07); }
-.header-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2rem; max-width: 1200px; margin: auto; padding: 0 24px; height: 80px; }
-.logo-link { display: flex; align-items: center; text-decoration: none; }
+.header-grid { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 24px; height: 80px; }
+.logo-link { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
 .logo-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--white-color); box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.3s ease; }
 .logo-img:hover { transform: scale(1.08) rotate(-5deg); }
 
 /* ডেস্কটপ নেভিগেশন */
-.primary-navigation ul { display: flex; justify-content: flex-end; align-items: center; gap: 1.5rem; list-style: none; }
+.primary-navigation { margin-left: auto; }
+.primary-navigation ul { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
 .primary-navigation a { font-family: var(--heading-font); font-size: 1.1rem; color: var(--secondary-dark); font-weight: 600; text-decoration: none; padding: 0.5rem; position: relative; transition: color 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
 .primary-navigation a:hover, .primary-navigation a.active { color: var(--primary-blue); }
 
 /* Header Actions & Auth Links */
-.header-actions { display: flex; align-items: center; gap: 15px; }
-.nav-user-name { font-weight: 600; color: var(--secondary-dark); }
+.header-actions { display: flex; align-items: center; gap: 15px; margin-left: 1.5rem; }
+.nav-user-name { font-weight: 600; color: var(--secondary-dark); white-space: nowrap; }
 .auth-link a.login { background: var(--primary-blue); color: var(--white-color); padding: 8px 16px; border-radius: 20px; transition: background-color 0.3s; }
 .auth-link a.login:hover { background: #0041a3; color: var(--white-color); }
 .notification-bell-btn { background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--secondary-dark); position: relative; padding: 5px; transition: color 0.3s ease; }
 .notification-bell-btn:hover { color: var(--primary-blue); }
+
+
+/* --- ৩. মোবাইল নেভিগেশন --- */
 .mobile-nav-toggle { display: none; }
+.mobile-navigation-menu { display: none; }
 
 
-/* --- ৩. হিরো সেকশন --- */
+/* --- ৪. হিরো সেকশন থেকে অন্যান্য সেকশন... (আগের মতোই) --- */
+/* ... আপনার আগের সব সেকশনের CSS কোড এখানে থাকবে ... */
+/* আমি শুধু Contact এবং Feedback সেকশনটি উন্নত করছি */
+
 .hero-section-new { padding: 6rem 0; background: linear-gradient(135deg, #eaf2ff 0%, #ffffff 100%); overflow: hidden; }
 .hero-container { display: flex; align-items: center; gap: 3rem; }
 .hero-left { flex: 1; text-align: left; animation: fadeInUp 1s ease-out; }
@@ -62,7 +70,6 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
 .image-wrapper img { width: 100%; border-radius: 25px; box-shadow: 0 10px 30px rgba(44, 62, 80, 0.15); transition: transform 0.3s ease; }
 .image-wrapper img:hover { transform: scale(1.05); }
 
-/* --- ৪. বিষয় ও বৈশিষ্ট্য সেকশন --- */
 .subjects-section, .features-section { padding: 5rem 0; }
 .features-section { background-color: var(--bg-light); }
 .subject-cards-new, .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
@@ -76,6 +83,7 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
 .feature-item i { color: var(--primary-blue); width: 70px; height: 70px; display: inline-flex; align-items: center; justify-content: center; font-size: 2.5rem; border-radius: 50%; margin-bottom: 1.5rem; background-color: #eaf2ff; transition: all 0.3s ease; }
 .feature-item:hover i { background-color: var(--primary-blue); color: var(--white-color); transform: rotate(360deg) scale(1.1); }
 .feature-item h4 { font-family: var(--heading-font); font-size: 1.3rem; color: var(--secondary-dark); margin-bottom: 0.75rem; }
+
 
 /* --- ৫. অ্যাবাউট পেজ সেকশন --- */
 .about-section { padding: 80px 0; }
@@ -108,20 +116,22 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
 .map-container { border-radius: 15px; overflow: hidden; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); max-width: 900px; margin: 0 auto; aspect-ratio: 16 / 9; border: 5px solid var(--white-color); }
 .map-container iframe { width: 100%; height: 100%; border: none; }
 
-/* --- ৬. কন্টাক্ট পেজ সেকশন --- */
-.contact-section { padding: 80px 0; background-image: radial-gradient(circle at 100% 0%, rgba(0, 82, 204, 0.05) 0%, transparent 30%), radial-gradient(circle at 0% 100%, rgba(0, 82, 204, 0.05) 0%, transparent 30%); }
-.contact-section .section-title h1 { font-size: 2.8rem; }
-.contact-section .section-title p { max-width: 600px; margin: 1rem auto 0; font-size: 1.1rem; color: var(--grey-text); }
+
+/* --- ৬. উন্নত কন্টাক্ট ও ফিডব্যাক সেকশন --- */
+.contact-section, .feedback-section { padding: 80px 0; background-image: radial-gradient(circle at 100% 0%, rgba(0, 82, 204, 0.05) 0%, transparent 30%), radial-gradient(circle at 0% 100%, rgba(0, 82, 204, 0.05) 0%, transparent 30%); }
+.feedback-section { background-color: var(--bg-light); }
+.contact-section .section-title h1, .feedback-section .section-title { font-size: 2.8rem; }
+.contact-section .section-title p, .feedback-section .section-title + p { max-width: 600px; margin: 1rem auto 0; font-size: 1.1rem; color: var(--grey-text); }
 .contact-wrapper { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; background: var(--white-color); padding: 40px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0, 82, 204, 0.1); }
 .contact-info h2, .contact-form h2 { font-family: var(--heading-font); font-size: 1.8rem; color: var(--primary-blue); margin-bottom: 2rem; }
 .info-item { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
-.info-item .icon { font-size: 1.5rem; color: var(--primary-blue); background: #eaf2ff; width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; }
+.info-item .icon { font-size: 1.5rem; color: var(--primary-blue); background: #eaf2ff; width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; }
 .info-item-text strong { display: block; color: var(--secondary-dark); font-weight: 600; }
-.info-item-text a { color: var(--grey-text); text-decoration: none; transition: color 0.3s; }
+.info-item-text a, .info-item-text span { color: var(--grey-text); text-decoration: none; transition: color 0.3s; word-break: break-all; }
 .info-item-text a:hover { color: var(--primary-blue); }
-.social-links { margin-top: 3rem; display: flex; gap: 1rem; }
-.social-links a { color: var(--primary-blue); font-size: 1.2rem; width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--border-color); border-radius: 50%; transition: background-color 0.3s, color 0.3s; }
-.social-links a:hover { background-color: var(--primary-blue); color: var(--white-color); }
+.contact-social-links { margin-top: 3rem; display: flex; gap: 1rem; }
+.contact-social-links a { color: var(--primary-blue); font-size: 1.2rem; width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--border-color); border-radius: 50%; transition: background-color 0.3s, color 0.3s; }
+.contact-social-links a:hover { background-color: var(--primary-blue); color: var(--white-color); }
 .contact-form h2 { color: var(--secondary-dark); }
 .form-group { margin-bottom: 1.5rem; }
 .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--secondary-dark); }
@@ -131,15 +141,13 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 .btn-submit { display: inline-block; background: var(--gradient-primary); color: var(--white-color); padding: 12px 30px; border: none; border-radius: 50px; font-family: var(--heading-font); font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 5px 15px rgba(0, 82, 204, 0.2); }
 .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 82, 204, 0.3); }
 
-/* --- ৭. ফিডব্যাক সেকশন --- */
-.feedback-section { padding: 60px 0; background-color: var(--bg-light); text-align: center;}
-.feedback-section .section-title { margin-bottom: 20px; }
-.feedback-section > .container > p { max-width: 800px; margin: 0 auto 30px auto; }
-.feedback-form-container { max-width: 800px; margin: auto; background-color: var(--white-color); padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+/* Google Form কন্টেইনার */
+.feedback-form-container { max-width: 800px; margin: auto; background-color: var(--white-color); padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
 .feedback-form-container iframe { width: 100%; height: 600px; border: none; border-radius: 8px; }
 .feedback-note { margin-top: 20px; font-size: 0.9em; color: var(--grey-text); }
 
-/* --- ৮. ফুটার --- */
+
+/* --- ৭. ফুটার --- */
 footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
 .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem; padding-bottom: 3.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.15); margin-bottom: 2.5rem; }
 .footer-logo { max-height: 70px; margin-bottom: 1.5rem; }
@@ -152,13 +160,13 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
 .footer-social .social-icons a:hover { background-color: var(--primary-blue); transform: translateY(-5px) scale(1.15) rotate(5deg); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); }
 .footer-bottom { padding-top: 2.5rem; text-align: center; font-size: 0.95rem; color: #a7bbdd; opacity: 0.9; }
 
-/* --- ৯. ইউটিলিটি ও অ্যানিমেশন --- */
+/* --- ৮. ইউটিলিটি ও অ্যানিমেশন --- */
 #scrollTopBtn { position: fixed; bottom: 30px; right: 30px; z-index: 1000; background-color: var(--primary-blue); color: var(--white-color); border: none; outline: none; padding: 12px 16px; border-radius: 50%; font-size: 20px; cursor: pointer; box-shadow: 0 6px 20px rgba(0, 82, 204, 0.3); display: none; transition: all 0.3s ease; }
 #scrollTopBtn:hover { background-color: #003d99; transform: scale(1.1); }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
 
-/* --- ১০. নোটিফিকেশন মডাল স্টাইল --- */
+/* --- ৯. নোটিফিকেশন মডাল স্টাইল --- */
 #notification-badge { display: none; position: absolute; top: 0px; right: 0px; background: #e74c3c; color: #fff; font-size: 0.75rem; padding: 3px 7px; border-radius: 50%; font-weight: bold; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
 #notification-modal { display: none; position: fixed; z-index: 99999; inset: 0; background: rgba(0,0,0,0.4); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
 #notification-modal.is-visible { display: flex; opacity: 1; pointer-events: auto; }
@@ -171,45 +179,29 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
 #close-notification-modal { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #a0a0a0; transition: all 0.2s ease; }
 #close-notification-modal:hover { color: #555; transform: rotate(90deg); }
 
-/* --- ১১. রেসপনসিভ ডিজাইন --- */
+/* --- ১০. ফাইনাল রেসপন্সিভ ডিজাইন --- */
 
-/* ট্যাবলেট ভিউ */
+/* ট্যাবলেট ভিউ (992px এর নিচে) */
 @media (max-width: 992px) {
-    .header-grid { gap: 1rem; }
+    .header-grid { padding: 0 20px; }
     .primary-navigation ul { gap: 1rem; }
     .primary-navigation a { font-size: 1rem; }
-    .features-grid { grid-template-columns: repeat(2, 1fr); }
-    .footer-top { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .features-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
     .about-grid { grid-template-columns: 1fr; text-align: center; }
     .about-image-wrapper { margin-bottom: 2rem; }
     .contact-wrapper { grid-template-columns: 1fr; }
 }
 
-/* মোবাইল ভিউ */
+/* মোবাইল ভিউ (768px বা তার কম) */
 @media (max-width: 768px) {
     .section-title { font-size: 2rem; }
-    .header-grid { grid-template-columns: auto 1fr; justify-content: space-between; padding: 0 1rem; height: 70px; }
-    .header-grid .header-actions { justify-self: end; }
     
-    /* ডেস্কটপ নেভিগেশন হাইড করুন */
-    .primary-navigation { display: none; }
-    
-    .mobile-navigation-menu {
-        display: block; 
-        position: fixed;
-        inset: 0 0 0 30%; 
-        background: var(--white-color);
-        box-shadow: -10px 0 25px rgba(0,0,0,0.1);
-        z-index: 999;
-        transform: translateX(100%);
-        transition: transform 350ms ease-out;
-        padding: min(20vh, 10rem) 2em;
-    }
-    .mobile-navigation-menu[data-visible="true"] { transform: translateX(0%); }
-    .mobile-navigation-menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 2rem; }
-    .mobile-navigation-menu a { font-size: 1.2rem; font-family: var(--heading-font); font-weight: 600; color: var(--secondary-dark); }
-    
-    /* মোবাইল টগল বাটন */
+    /* হেডার ও নেভিগেশন */
+    .header-grid { padding: 0 15px; height: 70px; }
+    .primary-navigation { display: none; } /* ডেস্কটপ মেনু হাইড */
+    .header-actions { margin-left: auto; } /* অ্যাকশন আইকন ডানদিকে */
+    .nav-user-name, #show-notification-btn { display: none; } /* মোবাইলে ইউজারনেম ও বেল হাইড */
+
     .mobile-nav-toggle {
         display: block;
         position: relative;
@@ -219,13 +211,29 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
         aspect-ratio: 1;
         background-repeat: no-repeat;
         cursor: pointer;
-        z-index: 9999; 
+        z-index: 9999;
+        margin-left: 10px;
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(25, 35, 53)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
     .mobile-nav-toggle[aria-expanded="true"] {
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(25, 35, 53)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6l18 18M6 24L24 6'/%3e%3c/svg%3e");
     }
 
+    .mobile-navigation-menu {
+        display: block;
+        position: fixed;
+        inset: 0 0 0 30%; 
+        background: var(--white-color);
+        box-shadow: -10px 0 25px rgba(0,0,0,0.1);
+        z-index: 999;
+        transform: translateX(100%);
+        transition: transform 350ms ease-out;
+        padding: min(20vh, 8rem) 2em;
+    }
+    .mobile-navigation-menu[data-visible="true"] { transform: translateX(0%); }
+    .mobile-navigation-menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 2rem; }
+    .mobile-navigation-menu a { font-size: 1.2rem; font-family: var(--heading-font); font-weight: 600; color: var(--secondary-dark); }
+    
     /* অন্যান্য সেকশনের রেসপনসিভ স্টাইল */
     .hero-section-new { padding: 4rem 0; }
     .hero-container { flex-direction: column; text-align: center; }
@@ -235,6 +243,13 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
     .hero-description { margin-left: auto; margin-right: auto; }
     .features-grid, .subject-cards-new { grid-template-columns: 1fr; }
     
+    /* কন্টাক্ট ও ফিডব্যাক ফর্ম মোবাইল */
+    .contact-wrapper, .feedback-form-container { padding: 20px; }
+    .contact-info { text-align: center; }
+    .info-item { flex-direction: column; text-align: center; }
+    .contact-social-links { justify-content: center; }
+    .feedback-form-container iframe { height: 500px; }
+
     .timeline-container::after { left: 20px; }
     .timeline-item { width: 100%; padding-left: 60px; padding-right: 10px; }
     .timeline-item.left, .timeline-item.right { left: 0; }
