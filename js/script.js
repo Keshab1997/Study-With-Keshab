@@ -1,248 +1,233 @@
 // =======================================================
-// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ২.৪ - Firebase ইন্টিগ্রেশন সহ)
+// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ২.৫ - পূর্ণাঙ্গ এবং সংশোধিত)
 // =======================================================
 
-// --- Firebase Authentication এবং UI ম্যানেজমেন্ট (নতুন এবং উন্নত) ---
-// এই অংশটি উপরে আনা হয়েছে কারণ এটি পেজ লোডের শুরুতেই কাজ করা উচিত।
-
-// একটি ফাংশন যা Firebase অবজেক্টগুলোকে ইনিশিয়ালাইজ করবে এবং Auth Listener যোগ করবে
+/**
+ * এই ফাংশনটি Firebase সার্ভিস (Auth, Firestore) ইনিশিয়ালাইজ করে
+ * এবং ব্যবহারকারীর লগইন অবস্থার উপর ভিত্তি করে UI আপডেট করে।
+ */
 function initializeFirebaseServices() {
-    // Firebase লোড হয়েছে কিনা তা চেক করা
-    if (typeof firebase !== 'undefined') {
-        // Firebase সার্ভিসগুলো ইনিশিয়ালাইজ করা
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        // লগ আউট ফাংশন
-        function handleLogout(event) {
-            event.preventDefault();
-            auth.signOut().then(() => {
-                console.log('User signed out successfully.');
-                // লগআউট সফল হলে হোম পেজে রিডাইরেক্ট করা
-                // পাথ ঠিক করার জন্য basePath ব্যবহার করা হচ্ছে
-                const isSubjectPage = window.location.pathname.includes('/subject/');
-                const basePath = isSubjectPage ? '../' : '';
-                window.location.href = basePath + 'index.html';
-            }).catch(error => {
-                console.error('Sign out error:', error);
-            });
-        }
-
-        // লগ আউট বাটনগুলোতে ইভেন্ট লিসেনার যোগ করা
-        const logoutBtnDesktop = document.getElementById('logout-btn-desktop');
-        const logoutBtnMobile = document.getElementById('logout-btn-mobile');
-        if (logoutBtnDesktop) logoutBtnDesktop.addEventListener('click', handleLogout);
-        if (logoutBtnMobile) logoutBtnMobile.addEventListener('click', handleLogout);
-
-        // মূল Authentication State চেকার
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                // ইউজার লগইন করা আছে
-                db.collection('users').doc(user.uid).get()
-                    .then(doc => {
-                        let userData = { name: 'ব্যবহারকারী', role: 'user' }; // ডিফল্ট ডেটা
-                        if (doc.exists) {
-                            userData = doc.data();
-                        } else {
-                            console.warn("User document not found in Firestore. Using default data.");
-                        }
-                        updateNavUI(user, userData); // UI আপডেট ফাংশন কল করা
-                    })
-                    .catch(error => {
-                        console.error("Error fetching user data:", error);
-                        // এরর হলেও একটি ডিফল্ট ভিউ দেখানো
-                        updateNavUI(user, { name: 'ব্যবহারকারী', role: 'user' });
-                    });
-            } else {
-                // ইউজার লগইন করা নেই
-                updateNavUI(null, null);
-            }
-        });
-
-    } else {
-        // যদি Firebase লোড না হয়, তাহলে ১০০ মিলিসেকেন্ড পর আবার চেষ্টা করা
-        // এটি নিশ্চিত করে যে script.js লোড হওয়ার আগেই যদি firebase sdk লোড না হয়, তাহলেও সমস্যা হবে না
-        console.log("Waiting for Firebase to load...");
+    if (typeof firebase === 'undefined') {
+        console.warn("Firebase SDK লোড হচ্ছে... ১০০ms পর আবার চেষ্টা করা হবে।");
         setTimeout(initializeFirebaseServices, 100);
+        return;
     }
+
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // --- লগ আউট হ্যান্ডলার ---
+    function handleLogout(event) {
+        event.preventDefault();
+        auth.signOut().then(() => {
+            console.log('ব্যবহারকারী সফলভাবে লগ আউট হয়েছেন।');
+            const isSubjectPage = window.location.pathname.includes('/subject/');
+            const basePath = isSubjectPage ? '../' : '';
+            window.location.href = basePath + 'index.html';
+        }).catch(error => {
+            console.error('লগ আউট করতে সমস্যা হয়েছে:', error);
+        });
+    }
+
+    // লগ আউট বাটনগুলোতে ইভেন্ট লিসেনার যোগ করা
+    ['logout-btn-desktop', 'logout-btn-mobile'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.addEventListener('click', handleLogout);
+    });
+
+    // --- Auth State Listener ---
+    // ব্যবহারকারী লগইন বা লগ আউট করলে এই ফাংশনটি স্বয়ংক্রিয়ভাবে কাজ করে
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            // ব্যবহারকারী লগইন করা আছেন
+            db.collection('users').doc(user.uid).get()
+                .then(doc => {
+                    const userData = doc.exists ? doc.data() : { name: 'ব্যবহারকারী', role: 'user' };
+                    updateNavUI(user, userData);
+                })
+                .catch(error => {
+                    console.error("Firestore থেকে ব্যবহারকারীর তথ্য আনতে সমস্যা হয়েছে:", error);
+                    updateNavUI(user, { name: 'ব্যবহারকারী', role: 'user' }); // ফলব্যাক UI
+                });
+        } else {
+            // ব্যবহারকারী লগইন করা নেই
+            updateNavUI(null, null);
+        }
+    });
 }
 
-
-// --- UI আপডেট করার ফাংশন ---
+/**
+ * লগইন অবস্থার উপর ভিত্তি করে নেভিগেশন বারের UI পরিবর্তন করে।
+ * @param {object|null} user - Firebase Auth user object.
+ * @param {object|null} userData - Firestore user data.
+ */
 function updateNavUI(user, userData) {
-    const isLoggedIn = !!user; // user অবজেক্ট থাকলে true, না থাকলে false
-
-    // ডেস্কটপ ও মোবাইল ন্যাভের এলিমেন্ট সিলেকশন
-    const guestLinkDesktop = document.getElementById('guest-link-desktop');
-    const userLinkDesktop = document.getElementById('user-link-desktop');
-    const logoutLinkDesktop = document.getElementById('logout-link-desktop');
-    const dashboardLinkDesktop = document.getElementById('dashboard-link-desktop');
-    const userNameDisplay = document.getElementById('user-name-display');
-    
-    const guestLinkMobile = document.getElementById('guest-link-mobile');
-    const userLinkMobile = document.getElementById('user-link-mobile');
-    const logoutLinkMobile = document.getElementById('logout-link-mobile');
-    const dashboardLinkMobile = document.getElementById('dashboard-link-mobile');
-
-    // পাথ ঠিক করার জন্য ভ্যারিয়েবল
+    const isLoggedIn = !!user;
     const isSubjectPage = window.location.pathname.includes('/subject/');
     const basePath = isSubjectPage ? '../' : '';
-    
-    // সব এলিমেন্টকে একসাথে হাইড/শো করা
-    [guestLinkDesktop, guestLinkMobile].forEach(el => el ? el.style.display = isLoggedIn ? 'none' : 'list-item' : null);
-    [userLinkDesktop, userLinkMobile].forEach(el => el ? el.style.display = isLoggedIn ? 'list-item' : 'none' : null);
-    [logoutLinkDesktop, logoutLinkMobile].forEach(el => el ? el.style.display = isLoggedIn ? 'list-item' : 'none' : null);
-    
+
+    // ডেস্কটপ ও মোবাইল এলিমেন্ট আইডি-গুলো একটি অ্যারেতে রাখা হলো
+    const elements = {
+        guestDesktop: document.getElementById('guest-link-desktop'),
+        userDesktop: document.getElementById('user-link-desktop'),
+        logoutDesktop: document.getElementById('logout-link-desktop'),
+        dashboardDesktop: document.getElementById('dashboard-link-desktop'),
+        userNameDisplay: document.getElementById('user-name-display'),
+        guestMobile: document.getElementById('guest-link-mobile'),
+        userMobile: document.getElementById('user-link-mobile'),
+        logoutMobile: document.getElementById('logout-link-mobile'),
+        dashboardMobile: document.getElementById('dashboard-link-mobile'),
+    };
+
+    // লগইন/লগআউট অবস্থা অনুযায়ী লিঙ্ক দেখানো/লুকানো
+    if (elements.guestDesktop) elements.guestDesktop.style.display = isLoggedIn ? 'none' : 'list-item';
+    if (elements.guestMobile) elements.guestMobile.style.display = isLoggedIn ? 'none' : 'list-item';
+    if (elements.userDesktop) elements.userDesktop.style.display = isLoggedIn ? 'list-item' : 'none';
+    if (elements.userMobile) elements.userMobile.style.display = isLoggedIn ? 'list-item' : 'none';
+    if (elements.logoutDesktop) elements.logoutDesktop.style.display = isLoggedIn ? 'list-item' : 'none';
+    if (elements.logoutMobile) elements.logoutMobile.style.display = isLoggedIn ? 'list-item' : 'none';
+
     if (isLoggedIn && userData) {
-        if (userNameDisplay) userNameDisplay.textContent = `স্বাগতম, ${userData.name.split(' ')[0]}`; // শুধু প্রথম নাম দেখানো
-        
-        // ইউজারের রোল অনুযায়ী ড্যাশবোর্ডের লিংক সেট করা
-        const dashboardUrl = basePath + ((userData.role === 'admin') ? 'admin-dashboard.html' : 'user-dashboard.html');
-        if (dashboardLinkDesktop) dashboardLinkDesktop.href = dashboardUrl;
-        if (dashboardLinkMobile) dashboardLinkMobile.href = dashboardUrl;
-
+        // ব্যবহারকারীর নাম দেখানো
+        if (elements.userNameDisplay) {
+            elements.userNameDisplay.textContent = `স্বাগতম, ${userData.name.split(' ')[0]}`;
+        }
+        // রোল অনুযায়ী ড্যাশবোর্ড লিঙ্ক সেট করা
+        const dashboardUrl = basePath + (userData.role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html');
+        if (elements.dashboardDesktop) elements.dashboardDesktop.href = dashboardUrl;
+        if (elements.dashboardMobile) elements.dashboardMobile.href = dashboardUrl;
     } else {
-        // ইউজার লগইন করা না থাকলে
-        if (userNameDisplay) userNameDisplay.textContent = '';
+        // লগ আউট অবস্থায় ব্যবহারকারীর নাম মুছে দেওয়া
+        if (elements.userNameDisplay) elements.userNameDisplay.textContent = '';
 
-        // প্রোটেক্টেড পেজ থেকে লগইন পেজে রিডাইরেক্ট করা
+        // প্রোটেক্টেড পেজ থেকে রিডাইরেক্ট করা
         const protectedPages = ['user-dashboard.html', 'admin-dashboard.html'];
         const currentPage = window.location.pathname.split('/').pop();
         if (protectedPages.includes(currentPage)) {
-            console.log("Access to protected page denied. Redirecting to login.");
             window.location.href = basePath + 'login.html';
         }
     }
 }
 
+
 // =======================================================
-// === আপনার পুরনো এবং কার্যকরী কোড (কোনো পরিবর্তন করা হয়নি) ===
+// === DOMContentLoaded: পেজ লোড হওয়ার পর এই কোডগুলো রান হবে ===
 // =======================================================
 
 document.addEventListener('DOMContentLoaded', function () {
     
-    // --- ১. গ্লোবাল ভ্যারিয়েবল এবং এলিমেন্ট সিলেকশন ---
-    const header = document.querySelector('.site-header'); // Note: This might be different in your HTML
+    // --- ১. গ্লোবাল এলিমেন্ট সিলেকশন ---
+    const header = document.querySelector('.site-header');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
-    
-    // মোবাইল নেভিগেশন এলিমেন্টস
     const navToggle = document.querySelector('.mobile-nav-toggle');
     const mobileNavMenu = document.getElementById('mobile-navigation-menu');
-
-    // নোটিফিকেশন এলিমেন্টস
     const notificationBtn = document.getElementById('show-notification-btn');
     const notificationModal = document.getElementById('notification-modal');
     const closeNotificationBtn = document.getElementById('close-notification-modal');
     const notificationList = document.getElementById('notification-list');
     const notificationBadge = document.getElementById('notification-badge');
 
-    // --- ২. হেডার এবং স্ক্রল-টু-টপ ---
+    // --- ২. হেডার এবং স্ক্রল-টু-টপ বাটন ---
     window.addEventListener('scroll', () => {
-        if (header) {
-            header.classList.toggle('scrolled', window.scrollY > 10);
-        }
-        if (scrollTopBtn) {
-            scrollTopBtn.style.display = (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) ? "block" : "none";
-        }
+        if (header) header.classList.toggle('scrolled', window.scrollY > 10);
+        if (scrollTopBtn) scrollTopBtn.style.display = (window.scrollY > 100) ? "block" : "none";
     });
 
     if (scrollTopBtn) {
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
 
     // --- ৩. মোবাইল মেনু সিস্টেম ---
     function toggleMobileMenu(show) {
         if (!mobileNavMenu || !navToggle) return;
-        const isVisible = show;
-        mobileNavMenu.setAttribute('data-visible', isVisible);
-        navToggle.setAttribute('aria-expanded', isVisible);
-        document.body.style.overflow = isVisible ? 'hidden' : '';
+        mobileNavMenu.setAttribute('data-visible', show);
+        navToggle.setAttribute('aria-expanded', show);
+        document.body.style.overflow = show ? 'hidden' : '';
     }
 
-    if (navToggle && mobileNavMenu) {
+    if (navToggle) {
         navToggle.addEventListener('click', () => {
             const isVisible = mobileNavMenu.getAttribute('data-visible') === 'true';
             toggleMobileMenu(!isVisible);
         });
-        mobileNavMenu.querySelectorAll('a').forEach(link => {
-            if (link.id.indexOf('logout') === -1) { 
-                link.addEventListener('click', () => toggleMobileMenu(false));
-            }
-        });
     }
-    
-    // --- ৪. নোটিফিকেশন সিস্টেম ---
+
+    // --- ৪. নোটিফিকেশন সিস্টেম (সংশোধিত এবং কার্যকরী) ---
     if (typeof notifications !== 'undefined') {
         const isSubjectPage = window.location.pathname.includes('/subject/');
         const audioPath = isSubjectPage ? '../audio/notification.wav' : 'audio/notification.wav';
+        const notificationSound = new Audio(audioPath);
 
-        function playNotificationSound() {
-            const audio = new Audio(audioPath); 
-            audio.play().catch(e => console.error("Sound play error:", e));
-        }
+        const getSeenNotifications = () => JSON.parse(localStorage.getItem('seenNotifications') || '[]');
 
-        function getSeenNotifications() {
-            return JSON.parse(localStorage.getItem('seenNotifications') || '[]');
-        }
-
-        function updateNotificationBadge() {
+        const updateNotificationBadge = () => {
             if (!notificationBadge) return;
-            const allNotificationIds = notifications.map(n => n.id);
-            const seenNotificationIds = getSeenNotifications();
-            const unseenCount = allNotificationIds.filter(id => !seenNotificationIds.includes(id)).length;
-            const currentBadgeCount = parseInt(notificationBadge.textContent) || 0;
-            if (unseenCount > 0 && unseenCount > currentBadgeCount) {
-                 playNotificationSound();
+            const seenIds = getSeenNotifications();
+            const unseenCount = notifications.filter(n => !seenIds.includes(n.id)).length;
+            
+            // নতুন নোটিফিকেশন আসলেই কেবল শব্দ হবে
+            const lastBadgeCount = parseInt(localStorage.getItem('lastBadgeCount') || '0');
+            if (unseenCount > 0 && unseenCount > lastBadgeCount) {
+                notificationSound.play().catch(e => console.error("Sound play error:", e));
             }
+            localStorage.setItem('lastBadgeCount', unseenCount);
+
             notificationBadge.textContent = unseenCount;
             notificationBadge.style.display = unseenCount > 0 ? 'inline-block' : 'none';
-        }
+        };
 
-        function showNotificationModal() {
+        const openNotificationModal = () => {
             if (!notificationModal || !notificationList) return;
-            notificationList.innerHTML = notifications.length
-                ? [...notifications].reverse().map(n => `<li>${n.message} <small style="color:#888;">(${n.date})</small></li>`).join('')
+            
+            // নোটিফিকেশন তালিকা তৈরি করা
+            notificationList.innerHTML = notifications.length > 0
+                ? [...notifications].reverse().map(n => `<li>${n.message} <small>(${n.date})</small></li>`).join('')
                 : "<li>কোনো নতুন নোটিফিকেশন নেই।</li>";
-            notificationModal.classList.add('is-visible');
-            document.body.style.overflow = 'hidden';
-            const allNotificationIds = notifications.map(n => n.id);
-            localStorage.setItem('seenNotifications', JSON.stringify(allNotificationIds));
-            setTimeout(updateNotificationBadge, 300);
-        }
 
-        function closeNotificationModal() {
-            if (notificationModal) {
-                notificationModal.classList.remove('is-visible');
-                document.body.style.overflow = '';
-            }
-        }
+            // মডাল দেখানো
+            notificationModal.classList.add('is-visible');
+            document.body.style.overflow = 'hidden'; // পেছনের স্ক্রল বন্ধ করা
+
+            // সব নোটিফিকেশনকে 'seen' হিসেবে মার্ক করা
+            localStorage.setItem('seenNotifications', JSON.stringify(notifications.map(n => n.id)));
+            setTimeout(updateNotificationBadge, 100); // ব্যাজ আপডেট করা
+        };
+
+        const closeNotificationModal = () => {
+            if (!notificationModal) return;
+            notificationModal.classList.remove('is-visible');
+            document.body.style.overflow = ''; // স্ক্রল আবার চালু করা
+        };
         
-        if (notificationBtn) notificationBtn.addEventListener('click', showNotificationModal);
+        // ইভেন্ট লিসেনার যোগ করা
+        if (notificationBtn) notificationBtn.addEventListener('click', openNotificationModal);
         if (closeNotificationBtn) closeNotificationBtn.addEventListener('click', closeNotificationModal);
+        
+        // মডালের বাইরে ক্লিক করলে বন্ধ হবে
         if (notificationModal) {
             notificationModal.addEventListener('click', (event) => {
-                if (event.target === notificationModal) closeNotificationModal();
+                if (event.target === notificationModal) {
+                    closeNotificationModal();
+                }
             });
         }
         
+        // --- ৫. গ্লোবাল কী-বোর্ড ইভেন্ট ---
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (mobileNavMenu && mobileNavMenu.getAttribute('data-visible') === 'true') {
+                    toggleMobileMenu(false);
+                }
+                if (notificationModal && notificationModal.classList.contains('is-visible')) {
+                    closeNotificationModal();
+                }
+            }
+        });
+
+        // পেজ লোড হলে প্রথমবার ব্যাজ আপডেট করা
         updateNotificationBadge();
     }
-
-    // --- ৫. গ্লোবাল কী-বোর্ড ইভেন্ট ---
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            if (mobileNavMenu && mobileNavMenu.getAttribute('data-visible') === 'true') {
-                toggleMobileMenu(false);
-            }
-            if (notificationModal && notificationModal.classList.contains('is-visible')) {
-                closeNotificationModal();
-            }
-        }
-    });
-
 });
 
-// সবশেষে Firebase সার্ভিসগুলো ইনিশিয়ালাইজ করার জন্য ফাংশনটি কল করা
+// সবশেষে Firebase সার্ভিসগুলো চালু করা
 initializeFirebaseServices();
