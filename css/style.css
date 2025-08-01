@@ -350,9 +350,9 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
     .footer-links h4, .footer-social h4 { border-left: none; padding-left: 0; }
     .footer-social .social-icons { justify-content: center; }
 }
-/* --- টপ নোটিফিকেশন বার-এর লেখা ঠিক করা --- */
+/* --- টপ নোটিফিকেশন বার-এর লেখা ঠিক করার ফাইনাল চেষ্টা --- */
 .top-notification-bar a {
-    color: var(--white-color); /* লেখাকে সাদা করা হলো */
-    opacity: 1; /* লেখা যাতে স্বচ্ছ না থাকে তা নিশ্চিত করা হলো */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* ছবির উপরে লেখাকে স্পষ্ট করার জন্য শ্যাডো */
+    color: white !important;
+    opacity: 1 !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7) !important;
 }
