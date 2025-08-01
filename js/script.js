@@ -1,5 +1,5 @@
 // =======================================================
-// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ২.৬ - নতুন বাটন সহ)
+// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ২.৭ - শুধুমাত্র অ্যাডমিন ড্যাশবোর্ড)
 // =======================================================
 
 function initializeFirebaseServices() {
@@ -59,24 +59,35 @@ function updateNavUI(user, userData) {
         logoutMobile: document.getElementById('logout-link-mobile'),
         dashboardMobile: document.getElementById('dashboard-link-mobile'),
     };
-
+    
+    // সাধারণ লিঙ্কগুলো দেখানো বা লুকানো
     if (elements.guestDesktop) elements.guestDesktop.style.display = isLoggedIn ? 'none' : 'list-item';
     if (elements.guestMobile) elements.guestMobile.style.display = isLoggedIn ? 'none' : 'list-item';
-    if (elements.userDesktop) elements.userDesktop.style.display = isLoggedIn ? 'list-item' : 'none';
-    if (elements.userMobile) elements.userMobile.style.display = isLoggedIn ? 'list-item' : 'none';
     if (elements.logoutDesktop) elements.logoutDesktop.style.display = isLoggedIn ? 'list-item' : 'none';
     if (elements.logoutMobile) elements.logoutMobile.style.display = isLoggedIn ? 'list-item' : 'none';
+    if (elements.userNameDisplay) elements.userNameDisplay.textContent = isLoggedIn ? `স্বাগতম, ${userData.name.split(' ')[0]}`: '';
 
-    if (isLoggedIn && userData) {
-        if (elements.userNameDisplay) {
-            elements.userNameDisplay.textContent = `স্বাগতম, ${userData.name.split(' ')[0]}`;
+    // === ড্যাশবোর্ড লিঙ্কের নতুন লজিক ===
+    const isAdmin = isLoggedIn && userData.role === 'admin';
+
+    // ডেস্কটপ ড্যাশবোর্ড লিঙ্ক
+    if (elements.userDesktop) {
+        elements.userDesktop.style.display = isAdmin ? 'list-item' : 'none'; // শুধুমাত্র অ্যাডমিন দেখলে দেখাবে
+        if (isAdmin && elements.dashboardDesktop) {
+            elements.dashboardDesktop.href = basePath + 'admin-dashboard.html';
         }
-        const dashboardUrl = basePath + (userData.role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html');
-        if (elements.dashboardDesktop) elements.dashboardDesktop.href = dashboardUrl;
-        if (elements.dashboardMobile) elements.dashboardMobile.href = dashboardUrl;
-    } else {
-        if (elements.userNameDisplay) elements.userNameDisplay.textContent = '';
-        const protectedPages = ['user-dashboard.html', 'admin-dashboard.html'];
+    }
+    // মোবাইল ড্যাশবোর্ড লিঙ্ক
+    if (elements.userMobile) {
+        elements.userMobile.style.display = isAdmin ? 'list-item' : 'none'; // শুধুমাত্র অ্যাডমিন দেখলে দেখাবে
+         if (isAdmin && elements.dashboardMobile) {
+            elements.dashboardMobile.href = basePath + 'admin-dashboard.html';
+        }
+    }
+    
+    // সুরক্ষিত পেজ থেকে রিডাইরেক্ট
+    if (!isLoggedIn) {
+        const protectedPages = ['admin-dashboard.html'];
         const currentPage = window.location.pathname.split('/').pop();
         if (protectedPages.includes(currentPage)) {
             window.location.href = basePath + 'login.html';
@@ -84,8 +95,9 @@ function updateNavUI(user, userData) {
     }
 }
 
+
+// বাকি কোড অপরিবর্তিত থাকবে
 document.addEventListener('DOMContentLoaded', function () {
-    
     const header = document.querySelector('.site-header');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     const navToggle = document.querySelector('.mobile-nav-toggle');
@@ -125,9 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const isSubjectPage = window.location.pathname.includes('/subject/');
         const audioPath = isSubjectPage ? '../audio/notification.wav' : 'audio/notification.wav';
         const notificationSound = new Audio(audioPath);
-
         const getSeenNotifications = () => JSON.parse(localStorage.getItem('seenNotifications') || '[]');
-
         const updateNotificationBadge = () => {
             if (!notificationBadge) return;
             const seenIds = getSeenNotifications();
@@ -140,7 +150,6 @@ document.addEventListener('DOMContentLoaded', function () {
             notificationBadge.textContent = unseenCount;
             notificationBadge.style.display = unseenCount > 0 ? 'inline-block' : 'none';
         };
-
         const openNotificationModal = () => {
             if (!notificationModal || !notificationList) return;
             if (clearAllBtn) clearAllBtn.disabled = notifications.length === 0;
@@ -152,17 +161,14 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.setItem('seenNotifications', JSON.stringify(notifications.map(n => n.id)));
             setTimeout(updateNotificationBadge, 100);
         };
-
         const closeNotificationModal = () => {
             if (!notificationModal) return;
             notificationModal.classList.remove('is-visible');
             document.body.style.overflow = '';
         };
-
         if (notificationBtn) notificationBtn.addEventListener('click', openNotificationModal);
         if (closeNotificationBtn) closeNotificationBtn.addEventListener('click', closeNotificationModal);
         if (closeFooterBtn) closeFooterBtn.addEventListener('click', closeNotificationModal);
-
         if (clearAllBtn) {
             clearAllBtn.addEventListener('click', () => {
                 localStorage.removeItem('seenNotifications');
@@ -175,20 +181,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 setTimeout(closeNotificationModal, 1500);
             });
         }
-        
         if (notificationModal) {
             notificationModal.addEventListener('click', (event) => {
                 if (event.target === notificationModal) closeNotificationModal();
             });
         }
-        
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 if (mobileNavMenu && mobileNavMenu.getAttribute('data-visible') === 'true') toggleMobileMenu(false);
                 if (notificationModal && notificationModal.classList.contains('is-visible')) closeNotificationModal();
             }
         });
-
         updateNotificationBadge();
     }
 });
