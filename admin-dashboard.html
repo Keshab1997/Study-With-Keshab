@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Scores</title>
-    <!-- === নতুন: বেস ট্যাগ যুক্ত করা হয়েছে === -->
     <base href="/Study-With-Keshab/">
 
     <!-- Google Fonts for Bengali -->
@@ -27,7 +26,7 @@
             color: var(--text-color);
             margin: 0;
             line-height: 1.6;
-            display: none; /* === নতুন: অথরিটি চেক না হওয়া পর্যন্ত বডি হাইড থাকবে === */
+            display: none; /* অথরিটি চেক না হওয়া পর্যন্ত বডি হাইড থাকবে */
         }
         .dashboard-container { max-width: 1200px; margin: 30px auto; padding: 20px; }
         .dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
@@ -67,94 +66,14 @@
         </div>
     </div>
 
-    <!-- === Firebase Script === -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <!-- Firebase SDK (v8.10.0 - পুরো প্রজেক্টের সাথে সামঞ্জস্যপূর্ণ) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <!-- আপনার নিজস্ব স্ক্রিপ্ট (সঠিক ক্রমে লোড করা হচ্ছে) -->
     <script src="js/firebase-config.js"></script>
+    <script src="js/admin.js"></script>
 
-    <!-- === নতুন এবং উন্নত ড্যাশবোর্ড স্ক্রিপ্ট === -->
-    <script>
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        // === পরিবর্তন শুরু: সম্পূর্ণ নতুন Auth Guard এবং Role Check ===
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                // ব্যবহারকারী লগইন করা থাকলে, তার role চেক করতে হবে
-                db.collection('users').doc(user.uid).get().then(doc => {
-                    if (doc.exists && doc.data().role === 'admin') {
-                        // যদি ব্যবহারকারী অ্যাডমিন হয়, তাহলে পেজটি দেখানো হবে
-                        console.log("Admin access granted.");
-                        document.body.style.display = 'block'; // পেজ দৃশ্যমান করা
-                        fetchScores(); // স্কোর লোড করা
-                    } else {
-                        // যদি অ্যাডমিন না হয়, তাহলে তাকে index.html-এ পাঠিয়ে দেওয়া হবে
-                        console.log("Access denied. User is not an admin.");
-                        alert("আপনার এই পেজটি দেখার অনুমতি নেই।");
-                        window.location.href = 'index.html';
-                    }
-                }).catch(error => {
-                    console.error("Error getting user role:", error);
-                    alert("আপনার তথ্য যাচাই করতে সমস্যা হয়েছে।");
-                    window.location.href = 'index.html';
-                });
-            } else {
-                // ব্যবহারকারী লগইন করা না থাকলে, login.html-এ পাঠিয়ে দেওয়া হবে
-                console.log("No user logged in. Redirecting to login.");
-                window.location.href = 'login.html';
-            }
-        });
-        // === পরিবর্তন শেষ ===
-
-        async function fetchScores() {
-            const loadingMessage = document.getElementById('loading-message');
-            const scoresTableBody = document.getElementById('scores-tbody');
-            
-            loadingMessage.style.display = 'block';
-            scoresTableBody.innerHTML = '';
-
-            try {
-                const snapshot = await db.collection('quiz_scores').orderBy('timestamp', 'desc').get();
-                if (snapshot.empty) {
-                    loadingMessage.textContent = 'এখনও কোনো স্কোর সেভ করা হয়নি।';
-                    return;
-                }
-                loadingMessage.style.display = 'none';
-
-                let totalScores = 0;
-                let totalScoreValue = 0;
-                const userEmails = new Set();
-
-                snapshot.forEach(doc => {
-                    const scoreData = doc.data();
-                    const date = scoreData.timestamp ? scoreData.timestamp.toDate().toLocaleString('bn-BD') : 'N/A';
-                    const quizName = scoreData.quizName || 'অজানা'; 
-
-                    const row = `<tr><td>${scoreData.email}</td><td>${quizName}</td><td>${scoreData.score}</td><td>${date}</td></tr>`;
-                    scoresTableBody.innerHTML += row;
-
-                    totalScores++;
-                    totalScoreValue += Number(scoreData.score);
-                    userEmails.add(scoreData.email);
-                });
-                
-                document.getElementById('total-scores').textContent = totalScores;
-                document.getElementById('total-users').textContent = userEmails.size;
-                const avgScore = totalScores > 0 ? (totalScoreValue / totalScores).toFixed(2) : 0;
-                document.getElementById('average-score').textContent = avgScore;
-
-            } catch (error) {
-                console.error("স্কোর আনতে সমস্যা হয়েছে:", error);
-                loadingMessage.textContent = 'স্কোর আনতে সমস্যা হয়েছে।';
-            }
-        }
-
-        document.getElementById('logout-btn').addEventListener('click', () => {
-            auth.signOut().then(() => {
-                window.location.href = 'index.html';
-            }).catch(error => console.error("Sign out error", error));
-        });
-    </script>
 </body>
 </html>
