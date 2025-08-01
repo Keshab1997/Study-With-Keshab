@@ -17,12 +17,12 @@
 </head>
 <body>
 
+<!-- === আপডেটেড হেডার এবং মোবাইল মেনু === -->
 <header class="site-header">
   <div class="header-grid">
     <a href="index.html" class="logo-link">
       <img src="images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
     </a>
-    
     <nav class="primary-navigation">
         <ul>
             <li><a href="index.html" class="home"><i class="fas fa-home"></i> Home</a></li>
@@ -32,28 +32,15 @@
             <li><a href="contact.html" class="contact"><i class="fas fa-envelope"></i> Contact</a></li>
             <li><a href="index.html#feedback-module" class="feedback"><i class="fas fa-comment-alt"></i> Feedback</a></li>
             
-            <!-- Auth Links -->
-            <li class="auth-link" id="guest-link-desktop">
-                <a href="login.html" class="login"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a>
-            </li>
-            <li class="auth-link" id="user-link-desktop" style="display: none;">
-                <a href="#" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a>
-            </li>
-            <li class="auth-link" id="logout-link-desktop" style="display: none;">
-                <a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
-            </li>
+            <li class="auth-link" id="guest-link-desktop"><a href="login.html" class="login"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a></li>
+            <li class="auth-link" id="user-link-desktop" style="display: none;"><a href="#" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a></li>
+            <li class="auth-link" id="logout-link-desktop" style="display: none;"><a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> লগ আউট</a></li>
         </ul>
     </nav>
-    
     <div class="header-actions">
         <span id="user-name-display" class="nav-user-name"></span>
-        <button id="show-notification-btn" title="নোটিফিকেশন" class="notification-bell-btn">
-            <i class="fa-solid fa-bell"></i>
-            <span id="notification-badge"></span>
-        </button>
-        <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
-            <span class="sr-only">Menu</span>
-        </button>
+        <button id="show-notification-btn" title="নোটিফিকেশন" class="notification-bell-btn"><i class="fa-solid fa-bell"></i><span id="notification-badge"></span></button>
+        <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false"><span class="sr-only">Menu</span></button>
     </div>
   </div>
 </header>
@@ -66,22 +53,17 @@
         <li><a href="index.html#features"><i class="fas fa-star"></i> Features</a></li>
         <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
         <li><a href="index.html#feedback-module"><i class="fas fa-comment-alt"></i> Feedback</a></li>
-        <li class="auth-link" id="guest-link-mobile">
-            <a href="login.html"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a>
-        </li>
-        <li class="auth-link" id="user-link-mobile" style="display: none;">
-            <a href="#" id="dashboard-link-mobile"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a>
-        </li>
-        <li class="auth-link" id="logout-link-mobile" style="display: none;">
-            <a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
-        </li>
+        
+        <li class="auth-link" id="guest-link-mobile"><a href="login.html"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a></li>
+        <li class="auth-link" id="user-link-mobile" style="display: none;"><a href="#" id="dashboard-link-mobile"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a></li>
+        <li class="auth-link" id="logout-link-mobile" style="display: none;"><a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> লগ আউট</a></li>
     </ul>
 </nav>
 
 <main>
     <section class="about-section">
         <div class="container">
-            <div class="section-title" style="display: block; text-align: center;"> <!-- inline style for centering title -->
+            <div class="section-title" style="display: block; text-align: center;">
                 <h2>আমার সম্পর্কে</h2>
             </div>
             <div class="about-grid">
@@ -163,14 +145,13 @@
   </div>
 </footer>
 
-<!-- Firebase SDK (v8.10.0) -->
+<!-- Firebase এবং অন্যান্য স্ক্রিপ্ট -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-
-<!-- আপনার নিজস্ব স্ক্রিপ্ট -->
 <script src="js/firebase-config.js"></script>
 <script src="js/notification-data.js"></script>
 <script src="js/script.js"></script>
+
 </body>
 </html>
