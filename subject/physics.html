@@ -16,43 +16,73 @@
     <link rel="stylesheet" href="../css/style.css">
 
     <!-- === এই পেজের জন্য বিশেষ স্টাইল === -->
-    <style>
-        .chapter-page .section-title {
-            text-align: center;
-            font-size: 2.5rem; /* সামান্য ছোট করা হয়েছে */
-            margin-bottom: 3rem;
-        }
-        .chapter-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        .chapter-card {
-            background: var(--white-color);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-color-dark);
-            text-decoration: none;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-light);
-        }
-        .chapter-card i {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: -webkit-linear-gradient(45deg, var(--main-color), var(--secondary-color-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .chapter-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-strong);
-            border-color: var(--main-color);
-        }
-    </style>
+   <!-- === এই পেজের জন্য আপনার ডিজাইন ফিরিয়ে আনা হলো === -->
+<style>
+    .chapter-page .section-title {
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        background: linear-gradient(45deg, #f857a6, #ff5858);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+    }
+    .chapter-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+    .chapter-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #192335;
+        text-decoration: none;
+        border: 1px solid #e8eaf6;
+        transition: all 0.35s ease-in-out;
+        box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+    .chapter-card i {
+        display: block;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        transition: all 0.35s ease-in-out;
+    }
+    /* আইকনের জন্য আলাদা রঙ */
+    .chapter-list a:nth-child(1) i { color: #f44336; }
+    .chapter-list a:nth-child(2) i { color: #9c27b0; }
+    .chapter-list a:nth-child(3) i { color: #ff9800; }
+    .chapter-list a:nth-child(4) i { color: #4caf50; }
+    .chapter-list a:nth-child(5) i { color: #ffeb3b; }
+    .chapter-list a:nth-child(6) i { color: #2196f3; }
+    /* ... বাকি আইকনের রঙগুলোও যোগ করতে পারেন ... */
+
+    .chapter-card:hover {
+        transform: translateY(-10px);
+        color: #fff;
+        background-image: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+        box-shadow: 0 15px 35px rgba(37, 117, 252, 0.3);
+    }
+    .chapter-card:hover i {
+        color: #fff;
+        transform: scale(1.1) rotate(-5deg);
+    }
+    .footer {
+        background: #0b172a;
+        text-align: center;
+        color: #a0b3d1;
+        padding: 2.5rem 1rem;
+        margin-top: 4rem;
+        border-top: 2px solid #2575fc;
+    }
+</style>
 </head>
 <body>
 
