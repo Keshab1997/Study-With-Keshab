@@ -45,19 +45,13 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
 .nav-user-name { font-weight: 600; color: var(--secondary-dark); white-space: nowrap; }
 .auth-link a.login { background: var(--primary-blue); color: var(--white-color); padding: 8px 16px; border-radius: 20px; transition: background-color 0.3s; }
 .auth-link a.login:hover { background: #0041a3; color: var(--white-color); }
-.notification-bell-btn { background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--secondary-dark); position: relative; padding: 5px; transition: color 0.3s ease; }
-.notification-bell-btn:hover { color: var(--primary-blue); }
-
 
 /* --- ৩. মোবাইল নেভিগেশন --- */
 .mobile-nav-toggle { display: none; }
 .mobile-navigation-menu { display: none; }
 
 
-/* --- ৪. হিরো সেকশন থেকে অন্যান্য সেকশন... (আগের মতোই) --- */
-/* ... আপনার আগের সব সেকশনের CSS কোড এখানে থাকবে ... */
-/* আমি শুধু Contact এবং Feedback সেকশনটি উন্নত করছি */
-
+/* --- ৪. হিরো সেকশন ও অন্যান্য সেকশন --- */
 .hero-section-new { padding: 6rem 0; background: linear-gradient(135deg, #eaf2ff 0%, #ffffff 100%); overflow: hidden; }
 .hero-container { display: flex; align-items: center; gap: 3rem; }
 .hero-left { flex: 1; text-align: left; animation: fadeInUp 1s ease-out; }
@@ -166,107 +160,7 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
 
-/* --- ৯. নোটিফিকেশন মডাল স্টাইল --- */
-#notification-badge { 
-    display: none; 
-    position: absolute; 
-    top: 0px; 
-    right: 0px; 
-    background: #e74c3c; 
-    color: #fff; 
-    font-size: 0.75rem; 
-    padding: 3px 7px; 
-    border-radius: 50%; 
-    font-weight: bold; 
-    z-index: 2; 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
-}
-
-#notification-modal { 
-    display: none; 
-    position: fixed; 
-    z-index: 99999; 
-    inset: 0; 
-    background: rgba(0,0,0,0.4); 
-    align-items: center; 
-    justify-content: center; 
-    opacity: 0; 
-    transition: opacity 0.3s ease; 
-    pointer-events: none; 
-}
-
-#notification-modal.is-visible { 
-    display: flex; 
-    opacity: 1; 
-    pointer-events: auto; 
-}
-
-#notification-modal > div { 
-    background: #fff; 
-    max-width: 400px; 
-    width: 90vw; 
-    border-radius: 15px; 
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2); 
-    padding: 2rem 1.5rem; 
-    position: relative; 
-    transform: translateY(20px); 
-    transition: transform 0.3s ease; 
-}
-
-#notification-modal.is-visible > div { 
-    transform: translateY(0); 
-}
-
-#notification-modal h3 { 
-    margin-bottom: 1.2rem; 
-    font-family: var(--heading-font); 
-    font-size: 1.5rem; 
-    color: var(--primary-blue); 
-    text-align: center; 
-}
-
-#notification-modal ul { 
-    list-style: none; 
-    padding: 0; 
-    margin: 0; 
-    max-height: 300px; 
-    overflow-y: auto; 
-    border-top: 1px solid #eee; 
-    padding-top: 1rem; 
-}
-
-/* --- এই অংশটি আপডেট করা হয়েছে --- */
-#notification-modal ul li { 
-    padding: 0.75rem 0; 
-    border-bottom: 1px dashed #f0f0f0; 
-    font-size: 0.95rem; 
-    color: var(--text-color); /* লেখাকে স্পষ্ট করতে রঙ পরিবর্তন করা হয়েছে */
-    opacity: 1; /* লেখা যাতে স্বচ্ছ না থাকে তা নিশ্চিত করা হয়েছে */
-}
-/* --- আপডেট শেষ --- */
-
-#notification-modal ul li:last-child { 
-    border-bottom: none; 
-}
-
-#close-notification-modal { 
-    position: absolute; 
-    top: 15px; 
-    right: 15px; 
-    background: none; 
-    border: none; 
-    font-size: 1.5rem; 
-    cursor: pointer; 
-    color: #a0a0a0; 
-    transition: all 0.2s ease; 
-}
-
-#close-notification-modal:hover { 
-    color: #555; 
-    transform: rotate(90deg); 
-}
-
-/* --- ১০. ফাইনাল রেসপন্সিভ ডিজাইন --- */
+/* --- ৯. ফাইনাল রেসপন্সিভ ডিজাইন --- */
 
 /* ট্যাবলেট ভিউ (992px এর নিচে) */
 @media (max-width: 992px) {
@@ -288,8 +182,8 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
     .primary-navigation { display: none; } /* ডেস্কটপ মেনু হাইড */
     .header-actions { margin-left: auto; } /* অ্যাকশন আইকন ডানদিকে */
     .nav-user-name {
-    display: none; /* শুধুমাত্র ইউজারনেম মোবাইলে হাইড থাকবে */
-}
+        display: none; /* শুধুমাত্র ইউজারনেম মোবাইলে হাইড থাকবে */
+    }
 
     .mobile-nav-toggle {
         display: block;
@@ -349,10 +243,4 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
     .footer-top > div:first-child p { margin-left: auto; margin-right: auto; }
     .footer-links h4, .footer-social h4 { border-left: none; padding-left: 0; }
     .footer-social .social-icons { justify-content: center; }
-}
-/* --- টপ নোটিফিকেশন বার-এর লেখা ঠিক করার ফাইনাল চেষ্টা --- */
-.top-notification-bar a {
-    color: white !important;
-    opacity: 1 !important;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7) !important;
 }
