@@ -1,32 +1,31 @@
-/* === Notification Modal Styles === */
+/* === Notification Modal Styles (সম্পূর্ণ এবং আপডেটেড) === */
 
 #notification-modal {
-  display: block; /* Initially block, but invisible and unclickable */
-  visibility: hidden; /* Hide it visually and from interactions */
-  opacity: 0; /* Make it transparent */
-  transform: translateY(-20px); /* Start slightly above */
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s; /* Smooth transition */
-  
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
   position: fixed;
   z-index: 1001;
   top: 65px;
   right: 20px;
   width: 350px;
   max-width: 90vw;
-  max-height: 400px;
+  max-height: 450px; /* Footer সহ উচ্চতা একটু বাড়ানো হলো */
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
   border: 1px solid #e0e0e0;
-  overflow-y: auto;
+  display: flex; /* Flexbox for layout */
+  flex-direction: column; /* To stack header, list, and footer */
 }
 
-/* This is the key: When the 'is-visible' class is added by JavaScript... */
 #notification-modal.is-visible {
-  visibility: visible; /* Make it visible */
-  opacity: 1; /* Make it fully opaque */
-  transform: translateY(0); /* Bring it to its final position */
-  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition in */
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 #notification-modal h3 {
@@ -38,9 +37,6 @@
   border-bottom: 1px solid #eee;
   background-color: #f8f9fa;
   color: #333;
-  position: sticky;
-  top: 0;
-  z-index: 1;
 }
 
 #close-notification-modal {
@@ -55,6 +51,7 @@
   padding: 5px;
   line-height: 1;
   transition: color 0.2s;
+  z-index: 3;
 }
 
 #close-notification-modal:hover {
@@ -65,6 +62,8 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  overflow-y: auto; /* Make only the list scrollable */
+  flex-grow: 1; /* List takes up available space */
 }
 
 #notification-list li {
@@ -100,7 +99,7 @@
   position: absolute;
   top: -5px;
   right: -8px;
-  background-color: #d9534f; /* A slightly softer red */
+  background-color: #d9534f;
   color: white;
   border-radius: 50%;
   padding: 1px 5px;
@@ -108,5 +107,59 @@
   font-weight: bold;
   line-height: 1.2;
   border: 1px solid white;
-  display: none; /* Hidden by default, shown by JS */
+  display: none;
+}
+
+/* === Notification Modal Footer Styles (নতুন কোড) === */
+.notification-modal-footer {
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-notification-action {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background-color 0.2s, color 0.2s, opacity 0.2s;
+  flex-grow: 1;
+}
+
+.btn-notification-action:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-notification-action i {
+  margin-right: 5px;
+}
+
+.btn-notification-action.btn-clear {
+  background-color: #fdeeee;
+  color: #d9534f;
+  border: 1px solid #d9534f;
+}
+
+.btn-notification-action.btn-clear:hover:not(:disabled) {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+.btn-notification-action.btn-close {
+  background-color: #f0f0f0;
+  color: #555;
+  border: 1px solid #ccc;
+}
+
+.btn-notification-action.btn-close:hover {
+  background-color: #e0e0e0;
+  color: #333;
 }
