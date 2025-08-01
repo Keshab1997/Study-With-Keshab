@@ -15,74 +15,151 @@
     <!-- মূল CSS ফাইল (সঠিক পথ) -->
     <link rel="stylesheet" href="../css/style.css">
 
-    <!-- === এই পেজের জন্য বিশেষ স্টাইল === -->
-   <!-- === এই পেজের জন্য আপনার ডিজাইন ফিরিয়ে আনা হলো === -->
 <style>
-    .chapter-page .section-title {
-        text-align: center;
-        font-size: 3rem;
-        font-weight: 700;
-        margin-bottom: 3rem;
-        background: linear-gradient(45deg, #f857a6, #ff5858);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
+    :root {
+      --text-color: #192335;
+      --bg-light: #f7f9fc;
+      --bg-white: #ffffff;
+      --footer-bg: #0b172a;
+      --footer-text: #a0b3d1;
     }
+
+    body {
+      font-family: 'Baloo Da 2', cursive;
+      background-color: var(--bg-light);
+      margin: 0;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 50px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #e91e63;
+    }
+
+    .chapter-page {
+      padding: 5rem 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      background: linear-gradient(45deg, #f857a6, #ff5858);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+
     .chapter-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
     }
+
     .chapter-card {
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        text-align: center;
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: #192335;
-        text-decoration: none;
-        border: 1px solid #e8eaf6;
-        transition: all 0.35s ease-in-out;
-        box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
-        position: relative;
-        overflow: hidden;
+      background: var(--bg-white);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-color);
+      text-decoration: none;
+      border: 1px solid #e8eaf6;
+      transition: all 0.35s ease-in-out;
+      box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
+      position: relative;
+      overflow: hidden;
     }
+
     .chapter-card i {
-        display: block;
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        transition: all 0.35s ease-in-out;
+      display: block;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      transition: all 0.35s ease-in-out;
     }
-    /* আইকনের জন্য আলাদা রঙ */
-    .chapter-list a:nth-child(1) i { color: #f44336; }
-    .chapter-list a:nth-child(2) i { color: #9c27b0; }
-    .chapter-list a:nth-child(3) i { color: #ff9800; }
-    .chapter-list a:nth-child(4) i { color: #4caf50; }
-    .chapter-list a:nth-child(5) i { color: #ffeb3b; }
-    .chapter-list a:nth-child(6) i { color: #2196f3; }
-    /* ... বাকি আইকনের রঙগুলোও যোগ করতে পারেন ... */
+    
+    /* Unique colors for each icon (Updated List) */
+    .chapter-list a:nth-child(1) i { color: #f44336; } /* অধ্যায় ১ */
+    .chapter-list a:nth-child(2) i { color: #9c27b0; } /* অধ্যায় ২ */
+    .chapter-list a:nth-child(3) i { color: #ff9800; } /* অধ্যায় ৩ */
+    .chapter-list a:nth-child(4) i { color: #4caf50; } /* অধ্যায় ৪ */
+    .chapter-list a:nth-child(5) i { color: #ffeb3b; } /* অধ্যায় ৫ */
+    .chapter-list a:nth-child(6) i { color: #2196f3; } /* অধ্যায় ৮ */
+    .chapter-list a:nth-child(7) i { color: #673ab7; } /* অধ্যায় ৯ */
+    .chapter-list a:nth-child(8) i { color: #e91e63; } /* অধ্যায় ১০ */
+    .chapter-list a:nth-child(9) i { color: #00bcd4; } /* বস্তুর গতি */
+    .chapter-list a:nth-child(10) i { color: #8bc34a; }/* অভিকর্ষ ও মহাকর্ষ */
+    .chapter-list a:nth-child(11) i { color: #03a9f4; }/* শব্দ */
+    .chapter-list a:nth-child(12) i { color: #607d8b; }/* গ্যাসের আচরণ */
+    .chapter-list a:nth-child(13) i { color: #795548; }/* পদার্থের গঠন ও ধর্ম */
+    .chapter-list a:nth-child(14) i { color: #ff5722; }/* ছায়া প্রকাশনী */
 
     .chapter-card:hover {
-        transform: translateY(-10px);
-        color: #fff;
-        background-image: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
-        box-shadow: 0 15px 35px rgba(37, 117, 252, 0.3);
+      transform: translateY(-10px);
+      color: #fff;
+      background-image: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+      box-shadow: 0 15px 35px rgba(37, 117, 252, 0.3);
     }
+
     .chapter-card:hover i {
-        color: #fff;
-        transform: scale(1.1) rotate(-5deg);
+      color: #fff;
+      transform: scale(1.1) rotate(-5deg);
     }
-    .footer {
-        background: #0b172a;
-        text-align: center;
-        color: #a0b3d1;
-        padding: 2.5rem 1rem;
-        margin-top: 4rem;
-        border-top: 2px solid #2575fc;
+
+    footer {
+      background: var(--footer-bg);
+      text-align: center;
+      color: var(--footer-text);
+      padding: 2.5rem 1rem;
+      margin-top: 4rem;
+      border-top: 2px solid #2575fc;
     }
-</style>
+  </style>
 </head>
 <body>
 
