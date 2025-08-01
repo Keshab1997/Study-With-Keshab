@@ -122,7 +122,21 @@
   </section>
 </main>
 
-<div id="notification-modal"><button id="close-notification-modal"><i class="fa fa-times"></i></button><h3>নোটিফিকেশন</h3><ul id="notification-list"></ul></div>
+<!-- === নোটিফিকেশন মডিউল (নতুন বাটন সহ আপডেটেড) === -->
+<div id="notification-modal">
+    <button id="close-notification-modal"><i class="fa fa-times"></i></button>
+    <h3>নোটিফিকেশন</h3>
+    <ul id="notification-list"></ul>
+    <div class="notification-modal-footer">
+        <button id="clear-all-notifications-btn" class="btn-notification-action btn-clear">
+            <i class="fa-solid fa-trash"></i> সব ক্লিয়ার করুন
+        </button>
+        <button id="close-notification-btn-footer" class="btn-notification-action btn-close">
+            বন্ধ করুন
+        </button>
+    </div>
+</div>
+
 <button id="scrollTopBtn" title="Top">⬆</button>
 
 <footer>
