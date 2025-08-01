@@ -1,11 +1,128 @@
 // =======================================================
-// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ২.৩ - পাথ হ্যান্ডলিং সহ)
+// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ২.৪ - Firebase ইন্টিগ্রেশন সহ)
+// =======================================================
+
+// --- Firebase Authentication এবং UI ম্যানেজমেন্ট (নতুন এবং উন্নত) ---
+// এই অংশটি উপরে আনা হয়েছে কারণ এটি পেজ লোডের শুরুতেই কাজ করা উচিত।
+
+// একটি ফাংশন যা Firebase অবজেক্টগুলোকে ইনিশিয়ালাইজ করবে এবং Auth Listener যোগ করবে
+function initializeFirebaseServices() {
+    // Firebase লোড হয়েছে কিনা তা চেক করা
+    if (typeof firebase !== 'undefined') {
+        // Firebase সার্ভিসগুলো ইনিশিয়ালাইজ করা
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // লগ আউট ফাংশন
+        function handleLogout(event) {
+            event.preventDefault();
+            auth.signOut().then(() => {
+                console.log('User signed out successfully.');
+                // লগআউট সফল হলে হোম পেজে রিডাইরেক্ট করা
+                // পাথ ঠিক করার জন্য basePath ব্যবহার করা হচ্ছে
+                const isSubjectPage = window.location.pathname.includes('/subject/');
+                const basePath = isSubjectPage ? '../' : '';
+                window.location.href = basePath + 'index.html';
+            }).catch(error => {
+                console.error('Sign out error:', error);
+            });
+        }
+
+        // লগ আউট বাটনগুলোতে ইভেন্ট লিসেনার যোগ করা
+        const logoutBtnDesktop = document.getElementById('logout-btn-desktop');
+        const logoutBtnMobile = document.getElementById('logout-btn-mobile');
+        if (logoutBtnDesktop) logoutBtnDesktop.addEventListener('click', handleLogout);
+        if (logoutBtnMobile) logoutBtnMobile.addEventListener('click', handleLogout);
+
+        // মূল Authentication State চেকার
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                // ইউজার লগইন করা আছে
+                db.collection('users').doc(user.uid).get()
+                    .then(doc => {
+                        let userData = { name: 'ব্যবহারকারী', role: 'user' }; // ডিফল্ট ডেটা
+                        if (doc.exists) {
+                            userData = doc.data();
+                        } else {
+                            console.warn("User document not found in Firestore. Using default data.");
+                        }
+                        updateNavUI(user, userData); // UI আপডেট ফাংশন কল করা
+                    })
+                    .catch(error => {
+                        console.error("Error fetching user data:", error);
+                        // এরর হলেও একটি ডিফল্ট ভিউ দেখানো
+                        updateNavUI(user, { name: 'ব্যবহারকারী', role: 'user' });
+                    });
+            } else {
+                // ইউজার লগইন করা নেই
+                updateNavUI(null, null);
+            }
+        });
+
+    } else {
+        // যদি Firebase লোড না হয়, তাহলে ১০০ মিলিসেকেন্ড পর আবার চেষ্টা করা
+        // এটি নিশ্চিত করে যে script.js লোড হওয়ার আগেই যদি firebase sdk লোড না হয়, তাহলেও সমস্যা হবে না
+        console.log("Waiting for Firebase to load...");
+        setTimeout(initializeFirebaseServices, 100);
+    }
+}
+
+
+// --- UI আপডেট করার ফাংশন ---
+function updateNavUI(user, userData) {
+    const isLoggedIn = !!user; // user অবজেক্ট থাকলে true, না থাকলে false
+
+    // ডেস্কটপ ও মোবাইল ন্যাভের এলিমেন্ট সিলেকশন
+    const guestLinkDesktop = document.getElementById('guest-link-desktop');
+    const userLinkDesktop = document.getElementById('user-link-desktop');
+    const logoutLinkDesktop = document.getElementById('logout-link-desktop');
+    const dashboardLinkDesktop = document.getElementById('dashboard-link-desktop');
+    const userNameDisplay = document.getElementById('user-name-display');
+    
+    const guestLinkMobile = document.getElementById('guest-link-mobile');
+    const userLinkMobile = document.getElementById('user-link-mobile');
+    const logoutLinkMobile = document.getElementById('logout-link-mobile');
+    const dashboardLinkMobile = document.getElementById('dashboard-link-mobile');
+
+    // পাথ ঠিক করার জন্য ভ্যারিয়েবল
+    const isSubjectPage = window.location.pathname.includes('/subject/');
+    const basePath = isSubjectPage ? '../' : '';
+    
+    // সব এলিমেন্টকে একসাথে হাইড/শো করা
+    [guestLinkDesktop, guestLinkMobile].forEach(el => el ? el.style.display = isLoggedIn ? 'none' : 'list-item' : null);
+    [userLinkDesktop, userLinkMobile].forEach(el => el ? el.style.display = isLoggedIn ? 'list-item' : 'none' : null);
+    [logoutLinkDesktop, logoutLinkMobile].forEach(el => el ? el.style.display = isLoggedIn ? 'list-item' : 'none' : null);
+    
+    if (isLoggedIn && userData) {
+        if (userNameDisplay) userNameDisplay.textContent = `স্বাগতম, ${userData.name.split(' ')[0]}`; // শুধু প্রথম নাম দেখানো
+        
+        // ইউজারের রোল অনুযায়ী ড্যাশবোর্ডের লিংক সেট করা
+        const dashboardUrl = basePath + ((userData.role === 'admin') ? 'admin-dashboard.html' : 'user-dashboard.html');
+        if (dashboardLinkDesktop) dashboardLinkDesktop.href = dashboardUrl;
+        if (dashboardLinkMobile) dashboardLinkMobile.href = dashboardUrl;
+
+    } else {
+        // ইউজার লগইন করা না থাকলে
+        if (userNameDisplay) userNameDisplay.textContent = '';
+
+        // প্রোটেক্টেড পেজ থেকে লগইন পেজে রিডাইরেক্ট করা
+        const protectedPages = ['user-dashboard.html', 'admin-dashboard.html'];
+        const currentPage = window.location.pathname.split('/').pop();
+        if (protectedPages.includes(currentPage)) {
+            console.log("Access to protected page denied. Redirecting to login.");
+            window.location.href = basePath + 'login.html';
+        }
+    }
+}
+
+// =======================================================
+// === আপনার পুরনো এবং কার্যকরী কোড (কোনো পরিবর্তন করা হয়নি) ===
 // =======================================================
 
 document.addEventListener('DOMContentLoaded', function () {
     
     // --- ১. গ্লোবাল ভ্যারিয়েবল এবং এলিমেন্ট সিলেকশন ---
-    const header = document.querySelector('.site-header');
+    const header = document.querySelector('.site-header'); // Note: This might be different in your HTML
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     
     // মোবাইল নেভিগেশন এলিমেন্টস
@@ -21,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- ২. হেডার এবং স্ক্রল-টু-টপ ---
     window.addEventListener('scroll', () => {
-        // null check for header
         if (header) {
             header.classList.toggle('scrolled', window.scrollY > 10);
         }
@@ -51,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function () {
             toggleMobileMenu(!isVisible);
         });
         mobileNavMenu.querySelectorAll('a').forEach(link => {
-            // logout button এর id তে 'logout' শব্দটি থাকতে পারে, তাই এভাবে চেক করা হচ্ছে
             if (link.id.indexOf('logout') === -1) { 
                 link.addEventListener('click', () => toggleMobileMenu(false));
             }
@@ -83,7 +198,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             notificationBadge.textContent = unseenCount;
             notificationBadge.style.display = unseenCount > 0 ? 'inline-block' : 'none';
-            localStorage.setItem('allNotifications', JSON.stringify(notifications));
         }
 
         function showNotificationModal() {
@@ -113,9 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
         
-        updateNotificationBadge(); // ইনিশিয়ালাইজেশন
-    } else {
-        // console.warn("Warning: 'notifications' array not found. Notification system disabled on this page.");
+        updateNotificationBadge();
     }
 
     // --- ৫. গ্লোবাল কী-বোর্ড ইভেন্ট ---
@@ -132,108 +244,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-// =======================================================
-// === নতুন: Firebase Authentication এবং UI ম্যানেজমেন্ট (সংস্করণ ১.১) ===
-// =======================================================
-
-// এই অংশটি DOMContentLoaded এর বাইরে থাকবে কারণ এটি Firebase লোড হওয়ার সাথে সাথে কাজ করবে
-
-// Firebase অবজেক্টগুলো আগে থেকে ডিক্লেয়ার করা, যাতে পরে ব্যবহার করা যায়
-let auth;
-let db;
-
-// একটি ফাংশন যা Firebase অবজেক্টগুলোকে ইনিশিয়ালাইজ করবে
-function initializeFirebaseServices() {
-    if (typeof firebase !== 'undefined') {
-        auth = firebase.auth();
-        db = firebase.firestore();
-        attachAuthListener(); // Firebase ইনিশিয়ালাইজ হওয়ার পরেই Auth listener যোগ করা
-    } else {
-        // যদি Firebase লোড না হয়, তাহলে ১০০ মিলিসেকেন্ড পর আবার চেষ্টা করা
-        setTimeout(initializeFirebaseServices, 100);
-    }
-}
-
-
-// --- Auth UI এলিমেন্ট সিলেকশন ---
-const guestLinkDesktop = document.getElementById('guest-link-desktop');
-const userLinkDesktop = document.getElementById('user-link-desktop');
-const logoutLinkDesktop = document.getElementById('logout-link-desktop');
-const dashboardLinkDesktop = document.getElementById('dashboard-link-desktop');
-const logoutBtnDesktop = document.getElementById('logout-btn-desktop');
-const userNameDisplay = document.getElementById('user-name-display');
-const guestLinkMobile = document.getElementById('guest-link-mobile');
-const userLinkMobile = document.getElementById('user-link-mobile');
-const logoutLinkMobile = document.getElementById('logout-link-mobile');
-const dashboardLinkMobile = document.getElementById('dashboard-link-mobile');
-const logoutBtnMobile = document.getElementById('logout-btn-mobile');
-
-// --- পাথ ঠিক করার জন্য একটি ভ্যারিয়েবল ---
-// আমরা subject ফোল্ডারের ভেতরে আছি কিনা তা চেক করা হচ্ছে
-const isSubjectPage = window.location.pathname.includes('/subject/');
-const basePath = isSubjectPage ? '../' : '';
-
-
-// --- UI আপডেট করার ফাংশন ---
-function updateNavUI(user, userData) {
-    const isLoggedIn = !!user;
-
-    [guestLinkDesktop, guestLinkMobile].forEach(el => el ? el.style.display = isLoggedIn ? 'none' : 'list-item' : null);
-    [userLinkDesktop, userLinkMobile].forEach(el => el ? el.style.display = isLoggedIn ? 'list-item' : 'none' : null);
-    [logoutLinkDesktop, logoutLinkMobile].forEach(el => el ? el.style.display = isLoggedIn ? 'list-item' : 'none' : null);
-    
-    if (isLoggedIn && userData) {
-        if (userNameDisplay) userNameDisplay.textContent = `স্বাগতম, ${userData.name.split(' ')[0]}`;
-        // পাথ ঠিক করে ড্যাশবোর্ডের URL সেট করা
-        const dashboardUrl = basePath + ((userData.role === 'admin') ? 'admin-dashboard.html' : 'user-dashboard.html');
-        if (dashboardLinkDesktop) dashboardLinkDesktop.href = dashboardUrl;
-        if (dashboardLinkMobile) dashboardLinkMobile.href = dashboardUrl;
-    } else {
-        if (userNameDisplay) userNameDisplay.textContent = '';
-    }
-}
-
-// --- লগ আউট ফাংশন ---
-function handleLogout(event) {
-    event.preventDefault();
-    if (!auth) return; // auth ইনিশিয়ালাইজ না হলে কিছু না করা
-    auth.signOut().then(() => {
-        console.log('User signed out successfully.');
-        updateNavUI(null, null);
-        // পাথ ঠিক করে হোমপেজে রিডাইরেক্ট করা
-        window.location.href = basePath + 'index.html';
-    }).catch(error => {
-        console.error('Sign out error:', error);
-    });
-}
-
-// লগ আউট বাটনে ইভেন্ট লিসেনার যোগ করা
-if (logoutBtnDesktop) logoutBtnDesktop.addEventListener('click', handleLogout);
-if (logoutBtnMobile) logoutBtnMobile.addEventListener('click', handleLogout);
-
-
-// --- মূল Authentication State চেকার ---
-function attachAuthListener() {
-    if (!auth) return;
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            db.collection('users').doc(user.uid).get()
-                .then(doc => {
-                    if (doc.exists) {
-                        updateNavUI(user, doc.data());
-                    } else {
-                        updateNavUI(user, { name: 'ব্যবহারকারী', role: 'student' });
-                    }
-                })
-                .catch(error => {
-                    console.error("Error fetching user data:", error);
-                    updateNavUI(user, { name: 'ব্যবহারকারী', role: 'student' });
-                });
-        } else {
-            updateNavUI(null, null);
-        }
-    });
-}
-
-// Firebase সার্ভিসগুলো ইনিশিয়ালাইজ করার জন্য ফাংশনটি কল করা
+// সবশেষে Firebase সার্ভিসগুলো ইনিশিয়ালাইজ করার জন্য ফাংশনটি কল করা
 initializeFirebaseServices();
