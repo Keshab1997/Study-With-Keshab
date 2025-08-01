@@ -14,6 +14,8 @@
 </head>
 <body>
 
+<!-- === এই সম্পূর্ণ কোডটি কপি করে আপনার index.html ফাইলে পেস্ট করুন === -->
+
 <header class="site-header">
   <div class="header-grid">
     <a href="index.html" class="logo-link">
@@ -29,7 +31,7 @@
             <li><a href="contact.html" class="contact"><i class="fas fa-envelope"></i> Contact</a></li>
             <li><a href="index.html#feedback-module" class="feedback"><i class="fas fa-comment-alt"></i> Feedback</a></li>
             
-            <!-- Auth Links -->
+            <!-- Auth Links (এই অংশটিই মূল) -->
             <li class="auth-link" id="guest-link-desktop">
                 <a href="login.html" class="login"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a>
             </li>
@@ -41,6 +43,43 @@
             </li>
         </ul>
     </nav>
+    
+    <div class="header-actions">
+        <span id="user-name-display" class="nav-user-name"></span>
+        <button id="show-notification-btn" title="নোটিফিকেশন" class="notification-bell-btn">
+            <i class="fa-solid fa-bell"></i>
+            <span id="notification-badge"></span>
+        </button>
+        <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+        </button>
+    </div>
+  </div>
+</header>
+
+<nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+        <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
+        <li><a href="index.html#features"><i class="fas fa-star"></i> Features</a></li>
+        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        <li><a href="index.html#feedback-module"><i class="fas fa-comment-alt"></i> Feedback</a></li>
+        
+        <!-- Auth Links Mobile (এই অংশটিও মূল) -->
+        <li class="auth-link" id="guest-link-mobile">
+            <a href="login.html"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a>
+        </li>
+        <li class="auth-link" id="user-link-mobile" style="display: none;">
+            <a href="#" id="dashboard-link-mobile"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a>
+        </li>
+        <li class="auth-link" id="logout-link-mobile" style="display: none;">
+            <a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
+        </li>
+    </ul>
+</nav>
+
+<!-- === এই পর্যন্ত === -->
     
     <div class="header-actions">
         <span id="user-name-display" class="nav-user-name"></span>
