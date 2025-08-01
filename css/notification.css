@@ -1,0 +1,137 @@
+/* === Notification Module Styles === */
+
+/* নোটিফিকেশন বেলের স্টাইল */
+.notification-bell-btn {
+  position: relative;
+  background: none;
+  border: none;
+  color: #333; /* আপনার হেডার টেক্সটের রঙের সাথে মিলিয়ে নিন */
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.notification-bell-btn:hover {
+  color: #007bff; /* হোভারের জন্য রঙ */
+}
+
+/* নোটিফিকেশন ব্যাজ (ছোট লাল বৃত্ত) */
+#notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ff4d4d;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 11px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(40%, -40%);
+  border: 2px solid white; /* একটি সুন্দর বর্ডার */
+  display: none; /* ডিফল্টভাবে লুকানো থাকবে, JS দিয়ে দৃশ্যমান হবে */
+}
+
+/* নোটিফিকেশন পপ-আপ মডাল */
+#notification-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100%;
+  background-color: #f9f9f9;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%); /* ডিফল্টভাবে স্ক্রিনের বাইরে থাকবে */
+  transition: transform 0.4s ease-in-out;
+  z-index: 1001; /* অন্যান্য উপাদানের উপরে থাকবে */
+  display: flex;
+  flex-direction: column;
+}
+
+/* JS দিয়ে এই ক্লাসটি যোগ করা হলে মডাল দেখা যাবে */
+#notification-modal.visible {
+  transform: translateX(0);
+}
+
+/* মডালের হেডার অংশ */
+#notification-modal h3 {
+  padding: 1rem 1.5rem;
+  margin: 0;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 1.25rem;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #fff;
+}
+
+/* বন্ধ করার বাটন */
+#close-notification-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #888;
+  cursor: pointer;
+  padding: 5px;
+}
+
+#close-notification-modal:hover {
+  color: #333;
+}
+
+/* নোটিফিকেশন লিস্ট */
+#notification-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto; /* লিস্ট বড় হলে স্ক্রল করা যাবে */
+  flex-grow: 1;
+}
+
+#notification-list li {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e7e7e7;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.95rem;
+  color: #555;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#notification-list li:hover {
+  background-color: #f0f0f0;
+}
+
+/* নতুন নোটিফিকেশনের জন্য আলাদা স্টাইল */
+#notification-list li.unread {
+  background-color: #e8f0fe;
+  font-weight: 600;
+}
+
+#notification-list li.unread:hover {
+  background-color: #dbe7fa;
+}
+
+/* যখন কোনো নোটিফিকেশন নেই */
+#notification-list li.no-notification {
+  text-align: center;
+  color: #999;
+  cursor: default;
+}
+#notification-list li.no-notification:hover {
+  background-color: transparent;
+}
+
+
+/* মিডিয়া কোয়েরি (ছোট স্ক্রিনের জন্য) */
+@media (max-width: 480px) {
+  #notification-modal {
+    width: 100%;
+    max-width: 300px; /* ছোট স্ক্রিনে একটু কম চওড়া */
+  }
+}
