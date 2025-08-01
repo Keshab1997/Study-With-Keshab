@@ -1,71 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Study With Keshab</title>
-    <!-- আপনার সাইটের CSS ফাইল যুক্ত করুন -->
-    <link rel="stylesheet" href="style.css"> 
-    <style>
-        /* লগইন পেজের জন্য কিছু বেসিক স্টাইল */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f2f5;
-            font-family: sans-serif;
-        }
-        .login-container {
-            padding: 40px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            text-align: center;
-        }
-        .login-container h1 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-        #google-login-btn {
-            background-color: #4285F4;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: inline-flex;
-            align-items: center;
-        }
-        #google-login-btn:hover {
-            background-color: #357ae8;
-        }
-        #google-login-btn img {
-            width: 20px;
-            margin-right: 15px;
-            background-color: white;
-            padding: 2px;
-            border-radius: 50%;
-        }
-    </style>
+    <title>লগইন - Study With Keshab</title>
+    <base href="/Study-With-Keshab/">
+
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Login Page CSS -->
+    <link rel="stylesheet" href="css/login-style.css"> <!-- আমরা এই ফাইলটি তৈরি করব -->
 </head>
-<body>
+<body class="login-page">
 
     <div class="login-container">
-        <h1>Welcome Back!</h1>
-        <p>Please sign in to continue.</p>
-        <button id="google-login-btn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo">
-            <span>Sign in with Google</span>
-        </button>
+        <div class="login-header">
+            <a href="index.html">
+                <img src="images/logo.jpg" alt="Study With Keshab Logo" class="logo">
+            </a>
+            <h1>স্বাগতম!</h1>
+            <p>আপনার শেখার যাত্রা শুরু করতে লগইন করুন।</p>
+        </div>
+
+        <div class="login-form">
+            <button id="google-login-btn" class="google-btn">
+                <i class="fab fa-google"></i>
+                <span>Google দিয়ে লগইন করুন</span>
+            </button>
+        </div>
+        
+        <div class="login-footer">
+            <a href="index.html">হোম পেজে ফিরে যান</a>
+        </div>
     </div>
 
-    <!-- এই স্ক্রিপ্টটি খুবই গুরুত্বপূর্ণ -->
-    <!-- type="module" দিতে ভুলবেন না -->
-    <script type="module" src="auth.js"></script>
-
+    <!-- Firebase SDK (v8.10.0) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <!-- আপনার নিজস্ব স্ক্রিপ্ট -->
+    <script src="js/firebase-config.js"></script>
+    <script src="auth.js"></script>
 </body>
 </html>
