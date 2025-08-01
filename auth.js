@@ -7,15 +7,21 @@ import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.
 
 // !!! এখানে আপনার নিজের Firebase প্রজেক্টের কনফিগারেশন কোড বসান !!!
 // যে কোডটি আগের ধাপে কপি করতে বলেছিলাম
+// firebase-config.js এর ভেতরের কোড
+
+// আপনার Firebase অ্যাপের কনফিগারেশন
 const firebaseConfig = {
-  apiKey: "AIzaSy...YOUR_API_KEY", // আপনার নিজের কী এখানে দিন
-  authDomain: "your-project-id.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project-id.appspot.com",
-  messagingSenderId: "1234567890",
-  appId: "1:1234567890:web:abcdef123456"
+  apiKey: "AIzaSyBEhbEWRfuCh_wuXPiQdG8l5TW6L5Ssi1Y",
+  authDomain: "study-with-keshab.firebaseapp.com",
+  projectId: "study-with-keshab",
+  storageBucket: "study-with-keshab.firebasestorage.app",
+  messagingSenderId: "752692165545",
+  appId: "1:752692165545:web:219ff482874717c3ab22b8",
+  measurementId: "G-QH5ELRG2DE"
 };
 
+// Firebase শুরু করা হচ্ছে
+firebase.initializeApp(firebaseConfig);
 // Firebase অ্যাপটি চালু করা হচ্ছে
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app); // Authentication সার্ভিস চালু করা
