@@ -1,8 +1,7 @@
-// firebase-config.js এর ভেতরের কোড
+// js/firebase-config.js
 
-// আপনার Firebase অ্যাপের কনফিগারেশন
 const firebaseConfig = {
-  apiKey: "AIzaSyBEhbEWRfuCh_wuXPiQdG8l5TW6L5Ssi1Y",
+  apiKey: "আপনার-API-KEY", // এখানে আপনার আসল কী থাকবে
   authDomain: "study-with-keshab.firebaseapp.com",
   projectId: "study-with-keshab",
   storageBucket: "study-with-keshab.firebasestorage.app",
@@ -13,3 +12,5 @@ const firebaseConfig = {
 
 // Firebase শুরু করা হচ্ছে
 firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
