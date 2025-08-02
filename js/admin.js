@@ -1,4 +1,4 @@
-// js/admin.js (Advanced Version)
+// js/admin.js (Advanced Version with Indian Time Zone)
 
 document.addEventListener('DOMContentLoaded', () => {
     const adminPageContainer = document.querySelector('.admin-page-container');
@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function showAccessDenied() {
-        adminPageContainer.style.display = 'none';
-        accessDenied.style.display = 'flex';
+        if(adminPageContainer) adminPageContainer.style.display = 'none';
+        if(accessDenied) accessDenied.style.display = 'flex';
     }
 
     // সমস্ত ব্যবহারকারীর ডেটা লোড করার ফাংশন
@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('total-admins').textContent = adminCount;
             
             renderUserTable(allUsers); // টেবিল রেন্ডার করো
-            loadingMessage.style.display = 'none';
+            if(loadingMessage) loadingMessage.style.display = 'none';
 
         }).catch(error => {
             console.error("Error fetching users:", error);
-            loadingMessage.textContent = 'ডেটা লোড করতে ব্যর্থ হয়েছে।';
+            if(loadingMessage) loadingMessage.textContent = 'ডেটা লোড করতে ব্যর্থ হয়েছে।';
         });
     }
 
@@ -61,6 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderUserTable(users) {
         const tableBody = document.getElementById('user-table-body');
         const noResultsMessage = document.getElementById('no-results-message');
+        
+        if(!tableBody || !noResultsMessage) return;
+
         tableBody.innerHTML = '';
 
         if (users.length === 0) {
@@ -70,12 +73,23 @@ document.addEventListener('DOMContentLoaded', () => {
         noResultsMessage.style.display = 'none';
         
         users.forEach(user => {
-            const lastLogin = user.lastLogin ? new Date(user.lastLogin.seconds * 1000).toLocaleString('bn-BD') : 'জানা নেই';
+            // === পরিবর্তনটি এই লাইনে করা হয়েছে (Indian Time Zone এর জন্য) ===
+            const lastLogin = user.lastLogin ? new Date(user.lastLogin.seconds * 1000).toLocaleString('en-IN', {
+                timeZone: 'Asia/Kolkata', // ভারতের টাইমজোন সেট করা হয়েছে
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric', 
+                hour: 'numeric', 
+                minute: '2-digit', 
+                second: '2-digit', 
+                hour12: true 
+            }) : 'N/A';
+            
             const roleClass = user.role === 'admin' ? 'admin' : 'user';
             
             const row = `
                 <tr>
-                    <td><img src="${user.profilePic || 'images/default-avatar.png'}" alt="Profile Pic" class="profile-pic"></td>
+                    <td><img src="${user.profilePic || 'images/default-avatar.png'}" alt="Profile Pic" class="profile-pic" onerror="this.src='images/default-avatar.png';"></td>
                     <td>${user.displayName || 'N/A'}</td>
                     <td>${user.email || 'N/A'}</td>
                     <td><span class="role-badge ${roleClass}">${user.role || 'user'}</span></td>
@@ -88,15 +102,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // সার্চ ফাংশনালিটি
     const searchInput = document.getElementById('user-search-input');
-    searchInput.addEventListener('keyup', () => {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        
-        const filteredUsers = allUsers.filter(user => {
-            const name = (user.displayName || '').toLowerCase();
-            const email = (user.email || '').toLowerCase();
-            return name.includes(searchTerm) || email.includes(searchTerm);
-        });
+    if (searchInput) {
+        searchInput.addEventListener('keyup', () => {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            
+            const filteredUsers = allUsers.filter(user => {
+                const name = (user.displayName || '').toLowerCase();
+                const email = (user.email || '').toLowerCase();
+                return name.includes(searchTerm) || email.includes(searchTerm);
+            });
 
-        renderUserTable(filteredUsers);
-    });
+            renderUserTable(filteredUsers);
+        });
+    }
 });
