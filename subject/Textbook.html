@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- GK Textbook পেজের জন্য প্রাসঙ্গিক মেটা ডেসক্রিপশন -->
+  <meta name="description" content="Study With Keshab ওয়েবসাইটে General Knowledge (GK) Textbook এর অধ্যায় তালিকা। শিল্প, সংস্কৃতি, পুরস্কার, বই, লেখক এবং আরও অনেক গুরুত্বপূর্ণ বিষয় খুঁজুন।">
+
   <title>Textbook - General Knowledge | Study With Keshab</title>
 
+  <!-- Google Fonts & Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <!-- মূল CSS ফাইল (পথ ঠিক করা হয়েছে) -->
+  <!-- মূল CSS ফাইল -->
   <link rel="stylesheet" href="../css/style.css">
 
   <style>
@@ -20,125 +25,42 @@
       --footer-bg: #0b172a;
       --footer-text: #a0b3d1;
     }
-
-    body {
-      font-family: 'Baloo Da 2', cursive;
-      background-color: var(--bg-light);
-      margin: 0;
-      color: var(--text-color);
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    /* হেডার স্টাইল (style.css থেকে আসবে) */
-
-    .chapter-page {
-      padding: 4rem 2rem;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 3rem;
-      background: linear-gradient(45deg, #f857a6, #ff5858);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-    }
-
-    .chapter-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .chapter-card {
-      background: var(--bg-white);
-      border-radius: 15px;
-      padding: 2rem;
-      text-align: center;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text-color);
-      text-decoration: none;
-      border: 1px solid #e8eaf6;
-      transition: all 0.35s ease-in-out;
-      box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .chapter-card i {
-      display: block;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      transition: all 0.35s ease-in-out;
-    }
-    
-    /* প্রতিটি আইকনের জন্য আলাদা রঙ */
-    .chapter-list a:nth-child(1) i { color: #9c27b0; }
-    .chapter-list a:nth-child(2) i { color: #ffc107; }
-    .chapter-list a:nth-child(3) i { color: #795548; }
-    .chapter-list a:nth-child(4) i { color: #e91e63; }
-    .chapter-list a:nth-child(5) i { color: #4caf50; }
-    .chapter-list a:nth-child(6) i { color: #ff5722; }
-    .chapter-list a:nth-child(7) i { color: #03a9f4; }
-
-    .chapter-card:hover {
-      transform: translateY(-10px);
-      color: #fff;
-      background-image: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
-      box-shadow: 0 15px 35px rgba(37, 117, 252, 0.3);
-    }
-
-    .chapter-card:hover i {
-      color: #fff;
-      transform: scale(1.1) rotate(-5deg);
-    }
-
-    .footer {
-      background: var(--footer-bg);
-      text-align: center;
-      color: var(--footer-text);
-      padding: 2.5rem 1rem;
-      margin-top: 4rem;
-      border-top: 2px solid #2575fc;
-    }
+    body { font-family: 'Baloo Da 2', cursive; background-color: var(--bg-light); margin: 0; color: var(--text-color); line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .chapter-page { padding: 4rem 2rem; }
+    .section-title { text-align: center; font-size: 3rem; font-weight: 700; margin-bottom: 3rem; background: linear-gradient(45deg, #f857a6, #ff5858); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; }
+    .chapter-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .chapter-card { background: var(--bg-white); border-radius: 15px; padding: 2rem; text-align: center; font-size: 1.25rem; font-weight: 600; color: var(--text-color); text-decoration: none; border: 1px solid #e8eaf6; transition: all 0.35s ease-in-out; box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1); position: relative; overflow: hidden; }
+    .chapter-card i { display: block; font-size: 2.5rem; margin-bottom: 1rem; transition: all 0.35s ease-in-out; }
+    .chapter-list a:nth-child(1) i { color: #9c27b0; } .chapter-list a:nth-child(2) i { color: #ffc107; } .chapter-list a:nth-child(3) i { color: #795548; } .chapter-list a:nth-child(4) i { color: #e91e63; } .chapter-list a:nth-child(5) i { color: #4caf50; } .chapter-list a:nth-child(6) i { color: #ff5722; } .chapter-list a:nth-child(7) i { color: #03a9f4; }
+    .chapter-card:hover { transform: translateY(-10px); color: #fff; background-image: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%); box-shadow: 0 15px 35px rgba(37, 117, 252, 0.3); }
+    .chapter-card:hover i { color: #fff; transform: scale(1.1) rotate(-5deg); }
+    .footer { background: var(--footer-bg); text-align: center; color: var(--footer-text); padding: 2.5rem 1rem; margin-top: 4rem; border-top: 2px solid #2575fc; }
   </style>
 </head>
 <body>
 
-  <!-- === নতুন ডাইনামিক হেডার শুরু === -->
   <header class="site-header">
     <div class="header-grid container">
         <a href="../index.html" class="logo-link">
-            <!-- পথ ঠিক করা হয়েছে -->
             <img src="../images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
         </a>
         
         <nav class="primary-navigation">
             <ul>
-                <!-- সব পথের আগে ../ যোগ করা হয়েছে -->
-                <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="../about.html"><i class="fas fa-info-circle"></i> About Me</a></li>
-                <li><a href="../index.html#subjects" class="active"><i class="fas fa-book-open"></i> Subjects</a></li>
-                <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="../index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+                <li><a href="../about.html"><i class="fas fa-info-circle" aria-hidden="true"></i> About Me</a></li>
+                <li><a href="../index.html#subjects" class="active"><i class="fas fa-book-open" aria-hidden="true"></i> Subjects</a></li>
+                <li><a href="../contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
                 
                 <li class="auth-link" id="guest-link-desktop">
-                    <a href="../login.html" class="login"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a>
+                    <a href="../login.html"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login / Sign up</a>
                 </li>
                 <li class="auth-link" id="user-link-desktop" style="display: none;">
-                    <a href="#" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a>
+                    <a href="#" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt" aria-hidden="true"></i> Dashboard</a>
                 </li>
                 <li class="auth-link" id="logout-link-desktop" style="display: none;">
-                    <a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> লগ আউট</a>
+                    <a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout</a>
                 </li>
             </ul>
         </nav>
@@ -151,36 +73,48 @@
         </div>
     </div>
   </header>
-  <!-- === হেডার শেষ === -->
+
+  <nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
+      <ul>
+          <li><a href="../index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+          <li><a href="../index.html#subjects"><i class="fas fa-book-open" aria-hidden="true"></i> Subjects</a></li>
+          <li><a href="../about.html"><i class="fas fa-info-circle" aria-hidden="true"></i> About</a></li>
+          <li><a href="../contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
+          
+          <li class="auth-link" id="guest-link-mobile">
+              <a href="../login.html"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login / Sign up</a>
+          </li>
+          <li class="auth-link" id="logout-link-mobile" style="display: none;">
+              <a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout</a>
+          </li>
+      </ul>
+  </nav>
 
   <main class="chapter-page">
     <div class="container">
       <h1 class="section-title">📚 Textbook - অধ্যায় তালিকা</h1>
       <div class="chapter-list">
-        <!-- General Knowledge Chapters -->
-        <a href="https://keshab1997.github.io/Textbook-gk-Arts-Culture/" class="chapter-card"><i class="fas fa-palette"></i> শিল্প ও সংস্কৃতি (Art and Culture)</a>
-        <a href="awards-honours.html" class="chapter-card"><i class="fas fa-trophy"></i> পুরস্কার ও সম্মান (Awards and Honours)</a>
-        <a href="books-authors.html" class="chapter-card"><i class="fas fa-book-open"></i> বই ও লেখক (Books and Authors)</a>
-        <a href="famous-people.html" class="chapter-card"><i class="fas fa-star"></i> বিখ্যাত ব্যক্তিত্ব (Famous People)</a>
-        <a href="ecology-environment.html" class="chapter-card"><i class="fas fa-leaf"></i> বাস্তুবিদ্যা ও পরিবেশ (Ecology and Environment)</a>
-        <a href="sports.html" class="chapter-card"><i class="fas fa-medal"></i> খেলাধুলা (Sports)</a>
-        <a href="science-tech.html" class="chapter-card"><i class="fas fa-flask"></i> বিজ্ঞান, প্রযুক্তি ও আবিষ্কার</a>
-
+        <a href="https://keshab1997.github.io/Textbook-gk-Arts-Culture/" class="chapter-card"><i class="fas fa-palette" aria-hidden="true"></i> শিল্প ও সংস্কৃতি (Art and Culture)</a>
+        <a href="awards-honours.html" class="chapter-card"><i class="fas fa-trophy" aria-hidden="true"></i> পুরস্কার ও সম্মান (Awards and Honours)</a>
+        <a href="books-authors.html" class="chapter-card"><i class="fas fa-book-open" aria-hidden="true"></i> বই ও লেখক (Books and Authors)</a>
+        <a href="famous-people.html" class="chapter-card"><i class="fas fa-star" aria-hidden="true"></i> বিখ্যাত ব্যক্তিত্ব (Famous People)</a>
+        <a href="ecology-environment.html" class="chapter-card"><i class="fas fa-leaf" aria-hidden="true"></i> বাস্তুবিদ্যা ও পরিবেশ (Ecology and Environment)</a>
+        <a href="sports.html" class="chapter-card"><i class="fas fa-medal" aria-hidden="true"></i> খেলাধুলা (Sports)</a>
+        <a href="science-tech.html" class="chapter-card"><i class="fas fa-flask" aria-hidden="true"></i> বিজ্ঞান, প্রযুক্তি ও আবিষ্কার</a>
       </div>
     </div>
   </main>
 
   <footer class="footer">
-    © ২০২৫ | Textbook - General Knowledge | Study With Keshab
+    &copy; ২০২৫ | Textbook - General Knowledge | Study With Keshab
   </footer>
   
-  <!-- === পেজ প্রটেকশন স্ক্রিপ্ট শুরু === -->
+  <!-- পেজ প্রোটেকশন স্ক্রিপ্ট -->
   <script>
     (function() {
         const checkAuth = () => {
             if (typeof firebase !== 'undefined' && firebase.auth) {
                 const auth = firebase.auth();
-                // বর্তমান পেজের URL চেক করে লগইন পেজের পাথ ঠিক করা
                 const loginPageUrl = window.location.pathname.includes('/subject/') ? '../login.html' : 'login.html';
                 
                 auth.onAuthStateChanged(user => {
@@ -199,14 +133,13 @@
         }, 100);
     })();
   </script>
-  <!-- === পেজ প্রটেকশন স্ক্রিপ্ট শেষ === -->
-
-  <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট (পথ ঠিক করা হয়েছে) -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-  <script src="../js/firebase-config.js"></script>
-  <script src="../js/script.js"></script>
+  
+  <!-- আধুনিক Firebase এবং অন্যান্য স্ক্রিপ্ট -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js" defer></script>
+  <script src="../js/firebase-config.js" defer></script>
+  <script src="../js/script.js" defer></script>
 
 </body>
 </html>

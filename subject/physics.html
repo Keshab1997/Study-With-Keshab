@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Physics Chapters - Study With Keshab</title>
-    <!-- === বেস ট্যাগ সরানো হয়েছে কারণ আমরা এখন আপেক্ষিক পথ ব্যবহার করছি === -->
+    
+    <!-- পদার্থবিজ্ঞানের জন্য প্রাসঙ্গিক মেটা ডেসক্রিপশন -->
+    <meta name="description" content="Study With Keshab ওয়েবসাইটে পদার্থবিজ্ঞানের সকল অধ্যায়ের তালিকা। বল ও গতি, তাপ, আলো, চৌম্বকত্ব এবং আরও অনেক অধ্যায়ের নোট ও রিসোর্স খুঁজুন।">
+    
+    <title>পদার্থবিজ্ঞান অধ্যায় - Study With Keshab</title>
 
     <!-- Google Fonts & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,10 +15,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- মূল CSS ফাইল (সঠিক পথ) -->
+    <!-- মূল CSS ফাইল -->
     <link rel="stylesheet" href="../css/style.css">
 
 <style>
+    /* পদার্থবিজ্ঞান পেজের জন্য নির্দিষ্ট থিম */
     :root {
       --text-color: #192335;
       --bg-light: #f7f9fc;
@@ -23,229 +27,127 @@
       --footer-bg: #0b172a;
       --footer-text: #a0b3d1;
     }
-
-    body {
-      font-family: 'Baloo Da 2', cursive;
-      background-color: var(--bg-light);
-      margin: 0;
-      color: var(--text-color);
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    header {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      padding: 1rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo-img {
-      height: 50px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #e91e63;
-    }
-
-    .chapter-page {
-      padding: 5rem 2rem;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 3rem;
-      background: linear-gradient(45deg, #f857a6, #ff5858);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-    }
-
-    .chapter-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .chapter-card {
-      background: var(--bg-white);
-      border-radius: 15px;
-      padding: 2rem;
-      text-align: center;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text-color);
-      text-decoration: none;
-      border: 1px solid #e8eaf6;
-      transition: all 0.35s ease-in-out;
-      box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .chapter-card i {
-      display: block;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      transition: all 0.35s ease-in-out;
-    }
-    
-    /* Unique colors for each icon (Updated List) */
-    .chapter-list a:nth-child(1) i { color: #f44336; } /* অধ্যায় ১ */
-    .chapter-list a:nth-child(2) i { color: #9c27b0; } /* অধ্যায় ২ */
-    .chapter-list a:nth-child(3) i { color: #ff9800; } /* অধ্যায় ৩ */
-    .chapter-list a:nth-child(4) i { color: #4caf50; } /* অধ্যায় ৪ */
-    .chapter-list a:nth-child(5) i { color: #ffeb3b; } /* অধ্যায় ৫ */
-    .chapter-list a:nth-child(6) i { color: #2196f3; } /* অধ্যায় ৮ */
-    .chapter-list a:nth-child(7) i { color: #673ab7; } /* অধ্যায় ৯ */
-    .chapter-list a:nth-child(8) i { color: #e91e63; } /* অধ্যায় ১০ */
-    .chapter-list a:nth-child(9) i { color: #00bcd4; } /* বস্তুর গতি */
-    .chapter-list a:nth-child(10) i { color: #8bc34a; }/* অভিকর্ষ ও মহাকর্ষ */
-    .chapter-list a:nth-child(11) i { color: #03a9f4; }/* শব্দ */
-    .chapter-list a:nth-child(12) i { color: #607d8b; }/* গ্যাসের আচরণ */
-    .chapter-list a:nth-child(13) i { color: #795548; }/* পদার্থের গঠন ও ধর্ম */
-    .chapter-list a:nth-child(14) i { color: #ff5722; }/* ছায়া প্রকাশনী */
-
-    .chapter-card:hover {
-      transform: translateY(-10px);
-      color: #fff;
-      background-image: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
-      box-shadow: 0 15px 35px rgba(37, 117, 252, 0.3);
-    }
-
-    .chapter-card:hover i {
-      color: #fff;
-      transform: scale(1.1) rotate(-5deg);
-    }
-
-    footer {
-      background: var(--footer-bg);
-      text-align: center;
-      color: var(--footer-text);
-      padding: 2.5rem 1rem;
-      margin-top: 4rem;
-      border-top: 2px solid #2575fc;
-    }
-  </style>
+    body { font-family: 'Baloo Da 2', cursive; background-color: var(--bg-light); margin: 0; color: var(--text-color); line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .chapter-page { padding: 4rem 2rem; }
+    .section-title { text-align: center; font-size: 3rem; font-weight: 700; margin-bottom: 3rem; background: linear-gradient(45deg, #f857a6, #ff5858); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; }
+    .chapter-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .chapter-card { background: var(--bg-white); border-radius: 15px; padding: 2rem; text-align: center; font-size: 1.25rem; font-weight: 600; color: var(--text-color); text-decoration: none; border: 1px solid #e8eaf6; transition: all 0.35s ease-in-out; box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1); position: relative; overflow: hidden; }
+    .chapter-card i { display: block; font-size: 2.5rem; margin-bottom: 1rem; transition: all 0.35s ease-in-out; }
+    .chapter-list a:nth-child(1) i { color: #f44336; } .chapter-list a:nth-child(2) i { color: #9c27b0; } .chapter-list a:nth-child(3) i { color: #ff9800; } .chapter-list a:nth-child(4) i { color: #4caf50; } .chapter-list a:nth-child(5) i { color: #ffeb3b; } .chapter-list a:nth-child(6) i { color: #2196f3; } .chapter-list a:nth-child(7) i { color: #673ab7; } .chapter-list a:nth-child(8) i { color: #e91e63; } .chapter-list a:nth-child(9) i { color: #00bcd4; } .chapter-list a:nth-child(10) i { color: #8bc34a; } .chapter-list a:nth-child(11) i { color: #03a9f4; } .chapter-list a:nth-child(12) i { color: #607d8b; } .chapter-list a:nth-child(13) i { color: #795548; } .chapter-list a:nth-child(14) i { color: #ff5722; }
+    .chapter-card:hover { transform: translateY(-10px); color: #fff; background-image: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%); box-shadow: 0 15px 35px rgba(37, 117, 252, 0.3); }
+    .chapter-card:hover i { color: #fff; transform: scale(1.1) rotate(-5deg); }
+    .footer { background: var(--footer-bg); text-align: center; color: var(--footer-text); padding: 2.5rem 1rem; margin-top: 4rem; border-top: 2px solid #2575fc; }
+</style>
 </head>
 <body>
 
-<!-- === সম্পূর্ণ নতুন এবং কার্যকরী হেডার === -->
-<header class="site-header">
-  <div class="header-grid">
-    <!-- লোগো (সঠিক পথ) -->
-    <a href="../index.html" class="logo-link">
-      <img src="../images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
-    </a>
-    
-    <!-- ডেস্কটপ নেভিগেশন -->
-    <nav class="primary-navigation">
-        <ul>
-            <li><a href="../index.html" class="home"><i class="fas fa-home"></i> Home</a></li>
-            
-            <li><a href="../index.html#subjects" class="services active"><i class="fas fa-book-open"></i> Subjects</a></li>
-            
-            
-            <li><a href="../index.html#feedback-module" class="feedback"><i class="fas fa-comment-alt"></i> Feedback</a></li>
-            <li><a href="../about.html" class="about"><i class="fas fa-info-circle"></i> About</a></li>
-            <li><a href="../contact.html" class="contact"><i class="fas fa-envelope"></i> Contact</a></li>
-            <li class="auth-link" id="guest-link-desktop"><a href="../login.html" class="login"><i class="fas fa-sign-in-alt"></i> Login / Sign up</a></li>
-            <li class="auth-link" id="user-link-desktop" style="display: none;"><a href="#" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-            <li class="auth-link" id="logout-link-desktop" style="display: none;"><a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-        </ul>
-    </nav>
-    
-   
-    
-</header>
-
-<!-- === মোবাইল নেভিগেশন মেনু === -->
-<nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
-    <ul>
-        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="../index.html#services"><i class="fas fa-book-open"></i> Subjects</a></li>
-        <li><a href="../about.html"><i class="fas fa-info-circle"></i> About</a></li>
-       <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-        <li><a href="../index.html#feedback-module"><i class="fas fa-comment-alt"></i> Feedback</a></li>
-             
-            
-        <li class="auth-link" id="guest-link-mobile"><a href="../login.html"><i class="fas fa-sign-in-alt"></i> log in / Sign up</a></li>
+  <header class="site-header">
+    <div class="header-grid container">
+        <a href="../index.html" class="logo-link">
+            <img src="../images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
+        </a>
         
-        <li class="auth-link" id="logout-link-mobile" style="display: none;"><a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
-    </ul>
-</nav>
+        <nav class="primary-navigation">
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+                <li><a href="../about.html"><i class="fas fa-info-circle" aria-hidden="true"></i> About Me</a></li>
+                <li><a href="../index.html#subjects"><i class="fas fa-book-open" aria-hidden="true"></i> Subjects</a></li>
+                <li><a href="../contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
+                
+                <li class="auth-link" id="guest-link-desktop">
+                    <a href="../login.html"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login / Sign up</a>
+                </li>
+                <li class="auth-link" id="user-link-desktop" style="display: none;">
+                    <a href="#" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt" aria-hidden="true"></i> Dashboard</a>
+                </li>
+                <li class="auth-link" id="logout-link-desktop" style="display: none;">
+                    <a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout</a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="header-actions">
+            <span id="user-name-display" class="nav-user-name"></span>
+            <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
+                <span class="sr-only">Menu</span>
+            </button>
+        </div>
+    </div>
+  </header>
 
-<main class="chapter-page">
+  <nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
+      <ul>
+          <li><a href="../index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+          <li><a href="../index.html#subjects"><i class="fas fa-book-open" aria-hidden="true"></i> Subjects</a></li>
+          <li><a href="../about.html"><i class="fas fa-info-circle" aria-hidden="true"></i> About</a></li>
+          <li><a href="../contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
+          
+          <li class="auth-link" id="guest-link-mobile">
+              <a href="../login.html"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login / Sign up</a>
+          </li>
+          <li class="auth-link" id="logout-link-mobile" style="display: none;">
+              <a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout</a>
+          </li>
+      </ul>
+  </nav>
+
+  <main class="chapter-page">
     <div class="container">
       <h1 class="section-title">⚛️ পদার্থবিজ্ঞান - অধ্যায় তালিকা</h1>
       <div class="chapter-list">
-        <!-- Chapters -->
-        <a href="physics-ch1.html" class="chapter-card"><i class="fas fa-atom"></i> মাপক রাশি ও একক</a>
-        <a href="physics-ch2.html" class="chapter-card"><i class="fas fa-balance-scale"></i> বল ও গতি</a>
-        <a href="https://keshab1997.github.io/Physics-Heat-temperature/" class="chapter-card"><i class="fas fa-thermometer-half"></i> তাপ ও তাপমাত্রা</a>
-        <a href="https://keshab1997.github.io/Physics-Work-Power-Energy/" target="_blank" class="chapter-card"><i class="fas fa-running"></i> কর্ম ও শক্তি</a>
-        <a href="https://keshab1997.github.io/Physics-Light/" target="_blank" class="chapter-card"><i class="fas fa-lightbulb"></i> আলো</a>
-        <a href="https://keshab1997.github.io/Physics-Magnet/"target="_blank" class="chapter-card"><i class="fas fa-magnet"></i> চৌম্বকত্ব</a>
-        <a href="physics-ch9.html" class="chapter-card"><i class="fas fa-bolt"></i> বিকিরণ ও পারমাণবিক শক্তি</a>
-        <a href="physics-ch10.html" class="chapter-card"><i class="fas fa-cogs"></i> যন্ত্র ও প্রযুক্তি</a>
-        <a href="physics-ch-motion.html" class="chapter-card"><i class="fas fa-tachometer-alt"></i> বস্তুর গতি</a>
-        <a href="https://keshab1997.github.io/Physics-Gravitation/" class="chapter-card"><i class="fas fa-apple-alt"></i> অভিকর্ষ ও মহাকর্ষ</a>
-        <a href="https://keshab1997.github.io/Physics-Sound/"target="_blank" class="chapter-card"><i class="fas fa-wave-square"></i> শব্দ</a>
-        <a href="https://keshab1997.github.io/physics-Gas-Er-Acharon/"target="_blank" class="chapter-card"><i class="fas fa-wind"></i> গ্যাসের আচরণ</a>
-        <a href="https://keshab1997.github.io/physics-padathor-gathon-o-darmo/"target="_blank" class="chapter-card"><i class="fas fa-shapes"></i> পদার্থের গঠন ও ধর্ম</a>
-        <a href="https://keshab1997.github.io/chhaya-prakashani-physics/" target="_blank" class="chapter-card"><i class="fas fa-book-open"></i> ছায়া প্রকাশনী</a>
+        <a href="physics-ch1.html" class="chapter-card"><i class="fas fa-atom" aria-hidden="true"></i> মাপক রাশি ও একক</a>
+        <a href="physics-ch2.html" class="chapter-card"><i class="fas fa-balance-scale" aria-hidden="true"></i> বল ও গতি</a>
+        <a href="https://keshab1997.github.io/Physics-Heat-temperature/" class="chapter-card"><i class="fas fa-thermometer-half" aria-hidden="true"></i> তাপ ও তাপমাত্রা</a>
+        <a href="https://keshab1997.github.io/Physics-Work-Power-Energy/" target="_blank" class="chapter-card"><i class="fas fa-running" aria-hidden="true"></i> কর্ম ও শক্তি</a>
+        <a href="https://keshab1997.github.io/Physics-Light/" target="_blank" class="chapter-card"><i class="fas fa-lightbulb" aria-hidden="true"></i> আলো</a>
+        <a href="https://keshab1997.github.io/Physics-Magnet/"target="_blank" class="chapter-card"><i class="fas fa-magnet" aria-hidden="true"></i> চৌম্বকত্ব</a>
+        <a href="physics-ch9.html" class="chapter-card"><i class="fas fa-bolt" aria-hidden="true"></i> বিকিরণ ও পারমাণবিক শক্তি</a>
+        <a href="physics-ch10.html" class="chapter-card"><i class="fas fa-cogs" aria-hidden="true"></i> যন্ত্র ও প্রযুক্তি</a>
+        <a href="physics-ch-motion.html" class="chapter-card"><i class="fas fa-tachometer-alt" aria-hidden="true"></i> বস্তুর গতি</a>
+        <a href="https://keshab1997.github.io/Physics-Gravitation/" class="chapter-card"><i class="fas fa-apple-alt" aria-hidden="true"></i> অভিকর্ষ ও মহাকর্ষ</a>
+        <a href="https://keshab1997.github.io/Physics-Sound/"target="_blank" class="chapter-card"><i class="fas fa-wave-square" aria-hidden="true"></i> শব্দ</a>
+        <a href="https://keshab1997.github.io/physics-Gas-Er-Acharon/"target="_blank" class="chapter-card"><i class="fas fa-wind" aria-hidden="true"></i> গ্যাসের আচরণ</a>
+        <a href="https://keshab1997.github.io/physics-padathor-gathon-o-darmo/"target="_blank" class="chapter-card"><i class="fas fa-shapes" aria-hidden="true"></i> পদার্থের গঠন ও ধর্ম</a>
+        <a href="https://keshab1997.github.io/chhaya-prakashani-physics/" target="_blank" class="chapter-card"><i class="fas fa-book-open" aria-hidden="true"></i> ছায়া প্রকাশনী</a>
       </div>
     </div>
-</main>
+  </main>
 
-<footer class="footer">
-    <div class="footer-bottom">
-        &copy; ২০২৫ | পদার্থবিজ্ঞান বিভাগ | Study With Keshab
-    </div>
-</footer>
+  <footer class="footer">
+    &copy; ২০২৫ | পদার্থবিজ্ঞান বিভাগ | Study With Keshab
+  </footer>
 
-<!-- === সব পেজের জন্য সাধারণ স্ক্রিপ্ট === -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-
-<!-- আপনার নিজস্ব স্ক্রিপ্ট (সঠিক পথ) -->
-<script src="../js/firebase-config.js"></script>
-<script src="../js/notification-data.js"></script>
-<script src="../js/script.js"></script>
+  <!-- পেজ প্রোটেকশন স্ক্রিপ্ট -->
+  <script>
+    (function() {
+        const checkAuth = () => {
+            if (typeof firebase !== 'undefined' && firebase.auth) {
+                const auth = firebase.auth();
+                const loginPageUrl = window.location.pathname.includes('/subject/') ? '../login.html' : 'login.html';
+                auth.onAuthStateChanged(user => {
+                    if (!user) {
+                        console.log('User not logged in. Redirecting to login page...');
+                        window.location.href = loginPageUrl; 
+                    }
+                });
+            }
+        };
+        const interval = setInterval(() => {
+            if (typeof firebase !== 'undefined' && firebase.auth) {
+                clearInterval(interval);
+                checkAuth();
+            }
+        }, 100);
+    })();
+  </script>
+  
+  <!-- আধুনিক Firebase এবং অন্যান্য স্ক্রিপ্ট -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js" defer></script>
+  <script src="../js/firebase-config.js" defer></script>
+  <script src="../js/script.js" defer></script>
 
 </body>
 </html>
