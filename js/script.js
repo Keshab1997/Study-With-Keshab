@@ -1,8 +1,10 @@
 // =======================================================
-// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ২.৭ - শুধুমাত্র অ্যাডমিন ড্যাশবোর্ড)
+// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ২.৮ - নতুন অথেন্টিকেশন লজিকসহ)
 // =======================================================
 
+// === ফায়ারবেস এবং অথেন্টিকেশন হ্যান্ডলিং ===
 function initializeFirebaseServices() {
+    // Firebase লোড হয়েছে কিনা তা নিশ্চিত করা
     if (typeof firebase === 'undefined') {
         console.warn("Firebase SDK লোড হচ্ছে... ১০০ms পর আবার চেষ্টা করা হবে।");
         setTimeout(initializeFirebaseServices, 100);
@@ -12,92 +14,87 @@ function initializeFirebaseServices() {
     const auth = firebase.auth();
     const db = firebase.firestore();
 
+    // লগআউট ফাংশন
     function handleLogout(event) {
         event.preventDefault();
         auth.signOut().then(() => {
+            console.log("ব্যবহারকারী সফলভাবে লগআউট হয়েছেন।");
             const isSubjectPage = window.location.pathname.includes('/subject/');
             const basePath = isSubjectPage ? '../' : '';
             window.location.href = basePath + 'index.html';
         }).catch(error => console.error('লগ আউট করতে সমস্যা হয়েছে:', error));
     }
 
+    // ডেস্কটপ ও মোবাইল লগআউট বাটনে ইভেন্ট যোগ করা
     ['logout-btn-desktop', 'logout-btn-mobile'].forEach(id => {
         const btn = document.getElementById(id);
         if (btn) btn.addEventListener('click', handleLogout);
     });
 
+    // ব্যবহারকারীর লগইন স্ট্যাটাস পরিবর্তন হলে এই ফাংশনটি কাজ করবে
     auth.onAuthStateChanged(user => {
         if (user) {
+            // ব্যবহারকারী লগইন করা থাকলে Firestore থেকে তার তথ্য আনা হবে
             db.collection('users').doc(user.uid).get()
                 .then(doc => {
-                    const userData = doc.exists ? doc.data() : { name: 'ব্যবহারকারী', role: 'user' };
+                    const userData = doc.exists ? doc.data() : { displayName: 'User', role: 'user' };
                     updateNavUI(user, userData);
                 })
                 .catch(error => {
                     console.error("Firestore থেকে ব্যবহারকারীর তথ্য আনতে সমস্যা হয়েছে:", error);
-                    updateNavUI(user, { name: 'ব্যবহারকারী', role: 'user' });
+                    // কোনো সমস্যা হলে ডিফল্ট তথ্য দিয়ে UI আপডেট করা হবে
+                    updateNavUI(user, { displayName: 'User', role: 'user' });
                 });
         } else {
+            // ব্যবহারকারী লগইন করা না থাকলে UI আপডেট করা হবে
             updateNavUI(null, null);
         }
     });
 }
 
+// === ন্যাভিগেশন UI আপডেট করার ফাংশন ===
 function updateNavUI(user, userData) {
-    const isLoggedIn = !!user;
-    const isSubjectPage = window.location.pathname.includes('/subject/');
-    const basePath = isSubjectPage ? '../' : '';
+    const isLoggedIn = !!user; // ব্যবহারকারী লগইন করা আছে কিনা (true/false)
+    const isAdmin = isLoggedIn && userData.role === 'admin'; // ব্যবহারকারী অ্যাডমিন কিনা (true/false)
 
+    // প্রয়োজনীয় সব ইলিমেন্টকে একবারে ধরা
     const elements = {
         guestDesktop: document.getElementById('guest-link-desktop'),
         userDesktop: document.getElementById('user-link-desktop'),
         logoutDesktop: document.getElementById('logout-link-desktop'),
-        dashboardDesktop: document.getElementById('dashboard-link-desktop'),
+        adminDesktop: document.getElementById('admin-link-desktop'), // অ্যাডমিন লিংক
         userNameDisplay: document.getElementById('user-name-display'),
+        
         guestMobile: document.getElementById('guest-link-mobile'),
         userMobile: document.getElementById('user-link-mobile'),
         logoutMobile: document.getElementById('logout-link-mobile'),
-        dashboardMobile: document.getElementById('dashboard-link-mobile'),
+        adminMobile: document.getElementById('admin-link-mobile') // অ্যাডমিন লিংক
     };
-    
-    // সাধারণ লিঙ্কগুলো দেখানো বা লুকানো
-    if (elements.guestDesktop) elements.guestDesktop.style.display = isLoggedIn ? 'none' : 'list-item';
-    if (elements.guestMobile) elements.guestMobile.style.display = isLoggedIn ? 'none' : 'list-item';
-    if (elements.logoutDesktop) elements.logoutDesktop.style.display = isLoggedIn ? 'list-item' : 'none';
-    if (elements.logoutMobile) elements.logoutMobile.style.display = isLoggedIn ? 'list-item' : 'none';
-    if (elements.userNameDisplay) elements.userNameDisplay.textContent = isLoggedIn ? `স্বাগতম, ${userData.name.split(' ')[0]}`: '';
 
-    // === ড্যাশবোর্ড লিঙ্কের নতুন লজিক ===
-    const isAdmin = isLoggedIn && userData.role === 'admin';
-
-    // ডেস্কটপ ড্যাশবোর্ড লিঙ্ক
-    if (elements.userDesktop) {
-        elements.userDesktop.style.display = isAdmin ? 'list-item' : 'none'; // শুধুমাত্র অ্যাডমিন দেখলে দেখাবে
-        if (isAdmin && elements.dashboardDesktop) {
-            elements.dashboardDesktop.href = basePath + 'admin-dashboard.html';
-        }
-    }
-    // মোবাইল ড্যাশবোর্ড লিঙ্ক
-    if (elements.userMobile) {
-        elements.userMobile.style.display = isAdmin ? 'list-item' : 'none'; // শুধুমাত্র অ্যাডমিন দেখলে দেখাবে
-         if (isAdmin && elements.dashboardMobile) {
-            elements.dashboardMobile.href = basePath + 'admin-dashboard.html';
-        }
-    }
+    // সাধারণ ব্যবহারকারী ও গেস্টদের জন্য লিঙ্ক দেখানো/লুকানো
+    if (elements.guestDesktop) elements.guestDesktop.style.display = isLoggedIn ? 'none' : 'block';
+    if (elements.guestMobile) elements.guestMobile.style.display = isLoggedIn ? 'none' : 'block';
     
-    // সুরক্ষিত পেজ থেকে রিডাইরেক্ট
-    if (!isLoggedIn) {
-        const protectedPages = ['admin-dashboard.html'];
-        const currentPage = window.location.pathname.split('/').pop();
-        if (protectedPages.includes(currentPage)) {
-            window.location.href = basePath + 'login.html';
-        }
+    if (elements.userDesktop) elements.userDesktop.style.display = isLoggedIn ? 'block' : 'none';
+    if (elements.userMobile) elements.userMobile.style.display = isLoggedIn ? 'block' : 'none';
+
+    if (elements.logoutDesktop) elements.logoutDesktop.style.display = isLoggedIn ? 'block' : 'none';
+    if (elements.logoutMobile) elements.logoutMobile.style.display = isLoggedIn ? 'block' : 'none';
+
+    // ইউজারের নাম দেখানো
+    if (elements.userNameDisplay) {
+        elements.userNameDisplay.textContent = isLoggedIn ? `স্বাগতম, ${userData.displayName.split(' ')[0]}`: '';
     }
+
+    // শুধুমাত্র অ্যাডমিনের জন্য অ্যাডমিন প্যানেল লিঙ্ক দেখানো/লুকানো
+    if (elements.adminDesktop) elements.adminDesktop.style.display = isAdmin ? 'block' : 'none';
+    if (elements.adminMobile) elements.adminMobile.style.display = isAdmin ? 'block' : 'none';
 }
 
 
-// বাকি কোড অপরিবর্তিত থাকবে
+// === পেজ লোড হলে অন্যান্য সব ফাংশনালিটি চালু করা ===
 document.addEventListener('DOMContentLoaded', function () {
+    // আপনার পুরনো কার্যকরী কোডগুলো এখানে অপরিবর্তিত রাখা হয়েছে
     const header = document.querySelector('.site-header');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     const navToggle = document.querySelector('.mobile-nav-toggle');
@@ -110,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const clearAllBtn = document.getElementById('clear-all-notifications-btn');
     const closeFooterBtn = document.getElementById('close-notification-btn-footer');
 
+    // স্ক্রল করলে হেডার এবং স্ক্রল-টু-টপ বাটন নিয়ন্ত্রণ
     window.addEventListener('scroll', () => {
         if (header) header.classList.toggle('scrolled', window.scrollY > 10);
         if (scrollTopBtn) scrollTopBtn.style.display = (window.scrollY > 100) ? "block" : "none";
@@ -119,6 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
 
+    // মোবাইল মেনু টগল করার ফাংশন
     function toggleMobileMenu(show) {
         if (!mobileNavMenu || !navToggle) return;
         mobileNavMenu.setAttribute('data-visible', show);
@@ -133,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // নোটিফিকেশন সিস্টেম (আপনার পুরনো কোড)
     if (typeof notifications !== 'undefined') {
         const isSubjectPage = window.location.pathname.includes('/subject/');
         const audioPath = isSubjectPage ? '../audio/notification.wav' : 'audio/notification.wav';
@@ -196,4 +196,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// সবশেষে ফায়ারবেস সার্ভিস চালু করা
 initializeFirebaseServices();

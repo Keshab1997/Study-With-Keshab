@@ -1,117 +1,91 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const auth = firebase.auth();
+// js/admin.js (নতুন এবং উন্নত কোড)
+
+document.addEventListener('DOMContentLoaded', function() {
+    const adminContent = document.getElementById('admin-content');
+    const accessDenied = document.getElementById('access-denied');
+    const userListContainer = document.getElementById('user-list-container');
     const db = firebase.firestore();
 
-    const userListContainer = document.getElementById('user-list-container');
-    const resultsContainer = document.getElementById('results-container');
-    const loadingUsers = document.getElementById('loading-users');
-
-    // অ্যাডমিন কিনা তা চেক করা
-    auth.onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            db.collection('users').doc(user.uid).get().then(doc => {
-                if (doc.exists && doc.data().role === 'admin') {
-                    // যদি অ্যাডমিন হয়, তাহলে ব্যবহারকারীদের লোড করবে
-                    fetchAndDisplayUsers();
-                } else {
-                    // যদি অ্যাডমিন না হয়, তাহলে হোম পেজে পাঠিয়ে দেবে
-                    alert('দুঃখিত, এই পেজটি শুধুমাত্র অ্যাডমিনদের জন্য।');
-                    window.location.href = 'index.html';
-                }
-            });
+            // ব্যবহারকারী লগইন করা আছে, এখন তার role চেক করা হবে
+            checkUserRole(user);
         } else {
-            // যদি লগইন করা না থাকে, তাহলে লগইন পেজে পাঠিয়ে দেবে
-            window.location.href = 'login.html';
+            // ব্যবহারকারী লগইন করা নেই
+            showAccessDenied();
         }
     });
 
-    // সব ব্যবহারকারীকে Firestore থেকে এনে দেখানো
-    async function fetchAndDisplayUsers() {
-        try {
-            const snapshot = await db.collection('users').get();
-            userListContainer.innerHTML = ''; // লোডিং মেসেজ মুছে দেওয়া
+    function checkUserRole(user) {
+        const userDocRef = db.collection('users').doc(user.uid);
 
-            snapshot.forEach(doc => {
-                const userData = doc.data();
-                const userElement = document.createElement('div');
-                userElement.classList.add('user-item');
-                userElement.dataset.uid = doc.id; // UID সেভ করা
-                userElement.dataset.name = userData.name; // নাম সেভ করা
-
-                userElement.innerHTML = `
-                    <p>${userData.name}</p>
-                    <small>${userData.email}</small>
-                `;
-
-                // ব্যবহারকারীর উপর ক্লিক করলে তার ফলাফল দেখানো হবে
-                userElement.addEventListener('click', () => {
-                    // Active class যোগ করা
-                    document.querySelectorAll('.user-item').forEach(el => el.classList.remove('active'));
-                    userElement.classList.add('active');
-                    fetchAndDisplayResults(doc.id, userData.name);
-                });
-
-                userListContainer.appendChild(userElement);
-            });
-
-        } catch (error) {
-            console.error("ব্যবহারকারীদের তথ্য আনতে সমস্যা হয়েছে:", error);
-            userListContainer.innerHTML = '<p>ব্যবহারকারীদের তালিকা আনা সম্ভব হয়নি।</p>';
-        }
+        userDocRef.get().then((doc) => {
+            if (doc.exists && doc.data().role === 'admin') {
+                // ব্যবহারকারী অ্যাডমিন
+                showAdminContent();
+                loadUsersData();
+            } else {
+                // ব্যবহারকারী সাধারণ ইউজার
+                showAccessDenied();
+            }
+        }).catch((error) => {
+            console.error("Error getting user role:", error);
+            showAccessDenied();
+        });
     }
 
-    // নির্দিষ্ট ব্যবহারকারীর কুইজের ফলাফল দেখানো
-    async function fetchAndDisplayResults(userId, userName) {
-        resultsContainer.innerHTML = '<p id="loading-results">ফলাফল লোড করা হচ্ছে...</p>';
+    function showAdminContent() {
+        accessDenied.style.display = 'none';
+        adminContent.style.display = 'block';
+    }
 
-        try {
-            const snapshot = await db.collection('quiz_attempts')
-                                    .where('userId', '==', userId)
-                                    .orderBy('timestamp', 'desc')
-                                    .get();
+    function showAccessDenied() {
+        adminContent.style.display = 'none';
+        accessDenied.style.display = 'block';
+        accessDenied.innerHTML = `
+            <h1>প্রবেশাধিকার নেই (Access Denied)</h1>
+            <p>এই পেজটি দেখার জন্য আপনার অনুমতি নেই অথবা আপনাকে <a href="login.html">লগইন</a> করতে হবে।</p>
+            <a href="index.html">হোম পেজে ফিরে যান</a>
+        `;
+    }
 
-            if (snapshot.empty) {
-                resultsContainer.innerHTML = `
-                    <h4>${userName}-এর ফলাফল</h4>
-                    <p>এই ব্যবহারকারী এখনো কোনো কুইজ দেননি।</p>
-                `;
+    // Firestore থেকে ব্যবহারকারীদের ডেটা লোড করার ফাংশন
+    function loadUsersData() {
+        db.collection("users").get().then((querySnapshot) => {
+            if (querySnapshot.empty) {
+                userListContainer.innerHTML = "<p>কোনো ব্যবহারকারী খুঁজে পাওয়া যায়নি।</p>";
                 return;
             }
 
-            let resultsHTML = `<h4>${userName}-এর ফলাফল</h4>`;
-            resultsHTML += `
-                <table class="quiz-results-table">
+            let tableHTML = `
+                <table>
                     <thead>
                         <tr>
-                            <th>কুইজের বিষয়</th>
-                            <th>ফলাফল</th>
-                            <th>তারিখ</th>
+                            <th>নাম (Name)</th>
+                            <th>ইমেইল (Email)</th>
+                            <th>ভূমিকা (Role)</th>
                         </tr>
                     </thead>
                     <tbody>
             `;
 
-            snapshot.forEach(doc => {
-                const attempt = doc.data();
-                const score = `${attempt.score} / ${attempt.totalQuestions}`;
-                // Timestamp থেকে তারিখ ফরম্যাট করা
-                const date = attempt.timestamp.toDate().toLocaleString('bn-BD');
-
-                resultsHTML += `
+            querySnapshot.forEach((doc) => {
+                const userData = doc.data();
+                tableHTML += `
                     <tr>
-                        <td>${attempt.quizTitle}</td>
-                        <td>${score}</td>
-                        <td>${date}</td>
+                        <td>${userData.displayName || 'N/A'}</td>
+                        <td>${userData.email || 'N/A'}</td>
+                        <td>${userData.role || 'user'}</td>
                     </tr>
                 `;
             });
 
-            resultsHTML += '</tbody></table>';
-            resultsContainer.innerHTML = resultsHTML;
+            tableHTML += `</tbody></table>`;
+            userListContainer.innerHTML = tableHTML;
 
-        } catch (error) {
-            console.error("ফলাফল আনতে সমস্যা হয়েছে:", error);
-            resultsContainer.innerHTML = '<p>ফলাফল আনা সম্ভব হয়নি।</p>';
-        }
+        }).catch((error) => {
+            console.error("Error fetching users: ", error);
+            userListContainer.innerHTML = "<p>ডেটা লোড করতে সমস্যা হয়েছে। অনুগ্রহ করে কনসোল চেক করুন।</p>";
+        });
     }
 });
