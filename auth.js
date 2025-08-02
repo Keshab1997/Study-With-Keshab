@@ -1,10 +1,9 @@
-// auth.js ( универсальный файл для всего сайта )
+// auth.js (  - সংস্করণ ২.০ )
 
 document.addEventListener('DOMContentLoaded', function() {
     
     // ==========================================================
     // বিভাগ ১: ব্যবহারকারীর লগইন স্ট্যাটাস সবসময় চেক করা
-    // এই অংশটি সব পেজে কাজ করবে (index.html, about.html, ইত্যাদি)
     // ==========================================================
     firebase.auth().onAuthStateChanged(function(user) {
         
@@ -17,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const mobileUser = document.getElementById('user-link-mobile');
         const mobileAdmin = document.getElementById('admin-link-mobile');
         const mobileLogout = document.getElementById('logout-link-mobile');
+        
+        // *** নতুন এলিমেন্ট যোগ করা হয়েছে ***
+        const userInfoCluster = document.getElementById('user-info-cluster');
         const userNameDisplay = document.getElementById('user-name-display');
 
         // শুধুমাত্র হোম পেজের (index.html) জন্য নির্দিষ্ট এলিমেন্ট
@@ -34,7 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mobileUser) mobileUser.style.display = 'block';
             if (mobileLogout) mobileLogout.style.display = 'block';
             
-            // ইউজারের নাম দেখানো
+            // *** নতুন কোড: ইউজার ইনফো ক্লাস্টার দেখানো ***
+            if (userInfoCluster) {
+                userInfoCluster.style.display = 'flex'; // ফ্লেক্স ব্যবহার করে আইটেমগুলো পাশাপাশি আসবে
+            }
             if (userNameDisplay) {
                 userNameDisplay.textContent = user.displayName || 'ব্যবহারকারী';
             }
@@ -70,7 +75,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mobileAdmin) mobileAdmin.style.display = 'none';
             if (mobileLogout) mobileLogout.style.display = 'none';
 
-            if (userNameDisplay) userNameDisplay.textContent = '';
+            // *** নতুন কোড: ইউজার ইনফো ক্লাস্টার লুকানো ***
+            if (userInfoCluster) {
+                userInfoCluster.style.display = 'none';
+            }
+            if (userNameDisplay) {
+                 userNameDisplay.textContent = '';
+            }
             
             // যদি হোম পেজে থাকি, তাহলে হিরো সেকশন ডিফল্ট অবস্থায় ফিরিয়ে আনি
             if (heroTitle && heroDescription) {
@@ -91,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // বিভাগ ২: শুধুমাত্র লগইন পেজের (`login.html`) জন্য
     // ==========================================================
     const googleLoginBtn = document.getElementById('google-login-btn');
-    if (googleLoginBtn) { // এই কোডটি শুধু তখনই চলবে যখন google-login-btn পাওয়া যাবে
+    if (googleLoginBtn) { 
         
         const ADMIN_EMAIL = "keshabsarkar2018@gmail.com"; 
         
@@ -120,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .then(() => {
                     console.log("ইউজারের তথ্য Firestore এ সফলভাবে আপডেট হয়েছে।");
-                    window.location.href = 'index.html'; // হোম পেজে পাঠানো
+                    window.location.href = 'index.html'; 
                 })
                 .catch(error => {
                     console.error("Google সাইন-ইন এর সময় সমস্যা:", error);

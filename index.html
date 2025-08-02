@@ -33,16 +33,19 @@
             <!-- অথেন্টিকেশন লিঙ্ক (আপডেটেড) -->
             <li class="auth-link" id="guest-link-desktop"><a href="login.html" class="login"><i class="fas fa-sign-in-alt"></i> Login / Sign Up</a></li>
             <li class="auth-link" id="user-link-desktop" style="display: none;"><a href="dashboard.html" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-            
-            <!-- === এই লাইনটি নতুন যোগ করা হয়েছে === -->
             <li class="auth-link" id="admin-link-desktop" style="display: none;"><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Panel</a></li>
-            
             <li class="auth-link" id="logout-link-desktop" style="display: none;"><a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
         </ul>
     </nav>
+    <!-- *** হেডার অ্যাকশন অংশটি আপডেট করা হয়েছে *** -->
     <div class="header-actions">
-        <span id="user-name-display" class="nav-user-name"></span>
-        <button id="show-notification-btn" title="নোটিফিকেশন" class="notification-bell-btn"><i class="fa-solid fa-bell"></i><span id="notification-badge"></span></button>
+        <div id="user-info-cluster" class="user-info-cluster" style="display: none;">
+            <span id="user-name-display" class="nav-user-name"></span>
+            <button id="show-notification-btn" title="নোটিফিকেশন" class="notification-bell-btn">
+                <i class="fa-solid fa-bell"></i>
+                <span id="notification-badge"></span>
+            </button>
+        </div>
         <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false"><span class="sr-only">Menu</span></button>
     </div>
   </div>
@@ -60,38 +63,42 @@
         <!-- মোবাইল অথেন্টিকেশন লিঙ্ক (আপডেটেড) -->
         <li class="auth-link" id="guest-link-mobile"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login / Sign Up</a></li>
         <li class="auth-link" id="user-link-mobile" style="display: none;"><a href="dashboard.html" id="dashboard-link-mobile"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-        
-        <!-- === এই লাইনটি নতুন যোগ করা হয়েছে === -->
         <li class="auth-link" id="admin-link-mobile" style="display: none;"><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Panel</a></li>
-
         <li class="auth-link" id="logout-link-mobile" style="display: none;"><a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
     </ul>
 </nav>
 
 <main>
+  <!-- === হিরো সেকশন (নতুন ডিজাইন অনুযায়ী সম্পূর্ণ আপডেট করা হয়েছে) === -->
   <section id="home" class="hero-section-new">
-    <div class="hero-left">
-    <span class="hero-subtitle">📖 ডিজিটাল শিক্ষার নতুন দিগন্ত</span>
-    
-    <!-- JavaScript দিয়ে এই অংশ পরিবর্তন করার জন্য id যোগ করা হয়েছে -->
-    <h1 class="hero-title" id="hero-main-title">শিক্ষা হোক সহজ, প্রযুক্তিতে সমৃদ্ধ</h1>
-    
-    <p class="hero-description" id="hero-main-description">
-      📚 একই প্ল্যাটফর্মে পড়া, প্র্যাকটিস আর প্রস্তুতি<br />
-      ⏰ আপনার রুটিনে ফিট করে এমন পড়াশোনা<br />
-      🚀 পড়াশোনার গতি বাড়ায় ইন্টার‍্যাকটিভ কুইজ ও স্মার্ট নোট<br />
-      🌿 নিজের সময়, নিজের মতো করে শেখার পূর্ণ স্বাধীনতা
-    </p>
-    
-    <div class="hero-buttons">
-      <a href="#subjects" class="btn btn-primary">এখনি পড়া শুরু করুন <i class="fas fa-arrow-right"></i></a>
-    </div>
-</div>
+    <div class="container hero-container">
+      
+      <!-- ছবির অংশ (মোবাইল ভিউতে উপরে দেখানোর জন্য আগে রাখা হয়েছে) -->
       <div class="hero-right">
         <div class="image-wrapper">
           <img src="https://images.news18.com/static-bengali/uploads/2024/11/child-thinking-2024-11-a893b797ce3a82916201c999759c21f0.jpg" alt="Happy Student" />
         </div>
       </div>
+  
+      <!-- লেখার অংশ -->
+      <div class="hero-left">
+        <span class="hero-subtitle">📖 ডিজিটাল শিক্ষার নতুন দিগন্ত</span>
+        
+        <!-- JavaScript দিয়ে এই অংশ পরিবর্তন করার জন্য id যোগ করা আছে -->
+        <h1 class="hero-title" id="hero-main-title">শিক্ষা হোক সহজ, প্রযুক্তিতে সমৃদ্ধ</h1>
+        
+        <p class="hero-description" id="hero-main-description">
+          📚 একই প্ল্যাটফর্মে পড়া, প্র্যাকটিস আর প্রস্তুতি<br />
+          ⏰ আপনার রুটিনে ফিট করে এমন পড়াশোনা<br />
+          🚀 পড়াশোনার গতি বাড়ায় ইন্টার‍্যাকটিভ কুইজ ও স্মার্ট নোট<br />
+          🌿 নিজের সময়, নিজের মতো করে শেখার পূর্ণ স্বাধীনতা
+        </p>
+        
+        <div class="hero-buttons">
+          <a href="#subjects" class="btn btn-primary">এখনি পড়া শুরু করুন <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
     </div>
   </section>
 
@@ -188,7 +195,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 <script src="js/firebase-config.js"></script>
 <script src="js/notification-data.js"></script>
-<script src="auth.js"></script> <!-- auth.js ফাইলটি এখানেও যোগ করা হয়েছে -->
+<script src="auth.js"></script>
 <script src="js/script.js"></script>
 
 </body>
