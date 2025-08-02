@@ -64,22 +64,25 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
 .mobile-navigation-menu { display: none; }
 
 
-/* --- ৪. হিরো সেকশন (ফাইনাল ফিক্স) --- */
+/* --- ৪. হিরো সেকশন (ফাইনাল ফিক্সড এবং রেসপন্সিভ) --- */
 .hero-section-new {
     padding: 4rem 0; 
     background: #f4f7fc; 
     overflow: hidden;
 }
+
 .hero-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* ডেস্কটপে দুটি কলাম */
     align-items: center;
     gap: 3rem;
 }
+
 .hero-left {
     text-align: left;
     animation: fadeInUp 1s ease-out;
 }
+
 .hero-subtitle {
     color: var(--primary-blue);
     font-weight: 700;
@@ -87,6 +90,7 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
     font-size: 1.1rem;
     display: inline-block;
 }
+
 .hero-title {
     font-family: var(--special-font);
     font-size: 3.2rem;
@@ -95,13 +99,23 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
     margin-bottom: 1.5rem;
     font-weight: 700;
 }
-.hero-title .highlight { color: #f39c12; }
+
+.hero-title .highlight { 
+    color: #f39c12; 
+}
+
 .hero-description {
     font-size: 1.1rem;
     color: var(--grey-text);
     max-width: 550px;
     margin-bottom: 2.5rem;
 }
+
+.hero-buttons {
+    /* বাটনটিকে বামে রাখার জন্য display: flex যোগ করা হয়েছে */
+    display: flex;
+}
+
 .hero-buttons .btn {
     display: inline-flex;
     align-items: center;
@@ -116,20 +130,23 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
     box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
     transition: all 0.3s ease;
 }
+
 .hero-buttons .btn:hover {
     background-color: #0056b3;
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
 }
+
 .hero-right {
     animation: fadeInRight 1s ease-out;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .image-wrapper {
     width: 450px;
-    max-width: 100%;
+    max-width: 100%; /* এটি নিশ্চিত করে যে wrapper তার কন্টেইনারের চেয়ে বড় হবে না */
     aspect-ratio: 1 / 1;
     border: 4px solid #e74c3c;
     border-radius: 20px;
@@ -137,12 +154,56 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
     background-color: var(--white-color);
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
+
 .image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 20%;
+    /* object-position: center; /* আপনি চাইলে 'center 20%' ব্যবহার করতে পারেন */
+    object-position: center 20%; /* মেয়েটির মুখের উপর ফোকাস রাখার জন্য */
     border-radius: 12px;
+}
+
+/* === মোবাইল এবং ছোট ডিভাইসের জন্য রেসপন্সিভ কোড (মূল সমাধান) === */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.5rem; /* ট্যাবলেট স্ক্রিনে ফন্ট সাইজ একটু ছোট করা হলো */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section-new {
+        padding: 3rem 0; /* মোবাইলে প্যাডিং কমানো হলো */
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr; /* দুটি কলামকে একটি কলামে পরিবর্তন করা হলো */
+        gap: 2rem;
+    }
+
+    .hero-right {
+        /* মোবাইলে ছবির অংশ উপরে দেখানোর জন্য অর্ডার পরিবর্তন করা হলো */
+        order: 1; 
+        margin-bottom: 1rem;
+    }
+
+    .hero-left {
+        order: 2; /* লেখার অংশ নিচে আসবে */
+        text-align: center; /* মোবাইলে লেখা মাঝখানে দেখতে ভালো লাগবে */
+    }
+
+    .hero-title {
+        font-size: 2.2rem; /* মোবাইলে ফন্ট সাইজ আরও ছোট করা হলো */
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center; /* বাটনটিকে মাঝখানে আনার জন্য */
+    }
 }
 
 
