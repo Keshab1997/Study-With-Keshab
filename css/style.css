@@ -1,5 +1,5 @@
 /* ==================================================
-  সম্পূর্ণ ওয়েবসাইট স্টাইলশিট (সংস্করণ ৩.২ - নতুন হিরো ডিজাইন)
+  সম্পূর্ণ ওয়েবসাইট স্টাইলশিট (সংস্করণ ৩.৩ - ফাইনাল ফিক্স)
   ডেস্কটপ ও মোবাইল রেসপন্সিভ ডিজাইন উন্নত করা হয়েছে
 ================================================== */
 
@@ -64,7 +64,7 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
 .mobile-navigation-menu { display: none; }
 
 
-/* --- ৪. হিরো সেকশন (আপনার নতুন ডিজাইন অনুযায়ী আপডেট করা হলো) --- */
+/* --- ৪. হিরো সেকশন (ফাইনাল ফিক্স) --- */
 .hero-section-new {
     padding: 4rem 0; 
     background: #f4f7fc; 
@@ -72,7 +72,7 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
 }
 .hero-container {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* দুটি সমান কলাম */
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 3rem;
 }
@@ -95,9 +95,7 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
     margin-bottom: 1.5rem;
     font-weight: 700;
 }
-.hero-title .highlight {
-    color: #f39c12; 
-}
+.hero-title .highlight { color: #f39c12; }
 .hero-description {
     font-size: 1.1rem;
     color: var(--grey-text);
@@ -125,13 +123,17 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
 }
 .hero-right {
     animation: fadeInRight 1s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .image-wrapper {
-    width: 100%;
-    aspect-ratio: 1 / 1; /* বর্গাকার আকৃতি */
-    border: 4px solid #e74c3c; /* লাল বর্ডার */
+    width: 450px;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 4px solid #e74c3c;
     border-radius: 20px;
-    padding: 15px; /* বর্ডারের ভেতরে গ্যাপ */
+    padding: 15px;
     background-color: var(--white-color);
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
@@ -139,7 +141,7 @@ body { font-family: var(--body-font); background-color: var(--white-color); colo
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 20%; /* মুখমণ্ডলকে ফোকাস করতে */
+    object-position: center 20%;
     border-radius: 12px;
 }
 
@@ -248,15 +250,27 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
     .contact-wrapper { grid-template-columns: 1fr; }
 }
 
-/* মোবাইল ভিউ (768px বা তার কম) */
+/* মোবাইল ভিউ (768px বা তার কম) - ফাইনাল ফিক্স */
 @media (max-width: 768px) {
     .section-title { font-size: 2rem; }
     
     /* হেডার ও নেভিগেশন */
     .header-grid { padding: 0 15px; height: 70px; }
     .primary-navigation { display: none; } 
-    .header-actions { margin-left: auto; }
-    .user-info-cluster { display: none !important; }
+    .header-actions {
+        margin-left: auto;
+        gap: 0.5rem;
+    }
+    .user-info-cluster {
+        display: flex !important;
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+        padding: 0;
+    }
+    .nav-user-name {
+        display: none;
+    }
 
     .mobile-nav-toggle {
         display: block;
@@ -268,7 +282,6 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
         background-repeat: no-repeat;
         cursor: pointer;
         z-index: 9999;
-        margin-left: 10px;
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(25, 35, 53)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
     .mobile-nav-toggle[aria-expanded="true"] {
@@ -290,19 +303,19 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
     .mobile-navigation-menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 2rem; }
     .mobile-navigation-menu a { font-size: 1.2rem; font-family: var(--heading-font); font-weight: 600; color: var(--secondary-dark); }
     
-    /* হিরো সেকশন মোবাইল ভিউ (আপডেটেড) */
+    /* হিরো সেকশন মোবাইল ভিউ */
     .hero-section-new { padding: 4rem 0; }
     .hero-container { 
-        grid-template-columns: 1fr; /* একটি কলাম */
+        grid-template-columns: 1fr;
         text-align: center; 
     }
     .hero-left { 
-        order: 2; /* লেখা নিচে */
+        order: 2;
         margin-top: 2rem; 
         align-items: center;
     } 
     .hero-right { 
-        order: 1; /* ছবি উপরে */
+        order: 1;
     }
     .hero-title { font-size: 2.5rem; }
     .hero-description { margin-left: auto; margin-right: auto; }
