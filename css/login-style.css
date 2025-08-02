@@ -1,121 +1,132 @@
-/* css/login-style.css */
-
-/* === ভ্যারিয়েবল এবং বেসিক স্টাইল === */
+/* === বেসিক স্টাইল এবং ফন্ট === */
 :root {
-    --primary-color: #4285F4; /* Google Blue */
-    --primary-hover-color: #357ae8;
-    --background-color: #f0f2f5;
-    --container-bg-color: #ffffff;
-    --text-color: #333;
-    --text-light-color: #666;
-    --border-color: #e0e0e0;
-    --shadow-color: rgba(0, 0, 0, 0.1);
+    --primary-color: #4a90e2; /* একটি সুন্দর নীল রঙ */
+    --background-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --white-color: #ffffff;
+    --dark-text: #333;
+    --light-text: #777;
+    --border-color: #ddd;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-.login-page {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.login-page {
     font-family: 'Hind Siliguri', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background: var(--background-gradient);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
-    box-sizing: border-box;
 }
 
-/* === লগইন কন্টেইনার === */
+/* === লগইন কন্টেইনার অ্যানিমেশনসহ === */
 .login-container {
-    background-color: var(--container-bg-color);
-    padding: 40px 50px;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px var(--shadow-color);
-    width: 100%;
-    max-width: 450px;
+    background-color: var(--white-color);
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
     text-align: center;
-    border-top: 5px solid var(--primary-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 400px;
+    width: 100%;
+    transform: translateY(-20px);
+    opacity: 0;
+    animation: fadeIn 0.8s forwards ease-out;
 }
 
-.login-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+/* পেজ লোড অ্যানিমেশন */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* === হেডার সেকশন === */
+/* === হেডার সেকশন (লোগো, টাইটেল) === */
 .login-header .logo {
     width: 80px;
     height: 80px;
     border-radius: 50%;
+    object-fit: cover;
     margin-bottom: 20px;
-    border: 3px solid var(--border-color);
-    padding: 4px;
-    background-color: white;
+    border: 3px solid var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.login-header .logo:hover {
+    transform: scale(1.1) rotate(10deg);
 }
 
 .login-header h1 {
     font-size: 28px;
     font-weight: 700;
-    margin: 0 0 10px 0;
-    color: var(--text-color);
+    color: var(--dark-text);
+    margin-bottom: 8px;
 }
 
 .login-header p {
     font-size: 16px;
-    color: var(--text-light-color);
-    margin: 0 0 30px 0;
+    color: var(--light-text);
+    margin-bottom: 30px;
 }
 
 /* === গুগল লগইন বাটন === */
 .google-btn {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 14px 28px;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    gap: 12px; /* 아이콘과 텍스트 사이의 간격 */
-    letter-spacing: 0.5px;
+    padding: 12px 20px;
+    background-color: var(--white-color);
+    color: var(--dark-text);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .google-btn:hover {
-    background-color: var(--primary-hover-color);
-    transform: translateY(-2px);
+    background-color: #f9f9f9;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.2);
 }
 
 .google-btn i.fa-google {
     font-size: 20px;
+    margin-right: 12px;
+    color: #DB4437; /* Google-এর আসল লাল রঙ */
 }
 
-/* === ফুটার সেকশন === */
+/* === ফুটার (হোম পেজে ফিরে যান) === */
 .login-footer {
     margin-top: 30px;
-    font-size: 14px;
 }
 
 .login-footer a {
-    color: var(--primary-color);
+    color: var(--light-text);
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
+    font-size: 14px;
+    transition: color 0.3s ease;
 }
 
 .login-footer a:hover {
-    color: var(--primary-hover-color);
+    color: var(--primary-color);
     text-decoration: underline;
 }
 
-/* === মোবাইল ডিভাইসের জন্য রেসপন্সিভ স্টাইল === */
+/* === রেসপন্সিভ ডিজাইন === */
 @media (max-width: 480px) {
     .login-container {
-        padding: 30px 25px;
+        padding: 30px 20px;
     }
 
     .login-header h1 {
@@ -124,10 +135,5 @@
 
     .login-header p {
         font-size: 15px;
-    }
-
-    .google-btn {
-        padding: 12px 20px;
-        font-size: 16px;
     }
 }
