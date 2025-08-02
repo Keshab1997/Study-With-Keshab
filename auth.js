@@ -1,54 +1,48 @@
-// auth.js (Corrected Version)
+// auth.js (সঠিক এবং নির্ভরযোগ্য ভার্সন)
+// অনুগ্রহ করে এই কোডটি ব্যবহার করুন
 
-// এই ফাইলটি শুধুমাত্র login.html পেজের জন্য কাজ করবে
-
-// আপনার অ্যাডমিন ইমেইল এখানে যোগ করুন
+// আপনার অ্যাডমিন ইমেইল
 const ADMIN_EMAIL = "keshabsarkar2018@gmail.com"; 
 
 const googleLoginBtn = document.getElementById('google-login-btn');
 
 if (googleLoginBtn) {
     googleLoginBtn.addEventListener('click', () => {
-        // Firebase service গুলো শুধুমাত্র এই ফাংশনের ভেতরে ব্যবহার করা হবে
         const auth = firebase.auth();
         const db = firebase.firestore();
         const provider = new firebase.auth.GoogleAuthProvider();
 
         auth.signInWithPopup(provider)
-            .then((result) => {
+            .then(result => {
                 const user = result.user;
-                console.log("লগইন সফল হয়েছে:", user.displayName);
-
                 const userRef = db.collection('users').doc(user.uid);
-                const userRole = (user.email === ADMIN_EMAIL) ? 'admin' : 'user';
 
+                // ডেটাবেসে পাঠানোর জন্য একটি অবজেক্ট তৈরি
                 const userData = {
                     displayName: user.displayName,
                     email: user.email,
                     profilePic: user.photoURL,
-                    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                    lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
                 };
 
-                return userRef.get().then(doc => {
-                    if (!doc.exists || !doc.data().role) {
-                        userData.role = userRole;
-                    }
-                    return userRef.set(userData, { merge: true });
-                });
+                // === মূল লজিক ===
+                // যদি লগইন করা ইউজার অ্যাডমিন হয়, তাহলে তার role জোর করে 'admin' সেট করা হবে।
+                if (user.email === ADMIN_EMAIL) {
+                    userData.role = 'admin';
+                }
+
+                // set এবং merge:true ব্যবহার করে ডেটা আপডেট করা হবে।
+                // merge:true নিশ্চিত করবে যে অন্য ব্যবহারকারীদের role 'user' থাকলে তা পরিবর্তন হবে না,
+                // কিন্তু অ্যাডমিনের ক্ষেত্রে role ফিল্ডটি 'admin' দিয়ে ওভাররাইট হয়ে যাবে।
+                return userRef.set(userData, { merge: true });
             })
             .then(() => {
-                console.log("ইউজারের তথ্য Firestore এ সফলভাবে সেভ হয়েছে।");
-                window.location.href = 'index.html'; // হোম পেজে রিডাইরেক্ট
+                console.log("ইউজারের তথ্য Firestore এ সফলভাবে আপডেট হয়েছে।");
+                window.location.href = 'index.html'; // হোম পেজে পাঠানো
             })
-            .catch((error) => {
+            .catch(error => {
                 console.error("Google সাইন-ইন এর সময় সমস্যা:", error);
-                
-                let errorMessage = "লগইন করার সময় একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।";
-                if (error.code === 'auth/popup-closed-by-user') {
-                    errorMessage = "আপনি লগইন পপ-আপটি বন্ধ করে দিয়েছেন।";
-                }
-                
-                alert(errorMessage);
+                alert("লগইন করার সময় একটি সমস্যা হয়েছে।");
             });
     });
 }
