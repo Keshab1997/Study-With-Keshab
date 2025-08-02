@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     
-    <!-- অ্যাডমিন পেজের জন্য নতুন CSS -->
+    <!-- অ্যাডমিন পেজের CSS -->
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
@@ -20,75 +20,139 @@
     <div class="admin-page-container">
         <!-- সাইডবার (বাম পাশের মেনু) -->
         <aside class="sidebar">
-            <div class="sidebar-header">
-                <img src="images/logo.jpg" alt="Logo" class="sidebar-logo">
-                <h2>Admin Panel</h2>
+            <div>
+                <div class="sidebar-header">
+                    <img src="images/logo.jpg" alt="Logo" class="sidebar-logo">
+                    <h2>Admin Panel</h2>
+                </div>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li class="active" id="nav-dashboard"><a href="#"><i class="fas fa-tachometer-alt fa-fw"></i> ড্যাশবোর্ড</a></li>
+                        <li id="nav-leaderboard"><a href="#"><i class="fas fa-trophy fa-fw"></i> লিডারবোর্ড</a></li>
+                        <li><a href="index.html"><i class="fas fa-home fa-fw"></i> হোম পেজে যান</a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a></li>
-                    <li><a href="index.html"><i class="fas fa-home"></i> হোম পেজে যান</a></li>
-                </ul>
-            </nav>
+            <!-- সাইডবার ফুটার (ব্যবহারকারীর তথ্য) -->
+            <div class="sidebar-footer" id="admin-info-sidebar" style="display: none;">
+                <img src="" alt="Admin" id="admin-profile-pic-sidebar" class="admin-pic">
+                <div class="admin-details">
+                    <span id="admin-name-sidebar"></span>
+                    <small>Administrator</small>
+                </div>
+                <a href="#" id="admin-logout-btn" title="লগ আউট"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
         </aside>
 
         <!-- মূল কন্টেন্ট (ডান পাশের অংশ) -->
         <main class="main-content">
             <header class="main-header">
-                <h1>স্বাগতম, অ্যাডমিন!</h1>
-                <p>এখান থেকে ওয়েবসাইটের ব্যবহারকারীদের ম্যানেজ করুন।</p>
+                <div>
+                    <h1 id="page-title">ড্যাশবোর্ড</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb" id="breadcrumb-nav">
+                            <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        </ol>
+                    </nav>
+                </div>
+                <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
             </header>
 
-            <!-- ড্যাশবোর্ড কার্ড -->
-            <section class="dashboard-stats">
-                <div class="stat-card">
-                    <i class="fas fa-users"></i>
-                    <div>
-                        <span class="stat-value" id="total-users">0</span>
-                        <span class="stat-label">মোট ব্যবহারকারী</span>
+            <!-- ড্যাশবোর্ড সেকশন -->
+            <div id="dashboard-content" class="content-section">
+                <section class="dashboard-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <span class="stat-value" id="total-users">0</span>
+                            <span class="stat-label">মোট ব্যবহারকারী</span>
+                        </div>
                     </div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-user-shield"></i>
-                    <div>
-                        <span class="stat-value" id="total-admins">0</span>
-                        <span class="stat-label">মোট অ্যাডমিন</span>
+                    <div class="stat-card">
+                        <i class="fas fa-user-shield"></i>
+                        <div>
+                            <span class="stat-value" id="total-admins">0</span>
+                            <span class="stat-label">মোট অ্যাডমিন</span>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+                <section class="user-list-section">
+                    <div class="section-header">
+                        <h2>ব্যবহারকারীদের তালিকা</h2>
+                        <div class="search-box">
+                            <input type="text" id="user-search-input" placeholder="নাম বা ইমেইল দিয়ে খুঁজুন...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table id="user-table">
+                            <thead>
+                                <tr>
+                                    <th>প্রোফাইল ছবি</th>
+                                    <th>নাম</th>
+                                    <th>ইমেইল</th>
+                                    <th>ভূমিকা (Role)</th>
+                                    <th>শেষ লগইন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="user-table-body"></tbody>
+                        </table>
+                        <div class="loading-spinner" id="user-list-loading"></div>
+                    </div>
+                </section>
+            </div>
 
-            <!-- ব্যবহারকারীদের তালিকা -->
-            <section class="user-list-section">
-                <div class="section-header">
-                    <h2>ব্যবহারকারীদের তালিকা</h2>
-                    <div class="search-box">
-                        <input type="text" id="user-search-input" placeholder="নাম বা ইমেইল দিয়ে খুঁজুন...">
-                        <i class="fas fa-search"></i>
+            <!-- লিডারবোর্ড সেকশন -->
+            <div id="leaderboard-content" class="content-section" style="display: none;">
+                 <section class="leaderboard-section-inner">
+                    <div class="section-header">
+                        <h2>লিডারবোর্ড</h2>
                     </div>
-                </div>
-                <div class="table-container">
-                    <table id="user-table">
-                        <thead>
-                            <tr>
-                                <th>প্রোফাইল ছবি</th>
-                                <th>নাম</th>
-                                <th>ইমেইল</th>
-                                <th>ভূমিকা (Role)</th>
-                                <th>শেষ লগইন</th>
-                            </tr>
-                        </thead>
-                        <tbody id="user-table-body">
-                            <!-- ডেটা এখানে লোড হবে -->
-                        </tbody>
-                    </table>
-                </div>
-                <p id="loading-message" style="text-align: center; padding: 20px;">ডেটা লোড হচ্ছে...</p>
-                <p id="no-results-message" style="display: none; text-align: center; padding: 20px;">কোনো ফলাফল পাওয়া যায়নি।</p>
-            </section>
+                    <div class="leaderboard-controls">
+                        <label for="chapter-select">বিষয় নির্বাচন করুন:</label>
+                        <select id="chapter-select">
+                            <option value="">-- বিষয় বাছুন --</option>
+                        </select>
+                    </div>
+                    <div class="table-container">
+                        <table id="leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>ব্যবহারকারী</th>
+                                    <th>মোট স্কোর</th>
+                                    <th>অ্যাকশন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-table-body"></tbody>
+                        </table>
+                         <div class="loading-spinner" id="leaderboard-loading"></div>
+                    </div>
+                 </section>
+            </div>
         </main>
     </div>
 
-    <!-- অ্যাক্সেস ডিনাইড মেসেজ (যদি অ্যাডমিন না হয়) -->
+    <!-- বিস্তারিত স্কোর দেখার জন্য মডাল/পপ-আপ -->
+    <div id="score-details-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modal-user-name"></h3>
+            <table id="modal-score-table">
+                <thead>
+                    <tr>
+                        <th>সেট এর নাম</th>
+                        <th>প্রাপ্ত নম্বর</th>
+                        <th>মোট নম্বর</th>
+                    </tr>
+                </thead>
+                <tbody id="modal-score-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- অ্যাক্সেস ডিনাইড মেসেজ -->
     <div id="access-denied" style="display: none;">
         <h1><i class="fas fa-exclamation-triangle"></i> প্রবেশাধিকার নেই</h1>
         <p>এই পেজটি দেখার জন্য আপনার অনুমতি নেই।</p>
