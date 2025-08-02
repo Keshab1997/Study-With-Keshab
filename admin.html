@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অ্যাডমিন প্যানেল - Study With Keshab</title>
+    <base href="/Study-With-Keshab/">
+
+    <!-- ফন্টস এবং আইকন -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <!-- অ্যাডমিন পেজের জন্য নতুন CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <div class="admin-page-container">
+        <!-- সাইডবার (বাম পাশের মেনু) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.jpg" alt="Logo" class="sidebar-logo">
+                <h2>Admin Panel</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a></li>
+                    <li><a href="index.html"><i class="fas fa-home"></i> হোম পেজে যান</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- মূল কন্টেন্ট (ডান পাশের অংশ) -->
+        <main class="main-content">
+            <header class="main-header">
+                <h1>স্বাগতম, অ্যাডমিন!</h1>
+                <p>এখান থেকে ওয়েবসাইটের ব্যবহারকারীদের ম্যানেজ করুন।</p>
+            </header>
+
+            <!-- ড্যাশবোর্ড কার্ড -->
+            <section class="dashboard-stats">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <span class="stat-value" id="total-users">0</span>
+                        <span class="stat-label">মোট ব্যবহারকারী</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-user-shield"></i>
+                    <div>
+                        <span class="stat-value" id="total-admins">0</span>
+                        <span class="stat-label">মোট অ্যাডমিন</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ব্যবহারকারীদের তালিকা -->
+            <section class="user-list-section">
+                <div class="section-header">
+                    <h2>ব্যবহারকারীদের তালিকা</h2>
+                    <div class="search-box">
+                        <input type="text" id="user-search-input" placeholder="নাম বা ইমেইল দিয়ে খুঁজুন...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="user-table">
+                        <thead>
+                            <tr>
+                                <th>প্রোফাইল ছবি</th>
+                                <th>নাম</th>
+                                <th>ইমেইল</th>
+                                <th>ভূমিকা (Role)</th>
+                                <th>শেষ লগইন</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-table-body">
+                            <!-- ডেটা এখানে লোড হবে -->
+                        </tbody>
+                    </table>
+                </div>
+                <p id="loading-message" style="text-align: center; padding: 20px;">ডেটা লোড হচ্ছে...</p>
+                <p id="no-results-message" style="display: none; text-align: center; padding: 20px;">কোনো ফলাফল পাওয়া যায়নি।</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- অ্যাক্সেস ডিনাইড মেসেজ (যদি অ্যাডমিন না হয়) -->
+    <div id="access-denied" style="display: none;">
+        <h1><i class="fas fa-exclamation-triangle"></i> প্রবেশাধিকার নেই</h1>
+        <p>এই পেজটি দেখার জন্য আপনার অনুমতি নেই।</p>
+        <a href="index.html">হোম পেজে ফিরে যান</a>
+    </div>
+
+    <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <script src="js/firebase-config.js"></script>
+    <script src="js/admin.js"></script>
+
+</body>
+</html>

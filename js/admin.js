@@ -1,91 +1,102 @@
-// js/admin.js (নতুন এবং উন্নত কোড)
+// js/admin.js (Advanced Version)
 
-document.addEventListener('DOMContentLoaded', function() {
-    const adminContent = document.getElementById('admin-content');
+document.addEventListener('DOMContentLoaded', () => {
+    const adminPageContainer = document.querySelector('.admin-page-container');
     const accessDenied = document.getElementById('access-denied');
-    const userListContainer = document.getElementById('user-list-container');
+    const loadingMessage = document.getElementById('loading-message');
+    let allUsers = []; // সমস্ত ব্যবহারকারীর ডেটা এখানে স্টোর হবে
+
     const db = firebase.firestore();
 
-    firebase.auth().onAuthStateChanged(function(user) {
+    // ব্যবহারকারী অ্যাডমিন কিনা তা পরীক্ষা করা
+    firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            // ব্যবহারকারী লগইন করা আছে, এখন তার role চেক করা হবে
-            checkUserRole(user);
+            db.collection('users').doc(user.uid).get().then(doc => {
+                if (doc.exists && doc.data().role === 'admin') {
+                    // অ্যাডমিন হলে পেজ দেখাও
+                    adminPageContainer.style.display = 'flex';
+                    accessDenied.style.display = 'none';
+                    loadAllUserData();
+                } else {
+                    // অ্যাডমিন না হলে অ্যাক্সেস ডিনাইড
+                    showAccessDenied();
+                }
+            }).catch(showAccessDenied);
         } else {
-            // ব্যবহারকারী লগইন করা নেই
+            // লগইন করা না থাকলে অ্যাক্সেস ডিনাইড
             showAccessDenied();
         }
     });
 
-    function checkUserRole(user) {
-        const userDocRef = db.collection('users').doc(user.uid);
-
-        userDocRef.get().then((doc) => {
-            if (doc.exists && doc.data().role === 'admin') {
-                // ব্যবহারকারী অ্যাডমিন
-                showAdminContent();
-                loadUsersData();
-            } else {
-                // ব্যবহারকারী সাধারণ ইউজার
-                showAccessDenied();
-            }
-        }).catch((error) => {
-            console.error("Error getting user role:", error);
-            showAccessDenied();
-        });
-    }
-
-    function showAdminContent() {
-        accessDenied.style.display = 'none';
-        adminContent.style.display = 'block';
-    }
-
     function showAccessDenied() {
-        adminContent.style.display = 'none';
-        accessDenied.style.display = 'block';
-        accessDenied.innerHTML = `
-            <h1>প্রবেশাধিকার নেই (Access Denied)</h1>
-            <p>এই পেজটি দেখার জন্য আপনার অনুমতি নেই অথবা আপনাকে <a href="login.html">লগইন</a> করতে হবে।</p>
-            <a href="index.html">হোম পেজে ফিরে যান</a>
-        `;
+        adminPageContainer.style.display = 'none';
+        accessDenied.style.display = 'flex';
     }
 
-    // Firestore থেকে ব্যবহারকারীদের ডেটা লোড করার ফাংশন
-    function loadUsersData() {
-        db.collection("users").get().then((querySnapshot) => {
-            if (querySnapshot.empty) {
-                userListContainer.innerHTML = "<p>কোনো ব্যবহারকারী খুঁজে পাওয়া যায়নি।</p>";
-                return;
-            }
-
-            let tableHTML = `
-                <table>
-                    <thead>
-                        <tr>
-                            <th>নাম (Name)</th>
-                            <th>ইমেইল (Email)</th>
-                            <th>ভূমিকা (Role)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-
-            querySnapshot.forEach((doc) => {
-                const userData = doc.data();
-                tableHTML += `
-                    <tr>
-                        <td>${userData.displayName || 'N/A'}</td>
-                        <td>${userData.email || 'N/A'}</td>
-                        <td>${userData.role || 'user'}</td>
-                    </tr>
-                `;
+    // সমস্ত ব্যবহারকারীর ডেটা লোড করার ফাংশন
+    function loadAllUserData() {
+        db.collection('users').get().then(querySnapshot => {
+            let adminCount = 0;
+            
+            allUsers = querySnapshot.docs.map(doc => {
+                const data = doc.data();
+                if (data.role === 'admin') adminCount++;
+                return { id: doc.id, ...data };
             });
 
-            tableHTML += `</tbody></table>`;
-            userListContainer.innerHTML = tableHTML;
+            // ড্যাশবোর্ড কার্ড আপডেট
+            document.getElementById('total-users').textContent = allUsers.length;
+            document.getElementById('total-admins').textContent = adminCount;
+            
+            renderUserTable(allUsers); // টেবিল রেন্ডার করো
+            loadingMessage.style.display = 'none';
 
-        }).catch((error) => {
-            console.error("Error fetching users: ", error);
-            userListContainer.innerHTML = "<p>ডেটা লোড করতে সমস্যা হয়েছে। অনুগ্রহ করে কনসোল চেক করুন।</p>";
+        }).catch(error => {
+            console.error("Error fetching users:", error);
+            loadingMessage.textContent = 'ডেটা লোড করতে ব্যর্থ হয়েছে।';
         });
     }
+
+    // টেবিলে ডেটা দেখানোর ফাংশন
+    function renderUserTable(users) {
+        const tableBody = document.getElementById('user-table-body');
+        const noResultsMessage = document.getElementById('no-results-message');
+        tableBody.innerHTML = '';
+
+        if (users.length === 0) {
+            noResultsMessage.style.display = 'block';
+            return;
+        }
+        noResultsMessage.style.display = 'none';
+        
+        users.forEach(user => {
+            const lastLogin = user.lastLogin ? new Date(user.lastLogin.seconds * 1000).toLocaleString('bn-BD') : 'জানা নেই';
+            const roleClass = user.role === 'admin' ? 'admin' : 'user';
+            
+            const row = `
+                <tr>
+                    <td><img src="${user.profilePic || 'images/default-avatar.png'}" alt="Profile Pic" class="profile-pic"></td>
+                    <td>${user.displayName || 'N/A'}</td>
+                    <td>${user.email || 'N/A'}</td>
+                    <td><span class="role-badge ${roleClass}">${user.role || 'user'}</span></td>
+                    <td>${lastLogin}</td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+    }
+
+    // সার্চ ফাংশনালিটি
+    const searchInput = document.getElementById('user-search-input');
+    searchInput.addEventListener('keyup', () => {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        
+        const filteredUsers = allUsers.filter(user => {
+            const name = (user.displayName || '').toLowerCase();
+            const email = (user.email || '').toLowerCase();
+            return name.includes(searchTerm) || email.includes(searchTerm);
+        });
+
+        renderUserTable(filteredUsers);
+    });
 });
