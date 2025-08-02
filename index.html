@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<!-- === আপডেটেড হেডার এবং মোবাইল মেনু === -->
+<!-- === হেডার এবং মেনু (আপডেটেড) === -->
 <header class="site-header">
   <div class="header-grid">
     <a href="index.html" class="logo-link">
@@ -30,9 +30,13 @@
             <li><a href="contact.html" class="contact"><i class="fas fa-envelope"></i> Contact</a></li>
             <li><a href="index.html#feedback-module" class="feedback"><i class="fas fa-comment-alt"></i> Feedback</a></li>
             
-            <!-- পরিবর্তন এখানে -->
+            <!-- অথেন্টিকেশন লিঙ্ক (আপডেটেড) -->
             <li class="auth-link" id="guest-link-desktop"><a href="login.html" class="login"><i class="fas fa-sign-in-alt"></i> Login / Sign Up</a></li>
-            <li class="auth-link" id="user-link-desktop" style="display: none;"><a href="#" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li class="auth-link" id="user-link-desktop" style="display: none;"><a href="dashboard.html" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            
+            <!-- === এই লাইনটি নতুন যোগ করা হয়েছে === -->
+            <li class="auth-link" id="admin-link-desktop" style="display: none;"><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Panel</a></li>
+            
             <li class="auth-link" id="logout-link-desktop" style="display: none;"><a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
         </ul>
     </nav>
@@ -53,9 +57,13 @@
         <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
         <li><a href="index.html#feedback-module"><i class="fas fa-comment-alt"></i> Feedback</a></li>
         
-        <!-- পরিবর্তন এখানে -->
+        <!-- মোবাইল অথেন্টিকেশন লিঙ্ক (আপডেটেড) -->
         <li class="auth-link" id="guest-link-mobile"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login / Sign Up</a></li>
-        <li class="auth-link" id="user-link-mobile" style="display: none;"><a href="#" id="dashboard-link-mobile"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li class="auth-link" id="user-link-mobile" style="display: none;"><a href="dashboard.html" id="dashboard-link-mobile"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        
+        <!-- === এই লাইনটি নতুন যোগ করা হয়েছে === -->
+        <li class="auth-link" id="admin-link-mobile" style="display: none;"><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Panel</a></li>
+
         <li class="auth-link" id="logout-link-mobile" style="display: none;"><a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
     </ul>
 </nav>
@@ -177,6 +185,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 <script src="js/firebase-config.js"></script>
 <script src="js/notification-data.js"></script>
+<script src="auth.js"></script> <!-- auth.js ফাইলটি এখানেও যোগ করা হয়েছে -->
 <script src="js/script.js"></script>
 
 </body>
