@@ -1,4 +1,4 @@
-// auth.js (সংস্করণ ২.১ - ছোট উন্নতি সহ)
+// auth.js (সংস্করণ ৩.০ - চূড়ান্ত সমাধান সহ)
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // অ্যাডমিন প্যানেল চেক
             const db = firebase.firestore();
             db.collection('users').doc(user.uid).get().then(doc => {
-                // *** উন্নতি ১: এখানে doc.data() undefined হতে পারে যদি ডকুমেন্ট না থাকে ***
                 const userData = doc.exists ? doc.data() : {}; 
                 if (userData.role === 'admin') {
                     if (desktopAdmin) desktopAdmin.style.display = 'block';
@@ -59,6 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (desktopAdmin) desktopAdmin.style.display = 'none';
                     if (mobileAdmin) mobileAdmin.style.display = 'none';
                 }
+            }).catch(error => {
+                console.error("Error getting user role:", error);
             });
 
         } else {
@@ -115,18 +116,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     return userRef.get().then(doc => {
                         const userData = {
+                            uid: user.uid,
                             displayName: user.displayName,
                             email: user.email,
-                            profilePic: user.photoURL,
+                            photoURL: user.photoURL, // *** সমাধান: এখানে 'profilePic' এর পরিবর্তে 'photoURL' ব্যবহার করা হয়েছে ***
                             lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
                         };
 
-                        // *** উন্নতি ২: শুধুমাত্র প্রথমবার সাইন আপ করার সময় role সেট করা ***
                         if (!doc.exists) {
-                            // যদি ডকুমেন্ট আগে থেকে না থাকে, তাহলে এটি নতুন ইউজার
+                            // নতুন ব্যবহারকারীর জন্য ডিফল্ট ভূমিকা সেট করা হচ্ছে
                             userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'user';
                         }
                         
+                        // merge: true ব্যবহার করে ডেটা সেভ করা হচ্ছে
                         return userRef.set(userData, { merge: true });
                     });
                 })
@@ -136,7 +138,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .catch(error => {
                     console.error("Google সাইন-ইন এর সময় সমস্যা:", error);
-                    alert("লগইন করার সময় একটি সমস্যা হয়েছে।");
+                    // ব্যবহারকারীকে একটি বোধগম্য বার্তা দেখানো হচ্ছে
+                    alert("লগইন করার সময় একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
                 });
         });
     }
@@ -145,10 +148,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================================
     // বিভাগ ৩: লগআউট কার্যকারিতা (সব পেজের জন্য)
     // ==========================================================
-    document.addEventListener('click', function(e) {
+    // এই কোডটি আগের মতোই আছে, কারণ এটি সঠিকভাবে কাজ করছিল
+    document.body.addEventListener('click', function(e) {
         if (e.target.id === 'logout-btn-desktop' || e.target.id === 'logout-btn-mobile' || e.target.closest('#logout-btn-desktop') || e.target.closest('#logout-btn-mobile')) {
             e.preventDefault();
-            firebase.auth().signOut();
+            firebase.auth().signOut()
+                .then(() => {
+                    console.log("সফলভাবে লগআউট করা হয়েছে।");
+                    window.location.href = 'index.html'; // লগআউট করার পর হোম পেজে রিডাইরেক্ট করা
+                })
+                .catch(error => {
+                    console.error("লগআউট করার সময় সমস্যা:", error);
+                });
         }
     });
 
