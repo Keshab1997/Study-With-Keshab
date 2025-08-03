@@ -1,4 +1,4 @@
-// auth.js (  - সংস্করণ ২.০ )
+// auth.js (সংস্করণ ২.১ - ছোট উন্নতি সহ)
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const mobileAdmin = document.getElementById('admin-link-mobile');
         const mobileLogout = document.getElementById('logout-link-mobile');
         
-        // *** নতুন এলিমেন্ট যোগ করা হয়েছে ***
         const userInfoCluster = document.getElementById('user-info-cluster');
         const userNameDisplay = document.getElementById('user-name-display');
 
@@ -36,15 +35,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mobileUser) mobileUser.style.display = 'block';
             if (mobileLogout) mobileLogout.style.display = 'block';
             
-            // *** নতুন কোড: ইউজার ইনফো ক্লাস্টার দেখানো ***
             if (userInfoCluster) {
-                userInfoCluster.style.display = 'flex'; // ফ্লেক্স ব্যবহার করে আইটেমগুলো পাশাপাশি আসবে
+                userInfoCluster.style.display = 'flex';
             }
             if (userNameDisplay) {
                 userNameDisplay.textContent = user.displayName || 'ব্যবহারকারী';
             }
 
-            // যদি হোম পেজে থাকি, তাহলে হিরো সেকশন আপডেট করি
             if (heroTitle && heroDescription) {
                 heroTitle.innerHTML = `স্বাগতম, <span class="highlight">${user.displayName || 'বন্ধু'}</span>!`;
                 heroDescription.innerHTML = "আপনার শেখার পরবর্তী ধাপ কোনটি হবে? পছন্দের একটি বিষয় দিয়ে আজই আপনার যাত্রা শুরু করুন।";
@@ -53,7 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // অ্যাডমিন প্যানেল চেক
             const db = firebase.firestore();
             db.collection('users').doc(user.uid).get().then(doc => {
-                if (doc.exists && (doc.data().isAdmin === true || doc.data().role === 'admin')) {
+                // *** উন্নতি ১: এখানে doc.data() undefined হতে পারে যদি ডকুমেন্ট না থাকে ***
+                const userData = doc.exists ? doc.data() : {}; 
+                if (userData.role === 'admin') {
                     if (desktopAdmin) desktopAdmin.style.display = 'block';
                     if (mobileAdmin) mobileAdmin.style.display = 'block';
                 } else {
@@ -75,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mobileAdmin) mobileAdmin.style.display = 'none';
             if (mobileLogout) mobileLogout.style.display = 'none';
 
-            // *** নতুন কোড: ইউজার ইনফো ক্লাস্টার লুকানো ***
             if (userInfoCluster) {
                 userInfoCluster.style.display = 'none';
             }
@@ -83,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
                  userNameDisplay.textContent = '';
             }
             
-            // যদি হোম পেজে থাকি, তাহলে হিরো সেকশন ডিফল্ট অবস্থায় ফিরিয়ে আনি
             if (heroTitle && heroDescription) {
                 const defaultTitle = "শিক্ষা হোক সহজ, প্রযুক্তিতে সমৃদ্ধ";
                 const defaultDescription = `
@@ -116,18 +113,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     const user = result.user;
                     const userRef = db.collection('users').doc(user.uid);
 
-                    const userData = {
-                        displayName: user.displayName,
-                        email: user.email,
-                        profilePic: user.photoURL,
-                        lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
-                    };
+                    return userRef.get().then(doc => {
+                        const userData = {
+                            displayName: user.displayName,
+                            email: user.email,
+                            profilePic: user.photoURL,
+                            lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+                        };
 
-                    if (user.email === ADMIN_EMAIL) {
-                        userData.role = 'admin';
-                    }
-
-                    return userRef.set(userData, { merge: true });
+                        // *** উন্নতি ২: শুধুমাত্র প্রথমবার সাইন আপ করার সময় role সেট করা ***
+                        if (!doc.exists) {
+                            // যদি ডকুমেন্ট আগে থেকে না থাকে, তাহলে এটি নতুন ইউজার
+                            userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'user';
+                        }
+                        
+                        return userRef.set(userData, { merge: true });
+                    });
                 })
                 .then(() => {
                     console.log("ইউজারের তথ্য Firestore এ সফলভাবে আপডেট হয়েছে।");
