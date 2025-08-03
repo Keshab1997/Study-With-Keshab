@@ -1,4 +1,4 @@
-/* admin.css */
+/* admin.css (Final Version) */
 
 /* === গুগল ফন্ট এবং ভেরিয়েবল === */
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
@@ -7,15 +7,16 @@
     --primary-color: #4a90e2;
     --primary-light: #eaf2fb;
     --text-color: #333;
-    --text-light: #777;
-    --border-color: #e0e0e0;
-    --bg-color: #f4f7fa;
+    --text-light: #6c757d;
+    --border-color: #e9ecef;
+    --bg-color: #f8f9fa;
     --sidebar-bg: #ffffff;
     --card-bg: #ffffff;
     --danger-color: #e74c3c;
-    --success-color: #2ecc71;
+    --success-color: #28a745;
+    --success-light: #eaf7ec;
     --font-family: 'Hind Siliguri', sans-serif;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
 }
 
 /* === বেসিক রিসেট এবং গ্লোবাল স্টাইল === */
@@ -30,6 +31,8 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -62,7 +65,7 @@ ul {
 .sidebar-header {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     padding-left: 10px;
 }
 
@@ -81,7 +84,7 @@ ul {
 .sidebar-nav ul li a {
     display: flex;
     align-items: center;
-    padding: 12px 15px;
+    padding: 13px 18px;
     margin-bottom: 8px;
     border-radius: 8px;
     color: var(--text-light);
@@ -102,7 +105,7 @@ ul {
 }
 
 .sidebar-nav ul li a:hover {
-    background-color: #f0f0f0;
+    background-color: #f1f3f5;
 }
 
 .sidebar-nav ul li.active a:hover {
@@ -113,7 +116,7 @@ ul {
     display: flex;
     align-items: center;
     padding: 15px;
-    background-color: #f9f9f9;
+    background-color: var(--bg-color);
     border-radius: 8px;
 }
 
@@ -122,6 +125,8 @@ ul {
     height: 40px;
     border-radius: 50%;
     margin-right: 12px;
+    object-fit: cover;
+    background-color: #ced4da; /* Fallback color */
 }
 
 .admin-details {
@@ -142,12 +147,13 @@ ul {
 #admin-logout-btn {
     font-size: 18px;
     color: var(--danger-color);
+    padding: 5px;
 }
 
 /* === মূল কন্টেন্ট (ডান পাশের অংশ) === */
 .main-content {
     flex: 1;
-    padding: 25px;
+    padding: 30px;
     overflow-y: auto;
 }
 
@@ -166,16 +172,20 @@ ul {
 .breadcrumb {
     display: flex;
     padding: 0;
+    margin-top: 5px;
     background: none;
     font-size: 14px;
+    color: var(--text-light);
 }
 
 .breadcrumb-item a {
     color: var(--primary-color);
 }
 
-.breadcrumb-item.active {
-    color: var(--text-light);
+.breadcrumb-item+.breadcrumb-item::before {
+    content: '/';
+    padding: 0 8px;
+    color: #ced4da;
 }
 
 .mobile-menu-toggle {
@@ -187,34 +197,24 @@ ul {
 }
 
 /* === কন্টেন্ট সেকশন এবং কার্ড === */
-.content-section {
-    padding: 5px;
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
 }
 
-section {
-    margin-bottom: 25px;
-}
-
-.card, .stat-card, .user-list-section, .leaderboard-section-inner {
+.stat-card {
+    display: flex;
+    align-items: center;
     background-color: var(--card-bg);
     border-radius: 12px;
     padding: 25px;
     box-shadow: var(--shadow);
 }
 
-.dashboard-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 25px;
-}
-
-.stat-card {
-    display: flex;
-    align-items: center;
-}
-
 .stat-card i {
-    font-size: 28px;
+    font-size: 24px;
     color: var(--primary-color);
     background-color: var(--primary-light);
     padding: 15px;
@@ -223,7 +223,7 @@ section {
 }
 
 .stat-value {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
     display: block;
 }
@@ -231,6 +231,13 @@ section {
 .stat-label {
     font-size: 14px;
     color: var(--text-light);
+}
+
+.user-list-section, .leaderboard-section-inner {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: var(--shadow);
 }
 
 .section-header {
@@ -247,7 +254,7 @@ section {
 
 .search-box {
     position: relative;
-    width: 280px;
+    width: 300px;
 }
 
 .search-box input, .leaderboard-controls select {
@@ -256,6 +263,16 @@ section {
     border-radius: 8px;
     border: 1px solid var(--border-color);
     font-family: var(--font-family);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-box input:focus, .leaderboard-controls select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.leaderboard-controls {
+    margin-bottom: 20px;
 }
 .leaderboard-controls select {
     padding-left: 15px;
@@ -281,7 +298,7 @@ table {
 }
 
 th, td {
-    padding: 15px;
+    padding: 16px 15px;
     vertical-align: middle;
     border-bottom: 1px solid var(--border-color);
 }
@@ -289,8 +306,9 @@ th, td {
 thead th {
     font-weight: 600;
     color: var(--text-light);
-    font-size: 14px;
+    font-size: 12px;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 tbody tr:last-child td {
@@ -302,7 +320,9 @@ tbody tr:last-child td {
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+    background-color: #e9ecef; /* Fallback color for broken images */
 }
+
 .user-cell {
     display: flex;
     align-items: center;
@@ -320,18 +340,19 @@ tbody tr:last-child td {
     text-transform: uppercase;
 }
 .role-admin {
-    background-color: #e8f5e9;
-    color: #4caf50;
+    background-color: var(--success-light);
+    color: var(--success-color);
 }
 .role-user {
     background-color: #e3f2fd;
     color: #2196f3;
 }
 .action-cell select {
-    padding: 5px 8px;
+    padding: 6px 10px;
     border-radius: 6px;
     border: 1px solid var(--border-color);
     font-family: var(--font-family);
+    background-color: #fff;
 }
 .btn-view-details {
     background-color: var(--primary-light);
@@ -342,6 +363,10 @@ tbody tr:last-child td {
     cursor: pointer;
     font-family: var(--font-family);
     font-weight: 500;
+    transition: background-color 0.2s;
+}
+.btn-view-details:hover {
+    background-color: #d8e6f8;
 }
 
 /* === লোডিং এবং অন্যান্য === */
@@ -366,10 +391,14 @@ tbody tr:last-child td {
     align-items: center;
     height: 100vh;
 }
+#access-denied h1 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 #access-denied i {
     font-size: 48px;
     color: var(--danger-color);
-    margin-bottom: 20px;
 }
 
 /* === মডাল/পপ-আপ === */
@@ -414,6 +443,7 @@ tbody tr:last-child td {
         height: 100%;
         z-index: 100;
         transform: translateX(-100%);
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
     }
     .sidebar.is-visible {
         transform: translateX(0);
@@ -427,6 +457,9 @@ tbody tr:last-child td {
 }
 
 @media (max-width: 768px) {
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
     .section-header {
         flex-direction: column;
         align-items: flex-start;
@@ -437,5 +470,8 @@ tbody tr:last-child td {
     }
     .main-header h1 {
         font-size: 24px;
+    }
+    th, td {
+        padding: 12px 10px;
     }
 }
