@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     
-    <!-- অ্যাডমিন পেজের CSS -->
+    <!-- অ্যাডমিন পেজের নতুন CSS -->
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
@@ -81,12 +81,12 @@
                     <div class="section-header">
                         <h2>ব্যবহারকারীদের তালিকা</h2>
                         <div class="search-box">
-                            <input type="text" id="user-search-input" placeholder="নাম বা ইমেইল দিয়ে খুঁজুন...">
                             <i class="fas fa-search"></i>
+                            <input type="text" id="user-search-input" placeholder="নাম বা ইমেইল দিয়ে খুঁজুন...">
                         </div>
                     </div>
                     <div class="table-container">
-                        <table id="user-table">
+                        <table>
                             <thead>
                                 <tr>
                                     <th>প্রোফাইল ছবি</th>
@@ -94,14 +94,14 @@
                                     <th>ইমেইল</th>
                                     <th>ভূমিকা (Role)</th>
                                     <th>শেষ লগইন</th>
-                                    <th>অ্যাকশন</th> <!-- === এই কলামটি যোগ করা হয়েছে === -->
+                                    <th>অ্যাকশন</th>
                                 </tr>
                             </thead>
                             <tbody id="user-table-body">
                                 <!-- JavaScript দিয়ে ডেটা এখানে আসবে -->
                             </tbody>
                         </table>
-                        <div class="loading-spinner" id="user-list-loading"></div>
+                        <div class="loading-spinner" id="user-list-loading" style="display: none;"></div>
                     </div>
                 </section>
             </div>
@@ -132,7 +132,7 @@
                                 <!-- JavaScript দিয়ে ডেটা এখানে আসবে -->
                             </tbody>
                         </table>
-                         <div class="loading-spinner" id="leaderboard-loading"></div>
+                         <div class="loading-spinner" id="leaderboard-loading" style="display: none;"></div>
                     </div>
                  </section>
             </div>

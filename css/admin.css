@@ -1,65 +1,441 @@
-/* css/admin.css (Updated for new HTML structure) */
+/* admin.css */
+
+/* === গুগল ফন্ট এবং ভেরিয়েবল === */
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
 :root {
-    --primary-color: #3498db; --secondary-color: #2c3e50;
-    --background-color: #f4f7f9; --sidebar-bg: #ffffff;
-    --text-color: #333; --light-text-color: #777; --border-color: #e0e0e0;
-    --shadow: 0 4px 12px rgba(0,0,0,0.08); --danger-color: #e74c3c;
+    --primary-color: #4a90e2;
+    --primary-light: #eaf2fb;
+    --text-color: #333;
+    --text-light: #777;
+    --border-color: #e0e0e0;
+    --bg-color: #f4f7fa;
+    --sidebar-bg: #ffffff;
+    --card-bg: #ffffff;
+    --danger-color: #e74c3c;
+    --success-color: #2ecc71;
+    --font-family: 'Hind Siliguri', sans-serif;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* === বেসিক রিসেট এবং গ্লোবাল স্টাইল === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Hind Siliguri', sans-serif; background-color: var(--background-color);
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
     color: var(--text-color);
+    font-size: 16px;
 }
-.admin-page-container { display: flex; width: 100%; min-height: 100vh; }
-/* Sidebar */
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+/* === মূল লেআউট === */
+.admin-page-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* === সাইডবার (বাম পাশের মেনু) === */
 .sidebar {
-    width: 260px; background-color: var(--sidebar-bg); border-right: 1px solid var(--border-color);
-    display: flex; flex-direction: column; justify-content: space-between; padding: 20px; transition: transform 0.3s ease;
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    border-right: 1px solid var(--border-color);
+    transition: transform 0.3s ease-in-out;
 }
-.sidebar-header { text-align: center; margin-bottom: 40px; }
-.sidebar-logo { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 10px; }
-.sidebar-header h2 { color: var(--secondary-color); font-size: 20px; }
-.sidebar-nav ul { list-style-type: none; }
-.sidebar-nav li a {
-    display: flex; align-items: center; padding: 12px 15px; color: var(--light-text-color); text-decoration: none;
-    border-radius: 6px; margin-bottom: 5px; transition: all 0.3s ease;
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-left: 10px;
 }
-.sidebar-nav li a .fa-fw { width: 25px; text-align: center; }
-.sidebar-nav li.active a, .sidebar-nav li a:hover { background-color: #ecf0f1; color: var(--primary-color); font-weight: 600; }
+
+.sidebar-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.sidebar-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.sidebar-nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    color: var(--text-light);
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-nav ul li a i {
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-nav ul li.active a {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.sidebar-nav ul li a:hover {
+    background-color: #f0f0f0;
+}
+
+.sidebar-nav ul li.active a:hover {
+    background-color: var(--primary-light);
+}
+
 .sidebar-footer {
-    display: flex; align-items: center; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 20px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
 }
-.admin-pic { width: 40px; height: 40px; border-radius: 50%; }
-.admin-details span { font-weight: 600; }
-#admin-logout-btn { margin-left: auto; color: var(--danger-color); font-size: 18px; text-decoration: none; }
-/* Main Content */
-.main-content { flex-grow: 1; padding: 30px; overflow-y: auto; }
-.main-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-.breadcrumb { display: flex; list-style: none; padding: 0; font-size: 14px; color: var(--light-text-color); }
-.breadcrumb-item + .breadcrumb-item::before { content: '/'; padding: 0 8px; }
-.breadcrumb-item a { color: var(--primary-color); text-decoration: none; }
-.mobile-menu-toggle { display: none; background: none; border: none; font-size: 24px; cursor: pointer; }
-.content-section { animation: fadeIn 0.5s; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-/* Common Section Styles */
-.dashboard-stats, .user-list-section, .leaderboard-section-inner { background-color: #fff; padding: 25px; border-radius: 8px; box-shadow: var(--shadow); margin-top: 20px; }
-.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.section-header h2 { font-size: 22px; color: var(--secondary-color); }
-/* Loading Spinner */
+
+.admin-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.admin-details {
+    flex-grow: 1;
+}
+
+.admin-details span {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.admin-details small {
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+#admin-logout-btn {
+    font-size: 18px;
+    color: var(--danger-color);
+}
+
+/* === মূল কন্টেন্ট (ডান পাশের অংশ) === */
+.main-content {
+    flex: 1;
+    padding: 25px;
+    overflow-y: auto;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.main-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.breadcrumb {
+    display: flex;
+    padding: 0;
+    background: none;
+    font-size: 14px;
+}
+
+.breadcrumb-item a {
+    color: var(--primary-color);
+}
+
+.breadcrumb-item.active {
+    color: var(--text-light);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* === কন্টেন্ট সেকশন এবং কার্ড === */
+.content-section {
+    padding: 5px;
+}
+
+section {
+    margin-bottom: 25px;
+}
+
+.card, .stat-card, .user-list-section, .leaderboard-section-inner {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+}
+
+.stat-card i {
+    font-size: 28px;
+    color: var(--primary-color);
+    background-color: var(--primary-light);
+    padding: 15px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    display: block;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.search-box {
+    position: relative;
+    width: 280px;
+}
+
+.search-box input, .leaderboard-controls select {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    font-family: var(--font-family);
+}
+.leaderboard-controls select {
+    padding-left: 15px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+}
+
+/* === টেবিল স্টাইল === */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 15px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border-color);
+}
+
+thead th {
+    font-weight: 600;
+    color: var(--text-light);
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.user-cell {
+    display: flex;
+    align-items: center;
+}
+.user-cell span {
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.role-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.role-admin {
+    background-color: #e8f5e9;
+    color: #4caf50;
+}
+.role-user {
+    background-color: #e3f2fd;
+    color: #2196f3;
+}
+.action-cell select {
+    padding: 5px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    font-family: var(--font-family);
+}
+.btn-view-details {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: 500;
+}
+
+/* === লোডিং এবং অন্যান্য === */
 .loading-spinner {
-    border: 4px solid #f3f3f3; border-top: 4px solid var(--primary-color);
-    border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;
-    margin: 20px auto;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 40px auto;
 }
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-/* Table and other styles from previous CSS */
-.search-box, .table-container, table, th, td, .profile-pic, .role-badge, #access-denied, .modal, .modal-content, .leaderboard-controls, #chapter-select, .close-button, #modal-user-name, .role-badge.admin, .role-badge.user { /* ... (all table, modal, etc styles from previous admin.css file) ... */ }
-/* Copy all the remaining styles from the previous admin.css here to avoid losing them */
-.search-box { position: relative; } .search-box input { padding: 10px 15px 10px 40px; border-radius: 20px; border: 1px solid var(--border-color); width: 250px; } .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--light-text-color); } .table-container { overflow-x: auto; } table { width: 100%; border-collapse: collapse; } th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); } th { background-color: #f8f9fa; font-weight: 600; } .profile-pic { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; } .role-badge { padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; text-transform: uppercase; } .role-badge.admin { background-color: #e74c3c; color: white; } .role-badge.user { background-color: #3498db; color: white; } #access-denied { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--background-color); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; } #access-denied h1 { font-size: 32px; color: #e74c3c; margin-bottom: 10px; } #access-denied a { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: var(--primary-color); color: white; text-decoration: none; border-radius: 5px; } .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); } .modal-content { background-color: #fefefe; margin: 15% auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 8px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); } .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; } .close-button:hover { color: black; } #modal-user-name { margin-bottom: 20px; font-size: 22px; color: var(--secondary-color); } .leaderboard-controls { margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 6px; display: flex; align-items: center; gap: 10px; } #chapter-select { padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 4px; font-family: 'Hind Siliguri', sans-serif; font-size: 15px; }
-/* Responsive */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#access-denied {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#access-denied i {
+    font-size: 48px;
+    color: var(--danger-color);
+    margin-bottom: 20px;
+}
+
+/* === মডাল/পপ-আপ === */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* === মোবাইল রেসপন্সিভ ডিজাইন === */
 @media (max-width: 992px) {
-    .sidebar { position: fixed; top: 0; left: 0; height: 100%; z-index: 1001; transform: translateX(-100%); background: var(--sidebar-bg); }
-    .sidebar.is-visible { transform: translateX(0); }
-    .main-content { padding-left: 0; width: 100%; }
-    .mobile-menu-toggle { display: block; }
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        z-index: 100;
+        transform: translateX(-100%);
+    }
+    .sidebar.is-visible {
+        transform: translateX(0);
+    }
+    .main-content {
+        padding: 15px;
+    }
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .search-box {
+        width: 100%;
+    }
+    .main-header h1 {
+        font-size: 24px;
+    }
 }
