@@ -1,4 +1,4 @@
-// auth.js (সংস্করণ ৫.০ - সার্ভিস ওয়ার্কার পাথ সমাধান সহ চূড়ান্ত)
+// auth.js (সংস্করণ ৬.০ - ফোরগ্রাউন্ড সাউন্ড সহ চূড়ান্ত)
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // বিভাগ ১: ব্যবহারকারীর লগইন স্ট্যাটাস চেক করা
     // ==========================================================
     firebase.auth().onAuthStateChanged(function(user) {
+        // ... এই বিভাগের কোড অপরিবর্তিত আছে ...
         const desktopGuest = document.getElementById('guest-link-desktop');
         const desktopUser = document.getElementById('user-link-desktop');
         const desktopAdmin = document.getElementById('admin-link-desktop');
@@ -20,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const heroDescription = document.getElementById('hero-main-description');
 
         if (user) {
-            // ========== ব্যবহারকারী লগইন করা থাকলে ==========
             if (desktopGuest) desktopGuest.style.display = 'none';
             if (desktopUser) desktopUser.style.display = 'block';
             if (desktopLogout) desktopLogout.style.display = 'block';
@@ -46,11 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
-            // *** নতুন সংযোজন: লগইন করা ব্যবহারকারীর জন্য FCM সেটআপ চালু করা ***
             setupFcm(user);
 
         } else {
-            // ========== ব্যবহারকারী লগইন করা না থাকলে ==========
             if (desktopGuest) desktopGuest.style.display = 'block';
             if (desktopUser) desktopUser.style.display = 'none';
             if (desktopAdmin) desktopAdmin.style.display = 'none';
@@ -77,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================================
     const googleLoginBtn = document.getElementById('google-login-btn');
     if (googleLoginBtn) { 
+        // ... এই বিভাগের কোড অপরিবর্তিত আছে ...
         const ADMIN_EMAIL = "keshabsarkar2018@gmail.com"; 
         googleLoginBtn.addEventListener('click', () => {
             const auth = firebase.auth();
@@ -111,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // বিভাগ ৩: লগআউট কার্যকারিতা
     // ==========================================================
     document.body.addEventListener('click', function(e) {
+        // ... এই বিভাগের কোড অপরিবর্তিত আছে ...
         if (e.target.id === 'logout-btn-desktop' || e.target.id === 'logout-btn-mobile' || e.target.closest('#logout-btn-desktop') || e.target.closest('#logout-btn-mobile')) {
             e.preventDefault();
             firebase.auth().signOut().then(() => {
@@ -120,18 +120,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================================
-    // বিভাগ ৪: Firebase Cloud Messaging (FCM) সেটআপ - আপডেট করা হয়েছে
+    // বিভাগ ৪: Firebase Cloud Messaging (FCM) সেটআপ
     // ==========================================================
-    
-    /**
-     * নোটিফিকেশনের অনুমতি চায়, টোকেন নেয় এবং Firestore-এ সেভ করে
-     * @param {firebase.User} user - বর্তমানে লগইন করা ব্যবহারকারী
-     */
     function setupFcm(user) {
+        // ... এই বিভাগের কোড অপরিবর্তিত আছে ...
         if (firebase.messaging.isSupported()) {
             const messaging = firebase.messaging();
-
-            // সার্ভিস ওয়ার্কার রেজিস্ট্রেশন অবজেক্ট
             const serviceWorkerRegistration = navigator.serviceWorker.register('/Study-With-Keshab/firebase-messaging-sw.js')
                 .then(registration => {
                     console.log('Service Worker registered with scope:', registration.scope);
@@ -141,11 +135,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.error('Service Worker registration failed:', err);
                     return null;
                 });
-
-            // নোটিফিকেশনের অনুমতি চাওয়া
             messaging.requestPermission().then(() => {
                 console.log('Notification permission granted.');
-                // সার্ভিস ওয়ার্কার রেজিস্ট্রেশন সফল হলে টোকেন চাওয়া
                 return serviceWorkerRegistration;
             }).then(registration => {
                 if (registration) {
@@ -156,7 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }).then(token => {
                 if (token) {
                     console.log('FCM Token:', token);
-                    // Firestore এ টোকেন সেভ করা
                     const userRef = firebase.firestore().collection('users').doc(user.uid);
                     userRef.update({ fcmToken: token });
                 } else {
@@ -171,21 +161,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    /**
-     * অ্যাপ ফোরগ্রাউন্ডে থাকলে নোটিফিকেশন হ্যান্ডেল করে
-     */
+    // ==========================================================
+    // বিভাগ ৫: ফোরগ্রাউন্ড মেসেজ হ্যান্ডলিং (সাউন্ড সহ আপডেট)
+    // ==========================================================
     if (firebase.messaging.isSupported()) {
         const messaging = firebase.messaging();
+        // সাউন্ড ফাইল আগে থেকে লোড করে রাখা
+        const notificationSound = new Audio('/audio/notification.wav'); 
+
         messaging.onMessage((payload) => {
             console.log('Foreground message received.', payload);
+            
+            // --- সাউন্ড বাজানোর কোড ---
+            notificationSound.play().catch(e => console.error("Error playing sound:", e));
             
             const title = payload.data.title;
             const body = payload.data.body;
             
-            // একটি কাস্টম পপ-আপ বা টোস্ট দেখানো
+            // কাস্টম টোস্ট দেখানো
             showCustomToast(title, body);
 
-            // নোটিফিকেশন বেলের কাউন্ট আপডেট করার জন্য
+            // নোটিফিকেশন ব্যাজ আপডেট
             if (typeof updateNotificationBadge === 'function') {
                 updateNotificationBadge();
             }
@@ -194,14 +190,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+
 /**
  * স্ক্রিনে একটি কাস্টম টোস্ট নোটিফিকেশন দেখায়
  * @param {string} title - নোটিফিকেশনের শিরোনাম
  * @param {string} body - নোটিফিকেশনের মূল বার্তা
  */
 function showCustomToast(title, body) {
+    // ... এই ফাংশনের কোড অপরিবর্তিত আছে ...
     const toast = document.createElement('div');
-    toast.className = 'custom-toast'; // CSS দিয়ে স্টাইল করার জন্য একটি ক্লাস যোগ করা হলো
+    toast.className = 'custom-toast'; 
     toast.innerHTML = `
         <div class="toast-title">${title}</div>
         <div class="toast-body">${body}</div>
@@ -209,12 +207,10 @@ function showCustomToast(title, body) {
     
     document.body.appendChild(toast);
 
-    // টোস্টটিকে দৃশ্যমান করা
     setTimeout(() => {
         toast.classList.add('show');
     }, 100);
 
-    // ৫ সেকেন্ড পর টোস্টটি সরিয়ে ফেলা
     setTimeout(() => {
         toast.classList.remove('show');
         setTimeout(() => toast.remove(), 500);

@@ -1,7 +1,7 @@
-// functions/index.js (সামান্য আপডেট সহ আপনার v2 কোড)
+// functions/index.js (সাউন্ড সহ আপডেট করা v2 কোড)
 
 const { onDocumentCreated } = require("firebase-functions/v2/firestore");
-const { getFirestore, FieldValue } = require("firebase-admin/firestore"); // FieldValue ইম্পোর্ট করুন
+const { getFirestore, FieldValue } = require("firebase-admin/firestore");
 const { getMessaging } = require("firebase-admin/messaging");
 const admin = require("firebase-admin");
 
@@ -28,7 +28,7 @@ exports.sendPushNotification = onDocumentCreated("notificationQueue/{docId}", as
             title: title,
             body: body,
             link: link,
-            createdAt: FieldValue.serverTimestamp(), // <-- new Date() এর পরিবর্তে এটি ব্যবহার করুন
+            createdAt: FieldValue.serverTimestamp(),
         });
         console.log("Notification saved to 'notifications' collection.");
     } catch (error) {
@@ -49,14 +49,29 @@ exports.sendPushNotification = onDocumentCreated("notificationQueue/{docId}", as
         return snap.ref.delete();
     }
 
+    // ================== পেলোড আপডেট করা হয়েছে ==================
     const payload = {
         data: {
             title: title,
             body: body,
             icon: `${siteUrl}/images/logo.jpg`,
             link: link,
-        }
+        },
+        // --- সাউন্ড এবং ভাইব্রেশন যোগ করা হয়েছে ---
+        webpush: {
+            notification: {
+                // আপনার ওয়েবসাইটের রুট থেকে সাউন্ড ফাইলের পাথ
+                // GitHub Pages-এ এটি হবে: /Study-With-Keshab/audio/notification.wav
+                // কিন্তু <base> ট্যাগ থাকায় শুধু /audio/notification.wav লিখলেই হবে।
+                sound: "/audio/notification.wav",
+                vibrate: [200, 100, 200], // (ঐচ্ছিক) মোবাইল ডিভাইসের জন্য
+            },
+            fcm_options: {
+                link: link // নোটিফিকেশনে ক্লিক করলে এই লিঙ্ক খুলবে
+            }
+        },
     };
+    // ========================================================
 
     console.log(`Sending notification to ${tokens.length} tokens.`);
 
