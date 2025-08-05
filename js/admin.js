@@ -1,8 +1,8 @@
+
 document.addEventListener('DOMContentLoaded', () => {
 
     if (typeof firebase === 'undefined' || typeof firebase.auth === 'undefined' || typeof firebase.firestore === 'undefined') {
         console.error("Firebase is not initialized correctly.");
-        document.body.innerHTML = "<h1>Firebase কনফিগারেশন ত্রুটি। অনুগ্রহ করে কনসোল চেক করুন।</h1>";
         return;
     }
     const auth = firebase.auth();
@@ -49,8 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const checkAdminRole = async (user) => {
         try {
-            const userDocRef = db.collection('users').doc(user.uid);
-            const doc = await userDocRef.get();
+            const doc = await db.collection('users').doc(user.uid).get();
             if (doc.exists && doc.data().role === 'admin') {
                 initializeAdminPanel(user, doc.data());
             } else {
@@ -63,8 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const showAccessDenied = () => {
-        if(adminPageContainer) adminPageContainer.style.display = 'none';
-        if(accessDeniedMessage) accessDeniedMessage.style.display = 'flex';
+        if (adminPageContainer) adminPageContainer.style.display = 'none';
+        if (accessDeniedMessage) accessDeniedMessage.style.display = 'flex';
     };
 
     const initializeAdminPanel = (user, adminData) => {
@@ -78,28 +77,27 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const setupEventListeners = () => {
-        if(navDashboard) navDashboard.addEventListener('click', (e) => { e.preventDefault(); switchTab('dashboard'); });
-        if(navLeaderboard) navLeaderboard.addEventListener('click', (e) => { e.preventDefault(); switchTab('leaderboard'); });
-        if(adminLogoutBtn) adminLogoutBtn.addEventListener('click', (e) => { e.preventDefault(); auth.signOut().then(() => { window.location.href = 'index.html'; }); });
-        if(userSearchInput) userSearchInput.addEventListener('input', handleUserSearch);
-        
-        if(chapterSelect) {
+        if (navDashboard) navDashboard.addEventListener('click', (e) => { e.preventDefault(); switchTab('dashboard'); });
+        if (navLeaderboard) navLeaderboard.addEventListener('click', (e) => { e.preventDefault(); switchTab('leaderboard'); });
+        if (adminLogoutBtn) adminLogoutBtn.addEventListener('click', (e) => { e.preventDefault(); auth.signOut().then(() => { window.location.href = 'index.html'; }); });
+        if (userSearchInput) userSearchInput.addEventListener('input', handleUserSearch);
+
+        if (chapterSelect) {
             chapterSelect.addEventListener('change', () => {
                 const chapterName = chapterSelect.value;
                 if (chapterName) {
                     loadLeaderboardForChapter(chapterName);
                 } else {
-                    if(leaderboardTableBody) leaderboardTableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">অনুগ্রহ করে একটি বিষয় নির্বাচন করুন।</td></tr>';
+                    if (leaderboardTableBody) leaderboardTableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">অনুগ্রহ করে একটি বিষয় নির্বাচন করুন।</td></tr>';
                 }
             });
         }
-        
-        if(userTableBody) userTableBody.addEventListener('click', handleUserTableActions);
-        if(leaderboardTableBody) leaderboardTableBody.addEventListener('click', handleLeaderboardTableActions); // এখন এটি কাজ করবে
-        if(modalCloseButton) modalCloseButton.addEventListener('click', () => scoreDetailsModal.style.display = 'none');
-        if(scoreDetailsModal) window.addEventListener('click', (event) => { if (event.target === scoreDetailsModal) { scoreDetailsModal.style.display = 'none'; } });
-        if(mobileMenuToggle && sidebar) mobileMenuToggle.addEventListener('click', () => { sidebar.classList.toggle('is-visible'); });
-        
+
+        if (userTableBody) userTableBody.addEventListener('click', handleUserTableActions);
+        if (leaderboardTableBody) leaderboardTableBody.addEventListener('click', handleLeaderboardTableActions);
+        if (modalCloseButton) modalCloseButton.addEventListener('click', () => scoreDetailsModal.style.display = 'none');
+        if (scoreDetailsModal) window.addEventListener('click', (event) => { if (event.target === scoreDetailsModal) { scoreDetailsModal.style.display = 'none'; } });
+        if (mobileMenuToggle && sidebar) mobileMenuToggle.addEventListener('click', () => { sidebar.classList.toggle('is-visible'); });
         if (notificationForm) notificationForm.addEventListener('submit', handleNotificationSubmit);
     };
 
@@ -107,39 +105,39 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.sidebar-nav li').forEach(li => li.classList.remove('active'));
         dashboardContent.style.display = 'none';
         leaderboardContent.style.display = 'none';
-        
+
         if (tabName === 'dashboard') {
-            if(navDashboard) navDashboard.classList.add('active');
+            if (navDashboard) navDashboard.classList.add('active');
             dashboardContent.style.display = 'block';
             pageTitle.textContent = 'ড্যাশবোর্ড';
             updateBreadcrumb('Dashboard');
         } else if (tabName === 'leaderboard') {
-            if(navLeaderboard) navLeaderboard.classList.add('active');
+            if (navLeaderboard) navLeaderboard.classList.add('active');
             leaderboardContent.style.display = 'block';
             pageTitle.textContent = 'লিডারবোর্ড';
             updateBreadcrumb('Leaderboard');
             if (allChaptersCache.size > 0 && chapterSelect.options.length <= 1) {
                 populateChapterDropdown();
             }
-             if (leaderboardTableBody.innerHTML.trim() === '') {
+            if (leaderboardTableBody.innerHTML.trim() === '') {
                 leaderboardTableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">অনুগ্রহ করে একটি বিষয় নির্বাচন করুন।</td></tr>';
             }
         }
-        if(sidebar) sidebar.classList.remove('is-visible');
+        if (sidebar) sidebar.classList.remove('is-visible');
     };
-    
+
     const updateBreadcrumb = (currentPage) => {
-        if(breadcrumbNav) breadcrumbNav.innerHTML = `<li class="breadcrumb-item"><a href="#">Admin</a></li><li class="breadcrumb-item active" aria-current="page">${currentPage}</li>`;
+        if (breadcrumbNav) breadcrumbNav.innerHTML = `<li class="breadcrumb-item"><a href="#">Admin</a></li><li class="breadcrumb-item active" aria-current="page">${currentPage}</li>`;
     };
 
     const loadDashboardData = async () => {
-        if(userListLoading) userListLoading.style.display = 'block';
-        if(userTableBody) userTableBody.innerHTML = '';
+        if (userListLoading) userListLoading.style.display = 'block';
+        if (userTableBody) userTableBody.innerHTML = '';
         try {
             const usersSnapshot = await db.collection('users').get();
             allUsersCache = [];
             allChaptersCache.clear();
-            
+
             usersSnapshot.forEach(doc => {
                 const userData = { id: doc.id, ...doc.data() };
                 allUsersCache.push(userData);
@@ -150,8 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             });
-            
-            allUsersCache.sort((a,b) => (a.displayName || '').localeCompare(b.displayName || ''));
+
+            allUsersCache.sort((a, b) => (a.displayName || '').localeCompare(b.displayName || ''));
             let adminCount = allUsersCache.filter(user => user.role === 'admin').length;
             totalUsersStat.textContent = allUsersCache.length;
             totalAdminsStat.textContent = adminCount;
@@ -159,14 +157,14 @@ document.addEventListener('DOMContentLoaded', () => {
             populateChapterDropdown();
         } catch (error) {
             console.error("Error loading dashboard data: ", error);
-            if(userTableBody) userTableBody.innerHTML = '<tr><td colspan="6">ব্যবহারকারীদের তালিকা লোড করতে সমস্যা হয়েছে।</td></tr>';
+            if (userTableBody) userTableBody.innerHTML = '<tr><td colspan="6">ব্যবহারকারীদের তালিকা লোড করতে সমস্যা হয়েছে।</td></tr>';
         } finally {
-            if(userListLoading) userListLoading.style.display = 'none';
+            if (userListLoading) userListLoading.style.display = 'none';
         }
     };
 
     const renderUserTable = (users) => {
-        if(!userTableBody) return;
+        if (!userTableBody) return;
         userTableBody.innerHTML = '';
         if (users.length === 0) {
             userTableBody.innerHTML = '<tr><td colspan="6">কোনো ব্যবহারকারী পাওয়া যায়নি।</td></tr>';
@@ -198,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredUsers = allUsersCache.filter(user => (user.displayName || '').toLowerCase().includes(searchTerm) || (user.email || '').toLowerCase().includes(searchTerm));
         renderUserTable(filteredUsers);
     };
-    
+
     const handleUserTableActions = (e) => {
         if (e.target.classList.contains('role-changer')) {
             const select = e.target;
@@ -212,13 +210,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     };
-    
+
     const updateUserRole = async (userId, newRole) => {
         try {
             await db.collection('users').doc(userId).update({ role: newRole });
             alert('ভূমিকা সফলভাবে আপডেট করা হয়েছে!');
             const userInCache = allUsersCache.find(u => u.id === userId);
-            if(userInCache) userInCache.role = newRole;
+            if (userInCache) userInCache.role = newRole;
             let adminCount = allUsersCache.filter(user => user.role === 'admin').length;
             totalAdminsStat.textContent = adminCount;
             handleUserSearch();
@@ -240,21 +238,21 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('শিরোনাম এবং বার্তা উভয়ই পূরণ করুন।');
             return;
         }
-        
+
         button.disabled = true;
         button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> পাঠানো হচ্ছে...';
-        
+
         try {
             await db.collection('notificationQueue').add({ title, body, link });
-            if(notificationStatus) {
+            if (notificationStatus) {
                 notificationStatus.textContent = 'সফলভাবে নোটিফিকেশন পাঠানোর অনুরোধ জমা হয়েছে।';
                 notificationStatus.className = 'status-success';
                 notificationStatus.style.display = 'block';
             }
-            if(notificationForm) notificationForm.reset();
+            if (notificationForm) notificationForm.reset();
         } catch (error) {
             console.error('Error sending notification request: ', error);
-            if(notificationStatus) {
+            if (notificationStatus) {
                 notificationStatus.textContent = 'ত্রুটি! অনুরোধ পাঠাতে সমস্যা হয়েছে।';
                 notificationStatus.className = 'status-danger';
                 notificationStatus.style.display = 'block';
@@ -262,12 +260,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } finally {
             button.disabled = false;
             button.innerHTML = '<i class="fas fa-paper-plane"></i> সব ব্যবহারকারীকে পাঠান';
-            setTimeout(() => { if(notificationStatus) notificationStatus.style.display = 'none'; }, 6000);
+            setTimeout(() => { if (notificationStatus) notificationStatus.style.display = 'none'; }, 6000);
         }
     };
 
     const populateChapterDropdown = () => {
-        if(!chapterSelect) return;
+        if (!chapterSelect) return;
         chapterSelect.innerHTML = '<option value="">-- বিষয় বাছুন --</option>';
         const sortedChapters = [...allChaptersCache].sort();
         sortedChapters.forEach(chapterName => {
@@ -279,19 +277,19 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const loadLeaderboardForChapter = (chapterName) => {
-        if(leaderboardLoading) leaderboardLoading.style.display = 'block';
-        if(leaderboardTableBody) leaderboardTableBody.innerHTML = '';
-        
+        if (leaderboardLoading) leaderboardLoading.style.display = 'block';
+        if (leaderboardTableBody) leaderboardTableBody.innerHTML = '';
+
         const leaderboardData = [];
-        
+
         allUsersCache.forEach(user => {
             let quizSets = null;
             if (user.quiz_sets && user.quiz_sets[chapterName]) {
-                 quizSets = { [chapterName]: user.quiz_sets[chapterName] };
+                quizSets = user.quiz_sets;
             } else if (user.chapters && user.chapters[chapterName] && user.chapters[chapterName].quiz_sets) {
                 quizSets = user.chapters[chapterName].quiz_sets;
             }
-            
+
             if (quizSets) {
                 let chapterTotalScore = 0;
                 const detailedScoresForModal = [];
@@ -301,26 +299,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     chapterTotalScore += score;
                     detailedScoresForModal.push({ setName: setName.replace(/_/g, ' '), score: score, maxScore: setData.totalQuestions });
                 });
-                
+
                 if (chapterTotalScore > 0) {
-                    leaderboardData.push({ 
-                        userId: user.id, 
-                        userName: user.displayName, 
-                        userPhoto: user.photoURL, 
-                        totalScore: chapterTotalScore, 
-                        detailedScores: detailedScoresForModal 
+                    leaderboardData.push({
+                        userId: user.id,
+                        userName: user.displayName,
+                        userPhoto: user.photoURL,
+                        totalScore: chapterTotalScore,
+                        detailedScores: detailedScoresForModal
                     });
                 }
             }
         });
-        
+
         leaderboardData.sort((a, b) => b.totalScore - a.totalScore);
         renderLeaderboardTable(leaderboardData);
-        if(leaderboardLoading) leaderboardLoading.style.display = 'none';
+        if (leaderboardLoading) leaderboardLoading.style.display = 'none';
     };
-    
+
     const renderLeaderboardTable = (data) => {
-        if(!leaderboardTableBody) return;
+        if (!leaderboardTableBody) return;
         leaderboardTableBody.innerHTML = '';
         if (data.length === 0) {
             leaderboardTableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">এই বিষয়ের জন্য কোনো লিডারবোর্ড ডেটা নেই।</td></tr>';
@@ -340,7 +338,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- নতুন যোগ করা ফাংশন ---
     const handleLeaderboardTableActions = (e) => {
         if (e.target.classList.contains('btn-view-details')) {
             const button = e.target;
@@ -349,9 +346,9 @@ document.addEventListener('DOMContentLoaded', () => {
             showScoreDetailsModal(userName, details);
         }
     };
-    
+
     const showScoreDetailsModal = (userName, details) => {
-        if(!scoreDetailsModal) return;
+        if (!scoreDetailsModal) return;
         modalUserName.textContent = `${userName}-এর বিস্তারিত স্কোর`;
         modalScoreTableBody.innerHTML = '';
         if (!details || details.length === 0) {
@@ -359,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             details.forEach(item => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${item.setName}</td><td>${item.score}</td><td>${item.maxScore}</td>`;
+                tr.innerHTML = `<td>${item.setName}</td><td>${item.score || 0}</td><td>${item.maxScore || 'N/A'}</td>`;
                 modalScoreTableBody.appendChild(tr);
             });
         }
