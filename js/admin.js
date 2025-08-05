@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Firebase Initialization Check ---
     if (typeof firebase === 'undefined' || typeof firebase.auth === 'undefined' || typeof firebase.firestore === 'undefined') {
         console.error("Firebase is not initialized correctly.");
         document.body.innerHTML = "<h1>Firebase কনফিগারেশন ত্রুটি। অনুগ্রহ করে কনসোল চেক করুন।</h1>";
@@ -9,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    // ... (আপনার বাকি সব DOM Element References এখানে থাকবে, কোনো পরিবর্তন নেই) ...
     const adminPageContainer = document.querySelector('.admin-page-container');
     const accessDeniedMessage = document.getElementById('access-denied');
     const pageTitle = document.getElementById('page-title');
@@ -41,66 +39,35 @@ document.addEventListener('DOMContentLoaded', () => {
     let allUsersCache = [];
     let allChaptersCache = new Set();
 
-
-    // --- Authentication Check ---
     auth.onAuthStateChanged(user => {
         if (user) {
-            checkAdminRole(user); // সমস্যাটি এই ফাংশনে, তাই এখানে ডিবাগিং যোগ করা হয়েছে
+            checkAdminRole(user);
         } else {
-            console.log("No user is logged in. Showing access denied.");
             showAccessDenied();
         }
     });
 
-    // ===============================================================
-    //               ডিবাগিং এর জন্য পরিবর্তিত ফাংশন
-    // ===============================================================
     const checkAdminRole = async (user) => {
-        // ডিবাগিং ধাপ ১: ব্যবহারকারীর তথ্য প্রিন্ট করা
-        console.log("STEP 1: Checking admin role for user:", user.uid, user.email);
-
         try {
             const userDocRef = db.collection('users').doc(user.uid);
-            
-            // ডিবাগিং ধাপ ২: ডকুমেন্ট রেফারেন্স ঠিক আছে কিনা দেখা
-            console.log("STEP 2: Created Firestore document reference. Path:", userDocRef.path);
-
             const doc = await userDocRef.get();
-
-            // ডিবাগিং ধাপ ৩: ডকুমেন্ট পাওয়া গেল কিনা এবং তার ডেটা কী
-            if (doc.exists) {
-                console.log("STEP 3: Document found in Firestore.");
-                const userData = doc.data();
-                console.log("STEP 4: User data is:", userData);
-                
-                // ডিবাগিং ধাপ ৪: Role ঠিক আছে কিনা চূড়ান্তভাবে চেক করা
-                if (userData.role === 'admin') {
-                    console.log("STEP 5: SUCCESS! User role is 'admin'. Initializing panel...");
-                    initializeAdminPanel(user, userData);
-                } else {
-                    console.error("STEP 5: FAILED! User role is not 'admin'. Role found:", userData.role);
-                    showAccessDenied();
-                }
+            if (doc.exists && doc.data().role === 'admin') {
+                initializeAdminPanel(user, doc.data());
             } else {
-                console.error("STEP 3: FAILED! User document does not exist in Firestore for UID:", user.uid);
                 showAccessDenied();
             }
         } catch (error) {
-            // ডিবাগিং ধাপ ৫: Firestore থেকে ডেটা পড়ার সময় কোনো এরর হলো কিনা
-            console.error("STEP X: CRITICAL ERROR! Could not fetch user document from Firestore.", error);
-            console.log("This is likely a Firestore Rules issue. The rule for 'get' on '/users/{userId}' might be denying access.");
+            console.error("Error checking admin role:", error);
             showAccessDenied();
         }
     };
-    // ===============================================================
 
     const showAccessDenied = () => {
-        if (adminPageContainer) adminPageContainer.style.display = 'none';
-        if (accessDeniedMessage) accessDeniedMessage.style.display = 'flex';
+        if(adminPageContainer) adminPageContainer.style.display = 'none';
+        if(accessDeniedMessage) accessDeniedMessage.style.display = 'flex';
     };
 
     const initializeAdminPanel = (user, adminData) => {
-        // ... (এই ফাংশন এবং এর পরের সব ফাংশন আপনার আগের কোডের মতোই অপরিবর্তিত থাকবে) ...
         accessDeniedMessage.style.display = 'none';
         adminPageContainer.style.display = 'flex';
         adminNameSidebar.textContent = adminData.displayName || 'Admin';
@@ -128,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         if(userTableBody) userTableBody.addEventListener('click', handleUserTableActions);
-        if(leaderboardTableBody) leaderboardTableBody.addEventListener('click', handleLeaderboardTableActions);
+        if(leaderboardTableBody) leaderboardTableBody.addEventListener('click', handleLeaderboardTableActions); // এখন এটি কাজ করবে
         if(modalCloseButton) modalCloseButton.addEventListener('click', () => scoreDetailsModal.style.display = 'none');
         if(scoreDetailsModal) window.addEventListener('click', (event) => { if (event.target === scoreDetailsModal) { scoreDetailsModal.style.display = 'none'; } });
         if(mobileMenuToggle && sidebar) mobileMenuToggle.addEventListener('click', () => { sidebar.classList.toggle('is-visible'); });
@@ -371,6 +338,16 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             leaderboardTableBody.appendChild(tr);
         });
+    };
+
+    // --- নতুন যোগ করা ফাংশন ---
+    const handleLeaderboardTableActions = (e) => {
+        if (e.target.classList.contains('btn-view-details')) {
+            const button = e.target;
+            const userName = button.dataset.userName;
+            const details = JSON.parse(button.dataset.details);
+            showScoreDetailsModal(userName, details);
+        }
     };
     
     const showScoreDetailsModal = (userName, details) => {
