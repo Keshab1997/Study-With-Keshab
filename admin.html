@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>অ্যাডমিন প্যানেল - Study With Keshab</title>
+    <!-- Github Pages এ সঠিকভাবে Path কাজ করার জন্য Base Tag -->
     <base href="/Study-With-Keshab/">
+    
+    <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <!-- Main CSS -->
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
 
     <div class="admin-page-container">
-        <!-- সাইডবার (বাম পাশের মেনু) -->
+        <!-- ==================== সাইডবার (বাম পাশের মেনু) ==================== -->
         <aside class="sidebar">
             <div>
                 <div class="sidebar-header">
@@ -22,12 +27,13 @@
                     <h2>Admin Panel</h2>
                 </div>
                 <nav class="sidebar-nav">
-    <ul>
-        <li class="active"><a href="#" id="nav-dashboard"><i class="fas fa-tachometer-alt fa-fw"></i> ড্যাশবোর্ড</a></li>
-        <li><a href="#" id="nav-leaderboard"><i class="fas fa-trophy fa-fw"></i> লিডারবোর্ড</a></li>
-        <li><a href="index.html"><i class="fas fa-home fa-fw"></i> হোম পেজে যান</a></li>
-    </ul>
-</nav>
+                    <ul>
+                        <!-- নেভিগেশন লিঙ্ক (সঠিক id সহ) -->
+                        <li class="active"><a href="#" id="nav-dashboard"><i class="fas fa-tachometer-alt fa-fw"></i> ড্যাশবোর্ড</a></li>
+                        <li><a href="#" id="nav-leaderboard"><i class="fas fa-trophy fa-fw"></i> লিডারবোর্ড</a></li>
+                        <li><a href="index.html"><i class="fas fa-home fa-fw"></i> হোম পেজে যান</a></li>
+                    </ul>
+                </nav>
             </div>
             <div class="sidebar-footer" id="admin-info-sidebar" style="display: none;">
                 <img src="" alt="Admin Profile" id="admin-profile-pic-sidebar" class="admin-pic">
@@ -39,7 +45,7 @@
             </div>
         </aside>
 
-        <!-- মূল কন্টেন্ট (ডান পাশের অংশ) -->
+        <!-- ==================== মূল কন্টেন্ট (ডান পাশের অংশ) ==================== -->
         <main class="main-content">
             <header class="main-header">
                 <div>
@@ -54,13 +60,15 @@
                 <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
             </header>
 
-            <!-- ড্যাশবোর্ড সেকশন -->
+            <!-- ==================== ড্যাশবোর্ড সেকশন ==================== -->
             <div id="dashboard-content" class="content-section">
+                <!-- Stats Cards -->
                 <section class="dashboard-stats">
                     <div class="stat-card"><i class="fas fa-users"></i><div><span class="stat-value" id="total-users">0</span><span class="stat-label">মোট ব্যবহারকারী</span></div></div>
                     <div class="stat-card"><i class="fas fa-user-shield"></i><div><span class="stat-value" id="total-admins">0</span><span class="stat-label">মোট অ্যাডমিন</span></div></div>
                 </section>
                 
+                <!-- Push Notification Form -->
                 <section class="send-notification-section">
                     <div class="section-header"><h2>বিজ্ঞপ্তি পাঠান (Push Notification)</h2></div>
                     <div class="notification-form-container">
@@ -74,6 +82,7 @@
                     </div>
                 </section>
 
+                <!-- User List Table -->
                 <section class="user-list-section">
                     <div class="section-header"><h2>ব্যবহারকারীদের তালিকা</h2><div class="search-box"><i class="fas fa-search"></i><input type="text" id="user-search-input" placeholder="নাম বা ইমেইল দিয়ে খুঁজুন..."></div></div>
                     <div class="table-container">
@@ -85,7 +94,7 @@
                     </div>
                 </section>
                 
-                <!-- ============ নোটিফিকেশন হিস্ট্রি সেকশন (নতুন) ============ -->
+                <!-- Notification History Table -->
                 <section class="notification-history-section">
                     <div class="section-header">
                         <h2>বিজ্ঞপ্তির ইতিহাস</h2>
@@ -93,40 +102,60 @@
                     </div>
                     <div class="table-container" id="notification-history-container">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>শিরোনাম</th>
-                                    <th>বার্তা</th>
-                                    <th>সময়</th>
-                                    <th>অ্যাকশন</th>
-                                </tr>
-                            </thead>
-                            <tbody id="notification-history-body">
-                                <!-- JS দিয়ে এখানে তালিকা লোড করা হবে -->
-                            </tbody>
+                            <thead><tr><th>শিরোনাম</th><th>বার্তা</th><th>সময়</th><th>অ্যাকশন</th></tr></thead>
+                            <tbody id="notification-history-body"></tbody>
                         </table>
                         <div class="loading-spinner" id="notification-history-loading" style="display: none;"></div>
                     </div>
                 </section>
-                <!-- ======================================================= -->
-
             </div>
 
-            <!-- লিডারবোর্ড সেকশন -->
+            <!-- ==================== লিডারবোর্ড সেকশন (আপডেট করা হয়েছে) ==================== -->
             <div id="leaderboard-content" class="content-section" style="display: none;">
-                <!-- ... আপনার লিডারবোর্ড কন্টেন্ট এখানে থাকবে ... -->
+                <section class="leaderboard-section-inner">
+                    <div class="section-header">
+                        <h2>লিডারবোর্ড</h2>
+                        <!-- ভবিষ্যতে ফিল্টার করার জন্য এখানে ড্রপডাউন যোগ করা যেতে পারে -->
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>র‍্যাঙ্ক</th>
+                                    <th>ব্যবহারকারী</th>
+                                    <th>মোট স্কোর</th>
+                                    <th>কুইজ সম্পন্ন করেছে</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-table-body">
+                                <!-- JavaScript দিয়ে এখানে লিডারবোর্ডের ডেটা লোড করা হবে -->
+                                <tr>
+                                    <td colspan="4" style="text-align: center;">লিডারবোর্ড লোড হচ্ছে...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="loading-spinner" id="leaderboard-loading" style="display: none;"></div>
+                    </div>
+                </section>
             </div>
         </main>
     </div>
 
-    <!-- ... আপনার অন্যান্য মডাল এবং এলিমেন্ট ... -->
-    <div id="access-denied" style="display: none;"><h1><i class="fas fa-exclamation-triangle"></i> প্রবেশাধিকার নেই</h1><p>এই পেজটি দেখার জন্য আপনার অনুমতি নেই।</p><a href="index.html">হোম পেজে ফিরে যান</a></div>
+    <!-- Access Denied Message -->
+    <div id="access-denied" style="display: none;">
+        <h1><i class="fas fa-exclamation-triangle"></i> প্রবেশাধিকার নেই</h1>
+        <p>এই পেজটি দেখার জন্য আপনার অনুমতি নেই।</p>
+        <a href="index.html">হোম পেজে ফিরে যান</a>
+    </div>
 
+    <!-- Firebase SDK Scripts -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-functions.js"></script> <!-- functions.js যোগ করা হয়েছে -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-functions.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
+    
+    <!-- Custom Scripts -->
     <script src="js/firebase-config.js"></script>
     <script src="js/admin.js"></script>
 </body>
