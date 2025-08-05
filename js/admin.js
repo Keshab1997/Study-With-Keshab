@@ -9,51 +9,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    // --- DOM Element References ---
+    // ... (আপনার বাকি সব DOM Element References এখানে থাকবে, কোনো পরিবর্তন নেই) ...
     const adminPageContainer = document.querySelector('.admin-page-container');
     const accessDeniedMessage = document.getElementById('access-denied');
     const pageTitle = document.getElementById('page-title');
     const breadcrumbNav = document.getElementById('breadcrumb-nav');
-
-    // Sidebar
     const sidebar = document.querySelector('.sidebar');
-    const navDashboard = document.querySelector('#nav-dashboard')?.parentElement; // li element
-    const navLeaderboard = document.querySelector('#nav-leaderboard')?.parentElement; // li element
+    const navDashboard = document.querySelector('#nav-dashboard')?.parentElement;
+    const navLeaderboard = document.querySelector('#nav-leaderboard')?.parentElement;
     const adminInfoSidebar = document.getElementById('admin-info-sidebar');
     const adminProfilePicSidebar = document.getElementById('admin-profile-pic-sidebar');
     const adminNameSidebar = document.getElementById('admin-name-sidebar');
     const adminLogoutBtn = document.getElementById('admin-logout-btn');
-
-    // Content Sections
     const dashboardContent = document.getElementById('dashboard-content');
     const leaderboardContent = document.getElementById('leaderboard-content');
-
-    // Dashboard Elements
     const totalUsersStat = document.getElementById('total-users');
     const totalAdminsStat = document.getElementById('total-admins');
     const userTableBody = document.getElementById('user-table-body');
     const userSearchInput = document.getElementById('user-search-input');
     const userListLoading = document.getElementById('user-list-loading');
-    
-    // Notification Form Elements
     const notificationForm = document.getElementById('notification-form');
     const notificationStatus = document.getElementById('notification-status');
-
-    // Leaderboard Elements
     const chapterSelect = document.getElementById('chapter-select');
     const leaderboardTableBody = document.getElementById('leaderboard-table-body');
     const leaderboardLoading = document.getElementById('leaderboard-loading');
-
-    // Modal Elements
     const scoreDetailsModal = document.getElementById('score-details-modal');
     const modalCloseButton = document.querySelector('#score-details-modal .close-button');
     const modalUserName = document.getElementById('modal-user-name');
     const modalScoreTableBody = document.getElementById('modal-score-table-body');
-
-    // Mobile Menu
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-
-    // Global state
     let allUsersCache = [];
     let allChaptersCache = new Set();
 
@@ -61,33 +45,62 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Authentication Check ---
     auth.onAuthStateChanged(user => {
         if (user) {
-            checkAdminRole(user);
+            checkAdminRole(user); // সমস্যাটি এই ফাংশনে, তাই এখানে ডিবাগিং যোগ করা হয়েছে
         } else {
+            console.log("No user is logged in. Showing access denied.");
             showAccessDenied();
         }
     });
 
+    // ===============================================================
+    //               ডিবাগিং এর জন্য পরিবর্তিত ফাংশন
+    // ===============================================================
     const checkAdminRole = async (user) => {
+        // ডিবাগিং ধাপ ১: ব্যবহারকারীর তথ্য প্রিন্ট করা
+        console.log("STEP 1: Checking admin role for user:", user.uid, user.email);
+
         try {
             const userDocRef = db.collection('users').doc(user.uid);
+            
+            // ডিবাগিং ধাপ ২: ডকুমেন্ট রেফারেন্স ঠিক আছে কিনা দেখা
+            console.log("STEP 2: Created Firestore document reference. Path:", userDocRef.path);
+
             const doc = await userDocRef.get();
-            if (doc.exists && doc.data().role === 'admin') {
-                initializeAdminPanel(user, doc.data());
+
+            // ডিবাগিং ধাপ ৩: ডকুমেন্ট পাওয়া গেল কিনা এবং তার ডেটা কী
+            if (doc.exists) {
+                console.log("STEP 3: Document found in Firestore.");
+                const userData = doc.data();
+                console.log("STEP 4: User data is:", userData);
+                
+                // ডিবাগিং ধাপ ৪: Role ঠিক আছে কিনা চূড়ান্তভাবে চেক করা
+                if (userData.role === 'admin') {
+                    console.log("STEP 5: SUCCESS! User role is 'admin'. Initializing panel...");
+                    initializeAdminPanel(user, userData);
+                } else {
+                    console.error("STEP 5: FAILED! User role is not 'admin'. Role found:", userData.role);
+                    showAccessDenied();
+                }
             } else {
+                console.error("STEP 3: FAILED! User document does not exist in Firestore for UID:", user.uid);
                 showAccessDenied();
             }
         } catch (error) {
-            console.error("Error checking admin role:", error);
+            // ডিবাগিং ধাপ ৫: Firestore থেকে ডেটা পড়ার সময় কোনো এরর হলো কিনা
+            console.error("STEP X: CRITICAL ERROR! Could not fetch user document from Firestore.", error);
+            console.log("This is likely a Firestore Rules issue. The rule for 'get' on '/users/{userId}' might be denying access.");
             showAccessDenied();
         }
     };
+    // ===============================================================
 
     const showAccessDenied = () => {
-        adminPageContainer.style.display = 'none';
-        accessDeniedMessage.style.display = 'flex';
+        if (adminPageContainer) adminPageContainer.style.display = 'none';
+        if (accessDeniedMessage) accessDeniedMessage.style.display = 'flex';
     };
 
     const initializeAdminPanel = (user, adminData) => {
+        // ... (এই ফাংশন এবং এর পরের সব ফাংশন আপনার আগের কোডের মতোই অপরিবর্তিত থাকবে) ...
         accessDeniedMessage.style.display = 'none';
         adminPageContainer.style.display = 'flex';
         adminNameSidebar.textContent = adminData.displayName || 'Admin';
@@ -97,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
         loadDashboardData();
     };
 
-    // --- Event Listeners Setup ---
     const setupEventListeners = () => {
         if(navDashboard) navDashboard.addEventListener('click', (e) => { e.preventDefault(); switchTab('dashboard'); });
         if(navLeaderboard) navLeaderboard.addEventListener('click', (e) => { e.preventDefault(); switchTab('leaderboard'); });
@@ -124,7 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (notificationForm) notificationForm.addEventListener('submit', handleNotificationSubmit);
     };
 
-    // --- Tab Switching Logic ---
     const switchTab = (tabName) => {
         document.querySelectorAll('.sidebar-nav li').forEach(li => li.classList.remove('active'));
         dashboardContent.style.display = 'none';
@@ -154,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if(breadcrumbNav) breadcrumbNav.innerHTML = `<li class="breadcrumb-item"><a href="#">Admin</a></li><li class="breadcrumb-item active" aria-current="page">${currentPage}</li>`;
     };
 
-    // --- Dashboard & Data Caching ---
     const loadDashboardData = async () => {
         if(userListLoading) userListLoading.style.display = 'block';
         if(userTableBody) userTableBody.innerHTML = '';
@@ -166,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
             usersSnapshot.forEach(doc => {
                 const userData = { id: doc.id, ...doc.data() };
                 allUsersCache.push(userData);
-                // Updated to handle both 'chapters' and 'quiz_sets' at the root
                 const quizSources = [userData.chapters, userData.quiz_sets];
                 quizSources.forEach(source => {
                     if (source && typeof source === 'object') {
@@ -253,7 +262,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- Notification Submission Logic ---
     const handleNotificationSubmit = async (e) => {
         e.preventDefault();
         const title = document.getElementById('notification-title').value;
@@ -291,7 +299,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- Leaderboard Functionality ---
     const populateChapterDropdown = () => {
         if(!chapterSelect) return;
         chapterSelect.innerHTML = '<option value="">-- বিষয় বাছুন --</option>';
@@ -311,7 +318,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const leaderboardData = [];
         
         allUsersCache.forEach(user => {
-            // Check in 'quiz_sets' at root first, then in 'chapters'
             let quizSets = null;
             if (user.quiz_sets && user.quiz_sets[chapterName]) {
                  quizSets = { [chapterName]: user.quiz_sets[chapterName] };
@@ -383,7 +389,6 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDetailsModal.style.display = 'flex';
     };
 
-    // --- Utility Functions ---
     const formatTimestamp = (timestamp) => {
         if (!timestamp || typeof timestamp.toDate !== 'function') { return 'N/A'; }
         try {
