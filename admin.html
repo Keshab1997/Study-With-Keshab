@@ -111,30 +111,33 @@
             </div>
 
             <!-- ==================== লিডারবোর্ড সেকশন (আপডেট করা হয়েছে) ==================== -->
+            <!-- লিডারবোর্ড সেকশন -->
             <div id="leaderboard-content" class="content-section" style="display: none;">
-                <section class="leaderboard-section-inner">
+                 <section class="leaderboard-section-inner">
                     <div class="section-header">
                         <h2>লিডারবোর্ড</h2>
-                        <!-- ভবিষ্যতে ফিল্টার করার জন্য এখানে ড্রপডাউন যোগ করা যেতে পারে -->
+                    </div>
+                    <div class="leaderboard-controls">
+                        <label for="chapter-select">বিষয় নির্বাচন করুন:</label>
+                        <select id="chapter-select">
+                            <option value="">-- বিষয় বাছুন --</option>
+                        </select>
                     </div>
                     <div class="table-container">
-                        <table>
+                        <table id="leaderboard-table">
                             <thead>
                                 <tr>
-                                    <th>র‍্যাঙ্ক</th>
+                                    <th>Rank</th>
                                     <th>ব্যবহারকারী</th>
                                     <th>মোট স্কোর</th>
-                                    <th>কুইজ সম্পন্ন করেছে</th>
+                                    <th>অ্যাকশন</th>
                                 </tr>
                             </thead>
                             <tbody id="leaderboard-table-body">
-                                <!-- JavaScript দিয়ে এখানে লিডারবোর্ডের ডেটা লোড করা হবে -->
-                                <tr>
-                                    <td colspan="4" style="text-align: center;">লিডারবোর্ড লোড হচ্ছে...</td>
-                                </tr>
+                                <!-- JS will populate this -->
                             </tbody>
                         </table>
-                        <div class="loading-spinner" id="leaderboard-loading" style="display: none;"></div>
+                         <div class="loading-spinner" id="leaderboard-loading" style="display: none;"></div>
                     </div>
                 </section>
             </div>
