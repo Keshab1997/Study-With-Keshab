@@ -1,100 +1,9 @@
 // =======================================================
-// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ২.৮ - নতুন অথেন্টিকেশন লজিকসহ)
+// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ৩.০ - Firestore নোটিফিকেশন সহ)
 // =======================================================
 
-// === ফায়ারবেস এবং অথেন্টিকেশন হ্যান্ডলিং ===
-function initializeFirebaseServices() {
-    // Firebase লোড হয়েছে কিনা তা নিশ্চিত করা
-    if (typeof firebase === 'undefined') {
-        console.warn("Firebase SDK লোড হচ্ছে... ১০০ms পর আবার চেষ্টা করা হবে।");
-        setTimeout(initializeFirebaseServices, 100);
-        return;
-    }
-
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-
-    // লগআউট ফাংশন
-    function handleLogout(event) {
-        event.preventDefault();
-        auth.signOut().then(() => {
-            console.log("ব্যবহারকারী সফলভাবে লগআউট হয়েছেন।");
-            const isSubjectPage = window.location.pathname.includes('/subject/');
-            const basePath = isSubjectPage ? '../' : '';
-            window.location.href = basePath + 'index.html';
-        }).catch(error => console.error('লগ আউট করতে সমস্যা হয়েছে:', error));
-    }
-
-    // ডেস্কটপ ও মোবাইল লগআউট বাটনে ইভেন্ট যোগ করা
-    ['logout-btn-desktop', 'logout-btn-mobile'].forEach(id => {
-        const btn = document.getElementById(id);
-        if (btn) btn.addEventListener('click', handleLogout);
-    });
-
-    // ব্যবহারকারীর লগইন স্ট্যাটাস পরিবর্তন হলে এই ফাংশনটি কাজ করবে
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            // ব্যবহারকারী লগইন করা থাকলে Firestore থেকে তার তথ্য আনা হবে
-            db.collection('users').doc(user.uid).get()
-                .then(doc => {
-                    const userData = doc.exists ? doc.data() : { displayName: 'User', role: 'user' };
-                    updateNavUI(user, userData);
-                })
-                .catch(error => {
-                    console.error("Firestore থেকে ব্যবহারকারীর তথ্য আনতে সমস্যা হয়েছে:", error);
-                    // কোনো সমস্যা হলে ডিফল্ট তথ্য দিয়ে UI আপডেট করা হবে
-                    updateNavUI(user, { displayName: 'User', role: 'user' });
-                });
-        } else {
-            // ব্যবহারকারী লগইন করা না থাকলে UI আপডেট করা হবে
-            updateNavUI(null, null);
-        }
-    });
-}
-
-// === ন্যাভিগেশন UI আপডেট করার ফাংশন ===
-function updateNavUI(user, userData) {
-    const isLoggedIn = !!user; // ব্যবহারকারী লগইন করা আছে কিনা (true/false)
-    const isAdmin = isLoggedIn && userData.role === 'admin'; // ব্যবহারকারী অ্যাডমিন কিনা (true/false)
-
-    // প্রয়োজনীয় সব ইলিমেন্টকে একবারে ধরা
-    const elements = {
-        guestDesktop: document.getElementById('guest-link-desktop'),
-        userDesktop: document.getElementById('user-link-desktop'),
-        logoutDesktop: document.getElementById('logout-link-desktop'),
-        adminDesktop: document.getElementById('admin-link-desktop'), // অ্যাডমিন লিংক
-        userNameDisplay: document.getElementById('user-name-display'),
-        
-        guestMobile: document.getElementById('guest-link-mobile'),
-        userMobile: document.getElementById('user-link-mobile'),
-        logoutMobile: document.getElementById('logout-link-mobile'),
-        adminMobile: document.getElementById('admin-link-mobile') // অ্যাডমিন লিংক
-    };
-
-    // সাধারণ ব্যবহারকারী ও গেস্টদের জন্য লিঙ্ক দেখানো/লুকানো
-    if (elements.guestDesktop) elements.guestDesktop.style.display = isLoggedIn ? 'none' : 'block';
-    if (elements.guestMobile) elements.guestMobile.style.display = isLoggedIn ? 'none' : 'block';
-    
-    if (elements.userDesktop) elements.userDesktop.style.display = isLoggedIn ? 'block' : 'none';
-    if (elements.userMobile) elements.userMobile.style.display = isLoggedIn ? 'block' : 'none';
-
-    if (elements.logoutDesktop) elements.logoutDesktop.style.display = isLoggedIn ? 'block' : 'none';
-    if (elements.logoutMobile) elements.logoutMobile.style.display = isLoggedIn ? 'block' : 'none';
-
-    // ইউজারের নাম দেখানো
-    if (elements.userNameDisplay) {
-        elements.userNameDisplay.textContent = isLoggedIn ? `স্বাগতম, ${userData.displayName.split(' ')[0]}`: '';
-    }
-
-    // শুধুমাত্র অ্যাডমিনের জন্য অ্যাডমিন প্যানেল লিঙ্ক দেখানো/লুকানো
-    if (elements.adminDesktop) elements.adminDesktop.style.display = isAdmin ? 'block' : 'none';
-    if (elements.adminMobile) elements.adminMobile.style.display = isAdmin ? 'block' : 'none';
-}
-
-
-// === পেজ লোড হলে অন্যান্য সব ফাংশনালিটি চালু করা ===
+// === পেজ লোড হলে সকল ফাংশনালিটি চালু করা ===
 document.addEventListener('DOMContentLoaded', function () {
-    // আপনার পুরনো কার্যকরী কোডগুলো এখানে অপরিবর্তিত রাখা হয়েছে
     const header = document.querySelector('.site-header');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     const navToggle = document.querySelector('.mobile-nav-toggle');
@@ -102,12 +11,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const notificationBtn = document.getElementById('show-notification-btn');
     const notificationModal = document.getElementById('notification-modal');
     const closeNotificationBtn = document.getElementById('close-notification-modal');
-    const notificationList = document.getElementById('notification-list');
-    const notificationBadge = document.getElementById('notification-badge');
-    const clearAllBtn = document.getElementById('clear-all-notifications-btn');
     const closeFooterBtn = document.getElementById('close-notification-btn-footer');
+    
+    // ---------------------------------------------------
+    // বিভাগ ১: সাধারণ UI ফাংশনালিটি (স্ক্রল, মোবাইল মেনু ইত্যাদি)
+    // ---------------------------------------------------
 
-    // স্ক্রল করলে হেডার এবং স্ক্রল-টু-টপ বাটন নিয়ন্ত্রণ
     window.addEventListener('scroll', () => {
         if (header) header.classList.toggle('scrolled', window.scrollY > 10);
         if (scrollTopBtn) scrollTopBtn.style.display = (window.scrollY > 100) ? "block" : "none";
@@ -117,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
         scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
 
-    // মোবাইল মেনু টগল করার ফাংশন
     function toggleMobileMenu(show) {
         if (!mobileNavMenu || !navToggle) return;
         mobileNavMenu.setAttribute('data-visible', show);
@@ -132,69 +40,211 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // নোটিফিকেশন সিস্টেম (আপনার পুরনো কোড)
-    if (typeof notifications !== 'undefined') {
-        const isSubjectPage = window.location.pathname.includes('/subject/');
-        const audioPath = isSubjectPage ? '../audio/notification.wav' : 'audio/notification.wav';
-        const notificationSound = new Audio(audioPath);
-        const getSeenNotifications = () => JSON.parse(localStorage.getItem('seenNotifications') || '[]');
-        const updateNotificationBadge = () => {
-            if (!notificationBadge) return;
-            const seenIds = getSeenNotifications();
-            const unseenCount = notifications.filter(n => !seenIds.includes(n.id)).length;
-            const lastBadgeCount = parseInt(localStorage.getItem('lastBadgeCount') || '0');
-            if (unseenCount > 0 && unseenCount > lastBadgeCount) {
-                notificationSound.play().catch(e => console.error("Sound play error:", e));
-            }
-            localStorage.setItem('lastBadgeCount', unseenCount);
+    // ---------------------------------------------------
+    // বিভাগ ২: নতুন ডাইনামিক নোটিফিকেশন সিস্টেম (Firestore ভিত্তিক)
+    // ---------------------------------------------------
+
+    let lastSeenTimestamp = null; // সর্বশেষ দেখা নোটিফিকেশনের সময়
+
+    // আন-রিড নোটিফিকেশন সংখ্যা গণনা এবং ব্যাজ আপডেট
+    function updateNotificationBadge() {
+        if (typeof firebase === 'undefined' || !firebase.auth().currentUser) return;
+
+        const db = firebase.firestore();
+        const notificationBadge = document.getElementById('notification-badge');
+        if (!notificationBadge) return;
+
+        // লোকাল স্টোরেজ থেকে সর্বশেষ দেখা নোটিফিকেশনের সময় আনা
+        lastSeenTimestamp = localStorage.getItem('lastSeenNotificationTimestamp');
+        
+        let query = db.collection('notifications');
+        // যদি আগে কোনো নোটিফিকেশন দেখা হয়ে থাকে, তবে তার পরেরগুলো গণনা করা হবে
+        if (lastSeenTimestamp) {
+            query = query.where('createdAt', '>', new Date(parseInt(lastSeenTimestamp)));
+        }
+
+        query.get().then(snapshot => {
+            const unseenCount = snapshot.size;
             notificationBadge.textContent = unseenCount;
             notificationBadge.style.display = unseenCount > 0 ? 'inline-block' : 'none';
-        };
-        const openNotificationModal = () => {
-            if (!notificationModal || !notificationList) return;
-            if (clearAllBtn) clearAllBtn.disabled = notifications.length === 0;
-            notificationList.innerHTML = notifications.length > 0
-                ? [...notifications].reverse().map(n => `<li>${n.message} <small>(${n.date})</small></li>`).join('')
-                : "<li>কোনো নতুন নোটিফিকেশন নেই।</li>";
-            notificationModal.classList.add('is-visible');
-            document.body.style.overflow = 'hidden';
-            localStorage.setItem('seenNotifications', JSON.stringify(notifications.map(n => n.id)));
-            setTimeout(updateNotificationBadge, 100);
-        };
-        const closeNotificationModal = () => {
-            if (!notificationModal) return;
-            notificationModal.classList.remove('is-visible');
-            document.body.style.overflow = '';
-        };
-        if (notificationBtn) notificationBtn.addEventListener('click', openNotificationModal);
-        if (closeNotificationBtn) closeNotificationBtn.addEventListener('click', closeNotificationModal);
-        if (closeFooterBtn) closeFooterBtn.addEventListener('click', closeNotificationModal);
-        if (clearAllBtn) {
-            clearAllBtn.addEventListener('click', () => {
-                localStorage.removeItem('seenNotifications');
-                localStorage.removeItem('lastBadgeCount');
-                updateNotificationBadge();
-                if (notificationList) {
-                    notificationList.innerHTML = "<li>সমস্ত নোটিফিকেশন সফলভাবে ক্লিয়ার করা হয়েছে।</li>";
+        }).catch(err => console.error("Error fetching unseen notifications count:", err));
+    }
+
+    // নোটিফিকেশন মডাল খোলা এবং Firestore থেকে ডেটা লোড করা
+    function openNotificationModal() {
+        if (!notificationModal) return;
+        const notificationList = document.getElementById('notification-list');
+        const clearAllBtn = document.getElementById('clear-all-notifications-btn');
+
+        const db = firebase.firestore();
+        db.collection('notifications').orderBy('createdAt', 'desc').limit(20).get()
+            .then(snapshot => {
+                notificationList.innerHTML = ''; 
+                if (snapshot.empty) {
+                    notificationList.innerHTML = "<li>কোনো নতুন নোটিফিকেশন নেই।</li>";
+                    if (clearAllBtn) clearAllBtn.disabled = true;
+                } else {
+                    snapshot.forEach(doc => {
+                        const notification = doc.data();
+                        const item = document.createElement('li');
+                        item.innerHTML = `
+                            <a href="${notification.link || '#'}" class="notification-item-link">
+                                <div class="modal-notif-title">${notification.title}</div>
+                                <div class="modal-notif-body">${notification.body}</div>
+                                <small>${formatTimeAgo(notification.createdAt)}</small>
+                            </a>`;
+                        notificationList.appendChild(item);
+                    });
+                    if (clearAllBtn) clearAllBtn.disabled = false;
                 }
-                clearAllBtn.disabled = true;
-                setTimeout(closeNotificationModal, 1500);
+
+                // মডাল দেখানো
+                notificationModal.classList.add('is-visible');
+                document.body.style.overflow = 'hidden';
+
+                // নতুন নোটিফিকেশন ব্যাজ রিসেট করা
+                if (!snapshot.empty) {
+                    const latestTimestamp = snapshot.docs[0].data().createdAt.toDate().getTime();
+                    localStorage.setItem('lastSeenNotificationTimestamp', latestTimestamp);
+                }
+                setTimeout(updateNotificationBadge, 100);
+
+            }).catch(error => {
+                console.error("Error loading notifications for modal:", error);
+                notificationList.innerHTML = "<li>নোটিফিকেশন লোড করতে সমস্যা হয়েছে।</li>";
             });
+    }
+
+    function closeNotificationModal() {
+        if (!notificationModal) return;
+        notificationModal.classList.remove('is-visible');
+        document.body.style.overflow = '';
+    }
+
+    if (notificationBtn) notificationBtn.addEventListener('click', openNotificationModal);
+    if (closeNotificationBtn) closeNotificationBtn.addEventListener('click', closeNotificationModal);
+    if (closeFooterBtn) closeFooterBtn.addEventListener('click', closeNotificationModal);
+
+    // সব নোটিফিকেশন "পড়া" হিসাবে চিহ্নিত করা (আসলে শুধু লোকাল স্টোরেজ ক্লিয়ার)
+    const clearAllBtn = document.getElementById('clear-all-notifications-btn');
+    if (clearAllBtn) {
+        clearAllBtn.addEventListener('click', () => {
+            // এই ফাংশনটি এখন আর নোটিফিকেশন ডিলিট করবে না, শুধু seen স্ট্যাটাস রিসেট করবে
+            localStorage.removeItem('lastSeenNotificationTimestamp');
+            const notificationList = document.getElementById('notification-list');
+            if (notificationList) {
+                notificationList.innerHTML = "<li>সব নোটিফিকেশন পুনরায় আন-রিড করা হয়েছে।</li>";
+            }
+            updateNotificationBadge();
+            setTimeout(closeNotificationModal, 1500);
+        });
+    }
+    
+    // মডালের বাইরে ক্লিক করলে বা Escape চাপলে বন্ধ করা
+    if (notificationModal) {
+        notificationModal.addEventListener('click', (event) => {
+            if (event.target === notificationModal) closeNotificationModal();
+        });
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (mobileNavMenu && mobileNavMenu.getAttribute('data-visible') === 'true') toggleMobileMenu(false);
+            if (notificationModal && notificationModal.classList.contains('is-visible')) closeNotificationModal();
         }
-        if (notificationModal) {
-            notificationModal.addEventListener('click', (event) => {
-                if (event.target === notificationModal) closeNotificationModal();
-            });
+    });
+
+    // ---------------------------------------------------
+    // বিভাগ ৩: ফায়ারবেস অথেন্টিকেশন এবং UI আপডেট
+    // ---------------------------------------------------
+
+    function initializeFirebaseServices() {
+        if (typeof firebase === 'undefined') {
+            setTimeout(initializeFirebaseServices, 100);
+            return;
         }
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                if (mobileNavMenu && mobileNavMenu.getAttribute('data-visible') === 'true') toggleMobileMenu(false);
-                if (notificationModal && notificationModal.classList.contains('is-visible')) closeNotificationModal();
+
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        auth.onAuthStateChanged(user => {
+            updateNavUI(user);
+            if (user) {
+                // ব্যবহারকারী লগইন করা থাকলেই নোটিফিকেশন ব্যাজ আপডেট হবে
+                updateNotificationBadge(); 
+            } else {
+                // লগ আউট হলে ব্যাজ হাইড করে দেওয়া
+                const notificationBadge = document.getElementById('notification-badge');
+                if (notificationBadge) notificationBadge.style.display = 'none';
             }
         });
-        updateNotificationBadge();
+
+        // লগআউট বাটনে ইভেন্ট যোগ করা
+        document.body.addEventListener('click', (e) => {
+            if (e.target.id === 'logout-btn-desktop' || e.target.id === 'logout-btn-mobile') {
+                e.preventDefault();
+                auth.signOut().catch(error => console.error('লগ আউট করতে সমস্যা হয়েছে:', error));
+            }
+        });
     }
+
+    function updateNavUI(user) {
+        const isLoggedIn = !!user;
+        const elements = {
+            guestDesktop: document.getElementById('guest-link-desktop'),
+            userDesktop: document.getElementById('user-info-cluster'),
+            logoutDesktop: document.getElementById('logout-link-desktop'),
+            adminDesktop: document.getElementById('admin-link-desktop'),
+            userNameDisplay: document.getElementById('user-name-display'),
+            guestMobile: document.getElementById('guest-link-mobile'),
+            userMobile: document.getElementById('user-link-mobile'),
+            logoutMobile: document.getElementById('logout-link-mobile'),
+            adminMobile: document.getElementById('admin-link-mobile')
+        };
+
+        if (elements.guestDesktop) elements.guestDesktop.style.display = isLoggedIn ? 'none' : 'block';
+        if (elements.guestMobile) elements.guestMobile.style.display = isLoggedIn ? 'none' : 'block';
+        
+        if (elements.userDesktop) elements.userDesktop.style.display = isLoggedIn ? 'flex' : 'none';
+        if (elements.logoutDesktop) elements.logoutDesktop.style.display = isLoggedIn ? 'block' : 'none';
+        
+        if (elements.userMobile) elements.userMobile.style.display = 'none'; // মোবাইল মেনুতে আর ইউজার নেম দেখাচ্ছি না
+        if (elements.logoutMobile) elements.logoutMobile.style.display = isLoggedIn ? 'block' : 'none';
+        
+        if (isLoggedIn) {
+            if (elements.userNameDisplay) {
+                elements.userNameDisplay.textContent = user.displayName ? `${user.displayName.split(' ')[0]}` : 'User';
+            }
+            // অ্যাডমিন রোল চেক
+            firebase.firestore().collection('users').doc(user.uid).get().then(doc => {
+                const isAdmin = doc.exists && doc.data().role === 'admin';
+                if (elements.adminDesktop) elements.adminDesktop.style.display = isAdmin ? 'block' : 'none';
+                if (elements.adminMobile) elements.adminMobile.style.display = isAdmin ? 'block' : 'none';
+            });
+        } else {
+            if (elements.adminDesktop) elements.adminDesktop.style.display = 'none';
+            if (elements.adminMobile) elements.adminMobile.style.display = 'none';
+        }
+    }
+    
+    // সবশেষে ফায়ারবেস সার্ভিস চালু করা
+    initializeFirebaseServices();
 });
 
-// সবশেষে ফায়ারবেস সার্ভিস চালু করা
-initializeFirebaseServices();
+// === হেল্পার ফাংশন: সময় ফরম্যাট করার জন্য ===
+function formatTimeAgo(timestamp) {
+    if (!timestamp || !timestamp.toDate) return '';
+    const now = new Date();
+    const seconds = Math.floor((now - timestamp.toDate()) / 1000);
+    if (seconds < 60) return "এইমাত্র";
+    let interval = seconds / 31536000;
+    if (interval > 1) return Math.floor(interval) + " বছর আগে";
+    interval = seconds / 2592000;
+    if (interval > 1) return Math.floor(interval) + " মাস আগে";
+    interval = seconds / 86400;
+    if (interval > 1) return Math.floor(interval) + " দিন আগে";
+    interval = seconds / 3600;
+    if (interval > 1) return Math.floor(interval) + " ঘন্টা আগে";
+    interval = seconds / 60;
+    if (interval > 1) return Math.floor(interval) + " মিনিট আগে";
+    return Math.floor(seconds) + " সেকেন্ড আগে";
+}
