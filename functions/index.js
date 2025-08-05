@@ -1,7 +1,7 @@
-// functions/index.js (সংশোধিত ও সঠিক কোড)
+// functions/index.js (সামান্য আপডেট সহ আপনার v2 কোড)
 
 const { onDocumentCreated } = require("firebase-functions/v2/firestore");
-const { getFirestore } = require("firebase-admin/firestore");
+const { getFirestore, FieldValue } = require("firebase-admin/firestore"); // FieldValue ইম্পোর্ট করুন
 const { getMessaging } = require("firebase-admin/messaging");
 const admin = require("firebase-admin");
 
@@ -22,20 +22,18 @@ exports.sendPushNotification = onDocumentCreated("notificationQueue/{docId}", as
 
     console.log(`Preparing notification: "${title}"`);
 
-    // ============= নতুন সংযোজন: নোটিফিকেশন হিস্ট্রি সেভ করা =============
     const db = getFirestore();
     try {
         await db.collection("notifications").add({
             title: title,
             body: body,
             link: link,
-            createdAt: new Date(), // বর্তমান সময় যোগ করা হলো
+            createdAt: FieldValue.serverTimestamp(), // <-- new Date() এর পরিবর্তে এটি ব্যবহার করুন
         });
         console.log("Notification saved to 'notifications' collection.");
     } catch (error) {
         console.error("Error saving notification to Firestore:", error);
     }
-    // =================================================================
 
     const usersSnapshot = await db.collection("users").get();
     const tokens = [];
@@ -51,23 +49,19 @@ exports.sendPushNotification = onDocumentCreated("notificationQueue/{docId}", as
         return snap.ref.delete();
     }
 
-    // ============= সবচেয়ে গুরুত্বপূর্ণ পরিবর্তন: Payload-এর গঠন =============
     const payload = {
-        // 'notification' অবজেক্টের পরিবর্তে 'data' ব্যবহার করুন
         data: {
             title: title,
             body: body,
-            icon: `${siteUrl}/images/logo.jpg`, // সম্পূর্ণ URL ব্যবহার করুন
+            icon: `${siteUrl}/images/logo.jpg`,
             link: link,
         }
     };
-    // ===================================================================
 
     console.log(`Sending notification to ${tokens.length} tokens.`);
 
     const messaging = getMessaging();
     await messaging.sendToDevice(tokens, payload);
 
-    // কাজ শেষ, অনুরোধ ডিলিট করুন
     return snap.ref.delete();
 });
