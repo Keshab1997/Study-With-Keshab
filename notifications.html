@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সকল বিজ্ঞপ্তি - Study With Keshab</title>
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- মূল CSS ফাইল -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* এই পেজের জন্য নির্দিষ্ট স্টাইল */
+        .notifications-page-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color, #007bff);
+            padding-bottom: 15px;
+        }
+        .all-notifications-list .notification-list-item {
+            background-color: #fff;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 20px;
+        }
+        .all-notifications-list .notification-list-item:hover {
+             transform: translateY(-3px);
+             box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+        }
+    </style>
+</head>
+<body>
+    <!-- হেডার (Header) -->
+    <header class="site-header">
+        <!-- আপনার index.html থেকে সম্পূর্ণ হেডার অংশটি এখানে কপি-পেস্ট করুন -->
+    </header>
+
+    <main class="notifications-page-container">
+        <h1 class="page-title"><i class="fas fa-bell"></i> সকল বিজ্ঞপ্তি</h1>
+        
+        <div class="all-notifications-list" id="all-notifications-list">
+            <!-- জাভাস্ক্রিপ্ট এখানে সব নোটিফিকেশন দেখাবে -->
+            <div class="notification-list-empty">বিজ্ঞপ্তি লোড হচ্ছে...</div>
+        </div>
+    </main>
+
+    <!-- ফুটার (Footer) -->
+    <footer class="site-footer-container">
+         <!-- আপনার index.html থেকে সম্পূর্ণ ফুটার অংশটি এখানে কপি-পেস্ট করুন -->
+    </footer>
+
+    <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <script src="js/firebase-config.js"></script>
+    <script src="js/script.js"></script>
+    <!-- এই পেজের জন্য নতুন জাভাস্ক্রিপ্ট ফাইল -->
+    <script src="js/notifications.js"></script>
+</body>
+</html>
