@@ -34,6 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const userTableBody = document.getElementById('user-table-body');
     const userSearchInput = document.getElementById('user-search-input');
     const userListLoading = document.getElementById('user-list-loading');
+    
+    // Notification Form Elements
+    const notificationForm = document.getElementById('notification-form');
+    const notificationStatus = document.getElementById('notification-status');
 
     // Leaderboard Elements
     const chapterSelect = document.getElementById('chapter-select');
@@ -67,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const userDocRef = db.collection('users').doc(user.uid);
             const doc = await userDocRef.get();
-
             if (doc.exists && doc.data().role === 'admin') {
                 initializeAdminPanel(user, doc.data());
             } else {
@@ -87,36 +90,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const initializeAdminPanel = (user, adminData) => {
         accessDeniedMessage.style.display = 'none';
         adminPageContainer.style.display = 'flex';
-
         adminNameSidebar.textContent = adminData.displayName || 'Admin';
         adminProfilePicSidebar.src = adminData.photoURL || 'images/default-avatar.png';
         adminInfoSidebar.style.display = 'flex';
-
         setupEventListeners();
         loadDashboardData();
     };
 
     // --- Event Listeners Setup ---
     const setupEventListeners = () => {
-        navDashboard.addEventListener('click', (e) => {
-            e.preventDefault();
-            switchTab('dashboard');
-        });
-
-        navLeaderboard.addEventListener('click', (e) => {
-            e.preventDefault();
-            switchTab('leaderboard');
-        });
-
-        adminLogoutBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            auth.signOut().then(() => {
-                window.location.href = 'index.html';
-            });
-        });
-
+        navDashboard.addEventListener('click', (e) => { e.preventDefault(); switchTab('dashboard'); });
+        navLeaderboard.addEventListener('click', (e) => { e.preventDefault(); switchTab('leaderboard'); });
+        adminLogoutBtn.addEventListener('click', (e) => { e.preventDefault(); auth.signOut().then(() => { window.location.href = 'index.html'; }); });
         userSearchInput.addEventListener('input', handleUserSearch);
-
         chapterSelect.addEventListener('change', () => {
             const chapterName = chapterSelect.value;
             if (chapterName) {
@@ -125,20 +111,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 leaderboardTableBody.innerHTML = '<tr><td colspan="4">অনুগ্রহ করে একটি বিষয় নির্বাচন করুন।</td></tr>';
             }
         });
-        
         userTableBody.addEventListener('click', handleUserTableActions);
         leaderboardTableBody.addEventListener('click', handleLeaderboardTableActions);
-
         modalCloseButton.addEventListener('click', () => scoreDetailsModal.style.display = 'none');
-        window.addEventListener('click', (event) => {
-            if (event.target === scoreDetailsModal) {
-                scoreDetailsModal.style.display = 'none';
-            }
-        });
-
-        mobileMenuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('is-visible');
-        });
+        window.addEventListener('click', (event) => { if (event.target === scoreDetailsModal) { scoreDetailsModal.style.display = 'none'; } });
+        mobileMenuToggle.addEventListener('click', () => { sidebar.classList.toggle('is-visible'); });
+        
+        // --- Push Notification Form Event Listener ---
+        if (notificationForm) {
+            notificationForm.addEventListener('submit', handleNotificationSubmit);
+        }
     };
 
     // --- Tab Switching Logic ---
@@ -146,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.sidebar-nav li').forEach(li => li.classList.remove('active'));
         dashboardContent.style.display = 'none';
         leaderboardContent.style.display = 'none';
-
         if (tabName === 'dashboard') {
             navDashboard.classList.add('active');
             dashboardContent.style.display = 'block';
@@ -161,14 +142,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 populateChapterDropdown();
             }
         }
-         sidebar.classList.remove('is-visible');
+        sidebar.classList.remove('is-visible');
     };
     
     const updateBreadcrumb = (currentPage) => {
-        breadcrumbNav.innerHTML = `
-            <li class="breadcrumb-item"><a href="#">Admin</a></li>
-            <li class="breadcrumb-item active" aria-current="page">${currentPage}</li>
-        `;
+        breadcrumbNav.innerHTML = `<li class="breadcrumb-item"><a href="#">Admin</a></li><li class="breadcrumb-item active" aria-current="page">${currentPage}</li>`;
     };
 
     // --- Dashboard & Data Caching ---
@@ -179,28 +157,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const usersSnapshot = await db.collection('users').get();
             allUsersCache = [];
             allChaptersCache.clear();
-            
             usersSnapshot.forEach(doc => {
                 const userData = { id: doc.id, ...doc.data() };
                 allUsersCache.push(userData);
-
                 if (userData.chapters && typeof userData.chapters === 'object') {
-                    Object.keys(userData.chapters).forEach(chapterName => {
-                        allChaptersCache.add(chapterName);
-                    });
+                    Object.keys(userData.chapters).forEach(chapterName => allChaptersCache.add(chapterName));
                 }
             });
-            
             allUsersCache.sort((a,b) => (a.displayName || '').localeCompare(b.displayName || ''));
-            
             let adminCount = allUsersCache.filter(user => user.role === 'admin').length;
-
             totalUsersStat.textContent = allUsersCache.length;
             totalAdminsStat.textContent = adminCount;
-
             renderUserTable(allUsersCache);
             populateChapterDropdown();
-
         } catch (error) {
             console.error("Error loading dashboard data: ", error);
             userTableBody.innerHTML = '<tr><td colspan="6">ব্যবহারকারীদের তালিকা লোড করতে সমস্যা হয়েছে।</td></tr>';
@@ -215,9 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
             userTableBody.innerHTML = '<tr><td colspan="6">কোনো ব্যবহারকারী পাওয়া যায়নি।</td></tr>';
             return;
         }
-
         users.forEach(user => {
-            const lastLogin = formatTimestamp(user.lastLogin); // Corrected function call
+            const lastLogin = formatTimestamp(user.lastLogin);
             const tr = document.createElement('tr');
             tr.dataset.userId = user.id;
             tr.innerHTML = `
@@ -239,10 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handleUserSearch = () => {
         const searchTerm = userSearchInput.value.toLowerCase().trim();
-        const filteredUsers = allUsersCache.filter(user => 
-            (user.displayName || '').toLowerCase().includes(searchTerm) || 
-            (user.email || '').toLowerCase().includes(searchTerm)
-        );
+        const filteredUsers = allUsersCache.filter(user => (user.displayName || '').toLowerCase().includes(searchTerm) || (user.email || '').toLowerCase().includes(searchTerm));
         renderUserTable(filteredUsers);
     };
     
@@ -252,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const userId = select.dataset.userId;
             const currentRole = select.dataset.currentRole;
             const newRole = select.value;
-
             if (newRole !== currentRole && confirm(`আপনি কি এই ব্যবহারকারীর ভূমিকা "${currentRole}" থেকে "${newRole}" এ পরিবর্তন করতে নিশ্চিত?`)) {
                 updateUserRole(userId, newRole);
             } else {
@@ -275,6 +239,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // --- Notification Submission Logic ---
+    const handleNotificationSubmit = (e) => {
+        e.preventDefault();
+        const title = document.getElementById('notification-title').value;
+        const body = document.getElementById('notification-body').value;
+        const link = document.getElementById('notification-link').value;
+        if (!title || !body) {
+            alert('শিরোনাম এবং বার্তা উভয়ই পূরণ করুন।');
+            return;
+        }
+        console.log('Creating notification request...');
+        db.collection('notificationQueue').add({
+            title: title,
+            body: body,
+            link: link || 'index.html',
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        .then(() => {
+            console.log('Notification request sent successfully.');
+            notificationStatus.textContent = 'সফলভাবে নোটিফিকেশন পাঠানোর অনুরোধ জমা হয়েছে। কিছুক্ষণের মধ্যে সবাই পেয়ে যাবে।';
+            notificationStatus.className = 'success';
+            notificationStatus.style.display = 'block';
+            notificationForm.reset();
+        })
+        .catch(error => {
+            console.error('Error sending notification request: ', error);
+            notificationStatus.textContent = 'ত্রুটি! অনুরোধ পাঠাতে সমস্যা হয়েছে।';
+            notificationStatus.className = 'error';
+            notificationStatus.style.display = 'block';
+        });
+        setTimeout(() => { notificationStatus.style.display = 'none'; }, 6000);
+    };
+
     // --- Leaderboard Functionality ---
     const populateChapterDropdown = () => {
         chapterSelect.innerHTML = '<option value="">-- বিষয় বাছুন --</option>';
@@ -291,35 +288,21 @@ document.addEventListener('DOMContentLoaded', () => {
         leaderboardLoading.style.display = 'block';
         leaderboardTableBody.innerHTML = '';
         const leaderboardData = [];
-
         allUsersCache.forEach(user => {
             if (user.chapters && user.chapters[chapterName] && user.chapters[chapterName].quiz_sets) {
                 const quizSets = user.chapters[chapterName].quiz_sets;
                 let chapterTotalScore = 0;
                 const detailedScoresForModal = [];
-
                 Object.keys(quizSets).forEach(setName => {
                     const setData = quizSets[setName];
                     chapterTotalScore += setData.totalScore || setData.score || 0;
-                    detailedScoresForModal.push({
-                        setName: setName.replace(/_/g, ' '), // Replace underscore with space for display
-                        score: setData.score,
-                        maxScore: setData.totalQuestions
-                    });
+                    detailedScoresForModal.push({ setName: setName.replace(/_/g, ' '), score: setData.score, maxScore: setData.totalQuestions });
                 });
-
                 if (chapterTotalScore > 0) {
-                    leaderboardData.push({
-                        userId: user.id,
-                        userName: user.displayName,
-                        userPhoto: user.photoURL,
-                        totalScore: chapterTotalScore,
-                        detailedScores: detailedScoresForModal
-                    });
+                    leaderboardData.push({ userId: user.id, userName: user.displayName, userPhoto: user.photoURL, totalScore: chapterTotalScore, detailedScores: detailedScoresForModal });
                 }
             }
         });
-
         leaderboardData.sort((a, b) => b.totalScore - a.totalScore);
         renderLeaderboardTable(leaderboardData);
         leaderboardLoading.style.display = 'none';
@@ -331,24 +314,15 @@ document.addEventListener('DOMContentLoaded', () => {
             leaderboardTableBody.innerHTML = '<tr><td colspan="4">এই বিষয়ের জন্য কোনো লিডারবোর্ড ডেটা নেই।</td></tr>';
             return;
         }
-
         data.forEach((entry, index) => {
             const tr = document.createElement('tr');
             const detailsJson = JSON.stringify(entry.detailedScores || []);
             const userName = entry.userName || 'Unknown User';
-            
             tr.innerHTML = `
                 <td>${index + 1}</td>
-                <td class="user-cell">
-                    <img src="${entry.userPhoto || 'images/default-avatar.png'}" alt="Profile Pic" class="table-profile-pic">
-                    <span>${userName}</span>
-                </td>
+                <td class="user-cell"><img src="${entry.userPhoto || 'images/default-avatar.png'}" alt="Profile Pic" class="table-profile-pic"><span>${userName}</span></td>
                 <td>${entry.totalScore}</td>
-                <td class="action-cell">
-                    <button class="btn-view-details" data-user-name="${userName}" data-details='${detailsJson}'>
-                        বিস্তারিত দেখুন
-                    </button>
-                </td>
+                <td class="action-cell"><button class="btn-view-details" data-user-name="${userName}" data-details='${detailsJson}'>বিস্তারিত দেখুন</button></td>
             `;
             leaderboardTableBody.appendChild(tr);
         });
@@ -371,37 +345,22 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             details.forEach(item => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${item.setName || 'N/A'}</td>
-                    <td>${item.score}</td>
-                    <td>${item.maxScore}</td>
-                `;
+                tr.innerHTML = `<td>${item.setName || 'N/A'}</td><td>${item.score}</td><td>${item.maxScore}</td>`;
                 modalScoreTableBody.appendChild(tr);
-            });
+});
         }
         scoreDetailsModal.style.display = 'flex';
     };
 
     // --- Utility Functions ---
-    /**
-     * Formats a Firestore Timestamp into a readable string. Handles invalid/missing timestamps.
-     * @param {firebase.firestore.Timestamp} timestamp The timestamp to format.
-     * @returns {string} A formatted date string or 'N/A'.
-     */
     const formatTimestamp = (timestamp) => {
-        // Handle null, undefined, or missing timestamp
-        if (!timestamp || typeof timestamp.toDate !== 'function') {
-            return 'N/A';
-        }
+        if (!timestamp || typeof timestamp.toDate !== 'function') { return 'N/A'; }
         try {
             const date = timestamp.toDate();
-            return date.toLocaleString('bn-BD', {
-                day: '2-digit', month: 'short', year: 'numeric',
-                hour: '2-digit', minute: '2-digit', hour12: true
-            });
+            return date.toLocaleString('bn-BD', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
         } catch (error) {
             console.error("Error formatting timestamp:", error);
-            return 'N/A'; // Return N/A if any error occurs during formatting
+            return 'N/A';
         }
     };
 });

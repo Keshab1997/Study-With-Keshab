@@ -49,7 +49,6 @@
             <header class="main-header">
                 <div>
                     <h1 id="page-title">ড্যাশবোর্ড</h1>
-                    <!-- Corrected Breadcrumb Structure -->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb" id="breadcrumb-nav">
                             <li class="breadcrumb-item"><a href="#">Admin</a></li>
@@ -78,6 +77,35 @@
                         </div>
                     </div>
                 </section>
+                
+                <!-- ================== বিজ্ঞপ্তি পাঠানোর নতুন সেকশন ================== -->
+                <section class="send-notification-section">
+                    <div class="section-header">
+                        <h2>বিজ্ঞপ্তি পাঠান (Push Notification)</h2>
+                    </div>
+                    <div class="notification-form-container">
+                        <form id="notification-form">
+                            <div class="form-group">
+                                <label for="notification-title">শিরোনাম (Title)</label>
+                                <input type="text" id="notification-title" placeholder="নোটিফিকেশনের শিরোনাম লিখুন" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="notification-body">বার্তা (Message)</label>
+                                <textarea id="notification-body" rows="4" placeholder="নোটিফিকেশনের বিস্তারিত লিখুন" required></textarea>
+                            </div>
+                             <div class="form-group">
+                                <label for="notification-link">লিঙ্ক (ঐচ্ছিক)</label>
+                                <input type="text" id="notification-link" placeholder="নোটিফিকেশনে ক্লিক করলে কোথায় যাবে? (e.g., index.html)">
+                            </div>
+                            <button type="submit" class="send-btn">
+                                <i class="fas fa-paper-plane"></i> সব ব্যবহারকারীকে পাঠান
+                            </button>
+                        </form>
+                        <div id="notification-status" style="display: none; margin-top: 15px;"></div>
+                    </div>
+                </section>
+                <!-- ================== নতুন সেকশন শেষ ================== -->
+
                 <section class="user-list-section">
                     <div class="section-header">
                         <h2>ব্যবহারকারীদের তালিকা</h2>
