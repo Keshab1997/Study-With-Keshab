@@ -1,5 +1,5 @@
 // =======================================================
-// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ৪.০ - রিয়েল-টাইম ফিড সহ)
+// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ৪.১ - forEach লুপ সংশোধিত)
 // =======================================================
 
 // === পেজ লোড হলে সকল ফাংশনালিটি চালু করা ===
@@ -166,7 +166,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateNavUI(user) {
-        // ... এই ফাংশনটি অপরিবর্তিত আছে ...
         const isLoggedIn = !!user;
         const elements = {
             guestDesktop: document.getElementById('guest-link-desktop'),
@@ -201,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
     // ---------------------------------------------------
-    // বিভাগ ৪: রিয়েল-টাইম নোটিফিকেশন ফিড (নতুন যুক্ত করা হয়েছে)
+    // বিভাগ ৪: রিয়েল-টাইম নোটিফিকেশন ফিড (সঠিক কোড)
     // ---------------------------------------------------
 
     function initializeRealtimeNotificationFeed() {
@@ -223,19 +222,30 @@ document.addEventListener('DOMContentLoaded', function () {
                           feedContainer.innerHTML = '<p>এখনও কোনো বিজ্ঞপ্তি পাঠানো হয়নি।</p>';
                           return;
                       }
+                      
+                      // সঠিক forEach লুপ এখানে যোগ করা হয়েছে
                       snapshot.forEach(doc => {
                           const notification = doc.data();
                           const item = document.createElement('a');
                           item.href = notification.link || '#';
                           item.target = "_blank";
                           item.classList.add('notification-feed-item');
+
+                          // নতুন ডিজাইন অনুযায়ী HTML স্ট্রাকচার
                           item.innerHTML = `
-                              <div class="notification-feed-title">${notification.title}</div>
-                              <div class="notification-feed-body">${notification.body}</div>
-                              <div class="notification-feed-time">${formatTimeAgo(notification.createdAt)}</div>
+                              <div class="notification-icon-wrapper">
+                                  <i class="fas fa-bell"></i>
+                              </div>
+                              <div class="notification-content">
+                                  <div class="notification-feed-title">${notification.title}</div>
+                                  <div class="notification-feed-body">${notification.body}</div>
+                                  <div class="notification-feed-time">${formatTimeAgo(notification.createdAt)}</div>
+                              </div>
                           `;
+                          
                           feedContainer.appendChild(item);
                       });
+
                   }, error => {
                       console.error("Error fetching realtime notifications:", error);
                       feedContainer.innerHTML = '<p>বিজ্ঞপ্তি লোড করতে সমস্যা হয়েছে।</p>';
