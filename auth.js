@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (firebase.messaging.isSupported()) {
         const messaging = firebase.messaging();
         // সাউন্ড ফাইল আগে থেকে লোড করে রাখা
-        const notificationSound = new Audio('/audio/notification.wav'); 
+        const notificationSound = new Audio('audio/notification.wav'); 
 
         messaging.onMessage((payload) => {
             console.log('Foreground message received.', payload);
