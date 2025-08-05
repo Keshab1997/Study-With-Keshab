@@ -5,28 +5,37 @@ service cloud.firestore {
     
     // Users কালেকশনের নিয়ম
     match /users/{userId} {
-      // যে কেউ নিজের ডকুমেন্ট পড়তে পারবে।
-      allow get: if request.auth.uid == userId;
+      // একজন অথেন্টিকেটেড ব্যবহারকারী নিজের ডকুমেন্ট পড়তে এবং আপডেট করতে পারবে।
+      allow get, update: if request.auth.uid == userId;
 
-      // যে কোনো অথেন্টিকেটেড ব্যবহারকারী অন্য ব্যবহারকারীর তালিকা পড়তে পারবে,
-      // কিন্তু শুধুমাত্র অ্যাডমিনরাই অ্যাডমিন প্যানেলে প্রবেশ করতে পারবে (এটি JS কোডে চেক করা হয়েছে)।
-      // এই নিয়মটি অ্যাডমিন প্যানেলকে কাজ করার জন্য প্রয়োজনীয় ডেটা পড়তে দেয়।
-      allow list: if request.auth != null;
-      
-      // একজন ব্যবহারকারী শুধুমাত্র নিজের তথ্য আপডেট করতে পারবে।
-      allow update: if request.auth.uid == userId;
+      // শুধুমাত্র অ্যাডমিনরা সব ব্যবহারকারীর তালিকা পড়তে পারবে।
+      // এটি অ্যাডমিন প্যানেলের জন্য প্রয়োজন।
+      allow list: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
       
       // নতুন ব্যবহারকারী তৈরি করার অনুমতি।
       allow create: if request.auth != null;
     }
 
+    // === লিডারবোর্ডের জন্য নতুন নিয়ম ===
+    match /quiz_scores/{scoreId} {
+      // শুধুমাত্র অ্যাডমিনরা লিডারবোর্ডের জন্য সব স্কোর পড়তে পারবে।
+      // আপনার JS কোড এই কালেকশন থেকে ডেটা 'list' (get) করছে।
+      allow read: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+
+      // ব্যবহারকারীরা নিজেদের স্কোর তৈরি করতে পারবে।
+      // এখানে আমরা চেক করছি যে ডকুমেন্টের userId এবং লগইন করা ব্যবহারকারীর আইডি একই কি না।
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      
+      // ক্লায়েন্ট থেকে স্কোর আপডেট বা ডিলিট করা যাবে না।
+      allow update, delete: if false;
+    }
+
     // NotificationQueue কালেকশনের নিয়ম
     match /notificationQueue/{docId} {
       // শুধুমাত্র অ্যাডমিনরাই এই কালেকশনে লিখতে পারবে।
-      // এই get() ফাংশনটি কাজ করা উচিত কারণ উপরের নিয়মে অ্যাডমিনকে পড়ার অনুমতি দেওয়া আছে।
-      allow create: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      allow create: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
       
-      // অন্য কোনো অপারেশন (read, update, delete) ক্লায়েন্ট থেকে করা যাবে না।
+      // অন্য কোনো অপারেশন ক্লায়েন্ট থেকে করা যাবে না।
       allow read, update, delete: if false;
     }
 
