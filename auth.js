@@ -1,4 +1,4 @@
-// auth.js (সংস্করণ ৪.০ - FCM ইন্টিগ্রেশন সহ চূড়ান্ত)
+// auth.js (সংস্করণ ৫.০ - সার্ভিস ওয়ার্কার পাথ সমাধান সহ চূড়ান্ত)
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================================
-    // বিভাগ ৪: Firebase Cloud Messaging (FCM) সেটআপ - নতুন যুক্ত করা হয়েছে
+    // বিভাগ ৪: Firebase Cloud Messaging (FCM) সেটআপ - আপডেট করা হয়েছে
     // ==========================================================
     
     /**
@@ -130,10 +130,29 @@ document.addEventListener('DOMContentLoaded', function() {
     function setupFcm(user) {
         if (firebase.messaging.isSupported()) {
             const messaging = firebase.messaging();
-            
+
+            // সার্ভিস ওয়ার্কার রেজিস্ট্রেশন অবজেক্ট
+            const serviceWorkerRegistration = navigator.serviceWorker.register('/Study-With-Keshab/firebase-messaging-sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                    return registration;
+                })
+                .catch(err => {
+                    console.error('Service Worker registration failed:', err);
+                    return null;
+                });
+
+            // নোটিফিকেশনের অনুমতি চাওয়া
             messaging.requestPermission().then(() => {
                 console.log('Notification permission granted.');
-                return messaging.getToken();
+                // সার্ভিস ওয়ার্কার রেজিস্ট্রেশন সফল হলে টোকেন চাওয়া
+                return serviceWorkerRegistration;
+            }).then(registration => {
+                if (registration) {
+                    return messaging.getToken({ serviceWorkerRegistration: registration });
+                } else {
+                    throw new Error("Service Worker registration failed, cannot get token.");
+                }
             }).then(token => {
                 if (token) {
                     console.log('FCM Token:', token);
@@ -144,12 +163,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.warn('No registration token available. Request permission to generate one.');
                 }
             }).catch(err => {
-                console.error('Unable to get permission to notify.', err);
+                console.error('An error occurred while setting up FCM:', err);
             });
         } else {
             console.warn("This browser does not support Firebase Messaging.");
         }
     }
+
 
     /**
      * অ্যাপ ফোরগ্রাউন্ডে থাকলে নোটিফিকেশন হ্যান্ডেল করে
