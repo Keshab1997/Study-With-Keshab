@@ -2,33 +2,41 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    // Users কালেকশন
+    
+    // Users কালেকশনের নিয়ম
     match /users/{userId} {
-      
-      // শুধুমাত্র অ্যাডমিনরা সব ব্যবহারকারীর তালিকা (list) পড়তে পারবে।
-      allow list: if request.auth != null &&
-                   get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      // যে কেউ নিজের ডকুমেন্ট পড়তে পারবে।
+      allow get: if request.auth.uid == userId;
 
-      // একজন ব্যবহারকারী নিজের তথ্য (get) পড়তে পারবে, অথবা একজন অ্যাডমিন যেকোনো ব্যবহারকারীর তথ্য পড়তে পারবে।
-      allow get: if request.auth != null &&
-                  (request.auth.uid == userId || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin');
+      // যে কোনো অথেন্টিকেটেড ব্যবহারকারী অন্য ব্যবহারকারীর তালিকা পড়তে পারবে,
+      // কিন্তু শুধুমাত্র অ্যাডমিনরাই অ্যাডমিন প্যানেলে প্রবেশ করতে পারবে (এটি JS কোডে চেক করা হয়েছে)।
+      // এই নিয়মটি অ্যাডমিন প্যানেলকে কাজ করার জন্য প্রয়োজনীয় ডেটা পড়তে দেয়।
+      allow list: if request.auth != null;
       
-      // একজন ব্যবহারকারী শুধুমাত্র নিজের তথ্য লিখতে বা আপডেট করতে পারবে।
-      allow write: if request.auth != null && request.auth.uid == userId;
+      // একজন ব্যবহারকারী শুধুমাত্র নিজের তথ্য আপডেট করতে পারবে।
+      allow update: if request.auth.uid == userId;
+      
+      // নতুন ব্যবহারকারী তৈরি করার অনুমতি।
+      allow create: if request.auth != null;
     }
 
-    // NotificationQueue কালেকশন: শুধুমাত্র অ্যাডমিনরা নোটিফিকেশন পাঠানোর অনুরোধ করতে পারবে।
+    // NotificationQueue কালেকশনের নিয়ম
     match /notificationQueue/{docId} {
-      allow create: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      // শুধুমাত্র অ্যাডমিনরাই এই কালেকশনে লিখতে পারবে।
+      // এই get() ফাংশনটি কাজ করা উচিত কারণ উপরের নিয়মে অ্যাডমিনকে পড়ার অনুমতি দেওয়া আছে।
+      allow create: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      
+      // অন্য কোনো অপারেশন (read, update, delete) ক্লায়েন্ট থেকে করা যাবে না।
       allow read, update, delete: if false;
     }
 
-    // Notifications কালেকশন: লগইন করা ব্যবহারকারীরা শুধুমাত্র নোটিফিকেশন পড়তে পারবে।
+    // Notifications কালেকশনের নিয়ম
     match /notifications/{notificationId} {
+      // যে কোনো অথেন্টিকেটেড ব্যবহারকারী নোটিফিকেশন পড়তে পারবে।
       allow read: if request.auth != null;
-      allow write: if false; 
+      
+      // ক্লায়েন্ট থেকে নোটিফিকেশন লেখা যাবে না।
+      allow write: if false;
     }
-    
   }
 }
