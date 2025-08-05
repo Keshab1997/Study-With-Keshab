@@ -39,6 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const notificationHistoryBody = document.getElementById('notification-history-body');
     const clearAllHistoryBtn = document.getElementById('clear-all-history-btn');
     const notificationHistoryLoading = document.getElementById('notification-history-loading');
+
+    // --- নতুন: Leaderboard Elements ---
+    const leaderboardTableBody = document.getElementById('leaderboard-table-body');
+    const leaderboardLoading = document.getElementById('leaderboard-loading');
     
     let allUsersCache = [];
     
@@ -124,6 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 leaderboardContent.style.display = 'block';
                 if (navDashboardLink) navDashboardLink.parentElement.classList.remove('active');
                 navLeaderboardLink.parentElement.classList.add('active');
+                // --- নতুন: লিডারবোর্ড ট্যাবে ক্লিক করলে ডেটা লোড হবে ---
+                loadLeaderboardData();
             });
         }
     };
@@ -171,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const handleNotificationSubmit = async (e) => {
+    const handleNotificationSubmit = async (e) => { /* ... এই ফাংশনটি অপরিবর্তিত ... */
         e.preventDefault();
         const title = document.getElementById('notification-title').value;
         const body = document.getElementById('notification-body').value;
@@ -207,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     // --- Notification History Functions ---
-    const loadNotificationHistory = () => {
+    const loadNotificationHistory = () => { /* ... এই ফাংশনটি অপরিবর্তিত ... */
         if (notificationHistoryLoading) notificationHistoryLoading.style.display = 'block';
         if (!db) return;
         db.collection('notifications').orderBy('createdAt', 'desc').limit(50)
@@ -236,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const handleHistoryDelete = (e) => {
+    const handleHistoryDelete = (e) => { /* ... এই ফাংশনটি অপরিবর্তিত ... */
         if (e.target.classList.contains('delete-notif-btn')) {
             const docId = e.target.dataset.id;
             if (confirm(`আপনি কি এই বিজ্ঞপ্তিটি মুছে ফেলতে চান?`)) {
@@ -253,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const handleClearAllHistory = () => {
+    const handleClearAllHistory = () => { /* ... এই ফাংশনটি অপরিবর্তিত ... */
         if (confirm("আপনি কি নিশ্চিত যে আপনি সমস্ত বিজ্ঞপ্তির ইতিহাস মুছে ফেলতে চান? এই কাজটি ফেরানো যাবে না।")) {
             const deleteAllNotifications = functions.httpsCallable('deleteAllNotifications');
             clearAllHistoryBtn.textContent = 'মুছে ফেলা হচ্ছে...';
@@ -270,6 +276,79 @@ document.addEventListener('DOMContentLoaded', () => {
                     clearAllHistoryBtn.disabled = false;
                 });
         }
+    };
+
+    // --- নতুন: Leaderboard Functions ---
+    const loadLeaderboardData = async () => {
+        if (leaderboardLoading) leaderboardLoading.style.display = 'block';
+        if (leaderboardTableBody) leaderboardTableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">লিডারবোর্ড লোড হচ্ছে...</td></tr>';
+
+        try {
+            const usersSnapshot = await db.collection('users').get();
+            let leaderboardEntries = [];
+
+            usersSnapshot.forEach(doc => {
+                const user = doc.data();
+                const userId = doc.id;
+                let totalScore = 0;
+                let quizzesCompleted = 0;
+
+                if (user.quiz_sets && typeof user.quiz_sets === 'object') {
+                    Object.values(user.quiz_sets).forEach(quiz => {
+                        if (quiz.totalScore && typeof quiz.totalScore === 'number') {
+                            totalScore += quiz.totalScore;
+                            quizzesCompleted++;
+                        }
+                    });
+                }
+                
+                if (quizzesCompleted > 0) {
+                    leaderboardEntries.push({
+                        id: userId,
+                        displayName: user.displayName || 'Unknown User',
+                        photoURL: user.photoURL || 'images/default-avatar.png',
+                        totalScore: totalScore,
+                        quizzesCompleted: quizzesCompleted
+                    });
+                }
+            });
+
+            leaderboardEntries.sort((a, b) => b.totalScore - a.totalScore);
+
+            renderLeaderboard(leaderboardEntries);
+
+        } catch (error) {
+            console.error("Error loading leaderboard data:", error);
+            if (leaderboardTableBody) leaderboardTableBody.innerHTML = `<tr><td colspan="4" style="text-align:center;">লিডারবোর্ড লোড করতে সমস্যা হয়েছে।</td></tr>`;
+        } finally {
+            if (leaderboardLoading) leaderboardLoading.style.display = 'none';
+        }
+    };
+
+    const renderLeaderboard = (entries) => {
+        if (!leaderboardTableBody) return;
+        leaderboardTableBody.innerHTML = '';
+
+        if (entries.length === 0) {
+            leaderboardTableBody.innerHTML = `<tr><td colspan="4" style="text-align:center;">লিডারবোর্ডের জন্য কোনো ডেটা পাওয়া যায়নি।</td></tr>`;
+            return;
+        }
+
+        entries.forEach((entry, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><span class="rank-badge">${index + 1}</span></td>
+                <td>
+                    <div class="user-cell">
+                        <img src="${entry.photoURL}" alt="Profile" class="user-table-pic">
+                        <span>${entry.displayName}</span>
+                    </div>
+                </td>
+                <td><strong>${entry.totalScore}</strong></td>
+                <td>${entry.quizzesCompleted}</td>
+            `;
+            leaderboardTableBody.appendChild(tr);
+        });
     };
 
     // --- Utility Function ---
