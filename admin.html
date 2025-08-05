@@ -4,22 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>অ্যাডমিন প্যানেল - Study With Keshab</title>
-    <!-- Github Pages এ সঠিকভাবে Path কাজ করার জন্য Base Tag -->
     <base href="/Study-With-Keshab/">
-    
-    <!-- Fonts and Icons -->
+
+    <!-- ফন্টস এবং আইকন -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-    
-    <!-- Main CSS -->
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
 
     <div class="admin-page-container">
-        <!-- ==================== সাইডবার (বাম পাশের মেনু) ==================== -->
+        <!-- সাইডবার (বাম পাশের মেনু) -->
         <aside class="sidebar">
             <div>
                 <div class="sidebar-header">
@@ -28,7 +25,6 @@
                 </div>
                 <nav class="sidebar-nav">
                     <ul>
-                        <!-- নেভিগেশন লিঙ্ক (সঠিক id সহ) -->
                         <li class="active"><a href="#" id="nav-dashboard"><i class="fas fa-tachometer-alt fa-fw"></i> ড্যাশবোর্ড</a></li>
                         <li><a href="#" id="nav-leaderboard"><i class="fas fa-trophy fa-fw"></i> লিডারবোর্ড</a></li>
                         <li><a href="index.html"><i class="fas fa-home fa-fw"></i> হোম পেজে যান</a></li>
@@ -45,7 +41,7 @@
             </div>
         </aside>
 
-        <!-- ==================== মূল কন্টেন্ট (ডান পাশের অংশ) ==================== -->
+        <!-- মূল কন্টেন্ট (ডান পাশের অংশ) -->
         <main class="main-content">
             <header class="main-header">
                 <div>
@@ -60,106 +56,83 @@
                 <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
             </header>
 
-            <!-- ==================== ড্যাশবোর্ড সেকশন ==================== -->
+            <!-- ড্যাশবোর্ড সেকশন -->
             <div id="dashboard-content" class="content-section">
-                <!-- Stats Cards -->
                 <section class="dashboard-stats">
                     <div class="stat-card"><i class="fas fa-users"></i><div><span class="stat-value" id="total-users">0</span><span class="stat-label">মোট ব্যবহারকারী</span></div></div>
                     <div class="stat-card"><i class="fas fa-user-shield"></i><div><span class="stat-value" id="total-admins">0</span><span class="stat-label">মোট অ্যাডমিন</span></div></div>
                 </section>
                 
-                <!-- Push Notification Form -->
                 <section class="send-notification-section">
-                    <div class="section-header"><h2>বিজ্ঞপ্তি পাঠান (Push Notification)</h2></div>
-                    <div class="notification-form-container">
-                        <form id="notification-form">
-                            <div class="form-group"><label for="notification-title">শিরোনাম (Title)</label><input type="text" id="notification-title" placeholder="নোটিফিকেশনের শিরোনাম লিখুন" required></div>
-                            <div class="form-group"><label for="notification-body">বার্তা (Message)</label><textarea id="notification-body" rows="4" placeholder="নোটিফিকেশনের বিস্তারিত লিখুন" required></textarea></div>
-                            <div class="form-group"><label for="notification-link">লিঙ্ক (ঐচ্ছিক)</label><input type="text" id="notification-link" placeholder="নোটিফিকেশনে ক্লিক করলে কোথায় যাবে? (e.g., index.html)"></div>
-                            <button type="submit" class="send-btn"><i class="fas fa-paper-plane"></i> সব ব্যবহারকারীকে পাঠান</button>
-                        </form>
-                        <div id="notification-status" style="display: none; margin-top: 15px;"></div>
-                    </div>
+                    <div class="section-header"><h2>বিজ্ঞপ্তি পাঠান</h2></div>
+                    <form id="notification-form">
+                        <div class="form-group"><label for="notification-title">শিরোনাম</label><input type="text" id="notification-title" required></div>
+                        <div class="form-group"><label for="notification-body">বার্তা</label><textarea id="notification-body" rows="3" required></textarea></div>
+                        <div class="form-group"><label for="notification-link">লিঙ্ক (ঐচ্ছিক)</label><input type="text" id="notification-link"></div>
+                        <button type="submit" class="send-btn"><i class="fas fa-paper-plane"></i> পাঠান</button>
+                    </form>
+                    <div id="notification-status" style="display: none;"></div>
                 </section>
 
-                <!-- User List Table -->
                 <section class="user-list-section">
-                    <div class="section-header"><h2>ব্যবহারকারীদের তালিকা</h2><div class="search-box"><i class="fas fa-search"></i><input type="text" id="user-search-input" placeholder="নাম বা ইমেইল দিয়ে খুঁজুন..."></div></div>
+                    <div class="section-header"><h2>ব্যবহারকারীদের তালিকা</h2><div class="search-box"><i class="fas fa-search"></i><input type="text" id="user-search-input" placeholder="খুঁজুন..."></div></div>
                     <div class="table-container">
                         <table>
-                            <thead><tr><th>প্রোফাইল ছবি</th><th>নাম</th><th>ইমেইল</th><th>ভূমিকা (Role)</th><th>শেষ লগইন</th><th>অ্যাকশন</th></tr></thead>
+                            <thead><tr><th>ছবি</th><th>নাম</th><th>ইমেইল</th><th>ভূমিকা</th><th>শেষ লগইন</th><th>অ্যাকশন</th></tr></thead>
                             <tbody id="user-table-body"></tbody>
                         </table>
-                        <div class="loading-spinner" id="user-list-loading" style="display: none;"></div>
+                        <div class="loading-spinner" id="user-list-loading"></div>
                     </div>
                 </section>
                 
-                <!-- Notification History Table -->
                 <section class="notification-history-section">
-                    <div class="section-header">
-                        <h2>বিজ্ঞপ্তির ইতিহাস</h2>
-                        <button id="clear-all-history-btn" class="btn-danger"><i class="fas fa-trash-alt"></i> সব ইতিহাস মুছুন</button>
-                    </div>
-                    <div class="table-container" id="notification-history-container">
+                    <div class="section-header"><h2>বিজ্ঞপ্তির ইতিহাস</h2><button id="clear-all-history-btn" class="btn-danger"><i class="fas fa-trash-alt"></i> সব মুছুন</button></div>
+                    <div class="table-container">
                         <table>
                             <thead><tr><th>শিরোনাম</th><th>বার্তা</th><th>সময়</th><th>অ্যাকশন</th></tr></thead>
                             <tbody id="notification-history-body"></tbody>
                         </table>
-                        <div class="loading-spinner" id="notification-history-loading" style="display: none;"></div>
+                        <div class="loading-spinner" id="notification-history-loading"></div>
                     </div>
                 </section>
             </div>
 
-            <!-- ==================== লিডারবোর্ড সেকশন (আপডেট করা হয়েছে) ==================== -->
             <!-- লিডারবোর্ড সেকশন -->
             <div id="leaderboard-content" class="content-section" style="display: none;">
                  <section class="leaderboard-section-inner">
-                    <div class="section-header">
-                        <h2>লিডারবোর্ড</h2>
-                    </div>
-                    <div class="leaderboard-controls">
-                        <label for="chapter-select">বিষয় নির্বাচন করুন:</label>
-                        <select id="chapter-select">
-                            <option value="">-- বিষয় বাছুন --</option>
-                        </select>
-                    </div>
+                    <div class="section-header"><h2>লিডারবোর্ড</h2></div>
+                    <div class="leaderboard-controls"><label for="chapter-select">বিষয় নির্বাচন করুন:</label><select id="chapter-select"><option value="">-- বিষয় বাছুন --</option></select></div>
                     <div class="table-container">
                         <table id="leaderboard-table">
-                            <thead>
-                                <tr>
-                                    <th>Rank</th>
-                                    <th>ব্যবহারকারী</th>
-                                    <th>মোট স্কোর</th>
-                                    <th>অ্যাকশন</th>
-                                </tr>
-                            </thead>
-                            <tbody id="leaderboard-table-body">
-                                <!-- JS will populate this -->
-                            </tbody>
+                            <thead><tr><th>Rank</th><th>ব্যবহারকারী</th><th>মোট স্কোর</th><th>অ্যাকশন</th></tr></thead>
+                            <tbody id="leaderboard-table-body"></tbody>
                         </table>
-                         <div class="loading-spinner" id="leaderboard-loading" style="display: none;"></div>
+                         <div class="loading-spinner" id="leaderboard-loading"></div>
                     </div>
-                </section>
+                 </section>
             </div>
         </main>
     </div>
 
-    <!-- Access Denied Message -->
-    <div id="access-denied" style="display: none;">
-        <h1><i class="fas fa-exclamation-triangle"></i> প্রবেশাধিকার নেই</h1>
-        <p>এই পেজটি দেখার জন্য আপনার অনুমতি নেই।</p>
-        <a href="index.html">হোম পেজে ফিরে যান</a>
+    <div id="score-details-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modal-user-name"></h3>
+            <table id="modal-score-table">
+                <thead><tr><th>সেট এর নাম</th><th>প্রাপ্ত নম্বর</th><th>মোট নম্বর</th></tr></thead>
+                <tbody id="modal-score-table-body"></tbody>
+            </table>
+        </div>
     </div>
 
-    <!-- Firebase SDK Scripts -->
+    <div id="access-denied" style="display: none;"><h1><i class="fas fa-exclamation-triangle"></i> প্রবেশাধিকার নেই</h1><p>এই পেজটি দেখার জন্য আপনার অনুমতি নেই।</p><a href="index.html">হোম পেজে ফিরে যান</a></div>
+
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-functions.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
-    
-    <!-- Custom Scripts -->
     <script src="js/firebase-config.js"></script>
     <script src="js/admin.js"></script>
+
 </body>
 </html>
