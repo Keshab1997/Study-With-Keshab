@@ -244,3 +244,49 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
     .footer-links h4, .footer-social h4 { border-left: none; padding-left: 0; }
     .footer-social .social-icons { justify-content: center; }
 }
+/* style.css ফাইলে যোগ করুন */
+
+.notification-feed-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+}
+
+.notification-feed-item {
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+.notification-feed-item:last-child {
+    border-bottom: none;
+}
+
+.notification-feed-item:hover {
+    background-color: #f0f0f0;
+}
+
+.notification-feed-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.notification-feed-body {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.notification-feed-time {
+    font-size: 12px;
+    color: #999;
+}

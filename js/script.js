@@ -1,5 +1,5 @@
 // =======================================================
-// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ৩.০ - Firestore নোটিফিকেশন সহ)
+// সমন্বিত ওয়েবসাইট স্ক্রিপ্ট (সংস্করণ ৪.০ - রিয়েল-টাইম ফিড সহ)
 // =======================================================
 
 // === পেজ লোড হলে সকল ফাংশনালিটি চালু করা ===
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeFooterBtn = document.getElementById('close-notification-btn-footer');
     
     // ---------------------------------------------------
-    // বিভাগ ১: সাধারণ UI ফাংশনালিটি (স্ক্রল, মোবাইল মেনু ইত্যাদি)
+    // বিভাগ ১: সাধারণ UI ফাংশনালিটি
     // ---------------------------------------------------
 
     window.addEventListener('scroll', () => {
@@ -41,28 +41,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ---------------------------------------------------
-    // বিভাগ ২: নতুন ডাইনামিক নোটিফিকেশন সিস্টেম (Firestore ভিত্তিক)
+    // বিভাগ ২: ডাইনামিক নোটিফিকেশন সিস্টেম (মডাল ও ব্যাজ)
     // ---------------------------------------------------
 
-    let lastSeenTimestamp = null; // সর্বশেষ দেখা নোটিফিকেশনের সময়
+    let lastSeenTimestamp = null;
 
-    // আন-রিড নোটিফিকেশন সংখ্যা গণনা এবং ব্যাজ আপডেট
     function updateNotificationBadge() {
         if (typeof firebase === 'undefined' || !firebase.auth().currentUser) return;
-
         const db = firebase.firestore();
         const notificationBadge = document.getElementById('notification-badge');
         if (!notificationBadge) return;
-
-        // লোকাল স্টোরেজ থেকে সর্বশেষ দেখা নোটিফিকেশনের সময় আনা
         lastSeenTimestamp = localStorage.getItem('lastSeenNotificationTimestamp');
-        
         let query = db.collection('notifications');
-        // যদি আগে কোনো নোটিফিকেশন দেখা হয়ে থাকে, তবে তার পরেরগুলো গণনা করা হবে
         if (lastSeenTimestamp) {
             query = query.where('createdAt', '>', new Date(parseInt(lastSeenTimestamp)));
         }
-
         query.get().then(snapshot => {
             const unseenCount = snapshot.size;
             notificationBadge.textContent = unseenCount;
@@ -70,12 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }).catch(err => console.error("Error fetching unseen notifications count:", err));
     }
 
-    // নোটিফিকেশন মডাল খোলা এবং Firestore থেকে ডেটা লোড করা
     function openNotificationModal() {
         if (!notificationModal) return;
         const notificationList = document.getElementById('notification-list');
         const clearAllBtn = document.getElementById('clear-all-notifications-btn');
-
         const db = firebase.firestore();
         db.collection('notifications').orderBy('createdAt', 'desc').limit(20).get()
             .then(snapshot => {
@@ -88,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         const notification = doc.data();
                         const item = document.createElement('li');
                         item.innerHTML = `
-                            <a href="${notification.link || '#'}" class="notification-item-link">
+                            <a href="${notification.link || '#'}" class="notification-item-link" target="_blank">
                                 <div class="modal-notif-title">${notification.title}</div>
                                 <div class="modal-notif-body">${notification.body}</div>
                                 <small>${formatTimeAgo(notification.createdAt)}</small>
@@ -97,18 +88,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                     if (clearAllBtn) clearAllBtn.disabled = false;
                 }
-
-                // মডাল দেখানো
                 notificationModal.classList.add('is-visible');
                 document.body.style.overflow = 'hidden';
-
-                // নতুন নোটিফিকেশন ব্যাজ রিসেট করা
                 if (!snapshot.empty) {
                     const latestTimestamp = snapshot.docs[0].data().createdAt.toDate().getTime();
                     localStorage.setItem('lastSeenNotificationTimestamp', latestTimestamp);
                 }
                 setTimeout(updateNotificationBadge, 100);
-
             }).catch(error => {
                 console.error("Error loading notifications for modal:", error);
                 notificationList.innerHTML = "<li>নোটিফিকেশন লোড করতে সমস্যা হয়েছে।</li>";
@@ -125,11 +111,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (closeNotificationBtn) closeNotificationBtn.addEventListener('click', closeNotificationModal);
     if (closeFooterBtn) closeFooterBtn.addEventListener('click', closeNotificationModal);
 
-    // সব নোটিফিকেশন "পড়া" হিসাবে চিহ্নিত করা (আসলে শুধু লোকাল স্টোরেজ ক্লিয়ার)
     const clearAllBtn = document.getElementById('clear-all-notifications-btn');
     if (clearAllBtn) {
         clearAllBtn.addEventListener('click', () => {
-            // এই ফাংশনটি এখন আর নোটিফিকেশন ডিলিট করবে না, শুধু seen স্ট্যাটাস রিসেট করবে
             localStorage.removeItem('lastSeenNotificationTimestamp');
             const notificationList = document.getElementById('notification-list');
             if (notificationList) {
@@ -140,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
-    // মডালের বাইরে ক্লিক করলে বা Escape চাপলে বন্ধ করা
     if (notificationModal) {
         notificationModal.addEventListener('click', (event) => {
             if (event.target === notificationModal) closeNotificationModal();
@@ -164,21 +147,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         const auth = firebase.auth();
-        const db = firebase.firestore();
-
         auth.onAuthStateChanged(user => {
             updateNavUI(user);
             if (user) {
-                // ব্যবহারকারী লগইন করা থাকলেই নোটিফিকেশন ব্যাজ আপডেট হবে
                 updateNotificationBadge(); 
             } else {
-                // লগ আউট হলে ব্যাজ হাইড করে দেওয়া
                 const notificationBadge = document.getElementById('notification-badge');
                 if (notificationBadge) notificationBadge.style.display = 'none';
             }
         });
 
-        // লগআউট বাটনে ইভেন্ট যোগ করা
         document.body.addEventListener('click', (e) => {
             if (e.target.id === 'logout-btn-desktop' || e.target.id === 'logout-btn-mobile') {
                 e.preventDefault();
@@ -188,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateNavUI(user) {
+        // ... এই ফাংশনটি অপরিবর্তিত আছে ...
         const isLoggedIn = !!user;
         const elements = {
             guestDesktop: document.getElementById('guest-link-desktop'),
@@ -200,21 +179,16 @@ document.addEventListener('DOMContentLoaded', function () {
             logoutMobile: document.getElementById('logout-link-mobile'),
             adminMobile: document.getElementById('admin-link-mobile')
         };
-
         if (elements.guestDesktop) elements.guestDesktop.style.display = isLoggedIn ? 'none' : 'block';
         if (elements.guestMobile) elements.guestMobile.style.display = isLoggedIn ? 'none' : 'block';
-        
         if (elements.userDesktop) elements.userDesktop.style.display = isLoggedIn ? 'flex' : 'none';
         if (elements.logoutDesktop) elements.logoutDesktop.style.display = isLoggedIn ? 'block' : 'none';
-        
-        if (elements.userMobile) elements.userMobile.style.display = 'none'; // মোবাইল মেনুতে আর ইউজার নেম দেখাচ্ছি না
+        if (elements.userMobile) elements.userMobile.style.display = 'none';
         if (elements.logoutMobile) elements.logoutMobile.style.display = isLoggedIn ? 'block' : 'none';
-        
         if (isLoggedIn) {
             if (elements.userNameDisplay) {
                 elements.userNameDisplay.textContent = user.displayName ? `${user.displayName.split(' ')[0]}` : 'User';
             }
-            // অ্যাডমিন রোল চেক
             firebase.firestore().collection('users').doc(user.uid).get().then(doc => {
                 const isAdmin = doc.exists && doc.data().role === 'admin';
                 if (elements.adminDesktop) elements.adminDesktop.style.display = isAdmin ? 'block' : 'none';
@@ -226,8 +200,55 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     
-    // সবশেষে ফায়ারবেস সার্ভিস চালু করা
+    // ---------------------------------------------------
+    // বিভাগ ৪: রিয়েল-টাইম নোটিফিকেশন ফিড (নতুন যুক্ত করা হয়েছে)
+    // ---------------------------------------------------
+
+    function initializeRealtimeNotificationFeed() {
+        if (typeof firebase === 'undefined') {
+            setTimeout(initializeRealtimeNotificationFeed, 100);
+            return;
+        }
+
+        firebase.auth().onAuthStateChanged(user => {
+            const feedContainer = document.getElementById('realtime-notification-feed');
+            if (!feedContainer) return;
+
+            if (user) {
+                const db = firebase.firestore();
+                db.collection('notifications').orderBy('createdAt', 'desc').limit(10)
+                  .onSnapshot(snapshot => {
+                      feedContainer.innerHTML = '';
+                      if (snapshot.empty) {
+                          feedContainer.innerHTML = '<p>এখনও কোনো বিজ্ঞপ্তি পাঠানো হয়নি।</p>';
+                          return;
+                      }
+                      snapshot.forEach(doc => {
+                          const notification = doc.data();
+                          const item = document.createElement('a');
+                          item.href = notification.link || '#';
+                          item.target = "_blank";
+                          item.classList.add('notification-feed-item');
+                          item.innerHTML = `
+                              <div class="notification-feed-title">${notification.title}</div>
+                              <div class="notification-feed-body">${notification.body}</div>
+                              <div class="notification-feed-time">${formatTimeAgo(notification.createdAt)}</div>
+                          `;
+                          feedContainer.appendChild(item);
+                      });
+                  }, error => {
+                      console.error("Error fetching realtime notifications:", error);
+                      feedContainer.innerHTML = '<p>বিজ্ঞপ্তি লোড করতে সমস্যা হয়েছে।</p>';
+                  });
+            } else {
+                feedContainer.innerHTML = '<p>সাম্প্রতিক বিজ্ঞপ্তি দেখতে অনুগ্রহ করে <a href="login.html">লগইন</a> করুন।</p>';
+            }
+        });
+    }
+
+    // সবশেষে সব সার্ভিস চালু করা
     initializeFirebaseServices();
+    initializeRealtimeNotificationFeed();
 });
 
 // === হেল্পার ফাংশন: সময় ফরম্যাট করার জন্য ===
