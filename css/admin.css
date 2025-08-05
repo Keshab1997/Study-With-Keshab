@@ -96,17 +96,116 @@ tbody tr:last-child td { border-bottom: none; }
 .btn-sm { padding: 6px 10px; font-size: 13px; }
 button:disabled { opacity: 0.6; cursor: not-allowed; }
 
-/* === নোটিফিকেশন ফর্মের স্টাইল === */
-.notification-form-container .form-group { margin-bottom: 15px; }
-.notification-form-container label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 0.95rem; }
-.notification-form-container input[type="text"], .notification-form-container textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: var(--font-family); font-size: 1rem; transition: border-color 0.3s, box-shadow 0.3s; }
-.notification-form-container input[type="text"]:focus, .notification-form-container textarea:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2); }
-.notification-form-container .send-btn { background-color: var(--success-color); color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: 600; font-family: var(--font-family); display: inline-flex; align-items: center; gap: 10px; transition: background-color 0.3s; }
-.notification-form-container .send-btn:hover { background-color: #218838; }
-#notification-status { padding: 12px; border-radius: 6px; font-weight: 500; }
-#notification-status.success { background-color: var(--success-light); color: #155724; border: 1px solid #c3e6cb; }
-#notification-status.error { background-color: var(--danger-light); color: #721c24; border: 1px solid #f5c6cb; }
+/* === বিজ্ঞপ্তি পাঠান সেকশন === */
+.send-notification-section {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
 
+.send-notification-section .section-header h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+#notification-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* ইনপুট ফিল্ডগুলোর মধ্যে স্পেস */
+}
+
+#notification-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#notification-form label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+#notification-form input[type="text"],
+#notification-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#notification-form input[type="text"]:focus,
+#notification-form textarea:focus {
+    outline: none;
+    border-color: #007bff; /* ফোকাস করলে বর্ডারের রঙ */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+#notification-form textarea {
+    resize: vertical; /* ব্যবহারকারী যেন শুধু লম্বা দিকে রিসাইজ করতে পারে */
+    min-height: 100px;
+}
+
+#notification-form .send-btn {
+    align-self: flex-start; /* বাটনকে বাম দিকে রাখার জন্য */
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: #ffffff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Hind Siliguri', sans-serif;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* আইকন এবং টেক্সটের মধ্যে স্পেস */
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+#notification-form .send-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+}
+
+#notification-form .send-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* নোটিফিকেশন স্ট্যাটাস মেসেজের জন্য স্টাইল */
+#notification-status {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+}
+
+#notification-status.status-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+#notification-status.status-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
 /* === লোডিং এবং অন্যান্য === */
 .loading-spinner { border: 4px solid #f3f3f3; border-top: 4px solid var(--primary-color); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 40px auto; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
