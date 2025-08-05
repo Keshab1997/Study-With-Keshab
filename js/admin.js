@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    if (typeof firebase === 'undefined') { return; }
+    // Firebase সার্ভিস লোড না হলে কিছুই করবে না
+    if (typeof firebase === 'undefined') {
+        console.error("Firebase is not loaded!");
+        return;
+    }
+
     const auth = firebase.auth();
     const db = firebase.firestore();
     const functions = firebase.functions();
@@ -8,16 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Element References ---
     const adminPageContainer = document.querySelector('.admin-page-container');
     const accessDeniedMessage = document.getElementById('access-denied');
-    const pageTitle = document.getElementById('page-title');
-    const breadcrumbNav = document.getElementById('breadcrumb-nav');
+    
+    // Sidebar Elements
     const adminInfoSidebar = document.getElementById('admin-info-sidebar');
     const adminProfilePicSidebar = document.getElementById('admin-profile-pic-sidebar');
     const adminNameSidebar = document.getElementById('admin-name-sidebar');
     const adminLogoutBtn = document.getElementById('admin-logout-btn');
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    const navDashboard = document.getElementById('nav-dashboard');
-    const navLeaderboard = document.getElementById('nav-leaderboard');
+    
+    // Tab Navigation Elements
+    const navDashboardLink = document.getElementById('nav-dashboard');
+    const navLeaderboardLink = document.getElementById('nav-leaderboard');
     const dashboardContent = document.getElementById('dashboard-content');
     const leaderboardContent = document.getElementById('leaderboard-content');
     
@@ -78,41 +83,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Event Listeners ---
     const setupEventListeners = () => {
-        adminLogoutBtn.addEventListener('click', (e) => { 
-            e.preventDefault(); 
-            auth.signOut(); 
-        });
+        if(adminLogoutBtn) {
+            adminLogoutBtn.addEventListener('click', (e) => { 
+                e.preventDefault(); 
+                auth.signOut(); 
+            });
+        }
         
-        notificationForm.addEventListener('submit', handleNotificationSubmit);
+        if(notificationForm) notificationForm.addEventListener('submit', handleNotificationSubmit);
         
-        notificationHistoryBody.addEventListener('click', handleHistoryDelete);
-        clearAllHistoryBtn.addEventListener('click', handleClearAllHistory);
+        if(notificationHistoryBody) notificationHistoryBody.addEventListener('click', handleHistoryDelete);
+        if(clearAllHistoryBtn) clearAllHistoryBtn.addEventListener('click', handleClearAllHistory);
 
-        userSearchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            const filteredUsers = allUsersCache.filter(user => 
-                user.displayName.toLowerCase().includes(searchTerm) || 
-                user.email.toLowerCase().includes(searchTerm)
-            );
-            renderUserTable(filteredUsers);
-        });
+        if(userSearchInput) {
+            userSearchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredUsers = allUsersCache.filter(user => 
+                    (user.displayName && user.displayName.toLowerCase().includes(searchTerm)) || 
+                    (user.email && user.email.toLowerCase().includes(searchTerm))
+                );
+                renderUserTable(filteredUsers);
+            });
+        }
 
         // Tab navigation
-        navDashboard.addEventListener('click', (e) => {
-            e.preventDefault();
-            dashboardContent.style.display = 'block';
-            leaderboardContent.style.display = 'none';
-            navDashboard.parentElement.classList.add('active');
-            navLeaderboard.parentElement.classList.remove('active');
-        });
+        if (navDashboardLink) {
+            navDashboardLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                dashboardContent.style.display = 'block';
+                leaderboardContent.style.display = 'none';
+                navDashboardLink.parentElement.classList.add('active');
+                if (navLeaderboardLink) navLeaderboardLink.parentElement.classList.remove('active');
+            });
+        }
 
-        navLeaderboard.addEventListener('click', (e) => {
-            e.preventDefault();
-            dashboardContent.style.display = 'none';
-            leaderboardContent.style.display = 'block';
-            navDashboard.parentElement.classList.remove('active');
-            navLeaderboard.parentElement.classList.add('active');
-        });
+        if (navLeaderboardLink) {
+            navLeaderboardLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                dashboardContent.style.display = 'none';
+                leaderboardContent.style.display = 'block';
+                if (navDashboardLink) navDashboardLink.parentElement.classList.remove('active');
+                navLeaderboardLink.parentElement.classList.add('active');
+            });
+        }
     };
 
     // --- Dashboard ---
@@ -123,20 +136,20 @@ document.addEventListener('DOMContentLoaded', () => {
             allUsersCache = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             
             const adminCount = allUsersCache.filter(user => user.role === 'admin').length;
-            totalUsersStat.textContent = allUsersCache.length;
-            totalAdminsStat.textContent = adminCount;
+            if (totalUsersStat) totalUsersStat.textContent = allUsersCache.length;
+            if (totalAdminsStat) totalAdminsStat.textContent = adminCount;
             
             renderUserTable(allUsersCache);
-
         } catch (error) {
             console.error("Error loading user data:", error);
-            userTableBody.innerHTML = `<tr><td colspan="6">ব্যবহারকারীদের তালিকা লোড করতে সমস্যা হয়েছে। Error: ${error.message}</td></tr>`;
+            if(userTableBody) userTableBody.innerHTML = `<tr><td colspan="6">ব্যবহারকারীদের তালিকা লোড করতে সমস্যা হয়েছে। Error: ${error.message}</td></tr>`;
         } finally {
             if (userListLoading) userListLoading.style.display = 'none';
         }
     };
 
     const renderUserTable = (users) => {
+        if (!userTableBody) return;
         userTableBody.innerHTML = '';
         if (users.length === 0) {
             userTableBody.innerHTML = '<tr><td colspan="6">কোনো ব্যবহারকারী খুঁজে পাওয়া যায়নি।</td></tr>';
@@ -167,31 +180,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
         button.disabled = true;
         button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> পাঠানো হচ্ছে...';
-        notificationStatus.style.display = 'block';
-        notificationStatus.className = 'status-info';
-        notificationStatus.textContent = 'নোটিফিকেশন পাঠানোর প্রক্রিয়া চলছে...';
+        if (notificationStatus) {
+            notificationStatus.style.display = 'block';
+            notificationStatus.className = 'status-info';
+            notificationStatus.textContent = 'নোটিফিকেশন পাঠানোর প্রক্রিয়া চলছে...';
+        }
 
         try {
             await db.collection('notificationQueue').add({ title, body, link });
-            notificationStatus.className = 'status-success';
-            notificationStatus.textContent = 'সফলভাবে নোটিফিকেশন পাঠানোর অনুরোধ করা হয়েছে!';
-            notificationForm.reset();
+            if (notificationStatus) {
+                notificationStatus.className = 'status-success';
+                notificationStatus.textContent = 'সফলভাবে নোটিফিকেশন পাঠানোর অনুরোধ করা হয়েছে!';
+            }
+            if (notificationForm) notificationForm.reset();
         } catch (error) {
             console.error("Error sending notification:", error);
-            notificationStatus.className = 'status-danger';
-            notificationStatus.textContent = `ত্রুটি: ${error.message}`;
+            if (notificationStatus) {
+                notificationStatus.className = 'status-danger';
+                notificationStatus.textContent = `ত্রুটি: ${error.message}`;
+            }
         } finally {
             button.disabled = false;
             button.innerHTML = '<i class="fas fa-paper-plane"></i> সব ব্যবহারকারীকে পাঠান';
-            setTimeout(() => { notificationStatus.style.display = 'none'; }, 5000);
+            if (notificationStatus) setTimeout(() => { notificationStatus.style.display = 'none'; }, 5000);
         }
     };
     
     // --- Notification History Functions ---
     const loadNotificationHistory = () => {
         if (notificationHistoryLoading) notificationHistoryLoading.style.display = 'block';
+        if (!db) return;
         db.collection('notifications').orderBy('createdAt', 'desc').limit(50)
           .onSnapshot(snapshot => {
+            if (!notificationHistoryBody) return;
             notificationHistoryBody.innerHTML = '';
             if (snapshot.empty) {
                 notificationHistoryBody.innerHTML = '<tr><td colspan="4">কোনো বিজ্ঞপ্তির ইতিহাস পাওয়া যায়নি।</td></tr>';
@@ -200,8 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const notif = doc.data();
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                        <td>${notif.title}</td>
-                        <td>${notif.body}</td>
+                        <td>${notif.title || ''}</td>
+                        <td>${notif.body || ''}</td>
                         <td>${formatTimestamp(notif.createdAt)}</td>
                         <td class="action-cell"><button class="btn-danger btn-sm delete-notif-btn" data-id="${doc.id}">মুছুন</button></td>
                     `;
@@ -211,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (notificationHistoryLoading) notificationHistoryLoading.style.display = 'none';
         }, err => {
             console.error("Error loading notification history:", err);
-            notificationHistoryBody.innerHTML = '<tr><td colspan="4">ইতিহাস লোড করতে সমস্যা হয়েছে।</td></tr>';
+            if(notificationHistoryBody) notificationHistoryBody.innerHTML = '<tr><td colspan="4">ইতিহাস লোড করতে সমস্যা হয়েছে।</td></tr>';
         });
     };
 
@@ -227,8 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     .catch(err => {
                         console.error("Error deleting notification:", err);
                         alert(`ত্রুটি: ${err.message}`);
-                    }).finally(() => {
-                        // বাটনটি আর আগের অবস্থায় ফেরানোর দরকার নেই কারণ onSnapshot তালিকাটি রিফ্রেশ করে দেবে
                     });
             }
         }
@@ -256,7 +275,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Utility Function ---
     const formatTimestamp = (timestamp) => {
         if (!timestamp || !timestamp.toDate) return 'N/A';
-        return timestamp.toDate().toLocaleString('bn-BD', { dateStyle: 'long', timeStyle: 'short' });
+        try {
+            return timestamp.toDate().toLocaleString('bn-BD', { dateStyle: 'long', timeStyle: 'short' });
+        } catch (e) {
+            return 'Invalid Date';
+        }
     };
 
 });
