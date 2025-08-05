@@ -244,49 +244,100 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
     .footer-links h4, .footer-social h4 { border-left: none; padding-left: 0; }
     .footer-social .social-icons { justify-content: center; }
 }
-/* style.css ফাইলে যোগ করুন */
+/* =================================== */
+/*  নতুন এবং উন্নত নোটিফিকেশন ফিড স্টাইল  */
+/* =================================== */
 
-.notification-feed-container {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 10px;
-    max-height: 400px;
-    overflow-y: auto;
-    border: 1px solid #eee;
+/* সেকশনের টাইটেলটিকে সেন্টারে আনার জন্য (যদি আগে থেকে না থাকে) */
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+.section-title::after {
+    content: '';
+    width: 80px;
+    height: 4px;
+    background: #007bff; /* আপনার সাইটের প্রাইমারি রঙ */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    border-radius: 2px;
 }
 
+/* মূল কন্টেইনার */
+.notification-feed-container {
+    max-width: 900px;
+    margin: 0 auto;
+    /* নিচের কোডগুলো ডিলিট করা হয়েছে কারণ আইটেমগুলোই এখন কার্ড হবে */
+}
+
+/* প্রতিটি নোটিফিকেশন আইটেম (কার্ড) */
 .notification-feed-item {
-    display: block;
-    padding: 15px;
-    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: flex-start; /* আইকন এবং টেক্সটকে উপরে অ্যালাইন করার জন্য */
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
     text-decoration: none;
     color: #333;
-    transition: background-color 0.3s;
-}
-
-.notification-feed-item:last-child {
-    border-bottom: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-left: 5px solid #007bff; /* বাম দিকে একটি রঙিন বর্ডার */
 }
 
 .notification-feed-item:hover {
-    background-color: #f0f0f0;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* আইকনের জন্য একটি নতুন অংশ */
+.notification-icon-wrapper {
+    flex-shrink: 0; /* আইকন যেন ছোট না হয়ে যায় */
+    margin-right: 20px;
+    background-color: #e6f2ff; /* আইকনের الخلفية রঙ */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.notification-icon-wrapper i {
+    font-size: 22px;
+    color: #007bff; /* আইকনের রঙ */
+}
+
+/* লেখার অংশ */
+.notification-content {
+    flex-grow: 1;
 }
 
 .notification-feed-title {
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 700;
+    font-size: 1.1rem; /* 18px */
     margin-bottom: 5px;
+    color: #1a253c;
 }
 
 .notification-feed-body {
-    font-size: 14px;
+    font-size: 0.95rem; /* 15px */
     color: #555;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    line-height: 1.5;
 }
 
 .notification-feed-time {
-    font-size: 12px;
-    color: #999;
+    font-size: 0.8rem; /* 13px */
+    color: #888;
+    display: flex;
+    align-items: center;
+}
+.notification-feed-time::before {
+    content: '\f017'; /* Font Awesome ঘড়ির আইকন */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 6px;
 }
