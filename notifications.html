@@ -4,73 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>সকল বিজ্ঞপ্তি - Study With Keshab</title>
-    
-    <!-- Google Fonts & Font Awesome -->
+
+    <!-- বেস URL (আপনার index.html থেকে নেওয়া) -->
+    <!-- এটি অত্যন্ত গুরুত্বপূর্ণ যাতে CSS এবং JS ফাইলগুলো সঠিকভাবে লোড হয় -->
+    <base href="/Study-With-Keshab/">
+
+    <!-- Google Fonts এবং Font Awesome (সাইটের সামঞ্জস্যের জন্য) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <!-- মূল CSS ফাইল -->
     <link rel="stylesheet" href="css/style.css">
-    
+    <!-- নোটিফিকেশনের জন্য CSS ফাইল -->
+    <link rel="stylesheet" href="css/notification.css">
+
     <style>
-        /* এই পেজের জন্য নির্দিষ্ট স্টাইল */
-        .notifications-page-container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
+        /* এই পেজের জন্য বিশেষ স্টাইল */
+        .page-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            min-height: 60vh; /* পেজে কম কনটেন্ট থাকলেও ফুটার নিচে থাকবে */
         }
-        .page-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: #333;
+
+        .page-header {
             text-align: center;
-            border-bottom: 2px solid var(--primary-color, #007bff);
-            padding-bottom: 15px;
+            margin-bottom: 2.5rem;
         }
-        .all-notifications-list .notification-list-item {
-            background-color: #fff;
+
+        .page-title {
+            font-size: 2.8rem;
+            font-family: 'Baloo Da 2', sans-serif;
+            font-weight: 700;
+            color: #2c3e50;
+            display: inline-block;
+            border-bottom: 3px solid var(--primary-color, #007bff);
+            padding-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-top: 0.5rem;
+        }
+
+        /* নোটিফিকেশন লিস্টের কন্টেইনার */
+        .all-notifications-container {
+            display: grid;
+            gap: 1.5rem; /* প্রতিটি নোটিফিকেশনের মধ্যে ফাঁকা জায়গা */
+        }
+        
+        /* লোডিং বা খালি মেসেজের জন্য স্টাইল */
+        .list-message {
+            text-align: center;
+            padding: 3rem;
+            background-color: #f9f9f9;
             border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            padding: 20px;
+            color: #555;
+            font-size: 1.1rem;
         }
-        .all-notifications-list .notification-list-item:hover {
-             transform: translateY(-3px);
-             box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-        }
+
+        /* এখানে আমরা notification.css থেকে .notification-feed-item ক্লাসটি ব্যবহার করবো */
+        /* তাই নতুন করে স্টাইল লেখার প্রয়োজন নেই, শুধু লেআউট ঠিক করা হয়েছে */
     </style>
 </head>
 <body>
-    <!-- হেডার (Header) -->
-    <header class="site-header">
-        <!-- আপনার index.html থেকে সম্পূর্ণ হেডার অংশটি এখানে কপি-পেস্ট করুন -->
-    </header>
 
-    <main class="notifications-page-container">
-        <h1 class="page-title"><i class="fas fa-bell"></i> সকল বিজ্ঞপ্তি</h1>
-        
-        <div class="all-notifications-list" id="all-notifications-list">
-            <!-- জাভাস্ক্রিপ্ট এখানে সব নোটিফিকেশন দেখাবে -->
-            <div class="notification-list-empty">বিজ্ঞপ্তি লোড হচ্ছে...</div>
-        </div>
-    </main>
+<!-- ======================= হেডার ======================= -->
+<!-- নির্দেশিকা: আপনার index.html ফাইল থেকে সম্পূর্ণ <header> এবং মোবাইল <nav> অংশটি এখানে কপি করে পেস্ট করুন। -->
+<!-- এটি করলে আপনার সাইটের নেভিগেশন সব পেজে একই রকম থাকবে। -->
+<header class="site-header">
+    <!-- এখানে আপনার হেডার কোড পেস্ট করুন -->
+</header>
+<nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
+    <!-- এখানে আপনার মোবাইল নেভিগেশন কোড পেস্ট করুন -->
+</nav>
+<!-- ===================== হেডার শেষ ===================== -->
 
-    <!-- ফুটার (Footer) -->
-    <footer class="site-footer-container">
-         <!-- আপনার index.html থেকে সম্পূর্ণ ফুটার অংশটি এখানে কপি-পেস্ট করুন -->
-    </footer>
 
-    <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<main class="page-container">
+    <div class="page-header">
+        <h1 class="page-title"><i class="fas fa-bullhorn"></i> সকল বিজ্ঞপ্তি</h1>
+        <p class="page-subtitle">আমাদের সকল সাম্প্রতিক ঘোষণা ও আপডেট এখানে একসাথে দেখুন।</p>
+    </div>
     
-    <script src="js/firebase-config.js"></script>
-    <script src="js/script.js"></script>
-    <!-- এই পেজের জন্য নতুন জাভাস্ক্রিপ্ট ফাইল -->
-    <script src="js/notifications.js"></script>
+    <!-- জাভাস্ক্রিপ্ট দিয়ে এখানে সমস্ত বিজ্ঞপ্তি লোড করা হবে -->
+    <div class="all-notifications-container" id="all-notifications-list">
+        <!-- প্রাথমিক লোডিং বার্তা -->
+        <div class="list-message">
+            <p>বিজ্ঞপ্তি লোড হচ্ছে...</p>
+        </div>
+    </div>
+</main>
+
+
+<!-- ======================= ফুটার ======================= -->
+<!-- নির্দেশিকা: আপনার index.html ফাইল থেকে সম্পূর্ণ <footer> অংশটি এখানে কপি করে পেস্ট করুন। -->
+<footer>
+    <!-- এখানে আপনার ফুটার কোড পেস্ট করুন -->
+</footer>
+<!-- ===================== ফুটার শেষ ===================== -->
+
+
+<!-- =================== স্ক্রিপ্টসমূহ =================== -->
+<!-- Firebase স্ক্রিপ্ট (যদি প্রয়োজন হয়) -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<!-- আপনার Firebase কনফিগারেশন -->
+<script src="js/firebase-config.js"></script>
+<script src="auth.js"></script>
+
+<!-- সাধারণ জাভাস্ক্রিপ্ট (যেমন: মোবাইল মেনু টগল) -->
+<script src="js/script.js"></script>
+
+<!-- এই পেজের জন্য বিশেষ স্ক্রিপ্ট -->
+<!-- ডেটা আগে লোড করতে হবে, তারপর সেই ডেটা ব্যবহার করার স্ক্রিপ্ট -->
+<script src="js/notification-data.js"></script>
+<script src="js/all-notifications.js"></script>
+
 </body>
 </html>
