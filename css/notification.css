@@ -238,3 +238,51 @@
 .btn-notification-action.btn-close:hover {
     background-color: #e7f3ff;
 }
+
+/* === মোবাইল ডিভাইসের জন্য রেসপন্সিভ স্টাইল === */
+@media (max-width: 768px) {
+
+    /* নোটিফিকেশন মডালকে স্ক্রিনের সাথে মানানসই করা */
+    #notification-modal {
+        width: auto; /* নির্দিষ্ট প্রস্থ তুলে দেওয়া হলো */
+        left: 10px;  /* বাম দিকে অল্প জায়গা */
+        right: 10px; /* ডান দিকে অল্প জায়গা */
+        top: 70px;   /* হেডার থেকে দূরত্ব কমানো হলো */
+        max-height: 85vh; /* উচ্চতা কিছুটা বাড়ানো হলো */
+    }
+
+    /* মডালের ভেতরের প্যাডিং কমানো */
+    #notification-modal h3,
+    #notification-list li,
+    .notification-modal-footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* হোমপেজের ফিড আইটেমের প্যাডিং কমানো */
+    .notification-feed-item {
+        padding: 1rem;
+        gap: 0.8rem;
+    }
+    .notification-feed-item a {
+        gap: 0.8rem;
+    }
+
+    /* 'mark as read' বাটনটি টাচ ডিভাইসে সব সময় দেখানো */
+    /* কারণ মোবাইলে :hover কাজ করে না */
+    #notification-list li:not(.read) .mark-as-read-btn {
+        opacity: 1; /* বাটনটিকে দৃশ্যমান করা হলো */
+        background-color: transparent; /* ব্যাকগ্রাউন্ড তুলে দেওয়া হলো আরও ক্লিন লুকের জন্য */
+        color: #007bff;
+    }
+
+    /* মডালের টাইটেল এবং ক্লোজ বাটনের পজিশন ঠিক করা */
+     #notification-modal h3 {
+        font-size: 1.1rem;
+    }
+    #close-notification-modal {
+        top: 8px;
+        right: 8px;
+        font-size: 1.4rem;
+    }
+}
