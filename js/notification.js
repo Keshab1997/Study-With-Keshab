@@ -11,8 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearAllBtn = document.getElementById('clear-all-notifications-btn');
     const recentFeedContainer = document.getElementById('realtime-notification-feed');
 
-    // localStorage থেকে পড়া নোটিফিকেশন আইডি আনা
+    // localStorage থেকে পড়া এবং মোছা নোটিফিকেশন আইডি আনা
     let readNotifications = JSON.parse(localStorage.getItem('readNotifications')) || [];
+    // নতুন কোড: মোছা নোটিফিকেশনের আইডি সংরক্ষণের জন্য
+    let clearedNotifications = JSON.parse(localStorage.getItem('clearedNotifications')) || [];
 
     // নোটিফিকেশন রেন্ডার করার ফাংশন
     const renderNotifications = () => {
@@ -21,9 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
         recentFeedContainer.innerHTML = '';
         
         let unreadCount = 0;
+        let visibleNotificationCount = 0; // দৃশ্যমান নোটিফিকেশনের সংখ্যা গণনার জন্য
 
         // ডেটা সোর্স থেকে নোটিফিকেশনগুলো লুপ করা (allNotifications আসছে notification-data.js থেকে)
         allNotifications.forEach(notification => {
+            // পরিবর্তিত কোড: যদি নোটিফিকেশনটি 'cleared' লিস্টে থাকে, তবে এটিকে রেন্ডার করা হবে না
+            if (clearedNotifications.includes(notification.id)) {
+                return; // এই নোটিফিকেশনটি এড়িয়ে যান
+            }
+
+            visibleNotificationCount++; // দৃশ্যমান নোটিফিকেশন গণনা
             const isRead = readNotifications.includes(notification.id);
 
             // অপঠিত নোটিফিকেশনের সংখ্যা গণনা
@@ -52,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             // ২. হোম পেজের সাম্প্রতিক ফিডের জন্য আইটেম তৈরি (শুধুমাত্র নতুন ৩টি)
-            if (allNotifications.indexOf(notification) < 3) {
+            if (visibleNotificationCount <= 3) { // শুধুমাত্র প্রথম ৩টি দৃশ্যমান নোটিফিকেশন দেখানো হবে
                  const feedItem = document.createElement('div');
                  feedItem.className = 'notification-feed-item';
                  feedItem.innerHTML = `
@@ -69,9 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // যদি কোনো বিজ্ঞপ্তি না থাকে, তাহলে মেসেজ দেখানো
-        if(allNotifications.length === 0) {
+        // যদি কোনো দৃশ্যমান বিজ্ঞপ্তি না থাকে, তাহলে মেসেজ দেখানো
+        if(visibleNotificationCount === 0) {
+            notificationList.innerHTML = '<li class="no-notification-message"><p>আপনার জন্য কোনো নতুন বিজ্ঞপ্তি নেই।</p></li>';
             recentFeedContainer.innerHTML = '<p>এখনো কোনো নতুন বিজ্ঞপ্তি নেই।</p>';
+            clearAllBtn.style.display = 'none'; // মোছার বাটন লুকিয়ে দিন
+        } else {
+            clearAllBtn.style.display = 'inline-block'; // বাটন দেখান
         }
 
         // ব্যাজ আপডেট করা
@@ -83,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // সময় ফরম্যাট করার হেল্পার ফাংশন
+    // সময় ফরম্যাট করার হেল্পার ফাংশন (কোনো পরিবর্তন নেই)
     const formatTimeAgo = (timestamp) => {
         const now = new Date();
         const past = new Date(timestamp);
@@ -107,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return 'এইমাত্র';
     };
 
-    // একটি নোটিফিকেশনকে 'পড়া' হিসেবে চিহ্নিত করা
+    // একটি নোটিফিকেশনকে 'পড়া' হিসেবে চিহ্নিত করা (কোনো পরিবর্তন নেই)
     const markAsRead = (notificationId) => {
         if (!readNotifications.includes(notificationId)) {
             readNotifications.push(notificationId);
@@ -116,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // ইভেন্ট লিসেনার সেট আপ
+    // ইভেন্ট লিসেনার সেট আপ (কোনো পরিবর্তন নেই)
     notificationBellBtn.addEventListener('click', () => {
         notificationModal.style.display = 'block';
     });
@@ -129,19 +142,28 @@ document.addEventListener('DOMContentLoaded', () => {
         notificationModal.style.display = 'none';
     });
     
-    // মডালের বাইরে ক্লিক করলে বন্ধ করা
     window.addEventListener('click', (event) => {
         if (event.target === notificationModal) {
             notificationModal.style.display = 'none';
         }
     });
 
-    // সব নোটিফিকেশন ক্লিয়ার করা
+    // পরিবর্তিত কোড: সব নোটিফিকেশন তালিকা থেকে মোছার জন্য
     clearAllBtn.addEventListener('click', () => {
-        allNotifications.forEach(n => markAsRead(n.id));
+        // সকল নোটিফিকেশনের আইডি সংগ্রহ করুন
+        const allNotificationIds = allNotifications.map(n => n.id);
+        
+        // সব আইডি 'clearedNotifications' অ্যারেতে যোগ করুন
+        clearedNotifications = [...new Set([...clearedNotifications, ...allNotificationIds])];
+        
+        // localStorage-এ সেভ করুন
+        localStorage.setItem('clearedNotifications', JSON.stringify(clearedNotifications));
+        
+        // UI আপডেট করতে আবার রেন্ডার করুন
+        renderNotifications();
     });
 
-    // নির্দিষ্ট নোটিফিকেশনে ক্লিক করলে বা 'mark as read' বাটনে ক্লিক করলে
+    // নির্দিষ্ট নোটিফিকেশনে ক্লিক ইভেন্ট (কোনো পরিবর্তন নেই)
     notificationList.addEventListener('click', (event) => {
         const target = event.target;
         const listItem = target.closest('li');
@@ -149,15 +171,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const notificationId = listItem.dataset.id;
         
-        // 'Mark as read' বাটনে ক্লিক করলে
         if (target.closest('.mark-as-read-btn')) {
-            event.preventDefault(); // লিঙ্ক ট্রিগার হওয়া আটকাতে
+            event.preventDefault();
             markAsRead(notificationId);
         }
-        // লিঙ্কে ক্লিক করলে
         else if (target.closest('.notification-link')) {
             markAsRead(notificationId);
-            // লিঙ্ক স্বাভাবিকভাবে কাজ করবে, 페이지 রিডাইরেক্ট হবে
         }
     });
 
