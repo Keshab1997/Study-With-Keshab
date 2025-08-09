@@ -1,165 +1,240 @@
-/* === Notification Modal Styles (সম্পূর্ণ এবং আপডেটেড) === */
+/* css/notification.css */
 
-#notification-modal {
-  display: block;
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
-  position: fixed;
-  z-index: 1001;
-  top: 65px;
-  right: 20px;
-  width: 350px;
-  max-width: 90vw;
-  max-height: 450px; /* Footer সহ উচ্চতা একটু বাড়ানো হলো */
-  background-color: #ffffff;
+/* === নোটিফিকেশন ফিড (হোম পেজ) === */
+.notification-feed-container {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.notification-feed-item {
+  background-color: #f9f9f9;
+  border-left: 5px solid #007bff;
+  padding: 1rem 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-  border: 1px solid #e0e0e0;
-  display: flex; /* Flexbox for layout */
-  flex-direction: column; /* To stack header, list, and footer */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-#notification-modal.is-visible {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+.notification-feed-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-#notification-modal h3 {
-  padding: 15px 20px;
-  margin: 0;
+.notification-feed-item a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notification-feed-item .feed-icon i {
+  font-size: 1.5rem;
+  color: #007bff;
+}
+
+.notification-feed-item .feed-content h4 {
+  margin: 0 0 0.25rem;
   font-family: 'Hind Siliguri', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-bottom: 1px solid #eee;
-  background-color: #f8f9fa;
   color: #333;
 }
 
-#close-notification-modal {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: #888;
-  cursor: pointer;
-  padding: 5px;
-  line-height: 1;
-  transition: color 0.2s;
-  z-index: 3;
-}
-
-#close-notification-modal:hover {
-  color: #000;
-}
-
-#notification-list {
-  list-style: none;
-  padding: 0;
+.notification-feed-item .feed-content p {
   margin: 0;
-  overflow-y: auto; /* Make only the list scrollable */
-  flex-grow: 1; /* List takes up available space */
-}
-
-#notification-list li {
-  padding: 12px 20px;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: 0.95rem;
   color: #555;
 }
 
-#notification-list li:last-child {
-  border-bottom: none;
+.notification-feed-item .feed-content span {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 0.5rem;
+    display: block;
 }
 
-#notification-list li small {
-  display: block;
-  margin-top: 4px;
-  color: #999;
-  font-size: 0.75rem;
+/* === নোটিফিকেশন বেল এবং ব্যাজ === */
+.user-info-cluster {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
-/* Bell icon with badge */
 .notification-bell-btn {
-  position: relative;
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  font-size: 1.2rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    position: relative;
+    padding: 0.5rem;
 }
 
 #notification-badge {
-  position: absolute;
-  top: -5px;
-  right: -8px;
-  background-color: #d9534f;
-  color: white;
-  border-radius: 50%;
-  padding: 1px 5px;
-  font-size: 10px;
-  font-weight: bold;
-  line-height: 1.2;
-  border: 1px solid white;
-  display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid white;
+    display: none; /* JS দিয়ে নিয়ন্ত্রণ করা হবে */
 }
 
-/* === Notification Modal Footer Styles (নতুন কোড) === */
+/* === নোটিফিকেশন মডাল === */
+#notification-modal {
+    display: none; /* JS দিয়ে নিয়ন্ত্রণ করা হবে */
+    position: fixed;
+    z-index: 1000;
+    right: 20px;
+    top: 80px; /* হেডার এর নিচে */
+    width: 380px;
+    max-height: 80vh;
+    background-color: white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#notification-modal h3 {
+    padding: 1rem 1.5rem;
+    margin: 0;
+    font-family: 'Hind Siliguri', sans-serif;
+    border-bottom: 1px solid #eee;
+    background-color: #f7f9fc;
+}
+
+#close-notification-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #888;
+}
+
+#notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+#notification-list li {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.3s;
+    position: relative;
+}
+
+#notification-list li:last-child {
+    border-bottom: none;
+}
+
+#notification-list li:hover {
+    background-color: #f9f9f9;
+}
+
+#notification-list li.read {
+    opacity: 0.7;
+    background-color: #f5f5f5;
+}
+#notification-list li.read strong {
+    font-weight: normal;
+}
+
+
+#notification-list li .notification-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+#notification-list li strong {
+    font-size: 1rem;
+    color: #333;
+    display: block;
+    margin-bottom: 4px;
+}
+
+#notification-list li p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+#notification-list li small {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 5px;
+    display: block;
+}
+
+#notification-list li .mark-as-read-btn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #e7f3ff;
+    border: none;
+    color: #007bff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#notification-list li:hover .mark-as-read-btn {
+    opacity: 1;
+}
+
+
 .notification-modal-footer {
-  padding: 10px 15px;
-  background-color: #f8f9fa;
-  border-top: 1px solid #e0e0e0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+    padding: 0.75rem 1.5rem;
+    border-top: 1px solid #eee;
+    background-color: #f7f9fc;
+    display: flex;
+    justify-content: space-between;
 }
 
 .btn-notification-action {
-  padding: 8px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: 'Hind Siliguri', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: background-color 0.2s, color 0.2s, opacity 0.2s;
-  flex-grow: 1;
-}
-
-.btn-notification-action:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.btn-notification-action i {
-  margin-right: 5px;
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    transition: background-color 0.3s;
 }
 
 .btn-notification-action.btn-clear {
-  background-color: #fdeeee;
-  color: #d9534f;
-  border: 1px solid #d9534f;
+    color: #dc3545;
 }
-
-.btn-notification-action.btn-clear:hover:not(:disabled) {
-  background-color: #d9534f;
-  color: #fff;
+.btn-notification-action.btn-clear:hover {
+    background-color: #fbebeb;
 }
 
 .btn-notification-action.btn-close {
-  background-color: #f0f0f0;
-  color: #555;
-  border: 1px solid #ccc;
+    color: #007bff;
 }
 
 .btn-notification-action.btn-close:hover {
-  background-color: #e0e0e0;
-  color: #333;
+    background-color: #e7f3ff;
 }

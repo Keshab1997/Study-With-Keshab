@@ -1,69 +1,166 @@
-// js/notifications.js
+// js/notification.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const allNotificationsList = document.getElementById('all-notifications-list');
-    
-    if (!allNotificationsList) return;
+    // DOM елементগুলি সিলেক্ট করা
+    const notificationBellBtn = document.getElementById('show-notification-btn');
+    const notificationModal = document.getElementById('notification-modal');
+    const closeModalBtn = document.getElementById('close-notification-modal');
+    const closeModalFooterBtn = document.getElementById('close-notification-btn-footer');
+    const notificationList = document.getElementById('notification-list');
+    const notificationBadge = document.getElementById('notification-badge');
+    const clearAllBtn = document.getElementById('clear-all-notifications-btn');
+    const recentFeedContainer = document.getElementById('realtime-notification-feed');
 
-    // Firestore থেকে সব নোটিফিকেশন লোড করার ফাংশন
-    function loadAllNotifications() {
-        // নিশ্চিত করুন যে db ভেরিয়েবলটি লোড হয়েছে
-        if (typeof db === 'undefined') {
-            setTimeout(loadAllNotifications, 100); // ১০০ মিলিসেকেন্ড পর আবার চেষ্টা করুন
-            return;
+    // localStorage থেকে পড়া নোটিফিকেশন আইডি আনা
+    let readNotifications = JSON.parse(localStorage.getItem('readNotifications')) || [];
+
+    // নোটিফিকেশন রেন্ডার করার ফাংশন
+    const renderNotifications = () => {
+        // লিস্ট ও ফিড খালি করা
+        notificationList.innerHTML = '';
+        recentFeedContainer.innerHTML = '';
+        
+        let unreadCount = 0;
+
+        // ডেটা সোর্স থেকে নোটিফিকেশনগুলো লুপ করা (allNotifications আসছে notification-data.js থেকে)
+        allNotifications.forEach(notification => {
+            const isRead = readNotifications.includes(notification.id);
+
+            // অপঠিত নোটিফিকেশনের সংখ্যা গণনা
+            if (!isRead) {
+                unreadCount++;
+            }
+
+            // সময়কে ফরম্যাট করা (যেমন: ২ দিন আগে)
+            const timeAgo = formatTimeAgo(notification.timestamp);
+
+            // ১. নোটিফিকেশন মডালের জন্য লিস্ট আইটেম তৈরি
+            const listItem = document.createElement('li');
+            listItem.dataset.id = notification.id;
+            listItem.className = isRead ? 'read' : '';
+            listItem.innerHTML = `
+                <a href="${notification.link}" class="notification-link">
+                    <div class="notification-content">
+                        <strong>${notification.title}</strong>
+                        <p>${notification.message}</p>
+                        <small>${timeAgo}</small>
+                    </div>
+                </a>
+                ${!isRead ? '<button class="mark-as-read-btn" title="পড়া হয়েছে হিসেবে চিহ্নিত করুন"><i class="fa-solid fa-check"></i></button>' : ''}
+            `;
+            notificationList.appendChild(listItem);
+
+
+            // ২. হোম পেজের সাম্প্রতিক ফিডের জন্য আইটেম তৈরি (শুধুমাত্র নতুন ৩টি)
+            if (allNotifications.indexOf(notification) < 3) {
+                 const feedItem = document.createElement('div');
+                 feedItem.className = 'notification-feed-item';
+                 feedItem.innerHTML = `
+                    <a href="${notification.link}">
+                        <div class="feed-icon"><i class="fa-solid fa-bell"></i></div>
+                        <div class="feed-content">
+                            <h4>${notification.title}</h4>
+                            <p>${notification.message}</p>
+                            <span>${timeAgo}</span>
+                        </div>
+                    </a>
+                 `;
+                 recentFeedContainer.appendChild(feedItem);
+            }
+        });
+
+        // যদি কোনো বিজ্ঞপ্তি না থাকে, তাহলে মেসেজ দেখানো
+        if(allNotifications.length === 0) {
+            recentFeedContainer.innerHTML = '<p>এখনো কোনো নতুন বিজ্ঞপ্তি নেই।</p>';
         }
 
-        db.collection('notifications')
-          .orderBy('createdAt', 'desc') // নতুনগুলো আগে দেখাবে
-          .get()
-          .then(snapshot => {
-              allNotificationsList.innerHTML = ''; // তালিকা খালি করুন
-              if (snapshot.empty) {
-                  allNotificationsList.innerHTML = '<div class="notification-list-empty">এখনও কোনো বিজ্ঞপ্তি পাঠানো হয়নি।</div>';
-                  return;
-              }
+        // ব্যাজ আপডেট করা
+        if (unreadCount > 0) {
+            notificationBadge.textContent = unreadCount;
+            notificationBadge.style.display = 'block';
+        } else {
+            notificationBadge.style.display = 'none';
+        }
+    };
 
-              snapshot.forEach(doc => {
-                  const notification = doc.data();
-                  const timeAgo = formatTimeAgo(notification.createdAt);
-
-                  const item = document.createElement('a');
-                  item.href = notification.link || '#';
-                  item.classList.add('notification-list-item');
-                  item.innerHTML = `
-                      <div class="notification-title">${notification.title}</div>
-                      <div class="notification-body">${notification.body}</div>
-                      <div class="notification-time">${timeAgo}</div>
-                  `;
-                  allNotificationsList.appendChild(item);
-              });
-
-          })
-          .catch(error => {
-              console.error("Error fetching all notifications:", error);
-              allNotificationsList.innerHTML = '<div class="notification-list-empty">বিজ্ঞপ্তি লোড করতে সমস্যা হয়েছে।</div>';
-          });
-    }
-    
-    // সময়কে "x minutes ago" ফরম্যাটে দেখানোর জন্য একটি হেল্পার ফাংশন
-    function formatTimeAgo(timestamp) {
-        if (!timestamp || !timestamp.toDate) return '';
+    // সময় ফরম্যাট করার হেল্পার ফাংশন
+    const formatTimeAgo = (timestamp) => {
         const now = new Date();
-        const seconds = Math.floor((now - timestamp.toDate()) / 1000);
+        const past = new Date(timestamp);
+        const diffInSeconds = Math.floor((now - past) / 1000);
+        
+        const intervals = {
+            বছর: 31536000,
+            মাস: 2592000,
+            দিন: 86400,
+            ঘন্টা: 3600,
+            মিনিট: 60
+        };
 
-        let interval = seconds / 31536000;
-        if (interval > 1) return Math.floor(interval) + " বছর আগে";
-        interval = seconds / 2592000;
-        if (interval > 1) return Math.floor(interval) + " মাস আগে";
-        interval = seconds / 86400;
-        if (interval > 1) return Math.floor(interval) + " দিন আগে";
-        interval = seconds / 3600;
-        if (interval > 1) return Math.floor(interval) + " ঘন্টা আগে";
-        interval = seconds / 60;
-        if (interval > 1) return Math.floor(interval) + " মিনিট আগে";
-        return "এইমাত্র";
-    }
+        for (let key in intervals) {
+            const interval = intervals[key];
+            const count = Math.floor(diffInSeconds / interval);
+            if (count > 0) {
+                return `${count} ${key} আগে`;
+            }
+        }
+        return 'এইমাত্র';
+    };
 
-    // পেজ লোড হলে নোটিফিকেশন লোড শুরু হবে
-    loadAllNotifications();
+    // একটি নোটিফিকেশনকে 'পড়া' হিসেবে চিহ্নিত করা
+    const markAsRead = (notificationId) => {
+        if (!readNotifications.includes(notificationId)) {
+            readNotifications.push(notificationId);
+            localStorage.setItem('readNotifications', JSON.stringify(readNotifications));
+            renderNotifications(); // UI আপডেট করার জন্য আবার রেন্ডার
+        }
+    };
+
+    // ইভেন্ট লিসেনার সেট আপ
+    notificationBellBtn.addEventListener('click', () => {
+        notificationModal.style.display = 'block';
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+        notificationModal.style.display = 'none';
+    });
+
+    closeModalFooterBtn.addEventListener('click', () => {
+        notificationModal.style.display = 'none';
+    });
+    
+    // মডালের বাইরে ক্লিক করলে বন্ধ করা
+    window.addEventListener('click', (event) => {
+        if (event.target === notificationModal) {
+            notificationModal.style.display = 'none';
+        }
+    });
+
+    // সব নোটিফিকেশন ক্লিয়ার করা
+    clearAllBtn.addEventListener('click', () => {
+        allNotifications.forEach(n => markAsRead(n.id));
+    });
+
+    // নির্দিষ্ট নোটিফিকেশনে ক্লিক করলে বা 'mark as read' বাটনে ক্লিক করলে
+    notificationList.addEventListener('click', (event) => {
+        const target = event.target;
+        const listItem = target.closest('li');
+        if (!listItem) return;
+
+        const notificationId = listItem.dataset.id;
+        
+        // 'Mark as read' বাটনে ক্লিক করলে
+        if (target.closest('.mark-as-read-btn')) {
+            event.preventDefault(); // লিঙ্ক ট্রিগার হওয়া আটকাতে
+            markAsRead(notificationId);
+        }
+        // লিঙ্কে ক্লিক করলে
+        else if (target.closest('.notification-link')) {
+            markAsRead(notificationId);
+            // লিঙ্ক স্বাভাবিকভাবে কাজ করবে, 페이지 রিডাইরেক্ট হবে
+        }
+    });
+
+    // প্রথমবার পেজ লোড হওয়ার সময় নোটিফিকেশন রেন্ডার করা
+    renderNotifications();
 });
