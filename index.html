@@ -200,15 +200,25 @@
   </div>
 </footer>
 
-<!-- Firebase এবং অন্যান্য স্ক্রিপ্ট (সঠিক ক্রমে) -->
+
+<!-- Firebase এবং অন্যান্য স্ক্রিপ্ট (সঠিক এবং নির্ভরযোগ্য ক্রমে) -->
+
+<!-- ১. Firebase এর মূল লাইব্রেরিগুলো -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<!-- ২. আপনার Firebase প্রজেক্টের কনফিগারেশন -->
 <script src="js/firebase-config.js"></script>
+
+<!-- ৩. প্রধান অথেন্টিকেশন লজিক -->
+<script src="auth.js"></script>
+
+<!-- ৪. নোটিফিকেশন সিস্টেমের ডেটা ও লজিক -->
 <script src="js/notification-data.js"></script>
 <script src="js/notification.js"></script>
-<script src="auth.js"></script>
-<script src="js/script.js"></script>
 
+<!-- ৫. অন্যান্য সাধারণ বা সম্পূরক স্ক্রিপ্ট -->
+<script src="js/script.js"></script>
 </body>
 </html>
