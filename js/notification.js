@@ -1,4 +1,4 @@
-// js/notification.js (সম্পূর্ণ নতুন এবং উন্নত কোড)
+// js/notification.js (সম্পূর্ণ নতুন এবং উন্নত কোড - সাউন্ডসহ)
 
 document.addEventListener('DOMContentLoaded', () => {
   // প্রয়োজনীয় সব DOM এলিমেন্টগুলো একসাথে নিয়ে নেওয়া হলো
@@ -8,8 +8,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalList = document.getElementById('notification-list');
   const closeModalBtn = document.getElementById('close-notification-modal');
   const closeModalFooterBtn = document.getElementById('close-notification-btn-footer');
-  const clearReadBtn = document.getElementById('clear-read-notifications-btn'); // নতুন বাটন আইডি
+  const clearReadBtn = document.getElementById('clear-read-notifications-btn');
   const homePageFeedContainer = document.getElementById('realtime-notification-feed');
+
+  // ===============================================
+  // ধাপ ১: অডিও ফাইল প্রস্তুত করা
+  // ===============================================
+  // আপনার audio ফোল্ডার থেকে সাউন্ড ফাইলটি লোড করা হলো
+  const notificationSound = new Audio('audio/notification.wav');
+  
+  /**
+   * সাউন্ড প্লে করার জন্য একটি নিরাপদ ফাংশন।
+   * ব্রাউজারের অটোপ্লে পলিসির কারণে সরাসরি প্লে করলে অনেক সময় ব্লক হতে পারে,
+   * তাই .catch() দিয়ে এরর হ্যান্ডেল করা হলো।
+   */
+  const playNotificationSound = () => {
+    notificationSound.play().catch(error => {
+      // এই এররটি দেখানো মানে ব্রাউজার সাউন্ড ব্লক করেছে। ব্যবহারকারী সাইটে ক্লিক করার পর এটি ঠিক হয়ে যাবে।
+      console.warn("Notification sound was blocked by the browser. It will play after the first user interaction.");
+    });
+  };
+  // নতুন কোড শেষ
 
   // LocalStorage থেকে ডেটা লোড করার ফাংশন
   const getStorageData = (key) => JSON.parse(localStorage.getItem(key) || '[]');
@@ -31,6 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
       notificationBadge.textContent = unreadCount;
       notificationBadge.style.display = unreadCount > 0 ? 'flex' : 'none';
     }
+
+    // ========================================================
+    // ধাপ ২: কখন সাউন্ড বাজবে তা নির্ধারণ করা
+    // ========================================================
+    // যদি নতুন নোটিফিকেশন থাকে এবং এই সেশনে আগে সাউন্ড না বেজে থাকে, তাহলে সাউন্ড প্লে হবে।
+    // sessionStorage ব্যবহার করা হয়েছে যাতে প্রতিবার পেজ রিলোড করলেই সাউন্ড না বাজে।
+    if (unreadCount > 0 && !sessionStorage.getItem('soundPlayedThisSession')) {
+      playNotificationSound();
+      // সাউন্ড বেজে যাওয়ার পর sessionStorage-এ একটি চিহ্ন রাখা হলো।
+      sessionStorage.setItem('soundPlayedThisSession', 'true');
+    }
+    // নতুন কোড শেষ
   };
 
   /**
@@ -147,44 +178,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ==================== Event Listeners ====================
 
-  // বেল আইকনে ক্লিক করলে মডাল খুলবে
   if (notificationBellBtn) {
     notificationBellBtn.addEventListener('click', () => {
       modal.style.display = 'flex';
-      // কোনো কিছু নিজে থেকে পরিবর্তন হবে না, শুধু দেখাবে
     });
   }
 
-  // মডাল বন্ধ করার বাটন
   const closeTheModal = () => modal.style.display = 'none';
   if (closeModalBtn) closeModalBtn.addEventListener('click', closeTheModal);
   if (closeModalFooterBtn) closeModalFooterBtn.addEventListener('click', closeTheModal);
 
-  // মডালের বাইরে ক্লিক করলে বন্ধ হবে
   if (modal) {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeTheModal();
     });
   }
   
-  // "পঠিত সব মুছুন" বাটনের জন্য ইভেন্ট লিসেনার
   if(clearReadBtn) {
       clearReadBtn.addEventListener('click', clearReadNotifications);
   }
 
-  // মডাল লিস্টের মধ্যেকার বাটনের জন্য Event Delegation
   if (modalList) {
     modalList.addEventListener('click', (e) => {
       const item = e.target.closest('.notification-list-item');
       if (!item) return;
       const id = parseInt(item.dataset.id, 10);
       
-      // পড়া হিসেবে চিহ্নিত করার বাটন
       if (e.target.closest('.mark-as-read-btn')) {
         markAsRead(id);
       }
       
-      // ডিলিট করার বাটন
       if (e.target.closest('.delete-notification-btn')) {
         if (confirm('আপনি কি এই বিজ্ঞপ্তিটি মুছে ফেলতে চান?')) {
           deleteNotification(id);
