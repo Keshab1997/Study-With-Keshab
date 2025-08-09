@@ -1,6 +1,6 @@
-/* css/notification.css */
+/* css/notification.css - সম্পূর্ণ আপডেটেড এবং অপ্টিমাইজড */
 
-/* === নোটিফিকেশন ফিড (হোম পেজ) === */
+/* === নোটিফিকেশন ফিড (হোম পেজ) - স্ট্যাটাস সহ === */
 .notification-feed-container {
   display: grid;
   gap: 1.5rem;
@@ -8,10 +8,32 @@
 
 .notification-feed-item {
   background-color: #f9f9f9;
-  border-left: 5px solid #007bff;
+  border-left: 5px solid; /* রঙ JS থেকে নিয়ন্ত্রিত ক্লাসের মাধ্যমে আসবে */
   padding: 1rem 1.5rem;
   border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease, background-color 0.4s ease;
+  opacity: 1;
+}
+
+.notification-feed-item.unread {
+  background-color: #ffffff;
+  border-left-color: #ff4d4f; /* আকর্ষণীয় লাল */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.notification-feed-item.unread .feed-icon i {
+  color: #ff4d4f;
+}
+
+.notification-feed-item.read {
+  opacity: 0.75;
+  background-color: #f0f2f5;
+  border-left-color: #adb5bd; /* ধূসর */
+}
+.notification-feed-item.read:hover {
+  opacity: 1;
+}
+.notification-feed-item.read .feed-icon i {
+  color: #6c757d;
 }
 
 .notification-feed-item:hover {
@@ -20,307 +42,132 @@
 }
 
 .notification-feed-item a {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  text-decoration: none; color: inherit;
+  display: flex; align-items: center; gap: 1rem;
 }
 
 .notification-feed-item .feed-icon i {
-  font-size: 1.5rem;
-  color: #007bff;
+  font-size: 1.5rem; color: #007bff;
 }
 
 .notification-feed-item .feed-content h4 {
-  margin: 0 0 0.25rem;
-  font-family: 'Hind Siliguri', sans-serif;
-  color: #333;
+  margin: 0 0 0.25rem; font-family: 'Hind Siliguri', sans-serif; color: #333;
 }
-
 .notification-feed-item .feed-content p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #555;
+  margin: 0; font-size: 0.95rem; color: #555;
 }
-
 .notification-feed-item .feed-content span {
-    font-size: 0.8rem;
-    color: #888;
-    margin-top: 0.5rem;
-    display: block;
+    font-size: 0.8rem; color: #888; margin-top: 0.5rem; display: block;
 }
 
 /* === নোটিফিকেশন বেল এবং ব্যাজ === */
-.user-info-cluster {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
 .notification-bell-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: #333;
-    cursor: pointer;
-    position: relative;
-    padding: 0.5rem;
+    background: none; border: none; font-size: 1.5rem;
+    color: #333; cursor: pointer; position: relative; padding: 0.5rem;
 }
-
 #notification-badge {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    border: 2px solid white;
-    display: none; /* JS দিয়ে নিয়ন্ত্রণ করা হবে */
+    position: absolute; top: 0; right: 0;
+    background-color: #dc3545; color: white; border-radius: 50%;
+    width: 20px; height: 20px; font-size: 12px;
+    display: none; /* JS দিয়ে flex করা হবে */
+    align-items: center; justify-content: center;
+    font-weight: bold; border: 2px solid white;
 }
 
 /* === নোটিফিকেশন মডাল === */
 #notification-modal {
-    display: none; /* JS দিয়ে নিয়ন্ত্রণ করা হবে */
-    position: fixed;
-    z-index: 1000;
-    right: 20px;
-    top: 80px; /* হেডার এর নিচে */
-    width: 380px;
-    max-height: 80vh;
-    background-color: white;
+    display: none; /* JS দিয়ে flex করা হবে */
+    position: fixed; z-index: 1000;
+    right: 20px; top: 80px; width: 380px;
+    max-height: 80vh; background-color: white;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
-    overflow: hidden;
-    display: flex;
     flex-direction: column;
 }
-
 #notification-modal h3 {
-    padding: 1rem 1.5rem;
-    margin: 0;
+    padding: 1rem 1.5rem; margin: 0;
     font-family: 'Hind Siliguri', sans-serif;
-    border-bottom: 1px solid #eee;
-    background-color: #f7f9fc;
+    border-bottom: 1px solid #eee; background-color: #f7f9fc;
 }
-
 #close-notification-modal {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #888;
+    position: absolute; top: 10px; right: 15px;
+    background: none; border: none; font-size: 1.5rem;
+    cursor: pointer; color: #888;
 }
 
+/* নোটিফিকেশন লিস্ট */
 #notification-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    overflow-y: auto;
-    flex-grow: 1;
+    list-style: none; padding: 0; margin: 0;
+    overflow-y: auto; flex-grow: 1;
 }
-
 #notification-list li {
-    padding: 1rem 4.5rem 1rem 1.5rem; /* ডানদিকে বাটনের জন্য জায়গা বাড়ানো হলো */
+    display: flex; align-items: center;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
     border-bottom: 1px solid #f0f0f0;
     transition: background-color 0.3s;
-    position: relative;
 }
-
-#notification-list li:last-child {
-    border-bottom: none;
-}
-
-#notification-list li:hover {
-    background-color: #f9f9f9;
-}
-
-#notification-list li.read {
-    opacity: 0.7;
-    background-color: #f5f5f5;
-}
-#notification-list li.read strong {
-    font-weight: normal;
-}
+#notification-list li:last-child { border-bottom: none; }
+#notification-list li:hover { background-color: #f9f9f9; }
+#notification-list li.read { opacity: 0.7; }
+#notification-list li.read strong { font-weight: 500; }
 
 #notification-list li .notification-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
+    text-decoration: none; color: inherit;
+    flex-grow: 1; padding: 0.5rem 0;
 }
+#notification-list li strong { font-size: 1rem; color: #333; margin-bottom: 4px; }
+#notification-list li p { font-size: 0.9rem; color: #666; margin: 0; }
+#notification-list li small { font-size: 0.8rem; color: #999; margin-top: 5px; display: block; }
+.no-notification-message { text-align: center; color: #888; padding: 2rem; border: none !important; display: block; }
 
-#notification-list li strong {
-    font-size: 1rem;
-    color: #333;
-    display: block;
-    margin-bottom: 4px;
+/* নোটিফিকেশন অ্যাকশন বাটন */
+.notification-actions { display: flex; align-items: center; margin-left: 0.5rem; }
+.notification-actions button {
+    background: none; border: 1px solid transparent;
+    width: 32px; height: 32px; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    margin: 0 2px; transition: all 0.2s;
 }
-
-#notification-list li p {
-    font-size: 0.9rem;
-    color: #666;
-    margin: 0;
-}
-
-#notification-list li small {
-    font-size: 0.8rem;
-    color: #999;
-    margin-top: 5px;
-    display: block;
-}
-
-/* === নোটিফিকেশন অ্যাকশন বাটন (পড়া/মোছা) - পরিবর্তিত সেকশন === */
-
-/* বাটনগুলোকে ধারণ করার জন্য একটি কন্টেইনার */
-#notification-list li .notification-actions {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    gap: 10px;
-    opacity: 0; /* ডিফল্টভাবে স্বচ্ছ থাকবে */
-    transition: opacity 0.3s ease;
-}
-
-/* যখন li তে হোভার করা হবে, তখন বাটনগুলো দেখা যাবে */
-#notification-list li:hover .notification-actions {
-    opacity: 1;
-}
-
-/* প্রতিটি বাটনের সাধারণ স্টাইল */
-.mark-as-read-btn, .delete-notification-btn {
-    background: none;
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s;
-}
-
-/* পড়া হয়েছে হিসেবে চিহ্নিত করার বাটন */
-.mark-as-read-btn {
-    background-color: #e7f3ff;
-    color: #007bff;
-}
-.mark-as-read-btn:hover {
-    background-color: #d0e7ff;
-}
-
-/* মুছে ফেলার বাটন */
-.delete-notification-btn {
-    background-color: #fbebeb;
-    color: #dc3545;
-}
-.delete-notification-btn:hover {
-    background-color: #f8d7da;
-}
+.notification-actions .mark-as-read-btn { color: #28a745; }
+.notification-actions .mark-as-read-btn:hover { background-color: #eaf6ec; border-color: #a3d9b1; }
+.notification-actions .delete-notification-btn { color: #dc3545; }
+.notification-actions .delete-notification-btn:hover { background-color: #fbebeb; border-color: #f5c6cb; }
 
 /* ফুটার বাটন */
 .notification-modal-footer {
-    padding: 0.75rem 1.5rem;
-    border-top: 1px solid #eee;
-    background-color: #f7f9fc;
-    display: flex;
-    justify-content: space-between;
+    padding: 0.75rem 1.5rem; border-top: 1px solid #eee;
+    background-color: #f7f9fc; display: flex; justify-content: space-between;
 }
-
 .btn-notification-action {
-    background: none;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
+    background: none; border: none; padding: 0.5rem 1rem;
+    border-radius: 6px; cursor: pointer; font-weight: 500;
     transition: background-color 0.3s;
 }
-
-.btn-notification-action.btn-clear {
-    color: #dc3545;
-}
-.btn-notification-action.btn-clear:hover {
-    background-color: #fbebeb;
-}
-
-.btn-notification-action.btn-close {
-    color: #007bff;
-}
-
-.btn-notification-action.btn-close:hover {
-    background-color: #e7f3ff;
-}
+.btn-notification-action.btn-clear { color: #dc3545; }
+.btn-notification-action.btn-clear:hover { background-color: #fbebeb; }
+.btn-notification-action.btn-close { color: #007bff; }
+.btn-notification-action.btn-close:hover { background-color: #e7f3ff; }
 
 /* === মোবাইল ডিভাইসের জন্য রেসপন্সিভ স্টাইল === */
 @media (max-width: 768px) {
-
-    /* নোটিফিকেশন মডালকে স্ক্রিনের সাথে মানানসই করা */
     #notification-modal {
-        width: auto;
-        left: 10px;
-        right: 10px;
-        top: 70px;
-        max-height: 85vh;
+        width: auto; left: 10px; right: 10px;
+        top: 70px; max-height: 85vh;
     }
-
-    /* মডালের ভেতরের প্যাডিং কমানো */
-    #notification-modal h3,
-    .notification-modal-footer {
-        padding-left: 1rem;
-        padding-right: 1rem;
+    #notification-modal h3, .notification-modal-footer {
+        padding-left: 1rem; padding-right: 1rem;
     }
-
-    /* মোবাইলের জন্য নোটিফিকেশন লিস্টের প্যাডিং অ্যাডজাস্ট করা */
     #notification-list li {
-        padding: 1rem 5rem 1rem 1rem; /* ডানদিকে জায়গা আরও বেশি রাখা হলো */
+        padding: 0.75rem 0.5rem 0.75rem 1rem;
     }
-
-    /* হোমপেজের ফিড আইটেমের প্যাডিং কমানো */
-    .notification-feed-item {
-        padding: 1rem;
-    }
-    .notification-feed-item a {
-        gap: 0.8rem;
-    }
+    .notification-feed-item { padding: 1rem; }
     
-    /* অ্যাকশন বাটনগুলো টাচ ডিভাইসে সব সময় দেখানো */
-    #notification-list li .notification-actions {
-        opacity: 1; /* বাটন কন্টেইনারকে দৃশ্যমান করা হলো */
+    /* মোবাইলে হোভার ইফেক্ট কাজ করে না, তাই বাটনগুলোকে সবসময় দৃশ্যমান রাখা ভালো */
+    .notification-actions { opacity: 1; }
+    .notification-actions button {
+       background-color: transparent; border-color: transparent;
     }
-
-    /* মোবাইলে বাটনগুলোর ব্যাকগ্রাউন্ড তুলে দিয়ে শুধু আইকন রাখা */
-    .mark-as-read-btn, .delete-notification-btn {
-       background-color: transparent;
-       width: auto;
-       height: auto;
-       font-size: 1.1rem;
-    }
-    .mark-as-read-btn { color: #007bff; }
-    .delete-notification-btn { color: #dc3545; }
-
-
-    /* মডালের টাইটেল এবং ক্লোজ বাটনের পজিশন ঠিক করা */
-     #notification-modal h3 {
-        font-size: 1.1rem;
-    }
-    #close-notification-modal {
-        top: 8px;
-        right: 8px;
-        font-size: 1.4rem;
+    .notification-actions button:hover {
+        background-color: #eee; /* টাচ করলে হালকা ফিডব্যাক */
     }
 }
