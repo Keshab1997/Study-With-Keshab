@@ -1,30 +1,29 @@
-// js/notification.js
+// js/notification.js (সম্পূর্ণ নতুন এবং উন্নত কোড)
 
 document.addEventListener('DOMContentLoaded', () => {
-  // প্রয়োজনীয় DOM এলিমেন্টগুলো নিয়ে নেওয়া হলো
+  // প্রয়োজনীয় সব DOM এলিমেন্টগুলো একসাথে নিয়ে নেওয়া হলো
   const notificationBellBtn = document.getElementById('show-notification-btn');
   const notificationBadge = document.getElementById('notification-badge');
   const modal = document.getElementById('notification-modal');
   const modalList = document.getElementById('notification-list');
   const closeModalBtn = document.getElementById('close-notification-modal');
   const closeModalFooterBtn = document.getElementById('close-notification-btn-footer');
-  const clearAllBtn = document.getElementById('clear-all-notifications-btn');
+  const clearReadBtn = document.getElementById('clear-read-notifications-btn'); // নতুন বাটন আইডি
   const homePageFeedContainer = document.getElementById('realtime-notification-feed');
 
   // LocalStorage থেকে ডেটা লোড করার ফাংশন
   const getStorageData = (key) => JSON.parse(localStorage.getItem(key) || '[]');
+  // স্টোরেজে ডেটা সেভ করার ফাংশন
+  const saveToStorage = (key, data) => localStorage.setItem(key, JSON.stringify(data));
 
   let readIds = getStorageData('readNotificationIds');
   let deletedIds = getStorageData('deletedNotificationIds');
-
-  // স্টোরেজে ডেটা সেভ করার ফাংশন
-  const saveToStorage = (key, data) => localStorage.setItem(key, JSON.stringify(data));
 
   // সকল নোটিফিকেশন (ডিলিট করা বাদে) ফিল্টার করা
   const getActiveNotifications = () => notificationData.filter(n => !deletedIds.includes(n.id));
 
   /**
-   * ব্যাজ আপডেট করার ফাংশন
+   * ব্যাজ আপডেট করার ফাংশন (না পড়া নোটিফিকেশনের সংখ্যা দেখাবে)
    */
   const updateBadge = () => {
     const unreadCount = getActiveNotifications().filter(n => !readIds.includes(n.id)).length;
@@ -35,24 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /**
-   * নোটিফিকেশন রেন্ডার করার মূল ফাংশন
-   * @param {HTMLElement} targetElement - কোথায় রেন্ডার হবে (মডাল বা হোমপেজ ফিড)
-   * @param {number|null} count - কতগুলো আইটেম দেখানো হবে (null হলে সব)
+   * মডালের ভেতরে নোটিফিকেশন লিস্ট তৈরি করার ফাংশন
    */
-  const renderNotifications = (targetElement, count = null) => {
-    if (!targetElement) return;
+  const renderModalList = () => {
+    if (!modalList) return;
 
-    let notificationsToRender = getActiveNotifications();
-    if (count) {
-      notificationsToRender = notificationsToRender.slice(0, count);
-    }
+    const notificationsToRender = getActiveNotifications();
     
     if (notificationsToRender.length === 0) {
-      targetElement.innerHTML = `<li class="no-notification-message">কোনো নতুন বিজ্ঞপ্তি নেই।</li>`;
+      modalList.innerHTML = `<li class="no-notification-message">কোনো বিজ্ঞপ্তি নেই।</li>`;
       return;
     }
 
-    targetElement.innerHTML = notificationsToRender.map(n => {
+    modalList.innerHTML = notificationsToRender.map(n => {
       const isRead = readIds.includes(n.id);
       const readClass = isRead ? 'read' : 'unread';
       
@@ -75,7 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join('');
   };
   
-  // হোমপেজের ফিড রেন্ডার করার ফাংশন
+  /**
+   * হোমপেজের ফিড রেন্ডার করার ফাংশন
+   */
   const renderHomePageFeed = () => {
       if (!homePageFeedContainer) return;
       const notifications = getActiveNotifications().slice(0, 4); // সাম্প্রতিক ৪টি দেখানো হবে
@@ -101,7 +97,14 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
     }).join('');
-  }
+  };
+
+  // UI রিফ্রেশ করার কেন্দ্রীয় ফাংশন
+  const refreshUI = () => {
+    renderModalList();
+    renderHomePageFeed();
+    updateBadge();
+  };
 
   // কোনো নোটিফিকেশন পড়া হিসেবে চিহ্নিত করা
   const markAsRead = (id) => {
@@ -116,40 +119,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const deleteNotification = (id) => {
     if (!deletedIds.includes(id)) {
       deletedIds.push(id);
+      readIds = readIds.filter(readId => readId !== id); // read list থেকেও বাদ দেওয়া হলো
       saveToStorage('deletedNotificationIds', deletedIds);
-      // যদি এটি পড়া না থাকে, তাহলে readIds থেকেও বাদ দেওয়া যেতে পারে (ঐচ্ছিক)
-      readIds = readIds.filter(readId => readId !== id);
       saveToStorage('readNotificationIds', readIds);
       refreshUI();
     }
   };
   
-  // সব নোটিফিকেশন ক্লিয়ার করা
-  const clearAllNotifications = () => {
+  // শুধু পঠিত নোটিফিকেশনগুলো ক্লিয়ার করা
+  const clearReadNotifications = () => {
       const activeNotifications = getActiveNotifications();
-      deletedIds = [...deletedIds, ...activeNotifications.map(n => n.id)];
+      const readToDelete = activeNotifications.filter(n => readIds.includes(n.id));
+      
+      if (readToDelete.length === 0) {
+          alert('মোছার জন্য কোনো পঠিত বিজ্ঞপ্তি নেই।');
+          return;
+      }
+
+      const idsToDelete = readToDelete.map(n => n.id);
+      deletedIds.push(...idsToDelete);
+      readIds = readIds.filter(id => !idsToDelete.includes(id));
+      
       saveToStorage('deletedNotificationIds', deletedIds);
-      readIds = [];
       saveToStorage('readNotificationIds', readIds);
       refreshUI();
-  }
-
-  // UI রিফ্রেশ করার ফাংশন
-  const refreshUI = () => {
-    renderNotifications(modalList);
-    renderHomePageFeed();
-    updateBadge();
   };
 
-  // ইভেন্ট লিসেনার সেটআপ
+  // ==================== Event Listeners ====================
+
+  // বেল আইকনে ক্লিক করলে মডাল খুলবে
   if (notificationBellBtn) {
     notificationBellBtn.addEventListener('click', () => {
       modal.style.display = 'flex';
-      // মডাল খোলার সাথে সাথে সব unread নোটিফিকেশন পড়া হয়ে যাবে
-      const unread = getActiveNotifications().filter(n => !readIds.includes(n.id));
-      unread.forEach(n => readIds.push(n.id));
-      saveToStorage('readNotificationIds', readIds);
-      refreshUI();
+      // কোনো কিছু নিজে থেকে পরিবর্তন হবে না, শুধু দেখাবে
     });
   }
 
@@ -161,30 +163,32 @@ document.addEventListener('DOMContentLoaded', () => {
   // মডালের বাইরে ক্লিক করলে বন্ধ হবে
   if (modal) {
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeTheModal();
-      }
+      if (e.target === modal) closeTheModal();
     });
   }
   
-  if(clearAllBtn) {
-      clearAllBtn.addEventListener('click', clearAllNotifications);
+  // "পঠিত সব মুছুন" বাটনের জন্য ইভেন্ট লিসেনার
+  if(clearReadBtn) {
+      clearReadBtn.addEventListener('click', clearReadNotifications);
   }
 
-  // নোটিফিকেশন লিস্টের মধ্যেকার বাটনের জন্য Event Delegation
+  // মডাল লিস্টের মধ্যেকার বাটনের জন্য Event Delegation
   if (modalList) {
     modalList.addEventListener('click', (e) => {
-      const markReadBtn = e.target.closest('.mark-as-read-btn');
-      const deleteBtn = e.target.closest('.delete-notification-btn');
+      const item = e.target.closest('.notification-list-item');
+      if (!item) return;
+      const id = parseInt(item.dataset.id, 10);
       
-      if (markReadBtn) {
-        const id = parseInt(markReadBtn.closest('.notification-list-item').dataset.id, 10);
+      // পড়া হিসেবে চিহ্নিত করার বাটন
+      if (e.target.closest('.mark-as-read-btn')) {
         markAsRead(id);
       }
       
-      if (deleteBtn) {
-        const id = parseInt(deleteBtn.closest('.notification-list-item').dataset.id, 10);
-        deleteNotification(id);
+      // ডিলিট করার বাটন
+      if (e.target.closest('.delete-notification-btn')) {
+        if (confirm('আপনি কি এই বিজ্ঞপ্তিটি মুছে ফেলতে চান?')) {
+          deleteNotification(id);
+        }
       }
     });
   }
