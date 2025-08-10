@@ -15,29 +15,66 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- মূল CSS ফাইল -->
-    <link rel="stylesheet" href="../css/style.css">
+    <!-- মূল CSS ফাইল (যদি থাকে, না হলে নিচের স্টাইলই কাজ করবে) -->
+    <!-- <link rel="stylesheet" href="../css/style.css"> -->
 
 <style>
-    /* গণিত পেজের জন্য নির্দিষ্ট নতুন CSS থিম */
+    /* ================= 基本 স্টাইল ================= */
     :root {
       --text-color: #34495e;
       --bg-light: #f4f6f9;
       --bg-white: #ffffff;
       --footer-bg: #2c3e50;
       --footer-text: #bdc3c7;
+      --primary-color: #3498db;
+      --secondary-color: #1abc9c;
     }
-    body { font-family: 'Poppins', sans-serif; background-color: var(--bg-light); margin: 0; color: var(--text-color); line-height: 1.7; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Poppins', 'Hind Siliguri', sans-serif; background-color: var(--bg-light); margin: 0; color: var(--text-color); line-height: 1.7; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    .chapter-page { padding: 4rem 2rem; }
-    .section-title { text-align: center; font-size: 3rem; font-weight: 700; margin-bottom: 3rem; background: linear-gradient(45deg, #1abc9c, #3498db); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; }
-    .chapter-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-    .chapter-card { background: var(--bg-white); border-radius: 12px; padding: 1.5rem; text-align: center; color: var(--text-color); text-decoration: none; border-bottom: 4px solid #3498db; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.07); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 180px; }
-    .chapter-card-title { font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ================= হেডার স্টাইল ================= */
+    .site-header { background-color: var(--bg-white); padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .header-grid { display: flex; justify-content: space-between; align-items: center; }
+    .logo-img { height: 50px; width: 50px; border-radius: 50%; }
+    .primary-navigation ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1.5rem; }
+    .primary-navigation a { font-weight: 500; padding: 0.5rem 0; position: relative; }
+    .primary-navigation a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--primary-color); transition: width 0.3s ease; }
+    .primary-navigation a:hover::after { width: 100%; }
+    .header-actions { display: flex; align-items: center; }
+    .mobile-nav-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+    /* ================= মোবাইল নেভিগেশন ================= */
+    .mobile-navigation-menu { position: fixed; inset: 0 0 0 30%; background: var(--bg-white); z-index: 1000; transform: translateX(100%); transition: transform 0.35s ease-out; padding: 4rem 2rem; }
+    .mobile-navigation-menu[data-visible="true"] { transform: translateX(0); }
+    .mobile-navigation-menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2rem; font-size: 1.2rem; }
+    .mobile-nav-toggle .fa-xmark { display: none; }
+    .mobile-nav-toggle[aria-expanded="true"] .fa-bars { display: none; }
+    .mobile-nav-toggle[aria-expanded="true"] .fa-xmark { display: block; }
+
+    /* ================= রেসপন্সিভ মিডিয়া কোয়েরি ================= */
+    @media (max-width: 768px) {
+      .primary-navigation { display: none; }
+      .mobile-nav-toggle { display: block; }
+    }
+    
+    /* ================= অধ্যায় পেজের স্টাইল ================= */
+    .chapter-page { padding: 4rem 1rem; }
+    .section-title-wrapper { text-align: center; margin-bottom: 3rem; }
+    .section-title { font-size: 2.5rem; font-weight: 700; background: linear-gradient(45deg, var(--secondary-color), var(--primary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; margin: 0; display: inline-block; }
+    .section-title-wrapper::after { content: ''; display: block; width: 80px; height: 4px; background: var(--primary-color); border-radius: 2px; margin: 0.75rem auto 0; }
+    
+    .chapter-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .chapter-card { background: var(--bg-white); border-radius: 12px; padding: 1.5rem; text-align: center; color: var(--text-color); border-bottom: 4px solid var(--primary-color); transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.07); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 180px; }
+    .chapter-card-title { font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; font-family: 'Poppins', sans-serif; }
     .chapter-card-subtitle { font-size: 0.9rem; color: #7f8c8d; font-family: 'Hind Siliguri', sans-serif; }
-    .chapter-card i { font-size: 2.2rem; color: #3498db; transition: transform 0.3s ease; margin-bottom: 0.75rem; }
-    .chapter-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); border-color: #1abc9c; }
-    .chapter-card:hover i { transform: scale(1.1) rotate(-5deg); color: #1abc9c; }
+    .chapter-card i { font-size: 2.2rem; color: var(--primary-color); transition: transform 0.3s ease; margin-bottom: 0.75rem; }
+    .chapter-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); border-color: var(--secondary-color); }
+    .chapter-card:hover i { transform: scale(1.1) rotate(-5deg); color: var(--secondary-color); }
+    
+    /* ================= ফুটার স্টাইল ================= */
     .footer { background: var(--footer-bg); text-align: center; color: var(--footer-text); padding: 2.5rem 1rem; margin-top: 4rem; }
 </style>
 </head>
@@ -49,20 +86,46 @@
         <a href="../index.html" class="logo-link">
             <img src="../images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
         </a>
+        
         <nav class="primary-navigation">
-            <!-- নেভিগেশন লিঙ্ক এখানে থাকবে -->
+            <ul>
+                <li><a href="../index.html">হোম</a></li>
+                <li><a href="../about.html">সম্পর্কে</a></li>
+                <li><a href="../index.html#subjects">বিষয়সমূহ</a></li>
+                <li><a href="../contact.html">যোগাযোগ</a></li>
+            </ul>
         </nav>
+        
         <div class="header-actions">
-            <!-- হেডার অ্যাকশন এখানে থাকবে -->
+            <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
+                <span class="sr-only">Menu</span>
+                <i class="fas fa-bars" aria-hidden="true"></i>
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
         </div>
     </div>
   </header>
-  <!-- মোবাইল নেভিগেশনও এখানে থাকবে -->
+  
+  <!-- ======================== মোবাইল নেভিগেশন মেনু ======================== -->
+  <nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
+      <ul>
+          <li><a href="../index.html"><i class="fas fa-home" aria-hidden="true"></i> হোম</a></li>
+          <li><a href="../index.html#subjects"><i class="fas fa-book-open" aria-hidden="true"></i> বিষয়সমূহ</a></li>
+          <li><a href="../about.html"><i class="fas fa-info-circle" aria-hidden="true"></i> সম্পর্কে</a></li>
+          <li><a href="../contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> যোগাযোগ</a></li>
+          <hr>
+          <!-- লগইন/লগআউট বাটন এখানে যুক্ত করা যেতে পারে -->
+          <li><a href="../login.html"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> লগইন</a></li>
+      </ul>
+  </nav>
 
   <!-- ======================== মূল কন্টেন্ট (Main Content) ======================== -->
   <main class="chapter-page">
     <div class="container">
-      <h1 class="section-title">🧮 গণিত - অধ্যায় তালিকা</h1>
+      <div class="section-title-wrapper">
+          <h1 class="section-title">গণিত - অধ্যায় তালিকা</h1>
+      </div>
+
       <div class="chapter-list">
         
         <!-- পাটিগণিত অংশ -->
@@ -71,7 +134,7 @@
             <div class="chapter-card-title">Calculation Trick</div>
             <div class="chapter-card-subtitle">(ক্যালকুলেশন ট্রিক)</div>
         </a>
-        <a href="#" class="chapter-card">
+        <a href="https://keshab1997.github.io/Math-lcm-hcf/" class="chapter-card">
             <i class="fas fa-divide" aria-hidden="true"></i>
             <div class="chapter-card-title">LCM and HCF</div>
             <div class="chapter-card-subtitle">(ল.সা.গু ও গ.সা.গু)</div>
@@ -213,12 +276,31 @@
     &copy; ২০২৫ | গণিত বিভাগ | Study With Keshab
   </footer>
   
-  <!-- আধুনিক Firebase এবং অন্যান্য স্ক্রিপ্ট -->
+  <script>
+    // মোবাইল মেনু টগল করার জন্য জাভাস্ক্রিপ্ট
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const mobileNavMenu = document.querySelector('#mobile-navigation-menu');
+
+    mobileNavToggle.addEventListener('click', () => {
+        const isVisible = mobileNavMenu.getAttribute('data-visible') === 'true';
+        if (isVisible) {
+            mobileNavMenu.setAttribute('data-visible', 'false');
+            mobileNavToggle.setAttribute('aria-expanded', 'false');
+        } else {
+            mobileNavMenu.setAttribute('data-visible', 'true');
+            mobileNavToggle.setAttribute('aria-expanded', 'true');
+        }
+    });
+  </script>
+  
+  <!-- আধুনিক Firebase এবং অন্যান্য স্ক্রিপ্ট (যদি প্রয়োজন হয়) -->
+  <!-- 
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js" defer></script>
   <script src="../js/firebase-config.js" defer></script>
-  <script src="../js/script.js" defer></script>
+  <script src="../js/script.js" defer></script> 
+  -->
 
 </body>
 </html>
