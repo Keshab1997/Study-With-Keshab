@@ -32,5 +32,13 @@ const notificationData = [
     message: 'বায়োলজি বিষয়ের "উদ্ভিদ হরমোন" অধ্যায় এখন সাইটে রয়েছে। হরমোন কিভাবে উদ্ভিদের বৃদ্ধি ও কার্যক্রমে প্রভাব ফেলে তা শিখুন।',
     link: 'https://keshab1997.github.io/Biology-Plant-hormone/',
     date: '2025-08-12',
+  },
+  {
+    id: 206,
+    icon: 'fa-solid fa-dog',
+    title: 'নতুন অধ্যায়: প্রাণী হরমোন',
+    message: 'বায়োলজি বিষয়ের "প্রাণী হরমোন" অধ্যায় এখন সাইটে যুক্ত করা হয়েছে। প্রাণীর শরীরে হরমোনের ভূমিকা ও কার্যকারিতা সম্পর্কে জানুন।',
+    link: 'https://keshab1997.github.io/Biology-Animal-Hormone/',
+    date: '2025-08-13',
   }
 ];
