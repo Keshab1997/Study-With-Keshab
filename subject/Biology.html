@@ -2,12 +2,19 @@
 <html lang="bn">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+            id="viewportMeta"
+        />
         <meta
             name="description"
             content="Study With Keshab ওয়েবসাইটে জীববিজ্ঞানের সকল অধ্যায়ের তালিকা। জীবন পাঠ, জীবকোষ, কোষ বিভাজন, বংশগতি ও পরিবেশ সহ সকল অধ্যায়ের রিসোর্স খুঁজুন।"
         />
         <title>জীববিজ্ঞান অধ্যায় - Study With Keshab</title>
+
+        <!-- Base Href (Optional but good practice for nested pages) -->
+        <base href="../" />
 
         <!-- Google Fonts & Font Awesome -->
         <link
@@ -20,7 +27,7 @@
         />
 
         <!-- মূল CSS ফাইল -->
-        <link rel="stylesheet" href="../css/style.css" />
+        <link rel="stylesheet" href="css/style.css" />
 
         <style>
             /* জীববিজ্ঞান পেজের জন্য নির্দিষ্ট থিম */
@@ -48,7 +55,7 @@
             }
             .section-title {
                 text-align: center;
-                font-size: 3rem;
+                font-size: clamp(2rem, 5vw, 3rem); /* রেসপন্সিভ ফন্ট সাইজ */
                 font-weight: 700;
                 margin-bottom: 3rem;
                 background: linear-gradient(45deg, #1d976c, #93f9b9);
@@ -83,59 +90,25 @@
                 margin-bottom: 1rem;
                 transition: all 0.35s ease-in-out;
             }
-            .chapter-list a:nth-child(1) i {
-                color: #4caf50;
-            }
-            .chapter-list a:nth-child(2) i {
-                color: #2196f3;
-            }
-            .chapter-list a:nth-child(3) i {
-                color: #9c27b0;
-            }
-            .chapter-list a:nth-child(4) i {
-                color: #f44336;
-            }
-            .chapter-list a:nth-child(5) i {
-                color: #ff9800;
-            }
-            .chapter-list a:nth-child(6) i {
-                color: #e91e63;
-            }
-            .chapter-list a:nth-child(7) i {
-                color: #00bcd4;
-            }
-            .chapter-list a:nth-child(8) i {
-                color: #ff5722;
-            }
-            .chapter-list a:nth-child(9) i {
-                color: #8bc34a;
-            }
-            .chapter-list a:nth-child(10) i {
-                color: #607d8b;
-            }
-            .chapter-list a:nth-child(11) i {
-                color: #795548;
-            }
-            .chapter-list a:nth-child(12) i {
-                color: #ffeb3b;
-            }
-            .chapter-list a:nth-child(13) i {
-                color: #3f51b5;
-            }
-            .chapter-list a:nth-child(14) i {
-                color: #009688;
-            }
-            .chapter-list a:nth-child(15) i {
-                color: #cddc39;
-            }
+            .chapter-list a:nth-child(1) i { color: #4caf50; }
+            .chapter-list a:nth-child(2) i { color: #2196f3; }
+            .chapter-list a:nth-child(3) i { color: #9c27b0; }
+            .chapter-list a:nth-child(4) i { color: #f44336; }
+            .chapter-list a:nth-child(5) i { color: #ff9800; }
+            .chapter-list a:nth-child(6) i { color: #e91e63; }
+            .chapter-list a:nth-child(7) i { color: #00bcd4; }
+            .chapter-list a:nth-child(8) i { color: #ff5722; }
+            .chapter-list a:nth-child(9) i { color: #8bc34a; }
+            .chapter-list a:nth-child(10) i { color: #607d8b; }
+            .chapter-list a:nth-child(11) i { color: #795548; }
+            .chapter-list a:nth-child(12) i { color: #ffeb3b; }
+            .chapter-list a:nth-child(13) i { color: #3f51b5; }
+            .chapter-list a:nth-child(14) i { color: #009688; }
+            .chapter-list a:nth-child(15) i { color: #cddc39; }
             .chapter-card:hover {
                 transform: translateY(-10px);
                 color: #fff;
-                background-image: linear-gradient(
-                    45deg,
-                    #11998e 0%,
-                    #38ef7d 100%
-                );
+                background-image: linear-gradient(45deg, #11998e 0%, #38ef7d 100%);
                 box-shadow: 0 15px 35px rgba(17, 153, 142, 0.3);
             }
             .chapter-card:hover i {
@@ -150,151 +123,78 @@
                 margin-top: 4rem;
                 border-top: 2px solid #38ef7d;
             }
+
+            /* === নতুন ভিউ টগল বাটনের জন্য CSS === */
+            .header-action-btn {
+                background: none;
+                border: none;
+                color: #333;
+                font-size: 1.3rem;
+                cursor: pointer;
+                padding: 5px 8px;
+                margin-left: 8px;
+                transition: color 0.3s ease;
+            }
+            .header-action-btn:hover { color: #4a90e2; }
+            .mobile-navigation-menu .toggle-view-btn i {
+                margin-right: 12px;
+                width: 20px;
+            }
         </style>
     </head>
     <body>
         <header class="site-header">
             <div class="header-grid container">
-                <a href="../index.html" class="logo-link">
-                    <img
-                        src="../images/logo.jpg"
-                        alt="Study With Keshab Logo"
-                        class="logo-img"
-                    />
+                <a href="index.html" class="logo-link">
+                    <img src="images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
                 </a>
 
                 <nav class="primary-navigation">
                     <ul>
-                        <li>
-                            <a href="../index.html"
-                                ><i class="fas fa-home" aria-hidden="true"></i>
-                                Home</a
-                            >
-                        </li>
-                        <li>
-                            <a href="../about.html"
-                                ><i
-                                    class="fas fa-info-circle"
-                                    aria-hidden="true"
-                                ></i>
-                                About Me</a
-                            >
-                        </li>
-                        <li>
-                            <a href="../index.html#subjects"
-                                ><i
-                                    class="fas fa-book-open"
-                                    aria-hidden="true"
-                                ></i>
-                                Subjects</a
-                            >
-                        </li>
-                        <li>
-                            <a href="../contact.html"
-                                ><i
-                                    class="fas fa-envelope"
-                                    aria-hidden="true"
-                                ></i>
-                                Contact</a
-                            >
-                        </li>
-
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
                         <li class="auth-link" id="guest-link-desktop">
-                            <a href="../login.html"
-                                ><i
-                                    class="fas fa-sign-in-alt"
-                                    aria-hidden="true"
-                                ></i>
-                                Login / Sign up</a
-                            >
+                            <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login / Sign up</a>
                         </li>
-                        <li
-                            class="auth-link"
-                            id="user-link-desktop"
-                            style="display: none"
-                        >
-                            <a href="#" id="dashboard-link-desktop"
-                                ><i
-                                    class="fas fa-tachometer-alt"
-                                    aria-hidden="true"
-                                ></i>
-                                Dashboard</a
-                            >
-                        </li>
-                        <li
-                            class="auth-link"
-                            id="logout-link-desktop"
-                            style="display: none"
-                        >
-                            <a href="#" id="logout-btn-desktop"
-                                ><i
-                                    class="fas fa-sign-out-alt"
-                                    aria-hidden="true"
-                                ></i>
-                                Logout</a
-                            >
+                        <li class="auth-link" id="logout-link-desktop" style="display: none">
+                            <a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </li>
                     </ul>
                 </nav>
 
                 <div class="header-actions">
                     <span id="user-name-display" class="nav-user-name"></span>
-                    <button
-                        class="mobile-nav-toggle"
-                        aria-controls="mobile-navigation-menu"
-                        aria-expanded="false"
-                    >
+                     <!-- === নতুন ভিউ টগল বাটন (ডেস্কটপ) === -->
+                    <button class="toggle-view-btn header-action-btn" title="ডেস্কটপ মোড">
+                        <i class="fas fa-desktop"></i>
+                    </button>
+                    <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
                         <span class="sr-only">Menu</span>
                     </button>
                 </div>
             </div>
         </header>
 
-        <nav
-            id="mobile-navigation-menu"
-            class="mobile-navigation-menu"
-            data-visible="false"
-        >
+        <nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
             <ul>
-                <li>
-                    <a href="../index.html"
-                        ><i class="fas fa-home" aria-hidden="true"></i> Home</a
-                    >
-                </li>
-                <li>
-                    <a href="../index.html#subjects"
-                        ><i class="fas fa-book-open" aria-hidden="true"></i>
-                        Subjects</a
-                    >
-                </li>
-                <li>
-                    <a href="../about.html"
-                        ><i class="fas fa-info-circle" aria-hidden="true"></i>
-                        About</a
-                    >
-                </li>
-                <li>
-                    <a href="../contact.html"
-                        ><i class="fas fa-envelope" aria-hidden="true"></i>
-                        Contact</a
-                    >
-                </li>
-
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
                 <li class="auth-link" id="guest-link-mobile">
-                    <a href="../login.html"
-                        ><i class="fas fa-sign-in-alt" aria-hidden="true"></i>
-                        Login / Sign up</a
-                    >
+                    <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login / Sign up</a>
                 </li>
-                <li
-                    class="auth-link"
-                    id="logout-link-mobile"
-                    style="display: none"
-                >
-                    <a href="#" id="logout-btn-mobile"
-                        ><i class="fas fa-sign-out-alt" aria-hidden="true"></i>
-                        Logout</a
-                    >
+                <li class="auth-link" id="logout-link-mobile" style="display: none">
+                    <a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
+                <!-- === নতুন ভিউ টগল বাটন (মোবাইল মেনু) === -->
+                <li>
+                    <a href="#" class="toggle-view-btn">
+                        <i class="fas fa-desktop"></i>
+                        <span class="toggle-view-text">ডেস্কটপ মোড</span>
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -303,83 +203,21 @@
             <div class="container">
                 <h1 class="section-title">🧬 জীববিজ্ঞান - অধ্যায় তালিকা</h1>
                 <div class="chapter-list">
-                    <a href="lifescience-ch1.html" class="chapter-card"
-                        ><i class="fas fa-leaf" aria-hidden="true"></i> অধ্যায়
-                        ১: জীবন পাঠ</a
-                    >
-                    <a
-                        href="https://keshab1997.github.io/Biology-cell/"
-                        class="chapter-card"
-                        ><i class="fas fa-microscope" aria-hidden="true"></i>
-                        অধ্যায় ২: কোষ
-                    </a>
-
-                    <a
-                        href="https://keshab1997.github.io/Biology-plant-animal-tissues/"
-                        class="chapter-card"
-                        ><i class="fas fa-layer-group" aria-hidden="true"></i>
-                        অধ্যায় ৩: প্রাণী ও উদ্ভিদ কলা
-                    </a>
-
-                    <a
-                        href="https://keshab1997.github.io/Biology-Blood-Circulation-of-Human-Body/"
-                        class="chapter-card"
-                        ><i class="fas fa-heart-pulse" aria-hidden="true"></i>
-                        অধ্যায় ৪: রক্ত সংবহন তন্ত্র
-                    </a>
-
-                    <a
-                        href="https://keshab1997.github.io/Biology-Plant-hormone/"
-                        class="chapter-card"
-                        ><i class="fas fa-seedling" aria-hidden="true"></i>
-                        অধ্যায় ৫: উদ্ভিদ হরমোন
-                    </a>
-
-                    <a
-                        href="https://keshab1997.github.io/Biology-Animal-Hormone/"
-                        class="chapter-card"
-                        ><i class="fas fa-brain" aria-hidden="true"></i>
-                        অধ্যায় ৬: প্রাণী হরমোন
-                    </a>
-
-                    <a
-                        href="https://keshab1997.github.io/Biology-Plant-Movement/"
-                        class="chapter-card"
-                        ><i class="fas fa-sun" aria-hidden="true"></i>
-                        অধ্যায় ৭: উদ্ভিদের চলন
-                    </a>
-                    <a href="lifescience-ch8.html" class="chapter-card"
-                        ><i class="fas fa-filter" aria-hidden="true"></i> অধ্যায়
-                        ৮: মানব রেচন</a
-                    >
-                    <a href="lifescience-ch9.html" class="chapter-card"
-                        ><i class="fas fa-bone" aria-hidden="true"></i> অধ্যায়
-                        ৯: দৃঢ়তা প্রদান ও চলন</a
-                    >
-                    <a href="lifescience-ch10.html" class="chapter-card"
-                        ><i class="fas fa-brain" aria-hidden="true"></i> অধ্যায়
-                        ১০: সমন্বয়</a
-                    >
-                    <a href="lifescience-ch11.html" class="chapter-card"
-                        ><i class="fas fa-seedling" aria-hidden="true"></i>
-                        অধ্যায় ১১: জীবে প্রজনন</a
-                    >
-                    <a href="lifescience-ch12.html" class="chapter-card"
-                        ><i class="fas fa-dna" aria-hidden="true"></i> অধ্যায়
-                        ১২: জীবের বংশগতি ও বিবর্তন</a
-                    >
-                    <a href="lifescience-ch13.html" class="chapter-card"
-                        ><i class="fas fa-globe-asia" aria-hidden="true"></i>
-                        অধ্যায় ১৩: জীবের পরিবেশ</a
-                    >
-                    <a href="lifescience-ch14.html" class="chapter-card"
-                        ><i class="fas fa-syringe" aria-hidden="true"></i>
-                        অধ্যায় ১৪: জীব প্রযুক্তি</a
-                    >
-                    <a href="chaya porkashoni.html" class="chapter-card"
-                        ><i class="fas fa-cogs" aria-hidden="true"></i> ছায়া
-                        প্রকাশনী</a
-                    >
+                    <a href="subject/lifescience-ch1.html" class="chapter-card"><i class="fas fa-leaf"></i> অধ্যায় ১: জীবন পাঠ</a>
+                    <a href="https://keshab1997.github.io/Biology-cell/" class="chapter-card"><i class="fas fa-microscope"></i> অধ্যায় ২: কোষ </a>
+                    <a href="https://keshab1997.github.io/Biology-plant-animal-tissues/" class="chapter-card"><i class="fas fa-layer-group"></i> অধ্যায় ৩: প্রাণী ও উদ্ভিদ কলা</a>
+                    <a href="https://keshab1997.github.io/Biology-Blood-Circulation-of-Human-Body/" class="chapter-card"><i class="fas fa-heart-pulse"></i> অধ্যায় ৪: রক্ত সংবহন তন্ত্র</a>
+                    <a href="https://keshab1997.github.io/Biology-Plant-hormone/" class="chapter-card"><i class="fas fa-seedling"></i> অধ্যায় ৫: উদ্ভিদ হরমোন</a>
+                    <a href="https://keshab1997.github.io/Biology-Animal-Hormone/" class="chapter-card"><i class="fas fa-brain"></i> অধ্যায় ৬: প্রাণী হরমোন</a>
+                    <a href="https://keshab1997.github.io/Biology-Plant-Movement/" class="chapter-card"><i class="fas fa-sun"></i> অধ্যায় ৭: উদ্ভিদের চলন</a>
+                    <a href="subject/lifescience-ch8.html" class="chapter-card"><i class="fas fa-filter"></i> অধ্যায় ৮: মানব রেচন</a>
+                    <a href="subject/lifescience-ch9.html" class="chapter-card"><i class="fas fa-bone"></i> অধ্যায় ৯: দৃঢ়তা প্রদান ও চলন</a>
+                    <a href="subject/lifescience-ch10.html" class="chapter-card"><i class="fas fa-brain"></i> অধ্যায় ১০: সমন্বয়</a>
+                    <a href="subject/lifescience-ch11.html" class="chapter-card"><i class="fas fa-seedling"></i> অধ্যায় ১১: জীবে প্রজনন</a>
+                    <a href="subject/lifescience-ch12.html" class="chapter-card"><i class="fas fa-dna"></i> অধ্যায় ১২: জীবের বংশগতি ও বিবর্তন</a>
+                    <a href="subject/lifescience-ch13.html" class="chapter-card"><i class="fas fa-globe-asia"></i> অধ্যায় ১৩: জীবের পরিবেশ</a>
+                    <a href="subject/lifescience-ch14.html" class="chapter-card"><i class="fas fa-syringe"></i> অধ্যায় ১৪: জীব প্রযুক্তি</a>
+                    <a href="subject/chaya-porkashoni.html" class="chapter-card"><i class="fas fa-cogs"></i> ছায়া প্রকাশনী</a>
                 </div>
             </div>
         </main>
@@ -387,51 +225,111 @@
         <footer class="footer">
             &copy; ২০২৫ | জীববিজ্ঞান বিভাগ | Study With Keshab
         </footer>
-
-        <!-- পেজ প্রোটেকশন স্ক্রিপ্ট -->
+        
+        <!-- Firebase স্ক্রিপ্ট -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="js/firebase-config.js"></script>
+        
+        <!-- সাধারণ এবং অথেন্টিকেশন স্ক্রিপ্ট -->
+        <script src="js/script.js"></script>
+        
+        <!-- এই পেজের জন্য নির্দিষ্ট স্ক্রিপ্ট -->
         <script>
-            (function () {
-                const checkAuth = () => {
-                    if (typeof firebase !== "undefined" && firebase.auth) {
-                        const auth = firebase.auth();
-                        const loginPageUrl = window.location.pathname.includes(
-                            "/subject/",
-                        )
-                            ? "../login.html"
-                            : "login.html";
-                        auth.onAuthStateChanged((user) => {
-                            if (!user) {
-                                console.log(
-                                    "User not logged in. Redirecting to login page...",
-                                );
-                                window.location.href = loginPageUrl;
-                            }
+            document.addEventListener('DOMContentLoaded', () => {
+
+                // --- 1. অথেন্টিকেশন এবং পেজ প্রোটেকশন লজিক ---
+                const auth = firebase.auth();
+
+                const guestLinksDesktop = document.getElementById('guest-link-desktop');
+                const logoutLinkDesktop = document.getElementById('logout-link-desktop');
+                const guestLinksMobile = document.getElementById('guest-link-mobile');
+                const logoutLinkMobile = document.getElementById('logout-link-mobile');
+                const userNameDisplay = document.getElementById('user-name-display');
+
+                auth.onAuthStateChanged(user => {
+                    // পেজ প্রোটেকশন: ইউজার লগইন না থাকলে login.html পেজে পাঠিয়ে দেওয়া হবে
+                    if (!user) {
+                        console.log("User not logged in. Redirecting...");
+                        // যেহেতু এই ফাইলটি subject ফোল্ডারের ভেতরে, তাই login.html এক ধাপ বাইরে
+                        window.location.href = 'login.html'; 
+                        return; // রিডাইরেক্ট করার পর আর কিছু করার দরকার নেই
+                    }
+
+                    // ইউজার লগইন থাকলে UI আপডেট করা হবে
+                    console.log("User is logged in:", user.displayName || user.email);
+                    if (guestLinksDesktop) guestLinksDesktop.style.display = 'none';
+                    if (logoutLinkDesktop) logoutLinkDesktop.style.display = 'list-item';
+                    if (guestLinksMobile) guestLinksMobile.style.display = 'none';
+                    if (logoutLinkMobile) logoutLinkMobile.style.display = 'list-item';
+                    if (userNameDisplay) {
+                       userNameDisplay.textContent = user.displayName ? user.displayName.split(' ')[0] : 'User';
+                    }
+
+                });
+
+                // লগআউট ফাংশনালিটি
+                const setupLogout = (buttonId) => {
+                    const logoutBtn = document.getElementById(buttonId);
+                    if (logoutBtn) {
+                        logoutBtn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            auth.signOut().then(() => {
+                                console.log('User signed out successfully.');
+                                // সাইন আউট হলে login পেজে রিডাইরেক্ট হবে
+                                window.location.href = 'login.html';
+                            }).catch(error => {
+                                console.error('Sign out error', error);
+                            });
                         });
                     }
                 };
-                const interval = setInterval(() => {
-                    if (typeof firebase !== "undefined" && firebase.auth) {
-                        clearInterval(interval);
-                        checkAuth();
-                    }
-                }, 100);
-            })();
-        </script>
+                setupLogout('logout-btn-desktop');
+                setupLogout('logout-btn-mobile');
 
-        <!-- আধুনিক Firebase এবং অন্যান্য স্ক্রিপ্ট -->
-        <script
-            src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"
-            defer
-        ></script>
-        <script
-            src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"
-            defer
-        ></script>
-        <script
-            src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"
-            defer
-        ></script>
-        <script src="../js/firebase-config.js" defer></script>
-        <script src="../js/script.js" defer></script>
+
+                // --- 2. ডেস্কটপ/মোবাইল মোড টগল লজিক ---
+                const toggleBtns = document.querySelectorAll(".toggle-view-btn");
+                const viewportMeta = document.getElementById("viewportMeta");
+                let isDesktopView = localStorage.getItem("viewMode") === "desktop";
+
+                function applyViewMode() {
+                    const desktopBtn = document.querySelector(".header-action-btn.toggle-view-btn");
+                    const mobileMenuText = document.querySelector(".toggle-view-text");
+                    const allIcons = document.querySelectorAll(".toggle-view-btn .fas");
+                    
+                    if (isDesktopView) {
+                        viewportMeta.setAttribute("content", "width=1280");
+                        if(desktopBtn) desktopBtn.title = "মোবাইল মোড";
+                        if(mobileMenuText) mobileMenuText.textContent = "মোবাইল মোড";
+                        allIcons.forEach(icon => {
+                            icon.classList.remove("fa-desktop");
+                            icon.classList.add("fa-mobile-alt");
+                        });
+                    } else {
+                        viewportMeta.setAttribute("content", "width=device-width, initial-scale=1.0");
+                        if(desktopBtn) desktopBtn.title = "ডেস্কটপ মোড";
+                        if(mobileMenuText) mobileMenuText.textContent = "ডেস্কটপ মোড";
+                        allIcons.forEach(icon => {
+                            icon.classList.remove("fa-mobile-alt");
+                            icon.classList.add("fa-desktop");
+                        });
+                    }
+                }
+                
+                toggleBtns.forEach(btn => {
+                    btn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        isDesktopView = !isDesktopView;
+                        localStorage.setItem("viewMode", isDesktopView ? "desktop" : "mobile");
+                        applyViewMode();
+                    });
+                });
+
+                // পেজ লোড হওয়ার সময় সঠিক ভিউ মোড প্রয়োগ করুন
+                applyViewMode();
+
+            });
+        </script>
     </body>
 </html>
