@@ -23,6 +23,27 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/notification.css" />
+    <!-- === নতুন বাটনটির জন্য CSS === -->
+    <style>
+      .header-action-btn {
+        background: none;
+        border: none;
+        color: #333; /* আপনার হেডার টেক্সটের রঙের সাথে মিলিয়ে নিন */
+        font-size: 1.3rem;
+        cursor: pointer;
+        padding: 5px 8px;
+        margin-left: 8px;
+        transition: color 0.3s ease;
+      }
+      .header-action-btn:hover {
+        color: #4a90e2; /* আপনার প্রাইমারি রঙের সাথে মিলিয়ে নিন */
+      }
+      /* মোবাইল মেনুর আইকনের জন্য সামান্য মার্জিন */
+      .mobile-navigation-menu .toggle-view-btn i {
+        margin-right: 12px;
+        width: 20px; /* অন্যান্য আইকনের সাথে সামঞ্জস্য রাখতে */
+      }
+    </style>
   </head>
   <body>
     <!-- === হেডার এবং মেনু (আপডেটেড) === -->
@@ -103,6 +124,13 @@
               <i class="fa-solid fa-bell"></i>
               <span id="notification-badge"></span>
             </button>
+            <!-- === নতুন ভিউ টগল বাটন (ডেস্কটপ) === -->
+            <button
+              class="toggle-view-btn header-action-btn"
+              title="ডেস্কটপ মোড"
+            >
+              <i class="fas fa-desktop"></i>
+            </button>
           </div>
           <button
             class="mobile-nav-toggle"
@@ -158,6 +186,13 @@
           <a href="#" id="logout-btn-mobile"
             ><i class="fas fa-sign-out-alt"></i> Log out</a
           >
+        </li>
+        <!-- === নতুন ভিউ টগল বাটন (মোবাইল মেনু) === -->
+        <li>
+          <a href="#" class="toggle-view-btn">
+            <i class="fas fa-desktop"></i>
+            <span class="toggle-view-text">ডেস্কটপ মোড</span>
+          </a>
         </li>
       </ul>
     </nav>
@@ -411,47 +446,16 @@
     </footer>
 
     <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট (সঠিক এবং নির্ভরযোগ্য ক্রমে) -->
-
-    <!-- ১. Firebase এর মূল লাইব্রেরিগুলো -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-
-    <!-- ২. আপনার Firebase প্রজেক্টের কনফিগারেশন -->
     <script src="js/firebase-config.js"></script>
-
-    <!-- ৩. প্রধান অথেন্টিকেশন লজিক -->
     <script src="auth.js"></script>
-
-    <!-- ৪. নোটিফিকেশন সিস্টেমের ডেটা ও লজিক -->
     <script src="js/notification-data.js"></script>
     <script src="js/notification.js"></script>
-
-    <!-- ৫. অন্যান্য সাধারণ বা সম্পূরক স্ক্রিপ্ট -->
     <script src="js/script.js"></script>
 
-    <!-- === নতুন যোগ করা PWA এবং ডেস্কটপ মোড বাটন কোড === -->
-    <!-- Desktop/Mobile Mode Toggle Button -->
-    <button
-      id="toggleViewBtn"
-      style="
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 1000;
-        padding: 10px 15px;
-        font-size: 14px;
-        background-color: #333;
-        color: white;
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      "
-    >
-      ডেস্কটপ মোড
-    </button>
-
+    <!-- === নতুন যোগ করা PWA এবং ডেস্কটপ মোড বাটন কোড (সম্পূর্ণ আপডেট করা) === -->
     <script>
       // --- 1. Service Worker Registration ---
       if ("serviceWorker" in navigator) {
@@ -467,8 +471,8 @@
         });
       }
 
-      // --- 2. Desktop/Mobile Mode Toggle Logic ---
-      const toggleBtn = document.getElementById("toggleViewBtn");
+      // --- 2. Desktop/Mobile Mode Toggle Logic (Updated) ---
+      const toggleBtns = document.querySelectorAll(".toggle-view-btn");
       const viewportMeta = document.getElementById("viewportMeta");
 
       // Check if a view mode is already saved in localStorage
@@ -476,28 +480,47 @@
 
       // Function to apply the current view mode
       function applyViewMode() {
+        const desktopBtn = document.querySelector(".header-action-btn.toggle-view-btn");
+        const mobileMenuText = document.querySelector(".toggle-view-text");
+        const allIcons = document.querySelectorAll(".toggle-view-btn .fas");
+        
         if (isDesktopView) {
           viewportMeta.setAttribute("content", "width=1280");
-          toggleBtn.textContent = "মোবাইল মোড";
+          if(desktopBtn) desktopBtn.title = "মোবাইল মোড";
+          if(mobileMenuText) mobileMenuText.textContent = "মোবাইল মোড";
+          allIcons.forEach(icon => {
+              icon.classList.remove("fa-desktop");
+              icon.classList.add("fa-mobile-alt");
+          });
+
         } else {
           viewportMeta.setAttribute(
             "content",
             "width=device-width, initial-scale=1.0",
           );
-          toggleBtn.textContent = "ডেস্কটপ মোড";
+          if(desktopBtn) desktopBtn.title = "ডেস্কটপ মোড";
+          if(mobileMenuText) mobileMenuText.textContent = "ডেস্কটপ মোড";
+          allIcons.forEach(icon => {
+              icon.classList.remove("fa-mobile-alt");
+              icon.classList.add("fa-desktop");
+          });
         }
       }
 
-      // Event listener for the button click
-      toggleBtn.addEventListener("click", () => {
-        isDesktopView = !isDesktopView; // Toggle the state
-        if (isDesktopView) {
-          localStorage.setItem("viewMode", "desktop");
-        } else {
-          localStorage.setItem("viewMode", "mobile");
-        }
-        applyViewMode();
+      // Event listener for all toggle buttons
+      toggleBtns.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault(); // মোবাইল মেনুর লিঙ্কে ক্লিক করলে যেন পেজ রিফ্রেশ না হয়
+          isDesktopView = !isDesktopView; // Toggle the state
+          if (isDesktopView) {
+            localStorage.setItem("viewMode", "desktop");
+          } else {
+            localStorage.setItem("viewMode", "mobile");
+          }
+          applyViewMode();
+        });
       });
+
 
       // Apply the saved mode when the page loads
       applyViewMode();
