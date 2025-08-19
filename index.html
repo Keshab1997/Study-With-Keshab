@@ -1,224 +1,507 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="bn">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Study With Keshab - Learn Smart. Grow Strong.</title>
-  <base href="/Study-With-Keshab/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      id="viewportMeta"
+    />
+    <title>Study With Keshab - Learn Smart. Grow Strong.</title>
+    <base href="/Study-With-Keshab/" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#4a90e2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/notification.css" />
+  </head>
+  <body>
+    <!-- === হেডার এবং মেনু (আপডেটেড) === -->
+    <header class="site-header">
+      <div class="header-grid">
+        <a href="index.html" class="logo-link">
+          <img
+            src="images/logo.jpg"
+            alt="Study With Keshab Logo"
+            class="logo-img"
+          />
+        </a>
+        <nav class="primary-navigation">
+          <ul>
+            <li>
+              <a href="index.html" class="home active"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/notification.css" /> 
-</head>
-<body>
+            <li>
+              <a href="index.html#subjects" class="services"
+                ><i class="fas fa-book-open"></i> Subjects</a
+              >
+            </li>
+            <li>
+              <a href="about.html" class="about"
+                ><i class="fas fa-info-circle"></i> About</a
+              >
+            </li>
+            <li>
+              <a href="contact.html" class="contact"
+                ><i class="fas fa-envelope"></i> Contact</a
+              >
+            </li>
+            <li>
+              <a href="index.html#feedback-module" class="feedback"
+                ><i class="fas fa-comment-alt"></i> Feedback</a
+              >
+            </li>
 
-<!-- === হেডার এবং মেনু (আপডেটেড) === -->
-<header class="site-header">
-  <div class="header-grid">
-    <a href="index.html" class="logo-link">
-      <img src="images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
-    </a>
-    <nav class="primary-navigation">
-        <ul>
-            <li><a href="index.html" class="home active"><i class="fas fa-home"></i> Home</a></li>
-            
-            <li><a href="index.html#subjects" class="services"><i class="fas fa-book-open"></i> Subjects</a></li>
-            <li><a href="about.html" class="about"><i class="fas fa-info-circle"></i> About</a></li>
-            <li><a href="contact.html" class="contact"><i class="fas fa-envelope"></i> Contact</a></li>
-            <li><a href="index.html#feedback-module" class="feedback"><i class="fas fa-comment-alt"></i> Feedback</a></li>
-            
             <!-- অথেন্টিকেশন লিঙ্ক (আপডেটেড) -->
-            <li class="auth-link" id="guest-link-desktop"><a href="login.html" class="login"><i class="fas fa-sign-in-alt"></i> Login / Sign Up</a></li>
-            
-            <li class="auth-link" id="admin-link-desktop" style="display: none;"><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Panel</a></li>
-            <li class="auth-link" id="logout-link-desktop" style="display: none;"><a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
-        </ul>
-    </nav>
-    <!-- *** হেডার অ্যাকশন অংশটি আপডেট করা হয়েছে *** -->
-    <div class="header-actions">
-        <div id="user-info-cluster" class="user-info-cluster" style="display: none;">
+            <li class="auth-link" id="guest-link-desktop">
+              <a href="login.html" class="login"
+                ><i class="fas fa-sign-in-alt"></i> Login / Sign Up</a
+              >
+            </li>
+
+            <li class="auth-link" id="admin-link-desktop" style="display: none">
+              <a href="admin.html"
+                ><i class="fas fa-user-shield"></i> Admin Panel</a
+              >
+            </li>
+            <li
+              class="auth-link"
+              id="logout-link-desktop"
+              style="display: none"
+            >
+              <a href="#" id="logout-btn-desktop"
+                ><i class="fas fa-sign-out-alt"></i> Log out</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <!-- *** হেডার অ্যাকশন অংশটি আপডেট করা হয়েছে *** -->
+        <div class="header-actions">
+          <div
+            id="user-info-cluster"
+            class="user-info-cluster"
+            style="display: none"
+          >
             <span id="user-name-display" class="nav-user-name"></span>
-            <button id="show-notification-btn" title="নোটিফিকেশন" class="notification-bell-btn">
-                <i class="fa-solid fa-bell"></i>
-                <span id="notification-badge"></span>
+            <button
+              id="show-notification-btn"
+              title="নোটিফিকেশন"
+              class="notification-bell-btn"
+            >
+              <i class="fa-solid fa-bell"></i>
+              <span id="notification-badge"></span>
             </button>
-        </div>
-        <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false"><span class="sr-only">Menu</span></button>
-    </div>
-  </div>
-</header>
-
-<nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
-    <ul>
-        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-        
-        <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
-        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
-        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-        <li><a href="index.html#feedback-module"><i class="fas fa-comment-alt"></i> Feedback</a></li>
-        
-        <!-- মোবাইল অথেন্টিকেশন লিঙ্ক (আপডেটেড) -->
-        <li class="auth-link" id="guest-link-mobile"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login / Sign Up</a></li>
-        
-        <li class="auth-link" id="admin-link-mobile" style="display: none;"><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Panel</a></li>
-        <li class="auth-link" id="logout-link-mobile" style="display: none;"><a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
-    </ul>
-</nav>
-
-<main>
-  <!-- === হিরো সেকশন (নতুন ডিজাইন অনুযায়ী সম্পূর্ণ আপডেট করা হয়েছে) === -->
-  <section id="home" class="hero-section-new">
-    <div class="container hero-container">
-      
-      <!-- ছবির অংশ (মোবাইল ভিউতে উপরে দেখানোর জন্য আগে রাখা হয়েছে) -->
-      <div class="hero-right">
-        <div class="image-wrapper">
-          <img src="https://images.news18.com/static-bengali/uploads/2024/11/child-thinking-2024-11-a893b797ce3a82916201c999759c21f0.jpg" alt="Happy Student" />
+          </div>
+          <button
+            class="mobile-nav-toggle"
+            aria-controls="mobile-navigation-menu"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Menu</span>
+          </button>
         </div>
       </div>
-  
-      <!-- লেখার অংশ -->
-      <div class="hero-left">
-        <span class="hero-subtitle">📖 ডিজিটাল শিক্ষার নতুন দিগন্ত</span>
-        
-        <!-- JavaScript দিয়ে এই অংশ পরিবর্তন করার জন্য id যোগ করা আছে -->
-        <h1 class="hero-title" id="hero-main-title">শিক্ষা হোক সহজ, প্রযুক্তিতে সমৃদ্ধ</h1>
-        
-        <p class="hero-description" id="hero-main-description">
-          📚 একই প্ল্যাটফর্মে পড়া, প্র্যাকটিস আর প্রস্তুতি<br />
-          ⏰ আপনার রুটিনে ফিট করে এমন পড়াশোনা<br />
-          🚀 পড়াশোনার গতি বাড়ায় ইন্টার‍্যাকটিভ কুইজ ও স্মার্ট নোট<br />
-          🌿 নিজের সময়, নিজের মতো করে শেখার পূর্ণ স্বাধীনতা
-        </p>
-        
-        <div class="hero-buttons">
-          <a href="#subjects" class="btn btn-primary">এখনি পড়া শুরু করুন <i class="fas fa-arrow-right"></i></a>
-        </div>
-      </div>
-      
-    </div>
-  </section>
-  <!-- index.html ফাইলে যোগ করুন -->
+    </header>
 
-<section id="recent-notifications-section" class="features-section">
-    <div class="container">
-      <h2 class="section-title">সাম্প্রতিক বিজ্ঞপ্তি</h2>
-      <div id="realtime-notification-feed" class="notification-feed-container">
-        <!-- JS দিয়ে এখানে রিয়েল-টাইমে বিজ্ঞপ্তি লোড করা হবে -->
-        <p>বিজ্ঞপ্তি লোড হচ্ছে...</p>
-      </div>
-    </div>
-</section>
-
-  <section id="subjects" class="subjects-section">
-    <div class="container">
-      <h2 class="section-title">আপনার পছন্দের বিষয় বেছে নিন</h2>
-      <div class="subject-cards-new">
-        <a href="subject/physics.html" class="card-new" style="background-image: url('images/subject-physics.jpg');"><h3>Physics</h3></a>
-        <a href="subject/Chemistry.html" class="card-new" style="background-image: url('images/subject-chemistry.jpg');"><h3>Chemistry</h3></a>
-        <a href="subject/Biology.html" class="card-new" style="background-image: url('images/subject-lifescience.jpg');"><h3>Life Science</h3></a>
-        <a href="subject/Gk.html" class="card-new" style="background-image: url('images/subject-gk.jpg');"><h3>GK</h3></a>
-        <a href="#" class="card-new" style="background-image: url('images/subject-currentaffairs.jpg');"><h3>Current Affairs</h3></a>
-        <a href="subject/History.html" class="card-new" style="background-image: url('images/subject-history.jpg');"><h3>History</h3></a>
-        <a href="#" class="card-new" style="background-image: url('images/subject-geography.jpg');"><h3>Geography</h3></a>
-        <a href="subject/Math.html" class="card-new" style="background-image: url('images/subject-math.jpg');"><h3>Mathematics</h3></a>
-      </div>
-    </div>
-  </section>
-
-  <section id="features" class="features-section">
-    <div class="container">
-      <h2 class="section-title">কেন আমরা সেরা?</h2>
-      <div class="features-grid">
-        <div class="feature-item"><i class="fas fa-question-circle"></i><h4>ইন্টারেক্টিভ কুইজ</h4><p>প্রতিটি অধ্যায়ের পর নিজের জ্ঞান পরীক্ষা করুন।</p></div>
-        <div class="feature-item"><i class="fas fa-clone"></i><h4>ডিজিটাল ফ্ল্যাশকার্ড</h4><p>কঠিন তথ্য ও সূত্র সহজে মনে রাখুন।</p></div>
-        <div class="feature-item"><i class="fas fa-gamepad"></i><h4>শিক্ষামূলক গেম</h4><p>পড়াশোনা হোক খেলার ছলে, শেখা হবে মজাদার।</p></div>
-        <div class="feature-item"><i class="fas fa-file-pdf"></i><h4>PDF নোটস</h4><p>গুরুত্বপূর্ণ নোটস ডাউনলোড করে অফলাইনে পড়ুন।</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="feedback-module" class="feedback-section">
-    <div class="container">
-      <h2 class="section-title">আপনার মতামত দিন</h2>
-      <p>আমাদের প্ল্যাটফর্ম সম্পর্কে আপনার যেকোনো প্রশ্ন, পরামর্শ বা অভিজ্ঞতা জানাতে পারেন। আপনার মতামত আমাদের সেবাকে আরও উন্নত করতে সাহায্য করবে।</p>
-      <div class="feedback-form-container">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfq_fPzhJ2h2pSgZPlabLa9-p0BKcb8EYFVouN-CeUpkDPW1w/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-        <p class="feedback-note">সরাসরি ফর্ম পূরণের জন্য <a href="https://docs.google.com/forms/d/e/1FAIpQLSfq_fPzhJ2h2pSgZPlabLa9-p0BKcb8EYFVouN-CeUpkDPW1w/viewform" target="_blank">এখানে ক্লিক করুন</a>।</p>
-      </div>
-    </div>
-  </section>
-</main>
-
-<div id="notification-modal">
-    <button id="close-notification-modal"><i class="fa fa-times"></i></button>
-    <h3>নোটিফিকেশন</h3>
-    <ul id="notification-list"></ul>
-    <div class="notification-modal-footer">
-        <button id="clear-read-notifications-btn" class="btn-notification-action btn-clear">
-    <i class="fa-solid fa-check-double"></i> পঠিত সব মুছুন
-</button>
-        <button id="close-notification-btn-footer" class="btn-notification-action btn-close">
-            বন্ধ করুন
-        </button>
-    </div>
-</div>
-
-<button id="scrollTopBtn" title="Top">⬆</button>
-
-<footer>
-  <div class="footer-top container">
-    <div>
-      <img src="images/logo.jpg" alt="Logo" class="footer-logo" />
-      <p>একটি শিক্ষামূলক ও সহায়ক অনলাইন প্ল্যাটফর্ম।</p>
-    </div>
-    <div class="footer-links">
-      <h4>দ্রুত লিংক</h4>
+    <nav
+      id="mobile-navigation-menu"
+      class="mobile-navigation-menu"
+      data-visible="false"
+    >
       <ul>
-        <li><a href="index.html"><i class="fas fa-house-chimney"></i> হোম</a></li>
-        <li><a href="about.html"><i class="fas fa-people-group"></i> আমার সম্পর্কে</a></li>
-        <li><a href="#subjects"><i class="fas fa-book-open"></i> বিষয়সমূহ</a></li>
-        <li><a href="contact.html"><i class="fas fa-headset"></i> যোগাযোগ</a></li>
-        <li><a href="#feedback-module"><i class="fas fa-comment-dots"></i> ফিডব্যাক</a></li>
+        <li>
+          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        </li>
+
+        <li>
+          <a href="index.html#subjects"
+            ><i class="fas fa-book-open"></i> Subjects</a
+          >
+        </li>
+        <li>
+          <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+        </li>
+        <li>
+          <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        </li>
+        <li>
+          <a href="index.html#feedback-module"
+            ><i class="fas fa-comment-alt"></i> Feedback</a
+          >
+        </li>
+
+        <!-- মোবাইল অথেন্টিকেশন লিঙ্ক (আপডেটেড) -->
+        <li class="auth-link" id="guest-link-mobile">
+          <a href="login.html"
+            ><i class="fas fa-sign-in-alt"></i> Login / Sign Up</a
+          >
+        </li>
+
+        <li class="auth-link" id="admin-link-mobile" style="display: none">
+          <a href="admin.html"
+            ><i class="fas fa-user-shield"></i> Admin Panel</a
+          >
+        </li>
+        <li class="auth-link" id="logout-link-mobile" style="display: none">
+          <a href="#" id="logout-btn-mobile"
+            ><i class="fas fa-sign-out-alt"></i> Log out</a
+          >
+        </li>
       </ul>
-    </div>
-    <div class="footer-social">
-      <h4>সোশ্যাল মিডিয়া</h4>
-      <div class="social-icons">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </nav>
+
+    <main>
+      <!-- === হিরো সেকশন (নতুন ডিজাইন অনুযায়ী সম্পূর্ণ আপডেট করা হয়েছে) === -->
+      <section id="home" class="hero-section-new">
+        <div class="container hero-container">
+          <!-- ছবির অংশ (মোবাইল ভিউতে উপরে দেখানোর জন্য আগে রাখা হয়েছে) -->
+          <div class="hero-right">
+            <div class="image-wrapper">
+              <img
+                src="https://images.news18.com/static-bengali/uploads/2024/11/child-thinking-2024-11-a893b797ce3a82916201c999759c21f0.jpg"
+                alt="Happy Student"
+              />
+            </div>
+          </div>
+
+          <!-- লেখার অংশ -->
+          <div class="hero-left">
+            <span class="hero-subtitle">📖 ডিজিটাল শিক্ষার নতুন দিগন্ত</span>
+
+            <!-- JavaScript দিয়ে এই অংশ পরিবর্তন করার জন্য id যোগ করা আছে -->
+            <h1 class="hero-title" id="hero-main-title">
+              শিক্ষা হোক সহজ, প্রযুক্তিতে সমৃদ্ধ
+            </h1>
+
+            <p class="hero-description" id="hero-main-description">
+              📚 একই প্ল্যাটফর্মে পড়া, প্র্যাকটিস আর প্রস্তুতি<br />
+              ⏰ আপনার রুটিনে ফিট করে এমন পড়াশোনা<br />
+              🚀 পড়াশোনার গতি বাড়ায় ইন্টার‍্যাকটিভ কুইজ ও স্মার্ট নোট<br />
+              🌿 নিজের সময়, নিজের মতো করে শেখার পূর্ণ স্বাধীনতা
+            </p>
+
+            <div class="hero-buttons">
+              <a href="#subjects" class="btn btn-primary"
+                >এখনি পড়া শুরু করুন <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- index.html ফাইলে যোগ করুন -->
+
+      <section id="recent-notifications-section" class="features-section">
+        <div class="container">
+          <h2 class="section-title">সাম্প্রতিক বিজ্ঞপ্তি</h2>
+          <div
+            id="realtime-notification-feed"
+            class="notification-feed-container"
+          >
+            <!-- JS দিয়ে এখানে রিয়েল-টাইমে বিজ্ঞপ্তি লোড করা হবে -->
+            <p>বিজ্ঞপ্তি লোড হচ্ছে...</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="subjects" class="subjects-section">
+        <div class="container">
+          <h2 class="section-title">আপনার পছন্দের বিষয় বেছে নিন</h2>
+          <div class="subject-cards-new">
+            <a
+              href="subject/physics.html"
+              class="card-new"
+              style="
+                background-image: url(&quot;images/subject-physics.jpg&quot;);
+              "
+              ><h3>Physics</h3></a
+            >
+            <a
+              href="subject/Chemistry.html"
+              class="card-new"
+              style="
+                background-image: url(&quot;images/subject-chemistry.jpg&quot;);
+              "
+              ><h3>Chemistry</h3></a
+            >
+            <a
+              href="subject/Biology.html"
+              class="card-new"
+              style="
+                background-image: url(&quot;images/subject-lifescience.jpg&quot;);
+              "
+              ><h3>Life Science</h3></a
+            >
+            <a
+              href="subject/Gk.html"
+              class="card-new"
+              style="background-image: url(&quot;images/subject-gk.jpg&quot;)"
+              ><h3>GK</h3></a
+            >
+            <a
+              href="#"
+              class="card-new"
+              style="
+                background-image: url(&quot;images/subject-currentaffairs.jpg&quot;);
+              "
+              ><h3>Current Affairs</h3></a
+            >
+            <a
+              href="subject/History.html"
+              class="card-new"
+              style="
+                background-image: url(&quot;images/subject-history.jpg&quot;);
+              "
+              ><h3>History</h3></a
+            >
+            <a
+              href="#"
+              class="card-new"
+              style="
+                background-image: url(&quot;images/subject-geography.jpg&quot;);
+              "
+              ><h3>Geography</h3></a
+            >
+            <a
+              href="subject/Math.html"
+              class="card-new"
+              style="background-image: url(&quot;images/subject-math.jpg&quot;)"
+              ><h3>Mathematics</h3></a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="features-section">
+        <div class="container">
+          <h2 class="section-title">কেন আমরা সেরা?</h2>
+          <div class="features-grid">
+            <div class="feature-item">
+              <i class="fas fa-question-circle"></i>
+              <h4>ইন্টারেক্টিভ কুইজ</h4>
+              <p>প্রতিটি অধ্যায়ের পর নিজের জ্ঞান পরীক্ষা করুন।</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-clone"></i>
+              <h4>ডিজিটাল ফ্ল্যাশকার্ড</h4>
+              <p>কঠিন তথ্য ও সূত্র সহজে মনে রাখুন।</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-gamepad"></i>
+              <h4>শিক্ষামূলক গেম</h4>
+              <p>পড়াশোনা হোক খেলার ছলে, শেখা হবে মজাদার।</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-file-pdf"></i>
+              <h4>PDF নোটস</h4>
+              <p>গুরুত্বপূর্ণ নোটস ডাউনলোড করে অফলাইনে পড়ুন।</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="feedback-module" class="feedback-section">
+        <div class="container">
+          <h2 class="section-title">আপনার মতামত দিন</h2>
+          <p>
+            আমাদের প্ল্যাটফর্ম সম্পর্কে আপনার যেকোনো প্রশ্ন, পরামর্শ বা অভিজ্ঞতা
+            জানাতে পারেন। আপনার মতামত আমাদের সেবাকে আরও উন্নত করতে সাহায্য করবে।
+          </p>
+          <div class="feedback-form-container">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSfq_fPzhJ2h2pSgZPlabLa9-p0BKcb8EYFVouN-CeUpkDPW1w/viewform?embedded=true"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              >Loading…</iframe
+            >
+            <p class="feedback-note">
+              সরাসরি ফর্ম পূরণের জন্য
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfq_fPzhJ2h2pSgZPlabLa9-p0BKcb8EYFVouN-CeUpkDPW1w/viewform"
+                target="_blank"
+                >এখানে ক্লিক করুন</a
+              >।
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="notification-modal">
+      <button id="close-notification-modal"><i class="fa fa-times"></i></button>
+      <h3>নোটিফিকেশন</h3>
+      <ul id="notification-list"></ul>
+      <div class="notification-modal-footer">
+        <button
+          id="clear-read-notifications-btn"
+          class="btn-notification-action btn-clear"
+        >
+          <i class="fa-solid fa-check-double"></i> পঠিত সব মুছুন
+        </button>
+        <button
+          id="close-notification-btn-footer"
+          class="btn-notification-action btn-close"
+        >
+          বন্ধ করুন
+        </button>
       </div>
     </div>
-  </div>
-  <div class="footer-bottom">
-    &copy; 2025 | Study With Keshab | সর্বস্বত্ব সংরক্ষিত
-  </div>
-</footer>
 
+    <button id="scrollTopBtn" title="Top">⬆</button>
 
-<!-- Firebase এবং অন্যান্য স্ক্রিপ্ট (সঠিক এবং নির্ভরযোগ্য ক্রমে) -->
+    <footer>
+      <div class="footer-top container">
+        <div>
+          <img src="images/logo.jpg" alt="Logo" class="footer-logo" />
+          <p>একটি শিক্ষামূলক ও সহায়ক অনলাইন প্ল্যাটফর্ম।</p>
+        </div>
+        <div class="footer-links">
+          <h4>দ্রুত লিংক</h4>
+          <ul>
+            <li>
+              <a href="index.html"><i class="fas fa-house-chimney"></i> হোম</a>
+            </li>
+            <li>
+              <a href="about.html"
+                ><i class="fas fa-people-group"></i> আমার সম্পর্কে</a
+              >
+            </li>
+            <li>
+              <a href="#subjects"><i class="fas fa-book-open"></i> বিষয়সমূহ</a>
+            </li>
+            <li>
+              <a href="contact.html"><i class="fas fa-headset"></i> যোগাযোগ</a>
+            </li>
+            <li>
+              <a href="#feedback-module"
+                ><i class="fas fa-comment-dots"></i> ফিডব্যাক</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>সোশ্যাল মিডিয়া</h4>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 | Study With Keshab | সর্বস্বত্ব সংরক্ষিত
+      </div>
+    </footer>
 
-<!-- ১. Firebase এর মূল লাইব্রেরিগুলো -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট (সঠিক এবং নির্ভরযোগ্য ক্রমে) -->
 
-<!-- ২. আপনার Firebase প্রজেক্টের কনফিগারেশন -->
-<script src="js/firebase-config.js"></script>
+    <!-- ১. Firebase এর মূল লাইব্রেরিগুলো -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-<!-- ৩. প্রধান অথেন্টিকেশন লজিক -->
-<script src="auth.js"></script>
+    <!-- ২. আপনার Firebase প্রজেক্টের কনফিগারেশন -->
+    <script src="js/firebase-config.js"></script>
 
-<!-- ৪. নোটিফিকেশন সিস্টেমের ডেটা ও লজিক -->
-<script src="js/notification-data.js"></script>
-<script src="js/notification.js"></script>
+    <!-- ৩. প্রধান অথেন্টিকেশন লজিক -->
+    <script src="auth.js"></script>
 
-<!-- ৫. অন্যান্য সাধারণ বা সম্পূরক স্ক্রিপ্ট -->
-<script src="js/script.js"></script>
-</body>
+    <!-- ৪. নোটিফিকেশন সিস্টেমের ডেটা ও লজিক -->
+    <script src="js/notification-data.js"></script>
+    <script src="js/notification.js"></script>
+
+    <!-- ৫. অন্যান্য সাধারণ বা সম্পূরক স্ক্রিপ্ট -->
+    <script src="js/script.js"></script>
+
+    <!-- === নতুন যোগ করা PWA এবং ডেস্কটপ মোড বাটন কোড === -->
+    <!-- Desktop/Mobile Mode Toggle Button -->
+    <button
+      id="toggleViewBtn"
+      style="
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        padding: 10px 15px;
+        font-size: 14px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      "
+    >
+      ডেস্কটপ মোড
+    </button>
+
+    <script>
+      // --- 1. Service Worker Registration ---
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("sw.js")
+            .then((registration) => {
+              console.log("ServiceWorker registration successful!");
+            })
+            .catch((err) => {
+              console.log("ServiceWorker registration failed: ", err);
+            });
+        });
+      }
+
+      // --- 2. Desktop/Mobile Mode Toggle Logic ---
+      const toggleBtn = document.getElementById("toggleViewBtn");
+      const viewportMeta = document.getElementById("viewportMeta");
+
+      // Check if a view mode is already saved in localStorage
+      let isDesktopView = localStorage.getItem("viewMode") === "desktop";
+
+      // Function to apply the current view mode
+      function applyViewMode() {
+        if (isDesktopView) {
+          viewportMeta.setAttribute("content", "width=1280");
+          toggleBtn.textContent = "মোবাইল মোড";
+        } else {
+          viewportMeta.setAttribute(
+            "content",
+            "width=device-width, initial-scale=1.0",
+          );
+          toggleBtn.textContent = "ডেস্কটপ মোড";
+        }
+      }
+
+      // Event listener for the button click
+      toggleBtn.addEventListener("click", () => {
+        isDesktopView = !isDesktopView; // Toggle the state
+        if (isDesktopView) {
+          localStorage.setItem("viewMode", "desktop");
+        } else {
+          localStorage.setItem("viewMode", "mobile");
+        }
+        applyViewMode();
+      });
+
+      // Apply the saved mode when the page loads
+      applyViewMode();
+    </script>
+    <!-- === PWA কোড শেষ === -->
+  </body>
 </html>

@@ -1,0 +1,21 @@
+{
+  "name": "Study With Keshab",
+  "short_name": "StudyKeshab",
+  "start_url": "/Study-With-Keshab/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4a90e2",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/Study-With-Keshab/images/icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/Study-With-Keshab/images/icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

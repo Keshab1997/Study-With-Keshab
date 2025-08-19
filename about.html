@@ -1,157 +1,475 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="bn">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>আমাদের সম্পর্কে - Study With Keshab</title>
-    <base href="/Study-With-Keshab/">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+            id="viewportMeta"
+        />
+        <title>আমাদের সম্পর্কে - Study With Keshab</title>
+        <base href="/Study-With-Keshab/" />
+        <link rel="manifest" href="manifest.json" />
+        <meta name="theme-color" content="#4a90e2" />
 
-    <!-- Google Fonts & Font Awesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- মূল স্টাইলশিট -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+        <!-- Google Fonts & Font Awesome -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
 
-<!-- === আপডেটেড হেডার এবং মোবাইল মেনু === -->
-<header class="site-header">
-  <div class="header-grid">
-    <a href="index.html" class="logo-link">
-      <img src="images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
-    </a>
-    <nav class="primary-navigation">
-        <ul>
-            <li><a href="index.html" class="home"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="about.html" class="about active"><i class="fas fa-info-circle"></i> About</a></li>
-            <li><a href="index.html#subjects" class="services"><i class="fas fa-book-open"></i> Subjects</a></li>
-            <li><a href="index.html#features" class="blog"><i class="fas fa-star"></i> Features</a></li>
-            <li><a href="contact.html" class="contact"><i class="fas fa-envelope"></i> Contact</a></li>
-            <li><a href="index.html#feedback-module" class="feedback"><i class="fas fa-comment-alt"></i> Feedback</a></li>
-            
-            <li class="auth-link" id="guest-link-desktop"><a href="login.html" class="login"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a></li>
-            <li class="auth-link" id="user-link-desktop" style="display: none;"><a href="#" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a></li>
-            <li class="auth-link" id="logout-link-desktop" style="display: none;"><a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> লগ আউট</a></li>
-        </ul>
-    </nav>
-    <div class="header-actions">
-        <span id="user-name-display" class="nav-user-name"></span>
-        <button id="show-notification-btn" title="নোটিফিকেশন" class="notification-bell-btn"><i class="fa-solid fa-bell"></i><span id="notification-badge"></span></button>
-        <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false"><span class="sr-only">Menu</span></button>
-    </div>
-  </div>
-</header>
+        <!-- মূল স্টাইলশিট -->
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <!-- === আপডেটেড হেডার এবং মোবাইল মেনু === -->
+        <header class="site-header">
+            <div class="header-grid">
+                <a href="index.html" class="logo-link">
+                    <img
+                        src="images/logo.jpg"
+                        alt="Study With Keshab Logo"
+                        class="logo-img"
+                    />
+                </a>
+                <nav class="primary-navigation">
+                    <ul>
+                        <li>
+                            <a href="index.html" class="home"
+                                ><i class="fas fa-home"></i> Home</a
+                            >
+                        </li>
+                        <li>
+                            <a href="about.html" class="about active"
+                                ><i class="fas fa-info-circle"></i> About</a
+                            >
+                        </li>
+                        <li>
+                            <a href="index.html#subjects" class="services"
+                                ><i class="fas fa-book-open"></i> Subjects</a
+                            >
+                        </li>
+                        <li>
+                            <a href="index.html#features" class="blog"
+                                ><i class="fas fa-star"></i> Features</a
+                            >
+                        </li>
+                        <li>
+                            <a href="contact.html" class="contact"
+                                ><i class="fas fa-envelope"></i> Contact</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="index.html#feedback-module"
+                                class="feedback"
+                                ><i class="fas fa-comment-alt"></i> Feedback</a
+                            >
+                        </li>
 
-<nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
-    <ul>
-        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
-        <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
-        <li><a href="index.html#features"><i class="fas fa-star"></i> Features</a></li>
-        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-        <li><a href="index.html#feedback-module"><i class="fas fa-comment-alt"></i> Feedback</a></li>
-        
-        <li class="auth-link" id="guest-link-mobile"><a href="login.html"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a></li>
-        <li class="auth-link" id="user-link-mobile" style="display: none;"><a href="#" id="dashboard-link-mobile"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a></li>
-        <li class="auth-link" id="logout-link-mobile" style="display: none;"><a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> লগ আউট</a></li>
-    </ul>
-</nav>
-
-<main>
-    <section class="about-section">
-        <div class="container">
-            <div class="section-title" style="display: block; text-align: center;">
-                <h2>আমার সম্পর্কে</h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-image-wrapper">
-                    <img src="images/keshab_sarkar.jpg" alt="কেশব সরকার" class="about-image">
+                        <li class="auth-link" id="guest-link-desktop">
+                            <a href="login.html" class="login"
+                                ><i class="fas fa-sign-in-alt"></i> লগইন / সাইন
+                                আপ</a
+                            >
+                        </li>
+                        <li
+                            class="auth-link"
+                            id="user-link-desktop"
+                            style="display: none"
+                        >
+                            <a href="#" id="dashboard-link-desktop"
+                                ><i class="fas fa-tachometer-alt"></i>
+                                ড্যাশবোর্ড</a
+                            >
+                        </li>
+                        <li
+                            class="auth-link"
+                            id="logout-link-desktop"
+                            style="display: none"
+                        >
+                            <a href="#" id="logout-btn-desktop"
+                                ><i class="fas fa-sign-out-alt"></i> লগ আউট</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <span id="user-name-display" class="nav-user-name"></span>
+                    <button
+                        id="show-notification-btn"
+                        title="নোটিফিকেশন"
+                        class="notification-bell-btn"
+                    >
+                        <i class="fa-solid fa-bell"></i
+                        ><span id="notification-badge"></span>
+                    </button>
+                    <button
+                        class="mobile-nav-toggle"
+                        aria-controls="mobile-navigation-menu"
+                        aria-expanded="false"
+                    >
+                        <span class="sr-only">Menu</span>
+                    </button>
                 </div>
-                <div class="about-content">
-                    <h1>স্বাগতম! আমি <span>কেশব সরকার</span></h1>
-                    <p class="intro-text">আমি একজন উৎসাহী শিক্ষানুরাগী এবং কর্মঠ মানুষ। জ্ঞান অর্জন এবং বাস্তব অভিজ্ঞতার সমন্বয়ে জীবনকে সফল করার লক্ষ্যে আমি এগিয়ে চলেছি।</p>
-                    <p>এই প্ল্যাটফর্মটি আমার জ্ঞান ও অভিজ্ঞতা আপনাদের সাথে ভাগ করে নেওয়ার একটি প্রচেষ্টা। আশা করি, আপনারা উপকৃত হবেন এবং আমাকে আপনাদের যাত্রায় পাশে পাবেন।</p>
-                    
-                    <div class="info-cards">
-                         <div class="info-card"><i class="fas fa-graduation-cap"></i><div class="info-card-text"><strong>শিক্ষাগত যোগ্যতা</strong><span>গ্র্যাজুয়েশন সম্পন্ন</span></div></div>
-                         <div class="info-card"><i class="fas fa-briefcase"></i><div class="info-card-text"><strong>বর্তমান পেশা</strong><span>চাকরির প্রস্তুতি ও পার্ট-টাইম কর্মী</span></div></div>
-                         <div class="info-card"><i class="fas fa-map-marker-alt"></i><div class="info-card-text"><strong>বাসস্থান</strong><span>মেরতলা, পূর্ব বর্ধমান</span></div></div>
-                         <div class="info-card"><i class="fas fa-bullseye"></i><div class="info-card-text"><strong>লক্ষ্য</strong><span>সরকারি চাকরিতে যোগদান</span></div></div>
+            </div>
+        </header>
+
+        <nav
+            id="mobile-navigation-menu"
+            class="mobile-navigation-menu"
+            data-visible="false"
+        >
+            <ul>
+                <li>
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="about.html"
+                        ><i class="fas fa-info-circle"></i> About</a
+                    >
+                </li>
+                <li>
+                    <a href="index.html#subjects"
+                        ><i class="fas fa-book-open"></i> Subjects</a
+                    >
+                </li>
+                <li>
+                    <a href="index.html#features"
+                        ><i class="fas fa-star"></i> Features</a
+                    >
+                </li>
+                <li>
+                    <a href="contact.html"
+                        ><i class="fas fa-envelope"></i> Contact</a
+                    >
+                </li>
+                <li>
+                    <a href="index.html#feedback-module"
+                        ><i class="fas fa-comment-alt"></i> Feedback</a
+                    >
+                </li>
+
+                <li class="auth-link" id="guest-link-mobile">
+                    <a href="login.html"
+                        ><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a
+                    >
+                </li>
+                <li
+                    class="auth-link"
+                    id="user-link-mobile"
+                    style="display: none"
+                >
+                    <a href="#" id="dashboard-link-mobile"
+                        ><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a
+                    >
+                </li>
+                <li
+                    class="auth-link"
+                    id="logout-link-mobile"
+                    style="display: none"
+                >
+                    <a href="#" id="logout-btn-mobile"
+                        ><i class="fas fa-sign-out-alt"></i> লগ আউট</a
+                    >
+                </li>
+            </ul>
+        </nav>
+
+        <main>
+            <section class="about-section">
+                <div class="container">
+                    <div
+                        class="section-title"
+                        style="display: block; text-align: center"
+                    >
+                        <h2>আমার সম্পর্কে</h2>
+                    </div>
+                    <div class="about-grid">
+                        <div class="about-image-wrapper">
+                            <img
+                                src="images/keshab_sarkar.jpg"
+                                alt="কেশব সরকার"
+                                class="about-image"
+                            />
+                        </div>
+                        <div class="about-content">
+                            <h1>স্বাগতম! আমি <span>কেশব সরকার</span></h1>
+                            <p class="intro-text">
+                                আমি একজন উৎসাহী শিক্ষানুরাগী এবং কর্মঠ মানুষ।
+                                জ্ঞান অর্জন এবং বাস্তব অভিজ্ঞতার সমন্বয়ে জীবনকে
+                                সফল করার লক্ষ্যে আমি এগিয়ে চলেছি।
+                            </p>
+                            <p>
+                                এই প্ল্যাটফর্মটি আমার জ্ঞান ও অভিজ্ঞতা আপনাদের
+                                সাথে ভাগ করে নেওয়ার একটি প্রচেষ্টা। আশা করি,
+                                আপনারা উপকৃত হবেন এবং আমাকে আপনাদের যাত্রায়
+                                পাশে পাবেন।
+                            </p>
+
+                            <div class="info-cards">
+                                <div class="info-card">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <div class="info-card-text">
+                                        <strong>শিক্ষাগত যোগ্যতা</strong
+                                        ><span>গ্র্যাজুয়েশন সম্পন্ন</span>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <i class="fas fa-briefcase"></i>
+                                    <div class="info-card-text">
+                                        <strong>বর্তমান পেশা</strong
+                                        ><span
+                                            >চাকরির প্রস্তুতি ও পার্ট-টাইম
+                                            কর্মী</span
+                                        >
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div class="info-card-text">
+                                        <strong>বাসস্থান</strong
+                                        ><span>মেরতলা, পূর্ব বর্ধমান</span>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <i class="fas fa-bullseye"></i>
+                                    <div class="info-card-text">
+                                        <strong>লক্ষ্য</strong
+                                        ><span>সরকারি চাকরিতে যোগদান</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="journey-section">
+                <div class="container">
+                    <div
+                        class="section-title"
+                        style="display: block; text-align: center"
+                    >
+                        <h2>আমার পথচলা</h2>
+                    </div>
+                    <div class="timeline-container">
+                        <div class="timeline-item left">
+                            <div class="timeline-content">
+                                <h3>গ্র্যাজুয়েশন সম্পন্ন</h3>
+                                <p>
+                                    সফলভাবে আমার স্নাতক ডিগ্রী সম্পন্ন করি, যা
+                                    আমার জ্ঞান এবং দৃষ্টিভঙ্গিকে প্রসারিত করেছে।
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-item right">
+                            <div class="timeline-content">
+                                <h3>কর্মজীবনের অভিজ্ঞতা</h3>
+                                <p>
+                                    পড়াশোনার পাশাপাশি একটি রেস্টুরেন্টে
+                                    পার্ট-টাইম কাজ শুরু করি। এটি আমাকে আর্থিক
+                                    স্বাধীনতা ও বাস্তব জীবনের দক্ষতা দিয়েছে।
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-item left">
+                            <div class="timeline-content">
+                                <h3>লক্ষ্যের দিকে যাত্রা</h3>
+                                <p>
+                                    বর্তমানে আমি முழு উদ্যমে সরকারি চাকরির
+                                    পরীক্ষার জন্য প্রস্তুতি নিচ্ছি এবং নিজের
+                                    স্বপ্ন পূরণের দিকে এগিয়ে চলেছি।
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-item right">
+                            <div class="timeline-content">
+                                <h3>জ্ঞান ভাগ করার প্রচেষ্টা</h3>
+                                <p>
+                                    এই প্ল্যাটফর্মের মাধ্যমে আমার অর্জিত জ্ঞান ও
+                                    অভিজ্ঞতা সবার সাথে ভাগ করে নিচ্ছি, যাতে সবাই
+                                    উপকৃত হতে পারে।
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="location-section">
+                <div class="container">
+                    <div
+                        class="section-title"
+                        style="display: block; text-align: center"
+                    >
+                        <h2>আমার অবস্থান</h2>
+                    </div>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.405788487372!2d88.24353457424683!3d23.63372279093848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8d16717a63753%3A0x33b1e32d1f94578b!2sMertala%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1701389445123!5m2!1sen!2sin"
+                            style="border: 0"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                        >
+                        </iframe>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-top container">
+                <div>
+                    <img src="images/logo.jpg" alt="Logo" class="footer-logo" />
+                    <p>একটি শিক্ষামূলক ও সহায়ক অনলাইন প্ল্যাটফর্ম।</p>
+                </div>
+                <div class="footer-links">
+                    <h4>দ্রুত লিংক</h4>
+                    <ul>
+                        <li>
+                            <a href="index.html"
+                                ><i class="fas fa-house-chimney"></i> হোম</a
+                            >
+                        </li>
+                        <li>
+                            <a href="about.html"
+                                ><i class="fas fa-people-group"></i> আমার
+                                সম্পর্কে</a
+                            >
+                        </li>
+                        <li>
+                            <a href="index.html#subjects"
+                                ><i class="fas fa-book-open"></i> বিষয়সমূহ</a
+                            >
+                        </li>
+                        <li>
+                            <a href="contact.html"
+                                ><i class="fas fa-headset"></i> যোগাযোগ</a
+                            >
+                        </li>
+                        <li>
+                            <a href="index.html#feedback-module"
+                                ><i class="fas fa-comment-dots"></i> ফিডব্যাক</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>সোশ্যাল মিডিয়া</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"
+                            ><i class="fab fa-facebook-f"></i
+                        ></a>
+                        <a href="#" aria-label="YouTube"
+                            ><i class="fab fa-youtube"></i
+                        ></a>
+                        <a href="#" aria-label="Twitter"
+                            ><i class="fab fa-twitter"></i
+                        ></a>
+                        <a href="#" aria-label="Instagram"
+                            ><i class="fab fa-instagram"></i
+                        ></a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="journey-section">
-        <div class="container">
-            <div class="section-title" style="display: block; text-align: center;">
-                <h2>আমার পথচলা</h2>
+            <div class="footer-bottom">
+                &copy; 2025 | Study With Keshab | সর্বস্বত্ব সংরক্ষিত
             </div>
-            <div class="timeline-container">
-                <div class="timeline-item left"><div class="timeline-content"><h3>গ্র্যাজুয়েশন সম্পন্ন</h3><p>সফলভাবে আমার স্নাতক ডিগ্রী সম্পন্ন করি, যা আমার জ্ঞান এবং দৃষ্টিভঙ্গিকে প্রসারিত করেছে।</p></div></div>
-                <div class="timeline-item right"><div class="timeline-content"><h3>কর্মজীবনের অভিজ্ঞতা</h3><p>পড়াশোনার পাশাপাশি একটি রেস্টুরেন্টে পার্ট-টাইম কাজ শুরু করি। এটি আমাকে আর্থিক স্বাধীনতা ও বাস্তব জীবনের দক্ষতা দিয়েছে।</p></div></div>
-                <div class="timeline-item left"><div class="timeline-content"><h3>লক্ষ্যের দিকে যাত্রা</h3><p>বর্তমানে আমি முழு উদ্যমে সরকারি চাকরির পরীক্ষার জন্য প্রস্তুতি নিচ্ছি এবং নিজের স্বপ্ন পূরণের দিকে এগিয়ে চলেছি।</p></div></div>
-                <div class="timeline-item right"><div class="timeline-content"><h3>জ্ঞান ভাগ করার প্রচেষ্টা</h3><p>এই প্ল্যাটফর্মের মাধ্যমে আমার অর্জিত জ্ঞান ও অভিজ্ঞতা সবার সাথে ভাগ করে নিচ্ছি, যাতে সবাই উপকৃত হতে পারে।</p></div></div>
-            </div>
-        </div>
-    </section>
+        </footer>
 
-    <section class="location-section">
-        <div class="container">
-            <div class="section-title" style="display: block; text-align: center;">
-                <h2>আমার অবস্থান</h2>
-            </div>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.405788487372!2d88.24353457424683!3d23.63372279093848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8d16717a63753%3A0x33b1e32d1f94578b!2sMertala%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1701389445123!5m2!1sen!2sin"
-                        style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-        </div>
-    </section>
-</main>
+        <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="js/firebase-config.js"></script>
+        <script src="js/notification-data.js"></script>
+        <script src="js/script.js"></script>
 
-<footer>
-  <div class="footer-top container">
-    <div>
-      <img src="images/logo.jpg" alt="Logo" class="footer-logo" />
-      <p>একটি শিক্ষামূলক ও সহায়ক অনলাইন প্ল্যাটফর্ম।</p>
-    </div>
-    <div class="footer-links">
-      <h4>দ্রুত লিংক</h4>
-      <ul>
-        <li><a href="index.html"><i class="fas fa-house-chimney"></i> হোম</a></li>
-        <li><a href="about.html"><i class="fas fa-people-group"></i> আমার সম্পর্কে</a></li>
-        <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> বিষয়সমূহ</a></li>
-        <li><a href="contact.html"><i class="fas fa-headset"></i> যোগাযোগ</a></li>
-        <li><a href="index.html#feedback-module"><i class="fas fa-comment-dots"></i> ফিডব্যাক</a></li>
-      </ul>
-    </div>
-    <div class="footer-social">
-      <h4>সোশ্যাল মিডিয়া</h4>
-      <div class="social-icons">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    &copy; 2025 | Study With Keshab | সর্বস্বত্ব সংরক্ষিত
-  </div>
-</footer>
+        <!-- === নতুন যোগ করা PWA এবং ডেস্কটপ মোড বাটন কোড === -->
+        <!-- Desktop/Mobile Mode Toggle Button -->
+        <button
+            id="toggleViewBtn"
+            style="
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                padding: 10px 15px;
+                font-size: 14px;
+                background-color: #333;
+                color: white;
+                border: none;
+                border-radius: 50px;
+                cursor: pointer;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            "
+        >
+            ডেস্কটপ মোড
+        </button>
 
-<!-- Firebase এবং অন্যান্য স্ক্রিপ্ট -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-<script src="js/firebase-config.js"></script>
-<script src="js/notification-data.js"></script>
-<script src="js/script.js"></script>
+        <script>
+            // --- 1. Service Worker Registration ---
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker
+                        .register("sw.js")
+                        .then((registration) => {
+                            console.log(
+                                "ServiceWorker registration successful!",
+                            );
+                        })
+                        .catch((err) => {
+                            console.log(
+                                "ServiceWorker registration failed: ",
+                                err,
+                            );
+                        });
+                });
+            }
 
-</body>
+            // --- 2. Desktop/Mobile Mode Toggle Logic ---
+            const toggleBtn = document.getElementById("toggleViewBtn");
+            const viewportMeta = document.getElementById("viewportMeta");
+
+            // Check if a view mode is already saved in localStorage
+            let isDesktopView = localStorage.getItem("viewMode") === "desktop";
+
+            // Function to apply the current view mode
+            function applyViewMode() {
+                if (isDesktopView) {
+                    viewportMeta.setAttribute("content", "width=1280");
+                    toggleBtn.textContent = "মোবাইল মোড";
+                } else {
+                    viewportMeta.setAttribute(
+                        "content",
+                        "width=device-width, initial-scale=1.0",
+                    );
+                    toggleBtn.textContent = "ডেস্কটপ মোড";
+                }
+            }
+
+            // Event listener for the button click
+            toggleBtn.addEventListener("click", () => {
+                isDesktopView = !isDesktopView; // Toggle the state
+                if (isDesktopView) {
+                    localStorage.setItem("viewMode", "desktop");
+                } else {
+                    localStorage.setItem("viewMode", "mobile");
+                }
+                applyViewMode();
+            });
+
+            // Apply the saved mode when the page loads
+            applyViewMode();
+        </script>
+        <!-- === PWA কোড শেষ === -->
+    </body>
 </html>

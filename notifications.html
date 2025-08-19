@@ -1,130 +1,226 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>সকল বিজ্ঞপ্তি - Study With Keshab</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+            id="viewportMeta"
+        />
+        <title>সকল বিজ্ঞপ্তি - Study With Keshab</title>
 
-    <!-- বেস URL (আপনার index.html থেকে নেওয়া) -->
-    <!-- এটি অত্যন্ত গুরুত্বপূর্ণ যাতে CSS এবং JS ফাইলগুলো সঠিকভাবে লোড হয় -->
-    <base href="/Study-With-Keshab/">
+        <!-- বেস URL (আপনার index.html থেকে নেওয়া) -->
+        <!-- এটি অত্যন্ত গুরুত্বপূর্ণ যাতে CSS এবং JS ফাইলগুলো সঠিকভাবে লোড হয় -->
+        <base href="/Study-With-Keshab/" />
+        <link rel="manifest" href="manifest.json" />
+        <meta name="theme-color" content="#4a90e2" />
 
-    <!-- Google Fonts এবং Font Awesome (সাইটের সামঞ্জস্যের জন্য) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <!-- Google Fonts এবং Font Awesome (সাইটের সামঞ্জস্যের জন্য) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
 
-    <!-- মূল CSS ফাইল -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- নোটিফিকেশনের জন্য CSS ফাইল -->
-    <link rel="stylesheet" href="css/notification.css">
+        <!-- মূল CSS ফাইল -->
+        <link rel="stylesheet" href="css/style.css" />
+        <!-- নোটিফিকেশনের জন্য CSS ফাইল -->
+        <link rel="stylesheet" href="css/notification.css" />
 
-    <style>
-        /* এই পেজের জন্য বিশেষ স্টাইল */
-        .page-container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 2rem;
-            min-height: 60vh; /* পেজে কম কনটেন্ট থাকলেও ফুটার নিচে থাকবে */
-        }
+        <style>
+            /* এই পেজের জন্য বিশেষ স্টাইল */
+            .page-container {
+                max-width: 900px;
+                margin: 2rem auto;
+                padding: 2rem;
+                min-height: 60vh; /* পেজে কম কনটেন্ট থাকলেও ফুটার নিচে থাকবে */
+            }
 
-        .page-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
+            .page-header {
+                text-align: center;
+                margin-bottom: 2.5rem;
+            }
 
-        .page-title {
-            font-size: 2.8rem;
-            font-family: 'Baloo Da 2', sans-serif;
-            font-weight: 700;
-            color: #2c3e50;
-            display: inline-block;
-            border-bottom: 3px solid var(--primary-color, #007bff);
-            padding-bottom: 0.5rem;
-        }
+            .page-title {
+                font-size: 2.8rem;
+                font-family: "Baloo Da 2", sans-serif;
+                font-weight: 700;
+                color: #2c3e50;
+                display: inline-block;
+                border-bottom: 3px solid var(--primary-color, #007bff);
+                padding-bottom: 0.5rem;
+            }
 
-        .page-subtitle {
-            font-size: 1.1rem;
-            color: #7f8c8d;
-            margin-top: 0.5rem;
-        }
+            .page-subtitle {
+                font-size: 1.1rem;
+                color: #7f8c8d;
+                margin-top: 0.5rem;
+            }
 
-        /* নোটিফিকেশন লিস্টের কন্টেইনার */
-        .all-notifications-container {
-            display: grid;
-            gap: 1.5rem; /* প্রতিটি নোটিফিকেশনের মধ্যে ফাঁকা জায়গা */
-        }
-        
-        /* লোডিং বা খালি মেসেজের জন্য স্টাইল */
-        .list-message {
-            text-align: center;
-            padding: 3rem;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            color: #555;
-            font-size: 1.1rem;
-        }
+            /* নোটিফিকেশন লিস্টের কন্টেইনার */
+            .all-notifications-container {
+                display: grid;
+                gap: 1.5rem; /* প্রতিটি নোটিফিকেশনের মধ্যে ফাঁকা জায়গা */
+            }
 
-        /* এখানে আমরা notification.css থেকে .notification-feed-item ক্লাসটি ব্যবহার করবো */
-        /* তাই নতুন করে স্টাইল লেখার প্রয়োজন নেই, শুধু লেআউট ঠিক করা হয়েছে */
-    </style>
-</head>
-<body>
+            /* লোডিং বা খালি মেসেজের জন্য স্টাইল */
+            .list-message {
+                text-align: center;
+                padding: 3rem;
+                background-color: #f9f9f9;
+                border-radius: 8px;
+                color: #555;
+                font-size: 1.1rem;
+            }
 
-<!-- ======================= হেডার ======================= -->
-<!-- নির্দেশিকা: আপনার index.html ফাইল থেকে সম্পূর্ণ <header> এবং মোবাইল <nav> অংশটি এখানে কপি করে পেস্ট করুন। -->
-<!-- এটি করলে আপনার সাইটের নেভিগেশন সব পেজে একই রকম থাকবে। -->
-<header class="site-header">
-    <!-- এখানে আপনার হেডার কোড পেস্ট করুন -->
-</header>
-<nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
-    <!-- এখানে আপনার মোবাইল নেভিগেশন কোড পেস্ট করুন -->
-</nav>
-<!-- ===================== হেডার শেষ ===================== -->
+            /* এখানে আমরা notification.css থেকে .notification-feed-item ক্লাসটি ব্যবহার করবো */
+            /* তাই নতুন করে স্টাইল লেখার প্রয়োজন নেই, শুধু লেআউট ঠিক করা হয়েছে */
+        </style>
+    </head>
+    <body>
+        <!-- ======================= হেডার ======================= -->
+        <!-- নির্দেশিকা: আপনার index.html ফাইল থেকে সম্পূর্ণ <header> এবং মোবাইল <nav> অংশটি এখানে কপি করে পেস্ট করুন। -->
+        <!-- এটি করলে আপনার সাইটের নেভিগেশন সব পেজে একই রকম থাকবে। -->
+        <header class="site-header">
+            <!-- এখানে আপনার হেডার কোড পেস্ট করুন -->
+        </header>
+        <nav
+            id="mobile-navigation-menu"
+            class="mobile-navigation-menu"
+            data-visible="false"
+        >
+            <!-- এখানে আপনার মোবাইল নেভিগেশন কোড পেস্ট করুন -->
+        </nav>
+        <!-- ===================== হেডার শেষ ===================== -->
 
+        <main class="page-container">
+            <div class="page-header">
+                <h1 class="page-title">
+                    <i class="fas fa-bullhorn"></i> সকল বিজ্ঞপ্তি
+                </h1>
+                <p class="page-subtitle">
+                    আমাদের সকল সাম্প্রতিক ঘোষণা ও আপডেট এখানে একসাথে দেখুন।
+                </p>
+            </div>
 
-<main class="page-container">
-    <div class="page-header">
-        <h1 class="page-title"><i class="fas fa-bullhorn"></i> সকল বিজ্ঞপ্তি</h1>
-        <p class="page-subtitle">আমাদের সকল সাম্প্রতিক ঘোষণা ও আপডেট এখানে একসাথে দেখুন।</p>
-    </div>
-    
-    <!-- জাভাস্ক্রিপ্ট দিয়ে এখানে সমস্ত বিজ্ঞপ্তি লোড করা হবে -->
-    <div class="all-notifications-container" id="all-notifications-list">
-        <!-- প্রাথমিক লোডিং বার্তা -->
-        <div class="list-message">
-            <p>বিজ্ঞপ্তি লোড হচ্ছে...</p>
-        </div>
-    </div>
-</main>
+            <!-- জাভাস্ক্রিপ্ট দিয়ে এখানে সমস্ত বিজ্ঞপ্তি লোড করা হবে -->
+            <div
+                class="all-notifications-container"
+                id="all-notifications-list"
+            >
+                <!-- প্রাথমিক লোডিং বার্তা -->
+                <div class="list-message">
+                    <p>বিজ্ঞপ্তি লোড হচ্ছে...</p>
+                </div>
+            </div>
+        </main>
 
+        <!-- ======================= ফুটার ======================= -->
+        <!-- নির্দেশিকা: আপনার index.html ফাইল থেকে সম্পূর্ণ <footer> অংশটি এখানে কপি করে পেস্ট করুন। -->
+        <footer>
+            <!-- এখানে আপনার ফুটার কোড পেস্ট করুন -->
+        </footer>
+        <!-- ===================== ফুটার শেষ ===================== -->
 
-<!-- ======================= ফুটার ======================= -->
-<!-- নির্দেশিকা: আপনার index.html ফাইল থেকে সম্পূর্ণ <footer> অংশটি এখানে কপি করে পেস্ট করুন। -->
-<footer>
-    <!-- এখানে আপনার ফুটার কোড পেস্ট করুন -->
-</footer>
-<!-- ===================== ফুটার শেষ ===================== -->
+        <!-- =================== স্ক্রিপ্টসমূহ =================== -->
+        <!-- Firebase স্ক্রিপ্ট (যদি প্রয়োজন হয়) -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
+        <!-- আপনার Firebase কনফিগারেশন -->
+        <script src="js/firebase-config.js"></script>
+        <script src="auth.js"></script>
 
-<!-- =================== স্ক্রিপ্টসমূহ =================== -->
-<!-- Firebase স্ক্রিপ্ট (যদি প্রয়োজন হয়) -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <!-- সাধারণ জাভাস্ক্রিপ্ট (যেমন: মোবাইল মেনু টগল) -->
+        <script src="js/script.js"></script>
 
-<!-- আপনার Firebase কনফিগারেশন -->
-<script src="js/firebase-config.js"></script>
-<script src="auth.js"></script>
+        <!-- এই পেজের জন্য বিশেষ স্ক্রিপ্ট -->
+        <!-- ডেটা আগে লোড করতে হবে, তারপর সেই ডেটা ব্যবহার করার স্ক্রিপ্ট -->
+        <script src="js/notification-data.js"></script>
+        <script src="js/all-notifications.js"></script>
+        <!-- === নতুন যোগ করা PWA এবং ডেস্কটপ মোড বাটন কোড === -->
+        <!-- Desktop/Mobile Mode Toggle Button -->
+        <button
+            id="toggleViewBtn"
+            style="
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                padding: 10px 15px;
+                font-size: 14px;
+                background-color: #333;
+                color: white;
+                border: none;
+                border-radius: 50px;
+                cursor: pointer;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            "
+        >
+            ডেস্কটপ মোড
+        </button>
 
-<!-- সাধারণ জাভাস্ক্রিপ্ট (যেমন: মোবাইল মেনু টগল) -->
-<script src="js/script.js"></script>
+        <script>
+            // --- 1. Service Worker Registration ---
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker
+                        .register("sw.js")
+                        .then((registration) => {
+                            console.log(
+                                "ServiceWorker registration successful!",
+                            );
+                        })
+                        .catch((err) => {
+                            console.log(
+                                "ServiceWorker registration failed: ",
+                                err,
+                            );
+                        });
+                });
+            }
 
-<!-- এই পেজের জন্য বিশেষ স্ক্রিপ্ট -->
-<!-- ডেটা আগে লোড করতে হবে, তারপর সেই ডেটা ব্যবহার করার স্ক্রিপ্ট -->
-<script src="js/notification-data.js"></script>
-<script src="js/all-notifications.js"></script>
+            // --- 2. Desktop/Mobile Mode Toggle Logic ---
+            const toggleBtn = document.getElementById("toggleViewBtn");
+            const viewportMeta = document.getElementById("viewportMeta");
 
-</body>
+            // Check if a view mode is already saved in localStorage
+            let isDesktopView = localStorage.getItem("viewMode") === "desktop";
+
+            // Function to apply the current view mode
+            function applyViewMode() {
+                if (isDesktopView) {
+                    viewportMeta.setAttribute("content", "width=1280");
+                    toggleBtn.textContent = "মোবাইল মোড";
+                } else {
+                    viewportMeta.setAttribute(
+                        "content",
+                        "width=device-width, initial-scale=1.0",
+                    );
+                    toggleBtn.textContent = "ডেস্কটপ মোড";
+                }
+            }
+
+            // Event listener for the button click
+            toggleBtn.addEventListener("click", () => {
+                isDesktopView = !isDesktopView; // Toggle the state
+                if (isDesktopView) {
+                    localStorage.setItem("viewMode", "desktop");
+                } else {
+                    localStorage.setItem("viewMode", "mobile");
+                }
+                applyViewMode();
+            });
+
+            // Apply the saved mode when the page loads
+            applyViewMode();
+        </script>
+        <!-- === PWA কোড শেষ === -->
+    </body>
 </html>

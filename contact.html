@@ -1,141 +1,466 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="bn">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>যোগাযোগ - Study With Keshab</title>
-    <base href="/Study-With-Keshab/">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+            id="viewportMeta"
+        />
+        <title>যোগাযোগ - Study With Keshab</title>
+        <base href="/Study-With-Keshab/" />
+        <link rel="manifest" href="manifest.json" />
+        <meta name="theme-color" content="#4a90e2" />
 
-    <!-- Google Fonts & Font Awesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- মূল স্টাইলশিট -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+        <!-- Google Fonts & Font Awesome -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
 
-<!-- === আপডেটেড হেডার এবং মোবাইল মেনু === -->
-<header class="site-header">
-  <div class="header-grid">
-    <a href="index.html" class="logo-link">
-      <img src="images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
-    </a>
-    <nav class="primary-navigation">
-        <ul>
-            <li><a href="index.html" class="home"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="about.html" class="about"><i class="fas fa-info-circle"></i> About</a></li>
-            <li><a href="index.html#subjects" class="services"><i class="fas fa-book-open"></i> Subjects</a></li>
-            <li><a href="index.html#features" class="blog"><i class="fas fa-star"></i> Features</a></li>
-            <li><a href="contact.html" class="contact active"><i class="fas fa-envelope"></i> Contact</a></li>
-            <li><a href="index.html#feedback-module" class="feedback"><i class="fas fa-comment-alt"></i> Feedback</a></li>
-            
-            <li class="auth-link" id="guest-link-desktop"><a href="login.html" class="login"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a></li>
-            <li class="auth-link" id="user-link-desktop" style="display: none;"><a href="#" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a></li>
-            <li class="auth-link" id="logout-link-desktop" style="display: none;"><a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> লগ আউট</a></li>
-        </ul>
-    </nav>
-    <div class="header-actions">
-        <span id="user-name-display" class="nav-user-name"></span>
-        <button id="show-notification-btn" title="নোটিফিকেশন" class="notification-bell-btn"><i class="fa-solid fa-bell"></i><span id="notification-badge"></span></button>
-        <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false"><span class="sr-only">Menu</span></button>
-    </div>
-  </div>
-</header>
+        <!-- মূল স্টাইলশিট -->
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <!-- === আপডেটেড হেডার এবং মোবাইল মেনু === -->
+        <header class="site-header">
+            <div class="header-grid">
+                <a href="index.html" class="logo-link">
+                    <img
+                        src="images/logo.jpg"
+                        alt="Study With Keshab Logo"
+                        class="logo-img"
+                    />
+                </a>
+                <nav class="primary-navigation">
+                    <ul>
+                        <li>
+                            <a href="index.html" class="home"
+                                ><i class="fas fa-home"></i> Home</a
+                            >
+                        </li>
+                        <li>
+                            <a href="about.html" class="about"
+                                ><i class="fas fa-info-circle"></i> About</a
+                            >
+                        </li>
+                        <li>
+                            <a href="index.html#subjects" class="services"
+                                ><i class="fas fa-book-open"></i> Subjects</a
+                            >
+                        </li>
+                        <li>
+                            <a href="index.html#features" class="blog"
+                                ><i class="fas fa-star"></i> Features</a
+                            >
+                        </li>
+                        <li>
+                            <a href="contact.html" class="contact active"
+                                ><i class="fas fa-envelope"></i> Contact</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="index.html#feedback-module"
+                                class="feedback"
+                                ><i class="fas fa-comment-alt"></i> Feedback</a
+                            >
+                        </li>
 
-<nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
-    <ul>
-        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
-        <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
-        <li><a href="index.html#features"><i class="fas fa-star"></i> Features</a></li>
-        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-        <li><a href="index.html#feedback-module"><i class="fas fa-comment-alt"></i> Feedback</a></li>
-        
-        <li class="auth-link" id="guest-link-mobile"><a href="login.html"><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a></li>
-        <li class="auth-link" id="user-link-mobile" style="display: none;"><a href="#" id="dashboard-link-mobile"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a></li>
-        <li class="auth-link" id="logout-link-mobile" style="display: none;"><a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> লগ আউট</a></li>
-    </ul>
-</nav>
-
-<main>
-    <section class="contact-section">
-        <div class="container">
-            <div class="section-title" style="display: block; text-align: center;">
-                <h1>যোগাযোগ করুন</h1>
-                <p>আপনার যেকোনো প্রশ্ন, পরামর্শ বা মূল্যবান মতামতের জন্য আমি সর্বদা প্রস্তুত। নিচের তথ্য ব্যবহার করে বা ফর্মটি পূরণ করে আমার সাথে যোগাযোগ করুন।</p>
+                        <li class="auth-link" id="guest-link-desktop">
+                            <a href="login.html" class="login"
+                                ><i class="fas fa-sign-in-alt"></i> লগইন / সাইন
+                                আপ</a
+                            >
+                        </li>
+                        <li
+                            class="auth-link"
+                            id="user-link-desktop"
+                            style="display: none"
+                        >
+                            <a href="#" id="dashboard-link-desktop"
+                                ><i class="fas fa-tachometer-alt"></i>
+                                ড্যাশবোর্ড</a
+                            >
+                        </li>
+                        <li
+                            class="auth-link"
+                            id="logout-link-desktop"
+                            style="display: none"
+                        >
+                            <a href="#" id="logout-btn-desktop"
+                                ><i class="fas fa-sign-out-alt"></i> লগ আউট</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <span id="user-name-display" class="nav-user-name"></span>
+                    <button
+                        id="show-notification-btn"
+                        title="নোটিফিকেশন"
+                        class="notification-bell-btn"
+                    >
+                        <i class="fa-solid fa-bell"></i
+                        ><span id="notification-badge"></span>
+                    </button>
+                    <button
+                        class="mobile-nav-toggle"
+                        aria-controls="mobile-navigation-menu"
+                        aria-expanded="false"
+                    >
+                        <span class="sr-only">Menu</span>
+                    </button>
+                </div>
             </div>
+        </header>
 
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h2>সরাসরি যোগাযোগ</h2>
-                    <div class="info-item"><div class="icon"><i class="fas fa-phone-alt"></i></div><div class="info-item-text"><strong>ফোন / হোয়াটসঅ্যাপ</strong><a href="tel:+919382284190">+91 9382284190</a></div></div>
-                    <div class="info-item"><div class="icon"><i class="fas fa-envelope"></i></div><div class="info-item-text"><strong>ইমেইল</strong><a href="mailto:keshabsarkar2018@gmail.com">keshabsarkar2018@gmail.com</a></div></div>
-                    <div class="info-item"><div class="icon"><i class="fas fa-map-marker-alt"></i></div><div class="info-item-text"><strong>ঠিকানা</strong><span>মেরতলা, পূর্ব বর্ধমান, পশ্চিমবঙ্গ</span></div></div>
-                    <div class="contact-social-links">
-                         <a href="#" target="_blank" aria-label="Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                         <a href="#" target="_blank" aria-label="YouTube Channel"><i class="fab fa-youtube"></i></a>
-                         <a href="#" target="_blank" aria-label="Twitter Profile"><i class="fab fa-twitter"></i></a>
-                         <a href="#" target="_blank" aria-label="Instagram Profile"><i class="fab fa-instagram"></i></a>
+        <nav
+            id="mobile-navigation-menu"
+            class="mobile-navigation-menu"
+            data-visible="false"
+        >
+            <ul>
+                <li>
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="about.html"
+                        ><i class="fas fa-info-circle"></i> About</a
+                    >
+                </li>
+                <li>
+                    <a href="index.html#subjects"
+                        ><i class="fas fa-book-open"></i> Subjects</a
+                    >
+                </li>
+                <li>
+                    <a href="index.html#features"
+                        ><i class="fas fa-star"></i> Features</a
+                    >
+                </li>
+                <li>
+                    <a href="contact.html"
+                        ><i class="fas fa-envelope"></i> Contact</a
+                    >
+                </li>
+                <li>
+                    <a href="index.html#feedback-module"
+                        ><i class="fas fa-comment-alt"></i> Feedback</a
+                    >
+                </li>
+
+                <li class="auth-link" id="guest-link-mobile">
+                    <a href="login.html"
+                        ><i class="fas fa-sign-in-alt"></i> লগইন / সাইন আপ</a
+                    >
+                </li>
+                <li
+                    class="auth-link"
+                    id="user-link-mobile"
+                    style="display: none"
+                >
+                    <a href="#" id="dashboard-link-mobile"
+                        ><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a
+                    >
+                </li>
+                <li
+                    class="auth-link"
+                    id="logout-link-mobile"
+                    style="display: none"
+                >
+                    <a href="#" id="logout-btn-mobile"
+                        ><i class="fas fa-sign-out-alt"></i> লগ আউট</a
+                    >
+                </li>
+            </ul>
+        </nav>
+
+        <main>
+            <section class="contact-section">
+                <div class="container">
+                    <div
+                        class="section-title"
+                        style="display: block; text-align: center"
+                    >
+                        <h1>যোগাযোগ করুন</h1>
+                        <p>
+                            আপনার যেকোনো প্রশ্ন, পরামর্শ বা মূল্যবান মতামতের
+                            জন্য আমি সর্বদা প্রস্তুত। নিচের তথ্য ব্যবহার করে বা
+                            ফর্মটি পূরণ করে আমার সাথে যোগাযোগ করুন।
+                        </p>
+                    </div>
+
+                    <div class="contact-wrapper">
+                        <div class="contact-info">
+                            <h2>সরাসরি যোগাযোগ</h2>
+                            <div class="info-item">
+                                <div class="icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="info-item-text">
+                                    <strong>ফোন / হোয়াটসঅ্যাপ</strong
+                                    ><a href="tel:+919382284190"
+                                        >+91 9382284190</a
+                                    >
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="info-item-text">
+                                    <strong>ইমেইল</strong
+                                    ><a href="mailto:keshabsarkar2018@gmail.com"
+                                        >keshabsarkar2018@gmail.com</a
+                                    >
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="info-item-text">
+                                    <strong>ঠিকানা</strong
+                                    ><span
+                                        >মেরতলা, পূর্ব বর্ধমান, পশ্চিমবঙ্গ</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="contact-social-links">
+                                <a
+                                    href="#"
+                                    target="_blank"
+                                    aria-label="Facebook Profile"
+                                    ><i class="fab fa-facebook-f"></i
+                                ></a>
+                                <a
+                                    href="#"
+                                    target="_blank"
+                                    aria-label="YouTube Channel"
+                                    ><i class="fab fa-youtube"></i
+                                ></a>
+                                <a
+                                    href="#"
+                                    target="_blank"
+                                    aria-label="Twitter Profile"
+                                    ><i class="fab fa-twitter"></i
+                                ></a>
+                                <a
+                                    href="#"
+                                    target="_blank"
+                                    aria-label="Instagram Profile"
+                                    ><i class="fab fa-instagram"></i
+                                ></a>
+                            </div>
+                        </div>
+
+                        <div class="contact-form">
+                            <h2>আমাকে একটি বার্তা পাঠান</h2>
+                            <form
+                                action="https://formspree.io/f/xyzpppzy"
+                                method="POST"
+                            >
+                                <div class="form-group">
+                                    <label for="name">আপনার নাম</label
+                                    ><input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        class="form-control"
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">আপনার ইমেইল</label
+                                    ><input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        class="form-control"
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">বিষয়</label
+                                    ><input
+                                        type="text"
+                                        id="subject"
+                                        name="subject"
+                                        class="form-control"
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">আপনার বার্তা</label
+                                    ><textarea
+                                        id="message"
+                                        name="message"
+                                        class="form-control"
+                                        required
+                                    ></textarea>
+                                </div>
+                                <button type="submit" class="btn-submit">
+                                    বার্তা পাঠান
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
+            </section>
+        </main>
 
-                <div class="contact-form">
-                    <h2>আমাকে একটি বার্তা পাঠান</h2>
-                    <form action="https://formspree.io/f/xyzpppzy" method="POST">
-                        <div class="form-group"><label for="name">আপনার নাম</label><input type="text" id="name" name="name" class="form-control" required></div>
-                        <div class="form-group"><label for="email">আপনার ইমেইল</label><input type="email" id="email" name="email" class="form-control" required></div>
-                        <div class="form-group"><label for="subject">বিষয়</label><input type="text" id="subject" name="subject" class="form-control" required></div>
-                        <div class="form-group"><label for="message">আপনার বার্তা</label><textarea id="message" name="message" class="form-control" required></textarea></div>
-                        <button type="submit" class="btn-submit">বার্তা পাঠান</button>
-                    </form>
+        <footer>
+            <div class="footer-top container">
+                <div>
+                    <img src="images/logo.jpg" alt="Logo" class="footer-logo" />
+                    <p>একটি শিক্ষামূলক ও সহায়ক অনলাইন প্ল্যাটফর্ম।</p>
+                </div>
+                <div class="footer-links">
+                    <h4>দ্রুত লিংক</h4>
+                    <ul>
+                        <li>
+                            <a href="index.html"
+                                ><i class="fas fa-house-chimney"></i> হোম</a
+                            >
+                        </li>
+                        <li>
+                            <a href="about.html"
+                                ><i class="fas fa-people-group"></i> আমার
+                                সম্পর্কে</a
+                            >
+                        </li>
+                        <li>
+                            <a href="index.html#subjects"
+                                ><i class="fas fa-book-open"></i> বিষয়সমূহ</a
+                            >
+                        </li>
+                        <li>
+                            <a href="contact.html"
+                                ><i class="fas fa-headset"></i> যোগাযোগ</a
+                            >
+                        </li>
+                        <li>
+                            <a href="index.html#feedback-module"
+                                ><i class="fas fa-comment-dots"></i> ফিডব্যাক</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>সোশ্যাল মিডিয়া</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"
+                            ><i class="fab fa-facebook-f"></i
+                        ></a>
+                        <a href="#" aria-label="YouTube"
+                            ><i class="fab fa-youtube"></i
+                        ></a>
+                        <a href="#" aria-label="Twitter"
+                            ><i class="fab fa-twitter"></i
+                        ></a>
+                        <a href="#" aria-label="Instagram"
+                            ><i class="fab fa-instagram"></i
+                        ></a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-</main>
+            <div class="footer-bottom">
+                &copy; 2025 | Study With Keshab | সর্বস্বত্ব সংরক্ষিত
+            </div>
+        </footer>
 
-<footer>
-  <div class="footer-top container">
-    <div>
-      <img src="images/logo.jpg" alt="Logo" class="footer-logo" />
-      <p>একটি শিক্ষামূলক ও সহায়ক অনলাইন প্ল্যাটফর্ম।</p>
-    </div>
-    <div class="footer-links">
-      <h4>দ্রুত লিংক</h4>
-      <ul>
-        <li><a href="index.html"><i class="fas fa-house-chimney"></i> হোম</a></li>
-        <li><a href="about.html"><i class="fas fa-people-group"></i> আমার সম্পর্কে</a></li>
-        <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> বিষয়সমূহ</a></li>
-        <li><a href="contact.html"><i class="fas fa-headset"></i> যোগাযোগ</a></li>
-        <li><a href="index.html#feedback-module"><i class="fas fa-comment-dots"></i> ফিডব্যাক</a></li>
-      </ul>
-    </div>
-    <div class="footer-social">
-      <h4>সোশ্যাল মিডিয়া</h4>
-      <div class="social-icons">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    &copy; 2025 | Study With Keshab | সর্বস্বত্ব সংরক্ষিত
-  </div>
-</footer>
+        <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট (সঠিক ক্রমে) -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
+        <script src="js/firebase-config.js"></script>
+        <script src="js/notification-data.js"></script>
+        <script src="js/script.js"></script>
+        <!-- === নতুন যোগ করা PWA এবং ডেস্কটপ মোড বাটন কোড === -->
+        <!-- Desktop/Mobile Mode Toggle Button -->
+        <button
+            id="toggleViewBtn"
+            style="
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                padding: 10px 15px;
+                font-size: 14px;
+                background-color: #333;
+                color: white;
+                border: none;
+                border-radius: 50px;
+                cursor: pointer;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            "
+        >
+            ডেস্কটপ মোড
+        </button>
 
-<!-- Firebase এবং অন্যান্য স্ক্রিপ্ট (সঠিক ক্রমে) -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
-<script src="js/firebase-config.js"></script>
-<script src="js/notification-data.js"></script>
-<script src="js/script.js"></script>
+        <script>
+            // --- 1. Service Worker Registration ---
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker
+                        .register("sw.js")
+                        .then((registration) => {
+                            console.log(
+                                "ServiceWorker registration successful!",
+                            );
+                        })
+                        .catch((err) => {
+                            console.log(
+                                "ServiceWorker registration failed: ",
+                                err,
+                            );
+                        });
+                });
+            }
 
-</body>
+            // --- 2. Desktop/Mobile Mode Toggle Logic ---
+            const toggleBtn = document.getElementById("toggleViewBtn");
+            const viewportMeta = document.getElementById("viewportMeta");
+
+            // Check if a view mode is already saved in localStorage
+            let isDesktopView = localStorage.getItem("viewMode") === "desktop";
+
+            // Function to apply the current view mode
+            function applyViewMode() {
+                if (isDesktopView) {
+                    viewportMeta.setAttribute("content", "width=1280");
+                    toggleBtn.textContent = "মোবাইল মোড";
+                } else {
+                    viewportMeta.setAttribute(
+                        "content",
+                        "width=device-width, initial-scale=1.0",
+                    );
+                    toggleBtn.textContent = "ডেস্কটপ মোড";
+                }
+            }
+
+            // Event listener for the button click
+            toggleBtn.addEventListener("click", () => {
+                isDesktopView = !isDesktopView; // Toggle the state
+                if (isDesktopView) {
+                    localStorage.setItem("viewMode", "desktop");
+                } else {
+                    localStorage.setItem("viewMode", "mobile");
+                }
+                applyViewMode();
+            });
+
+            // Apply the saved mode when the page loads
+            applyViewMode();
+        </script>
+        <!-- === PWA কোড শেষ === -->
+    </body>
 </html>

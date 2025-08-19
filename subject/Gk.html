@@ -1,141 +1,426 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="bn">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-  <!-- GK পেজের জন্য প্রাসঙ্গিক মেটা ডেসক্রিপশন -->
-  <meta name="description" content="Study With Keshab ওয়েবসাইটে স্ট্যাটিক জেনারেল নলেজ (GK) এর সকল গুরুত্বপূর্ণ বিষয়। Textbook, ছায়া প্রকাশনী এবং অন্যান্য বই থেকে রিসোর্স খুঁজুন।">
-  
-  <title>Static General Knowledge - Study With Keshab</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+            id="viewportMeta"
+        />
 
-  <!-- Google Fonts & Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <!-- GK পেজের জন্য প্রাসঙ্গিক মেটা ডেসক্রিপশন -->
+        <meta
+            name="description"
+            content="Study With Keshab ওয়েবসাইটে স্ট্যাটিক জেনারেল নলেজ (GK) এর সকল গুরুত্বপূর্ণ বিষয়। Textbook, ছায়া প্রকাশনী এবং অন্যান্য বই থেকে রিসোর্স খুঁজুন।"
+        />
 
-  <!-- মূল CSS ফাইল -->
-  <link rel="stylesheet" href="../css/style.css">
-  
-  <style>
-    /* GK পেজের জন্য নির্দিষ্ট থিম */
-    :root {
-      --text-color: #192335;
-      --bg-light: #f7f9fc;
-      --bg-white: #ffffff;
-      --footer-bg: #0b172a;
-      --footer-text: #a0b3d1;
-    }
-    body { font-family: 'Baloo Da 2', cursive; background-color: var(--bg-light); margin: 0; color: var(--text-color); line-height: 1.6; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    .chapter-page { padding: 4rem 2rem; }
-    .section-title { text-align: center; font-size: 3rem; font-weight: 700; margin-bottom: 3rem; background: linear-gradient(45deg, #11998e, #38ef7d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; }
-    .chapter-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; }
-    .chapter-card { background: var(--bg-white); border-radius: 15px; padding: 2rem; text-align: center; font-size: 1.25rem; font-weight: 600; color: var(--text-color); text-decoration: none; border: 1px solid #e8eaf6; transition: all 0.35s ease-in-out; box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1); position: relative; overflow: hidden; }
-    .chapter-card i { display: block; font-size: 2.5rem; margin-bottom: 1rem; transition: all 0.35s ease-in-out; }
-    .chapter-list a:nth-child(1) i { color: #2196f3; } .chapter-list a:nth-child(2) i { color: #4caf50; } .chapter-list a:nth-child(3) i { color: #ff9800; }
-    .chapter-card:hover { transform: translateY(-10px); color: #fff; background-image: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%); box-shadow: 0 15px 35px rgba(37, 117, 252, 0.3); }
-    .chapter-card:hover i { color: #fff; transform: scale(1.1) rotate(-5deg); }
-    .footer { background: var(--footer-bg); text-align: center; color: var(--footer-text); padding: 2.5rem 1rem; margin-top: 4rem; border-top: 2px solid #2575fc; }
-  </style>
-</head>
-<body>
+        <title>Static General Knowledge - Study With Keshab</title>
+        <!-- PWA Manifest Link -->
+        <link rel="manifest" href="../manifest.json" />
+        <meta name="theme-color" content="#4a90e2" />
 
-  <header class="site-header">
-    <div class="header-grid container">
-        <a href="../index.html" class="logo-link">
-            <img src="../images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
-        </a>
-        
-        <nav class="primary-navigation">
+        <!-- Google Fonts & Font Awesome -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+
+        <!-- মূল CSS ফাইল -->
+        <link rel="stylesheet" href="../css/style.css" />
+
+        <style>
+            /* GK পেজের জন্য নির্দিষ্ট থিম */
+            :root {
+                --text-color: #192335;
+                --bg-light: #f7f9fc;
+                --bg-white: #ffffff;
+                --footer-bg: #0b172a;
+                --footer-text: #a0b3d1;
+            }
+            body {
+                font-family: "Baloo Da 2", cursive;
+                background-color: var(--bg-light);
+                margin: 0;
+                color: var(--text-color);
+                line-height: 1.6;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+            .chapter-page {
+                padding: 4rem 2rem;
+            }
+            .section-title {
+                text-align: center;
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 3rem;
+                background: linear-gradient(45deg, #11998e, #38ef7d);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-fill-color: transparent;
+            }
+            .chapter-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            .chapter-card {
+                background: var(--bg-white);
+                border-radius: 15px;
+                padding: 2rem;
+                text-align: center;
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--text-color);
+                text-decoration: none;
+                border: 1px solid #e8eaf6;
+                transition: all 0.35s ease-in-out;
+                box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
+                position: relative;
+                overflow: hidden;
+            }
+            .chapter-card i {
+                display: block;
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                transition: all 0.35s ease-in-out;
+            }
+            .chapter-list a:nth-child(1) i {
+                color: #2196f3;
+            }
+            .chapter-list a:nth-child(2) i {
+                color: #4caf50;
+            }
+            .chapter-list a:nth-child(3) i {
+                color: #ff9800;
+            }
+            .chapter-card:hover {
+                transform: translateY(-10px);
+                color: #fff;
+                background-image: linear-gradient(
+                    45deg,
+                    #6a11cb 0%,
+                    #2575fc 100%
+                );
+                box-shadow: 0 15px 35px rgba(37, 117, 252, 0.3);
+            }
+            .chapter-card:hover i {
+                color: #fff;
+                transform: scale(1.1) rotate(-5deg);
+            }
+            .footer {
+                background: var(--footer-bg);
+                text-align: center;
+                color: var(--footer-text);
+                padding: 2.5rem 1rem;
+                margin-top: 4rem;
+                border-top: 2px solid #2575fc;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="header-grid container">
+                <a href="../index.html" class="logo-link">
+                    <img
+                        src="../images/logo.jpg"
+                        alt="Study With Keshab Logo"
+                        class="logo-img"
+                    />
+                </a>
+
+                <nav class="primary-navigation">
+                    <ul>
+                        <li>
+                            <a href="../index.html"
+                                ><i class="fas fa-home" aria-hidden="true"></i>
+                                Home</a
+                            >
+                        </li>
+                        <li>
+                            <a href="../about.html"
+                                ><i
+                                    class="fas fa-info-circle"
+                                    aria-hidden="true"
+                                ></i>
+                                About Me</a
+                            >
+                        </li>
+                        <li>
+                            <a href="../index.html#subjects" class="active"
+                                ><i
+                                    class="fas fa-book-open"
+                                    aria-hidden="true"
+                                ></i>
+                                Subjects</a
+                            >
+                        </li>
+                        <li>
+                            <a href="../contact.html"
+                                ><i
+                                    class="fas fa-envelope"
+                                    aria-hidden="true"
+                                ></i>
+                                Contact</a
+                            >
+                        </li>
+
+                        <li class="auth-link" id="guest-link-desktop">
+                            <a href="../login.html"
+                                ><i
+                                    class="fas fa-sign-in-alt"
+                                    aria-hidden="true"
+                                ></i>
+                                Login / Sign up</a
+                            >
+                        </li>
+                        <li
+                            class="auth-link"
+                            id="user-link-desktop"
+                            style="display: none"
+                        >
+                            <a href="#" id="dashboard-link-desktop"
+                                ><i
+                                    class="fas fa-tachometer-alt"
+                                    aria-hidden="true"
+                                ></i>
+                                Dashboard</a
+                            >
+                        </li>
+                        <li
+                            class="auth-link"
+                            id="logout-link-desktop"
+                            style="display: none"
+                        >
+                            <a href="#" id="logout-btn-desktop"
+                                ><i
+                                    class="fas fa-sign-out-alt"
+                                    aria-hidden="true"
+                                ></i>
+                                Logout</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <span id="user-name-display" class="nav-user-name"></span>
+                    <button
+                        class="mobile-nav-toggle"
+                        aria-controls="mobile-navigation-menu"
+                        aria-expanded="false"
+                    >
+                        <span class="sr-only">Menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <nav
+            id="mobile-navigation-menu"
+            class="mobile-navigation-menu"
+            data-visible="false"
+        >
             <ul>
-                <li><a href="../index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
-                <li><a href="../about.html"><i class="fas fa-info-circle" aria-hidden="true"></i> About Me</a></li>
-                <li><a href="../index.html#subjects" class="active"><i class="fas fa-book-open" aria-hidden="true"></i> Subjects</a></li>
-                <li><a href="../contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
-                
-                <li class="auth-link" id="guest-link-desktop">
-                    <a href="../login.html"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login / Sign up</a>
+                <li>
+                    <a href="../index.html"
+                        ><i class="fas fa-home" aria-hidden="true"></i> Home</a
+                    >
                 </li>
-                <li class="auth-link" id="user-link-desktop" style="display: none;">
-                    <a href="#" id="dashboard-link-desktop"><i class="fas fa-tachometer-alt" aria-hidden="true"></i> Dashboard</a>
+                <li>
+                    <a href="../index.html#subjects"
+                        ><i class="fas fa-book-open" aria-hidden="true"></i>
+                        Subjects</a
+                    >
                 </li>
-                <li class="auth-link" id="logout-link-desktop" style="display: none;">
-                    <a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout</a>
+                <li>
+                    <a href="../about.html"
+                        ><i class="fas fa-info-circle" aria-hidden="true"></i>
+                        About</a
+                    >
+                </li>
+                <li>
+                    <a href="../contact.html"
+                        ><i class="fas fa-envelope" aria-hidden="true"></i>
+                        Contact</a
+                    >
+                </li>
+
+                <li class="auth-link" id="guest-link-mobile">
+                    <a href="../login.html"
+                        ><i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                        Login / Sign up</a
+                    >
+                </li>
+                <li
+                    class="auth-link"
+                    id="logout-link-mobile"
+                    style="display: none"
+                >
+                    <a href="#" id="logout-btn-mobile"
+                        ><i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                        Logout</a
+                    >
                 </li>
             </ul>
         </nav>
-        
-        <div class="header-actions">
-            <span id="user-name-display" class="nav-user-name"></span>
-            <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
-                <span class="sr-only">Menu</span>
-            </button>
-        </div>
-    </div>
-  </header>
 
-  <nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
-      <ul>
-          <li><a href="../index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
-          <li><a href="../index.html#subjects"><i class="fas fa-book-open" aria-hidden="true"></i> Subjects</a></li>
-          <li><a href="../about.html"><i class="fas fa-info-circle" aria-hidden="true"></i> About</a></li>
-          <li><a href="../contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
-          
-          <li class="auth-link" id="guest-link-mobile">
-              <a href="../login.html"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login / Sign up</a>
-          </li>
-          <li class="auth-link" id="logout-link-mobile" style="display: none;">
-              <a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout</a>
-          </li>
-      </ul>
-  </nav>
+        <main class="chapter-page">
+            <div class="container">
+                <h1 class="section-title">📚 Static General Knowledge</h1>
+                <div class="chapter-list">
+                    <a href="Textbook.html" class="chapter-card"
+                        ><i class="fas fa-book" aria-hidden="true"></i>
+                        Textbook</a
+                    >
+                    <a href="chayaprokashoni.html" class="chapter-card"
+                        ><i class="fas fa-book-reader" aria-hidden="true"></i>
+                        ছায়া প্রকাশনী</a
+                    >
+                    <a href="adda24.html" class="chapter-card"
+                        ><i
+                            class="fas fa-graduation-cap"
+                            aria-hidden="true"
+                        ></i>
+                        Adda247</a
+                    >
+                </div>
+            </div>
+        </main>
 
-  <main class="chapter-page">
-    <div class="container">
-      <h1 class="section-title">📚 Static General Knowledge</h1>
-      <div class="chapter-list">
-        <a href="Textbook.html" class="chapter-card"><i class="fas fa-book" aria-hidden="true"></i> Textbook</a>
-        <a href="chayaprokashoni.html" class="chapter-card"><i class="fas fa-book-reader" aria-hidden="true"></i> ছায়া প্রকাশনী</a>
-        <a href="adda24.html" class="chapter-card"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Adda247</a>
-      </div>
-    </div>
-  </main>
+        <footer class="footer">
+            &copy; ২০২৫ | General Knowledge | Study With Keshab
+        </footer>
 
-  <footer class="footer">
-    &copy; ২০২৫ | General Knowledge | Study With Keshab
-  </footer>
-  
-  <!-- পেজ প্রোটেকশন স্ক্রিপ্ট -->
-  <script>
-    (function() {
-        const checkAuth = () => {
-            if (typeof firebase !== 'undefined' && firebase.auth) {
-                const auth = firebase.auth();
-                const loginPageUrl = window.location.pathname.includes('/subject/') ? '../login.html' : 'login.html';
-                
-                auth.onAuthStateChanged(user => {
-                    if (!user) {
-                        console.log('User not logged in. Redirecting to login page...');
-                        window.location.href = loginPageUrl; 
+        <!-- পেজ প্রোটেকশন স্ক্রিপ্ট -->
+        <script>
+            (function () {
+                const checkAuth = () => {
+                    if (typeof firebase !== "undefined" && firebase.auth) {
+                        const auth = firebase.auth();
+                        const loginPageUrl = window.location.pathname.includes(
+                            "/subject/",
+                        )
+                            ? "../login.html"
+                            : "login.html";
+
+                        auth.onAuthStateChanged((user) => {
+                            if (!user) {
+                                console.log(
+                                    "User not logged in. Redirecting to login page...",
+                                );
+                                window.location.href = loginPageUrl;
+                            }
+                        });
                     }
+                };
+                const interval = setInterval(() => {
+                    if (typeof firebase !== "undefined" && firebase.auth) {
+                        clearInterval(interval);
+                        checkAuth();
+                    }
+                }, 100);
+            })();
+        </script>
+
+        <!-- আধুনিক Firebase এবং অন্যান্য স্ক্রিপ্ট -->
+        <script
+            src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"
+            defer
+        ></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"
+            defer
+        ></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"
+            defer
+        ></script>
+        <script src="../js/firebase-config.js" defer></script>
+        <script src="../js/script.js" defer></script>
+        <!-- === PWA এবং ডেস্কটপ মোড বাটন কোড === -->
+        <!-- Desktop/Mobile Mode Toggle Button -->
+        <button
+            id="toggleViewBtn"
+            style="
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                padding: 10px 15px;
+                font-size: 14px;
+                background-color: #333;
+                color: white;
+                border: none;
+                border-radius: 50px;
+                cursor: pointer;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            "
+        >
+            ডেস্কটপ মোড
+        </button>
+
+        <script>
+            // --- 1. Service Worker Registration ---
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker
+                        .register("../sw.js") // <<-- এখানে পাথ পরিবর্তন করা হয়েছে
+                        .then((registration) => {
+                            console.log(
+                                "ServiceWorker registration successful!",
+                            );
+                        })
+                        .catch((err) => {
+                            console.log(
+                                "ServiceWorker registration failed: ",
+                                err,
+                            );
+                        });
                 });
             }
-        };
-        const interval = setInterval(() => {
-            if (typeof firebase !== 'undefined' && firebase.auth) {
-                clearInterval(interval);
-                checkAuth();
-            }
-        }, 100);
-    })();
-  </script>
-  
-  <!-- আধুনিক Firebase এবং অন্যান্য স্ক্রিপ্ট -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js" defer></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js" defer></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js" defer></script>
-  <script src="../js/firebase-config.js" defer></script>
-  <script src="../js/script.js" defer></script>
 
-</body>
+            // --- 2. Desktop/Mobile Mode Toggle Logic ---
+            const toggleBtn = document.getElementById("toggleViewBtn");
+            const viewportMeta = document.getElementById("viewportMeta");
+
+            let isDesktopView = localStorage.getItem("viewMode") === "desktop";
+
+            function applyViewMode() {
+                if (isDesktopView) {
+                    viewportMeta.setAttribute("content", "width=1280");
+                    toggleBtn.textContent = "মোবাইল মোড";
+                } else {
+                    viewportMeta.setAttribute(
+                        "content",
+                        "width=device-width, initial-scale=1.0",
+                    );
+                    toggleBtn.textContent = "ডেস্কটপ মোড";
+                }
+            }
+
+            toggleBtn.addEventListener("click", () => {
+                isDesktopView = !isDesktopView;
+                if (isDesktopView) {
+                    localStorage.setItem("viewMode", "desktop");
+                } else {
+                    localStorage.setItem("viewMode", "mobile");
+                }
+                applyViewMode();
+            });
+
+            applyViewMode();
+        </script>
+        <!-- === PWA কোড শেষ === -->
+    </body>
 </html>
