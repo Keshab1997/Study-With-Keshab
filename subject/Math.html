@@ -7,19 +7,17 @@
             content="width=device-width, initial-scale=1.0"
             id="viewportMeta"
         />
-
-        <!-- গণিত পেজের জন্য প্রাসঙ্গিক মেটা ডেসক্রিপশন -->
         <meta
             name="description"
             content="Study With Keshab ওয়েবসাইটে গণিতের সকল অধ্যায়ের তালিকা। পাটিগণিত, বীজগণিত, ত্রিকোণমিতি, জ্যামিতি এবং বিভিন্ন প্রতিযোগিতামূলক পরীক্ষার জন্য গুরুত্বপূর্ণ অধ্যায়ের নোট ও রিসোর্স খুঁজুন।"
         />
-
         <title>গণিত অধ্যায় - Study With Keshab</title>
-        <!-- PWA Manifest Link -->
-        <link rel="manifest" href="../manifest.json" />
-        <meta name="theme-color" content="#4a90e2" />
 
-        <!-- Google Fonts & Font Awesome -->
+        <!-- Base Href (গুরুত্বপূর্ণ) -->
+        <base href="../" />
+
+        <link rel="manifest" href="manifest.json" />
+        <meta name="theme-color" content="#4a90e2" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -30,12 +28,9 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
-
-        <!-- মূল CSS ফাইল (যদি থাকে, না হলে নিচের স্টাইলই কাজ করবে) -->
-        <!-- <link rel="stylesheet" href="../css/style.css"> -->
+        <link rel="stylesheet" href="css/style.css" />
 
         <style>
-            /* ================= 基本 স্টাইল ================= */
             :root {
                 --text-color: #34495e;
                 --bg-light: #f4f6f9;
@@ -45,11 +40,6 @@
                 --primary-color: #3498db;
                 --secondary-color: #1abc9c;
             }
-            *,
-            *::before,
-            *::after {
-                box-sizing: border-box;
-            }
             body {
                 font-family: "Poppins", "Hind Siliguri", sans-serif;
                 background-color: var(--bg-light);
@@ -57,184 +47,50 @@
                 color: var(--text-color);
                 line-height: 1.7;
             }
-            .container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 0 20px;
-            }
-            img {
-                max-width: 100%;
-                display: block;
-            }
-            a {
-                text-decoration: none;
-                color: inherit;
-            }
-
-            /* ================= হেডার স্টাইল ================= */
-            .site-header {
-                background-color: var(--bg-white);
-                padding: 1rem 0;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            }
-            .header-grid {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .logo-img {
-                height: 50px;
-                width: 50px;
-                border-radius: 50%;
-            }
-            .primary-navigation ul {
-                list-style: none;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                gap: 1.5rem;
-            }
-            .primary-navigation a {
-                font-weight: 500;
-                padding: 0.5rem 0;
-                position: relative;
-            }
-            .primary-navigation a::after {
-                content: "";
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 0;
-                height: 2px;
-                background-color: var(--primary-color);
-                transition: width 0.3s ease;
-            }
-            .primary-navigation a:hover::after {
-                width: 100%;
-            }
-            .header-actions {
-                display: flex;
-                align-items: center;
-            }
-            .mobile-nav-toggle {
-                display: none;
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-                cursor: pointer;
-            }
-
-            /* ================= মোবাইল নেভিগেশন ================= */
-            .mobile-navigation-menu {
-                position: fixed;
-                inset: 0 0 0 30%;
-                background: var(--bg-white);
-                z-index: 1000;
-                transform: translateX(100%);
-                transition: transform 0.35s ease-out;
-                padding: 4rem 2rem;
-            }
-            .mobile-navigation-menu[data-visible="true"] {
-                transform: translateX(0);
-            }
-            .mobile-navigation-menu ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-                font-size: 1.2rem;
-            }
-            .mobile-nav-toggle .fa-xmark {
-                display: none;
-            }
-            .mobile-nav-toggle[aria-expanded="true"] .fa-bars {
-                display: none;
-            }
-            .mobile-nav-toggle[aria-expanded="true"] .fa-xmark {
-                display: block;
-            }
-
-            /* ================= রেসপন্সিভ মিডিয়া কোয়েরি ================= */
-            @media (max-width: 768px) {
-                .primary-navigation {
-                    display: none;
-                }
-                .mobile-nav-toggle {
-                    display: block;
-                }
-            }
-
-            /* ================= অধ্যায় পেজের স্টাইল ================= */
             .chapter-page {
                 padding: 4rem 1rem;
             }
             .section-title-wrapper {
-                text-align: center;
-                margin-bottom: 3rem;
+                text-align: center; margin-bottom: 3rem;
             }
             .section-title {
-                font-size: 2.5rem;
+                font-size: clamp(2rem, 5vw, 2.5rem);
                 font-weight: 700;
-                background: linear-gradient(
-                    45deg,
-                    var(--secondary-color),
-                    var(--primary-color)
-                );
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-                text-fill-color: transparent;
-                margin: 0;
-                display: inline-block;
+                background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+                -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+                background-clip: text; text-fill-color: transparent;
+                margin: 0; display: inline-block;
             }
             .section-title-wrapper::after {
-                content: "";
-                display: block;
-                width: 80px;
-                height: 4px;
-                background: var(--primary-color);
-                border-radius: 2px;
+                content: ""; display: block; width: 80px; height: 4px;
+                background: var(--primary-color); border-radius: 2px;
                 margin: 0.75rem auto 0;
             }
-
             .chapter-list {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 1.5rem;
             }
             .chapter-card {
-                background: var(--bg-white);
-                border-radius: 12px;
-                padding: 1.5rem;
-                text-align: center;
-                color: var(--text-color);
+                background: var(--bg-white); border-radius: 12px; padding: 1.5rem;
+                text-align: center; color: var(--text-color);
                 border-bottom: 4px solid var(--primary-color);
                 transition: all 0.3s ease;
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                min-height: 180px;
+                display: flex; flex-direction: column; align-items: center;
+                justify-content: center; min-height: 180px;
             }
             .chapter-card-title {
-                font-size: 1.2rem;
-                font-weight: 600;
-                margin-top: 0.5rem;
+                font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem;
                 font-family: "Poppins", sans-serif;
             }
             .chapter-card-subtitle {
-                font-size: 0.9rem;
-                color: #7f8c8d;
+                font-size: 0.9rem; color: #7f8c8d;
                 font-family: "Hind Siliguri", sans-serif;
             }
             .chapter-card i {
-                font-size: 2.2rem;
-                color: var(--primary-color);
-                transition: transform 0.3s ease;
-                margin-bottom: 0.75rem;
+                font-size: 2.2rem; color: var(--primary-color);
+                transition: transform 0.3s ease; margin-bottom: 0.75rem;
             }
             .chapter-card:hover {
                 transform: translateY(-8px);
@@ -242,385 +98,286 @@
                 border-color: var(--secondary-color);
             }
             .chapter-card:hover i {
-                transform: scale(1.1) rotate(-5deg);
-                color: var(--secondary-color);
+                transform: scale(1.1) rotate(-5deg); color: var(--secondary-color);
             }
-
-            /* ================= ফুটার স্টাইল ================= */
-            .footer {
-                background: var(--footer-bg);
-                text-align: center;
-                color: var(--footer-text);
-                padding: 2.5rem 1rem;
-                margin-top: 4rem;
+            /* ভিউ টগল বাটনের জন্য CSS */
+            .header-action-btn {
+                background: none; border: none; color: #333; font-size: 1.3rem;
+                cursor: pointer; padding: 5px 8px; margin-left: 8px; transition: color 0.3s ease;
             }
+            .header-action-btn:hover { color: var(--primary-color); }
+            .mobile-navigation-menu .toggle-view-btn i { margin-right: 12px; width: 20px; }
         </style>
     </head>
     <body>
-        <!-- ======================== হেডার (Header) ======================== -->
         <header class="site-header">
             <div class="header-grid container">
-                <a href="../index.html" class="logo-link">
-                    <img
-                        src="../images/logo.jpg"
-                        alt="Study With Keshab Logo"
-                        class="logo-img"
-                    />
+                <a href="index.html" class="logo-link">
+                    <img src="images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
                 </a>
-
                 <nav class="primary-navigation">
-                    <ul>
-                        <li><a href="../index.html">হোম</a></li>
-                        <li><a href="../about.html">সম্পর্কে</a></li>
-                        <li><a href="../index.html#subjects">বিষয়সমূহ</a></li>
-                        <li><a href="../contact.html">যোগাযোগ</a></li>
+                     <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li class="auth-link" id="guest-link-desktop"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login / Sign up</a></li>
+                        <li class="auth-link" id="logout-link-desktop" style="display: none;"><a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </nav>
-
                 <div class="header-actions">
-                    <button
-                        class="mobile-nav-toggle"
-                        aria-controls="mobile-navigation-menu"
-                        aria-expanded="false"
-                    >
+                    <span id="user-name-display" class="nav-user-name"></span>
+                    <button class="toggle-view-btn header-action-btn" title="ডেস্কটপ মোড">
+                        <i class="fas fa-desktop"></i>
+                    </button>
+                    <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
                         <span class="sr-only">Menu</span>
-                        <i class="fas fa-bars" aria-hidden="true"></i>
-                        <i class="fas fa-xmark" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
         </header>
 
-        <!-- ======================== মোবাইল নেভিগেশন মেনু ======================== -->
-        <nav
-            id="mobile-navigation-menu"
-            class="mobile-navigation-menu"
-            data-visible="false"
-        >
-            <ul>
+        <nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
+             <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li class="auth-link" id="guest-link-mobile"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login / Sign up</a></li>
+                <li class="auth-link" id="logout-link-mobile" style="display: none;"><a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 <li>
-                    <a href="../index.html"
-                        ><i class="fas fa-home" aria-hidden="true"></i> হোম</a
-                    >
-                </li>
-                <li>
-                    <a href="../index.html#subjects"
-                        ><i class="fas fa-book-open" aria-hidden="true"></i>
-                        বিষয়সমূহ</a
-                    >
-                </li>
-                <li>
-                    <a href="../about.html"
-                        ><i class="fas fa-info-circle" aria-hidden="true"></i>
-                        সম্পর্কে</a
-                    >
-                </li>
-                <li>
-                    <a href="../contact.html"
-                        ><i class="fas fa-envelope" aria-hidden="true"></i>
-                        যোগাযোগ</a
-                    >
-                </li>
-                <hr />
-                <!-- লগইন/লগআউট বাটন এখানে যুক্ত করা যেতে পারে -->
-                <li>
-                    <a href="../login.html"
-                        ><i class="fas fa-sign-in-alt" aria-hidden="true"></i>
-                        লগইন</a
-                    >
+                    <a href="#" class="toggle-view-btn">
+                        <i class="fas fa-desktop"></i>
+                        <span class="toggle-view-text">ডেস্কটপ মোড</span>
+                    </a>
                 </li>
             </ul>
         </nav>
 
-        <!-- ======================== মূল কন্টেন্ট (Main Content) ======================== -->
         <main class="chapter-page">
             <div class="container">
                 <div class="section-title-wrapper">
                     <h1 class="section-title">গণিত - অধ্যায় তালিকা</h1>
                 </div>
-
                 <div class="chapter-list">
-                    <!-- পাটিগণিত অংশ -->
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-calculator" aria-hidden="true"></i>
+                        <i class="fas fa-calculator"></i>
                         <div class="chapter-card-title">Calculation Trick</div>
-                        <div class="chapter-card-subtitle">
-                            (ক্যালকুলেশন ট্রিক)
-                        </div>
+                        <div class="chapter-card-subtitle">(ক্যালকুলেশন ট্রিক)</div>
                     </a>
-                    <a
-                        href="https://keshab1997.github.io/Math-lcm-hcf/"
-                        class="chapter-card"
-                    >
-                        <i class="fas fa-divide" aria-hidden="true"></i>
+                    <a href="https://keshab1997.github.io/Math-lcm-hcf/" class="chapter-card">
+                        <i class="fas fa-divide"></i>
                         <div class="chapter-card-title">LCM and HCF</div>
-                        <div class="chapter-card-subtitle">
-                            (ল.সা.গু ও গ.সা.গু)
-                        </div>
+                        <div class="chapter-card-subtitle">(ল.সা.গু ও গ.সা.গু)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i
-                            class="fas fa-sort-numeric-down"
-                            aria-hidden="true"
-                        ></i>
+                        <i class="fas fa-sort-numeric-down"></i>
                         <div class="chapter-card-title">Number System</div>
                         <div class="chapter-card-subtitle">(সংখ্যা পদ্ধতি)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i
-                            class="fas fa-digital-tachograph"
-                            aria-hidden="true"
-                        ></i>
+                        <i class="fas fa-digital-tachograph"></i>
                         <div class="chapter-card-title">Digital Sum</div>
                         <div class="chapter-card-subtitle">(ডিজিটাল যোগফল)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i
-                            class="fas fa-balance-scale-right"
-                            aria-hidden="true"
-                        ></i>
-                        <div class="chapter-card-title">
-                            Ratio and Proportion
-                        </div>
-                        <div class="chapter-card-subtitle">
-                            (অনুপাত ও সমানুপাত)
-                        </div>
+                        <i class="fas fa-balance-scale-right"></i>
+                        <div class="chapter-card-title">Ratio and Proportion</div>
+                        <div class="chapter-card-subtitle">(অনুপাত ও সমানুপাত)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-users" aria-hidden="true"></i>
+                        <i class="fas fa-users"></i>
                         <div class="chapter-card-title">Ages</div>
-                        <div class="chapter-card-subtitle">
-                            (বয়স সংক্রান্ত সমস্যা)
-                        </div>
+                        <div class="chapter-card-subtitle">(বয়স সংক্রান্ত সমস্যা)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-handshake" aria-hidden="true"></i>
+                        <i class="fas fa-handshake"></i>
                         <div class="chapter-card-title">Partnership</div>
-                        <div class="chapter-card-subtitle">
-                            (অংশীদারি কারবার)
-                        </div>
+                        <div class="chapter-card-subtitle">(অংশীদারি কারবার)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-vial" aria-hidden="true"></i>
-                        <div class="chapter-card-title">
-                            Mixture and Alligation
-                        </div>
+                        <i class="fas fa-vial"></i>
+                        <div class="chapter-card-title">Mixture and Alligation</div>
                         <div class="chapter-card-subtitle">(মিশ্রণ)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-percent" aria-hidden="true"></i>
+                        <i class="fas fa-percent"></i>
                         <div class="chapter-card-title">Percentage</div>
                         <div class="chapter-card-subtitle">(শতকরা)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        <i class="fas fa-chart-line"></i>
                         <div class="chapter-card-title">Profit and Loss</div>
                         <div class="chapter-card-subtitle">(লাভ ও ক্ষতি)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-tags" aria-hidden="true"></i>
+                        <i class="fas fa-tags"></i>
                         <div class="chapter-card-title">Discount</div>
                         <div class="chapter-card-subtitle">(ছাড়)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-coins" aria-hidden="true"></i>
+                        <i class="fas fa-coins"></i>
                         <div class="chapter-card-title">Simple Interest</div>
                         <div class="chapter-card-subtitle">(সরল সুদ)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-landmark" aria-hidden="true"></i>
+                        <i class="fas fa-landmark"></i>
                         <div class="chapter-card-title">Compound Interest</div>
-                        <div class="chapter-card-subtitle">
-                            (চক্রবৃদ্ধি সুদ)
-                        </div>
+                        <div class="chapter-card-subtitle">(চক্রবৃদ্ধি সুদ)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        <i class="fas fa-clock"></i>
                         <div class="chapter-card-title">Time and Work</div>
                         <div class="chapter-card-subtitle">(সময় ও কার্য)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-wallet" aria-hidden="true"></i>
+                        <i class="fas fa-wallet"></i>
                         <div class="chapter-card-title">Work and Wages</div>
                         <div class="chapter-card-subtitle">(কার্য ও মজুরি)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-faucet" aria-hidden="true"></i>
+                        <i class="fas fa-faucet"></i>
                         <div class="chapter-card-title">Pipe and Cistern</div>
                         <div class="chapter-card-subtitle">(নল ও চৌবাচ্চা)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-road" aria-hidden="true"></i>
+                        <i class="fas fa-road"></i>
                         <div class="chapter-card-title">Time and Distance</div>
                         <div class="chapter-card-subtitle">(সময় ও দূরত্ব)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-train" aria-hidden="true"></i>
+                        <i class="fas fa-train"></i>
                         <div class="chapter-card-title">Train</div>
-                        <div class="chapter-card-subtitle">
-                            (ট্রেন সংক্রান্ত সমস্যা)
-                        </div>
+                        <div class="chapter-card-subtitle">(ট্রেন সংক্রান্ত সমস্যা)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-ship" aria-hidden="true"></i>
+                        <i class="fas fa-ship"></i>
                         <div class="chapter-card-title">Boat and Stream</div>
                         <div class="chapter-card-subtitle">(নৌকা ও স্রোত)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                        <i class="fas fa-chart-bar"></i>
                         <div class="chapter-card-title">Average</div>
                         <div class="chapter-card-subtitle">(গড়)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-stream" aria-hidden="true"></i>
+                        <i class="fas fa-stream"></i>
                         <div class="chapter-card-title">Simplification</div>
                         <div class="chapter-card-subtitle">(সরলীকরণ)</div>
                     </a>
-
-                    <!-- বীজগণিত, ত্রিকোণমিতি, জ্যামিতি অংশ -->
                     <a href="#" class="chapter-card">
-                        <i
-                            class="fas fa-square-root-alt"
-                            aria-hidden="true"
-                        ></i>
+                        <i class="fas fa-square-root-alt"></i>
                         <div class="chapter-card-title">Algebra</div>
                         <div class="chapter-card-subtitle">(বীজগণিত)</div>
                     </a>
                     <a href="#" class="chapter-card">
-                        <i class="fas fa-ruler-combined" aria-hidden="true"></i>
-                        <div class="chapter-card-title">Trigonometry</div>
-                        <div class="chapter-card-subtitle">(ত্রিকোণমিতি)</div>
-                    </a>
-                    <a href="#" class="chapter-card">
-                        <i class="fas fa-mountain" aria-hidden="true"></i>
-                        <div class="chapter-card-title">
-                            Height and Distance
-                        </div>
-                        <div class="chapter-card-subtitle">
-                            (উচ্চতা ও দূরত্ব)
-                        </div>
-                    </a>
-                    <a href="#" class="chapter-card">
-                        <i
-                            class="fas fa-drafting-compass"
-                            aria-hidden="true"
-                        ></i>
+                        <i class="fas fa-ruler-combined"></i>
                         <div class="chapter-card-title">Geometry</div>
                         <div class="chapter-card-subtitle">(জ্যামিতি)</div>
-                    </a>
-                    <a href="#" class="chapter-card">
-                        <i class="fas fa-vector-square" aria-hidden="true"></i>
-                        <div class="chapter-card-title">Mensuration (2D)</div>
-                        <div class="chapter-card-subtitle">(পরিমিতি - ২ডি)</div>
-                    </a>
-                    <a href="#" class="chapter-card">
-                        <i class="fas fa-cube" aria-hidden="true"></i>
-                        <div class="chapter-card-title">Mensuration (3D)</div>
-                        <div class="chapter-card-subtitle">(পরিমিতি - ৩ডি)</div>
                     </a>
                 </div>
             </div>
         </main>
 
-        <!-- ======================== ফুটার (Footer) ======================== -->
         <footer class="footer">
             &copy; ২০২৫ | গণিত বিভাগ | Study With Keshab
         </footer>
 
+        <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="js/firebase-config.js"></script>
+        <script src="js/script.js"></script>
+
+        <!-- এই পেজের জন্য নির্দিষ্ট এবং একত্রিত স্ক্রিপ্ট -->
         <script>
-            // মোবাইল মেনু টগল করার জন্য জাভাস্ক্রিপ্ট
-            const mobileNavToggle =
-                document.querySelector(".mobile-nav-toggle");
-            const mobileNavMenu = document.querySelector(
-                "#mobile-navigation-menu",
-            );
-
-            mobileNavToggle.addEventListener("click", () => {
-                const isVisible =
-                    mobileNavMenu.getAttribute("data-visible") === "true";
-                if (isVisible) {
-                    mobileNavMenu.setAttribute("data-visible", "false");
-                    mobileNavToggle.setAttribute("aria-expanded", "false");
-                } else {
-                    mobileNavMenu.setAttribute("data-visible", "true");
-                    mobileNavToggle.setAttribute("aria-expanded", "true");
-                }
-            });
-        </script>
-
-        <!-- === নতুন যোগ করা PWA এবং ডেস্কটপ মোড বাটন কোড === -->
-        <!-- Desktop/Mobile Mode Toggle Button -->
-        <button
-            id="toggleViewBtn"
-            style="
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                z-index: 1000;
-                padding: 10px 15px;
-                font-size: 14px;
-                background-color: #333;
-                color: white;
-                border: none;
-                border-radius: 50px;
-                cursor: pointer;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            "
-        >
-            ডেস্কটপ মোড
-        </button>
-
-        <script>
-            // --- 1. Service Worker Registration ---
-            if ("serviceWorker" in navigator) {
-                window.addEventListener("load", () => {
-                    navigator.serviceWorker
-                        .register("../sw.js")
-                        .then((registration) => {
-                            console.log(
-                                "ServiceWorker registration successful!",
-                            );
-                        })
-                        .catch((err) => {
-                            console.log(
-                                "ServiceWorker registration failed: ",
-                                err,
-                            );
-                        });
+             // --- 1. Service Worker Registration ---
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('sw.js')
+                        .then(reg => console.log('ServiceWorker registration successful.'))
+                        .catch(err => console.log('ServiceWorker registration failed: ', err));
                 });
             }
 
-            // --- 2. Desktop/Mobile Mode Toggle Logic ---
-            const toggleBtn = document.getElementById("toggleViewBtn");
-            const viewportMeta = document.getElementById("viewportMeta");
+            document.addEventListener('DOMContentLoaded', () => {
 
-            let isDesktopView = localStorage.getItem("viewMode") === "desktop";
+                // --- 2. অথেন্টিকেশন এবং পেজ প্রোটেকশন লজিক ---
+                const auth = firebase.auth();
+                const guestLinksDesktop = document.getElementById('guest-link-desktop');
+                const logoutLinkDesktop = document.getElementById('logout-link-desktop');
+                const guestLinksMobile = document.getElementById('guest-link-mobile');
+                const logoutLinkMobile = document.getElementById('logout-link-mobile');
+                const userNameDisplay = document.getElementById('user-name-display');
 
-            function applyViewMode() {
-                if (isDesktopView) {
-                    viewportMeta.setAttribute("content", "width=1280");
-                    toggleBtn.textContent = "মোবাইল মোড";
-                } else {
-                    viewportMeta.setAttribute(
-                        "content",
-                        "width=device-width, initial-scale=1.0",
-                    );
-                    toggleBtn.textContent = "ডেস্কটপ মোড";
+                auth.onAuthStateChanged(user => {
+                    if (!user) {
+                        console.log("User not logged in. Redirecting...");
+                        window.location.href = 'login.html';
+                        return;
+                    }
+                    console.log("User is logged in:", user.displayName || user.email);
+                    if (guestLinksDesktop) guestLinksDesktop.style.display = 'none';
+                    if (logoutLinkDesktop) logoutLinkDesktop.style.display = 'list-item';
+                    if (guestLinksMobile) guestLinksMobile.style.display = 'none';
+                    if (logoutLinkMobile) logoutLinkMobile.style.display = 'list-item';
+                    if (userNameDisplay) {
+                       userNameDisplay.textContent = user.displayName ? user.displayName.split(' ')[0] : 'User';
+                    }
+                });
+
+                const setupLogout = (buttonId) => {
+                    const logoutBtn = document.getElementById(buttonId);
+                    if (logoutBtn) {
+                        logoutBtn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            auth.signOut().then(() => {
+                                console.log('User signed out.');
+                                window.location.href = 'login.html';
+                            }).catch(error => console.error('Sign out error', error));
+                        });
+                    }
+                };
+                setupLogout('logout-btn-desktop');
+                setupLogout('logout-btn-mobile');
+
+                // --- 3. ডেস্কটপ/মোবাইল মোড টগল লজিক ---
+                const toggleBtns = document.querySelectorAll(".toggle-view-btn");
+                const viewportMeta = document.getElementById("viewportMeta");
+                let isDesktopView = localStorage.getItem("viewMode") === "desktop";
+
+                function applyViewMode() {
+                    const desktopBtn = document.querySelector(".header-action-btn.toggle-view-btn");
+                    const mobileMenuText = document.querySelector(".toggle-view-text");
+                    const allIcons = document.querySelectorAll(".toggle-view-btn .fas");
+                    if (isDesktopView) {
+                        viewportMeta.setAttribute("content", "width=1280");
+                        if(desktopBtn) desktopBtn.title = "মোবাইল মোড";
+                        if(mobileMenuText) mobileMenuText.textContent = "মোবাইল মোড";
+                        allIcons.forEach(icon => {
+                            icon.classList.remove("fa-desktop");
+                            icon.classList.add("fa-mobile-alt");
+                        });
+                    } else {
+                        viewportMeta.setAttribute("content", "width=device-width, initial-scale=1.0");
+                        if(desktopBtn) desktopBtn.title = "ডেস্কটপ মোড";
+                        if(mobileMenuText) mobileMenuText.textContent = "ডেস্কটপ মোড";
+                        allIcons.forEach(icon => {
+                            icon.classList.remove("fa-mobile-alt");
+                            icon.classList.add("fa-desktop");
+                        });
+                    }
                 }
-            }
-
-            toggleBtn.addEventListener("click", () => {
-                isDesktopView = !isDesktopView;
-                if (isDesktopView) {
-                    localStorage.setItem("viewMode", "desktop");
-                } else {
-                    localStorage.setItem("viewMode", "mobile");
-                }
+                toggleBtns.forEach(btn => {
+                    btn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        isDesktopView = !isDesktopView;
+                        localStorage.setItem("viewMode", isDesktopView ? "desktop" : "mobile");
+                        applyViewMode();
+                    });
+                });
                 applyViewMode();
             });
-
-            applyViewMode();
         </script>
-        <!-- === PWA কোড শেষ === -->
     </body>
 </html>
