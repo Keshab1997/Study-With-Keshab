@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - চুম্বক</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "চুম্বক", 
+            setName: "Quiz Set 1",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "চুম্বক - Set 1",
+            
+            questions: [
+                {
+                    question: "একটি চুম্বককে দুই ভাগে ভাগ করলে চুম্বকত্ব (SSC RRB পরীক্ষা)",
+                    options: ["নষ্ট হয়", "একটি মেরু পাওয়া যায়", "দুটি পৃথক চুম্বক তৈরি হয়", "বলা সম্ভব নয়"],
+                    answer: 2,
+                    explanation: "যখন একটি চুম্বককে দুই ভাগে ভাগ করা হয়, তখন প্রতিটি ভাগ নিজেই একটি সম্পূর্ণ চুম্বক হিসেবে কাজ করে, যার নিজস্ব উত্তর মেরু এবং দক্ষিণ মেরু থাকে।"
+                },
+                {
+                    question: "চুম্বকের দুই মেরুকে সংযুক্ত করা সরলরেখাকে বলা হয় (RRB GROUP-D পরীক্ষা)",
+                    options: ["উদাসীন অঞ্চল", "চৌম্বকীয় অক্ষ", "নিরপেক্ষ রেখা", "চৌম্বক দৈর্ঘ্য"],
+                    answer: 1,
+                    explanation: "চুম্বকের উত্তর ও দক্ষিণ মেরুকে সংযোগকারী সরলরেখাকে চৌম্বকীয় অক্ষ (magnetic axis) বলা হয়।"
+                },
+                {
+                    question: "চুম্বকের ধর্মের পরিপ্রেক্ষিতে নীচের কোনটি সঠিক নয়? (RAILWAY TC পরীক্ষা)",
+                    options: ["চুম্বকের দুটি মেরু থাকে", "চুম্বকত্ব পদার্থের রাসায়নিক ধর্ম", "চুম্বক চৌম্বক পদার্থকে আকর্ষণ করে", "দুটি সমমেরুর মধ্যে বিকর্ষণ হয়"],
+                    answer: 1,
+                    explanation: "চুম্বকত্ব পদার্থের ভৌত ধর্ম, যা ইলেক্ট্রনের স্পিন থেকে উৎপন্ন হয়, রাসায়নিক ধর্ম নয়।"
+                },
+                {
+                    question: "কোনো দণ্ডচুম্বকের দুটি বলরেখা পরস্পর (RRB TECHNICIAN)",
+                    options: ["উদাসীন বিন্দুতে ছেদ করে", "চৌম্বক অক্ষ বরাবর ছেদ করে", "নিরক্ষরেখায় ছেদ করে", "কখনোই ছেদ করে না"],
+                    answer: 3,
+                    explanation: "চৌম্বক বলরেখাগুলি কখনোই পরস্পর ছেদ করে না। এটি চৌম্বক ক্ষেত্রের একটি মৌলিক বৈশিষ্ট্য।"
+                },
+                {
+                    question: "ফ্লেমিং-এর ডানহাত নিয়ম অনুযায়ী, মধ্যমা কিসের দিক নির্দেশ করে? (RRB GROUP-D পরীক্ষা)",
+                    options: ["পরিবাহীর উপর বল", "ভোল্টেজ", "আবিষ্ট প্রবাহ (Electric current)", "প্রবাহ"],
+                    answer: 2,
+                    explanation: "ফ্লেমিং-এর ডানহাত নিয়মে তর্জনী-চৌম্বক ক্ষেত্র, বৃদ্ধাঙ্গুষ্ঠ-গতি এবং মধ্যমা-আবিষ্ট তড়িৎ প্রবাহের দিক নির্দেশ করে।"
+                },
+                {
+                    question: "কোন নীতিটি চৌম্বক ক্ষেত্রের অভিমুখ নির্ণয়ে সাহায্য করে না? (RRB NTPC পরীক্ষা)",
+                    options: ["ডানহাতের বৃদ্ধাঙ্গুষ্ঠ নিয়ম", "ফ্লেমিং-এর বামহাত নিয়ম", "ফ্লেমিং-এর ডানহাত নিয়ম", "ফ্যারাডের তড়িৎচুম্বকীয় আবেশ সংক্রান্ত নিয়ম"],
+                    answer: 3,
+                    explanation: "ফ্যারাডের নিয়ম আবিষ্ট তড়িৎচালক বলের (EMF) মান নির্ণয় করে, অভিমুখ নির্ণয় করে না।"
+                },
+                {
+                    question: "তড়িৎচুম্বক তৈরিতে কাঁচা লোহা ব্যবহার করা হয় কারণ (RRB TECHNICIAN)",
+                    options: ["এটি সহজে স্থায়ী চুম্বকে পরিণত হয়", "এর চৌম্বক প্রবণতা বেশি", "এর চৌম্বক শক্তি দ্রুত বাড়ানো যায়", "এর চৌম্বক প্রবণতা কম"],
+                    answer: 1,
+                    explanation: "কাঁচা লোহার উচ্চ চৌম্বক প্রবণতা (permeability) এবং নিম্ন ধারণ ক্ষমতা (retentivity) থাকায় এটি তড়িৎচুম্বকের জন্য আদর্শ।"
+                },
+                {
+                    question: "C.G.S. পদ্ধতিতে চৌম্বক ফ্লাক্সের একক (RRB TECHNICIAN)",
+                    options: ["ওয়েবার", "টেসলা", "ওয়েরস্টেড", "ম্যাক্সওয়েল"],
+                    answer: 3,
+                    explanation: "C.G.S. পদ্ধতিতে চৌম্বক ফ্লাক্সের একক ম্যাক্সওয়েল। SI পদ্ধতিতে এটি ওয়েবার। (১ ওয়েবার = ১০^৮ ম্যাক্সওয়েল)।"
+                },
+                {
+                    question: "চৌম্বক দ্বিমেরু ভ্রামকের একক (RRB JE)",
+                    options: ["A-M", "A-M²", "A/M", "A/M²"],
+                    answer: 1,
+                    explanation: "চৌম্বক দ্বিমেরু ভ্রামকের SI একক হলো অ্যাম্পিয়ার মিটার স্কোয়ার (A·m²)।"
+                },
+                {
+                    question: "C.G.S. পদ্ধতিতে চৌম্বক ফ্লাক্স ঘনত্বের একক (RRB TECHNICIAN)",
+                    options: ["গাউস", "টেসলা", "ওয়েরস্টেড", "ম্যাক্সওয়েল"],
+                    answer: 0,
+                    explanation: "C.G.S. পদ্ধতিতে চৌম্বক ফ্লাক্স ঘনত্বের একক গাউস। SI পদ্ধতিতে এটি টেসলা। (১ টেসলা = ১০^৪ গাউস)।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

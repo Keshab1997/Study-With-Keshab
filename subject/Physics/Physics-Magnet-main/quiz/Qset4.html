@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৪ - চুম্বক</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset3.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset5.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "চুম্বক", 
+            setName: "Quiz Set 4",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "চুম্বক - Set 4",
+            
+            questions: [
+                {
+                    question: "তিরশ্চৌম্বক পদার্থের আপেক্ষিক চৌম্বক ভেদ্যতা-",
+                    options: ["1 এর কম", "1 এর বেশি", "শূন্য", "অসীম"],
+                    answer: 0,
+                    explanation: "তিরশ্চৌম্বক পদার্থ চৌম্বক ক্ষেত্রকে দুর্বলভাবে বিরোধিতা করে, তাই তাদের আপেক্ষিক চৌম্বক ভেদ্যতা (μ_r) 1 এর সামান্য কম।"
+                },
+                {
+                    question: "অয়শ্চৌম্বক (ferromagnetic) পদার্থকে ক্যুরি তাপমাত্রার ঊর্ধ্বে উত্তপ্ত করলে, পদার্থটি-",
+                    options: ["তিরশ্চৌম্বক পদার্থে পরিণত হবে", "পরাচৌম্বক পদার্থে পরিণত হবে", "অয়শ্চৌম্বক হয়ে থাকবে", "দ্বিমেরু ভ্রামক বেড়ে যাবে"],
+                    answer: 1,
+                    explanation: "ক্যুরি তাপমাত্রার উপরে অয়শ্চৌম্বক পদার্থের চৌম্বক ডোমেইন সারিবদ্ধতা হারায়, ফলে এটি পরাচৌম্বক হয়।"
+                },
+                {
+                    question: "কোনো পরিবাহী তারে তড়িৎ চালনা করলে তারটির চারপাশে একটি-",
+                    options: ["তড়িৎ ক্ষেত্রের সৃষ্টি হয়", "মহাকর্ষী ক্ষেত্রের সৃষ্টি হয়", "চৌম্বক ক্ষেত্রের সৃষ্টি হয়", "এগুলির কোনোটিই নয়"],
+                    answer: 2,
+                    explanation: "ওরস্টেডের পরীক্ষা অনুযায়ী, তড়িৎ প্রবাহিত তারের চারপাশে চৌম্বক ক্ষেত্র সৃষ্টি হয়।"
+                },
+                {
+                    question: "লরেঞ্জ বল নিচের কোনটির সঙ্গে যুক্ত?",
+                    options: ["আধানহীন কণার ওপর প্রযুক্ত বল", "উষ্ণতার ওপর প্রযুক্ত মহাকর্ষী বল", "আধানযুক্ত কণার ওপর প্রযুক্ত বল", "নিস্ত্রিয় বল"],
+                    answer: 2,
+                    explanation: "লরেঞ্জ বল (F = q(E + v × B)) আধানযুক্ত কণার উপর তড়িৎ ও চৌম্বক ক্ষেত্রে ক্রিয়া করে।"
+                },
+                {
+                    question: "কোনো আহিত কণা চৌম্বক ক্ষেত্রে সর্বোচ্চ বল অনুভব করবে যখন কণাটি চৌম্বক ক্ষেত্রে-",
+                    options: ["লম্বভাবে প্রবেশ করবে", "30° কোণে প্রবেশ করবে", "0° কোণে প্রবেশ করবে", "75° কোণে প্রবেশ করবে"],
+                    answer: 0,
+                    explanation: "লরেঞ্জ বল F = qvBsinθ এর মান সর্বোচ্চ হয় যখন θ = 90°, অর্থাৎ কণা ক্ষেত্রের লম্বভাবে প্রবেশ করে।"
+                },
+                {
+                    question: "একটি আদর্শ আবেশ কুন্ডলীর রোধের মান",
+                    options: ["অসীম", "সসীম", "শূন্য", "শূন্য থেকে অসীম যে-কোনো মানের হতে পারে"],
+                    answer: 2,
+                    explanation: "আদর্শ আবেশ কুন্ডলীতে কোনো প্রতিরোধ থাকে না, তাই এর রোধ শূন্য।"
+                },
+                {
+                    question: "নিচের কোনটি উপচৌম্বকীয়?",
+                    options: ["N₂", "O₂", "F₂", "H₂"],
+                    answer: 1,
+                    explanation: "O₂-এ অযুগ্ম ইলেকট্রন থাকায় এটি উপচৌম্বকীয় বা পরাচৌম্বক, অন্যগুলো তিরশ্চৌম্বক।"
+                },
+                {
+                    question: "নীচের কোন পদার্থটি পরাচৌম্বক পদার্থ?",
+                    options: ["নাইট্রোজেন", "কার্বন ডাই অক্সাইড", "অক্সিজেন", "হাইড্রোজেন"],
+                    answer: 2,
+                    explanation: "অক্সিজেন (O₂) অযুগ্ম ইলেকট্রনের কারণে পরাচৌম্বক, অন্যগুলো তিরশ্চৌম্বক বা অ-চৌম্বক।"
+                },
+                {
+                    question: "কোনো কুন্ডলীতে চৌম্বক ফ্লাক্সের পরিবর্তন করলে ওই কুন্ডলীতে-",
+                    options: ["তড়িৎচালক বল আবিষ্ট হয়", "ঘূর্ণনের সৃষ্টি হয়", "টর্কের সৃষ্টি হয়", "এগুলির কোনোটিই নয়"],
+                    answer: 0,
+                    explanation: "ফ্যারাডের সূত্র অনুযায়ী, চৌম্বক ফ্লাক্সের পরিবর্তন কুন্ডলীতে তড়িৎচালক বল (EMF) আবিষ্ট করে।"
+                },
+                {
+                    question: "লেঞ্জের সূত্র থেকে পাওয়া যায়-",
+                    options: ["আবিষ্ট তড়িৎচালক বলের মান", "আবিষ্ট তড়িৎচালক বলের মান ও অভিমুখ", "আবিষ্ট তড়িৎচালক বলের অভিমুখ", "আবেশ কুন্ডলীর আবেশাঙ্ক"],
+                    answer: 2, // এখানে উত্তরটি পরিবর্তন করা হয়েছে, কারণ লেঞ্জের সূত্র মূলত অভিমুখ নির্দেশ করে।
+                    explanation: "লেঞ্জের সূত্র আবিষ্ট তড়িৎচালক বলের অভিমুখ নির্ধারণ করে, যা শক্তির সংরক্ষণ নীতি মেনে চলে। ফ্যারাডের সূত্র মান নির্ণয় করে।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

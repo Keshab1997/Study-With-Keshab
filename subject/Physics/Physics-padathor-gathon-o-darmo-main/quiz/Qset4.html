@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৪ - পদার্থের গঠন এবং বৈশিষ্ট্য</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset3.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset5.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "পদার্থের গঠন এবং বৈশিষ্ট্য", 
+            setName: "Quiz Set 4",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "পদার্থের বৈশিষ্ট্য - Set 4",
+            
+            questions: [
+                {
+                    question: "4 mm ব্যাসের 3 m দীর্ঘ তামার তারে 150 kg ওজন ঝোলালে তার দৈর্ঘ্য 2.7 mm বাড়ে। তামার ইয়ং গুণাঙ্ক নির্ণয়ের সূত্র কী?",
+                    options: ["Y = (F × L)/(A × ΔL)", "Y = (A × L)/(F × ΔL)", "Y = (ΔL × F)/(A × L)", "Y = (ΔL)/(F × A × L)"],
+                    answer: 0,
+                    explanation: "ইয়ং গুণাঙ্ক Y = অনুদৈর্ঘ্য পীড়ন / অনুদৈর্ঘ্য বিকৃতি = (F/A)/(ΔL/L) = (F × L)/(A × ΔL)।"
+                },
+                {
+                    question: "3.5 mm ব্যাসার্ধবিশিষ্ট একটি স্থিতিস্থাপক দড়ি 1/20 অংশ লম্বায় বাড়াতে 10 N বল প্রয়োজন। ইয়ং গুণাঙ্ক নির্ণয়ের জন্য কোন সূত্র ব্যবহার হবে?",
+                    options: ["Y = (F × L) / (A × ΔL)", "Y = (A × L) / (F × ΔL)", "Y = F / ΔL", "Y = (ΔL × F) / A"],
+                    answer: 0,
+                    explanation: "দড়ির জন্য ইয়ং গুণাঙ্ক Y = (F × L)/(A × ΔL) সূত্রই ব্যবহারযোগ্য।"
+                },
+                {
+                    question: "একটি স্প্রিংয়ের নিচে 4 kg ওজন ঝুলিয়ে দিলে 2 সেমি দৈর্ঘ্য বৃদ্ধি পায়। স্প্রিং-এর বলধ্রুবক (spring constant) কত? (g = 9.8 m/s² ধরে)",
+                    options: ["100 N/m", "1960 N/m", "39.2 N/m", "196 N/m"],
+                    answer: 1,
+                    explanation: "বল F = mg = 4 kg × 9.8 m/s² = 39.2 N। সরণ x = 2 cm = 0.02 m। বলধ্রুবক k = F/x = 39.2 N / 0.02 m = 1960 N/m।"
+                },
+                {
+                    question: "একটি স্প্রিং-এর বলধ্রুবক 200 N/m। স্প্রিংটিকে সমান দুই ভাগে ভাগ করলে প্রতিটি অংশের বলধ্রুবক হবে—",
+                    options: ["200 N/m", "400 N/m", "100 N/m", "300 N/m"],
+                    answer: 1,
+                    explanation: "স্প্রিংকে সমান দুই ভাগে ভাগ করলে প্রতিটি অংশের বলধ্রুবক দ্বিগুণ হয়। সুতরাং, নতুন বলধ্রুবক k' = 2k = 2 × 200 = 400 N/m।"
+                },
+                {
+                    question: "একটি স্প্রিং-এর বলধ্রুবক 300 N/m। স্প্রিংটিকে সমান তিন ভাগে ভাগ করলে প্রতিটির বলধ্রুবক—",
+                    options: ["100 N/m", "300 N/m", "600 N/m", "900 N/m"],
+                    answer: 3,
+                    explanation: "স্প্রিংকে সমান তিন ভাগে ভাগ করলে প্রতিটির বলধ্রুবক তিনগুণ হয়। সুতরাং, নতুন বলধ্রুবক k' = 3k = 3 × 300 = 900 N/m।"
+                },
+                {
+                    question: "স্প্রিং-এর বলধ্রুবকের মাত্রীয় সংকেত কী?",
+                    options: ["MT⁻²", "ML⁻¹T⁻²", "MLT⁻²", "MT⁻³"],
+                    answer: 0,
+                    explanation: "বলধ্রুবক k = বল/সরণ। বলের মাত্রা [MLT⁻²] এবং সরণের মাত্রা [L]। সুতরাং, k-এর মাত্রা = [MLT⁻²]/[L] = [MT⁻²]।"
+                },
+                {
+                    question: "বল অপরিবর্তিত রেখে ক্ষেত্রফল ১০% কমালে চাপ—",
+                    options: ["10% বাড়বে", "11.11% বাড়বে", "20% বাড়বে", "21% বাড়বে"],
+                    answer: 1,
+                    explanation: "নতুন ক্ষেত্রফল A' = A - 0.1A = 0.9A। নতুন চাপ P' = F/A' = F/(0.9A) = (1/0.9)P ≈ 1.111P। সুতরাং, চাপ বৃদ্ধি = (1.111 - 1) × 100% ≈ 11.11%।"
+                },
+                {
+                    question: "একটি পাত্রে তরল আছে। পাত্রটিকে g/2 ত্বরণে নামালে h গভীরতায় চাপ হবে—",
+                    options: ["½ hρg", "hρg", "3/2 hρg", "2 hρg"],
+                    answer: 0,
+                    explanation: "পাত্রটি a=g/2 ত্বরণে নিচে নামলে কার্যকর অভিকর্ষজ ত্বরণ হয় g' = g - a = g - g/2 = g/2। সুতরাং, চাপ p = h × ρ × g' = hρ(g/2) = ½ hρg।"
+                },
+                {
+                    question: "একটি শঙ্কুর উচ্চতা 10 cm, ভূমির ক্ষেত্রফল 10 cm²। যদি জল ভর্তি করে রাখা হয়, টেবিলে জলের ঘাত কত হবে?",
+                    options: ["0.33 N", "1 N", "3 N", "10 N"],
+                    answer: 1,
+                    explanation: "টেবিলের উপর ঘাত নির্ভর করে পাত্রের মোট ওজনের ওপর, যা এখানে দেওয়া নেই। কিন্তু যদি প্রশ্নটি হয় পাত্রের ভূমির উপর তরলের ঘাত কত, তবে P = hρg = (0.1m)(1000kg/m³)(10m/s²) = 1000 Pa। ঘাত F = P×A = 1000 Pa × (10/10000)m² = 1 N।"
+                },
+                {
+                    question: "1 N = কত dyne?",
+                    options: ["10⁴", "10⁵", "10⁶", "10³"],
+                    answer: 1,
+                    explanation: "বল পরিমাপের SI একক নিউটন (N) এবং CGS একক ডাইন (dyne)। এদের মধ্যে সম্পর্কটি হল 1 N = 10⁵ dyne।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

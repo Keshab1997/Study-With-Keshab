@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - পদার্থের গঠন এবং বৈশিষ্ট্য</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "পদার্থের গঠন এবং বৈশিষ্ট্য", 
+            setName: "Quiz Set 1",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "প্লবতা, চাপ, পৃষ্ঠটান - Set 1",
+            
+            questions: [
+                {
+                    question: "তরলে সম্পূর্ণ নিমজ্জিত বস্তুর গভীরতা বৃদ্ধির সঙ্গে সঙ্গে এর ওপর—",
+                    options: ["চাপ বৃদ্ধি পায়, প্লবতা স্থির থাকে", "চাপ বৃদ্ধি পায় এবং প্লবতা হ্রাস পায়", "চাপ ও প্লবতা দুই-ই বৃদ্ধি পায়", "চাপ স্থির থাকে কিন্তু প্লবতা বৃদ্ধি পায়"],
+                    answer: 0,
+                    explanation: "প্লবতা নির্ভর করে অপসারিত তরলের আয়তনের ওপর, যা সম্পূর্ণ নিমজ্জিত অবস্থায় স্থির থাকে। তবে গভীরতার সাথে চাপ (P=hρg) বৃদ্ধি পায়।"
+                },
+                {
+                    question: "তরলের অভ্যন্তরে একই গভীরতায় দুটি চাকতির ওপর চাপের অনুপাত কত? (ব্যাসার্ধ 2cm ও 3cm)",
+                    options: ["2:3", "4:9", "8:27", "1:1"],
+                    answer: 3,
+                    explanation: "তরলের চাপ শুধুমাত্র গভীরতা (h) এবং তরলের ঘনত্বের (ρ) উপর নির্ভর করে, ক্ষেত্রফলের উপর নয়। একই গভীরতায় চাপ সমান।"
+                },
+                {
+                    question: "তরলের অভ্যন্তরে ২০ cm² ও ৩০ cm² ক্ষেত্রফলবিশিষ্ট চাকতির ওপর ঘাতের অনুপাত F₁ : F₂ = ?",
+                    options: ["√20 : √30", "2:3", "4:9", "1:1"],
+                    answer: 1,
+                    explanation: "ঘাত (Thrust) = চাপ × ক্ষেত্রফল। যেহেতু চাপ সমান, তাই ঘাতের অনুপাত ক্ষেত্রফলের অনুপাতের সমান হবে। F₁:F₂ = 20:30 = 2:3।"
+                },
+                {
+                    question: "প্লবতা সর্বদা—",
+                    options: ["উল্লম্বভাবে নিচের দিকে ক্রিয়া করে", "অনুভূমিক দিকে ক্রিয়া করে", "উল্লম্বভাবে ওপরের দিকে ক্রিয়া করে", "উল্লম্বভাবে ওপর বা নিচের দিকে ক্রিয়া করে"],
+                    answer: 2,
+                    explanation: "প্লবতা হলো কোনো তরল দ্বারা বস্তুর উপর প্রযুক্ত ঊর্ধ্বমুখী বল, যা বস্তুর ওজনের বিপরীতে কাজ করে।"
+                },
+                {
+                    question: "একটি বস্তু জলে 3/5 অংশ নিমজ্জিত থাকে। তার ঘনত্ব হবে—",
+                    options: ["0.4 g/cm³", "0.5 g/cm³", "0.6 g/cm³", "0.8 g/cm³"],
+                    answer: 2,
+                    explanation: "ভাসমান বস্তুর ক্ষেত্রে, বস্তুর ঘনত্ব = তরলের ঘনত্ব × নিমজ্জিত অংশের ভগ্নাংশ। জলের ঘনত্ব 1 g/cm³ ধরে, বস্তুর ঘনত্ব = 1 × (3/5) = 0.6 g/cm³।"
+                },
+                {
+                    question: "তাপমাত্রা বাড়লে তরলের পৃষ্ঠটান—",
+                    options: ["বৃদ্ধি পায়", "অপরিবর্তিত থাকে", "হ্রাস পায়", "প্রথমে বৃদ্ধি পায় পরে হ্রাস পায়"],
+                    answer: 2,
+                    explanation: "তাপমাত্রা বাড়লে তরলের অণুগুলোর মধ্যেকার সংসক্তি বল (cohesive force) কমে যায়, ফলে পৃষ্ঠটানও হ্রাস পায়।"
+                },
+                {
+                    question: "একটি নৌকা জলে ভাসছে। এটি সম্ভব হয়—",
+                    options: ["পৃষ্ঠটানজনিত বলের জন্য", "সান্দ্রতাজনিত বলের জন্য", "অভিকর্ষ বলের জন্য", "প্লবতাজনিত বলের জন্য"],
+                    answer: 3,
+                    explanation: "আর্কিমিডিসের নীতি অনুসারে, নৌকা দ্বারা অপসারিত জলের ওজন নৌকার ওজনের সমান হয় এবং প্লবতা বল নৌকাটিকে ভাসিয়ে রাখে।"
+                },
+                {
+                    question: "একটি স্প্রিং-এর বল ধ্রুবক 200 N/m। যদি স্প্রিংটি সমান দুইভাগে ভাগ করা হয়, প্রতিটি অংশের বলধ্রুবক হবে—",
+                    options: ["200 N/m", "300 N/m", "400 N/m", "100 N/m"],
+                    answer: 2,
+                    explanation: "স্প্রিং-এর বল ধ্রুবক তার দৈর্ঘ্যের ব্যস্তানুপাতিক। দৈর্ঘ্য অর্ধেক হলে বল ধ্রুবক দ্বিগুণ হবে। নতুন বল ধ্রুবক = 2 × 200 = 400 N/m।"
+                },
+                {
+                    question: "পৃষ্ঠটানের SI একক কোনটি?",
+                    options: ["N", "N·m", "N/m", "N/m²"],
+                    answer: 2,
+                    explanation: "পৃষ্ঠটানের সংজ্ঞা হলো প্রতি একক দৈর্ঘ্যে প্রযুক্ত বল। সুতরাং এর একক নিউটন প্রতি মিটার (N/m)।"
+                },
+                {
+                    question: "একটি পাত্রে তরল আছে। পাত্রটিকে g/2 ত্বরণে নিচে নামানো হলে h গভীরতায় চাপ হবে—",
+                    options: ["½ hρg", "hρg", "3/2 hρg", "2 hρg"],
+                    answer: 0,
+                    explanation: "লিফট যখন ত্বরণে নিচে নামে, তখন কার্যকর অভিকর্ষজ ত্বরণ হয় g' = (g - a)। এখানে a = g/2, তাই g' = g/2। সুতরাং চাপ P = hρg' = hρ(g/2) = ½ hρg।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

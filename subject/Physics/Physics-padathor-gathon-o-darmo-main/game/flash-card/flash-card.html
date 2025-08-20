@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ফ্ল্যাশ কার্ড গেম</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- বেসিক স্টাইল --- */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --bg-color: #f4f7f9;
+            --card-bg: #ffffff;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        /* --- গেম কন্টেইনার --- */
+        .flashcard-game-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .flashcard-game-container.shuffling-animation {
+            transform: rotate(2deg);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem; /* মার্জিন কমানো হয়েছে */
+        }
+        
+        /* --- সেট পরিবর্তন করার ড্রপডাউন মেনু --- */
+        .set-selector-container {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .set-selector-container label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        #set-selector {
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 2px solid var(--primary-color);
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: white;
+            cursor: pointer;
+        }
+        
+        #set-selector:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
+        }
+
+
+        /* --- ফ্ল্যাশ কার্ড --- */
+        #flashcard {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            perspective: 1000px;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #flashcard.is-flipped .card-inner,
+        .card-inner.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .card-front {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .card-back {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        /* --- কন্ট্রোল বাটন --- */
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .controls button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        .controls button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .controls button:not(:disabled):hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        #shuffle-btn {
+            background-color: #e67e22;
+            grid-column: 2;
+        }
+        #shuffle-btn:hover { background-color: #d35400; }
+        
+        #prev-btn { grid-column: 1; text-align: left; padding-left: 1.5rem; }
+        #next-btn { grid-column: 3; text-align: right; padding-right: 1.5rem; }
+
+
+        /* --- কার্ড কাউন্টার --- */
+        #card-counter {
+            font-size: 1rem;
+            color: #7f8c8d;
+            font-weight: 600;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 1.5rem;
+            text-decoration: none;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+        }
+
+        /* --- মোবাইল ডিভাইসের জন্য রেসপন্সিভ ডিজাইন --- */
+        @media (max-width: 600px) {
+            body { padding: 0.5rem; }
+            .flashcard-game-container { padding: 1rem; }
+            header h1 { font-size: 1.5rem; }
+            .set-selector-container label { font-size: 0.9rem;}
+            #set-selector { font-size: 0.9rem; padding: 0.4rem; }
+            .card-face { font-size: 1.1rem; padding: 1rem;}
+            .controls button { font-size: 0.9rem; padding: 0.7rem; }
+            #prev-btn { padding-left: 1rem; }
+            #next-btn { padding-right: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flashcard-game-container">
+        <header>
+            <h1>ফ্ল্যাশ কার্ড: সেট ১</h1>
+            <!-- সেট পরিবর্তন করার নতুন অংশ -->
+            <div class="set-selector-container">
+                <label for="set-selector">সেট পরিবর্তন করুন:</label>
+                <select id="set-selector"></select>
+            </div>
+        </header>
+        
+        <div id="flashcard">
+            <div class="card-inner">
+                <div class="card-face card-front">
+                    <p id="card-front-text">প্রশ্ন লোড হচ্ছে...</p>
+                </div>
+                <div class="card-face card-back">
+                    <p id="card-back-text">উত্তর</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="prev-btn">◀ আগেরটি</button>
+            <button id="shuffle-btn">Shuffle 🔄</button>
+            <button id="next-btn">পরেরটি ▶</button>
+        </div>
+        
+        <p id="card-counter">0 / 0</p>
+        
+        <a href="../../index.html" class="back-to-home">মূল মেনু</a>
+    </div>
+
+    <!-- আগে data.js ফাইল লোড করতে হবে -->
+    <script src="data.js"></script> 
+    
+    <!-- তারপর script.js ফাইল লোড করতে হবে -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const setNumber = urlParams.get('set') || '1'; 
+
+            let flashcards = [];
+            if (typeof allFlashcardSets !== 'undefined' && allFlashcardSets[setNumber]) {
+                flashcards = allFlashcardSets[setNumber];
+            }
+
+            const cardInner = document.querySelector('.card-inner');
+            const cardFrontText = document.getElementById('card-front-text');
+            const cardBackText = document.getElementById('card-back-text');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const shuffleBtn = document.getElementById('shuffle-btn');
+            const cardCounter = document.getElementById('card-counter');
+            const gameTitle = document.querySelector('.flashcard-game-container header h1');
+            const gameContainer = document.querySelector('.flashcard-game-container');
+            const setSelector = document.getElementById('set-selector'); // নতুন এলিমেন্ট
+
+            let currentCardIndex = 0;
+
+            // সেট সিলেক্টর পপুলেট করার ফাংশন
+            function populateSetSelector() {
+                if (typeof allFlashcardSets === 'undefined') return;
+                const setKeys = Object.keys(allFlashcardSets);
+
+                setKeys.forEach(key => {
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.textContent = `সেট ${key}`;
+                    if (key === setNumber) {
+                        option.selected = true;
+                    }
+                    setSelector.appendChild(option);
+                });
+
+                setSelector.addEventListener('change', () => {
+                    const newSet = setSelector.value;
+                    window.location.href = `?set=${newSet}`;
+                });
+            }
+            
+            populateSetSelector(); // ফাংশনটি কল করা
+
+            if (flashcards.length === 0) {
+                gameContainer.innerHTML = `
+                    <h1 style="color: red; font-size: 1.5rem;">দুঃখিত!</h1>
+                    <p>সেট নম্বর '${setNumber}' খুঁজে পাওয়া যায়নি অথবা এই সেটে কোনো প্রশ্ন যোগ করা হয়নি।</p>
+                    <a href="../../index.html" class="back-to-home">মূল মেনুতে ফিরে যান</a>`;
+                return;
+            }
+
+            gameTitle.textContent = `ফ্ল্যাশ কার্ড: সেট ${setNumber}`;
+            
+            function showCard(index) {
+                if (cardInner.classList.contains('is-flipped')) {
+                    setTimeout(() => cardInner.classList.remove('is-flipped'), 150);
+                }
+                
+                setTimeout(() => {
+                    const card = flashcards[index];
+                    cardFrontText.textContent = card.question;
+                    cardBackText.textContent = card.answer;
+                }, 100);
+                
+                cardCounter.textContent = `${index + 1} / ${flashcards.length}`;
+                
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === flashcards.length - 1;
+            }
+
+            function flipCard() { cardInner.classList.toggle('is-flipped'); }
+            function nextCard() { if (!nextBtn.disabled) { currentCardIndex++; showCard(currentCardIndex); } }
+            function prevCard() { if (!prevBtn.disabled) { currentCardIndex--; showCard(currentCardIndex); } }
+            
+            function shuffleCards() {
+                for (let i = flashcards.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+                }
+                currentCardIndex = 0;
+                showCard(currentCardIndex);
+
+                gameContainer.classList.add('shuffling-animation');
+                setTimeout(() => gameContainer.classList.remove('shuffling-animation'), 500);
+            }
+
+            function setupKeyboardControls() {
+                document.addEventListener('keydown', (event) => {
+                    if (event.target === setSelector || event.target.tagName === 'INPUT') return;
+
+                    switch (event.key) {
+                        case 'ArrowRight': nextBtn.click(); break;
+                        case 'ArrowLeft': prevBtn.click(); break;
+                        case 'Enter':
+                        case ' ':
+                            flipCard();
+                            event.preventDefault(); 
+                            break;
+                        case 's': case 'S': shuffleBtn.click(); break;
+                    }
+                });
+            }
+
+            function setupTouchControls() {
+                const cardElement = document.getElementById('flashcard');
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                cardElement.addEventListener('touchstart', (event) => {
+                    touchStartX = event.changedTouches[0].screenX;
+                }, { passive: true });
+
+                cardElement.addEventListener('touchend', (event) => {
+                    touchEndX = event.changedTouches[0].screenX;
+                    handleSwipe();
+                }, { passive: true });
+
+                function handleSwipe() {
+                    const swipeThreshold = 50;
+                    if (touchEndX < touchStartX - swipeThreshold) {
+                        nextCard();
+                    } else if (touchEndX > touchStartX + swipeThreshold) {
+                        prevCard();
+                    }
+                }
+            }
+
+            document.getElementById('flashcard').addEventListener('click', flipCard);
+            nextBtn.addEventListener('click', nextCard);
+            prevBtn.addEventListener('click', prevCard);
+            shuffleBtn.addEventListener('click', shuffleCards);
+
+            showCard(currentCardIndex);
+            setupKeyboardControls();
+            setupTouchControls();
+        });
+    </script>
+</body>
+</html>

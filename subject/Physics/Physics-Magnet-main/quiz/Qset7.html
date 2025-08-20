@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৭ - চুম্বক</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset6.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="#" class="btn btn-secondary disabled">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "চুম্বক", 
+            setName: "Quiz Set 7",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "চুম্বক - Set 7",
+            
+            questions: [
+                {
+                    question: "নিচের কোন শক্তি প্রকৃতিতে তড়িৎ চৌম্বকীয় নয়?",
+                    options: ["শরীরের ওজন", "দড়িতে টান", "ঘর্ষণ বল", "স্থির বৈদ্যুতিক বল"],
+                    answer: 0,
+                    explanation: "শরীরের ওজন মহাকর্ষীয় বলের কারণে হয়, যা একটি মৌলিক বল কিন্তু তড়িৎ চৌম্বকীয় নয়। অন্য বলগুলো তড়িৎ চৌম্বকীয় প্রকৃতির।"
+                },
+                {
+                    question: "কোন বিজ্ঞানী প্রমাণ করেন যে আলো একটি ইলেকট্রোম্যাগনেটিক তরঙ্গ?",
+                    options: ["আইজ্যাক নিউটন", "কার্লো রুবিয়া", "জেমস ম্যাক্সওয়েল", "শেলডন গ্ল্যাশো"],
+                    answer: 2,
+                    explanation: "জেমস ক্লার্ক ম্যাক্সওয়েল তার বিখ্যাত সমীকরণের মাধ্যমে তাত্ত্বিকভাবে দেখান যে আলো একটি তড়িৎ চৌম্বকীয় তরঙ্গ।"
+                },
+                {
+                    question: "নিচের কোনটি ইলেকট্রোম্যাগনেট সম্পর্কে সত্য নয়?",
+                    options: ["এটি একটি অস্থায়ী চুম্বক", "এর ক্ষমতা এর খুঁটির মধ্যে পরিবর্তিত হয়", "মেরুকরণ করা যাবে না", "এর ক্ষমতা পরিবর্তন করা যেতে পারে"],
+                    answer: 2,
+                    explanation: "ইলেকট্রোম্যাগনেটের মেরুকরণ অবশ্যই করা যায়। তড়িৎ প্রবাহের দিক পরিবর্তন করে এর উত্তর ও দক্ষিণ মেরু পরিবর্তন করা সম্ভব।"
+                },
+                {
+                    question: "মেটাল ডিটেক্টর কোন সূত্রের উপর ভিত্তি করে কাজ করে?",
+                    options: ["দেওয়ানি আইন", "নিউটনের সূত্র", "ফ্যারাডে আইন", "কুলম্বের আইন"],
+                    answer: 2,
+                    explanation: "মেটাল ডিটেক্টর ফ্যারাডের তড়িৎ চৌম্বকীয় আবেশের নীতি ব্যবহার করে কাজ করে। ধাতব বস্তু চৌম্বক ক্ষেত্রে পরিবর্তন ঘটায়, যা সনাক্ত করা হয়।"
+                },
+                {
+                    question: "ফ্লেমিংয়ের ডান হাতের নিয়মে বুড়ো আঙ্গুল কোন দিক নির্দেশ করে?",
+                    options: ["প্রবাহের দিক", "প্ররোচিত EMF এর দিক", "কন্ডাকটরের গতির দিক", "চৌম্বক ক্ষেত্রের দিক"],
+                    answer: 2,
+                    explanation: "ফ্লেমিং-এর ডান হাতের নিয়মে বুড়ো আঙ্গুল পরিবাহীর গতির দিক, তর্জনী চৌম্বক ক্ষেত্রের দিক এবং মধ্যমা আবিষ্ট তড়িৎ প্রবাহের দিক নির্দেশ করে।"
+                },
+                {
+                    question: "নিচের কোনটি চৌম্বকীয় প্রবাহ বা ফ্লাক্সের একক?",
+                    options: ["টেসলা", "ওয়েবার", "কুলম্ব", "অ্যাম্পিয়ার-টার্ন"],
+                    answer: 1,
+                    explanation: "চৌম্বকীয় ফ্লাক্সের SI একক হলো ওয়েবার (Weber)। টেসলা হলো চৌম্বক ফ্লাক্স ঘনত্বের একক।"
+                },
+                {
+                    question: "চৌম্বকীয় ভেদ্যতার (permeability) বিপরীত রাশি কোনটি?",
+                    options: ["পরিবাহিতা", "রিলাকট্যান্স", "রিলাক্টিভিটি", "সংবেদনশীলতা"],
+                    answer: 2,
+                    explanation: "চৌম্বকীয় ভেদ্যতার (Permeability) বিপরীত রাশি হলো রিলাক্টিভিটি (Reluctivity)।"
+                },
+                {
+                    question: "একটি ইলেকট্রোম্যাগনেটের কোর (The core of an electromagnet) কী দিয়ে তৈরি?",
+                    options: ["নরম লোহা (Soft iron)", "ইস্পাত (Steel)", "নিকেল (Nickel)", "তামা (Copper)"],
+                    answer: 0,
+                    explanation: "ইলেকট্রোম্যাগনেটে সাধারণত নরম লোহার কোর ব্যবহৃত হয় কারণ এর চৌম্বক ভেদ্যতা খুব বেশি এবং ধারণ ক্ষমতা কম।"
+                },
+                {
+                    question: "কয়েলের গতির দিক চৌম্বকীয় ক্ষেত্রের সাপেক্ষে কত কোণে হলে আবিষ্ট তড়িৎচালক বল সর্বোচ্চ হয়?",
+                    options: ["180°", "90°", "45°", "0°"],
+                    answer: 1,
+                    explanation: "আবিষ্ট EMF (তড়িৎচালক বল) চৌম্বক ফ্লাক্স পরিবর্তনের হারের সমানুপাতিক। এই পরিবর্তনের হার সর্বোচ্চ হয় যখন কয়েল চৌম্বক ক্ষেত্রের সাথে লম্বভাবে (90°) ঘোরে।"
+                },
+                {
+                    question: "পূর্ব থেকে পশ্চিমে প্রবাহিত কারেন্ট সহ একটি অনুভূমিক বৈদ্যুতিক লাইনের নিচে একটি বিন্দুতে চৌম্বক ক্ষেত্রের দিকটি কী হবে?",
+                    options: ["ঘড়ির কাঁটার দিকে", "স্রোতের সমান্তরাল", "উত্তর দিকে", "দক্ষিণ দিকে"],
+                    answer: 3,
+                    explanation: "ডান হাতের নিয়ম (Right-Hand Grip Rule) অনুযায়ী, যদি বুড়ো আঙ্গুল প্রবাহের দিক (পূর্ব থেকে পশ্চিম) নির্দেশ করে, তাহলে লাইনের নিচে আঙ্গুলগুলো দক্ষিণ দিকে মুখ করে থাকবে।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

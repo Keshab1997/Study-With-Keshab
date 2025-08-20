@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৫ - চুম্বক</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset4.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset6.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "চুম্বক", 
+            setName: "Quiz Set 5",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "চুম্বক - Set 5",
+            
+            questions: [
+                {
+                    question: "কোনো কুন্ডলীতে আবিষ্ট তড়িৎচালক বলের মান বৃদ্ধি পায় যখন-",
+                    options: ["কুন্ডলীর পাক সংখ্যা হ্রাস পায়", "কুন্ডলীর ক্ষেত্রফল হ্রাস পায়", "কুন্ডলীর পাক সংখ্যা বৃদ্ধি পায়", "কুন্ডলীর ভর বৃদ্ধি পায়"],
+                    answer: 2,
+                    explanation: "ফ্যারাডের সূত্র অনুযায়ী, আবিষ্ট EMF (ε = -N dΦ/dt) পাক সংখ্যা (N) এর সমানুপাতিক, তাই পাক বাড়লে EMF বৃদ্ধি পায়।"
+                },
+                {
+                    question: "গতিশীল আধান সর্বদা-",
+                    options: ["চৌম্বক ক্ষেত্রের সৃষ্টি করে", "যান্ত্রিক কার্য করে", "তড়িৎ ক্ষেত্রের সৃষ্টি করে", "মহাকর্ষীয় ক্ষেত্রের সৃষ্টি করে"],
+                    answer: 0,
+                    explanation: "গতিশীল আধান (তড়িৎ প্রবাহ) চৌম্বক ক্ষেত্র সৃষ্টি করে, যেমনটি ওরস্টেডের পরীক্ষায় দেখা যায়।"
+                },
+                {
+                    question: "নিচের কোনটি তড়িৎ চৌম্বকীয় তরঙ্গ নয়?",
+                    options: ["বেতার তরঙ্গ", "X রশ্মি", "দৃশ্য আলোক", "শব্দ তরঙ্গ"],
+                    answer: 3,
+                    explanation: "শব্দ তরঙ্গ যান্ত্রিক তরঙ্গ, যেখানে বেতার, X রশ্মি ও দৃশ্য আলো তড়িৎ চৌম্বকীয় তরঙ্গ।"
+                },
+                {
+                    question: "একটি চুম্বককে দ্রুত একটি কুন্ডলীর দিকে আনলে কুন্ডলীতে যে তড়িৎচালক বল আবিষ্ট হয়, তার মান নিম্নলিখিত কোনটির ওপর নির্ভরশীল নয়?",
+                    options: ["কুন্ডলীর পাক সংখ্যা", "চুম্বকের বেগ/গতি", "চুম্বকের ক্ষেত্র", "কুন্ডলীর রোধ"],
+                    answer: 3,
+                    explanation: "আবিষ্ট EMF ফ্লাক্স পরিবর্তনের হারের উপর নির্ভর করে, কিন্তু কুন্ডলীর রোধের উপর নির্ভর করে না।"
+                },
+                {
+                    question: "বাহ্যিক চৌম্বকক্ষেত্রের প্রভাব থেকে কোনো বস্তুকে মুক্ত রাখতে ব্যবহৃত হয়-",
+                    options: ["কাঁচের আচ্ছাদন", "রাবারের আচ্ছাদন", "পেতলের আচ্ছাদন", "কাঁচা লোহার আচ্ছাদন"],
+                    answer: 3,
+                    explanation: "কাঁচা লোহা (soft iron) উচ্চ ভেদ্যতার কারণে চৌম্বক ক্ষেত্রকে নিজের মধ্য দিয়ে প্রবাহিত করে, ভেতরের বস্তুকে রক্ষা করে (Magnetic Shielding)।"
+                },
+                {
+                    question: "নিচের কোনটি অচৌম্বক পদার্থ?",
+                    options: ["লোহা", "ইস্পাত", "নিকেল", "দস্তা"],
+                    answer: 3,
+                    explanation: "দস্তা (Zinc) অচৌম্বকীয়, যেখানে লোহা, ইস্পাত ও নিকেল অয়শ্চৌম্বক।"
+                },
+                {
+                    question: "তড়িৎ চুম্বকীয় আবেশ সংক্রান্ত সূত্রের আবিষ্কারক হলেন-",
+                    options: ["ক্রিস্টিয়ান ওরস্টেড", "মাইকেল ফ্যারাডে", "আলভা এডিসন", "নিকোলাস টেসলা"],
+                    answer: 1,
+                    explanation: "মাইকেল ফ্যারাডে তড়িৎ চৌম্বকীয় আবেশ আবিষ্কার করেন, যা ফ্যারাডের সূত্র নামে পরিচিত।"
+                },
+                {
+                    question: "কুন্ডলী সজ্জায় (Core of a Coil) তড়িৎ প্রবাহমাত্রা বৃদ্ধি করলে উৎপন্ন চৌম্বক ক্ষেত্রের মান-",
+                    options: ["বাড়বে", "কমবে", "বাড়বে বা কমবে", "একই থাকবে"],
+                    answer: 0,
+                    explanation: "চৌম্বক ক্ষেত্রের মান (B ∝ I) তড়িৎ প্রবাহের সমানুপাতিক, তাই প্রবাহ বাড়লে ক্ষেত্র বাড়ে।"
+                },
+                {
+                    question: "তড়িৎ বর্তনীর সুইজ সর্বদা যুক্ত করা হয়-",
+                    options: ["ভূমি তারের সঙ্গে (Ground / Earth wire)", "নিরপেক্ষ তারের সঙ্গে (Neutral)", "লাইভ (Live) তারের সঙ্গে", "যে কোনোটির সঙ্গে"],
+                    answer: 2,
+                    explanation: "নিরাপত্তার জন্য সুইচ সবসময় লাইভ তারে যুক্ত করা হয় যাতে সার্কিটকে উৎস থেকে完全に বিচ্ছিন্ন করা যায়।"
+                },
+                {
+                    question: "নিচের কোনটির সঙ্গে ফ্লেমিং-এর বামহস্ত নিয়ম যুক্ত?",
+                    options: ["রোধ", "চৌম্বক ক্ষেত্র", "বল", "তড়িৎ প্রবাহমাত্রা"],
+                    answer: 2,
+                    explanation: "ফ্লেমিং-এর বামহাতের নিয়ম চৌম্বক ক্ষেত্রে একটি তড়িৎবাহী পরিবাহীর উপর প্রযুক্ত বলের দিক নির্ধারণ করে (মোটরের নীতি)।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

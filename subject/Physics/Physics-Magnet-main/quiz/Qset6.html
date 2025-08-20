@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৬ - চুম্বক</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset5.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset7.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "চুম্বক", 
+            setName: "Quiz Set 6",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "চুম্বক - Set 6",
+            
+            questions: [
+                {
+                    question: "কোনো আহিত কণাকে তড়িৎ ক্ষেত্র এবং চৌম্বক ক্ষেত্রের মধ্যে প্রবেশ করালে, আধানটি একটি বল অনুভব করবে এবং ওই বলকে বলা হয়-",
+                    options: ["নিউটনীয় বল", "লোরেন্ৎস বল", "কুলম্বীয় বল", "নিউক্লিয় বল"],
+                    answer: 1,
+                    explanation: "লোরেন্ৎস বল (Lorentz Force) হলো তড়িৎ ও চৌম্বক ক্ষেত্রে একটি গতিশীল আধানযুক্ত কণার উপর প্রযুক্ত মোট বল।"
+                },
+                {
+                    question: "কোনো মোটর তড়িৎশক্তিকে যে অন্য শক্তিতে রূপান্তরিত করে তা হল-",
+                    options: ["যান্ত্রিক শক্তি", "শব্দ শক্তি", "রাসায়নিক শক্তি", "আলোক শক্তি"],
+                    answer: 0,
+                    explanation: "বৈদ্যুতিক মোটর তড়িৎশক্তিকে চৌম্বক ক্ষেত্রের মাধ্যমে ঘূর্ণন গতি বা যান্ত্রিক শক্তিতে রূপান্তরিত করে।"
+                },
+                {
+                    question: "অবাধে ঝুলিত চুম্বক কোন দিক নির্দেশ করে?",
+                    options: ["পূর্ব-পশ্চিম", "উত্তর-দক্ষিণ", "পূর্ব-উত্তর", "পশ্চিম-দক্ষিণ"],
+                    answer: 1,
+                    explanation: "অবাধে ঝুলন্ত চুম্বক পৃথিবীর চৌম্বক ক্ষেত্রের সাথে নিজেকে সারিবদ্ধ করে উত্তর-দক্ষিণ দিক নির্দেশ করে।"
+                },
+                {
+                    question: "কোনটি সরল চুম্বক দ্বারা আকৃষ্ট হয় না?",
+                    options: ["লোহা", "ব্রোঞ্জ", "নিকেল", "ইস্পাত"],
+                    answer: 1,
+                    explanation: "ব্রোঞ্জ একটি সংকর ধাতু এবং অচৌম্বকীয়। লোহা, নিকেল ও ইস্পাত অয়শ্চৌম্বক হওয়ায় চুম্বক দ্বারা আকৃষ্ট হয়।"
+                },
+                {
+                    question: "একটি অবাধে ঝুলিত চুম্বক সবসময় দিক সারিবদ্ধ করে-",
+                    options: ["পূর্ব-পশ্চিম", "উত্তর-পূর্ব", "দক্ষিণ-পশ্চিম", "উত্তর-দক্ষিণ"],
+                    answer: 3,
+                    explanation: "পৃথিবীর চৌম্বক ক্ষেত্রের প্রভাবে একটি অবাধে ঝুলন্ত চুম্বক সর্বদা উত্তর-দক্ষিণ দিকে মুখ করে স্থির হয়।"
+                },
+                {
+                    question: "নিচের কোনটিতে স্থায়ী চুম্বকের মতো চৌম্বকীয় বৈশিষ্ট্য নেই?",
+                    options: ["নিকেল", "লোহা", "অ্যালুমিনিয়াম", "চুম্বক পাথর"],
+                    answer: 2,
+                    explanation: "অ্যালুমিনিয়াম একটি পরাচৌম্বক পদার্থ, যার চৌম্বক ধর্ম খুবই দুর্বল এবং স্থায়ী নয়। অন্যগুলো অয়শ্চৌম্বক।"
+                },
+                {
+                    question: "চৌম্বক ক্ষেত্রের তীব্রতার (H) মাত্রা হল-",
+                    options: ["IL", "I²L", "IL⁻¹", "IL⁻²"],
+                    answer: 2,
+                    explanation: "চৌম্বক ক্ষেত্রের তীব্রতা (H) এর মাত্রা হলো [IL⁻¹], যার SI একক অ্যাম্পিয়ার প্রতি মিটার (A/m)।"
+                },
+                {
+                    question: "ভ্যাকুয়াম বা শূন্যস্থানকে কী হিসাবে বিবেচনা করা হয়-",
+                    options: ["অ-চৌম্বকীয় উপাদান", "ডায়াম্যাগনেটিক উপাদান", "প্যারাম্যাগনেটিক উপাদান", "ভারসাম্যপূর্ণ চৌম্বকীয় উপাদান"],
+                    answer: 0,
+                    explanation: "ভ্যাকুয়ামে কোনো পদার্থ না থাকায় এর কোনো চৌম্বকীয় বৈশিষ্ট্য নেই, তাই এটি অ-চৌম্বকীয়।"
+                },
+                {
+                    question: "উত্তর গোলার্ধে অবস্থিত একটি সৌর প্যানেল সাধারণত কোন দিকে কাত করে রাখা হয়?",
+                    options: ["পশ্চিম", "দক্ষিণ", "পূর্ব", "উত্তর"],
+                    answer: 1,
+                    explanation: "উত্তর গোলার্ধে সূর্য আকাশের দক্ষিণ অংশ দিয়ে চলাচল করে, তাই সর্বোচ্চ সূর্যালোক পাওয়ার জন্য সৌর প্যানেল দক্ষিণ দিকে কাত করা হয়।"
+                },
+                {
+                    question: "চুম্বকের চারপাশে যে এলাকায় এর প্রভাব সনাক্ত করা যায়, তাকে কী বলে?",
+                    options: ["ইলেক্ট্রোস্ট্যাটিক ক্ষেত্র", "স্থির ক্ষেত্র", "মহাকর্ষীয় টান", "চৌম্বক ক্ষেত্র"],
+                    answer: 3,
+                    explanation: "চুম্বকের চারপাশে যে অঞ্চল জুড়ে তার আকর্ষণ বা বিকর্ষণ বল কাজ করে, তাকে চৌম্বক ক্ষেত্র (Magnetic Field) বলে।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

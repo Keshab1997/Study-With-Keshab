@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - পদার্থের গঠন এবং বৈশিষ্ট্য</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset4.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "পদার্থের গঠন এবং বৈশিষ্ট্য", 
+            setName: "Quiz Set 3",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "পদার্থের বৈশিষ্ট্য - Set 3",
+            
+            questions: [
+                {
+                    question: "দুটি তরলের ঘনত্ব যথাক্রমে 1.6 g/cm³ ও 2 g/cm³। সমআয়তনে মেশালে মিশ্রণের ঘনত্ব কত হবে?",
+                    options: ["1.65 g/cm³", "1.7 g/cm³", "1.8 g/cm³", "1.9 g/cm³"],
+                    answer: 2,
+                    explanation: "সমআয়তনে মেশালে মিশ্রণের ঘনত্ব হয় ঘনত্বের পাটিগণিতীয় গড়। গড় ঘনত্ব = (d₁ + d₂)/2 = (1.6 + 2)/2 = 1.8 g/cm³।"
+                },
+                {
+                    question: "দুটি তরলের ঘনত্ব d₁ ও d₂। যদি সমভরে মেশানো হয়, মিশ্রণের ঘনত্ব হবে—",
+                    options: ["(d₁ + d₂)/2", "2d₁d₂ / (d₁ + d₂)", "d₁ + d₂", "√(d₁d₂)"],
+                    answer: 1,
+                    explanation: "সমভরে মেশালে মিশ্রণের ঘনত্ব হয় ঘনত্বের বিপরীত গড় (Harmonic Mean)। গড় ঘনত্ব = (2d₁d₂) / (d₁ + d₂)।"
+                },
+                {
+                    question: "উত্তাল সমুদ্রে তেল ঢাললে সমুদ্র শান্ত হয়, কারণ—",
+                    options: ["সান্দ্রতা বেড়ে যায়", "পৃষ্ঠটান কমে যায়", "প্লবতা বেড়ে যায়", "ঘনত্ব কমে যায়"],
+                    answer: 1,
+                    explanation: "তেলের পৃষ্ঠটান জলের চেয়ে কম। তেল জলের উপরে একটি স্তর তৈরি করে জলের পৃষ্ঠটান কমিয়ে দেয়, ফলে ঢেউয়ের শক্তি কমে যায়।"
+                },
+                {
+                    question: "1 torr সমান—",
+                    options: ["0.5 cm পারদস্তম্ভের চাপ", "1 mm পারদস্তম্ভের চাপ", "2 mm পারদস্তম্ভের চাপ", "1 cm পারদস্তম্ভের চাপ"],
+                    answer: 1,
+                    explanation: "চাপের একক হিসেবে, 1 torr চাপকে 1 মিলিমিটার পারদস্তম্ভের (mm of Hg) চাপের সমান ধরা হয়।"
+                },
+                {
+                    question: "1 torr = কত N/m² (প্রায়)?",
+                    options: ["266.56", "66.54", "399.84", "133.32"],
+                    answer: 3,
+                    explanation: "প্রমাণ বায়ুমণ্ডলীয় চাপ (760 mm Hg) = 101325 N/m²। সুতরাং, 1 torr বা 1 mm Hg = 101325 / 760 ≈ 133.32 N/m²।"
+                },
+                {
+                    question: "একটি বদ্ধপাত্রে কাঠের টুকরো জলে ভাসছে। যদি কিছুটা বাতাস বের করা হয়, তাহলে কাঠের টুকরো—",
+                    options: ["আরও ডুবে যাবে", "আরও ভেসে উঠবে", "নিমজ্জিত অংশ অপরিবর্তিত থাকবে", "প্রথমে ভাসবে, পরে ডুবে যাবে"],
+                    answer: 0,
+                    explanation: "বাতাস বের করলে বায়ুর চাপ কমে যায়, ফলে বায়ুর প্লবতাও কমে। এই প্লবতার ঘাটতি পূরণের জন্য বস্তুটি জলে আরও কিছুটা ডুবে যায়।"
+                },
+                {
+                    question: "একই অবস্থায় পাত্রে অতিরিক্ত বাতাস ঢুকালে কাঠের টুকরোর কী হবে?",
+                    options: ["আরও ডুবে যাবে", "আরও ভেসে উঠবে", "নিমজ্জিত অংশের আয়তন বাড়বে", "অপরিবর্তিত থাকবে"],
+                    answer: 1,
+                    explanation: "অতিরিক্ত বাতাস ঢুকালে বায়ুর চাপ বাড়ে, ফলে বায়ুর প্লবতাও বাড়ে। এই অতিরিক্ত ঊর্ধ্বমুখী বলের কারণে বস্তুটি কিছুটা ভেসে উঠবে।"
+                },
+                {
+                    question: "1 N/m = কত dyn/cm?",
+                    options: ["1", "10", "100", "1000"],
+                    answer: 3,
+                    explanation: "যেহেতু 1 N = 10⁵ dyn এবং 1 m = 10² cm, সুতরাং 1 N/m = (10⁵ dyn) / (10² cm) = 10³ dyn/cm = 1000 dyn/cm।"
+                },
+                {
+                    question: "ইয়ং গুণাঙ্ক (Young's Modulus) কিসের অনুপাত?",
+                    options: ["বল ও আয়তনের", "অনুদৈর্ঘ্য পীড়ন ও অনুদৈর্ঘ্য বিকৃতি", "স্থিতিস্থাপক বল ও দৈর্ঘ্য", "বল ও পৃষ্ঠটানের"],
+                    answer: 1,
+                    explanation: "সংজ্ঞানুযায়ী, স্থিতিস্থাপক সীমার মধ্যে কোনো বস্তুর অনুদৈর্ঘ্য পীড়ন ও অনুদৈর্ঘ্য বিকৃতির অনুপাতকে ইয়ং গুণাঙ্ক বলে।"
+                },
+                {
+                    question: "ইয়ং গুণাঙ্ক কেবলমাত্র কোন অবস্থার বৈশিষ্ট্য?",
+                    options: ["কঠিন", "তরল", "গ্যাস", "কঠিন, তরল ও গ্যাস"],
+                    answer: 0,
+                    explanation: "ইয়ং গুণাঙ্ক বস্তুর দৈর্ঘ্য বরাবর স্থিতিস্থাপকতার পরিমাপ করে, যা কেবলমাত্র কঠিন পদার্থের একটি গুরুত্বপূর্ণ ধর্ম।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

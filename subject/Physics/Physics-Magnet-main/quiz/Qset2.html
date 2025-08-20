@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ২ - চুম্বক</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset3.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "চুম্বক", 
+            setName: "Quiz Set 2",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "চুম্বক - Set 2",
+            
+            questions: [
+                {
+                    question: "চৌম্বক প্রাবল্যের একক (RRB ALP & TECH)",
+                    options: ["ওয়েবার", "টেসলা", "ওয়েরস্টেড", "ম্যাক্সওয়েল"],
+                    answer: 2,
+                    explanation: "C.G.S. পদ্ধতিতে চৌম্বক প্রাবল্য (H) এর একক ওয়েরস্টেড। SI পদ্ধতিতে এটি অ্যাম্পিয়ার পার মিটার (A/m)।"
+                },
+                {
+                    question: "কোনো পরিবাহী তারে তড়িৎ প্রবাহের জন্য তারটির কাছে রাখা চুম্বক শলাকার বিক্ষেপের দিক নির্ণয় করা যায় (RRB RPF)",
+                    options: ["ফ্লেমিং-এর বামহাত নিয়ম অনুযায়ী", "ফ্লেমিং-এর ডানহাত নিয়ম অনুযায়ী", "অ্যাম্পিয়ারের সন্তরণ নিয়ম অনুযায়ী", "কার্কহফ নিয়ম অনুযায়ী"],
+                    answer: 2,
+                    explanation: "অ্যাম্পিয়ারের সন্তরণ নিয়ম (Ampere’s Swimming Rule) তড়িৎ প্রবাহের কারণে চুম্বক শলাকার বিক্ষেপের দিক নির্ণয়ে ব্যবহৃত হয়।"
+                },
+                {
+                    question: "তড়িৎচুম্বকের চৌম্বকত্ব (SSC CGL পরীক্ষা)",
+                    options: ["স্থায়ী", "অস্থায়ী", "বলা সম্ভব নয়", "স্থায়ী ও অস্থায়ী উভয়ই হতে পারে"],
+                    answer: 1,
+                    explanation: "তড়িৎচুম্বকের চৌম্বকত্ব তড়িৎ প্রবাহের উপর নির্ভরশীল। প্রবাহ বন্ধ হলে চৌম্বকত্ব হারিয়ে যায়, তাই এটি অস্থায়ী।"
+                },
+                {
+                    question: "দুটি পদার্থের মধ্যে বিকর্ষণ হলে (SSC CGL পরীক্ষা)",
+                    options: ["দুটি চৌম্বক পদার্থ", "দুটি অচৌম্বক পদার্থ", "একটি চুম্বক, অপরটি চৌম্বক পদার্থ", "দুটি চুম্বক"],
+                    answer: 3,
+                    explanation: "বিকর্ষণ কেবল দুটি চুম্বকের সমমেরু (উত্তর-উত্তর বা দক্ষিণ-দক্ষিণ) এর মধ্যে ঘটে। চৌম্বক পদার্থ আকর্ষিত হয়, বিকর্ষিত হয় না।"
+                },
+                {
+                    question: "চুম্বক শলাকার উত্তর মেরু নিচের দিকে মুখ করে থাকে (SSC WBCS পরীক্ষা)",
+                    options: ["ভৌগোলিক উত্তর মেরুর দিকে", "ভৌগোলিক উত্তর মেরুতে", "বিষুবরেখায়", "এদের কোনোটিই নয়"],
+                    answer: 1,
+                    explanation: "চুম্বক শলাকার উত্তর মেরু পৃথিবীর ভৌগোলিক উত্তর মেরুর দিকে (যেখানে চৌম্বক দক্ষিণ মেরু অবস্থিত) নিচের দিকে মুখ করে।"
+                },
+                {
+                    question: "দণ্ডচুম্বকের চুম্বকত্ব সবচেয়ে বেশি (RRB GROUP-D পরীক্ষা)",
+                    options: ["দুই প্রান্তের কাছাকাছি", "ঠিক দুই প্রান্তে", "মাঝখানে", "সব জায়গায় সমান"],
+                    answer: 0,
+                    explanation: "দণ্ডচুম্বকের চৌম্বক ক্ষেত্র প্রান্তের কাছাকাছি সবচেয়ে শক্তিশালী হয় কারণ মেরুগুলি সেখানে অবস্থিত।"
+                },
+                {
+                    question: "চৌম্বক আবেশ হয় আকর্ষণের (SSC CGL পরীক্ষা)",
+                    options: ["পূর্বে", "পরে", "একই সঙ্গে", "যে-কোনো সময়"],
+                    answer: 0,
+                    explanation: "চৌম্বক আবেশে, চুম্বকের কাছাকাছি থাকা চৌম্বক পদার্থ প্রথমে চুম্বকিত হয়, তারপর আকর্ষিত হয়।"
+                },
+                {
+                    question: "স্বাধীনভাবে ঝুলন্ত একটি চুম্বক অনুভূমিক থাকে (SSC CGL পরীক্ষা)",
+                    options: ["উত্তর মেরুতে", "দক্ষিণ মেরুতে", "বিষুবরেখায়", "এদের কোনোটিই নয়"],
+                    answer: 2,
+                    explanation: "বিষুবরেখায় পৃথিবীর চৌম্বক ক্ষেত্র অনুভূমিক থাকে, তাই স্বাধীনভাবে ঝুলন্ত চুম্বকও অনুভূমিক থাকে।"
+                },
+                {
+                    question: "শক্তিশালী তড়িৎচুম্বক তৈরিতে ব্যবহৃত হয় (SSC CHSL পরীক্ষা)",
+                    options: ["কাঁচা লোহা", "ইস্পাত", "পিতল", "তামা"],
+                    answer: 0,
+                    explanation: "কাঁচা লোহার উচ্চ চৌম্বক প্রবণতা এবং নিম্ন ধারণ ক্ষমতা থাকায় এটি তড়িৎচুম্বকের জন্য উপযুক্ত।"
+                },
+                {
+                    question: "নৌকম্পাসে ব্যবহার করা হয় (RRB GROUP-D পরীক্ষা)",
+                    options: ["প্রাকৃতিক চুম্বক", "দণ্ডচুম্বক", "সূচিচুম্বক", "যে-কোনো ধরনের চুম্বক"],
+                    answer: 2,
+                    explanation: "নৌকম্পাসে সূচিচুম্বক ব্যবহৃত হয় কারণ এটি হালকা এবং দ্রুত পৃথিবীর চৌম্বক ক্ষেত্রের সাথে সারিবদ্ধ হয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

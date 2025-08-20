@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - চুম্বক</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset4.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "চুম্বক", 
+            setName: "Quiz Set 3",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "চুম্বক - Set 3",
+            
+            questions: [
+                {
+                    question: "চুম্বকের সমমেরু পরস্পরকে (SSC MTS পরীক্ষা)",
+                    options: ["আকর্ষণ করে", "বিকর্ষণ করে", "দুটোই", "কিছুই করে না"],
+                    answer: 1,
+                    explanation: "সমমেরু (উত্তর-উত্তর বা দক্ষিণ-দক্ষিণ) পরস্পরকে বিকর্ষণ করে, বিপরীত মেরু আকর্ষণ করে।"
+                },
+                {
+                    question: "মেরু প্রদেশে বিনতি কোণের মান (WBPSC পরীক্ষা)",
+                    options: ["৬০°", "১৫°", "৯০°", "০°"],
+                    answer: 2,
+                    explanation: "মেরু প্রদেশে চৌম্বক ক্ষেত্র রেখাগুলি পৃথিবীর পৃষ্ঠের সাথে লম্বভাবে থাকে, তাই বিনতি কোণ ৯০°।"
+                },
+                {
+                    question: "নিরক্ষরেখায় বিনতি কোণের মান (SSC MTS পরীক্ষা)",
+                    options: ["৬০°", "১৫°", "৯০°", "০°"],
+                    answer: 3,
+                    explanation: "নিরক্ষরেখায় (চৌম্বক বিষুবরেখা) চৌম্বক ক্ষেত্র অনুভূমিক, তাই বিনতি কোণ ০°।"
+                },
+                {
+                    question: "একটি চুম্বক শলাকার দক্ষিণ মেরু নিচের দিকে মুখ করে থাকে (SSC CHSL পরীক্ষা)",
+                    options: ["বিষুবরেখার কাছে", "ভৌগোলিক উত্তর মেরুতে", "ভৌগোলিক দক্ষিণ মেরুতে", "এদের কোনোটিই নয়"],
+                    answer: 2,
+                    explanation: "চুম্বক শলাকার দক্ষিণ মেরু ভৌগোলিক দক্ষিণ মেরুতে (যেখানে পৃথিবীর চৌম্বক উত্তর মেরু) নিচের দিকে মুখ করে।"
+                },
+                {
+                    question: "আবিষ্ট চুম্বকের চৌম্বকত্বের পরিমাণ বেশি হয় (RRB NTPC পরীক্ষা)",
+                    options: ["কাঠে", "লোহায়", "কোবাল্টে", "নিকেলে"],
+                    answer: 1,
+                    explanation: "লোহার উচ্চ চৌম্বক প্রবণতা থাকায় এটি সহজে এবং বেশি পরিমাণে চৌম্বকত্ব আবিষ্ট করে।"
+                },
+                {
+                    question: "চৌম্বক আবেশের ফলে সমমেরু সৃষ্টি হয় (SSC MTS পরীক্ষা)",
+                    options: ["নিকটতম প্রান্তে", "আবিষ্ট চুম্বকের মধ্যবিন্দুতে", "যে-কোনো বিন্দুতে", "দূরতম প্রান্তে"],
+                    answer: 3,
+                    explanation: "চৌম্বক আবেশে, আবিষ্ট চুম্বকের দূরতম প্রান্তে মূল চুম্বকের সমমেরু সৃষ্টি হয়।"
+                },
+                {
+                    question: "একটি চুম্বকে তাপ প্রয়োগ করলে যে সর্বনিম্ন তাপমাত্রায় চুম্বকত্ব নষ্ট হয়, তাকে বলা হয় (RRB GROUP-D পরীক্ষা)",
+                    options: ["কুরি বিন্দু", "লতিবিন্দু", "গলনাঙ্ক", "স্ফুটনাঙ্ক"],
+                    answer: 0,
+                    explanation: "কুরি বিন্দু হলো সেই তাপমাত্রা যেখানে চৌম্বক পদার্থ তার চুম্বকত্ব হারায়।"
+                },
+                {
+                    question: "ম্যাগনেটাইটের সংকেত (SSC CPO পরীক্ষা)",
+                    options: ["Fe₂O₃", "FeO", "Fe₃O₄", "Fe"],
+                    answer: 2,
+                    explanation: "ম্যাগনেটাইট (Fe₃O₄) একটি প্রাকৃতিক চৌম্বক খনিজ।"
+                },
+                {
+                    question: "যে খনিজ পদার্থের চৌম্বকত্ব আছে, তার নাম (WBCS পরীক্ষা)",
+                    options: ["হেমাটাইট", "ম্যাগনেটাইট", "বক্সাইট", "ঝিঙ্ক"],
+                    answer: 1,
+                    explanation: "ম্যাগনেটাইট (Fe₃O₄) প্রাকৃতিকভাবে চৌম্বক ধর্মযুক্ত খনিজ।"
+                },
+                {
+                    question: "চৌম্বক দৈর্ঘ্য চুম্বকের জ্যামিতিক দৈর্ঘ্যের প্রায় (SSC MTS পরীক্ষা)",
+                    options: ["৫০%", "৮৫%", "১০০%", "১৫%"],
+                    answer: 1,
+                    explanation: "চৌম্বক দৈর্ঘ্য (মেরুদ্বয়ের মধ্যবর্তী দূরত্ব) সাধারণত জ্যামিতিক দৈর্ঘ্যের প্রায় ৮৫% হয় কারণ মেরুগুলি প্রান্তের কাছাকাছি অবস্থিত।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>
