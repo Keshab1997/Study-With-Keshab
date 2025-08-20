@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ২ - রক্ত এবং সংবহন তন্ত্র</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset3.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology রক্ত এবং সংবহন তন্ত্র",
+            setName: "Quiz Set 2",
+            name: "রক্ত এবং সংবহন তন্ত্র - Set 2 (প্রশ্ন ১৬-৩০)",
+            questions: [
+                {
+                    question: "নিচের কোন প্লাজমা প্রোটিন রক্ত জমাট বাঁধার সাথে জড়িত?",
+                    options: ["সিরাম অ্যামাইলেজ", "ফাইব্রিনোজেন", "একটি গ্লোবুলিন", "একটি অ্যালবুমিন"],
+                    answer: 1,
+                    explanation: "ফাইব্রিনোজেন হলো রক্তরসে দ্রবণীয় একটি প্রোটিন, যা রক্ত তঞ্চন বা জমাট বাঁধার প্রক্রিয়ায় ফাইব্রিন জাল তৈরি করে।"
+                },
+                {
+                    question: "মানুষের রক্তের প্লেটলেট (অনুচক্রিকা) কি নিঃসরণ করে রক্ত জমাট বাঁধতে সাহায্য করে?",
+                    options: ["প্রোথ্রোমবিন", "ফ্রুক্টোজ", "ফাইব্রিন", "সুক্রোজ"],
+                    answer: 0,
+                    explanation: "অনুচক্রিকা থ্রম্বোপ্লাস্টিন নিঃসরণ করে, যা প্রোথ্রোমবিনকে থ্রমবিনে রূপান্তরিত করে এবং রক্ত জমাট বাঁধার প্রক্রিয়া শুরু করে।"
+                },
+                {
+                    question: "মানুষের স্বাভাবিক রক্তপাতের সময় এবং জমাট বাঁধার সময় যথাক্রমে ...... এবং........।",
+                    options: ["2-3 এবং 4-6 মিনিট", "2-10 এবং 5-15 সেকেন্ড", "2-7 এবং 3-10 মিনিট", "5-15 এবং 10-20 সেকেন্ড"],
+                    answer: 2,
+                    explanation: "স্বাভাবিক মানুষের ক্ষেত্রে রক্তপাতের সময় (Bleeding Time) প্রায় ২-৭ মিনিট এবং জমাট বাঁধার সময় (Clotting Time) প্রায় ৩-১০ মিনিট।"
+                },
+                {
+                    question: "রক্তনালীর ভিতরে রক্ত তঞ্চিত (জমাট) হয় না কেন?",
+                    options: ["ক্যালসিয়াম আয়ন থাকার জন্য", "পটাশিয়াম থাকার জন্য", "হেপারিন থাকার জন্য", "অনুচক্রিকা থাকার জন্য"],
+                    answer: 2,
+                    explanation: "হেপারিন একটি প্রাকৃতিক অ্যান্টিকোঅ্যাগুল্যান্ট যা রক্তনালীর ভেতরে রক্তকে জমাট বাঁধতে বাধা দেয়।"
+                },
+                {
+                    question: "একটি প্রচলিত রক্তচাপ মাপার যন্ত্রের নাম কি?",
+                    options: ["আইসোবার", "ট্রান্সডিউসার", "স্ফিগমোম্যানোমিটার", "বুধ স্তম্ভ"],
+                    answer: 2,
+                    explanation: "রক্তচাপ মাপার যন্ত্রের নাম স্ফিগমোম্যানোমিটার (Sphygmomanometer)।"
+                },
+                {
+                    question: "মানুষের রক্তের স্বাভাবিক সিস্টোলিক চাপ হল:",
+                    options: ["110mm Hg", "130mm Hg", "80mm Hg", "120 mm Hg"],
+                    answer: 3,
+                    explanation: "একজন সুস্থ প্রাপ্তবয়স্ক মানুষের স্বাভাবিক সিস্টোলিক চাপ (হৃৎপিণ্ডের সংকোচনের সময়কার চাপ) প্রায় ১২০ মিলিমিটার পারদস্তম্ভের চাপের সমান (120 mm Hg)।"
+                },
+                {
+                    question: "একজন সুস্থ মানুষের রক্তচাপ হল:",
+                    options: ["90/60", "120/80 mm Hg", "200/110", "140/60"],
+                    answer: 1,
+                    explanation: "একজন সুস্থ প্রাপ্তবয়স্ক মানুষের আদর্শ রক্তচাপ হলো ১২০/৮০ মিমি পারদস্তম্ভ (mm Hg)।"
+                },
+                {
+                    question: "মানুষের রক্তের প্রকৃতি কি?",
+                    options: ["সামান্য আম্লিক", "সামান্য ক্ষারীয়", "প্রসম", "কোনোটিই নয়"],
+                    answer: 1,
+                    explanation: "মানুষের রক্তের স্বাভাবিক pH মান ৭.৩৫ থেকে ৭.৪৫ এর মধ্যে থাকে, তাই এটি সামান্য ক্ষারীয় প্রকৃতির।"
+                },
+                {
+                    question: "রক্ত কি?",
+                    options: ["একটি আবরণী কলা", "পেশি কলা", "স্নায়ুকলা", "একটি বিশিষ্ট সংযোজক কলা"],
+                    answer: 3,
+                    explanation: "রক্তকে তরল যোগকলা বা একটি বিশিষ্ট সংযোজক কলা (Specialized Connective Tissue) বলা হয়।"
+                },
+                {
+                    question: "মানবদেহে মোট রক্তের পরিমাণ কত?",
+                    options: ["5.6 লিটার", "4.5 লিটার", "6.5 লিটার", "7.6 লিটার"],
+                    answer: 0,
+                    explanation: "একজন প্রাপ্তবয়স্ক সুস্থ মানুষের দেহে তার মোট ওজনের প্রায় ৭-৮% রক্ত থাকে, যা গড়ে প্রায় ৫ থেকে ৬ লিটার। প্রদত্ত বিকল্পগুলির মধ্যে ৫.৬ লিটার সবচেয়ে উপযুক্ত।"
+                },
+                {
+                    question: "রক্তের গ্রুপ এর শ্রেণীবিন্যাস কে করেন?",
+                    options: ["কার্ল কুলার", "কার্ল ল্যান্ডস্টেইনার", "এডওয়ার্ড জেনার", "কোনোটিই নয়"],
+                    answer: 1,
+                    explanation: "অস্ট্রিয়ান বিজ্ঞানী কার্ল ল্যান্ডস্টেইনার ১৯০০ সালে প্রথম মানুষের রক্তের প্রধান গ্রুপগুলো (A, B, এবং O) আবিষ্কার করেন।"
+                },
+                {
+                    question: "A, B এবং O রক্তের গ্রুপ পদ্ধতি কে আবিষ্কার করেন?",
+                    options: ["কার্ল কোলার", "কার্ল ল্যান্ডস্টেইনার", "মরিস হিলেম্যান", "এডওয়ার্ড জেনার"],
+                    answer: 1,
+                    explanation: "বিজ্ঞানী কার্ল ল্যান্ডস্টেইনার ABO ব্লাড গ্রুপ সিস্টেম আবিষ্কার করেন, যার জন্য তিনি নোবেল পুরস্কার পান।"
+                },
+                {
+                    question: "নিচের কোনটি রক্তের গ্রুপ নয়?",
+                    options: ["A", "AB", "C", "O"],
+                    answer: 2,
+                    explanation: "ABO ব্লাড গ্রুপ সিস্টেম অনুযায়ী প্রধান রক্তের গ্রুপগুলি হলো A, B, AB, এবং O। 'C' নামে কোনো রক্তের গ্রুপ এই সিস্টেমে নেই।"
+                },
+                {
+                    question: "কার্ল ল্যান্ডস্টেইনার কিসের জন্য পরিচিত?",
+                    options: ["ডিএনএ বিচ্ছিন্ন", "রক্তের গ্রুপের শ্রেণীবিভাগ আবিষ্কার", "জিকা ভাইরাস শনাক্ত করা", "স্নায়ুতন্ত্র অধ্যয়ন"],
+                    answer: 1,
+                    explanation: "কার্ল ল্যান্ডস্টেইনারের সবচেয়ে বড় অবদান হলো রক্তের গ্রুপের শ্রেণীবিন্যাস আবিষ্কার, যা নিরাপদ রক্ত সঞ্চালন সম্ভব করেছে।"
+                },
+                {
+                    question: "AB রক্তের গ্রুপের একজন ব্যক্তি-",
+                    options: ["A, B এবং O ব্লাড গ্রুপের রক্ত দিতে পারেন", "সর্বজনীন রক্তদাতা বলা হয়", "যেকোনো রক্তের গ্রুপ থেকে রক্ত নিতে পারে", "সর্বজনীন প্রাপক বা দাতা নন"],
+                    answer: 2,
+                    explanation: "AB গ্রুপের ব্যক্তির রক্তরসে কোনো অ্যান্টিবডি না থাকায় তারা যেকোনো গ্রুপের রক্ত গ্রহণ করতে পারে। এই জন্য AB গ্রুপকে সর্বজনীন গ্রহীতা (Universal Recipient) বলা হয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

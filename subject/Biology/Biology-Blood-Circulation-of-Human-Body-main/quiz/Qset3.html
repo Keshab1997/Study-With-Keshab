@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - রক্ত এবং সংবহন তন্ত্র</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset4.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology রক্ত এবং সংবহন তন্ত্র",
+            setName: "Quiz Set 3",
+            name: "রক্ত এবং সংবহন তন্ত্র - Set 3 (প্রশ্ন ৩১-৪৫)",
+            questions: [
+                {
+                    question: "A গ্রুপের রক্ত কোন গ্রুপের রক্তকে দেয়া যাবে?",
+                    options: ["A", "B", "A, AB", "A, O"],
+                    answer: 2,
+                    explanation: "A গ্রুপের রক্ত A এবং AB উভয় গ্রুপকেই দেওয়া যায়, কারণ AB গ্রুপের রক্তে কোনো অ্যান্টিবডি থাকে না।"
+                },
+                {
+                    question: "A গ্রুপের রক্তের প্রয়োজন হলে তাকে কোন কোন গ্রুপের ব্যক্তিরা রক্ত দিতে পারবে?",
+                    options: ["A", "B", "A, AB", "A, O"],
+                    answer: 3,
+                    explanation: "A গ্রুপের ব্যক্তি A গ্রুপ থেকে রক্ত নিতে পারে। এছাড়াও O গ্রুপ 'সর্বজনীন দাতা' হওয়ায় তাদের থেকেও রক্ত নিতে পারে।"
+                },
+                {
+                    question: "কোন শ্রেণীর রক্তকে সর্বজনীন গ্রহীতা বলা হয়?",
+                    options: ["AB", "A", "B", "O"],
+                    answer: 0,
+                    explanation: "AB গ্রুপকে 'সর্বজনীন গ্রহীতা' বা Universal Recipient বলা হয় কারণ তারা সকল গ্রুপের রক্ত গ্রহণ করতে পারে।"
+                },
+                {
+                    question: "রক্তের কোন গ্রুপকে সর্বজনীন দাতা বলা হয়?",
+                    options: ["O", "AB", "A", "B"],
+                    answer: 0,
+                    explanation: "O গ্রুপের লোহিত রক্তকণিকায় কোনো অ্যান্টিজেন না থাকায় এই রক্ত যেকোনো গ্রুপের ব্যক্তিকে দেওয়া যায়। তাই একে 'সর্বজনীন দাতা' বলে।"
+                },
+                {
+                    question: "আরএইচ (Rh) ফ্যাক্টর কোন প্রাণীর রক্তে প্রথম পাওয়া যায়?",
+                    options: ["গরু", "কুকুর", "বানর (রেসাস বানর)", "হাতি"],
+                    answer: 2,
+                    explanation: "ল্যান্ডস্টেইনার এবং উইনার ১৯৪০ সালে রেসাস (Rhesus) প্রজাতির বানরের রক্তে প্রথম Rh ফ্যাক্টর আবিষ্কার করেন।"
+                },
+                {
+                    question: "নিচের কোনটি সার্বজনীন প্রাপক (Universal Receiver) রক্তের গ্রুপ?",
+                    options: ["AB+", "O+", "A+", "AB-"],
+                    answer: 0,
+                    explanation: "AB+ গ্রুপকে প্রকৃত অর্থে 'সার্বজনীন প্রাপক' বলা হয় কারণ তারা ABO সিস্টেমের সব গ্রুপ এবং Rh+ ও Rh- উভয় রক্তই গ্রহণ করতে পারে।"
+                },
+                {
+                    question: "নিচের কোন ব্লাড গ্রুপকে সার্বজনীন দাতা (Universal Donor) হিসেবে বিবেচনা করা হয়?",
+                    options: ["AB+", "O+", "O-", "AB-"],
+                    answer: 2,
+                    explanation: "O- গ্রুপের রক্তে কোনো A, B বা Rh অ্যান্টিজেন থাকে না। তাই এই রক্ত যেকোনো গ্রুপের ব্যক্তিকে দেওয়া যায় এবং একে 'সার্বজনীন দাতা' বলা হয়।"
+                },
+                {
+                    question: "রক্তচাপ মাপার যন্ত্রের নাম কি?",
+                    options: ["হাইগ্রোমিটার", "হাইড্রোমিটার", "ব্যারোমিটার", "স্ফিগমোম্যানোমিটার"],
+                    answer: 3,
+                    explanation: "রক্তচাপ মাপার যন্ত্রের নাম হলো স্ফিগমোম্যানোমিটার (Sphygmomanometer)।"
+                },
+                {
+                    question: "সাধারণ মানুষের রক্ত হল:",
+                    options: ["নিরপেক্ষ", "সামান্য অম্লীয়", "অ্যাসিড বা বেসে পরিবর্তনশীল", "সামান্য ক্ষারীয়"],
+                    answer: 3,
+                    explanation: "মানুষের রক্তের স্বাভাবিক pH মান ৭.৩৫ থেকে ৭.৪৫ এর মধ্যে থাকে, তাই এটি সামান্য ক্ষারীয় প্রকৃতির।"
+                },
+                {
+                    question: "মানবদেহের পিএইচ (pH) স্তর হল:",
+                    options: ["6.0 থেকে 6.8", "7.0 থেকে 7.8", "7.0 থেকে 8.6", "6.0 থেকে 7.0"],
+                    answer: 1,
+                    explanation: "মানবদেহের রক্তের স্বাভাবিক পিএইচ (pH) স্তর হলো ৭.৩৫ থেকে ৭.৪৫। প্রদত্ত বিকল্পগুলির মধ্যে (খ) 7.0 থেকে 7.8 এই পরিসরটি সঠিক।"
+                },
+                {
+                    question: "রক্তের কোন উপাদান অক্সিজেন পরিবহনের জন্য দায়ী?",
+                    options: ["শ্বেত রক্তকণিকা", "প্লেটলেট", "লোহিত রক্তকণিকা", "প্লাজমা"],
+                    answer: 2,
+                    explanation: "লোহিত রক্তকণিকায় অবস্থিত হিমোগ্লোবিন ফুসফুস থেকে অক্সিজেন গ্রহণ করে এবং তা শরীরের প্রতিটি কোষে পৌঁছে দেয়।"
+                },
+                {
+                    question: "রক্তের কোন উপাদান খাদ্য, CO2 এবং নাইট্রোজেন বর্জ্য পরিবহন করে?",
+                    options: ["শ্বেত রক্তকণিকা", "রক্তের প্লেটলেট", "লোহিত রক্তকণিকা", "প্লাজমা (রক্তরস)"],
+                    answer: 3,
+                    explanation: "রক্তরস বা প্লাজমা হলো রক্তের তরল অংশ যা পরিপাক হওয়া খাদ্য, CO2, হরমোন এবং বর্জ্য পদার্থ পরিবহন করে।"
+                },
+                {
+                    question: "মানবদেহে RBC এর কাজ কি?",
+                    options: ["শরীরের কোষে অক্সিজেন সরবরাহ করা", "শরীরের কোষ থেকে কার্বন ডাই অক্সাইড নিষ্কাশন করা", "নাইট্রোজেন বর্জ্য অপসারণ করা", "পরিপাক খাদ্য সরবরাহ করা"],
+                    answer: 0,
+                    explanation: "লোহিত রক্তকণিকার (RBC) প্রধান কাজ হলো হিমোগ্লোবিনের সাহায্যে ফুসফুস থেকে অক্সিজেন গ্রহণ করে তা শরীরের সমস্ত কোষে পৌঁছে দেওয়া।"
+                },
+                {
+                    question: "মানবদেহে লোহিত রক্তকণিকার সংখ্যা কত?",
+                    options: ["৫০ লক্ষ / ঘন মি.মি. (পুরুষ), ৪৫ লক্ষ / ঘন মি.মি. (স্ত্রী)", "২০ লক্ষ / ঘন মি.মি.", "৮০ লক্ষ / ঘন মি.মি.", "৩০ লক্ষ / ঘন মি.মি."],
+                    answer: 0,
+                    explanation: "একজন প্রাপ্তবয়স্ক পুরুষের প্রতি ঘন মিলিমিটার রক্তে প্রায় ৫০ লক্ষ এবং মহিলার ক্ষেত্রে প্রায় ৪৫ লক্ষ লোহিত রক্তকণিকা থাকে।"
+                },
+                {
+                    question: "মানবদেহে নিচের কোন কোষে মাইটোকন্ড্রিয়া পাওয়া যায় না?",
+                    options: ["লোহিত রক্তকণিকা", "যকৃতের কোষ", "পেশী কোষ", "শ্বেত রক্তকণিকা"],
+                    answer: 0,
+                    explanation: "পরিণত লোহিত রক্তকণিকায় (RBC) নিউক্লিয়াস এবং মাইটোকন্ড্রিয়া থাকে না, যাতে হিমোগ্লোবিনের জন্য সর্বাধিক স্থান সংকুলান হয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>
