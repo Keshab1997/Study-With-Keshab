@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ২ - Biology কোশ</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container"></div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset3.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology কোশ",
+            setName: "Quiz Set 2",
+            name: "Biology কোশ - Set 2 (প্রশ্ন ১১-২০)",
+            questions: [
+                {
+                    question: "একটি স্তন্যপায়ীর কোশে প্রোটিন সংশ্লেষিত হয় যার দ্বারা—",
+                    options: ["রাইবোজোম", "গলগি বস্তু", "লাইসোজোম", "মসৃণ এন্ডোপ্লাজমিক রেটিকুলাম"],
+                    answer: 0,
+                    explanation: "প্রোটিন সংশ্লেষের জন্য রাইবোজোম দায়ী।"
+                },
+                {
+                    question: "যে প্রক্রিয়ায় রাইবোজোম উল্লেখযোগ্য ভূমিকা পালন করে তা হল—",
+                    options: ["সালোকসংশ্লেষ", "প্রোটিন সংশ্লেষ", "লিপিড সংশ্লেষ", "শ্বসন"],
+                    answer: 1,
+                    explanation: "রাইবোজোমে প্রোটিন সংশ্লেষ হয়।"
+                },
+                {
+                    question: "ইলেকট্রন মাইক্রোস্কোপে কোন্ কোশ একসাথে বা একটি করে দৃশ্যমান হয়, ছোট ছোট ডটস্ যা মুক্তভাবে সাইটোপ্লাজমে ভেসে বেড়ায়—",
+                    options: ["গলগি অ্যাপারেটাস", "রাইবোজোম", "ভেসিকস", "পারক্সিজোম"],
+                    answer: 1,
+                    explanation: "রাইবোজোম ছোট ডটস্ আকারে সাইটোপ্লাজমে দেখা যায়।"
+                },
+                {
+                    question: "'ভ্যাকুওল' সম্বন্ধে নিচের কোন তথ্যটি সঠিক নয়?",
+                    options: ["উদ্ভিদের মধ্যে একটি বৃহৎ কেন্দ্রীয় ভ্যাকুওল আছে, যা কোশের মোট পরিমাণের ৯০% অধিকার করে থাকে।", "ভ্যাকুওলগুলি উদ্ভিদের কোশগুলিকে রসস্ফীতি ও দৃঢ়তা দান করে।", "অ্যামিবার মধ্যে ভ্যাকুওলগুলি পুষ্টির ব্যাপারে ভূমিকা নেয়।", "প্রাণীদেহ কোশে ভ্যাকুওলগুলি অনুপস্থিত থাকে।"],
+                    answer: 3,
+                    explanation: "প্রাণীকোশে ছোট ভ্যাকুওল থাকে, তাই এই তথ্যটি ভুল।"
+                },
+                {
+                    question: "কোন্ কোশীয় অঙ্গাণুকে আত্মঘাতী থলি বলে?",
+                    options: ["রাইবোজোম", "লাইসোজোম", "মেসোজোম", "E.R."],
+                    answer: 1,
+                    explanation: "লাইসোজোম কোশের নিজস্ব অঙ্গাণু ও কোশকে হজম করে, তাই একে আত্মঘাতী থলি বলে।"
+                },
+                {
+                    question: "প্রাণীকোশে কোন্ কোশ অঙ্গাণু স্পিন্ডিল তৈরি করে?",
+                    options: ["রাইবোজোম", "সেন্ট্রোজোম", "লাইসোজোম", "মাইটোকন্ড্রিয়া"],
+                    answer: 1,
+                    explanation: "কোশ বিভাজনের সময় স্পিন্ডিল ফাইবার তৈরি করে সেন্ট্রোজোম।"
+                },
+                {
+                    question: "ইউক্যারিওটিক কোষের প্রধান মাইক্রোটিউবিউল-সংগঠন কেন্দ্র—",
+                    options: ["লাইসোজোম", "প্লাস্টিড", "সেন্ট্রোজোম", "ভ্যাক্যুয়ল"],
+                    answer: 2,
+                    explanation: "সেন্ট্রোজোম মাইক্রোটিউবিউল সংগঠনের কেন্দ্র।"
+                },
+                {
+                    question: "উদ্ভিদ কোশপ্রাচীরের মুখ্য উপাদান—",
+                    options: ["পেকটোজ", "সেলুলোজ", "পেপটাইডোগ্লাইক্যান", "জিন"],
+                    answer: 1,
+                    explanation: "উদ্ভিদের কোশপ্রাচীর প্রধানত সেলুলোজ দিয়ে গঠিত।"
+                },
+                {
+                    question: "গঠনগত কোন স্তর শেওলা, ছত্রাক এবং গাছের কোশের চারধারে থাকে এবং যান্ত্রিক চাপের বিরুদ্ধে বল ও নিরাপত্তা দান করে?",
+                    options: ["প্লাস্টিড", "কোশের ঝিল্লি", "কোশপ্রাচীর", "ভ্যাকুওল"],
+                    answer: 2,
+                    explanation: "কোশপ্রাচীর যান্ত্রিক শক্তি ও সুরক্ষা দেয়।"
+                },
+                {
+                    question: "একটি পর্দাবিহীন কোশীয় অঙ্গাণু—",
+                    options: ["রাইবোজোম", "লাইসোজোম", "সেন্ট্রোজোম", "গলগি বডি"],
+                    answer: 0,
+                    explanation: "রাইবোজোমে কোনো পর্দা থাকে না।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biology কোশ - Class 09</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        h4 { border-bottom: 1px dotted #ccc; }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); font-weight: 600; }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-style: italic; font-size: 1.1em; border-radius: 5px; }
+        img { max-width: 100%; height: auto; display: block; margin: 25px auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        .math-formula { background-color: var(--blockquote-bg); padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center; font-size: 1.3em; font-family: 'Courier New', Courier, monospace; border: 1px solid var(--blockquote-border); color: var(--heading-color-1); overflow-x: auto; }
+        ol, ul { padding-left: 20px; list-style-type: none; }
+        li { margin-bottom: 10px; padding-left: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: var(--table-header-bg); color: var(--table-header-text); font-weight: 600; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+        .question-block ul { padding-left: 0; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>Biology: কোশ (প্রশ্নোত্তর)</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div id="digital-clock" class="digital-clock"></div>
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 09</h2>
+
+        <div class="question-block">
+            <h3>1. কোশ আবিষ্কার করেন—</h3>
+            <ul><li>[A] লিউয়েন হক</li><li>[B] রবার্ট হুক</li><li>[C] অল্টম্যান</li><li>[D] রবার্ট ব্রাউন</li></ul>
+            <p><strong>উত্তর:</strong> [B] রবার্ট হুক</p>
+            <blockquote><strong>বেখ্যা:</strong> 1665 সালে রবার্ট হুক কর্ক কোশ পর্যবেক্ষণ করে ‘Cell’ শব্দটি প্রথম ব্যবহার করেন।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>2. কোশ আবিষ্কৃত হয়েছিল—</h3>
+            <ul><li>[A] ষোড়শ শতাব্দীতে</li><li>[B] সপ্তদশ শতাব্দীর শেষভাগে</li><li>[C] সপ্তদশ শতাব্দীর প্রথমদিকে</li><li>[D] অষ্টাদশ শতাব্দীতে</li></ul>
+            <p><strong>উত্তর:</strong> [B] সপ্তদশ শতাব্দীর শেষভাগে</p>
+            <blockquote><strong>বেখ্যা:</strong> 1665 সালে কোশ আবিষ্কৃত হয়, যা সপ্তদশ শতাব্দীর শেষভাগে পড়ে।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>3. কোশের গঠন নিয়ে জীববিদ্যার যে শাখা আলোচনা করে, তার নাম—</h3>
+            <ul><li>[A] সাইটোলজি</li><li>[B] ইকোলজি</li><li>[C] হিস্টোলজি</li><li>[D] জেনেটিকস</li></ul>
+            <p><strong>উত্তর:</strong> [A] সাইটোলজি</p>
+            <blockquote><strong>বেখ্যা:</strong> সাইটোলজি হল কোশের গঠন, কার্যাবলী ও আচরণ নিয়ে আলোচনা করে।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>4. কোশের 'শক্তিঘর' হল—</h3>
+            <ul><li>[A] নিউক্লিয়াস</li><li>[B] লাইসোজোম</li><li>[C] মাইটোকন্ড্রিয়া</li><li>[D] ডিএনএ</li></ul>
+            <p><strong>উত্তর:</strong> [C] মাইটোকন্ড্রিয়া</p>
+            <blockquote><strong>বেখ্যা:</strong> মাইটোকন্ড্রিয়া কোশের শক্তিঘর, কারণ এখানে ATP তৈরি হয়।</blockquote>
+        </div>
+        
+        <div class="question-block">
+            <h3>5. 1857 সালে প্রথম আবিষ্কৃত কোন ঝিল্লিসহ অর্গানেলসকে প্রায়ই কোশের শক্তিঘর হিসেবে চিহ্নিত করা হয় কারণ তারা কোশের প্রধান শক্তি বহনকারী অণু অ্যাডিনোসিন ট্রাইফসফেট (ATP) তৈরি হওয়ার জন্য দায়ী থাকে?</h3>
+            <ul><li>[A] মসৃণ এন্ডোপ্লাজমিক রেটিকুলাস</li><li>[B] ভ্যাকুওলস</li><li>[C] মাইটোকন্ড্রিয়া</li><li>[D] রাইবোজোমস</li></ul>
+            <p><strong>উত্তর:</strong> [C] মাইটোকন্ড্রিয়া</p>
+            <blockquote><strong>বেখ্যা:</strong> মাইটোকন্ড্রিয়া কোশের শক্তিঘর, কারণ এখানে ATP উৎপন্ন হয়।</blockquote>
+        </div>
+        
+        <div class="question-block">
+            <h3>6. ক্রিস্টি পাওয়া যায় কোন্ কোশীয় অঙ্গাণুতে?</h3>
+            <ul><li>(a) রাইবোজোম</li><li>(b) লাইসোজোম</li><li>(c) সেন্ট্রোজোম</li><li>(d) মাইটোকন্ড্রিয়া</li></ul>
+            <p><strong>উত্তর:</strong> (d) মাইটোকন্ড্রিয়া</p>
+            <blockquote><strong>বেখ্যা:</strong> মাইটোকন্ড্রিয়ার অন্তঃপর্দার ভাঁজকে ক্রিস্টি বলে।</blockquote>
+        </div>
+        
+        <div class="question-block">
+            <h3>7. যে-অঙ্গাণুটি উদ্ভিদকোশে ও প্রাণীকোশে একই কাজ করে তার নাম—</h3>
+            <ul><li>[A] কোশপ্রাচীর</li><li>[B] সংকোচনশীল গহ্বর</li><li>[C] ক্লোরোপ্লাস্ট</li><li>[D] মাইটোকন্ড্রিয়া</li></ul>
+            <p><strong>উত্তর:</strong> [D] মাইটোকন্ড্রিয়া</p>
+            <blockquote><strong>বেখ্যা:</strong> মাইটোকন্ড্রিয়া দুই কোশেই শক্তি উৎপাদন করে।</blockquote>
+        </div>
+        
+        <div class="question-block">
+            <h3>8. কোশের মস্তিষ্ক কাকে বলে?</h3>
+            <ul><li>(a) মাইটোকন্ড্রিয়া</li><li>(b) ক্লোরোপ্লাস্ট</li><li>(c) নিউক্লিয়াস</li><li>(d) সেন্ট্রিওল</li></ul>
+            <p><strong>উত্তর:</strong> (c) নিউক্লিয়াস</p>
+            <blockquote><strong>বেখ্যা:</strong> নিউক্লিয়াস কোশের যাবতীয় কার্যাবলী নিয়ন্ত্রণ করে।</blockquote>
+        </div>
+        
+        <div class="question-block">
+            <h3>9. কোশের কোন্ অঙ্গাণু প্রোটিন সংশ্লেষের সহিত সম্পর্কিত?</h3>
+            <ul><li>(a) লাইসোজোম</li><li>(b) সেন্ট্রোজোম</li><li>(c) রাইবোজোম</li><li>(d) গলগি বডি</li></ul>
+            <p><strong>উত্তর:</strong> (c) রাইবোজোম</p>
+            <blockquote><strong>বেখ্যা:</strong> রাইবোজোমে প্রোটিন সংশ্লেষ হয়, তাই একে প্রোটিন ফ্যাক্টরি বলে।</blockquote>
+        </div>
+        
+        <div class="question-block">
+            <h3>10. একটি পলিসোমে রাইবোজোমের ভূমিকা কী?</h3>
+            <ul><li>[A] mRNA কে প্রোটিনে রূপান্তরিত করে</li><li>[B] DNA তৈরিতে সহায়তা করে</li><li>[C] DNA পুনরাবৃত্তিতে সহায়তা করে</li><li>[D] RNA সৃষ্টি করে</li></ul>
+            <p><strong>উত্তর:</strong> [A] mRNA কে প্রোটিনে রূপান্তরিত করে</p>
+            <blockquote><strong>বেখ্যা:</strong> পলিসোমে একাধিক রাইবোজোম একসাথে mRNA থেকে প্রোটিন তৈরি করে।</blockquote>
+        </div>
+
+        <!-- Remaining questions will follow the same pattern -->
+        <div class="question-block">
+            <h3>11. একটি স্তন্যপায়ীর কোশে প্রোটিন সংশ্লেষিত হয় যার দ্বারা—</h3>
+            <ul><li>[A] রাইবোজোম</li><li>[B] গলগি বস্তু</li><li>[C] লাইসোজোম</li><li>[D] মসৃণ এন্ডোপ্লাজমিক রেটিকুলাম</li></ul>
+            <p><strong>উত্তর:</strong> [A] রাইবোজোম</p>
+            <blockquote><strong>বেখ্যা:</strong> প্রোটিন সংশ্লেষের জন্য রাইবোজোম দায়ী।</blockquote>
+        </div>
+        
+        <div class="question-block">
+            <h3>12. যে প্রক্রিয়ায় রাইবোজোম উল্লেখযোগ্য ভূমিকা পালন করে তা হল—</h3>
+            <ul><li>[A] সালোকসংশ্লেষ</li><li>[B] প্রোটিন সংশ্লেষ</li><li>[C] লিপিড সংশ্লেষ</li><li>[D] শ্বসন</li></ul>
+            <p><strong>উত্তর:</strong> [B] প্রোটিন সংশ্লেষ</p>
+            <blockquote><strong>বেখ্যা:</strong> রাইবোজোমে প্রোটিন সংশ্লেষ হয়।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>13. ইলেকট্রন মাইক্রোস্কোপে কোন্ কোশ একসাথে বা একটি করে দৃশ্যমান হয়, ছোট ছোট ডটস্ যা মুক্তভাবে সাইটোপ্লাজমে ভেসে বেড়ায়—</h3>
+            <ul><li>[A] গলগি অ্যাপারেটাস</li><li>[B] রাইবোজোম</li><li>[C] ভেসিকস</li><li>[D] পারক্সিজোম</li></ul>
+            <p><strong>উত্তর:</strong> [B] রাইবোজোম</p>
+            <blockquote><strong>বেখ্যা:</strong> রাইবোজোম ছোট ডটস্ আকারে সাইটোপ্লাজমে দেখা যায়।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>14. 'ভ্যাকুওল' সম্বন্ধে নিচের কোন তথ্যটি সঠিক নয়?</h3>
+            <ul>
+                <li>[A] উদ্ভিদের মধ্যে একটি বৃহৎ কেন্দ্রীয় ভ্যাকুওল আছে, যা কোশের মোট পরিমাণের ৯০% অধিকার করে থাকে।</li>
+                <li>[B] ভ্যাকুওলগুলি উদ্ভিদের কোশগুলিকে রসস্ফীতি ও দৃঢ়তা দান করে।</li>
+                <li>[C] অ্যামিবার মধ্যে ভ্যাকুওলগুলি পুষ্টির ব্যাপারে ভূমিকা নেয়।</li>
+                <li>[D] প্রাণীদেহ কোশে ভ্যাকুওলগুলি অনুপস্থিত থাকে।</li>
+            </ul>
+            <p><strong>উত্তর:</strong> [D] প্রাণীদেহ কোশে ভ্যাকুওলগুলি অনুপস্থিত থাকে।</p>
+            <blockquote><strong>বেখ্যা:</strong> প্রাণীকোশে ছোট ভ্যাকুওল থাকে, তাই এই তথ্যটি ভুল।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>15. কোন্ কোশীয় অঙ্গাণুকে আত্মঘাতী থলি বলে?</h3>
+            <ul><li>(a) রাইবোজোম</li><li>(b) লাইসোজোম</li><li>(c) মেসোজোম</li><li>(d) E.R.</li></ul>
+            <p><strong>উত্তর:</strong> (b) লাইসোজোম</p>
+            <blockquote><strong>বেখ্যা:</strong> লাইসোজোম কোশের নিজস্ব অঙ্গাণু ও কোশকে হজম করে, তাই একে আত্মঘাতী থলি বলে।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>16. প্রাণীকোশে কোন্ কোশ অঙ্গাণু স্পিন্ডিল তৈরি করে?</h3>
+            <ul><li>(a) রাইবোজোম</li><li>(b) সেন্ট্রোজোম</li><li>(c) লাইসোজোম</li><li>(d) মাইটোকন্ড্রিয়া</li></ul>
+            <p><strong>উত্তর:</strong> (b) সেন্ট্রোজোম</p>
+            <blockquote><strong>বেখ্যা:</strong> কোশ বিভাজনের সময় স্পিন্ডিল ফাইবার তৈরি করে সেন্ট্রোজোম।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>17. ইউক্যারিওটিক কোষের প্রধান মাইক্রোটিউবিউল-সংগঠন কেন্দ্র—</h3>
+            <ul><li>[A] লাইসোজোম</li><li>[B] প্লাস্টিড</li><li>[C] সেন্ট্রোজোম</li><li>[D] ভ্যাক্যুয়ল</li></ul>
+            <p><strong>উত্তর:</strong> [C] সেন্ট্রোজোম</p>
+            <blockquote><strong>বেখ্যা:</strong> সেন্ট্রোজোম মাইক্রোটিউবিউল সংগঠনের কেন্দ্র।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>18. উদ্ভিদ কোশপ্রাচীরের মুখ্য উপাদান—</h3>
+            <ul><li>(a) পেকটোজ</li><li>(b) সেলুলোজ</li><li>(c) পেপটাইডোগ্লাইক্যান</li><li>(d) জিন</li></ul>
+            <p><strong>উত্তর:</strong> (b) সেলুলোজ</p>
+            <blockquote><strong>বেখ্যা:</strong> উদ্ভিদের কোশপ্রাচীর প্রধানত সেলুলোজ দিয়ে গঠিত।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>19. গঠনগত কোন স্তর শেওলা, ছত্রাক এবং গাছের কোশের চারধারে থাকে এবং যান্ত্রিক চাপের বিরুদ্ধে বল ও নিরাপত্তা দান করে?</h3>
+            <ul><li>[A] প্লাস্টিড</li><li>[B] কোশের ঝিল্লি</li><li>[C] কোশপ্রাচীর</li><li>[D] ভ্যাকুওল</li></ul>
+            <p><strong>উত্তর:</strong> [C] কোশপ্রাচীর</p>
+            <blockquote><strong>বেখ্যা:</strong> কোশপ্রাচীর যান্ত্রিক শক্তি ও সুরক্ষা দেয়।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>20. একটি পর্দাবিহীন কোশীয় অঙ্গাণু—</h3>
+            <ul><li>(a) রাইবোজোম</li><li>(b) লাইসোজোম</li><li>(c) সেন্ট্রোজোম</li><li>(d) গলগি বডি</li></ul>
+            <p><strong>উত্তর:</strong> (a) রাইবোজোম</p>
+            <blockquote><strong>বেখ্যা:</strong> রাইবোজোমে কোনো পর্দা থাকে না। (সেন্ট্রোজোমও পর্দাবিহীন)</blockquote>
+        </div>
+        
+        <div class="question-block">
+            <h3>21. নিচের কোন কোশের অর্গানেলগুলি ঝিল্লি দ্বারা রেখাযুক্ত নয়?</h3>
+            <ul><li>[A] লাইসোজোম</li><li>[B] রাইবোজোম</li><li>[C] নিউক্লিয়াস</li><li>[D] গলগি বডি</li></ul>
+            <p><strong>উত্তর:</strong> [B] রাইবোজোম</p>
+            <blockquote><strong>বেখ্যা:</strong> রাইবোজোম ঝিল্লিবিহীন অঙ্গাণু।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>22. কোশের ঝিল্লি (Cell membrane) সম্বন্ধে নিচের কোন বিবৃতিটি সঠিক নয়?</h3>
+            <ul>
+                <li>[A] এটি সেলুলোজ দিয়ে তৈরি</li>
+                <li>[B] এটি সমস্ত পদার্থ দ্বারা ভেদ্য</li>
+                <li>[C] এটি নমনীয় এবং কোশকে বহু পদার্থ গ্রাস করতে সাহায্য করে</li>
+                <li>[D] অক্সিজেন ও কার্বনডাই অক্সাইডের মতো গ্যাসগুলিকে ছড়িয়ে পড়তে দেয় না।</li>
+            </ul>
+            <p><strong>উত্তর:</strong> [A] এটি সেলুলোজ দিয়ে তৈরি</p>
+            <blockquote><strong>বেখ্যা:</strong> কোশপর্দা সেলুলোজ দিয়ে নয়, লিপিড ও প্রোটিন দিয়ে তৈরি। বাকি অপশন গুলোও ভুল।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>23. নিউক্লিয়াস ও সাইটোপ্লাজমের বিভিন্ন অংশে বস্তুর পরিবহন সম্পন্ন হয় সাধারণত যার মাধ্যমে—</h3>
+            <ul><li>[A] রাইবোজোম</li><li>[B] মাইটোকন্ড্রিয়া</li><li>[C] লাইসোজোম</li><li>[D] এন্ডোপ্লাজমিক রেটিকুলাম</li></ul>
+            <p><strong>উত্তর:</strong> [D] এন্ডোপ্লাজমিক রেটিকুলাম</p>
+            <blockquote><strong>বেখ্যা:</strong> এন্ডোপ্লাজমিক রেটিকুলাম কোশে পদার্থ পরিবহন করে।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>24. কোন কোশ অঙ্গানুগুলির নিজস্ব DNA ও রাইবোজোম আছে?</h3>
+            <ul><li>[A] গলগি বস্তু ও এন্ডোপ্লাজমিক রেটিকুলাম</li><li>[B] মাইটোকন্ড্রিয়া ও প্লাস্টিড</li><li>[C] লাইসোজোম ও গলগি বস্তু</li><li>[D] কোশগহ্বর ও প্লাস্টিড</li></ul>
+            <p><strong>উত্তর:</strong> [B] মাইটোকন্ড্রিয়া ও প্লাস্টিড</p>
+            <blockquote><strong>বেখ্যা:</strong> মাইটোকন্ড্রিয়া ও প্লাস্টিডে নিজস্ব DNA ও রাইবোজোম থাকে।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>25. নিম্নলিখিতদের মধ্যে কোনটি প্রোক্যারিওটিক?</h3>
+            <ul><li>[A] ইডোগোনিয়াম</li><li>[B] কনড্রাস ক্রিসপাস</li><li>[C] অসিলেটোরিয়া</li><li>[D] কারা</li></ul>
+            <p><strong>উত্তর:</strong> [C] অসিলেটোরিয়া</p>
+            <blockquote><strong>বেখ্যা:</strong> অসিলেটোরিয়া একটি নীলাভ-সবুজ শৈবাল, যা প্রোক্যারিওটিক।</blockquote>
+        </div>
+        
+        <div class="question-block">
+            <h3>26. ক্রিস্টি দেখা যায়—</h3>
+            <ul><li>[A] ক্লোরোপ্লাস্টিডে</li><li>[B] নিউক্লিয়াসে</li><li>[C] কোষপ্রাচীরে</li><li>[D] মাইটোকন্ড্রিয়ায়</li></ul>
+            <p><strong>উত্তর:</strong> [D] মাইটোকন্ড্রিয়ায়</p>
+            <blockquote><strong>বেখ্যা:</strong> মাইটোকন্ড্রিয়ার অন্তঃপর্দার ভাঁজকে ক্রিস্টি বলে।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>27. টোটিপোটেন্সি কি?</h3>
+            <ul>
+                <li>[A] পরিণত জীবের একটি কোষের যে-কোনো কোষে পরিবর্তনের ক্ষমতা</li>
+                <li>[B] কোষের মেরুবিভাজন</li>
+                <li>[C] স্নায়ুকোশের মোট তড়িৎ আধানের পার্থক্য</li>
+                <li>[D] সাইনান্সের স্নায়ু স্পন্দন পরিবহণের ক্ষমতা</li>
+            </ul>
+            <p><strong>উত্তর:</strong> [A] পরিণত জীবের একটি কোষের যে-কোনো কোষে পরিবর্তনের ক্ষমতা</p>
+            <blockquote><strong>বেখ্যা:</strong> টোটিপোটেন্সি মানে একটি কোষ থেকে সম্পূর্ণ জীব তৈরি হওয়ার ক্ষমতা।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>28. কোষপর্দা কোথায় দেখতে পাওয়া যায়?</h3>
+            <ul><li>[A] উদ্ভিদ কোষ</li><li>[B] প্রাণী কোষ</li><li>[C] উদ্ভিদ এবং প্রাণী কোষ</li><li>[D] কোনটাই নয়</li></ul>
+            <p><strong>উত্তর:</strong> [C] উদ্ভিদ এবং প্রাণী কোষ</p>
+            <blockquote><strong>বেখ্যা:</strong> দুই ধরনের কোশেই কোশপর্দা থাকে।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>29. দেহকোশের ডিপ্লয়েড নিউক্লিয়াসকে বলা হয়—</h3>
+            <ul><li>[A] প্রোনিউক্লিয়াস</li><li>[B] অ্যাম্ফিনিউক্লিয়াস</li><li>[C] হেমিনিউক্লিয়াস</li><li>[D] হেটারোক্যারিয়ন</li></ul>
+            <p><strong>উত্তর:</strong> [B] অ্যাম্ফিনিউক্লিয়াস</p>
+            <blockquote><strong>বেখ্যা:</strong> দুটি ভিন্নধর্মী নিউক্লিয়াসের মিলন হলে তাকে হেটারোক্যারিয়ন বলে। নিষেকের পর জাইগোটের নিউক্লিয়াসকে অ্যাম্ফিনিউক্লিয়াস বা সিনক্যারিয়ন বলে।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>30. কোশবাদ বা কোশতত্ত্বের প্রবর্তক হলেন—</h3>
+            <ul><li>[A] ওয়াটসন ও ক্লিক</li><li>[B] ড্যানিয়েল ও ড্যাভসন</li><li>[C] স্লেইডেন ও স্বোয়ান</li><li>[D] নিকসন</li></ul>
+            <p><strong>উত্তর:</strong> [C] স্লেইডেন ও স্বোয়ান</p>
+            <blockquote><strong>বেখ্যা:</strong> স্লেইডেন ও স্বোয়ান কোশতত্ত্বের প্রবর্তক।</blockquote>
+        </div>
+        
+        <div class="question-block">
+            <h3>31. 'প্রোটোপ্লাজমই জীবনের ভৌত ভিত্তি' উক্তিটির প্রবক্তা হলেন—</h3>
+            <ul><li>[A] হাক্সলে</li><li>[B] সাপ</li><li>[C] টমসন</li><li>[D] দুজারদিন</li></ul>
+            <p><strong>উত্তর:</strong> [A] হাক্সলে</p>
+            <blockquote><strong>বেখ্যা:</strong> হাক্সলে এই উক্তি দেন।</blockquote>
+        </div>
+        
+        <div class="question-block">
+            <h3>32. আদি নিউক্লিয়াসযুক্ত কোশে মাইটোকন্ড্রিয়ার পরিবর্তে থাকে—</h3>
+            <ul><li>[A] ইনফরমোজোম</li><li>[B] রাইবোজোম</li><li>[C] মেসোজোম</li><li>[D] পলিজোম</li></ul>
+            <p><strong>উত্তর:</strong> [C] মেসোজোম</p>
+            <blockquote><strong>বেখ্যা:</strong> প্রোক্যারিওটিক কোশে মেসোজোম শক্তি উৎপাদনে সাহায্য করে।</blockquote>
+        </div>
+        
+        <div class="question-block">
+            <h3>33. নিম্নলিখিতগুলির মধ্যে যেটি প্রোক্যারিওটিক কোশযুক্ত জীব সেটি হল—</h3>
+            <ul><li>[A] ইস্ট</li><li>[B] শৈবাল</li><li>[C] নীলাভ-সবুজ শৈবাল</li><li>[D] ইউগ্লিনা</li></ul>
+            <p><strong>উত্তর:</strong> [C] নীলাভ-সবুজ শৈবাল</p>
+            <blockquote><strong>বেখ্যা:</strong> নীলাভ-সবুজ শৈবাল (সায়ানোব্যাকটেরিয়া) প্রোক্যারিওটিক।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>34. নিচে কোন সংগঠনটি মৃত?</h3>
+            <ul><li>[A] কোশপ্রাচীর</li><li>[B] নিউক্লিয়াস</li><li>[C] প্লাজমা</li><li>[D] মাইটোকন্ড্রিয়া</li></ul>
+            <p><strong>উত্তর:</strong> [A] কোশপ্রাচীর</p>
+            <blockquote><strong>বেখ্যা:</strong> কোশপ্রাচীর মৃত, কারণ এতে কোনো সজীব পদার্থ থাকে না।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>35. উদ্ভিদের কোশপ্রাচীরের উপাদান হল—</h3>
+            <ul><li>[A] কাইটিন</li><li>[B] জাইলেম</li><li>[C] লিপিড</li><li>[D] সেলুলোজ</li></ul>
+            <p><strong>উত্তর:</strong> [D] সেলুলোজ</p>
+            <blockquote><strong>বেখ্যা:</strong> উদ্ভিদের কোশপ্রাচীর সেলুলোজ দিয়ে গঠিত।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>36. সবচেয়ে বড়ো প্রাণীকোশের উদাহরণ হল—</h3>
+            <ul><li>[A] মুরগির ডিম</li><li>[B] হাঁসের ডিম</li><li>[C] এমু পাখির ডিম</li><li>[D] উটপাখির ডিম</li></ul>
+            <p><strong>উত্তর:</strong> [D] উটপাখির ডিম</p>
+            <blockquote><strong>বেখ্যা:</strong> উটপাখির ডিম পৃথিবীর সবচেয়ে বড়ো কোশ।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>37. জীবজগতের ক্ষুদ্রতম কোশ হল—</h3>
+            <ul><li>[A] প্লাসমোডিয়াম</li><li>[B] এন্টামিবা হিস্টোলাইটিকা</li><li>[C] মাইকোপ্লাজমা</li><li>[D] গ্রামিনিস</li></ul>
+            <p><strong>উত্তর:</strong> [C] মাইকোপ্লাজমা</p>
+            <blockquote><strong>বেখ্যা:</strong> মাইকোপ্লাজমা সবচেয়ে ছোটো কোশ (0.1 মাইক্রন)।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>38. মানুষের দেহে দীর্ঘতম কোশ—</h3>
+            <p><strong>উত্তর:</strong> নিউরন (স্নায়ুকোষ)</p>
+            <blockquote><strong>বেখ্যা:</strong> নিউরন মানুষের দেহে সবচেয়ে দীর্ঘ কোশ।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>39. কোশীয় আবরণীর তরল মোজাইক নকশা প্রদান করেন?</h3>
+            <ul><li>(a) ড্যানিয়েল ও ড্যাভসন</li><li>(b) সিঙ্গার</li><li>(c) ডারলিংটন</li><li>(d) সিঙ্গার ও নিকলসন</li></ul>
+            <p><strong>উত্তর:</strong> (d) সিঙ্গার ও নিকলসন</p>
+            <blockquote><strong>বেখ্যা:</strong> 1972 সালে সিঙ্গার ও নিকলসন তরল মোজাইক মডেল দেন।</blockquote>
+        </div>
+
+        <div class="question-block">
+            <h3>40. A স্তম্ভের সাথে B স্তম্ভ মেলাও-</h3>
+            <table>
+                <thead>
+                    <tr><th>A স্তম্ভ</th><th>B স্তম্ভ</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>i. কোশের শক্তিঘর</td><td>a. প্লাসটিড</td></tr>
+                    <tr><td>ii. কোশের রান্নাঘর</td><td>b. মাইটোকন্ড্রিয়া</td></tr>
+                    <tr><td>iii. কোশের 'আত্মঘাতী থলি'</td><td>c. নিউক্লিয়াস</td></tr>
+                    <tr><td>iv. কোশের মস্তিষ্ক</td><td>d. লাইসোজোম</td></tr>
+                </tbody>
+            </table>
+            <p><strong>উত্তর:</strong> i - b, ii - a, iii - d, iv - c</p>
+            <blockquote><strong>বেখ্যা:</strong><ul><li>মাইটোকন্ড্রিয়া শক্তিঘর,</li><li>প্লাসটিড রান্নাঘর (খাদ্য তৈরি),</li><li>লাইসোজোম আত্মঘাতী থলি,</li><li>নিউক্লিয়াস কোশের মস্তিষ্ক।</li></ul></blockquote>
+        </div>
+
+
+        <h2>ধন্যবাদ</h2>
+    </div>
+
+    <nav class="navigation">
+        <!-- পূর্ববর্তী পেজ হলো class8.html -->
+        <a href="class8.html" class="nav-button">পূর্ববর্তী</a>
+
+        <!-- পেজ নম্বর লিঙ্ক -->
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button active">9</a>
+
+        <!-- এটি শেষ পেজ, তাই পরবর্তী বাটন নিষ্ক্রিয় থাকবে -->
+        <a href="#" class="nav-button disabled">পরবর্তী</a>
+        
+        <!-- হোম পেজে ফিরে যাওয়ার লিঙ্ক -->
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme and Mode Setup
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+
+            // Scroll Buttons Setup
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            // Digital Clock
+            const clockElement = document.getElementById('digital-clock');
+            function updateClock() {
+                if(clockElement) {
+                    const now = new Date();
+                    const options = {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: true,
+                        timeZone: 'Asia/Kolkata'
+                    };
+                    clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+                }
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            // Automatic Copyright Year
+            const yearSpan = document.getElementById('copyright-year');
+            if(yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+</body>
+</html>

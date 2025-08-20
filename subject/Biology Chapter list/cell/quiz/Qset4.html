@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৪ - Biology কোশ</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container"></div>
+
+        <div class="page-navigation">
+            <a href="Qset3.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="#" class="btn btn-secondary disabled">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology কোশ",
+            setName: "Quiz Set 4",
+            name: "Biology কোশ - Set 4 (প্রশ্ন ৩১-৪০)",
+            questions: [
+                {
+                    question: "'প্রোটোপ্লাজমই জীবনের ভৌত ভিত্তি' উক্তিটির প্রবক্তা হলেন—",
+                    options: ["হাক্সলে", "সাপ", "টমসন", "দুজারদিন"],
+                    answer: 0,
+                    explanation: "হাক্সলে এই উক্তি দেন।"
+                },
+                {
+                    question: "আদি নিউক্লিয়াসযুক্ত কোশে মাইটোকন্ড্রিয়ার পরিবর্তে থাকে—",
+                    options: ["ইনফরমোজোম", "রাইবোজোম", "মেসোজোম", "পলিজোম"],
+                    answer: 2,
+                    explanation: "প্রোক্যারিওটিক কোশে মেসোজোম শক্তি উৎপাদনে সাহায্য করে।"
+                },
+                {
+                    question: "নিম্নলিখিতগুলির মধ্যে যেটি প্রোক্যারিওটিক কোশযুক্ত জীব সেটি হল—",
+                    options: ["ইস্ট", "শৈবাল", "নীলাভ-সবুজ শৈবাল", "ইউগ্লিনা"],
+                    answer: 2,
+                    explanation: "নীলাভ-সবুজ শৈবাল (সায়ানোব্যাকটেরিয়া) প্রোক্যারিওটিক।"
+                },
+                {
+                    question: "নিচে কোন সংগঠনটি মৃত?",
+                    options: ["কোশপ্রাচীর", "নিউক্লিয়াস", "প্লাজমা", "মাইটোকন্ড্রিয়া"],
+                    answer: 0,
+                    explanation: "কোশপ্রাচীর মৃত, কারণ এতে কোনো সজীব পদার্থ থাকে না।"
+                },
+                {
+                    question: "উদ্ভিদের কোশপ্রাচীরের উপাদান হল—",
+                    options: ["কাইটিন", "জাইলেম", "লিপিড", "সেলুলোজ"],
+                    answer: 3,
+                    explanation: "উদ্ভিদের কোশপ্রাচীর সেলুলোজ দিয়ে গঠিত।"
+                },
+                {
+                    question: "সবচেয়ে বড়ো প্রাণীকোশের উদাহরণ হল—",
+                    options: ["মুরগির ডিম", "হাঁসের ডিম", "এমু পাখির ডিম", "উটপাখির ডিম"],
+                    answer: 3,
+                    explanation: "উটপাখির ডিম পৃথিবীর সবচেয়ে বড়ো কোশ।"
+                },
+                {
+                    question: "জীবজগতের ক্ষুদ্রতম কোশ হল—",
+                    options: ["প্লাসমোডিয়াম", "এন্টামিবা হিস্টোলাইটিকা", "মাইকোপ্লাজমা", "গ্রামিনিস"],
+                    answer: 2,
+                    explanation: "মাইকোপ্লাজমা সবচেয়ে ছোটো কোশ (0.1 মাইক্রন)।"
+                },
+                {
+                    question: "মানুষের দেহে দীর্ঘতম কোশ—",
+                    options: ["অ্যাক্সন", "ডেনড্রন", "নিউরন (স্নায়ুকোষ)", "কোনোটিই নয়"],
+                    answer: 2,
+                    explanation: "নিউরন মানুষের দেহে সবচেয়ে দীর্ঘ কোশ।"
+                },
+                {
+                    question: "কোশীয় আবরণীর তরল মোজাইক নকশা প্রদান করেন?",
+                    options: ["ড্যানিয়েল ও ড্যাভসন", "সিঙ্গার", "ডারলিংটন", "সিঙ্গার ও নিকলসন"],
+                    answer: 3,
+                    explanation: "1972 সালে সিঙ্গার ও নিকলসন তরল মোজাইক মডেল দেন।"
+                },
+                {
+                    question: "A স্তম্ভের সাথে B স্তম্ভ মেলাও- i. কোশের শক্তিঘর ii. কোশের রান্নাঘর iii. কোশের 'আত্মঘাতী থলি' iv. কোশের মস্তিষ্ক --- B স্তম্ভ a. প্লাসটিড b. মাইটোকন্ড্রিয়া c. নিউক্লিয়াস d. লাইসোজোম",
+                    options: ["i-b, ii-a, iii-d, iv-c", "i-a, ii-b, iii-c, iv-d", "i-d, ii-c, iii-b, iv-a", "i-c, ii-d, iii-a, iv-b"],
+                    answer: 0,
+                    explanation: "মাইটোকন্ড্রিয়া শক্তিঘর (i-b), প্লাসটিড রান্নাঘর (ii-a), লাইসোজোম আত্মঘাতী থলি (iii-d), নিউক্লিয়াস কোশের মস্তিষ্ক (iv-c)।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

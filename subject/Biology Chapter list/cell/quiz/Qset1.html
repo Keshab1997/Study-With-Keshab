@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - Biology কোশ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology কোশ",
+            setName: "Quiz Set 1",
+            name: "Biology কোশ - Set 1 (প্রশ্ন ১-১০)",
+            questions: [
+                {
+                    question: "কোশ আবিষ্কার করেন—",
+                    options: ["লিউয়েন হক", "রবার্ট হুক", "অল্টম্যান", "রবার্ট ব্রাউন"],
+                    answer: 1,
+                    explanation: "1665 সালে রবার্ট হুক কর্ক কোশ পর্যবেক্ষণ করে ‘Cell’ শব্দটি প্রথম ব্যবহার করেন।"
+                },
+                {
+                    question: "কোশ আবিষ্কৃত হয়েছিল—",
+                    options: ["ষোড়শ শতাব্দীতে", "সপ্তদশ শতাব্দীর শেষভাগে", "সপ্তদশ শতাব্দীর প্রথমদিকে", "অষ্টাদশ শতাব্দীতে"],
+                    answer: 1,
+                    explanation: "1665 সালে কোশ আবিষ্কৃত হয়, যা সপ্তদশ শতাব্দীর শেষভাগে পড়ে।"
+                },
+                {
+                    question: "কোশের গঠন নিয়ে জীববিদ্যার যে শাখা আলোচনা করে, তার নাম—",
+                    options: ["সাইটোলজি", "ইকোলজি", "হিস্টোলজি", "জেনেটিকস"],
+                    answer: 0,
+                    explanation: "সাইটোলজি হল কোশের গঠন, কার্যাবলী ও আচরণ নিয়ে আলোচনা করে।"
+                },
+                {
+                    question: "কোশের 'শক্তিঘর' হল—",
+                    options: ["নিউক্লিয়াস", "লাইসোজোম", "মাইটোকন্ড্রিয়া", "ডিএনএ"],
+                    answer: 2,
+                    explanation: "মাইটোকন্ড্রিয়া কোশের শক্তিঘর, কারণ এখানে ATP তৈরি হয়।"
+                },
+                {
+                    question: "1857 সালে প্রথম আবিষ্কৃত কোন ঝিল্লিসহ অর্গানেলসকে প্রায়ই কোশের শক্তিঘর হিসেবে চিহ্নিত করা হয় কারণ তারা কোশের প্রধান শক্তি বহনকারী অণু অ্যাডিনোসিন ট্রাইফসফেট (ATP) তৈরি হওয়ার জন্য দায়ী থাকে?",
+                    options: ["মসৃণ এন্ডোপ্লাজমিক রেটিকুলাস", "ভ্যাকুওলস", "মাইটোকন্ড্রিয়া", "রাইবোজোমস"],
+                    answer: 2,
+                    explanation: "মাইটোকন্ড্রিয়া কোশের শক্তিঘর, কারণ এখানে ATP উৎপন্ন হয়।"
+                },
+                {
+                    question: "ক্রিস্টি পাওয়া যায় কোন্ কোশীয় অঙ্গাণুতে?",
+                    options: ["রাইবোজোম", "লাইসোজোম", "সেন্ট্রোজোম", "মাইটোকন্ড্রিয়া"],
+                    answer: 3,
+                    explanation: "মাইটোকন্ড্রিয়ার অন্তঃপর্দার ভাঁজকে ক্রিস্টি বলে।"
+                },
+                {
+                    question: "যে-অঙ্গাণুটি উদ্ভিদকোশে ও প্রাণীকোশে একই কাজ করে তার নাম—",
+                    options: ["কোশপ্রাচীর", "সংকোচনশীল গহ্বর", "ক্লোরোপ্লাস্ট", "মাইটোকন্ড্রিয়া"],
+                    answer: 3,
+                    explanation: "মাইটোকন্ড্রিয়া দুই কোশেই শক্তি উৎপাদন করে।"
+                },
+                {
+                    question: "কোশের মস্তিষ্ক কাকে বলে?",
+                    options: ["মাইটোকন্ড্রিয়া", "ক্লোরোপ্লাস্ট", "নিউক্লিয়াস", "সেন্ট্রিওল"],
+                    answer: 2,
+                    explanation: "নিউক্লিয়াস কোশের যাবতীয় কার্যাবলী নিয়ন্ত্রণ করে।"
+                },
+                {
+                    question: "কোশের কোন্ অঙ্গাণু প্রোটিন সংশ্লেষের সহিত সম্পর্কিত?",
+                    options: ["লাইসোজোম", "সেন্ট্রোজোম", "রাইবোজোম", "গলগি বডি"],
+                    answer: 2,
+                    explanation: "রাইবোজোমে প্রোটিন সংশ্লেষ হয়, তাই একে প্রোটিন ফ্যাক্টরি বলে।"
+                },
+                {
+                    question: "একটি পলিসোমে রাইবোজোমের ভূমিকা কী?",
+                    options: ["mRNA কে প্রোটিনে রূপান্তরিত করে", "DNA তৈরিতে সহায়তা করে", "DNA পুনরাবৃত্তিতে সহায়তা করে", "RNA সৃষ্টি করে"],
+                    answer: 0,
+                    explanation: "পলিসোমে একাধিক রাইবোজোম একসাথে mRNA থেকে প্রোটিন তৈরি করে।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

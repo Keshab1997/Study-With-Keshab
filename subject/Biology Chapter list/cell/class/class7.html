@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biology কোশ - Class 07</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        h4 { border-bottom: 1px dotted #ccc; }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); font-weight: 600; }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-style: italic; font-size: 1.1em; border-radius: 5px; }
+        img { max-width: 100%; height: auto; display: block; margin: 25px auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        .math-formula { background-color: var(--blockquote-bg); padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center; font-size: 1.3em; font-family: 'Courier New', Courier, monospace; border: 1px solid var(--blockquote-border); color: var(--heading-color-1); overflow-x: auto; }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 10px; padding-left: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: var(--table-header-bg); color: var(--table-header-text); font-weight: 600; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>Biology: কোশ</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div id="digital-clock" class="digital-clock"></div>
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 07</h2>
+
+        <h2>সেন্ট্রোজোম (Centrosome)</h2>
+        <h3>সেন্ট্রোজোম কাকে বলে? এর অবস্থান কোথায়?</h3>
+        <p>ইউক্যারিওটিক প্রাণীকোশের সাইটোপ্লাজমে, স্থিতিশীল নিউক্লিয়াসের পাশে অবস্থিত, দুটি সেন্ট্রিওল সমন্বিত, ক্ষুদ্র, তারকাকার, পর্দাবিহীন, ঘন যে কোশ-অঙ্গাণু, কোশ বিভাজনের সময়ে বেম (spindle) গঠনে সাহায্য করে, তাকে <strong>সেন্ট্রোজোম</strong> বলে।</p>
+        <p><strong>অবস্থান:</strong></p>
+        <ul>
+            <li>প্রাণীকোশের নিউক্লিয়াসের কাছাকাছি অংশে থাকে।</li>
+            <li>প্রায় প্রতিটি প্রাণীকোশে এদের দেখা যায় (ব্যতিক্রম-নিউরোন)।</li>
+            <li>স্বল্পসংখ্যক ব্যতিক্রমী উদ্ভিদকোশে (যেমন- ক্ল্যামাইডোমোনাস) সেন্ট্রোজোম থাকে।</li>
+        </ul>
+        
+        <h3>সেন্ট্রোজোমের গঠন বর্ণনা করো</h3>
+        <p>সেন্ট্রোজোম প্রধানত দুটি অংশ নিয়ে গঠিত:</p>
+        <ol>
+            <li><strong>সেন্ট্রিওল:</strong>
+                <ul>
+                    <li>সেন্ট্রোজোমের মধ্যে পরস্পর সমকোণে অবস্থিত দুটি ঘন উজ্জ্বল কণিকাকে সেন্ট্রিওল বলে।</li>
+                    <li>সেন্ট্রিওল দুটিকে একত্রে <strong>ডিপ্লোজোম</strong> বলে।</li>
+                    <li>প্রতিটি সেন্ট্রিওল দুমুখ খোলা পিপের মতো।</li>
+                    <li>সেন্ট্রিওলের প্রাচীর 9টি ত্রয়ী (triplet) অণুনালিকা দ্বারা গঠিত।</li>
+                </ul>
+            </li>
+            <li><strong>সেন্ট্রোস্ফিয়ার:</strong>
+                <ul>
+                    <li>সেন্ট্রিওলকে ঘিরে দানাহীন সাইটোপ্লাজমের যে সমসত্ত্ব ধাত্র থাকে, তাকে সেন্ট্রোস্ফিয়ার বলে।</li>
+                    <li>কোশ বিভাজনকালে সেন্ট্রোস্ফিয়ার থেকে আলোকরশ্মির মতো ছড়ানো অণুনালিকাগুলিকে <strong>অ্যাস্ট্রাল রশ্মি</strong> বলে।</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>সেন্ট্রোজোমের কাজ লেখো</h3>
+        <ol>
+            <li>বেমতন্ডু (spindle) গঠনের মাধ্যমে কোশ বিভাজনে সহায়তা করে।</li>
+            <li>ক্রোমোজোমের প্রান্তীয় চলনে সহায়তা করে।</li>
+            <li>কোশে ফ্ল্যাজেলা ও সিলিয়া গঠন করে।</li>
+            <li>সেন্ট্রিওল শুক্রাণুর পুচ্ছ গঠনে অংশ নেয়।</li>
+        </ol>
+
+        <h2>মাইক্রোটিউবিউল (Microtubule)</h2>
+        <h3>মাইক্রোটিউবিউল কাকে বলে?</h3>
+        <p>সজীব ইউক্যারিওটিক কোশের সাইটোপ্লাজমে টিউবিউলিন প্রোটিন নির্মিত ফাঁপা, অশাখ, নলাকার যে-সমস্ত গঠন কোশের অন্তঃকাঠামো (সাইটোস্কেলিটন), সিলিয়া, ফ্ল্যাজেলা, বেম সৃষ্টিতে, কোশের ভারবহনে এবং কোশীয় চলনে মুখ্য ভূমিকা পালন করে, তাদের <strong>অণুনালিকা</strong> বা <strong>মাইক্রোটিউবিউলস</strong> বলে।</p>
+        
+        <h3>মাইক্রোটিউবিউলের গঠন সম্পর্কে ধারণা দাও</h3>
+        <ol>
+            <li>প্রতিটি মাইক্রোটিউবিউল ফাঁপা, শাখাবিহীন ও নলাকার।</li>
+            <li>প্রতিটি মাইক্রোটিউবিউলের ব্যাস 250Å (25 nm)।</li>
+            <li>নলের প্রাচীর 60Å পুরু এবং 13টি অধঃএকক (প্রোটোফাইব্রিল) দ্বারা গঠিত।</li>
+            <li>প্রতিটি প্রোটোফাইব্রিলের প্রাচীর দু’প্রকার প্রোটিন (α-টিউবিউলিন ও β-টিউবিউলিন) দ্বারা গঠিত।</li>
+            <li>α ও β টিউবিউলিন পরস্পরের সঙ্গে যুক্ত হয়ে <strong>টিউবিউলিন-ডাইমার</strong> গঠন করে, ডাইমারগুলি পরস্পর পেঁচিয়ে অবস্থান করে।</li>
+        </ol>
+
+        <h3>মাইক্রোটিউবিউলের কাজ লেখো</h3>
+        <ol>
+            <li><strong>সাইটোস্কেলিটন গঠন:</strong> কোশের কঙ্কালের অন্যতম প্রধান উপাদান।</li>
+            <li><strong>অন্তঃকোশীয় পরিবহণ:</strong> কোশের মধ্যে জল, খনিজ লবণ, খাদ্য প্রভৃতির স্থানান্তর নিয়ন্ত্রণ করে।</li>
+            <li><strong>গঠনগত উপাদান:</strong> বেমতত্ত্ব, সেন্ট্রিওল, বেসাল বডি, সিলিয়া, ফ্ল্যাজেলা, শুক্রাণুর পুচ্ছ গঠনে অংশগ্রহণ করে।</li>
+        </ol>
+
+        <h2>কোশতত্ত্বের তিনটি ব্যতিক্রম কারণসহ উল্লেখ করো</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ব্যতিক্রম</th>
+                    <th>কারণ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ভাইরাস</td>
+                    <td>নির্দিষ্ট প্রোটোপ্লাজমবিহীন ও বিভিন্ন উপাদানের সংযুক্তির মাধ্যমে ভাইরাস সৃষ্টি হয়।</td>
+                </tr>
+                <tr>
+                    <td>শৈবাল, ভাউচেরিয়া</td>
+                    <td>আদর্শ নিউক্লিয়াস অনুপস্থিত। একটি কোশ কিন্তু একাধিক নিউক্লিয়াস রয়েছে।</td>
+                </tr>
+                <tr>
+                    <td>নীলাভ-সবুজ শৈবাল</td>
+                    <td>আদর্শ নিউক্লিয়াস অনুপস্থিত।</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>ক্রোমোপ্লাস্টিডের প্রধান কাজ ও বিভিন্ন প্রকার ক্রোমোপ্লাস্ট</h2>
+        <p><strong>প্রধান কাজ:</strong> বিভিন্ন রঙের ক্রোমোপ্লাস্ট কীটপতঙ্গকে আকর্ষণ করে পরাগসংযোগ এবং ফল ও বীজের বিস্তারে সাহায্য করে।</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>ক্রোমোপ্লাস্ট</th>
+                    <th>রঞ্জক পদার্থ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>জ্যান্থোপ্লাস্ট (হলুদ)</td>
+                    <td>জ্যান্থোফিল</td>
+                </tr>
+                <tr>
+                    <td>ক্যারোটিনোপ্লাস্ট (কমলা)</td>
+                    <td>ক্যারোটিন</td>
+                </tr>
+                <tr>
+                    <td>রোডোপ্লাস্ট (লাল)</td>
+                    <td>ফাইকোএরিথ্রিন</td>
+                </tr>
+                <tr>
+                    <td>ফিওপ্লাস্ট (বাদামি)</td>
+                    <td>ফিউকোজ্যান্থিন</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>তিন প্রকার লিউকোপ্লাস্টের প্রাপ্তিস্থল ও সঞ্চিত খাদ্যের প্রকৃতি</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>লিউকোপ্লাস্ট</th>
+                    <th>প্রাপ্তিস্থল</th>
+                    <th>সঞ্চিত খাদ্যের প্রকৃতি</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>অ্যামাইলোপ্লাস্ট</td>
+                    <td>ভূনিম্নস্থ কাণ্ড (যেমন আলু)</td>
+                    <td>শ্বেতসার</td>
+                </tr>
+                <tr>
+                    <td>অ্যালিউরোনপ্লাস্ট</td>
+                    <td>বীজ</td>
+                    <td>প্রোটিন</td>
+                </tr>
+                <tr>
+                    <td>এলাইওপ্লাস্ট</td>
+                    <td>তৈলবীজ</td>
+                    <td>স্নেহপদার্থ</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>মাইক্রোস্কোপ (Microscope) বা অণুবীক্ষণ যন্ত্র</h2>
+        <h3>সংজ্ঞা</h3>
+        <p>যে যন্ত্রের সাহায্যে অতিক্ষুদ্র বস্তুর বহুগুণ বড়ো প্রতিবিম্ব তৈরি করা যায় এবং পাশাপাশি অবস্থিত দুটি বিন্দুকে পরস্পর থেকে পৃথক করা যায়, তাকে <strong>অণুবীক্ষণ যন্ত্র</strong> বলে।</p>
+        <h3>ইতিহাস</h3>
+        <ul>
+            <li>হল্যান্ডের <strong>ফ্রান্সিস জ্যানসেন</strong> ও <strong>জ্যাকোরয়াস জ্যানসেন</strong> 1590 খ্রিস্টাব্দে সর্বপ্রথম অণুবীক্ষণ যন্ত্র আবিষ্কার করেন।</li>
+            <li>1665 খ্রিস্টাব্দে <strong>রবার্ট হুক</strong> ও 1674 খ্রিস্টাব্দে <strong>লিভেনহুক</strong> অণুবীক্ষণ যন্ত্রের উন্নতি ঘটান।</li>
+        </ul>
+        <h3>প্রকারভেদ ও ব্যবহার</h3>
+        <ol>
+            <li><strong>সরল আলোক অণুবীক্ষণ যন্ত্র:</strong>
+                <ul>
+                    <li>আলোক উৎস ও একটি মাত্র লেন্সের ব্যবহার হয়।</li>
+                    <li>15-20 গুণ বড়ো করে দেখা যায়।</li>
+                </ul>
+            </li>
+            <li><strong>যৌগিক অণুবীক্ষণ যন্ত্র:</strong>
+                <ul>
+                    <li>অকিউলার লেন্স, অবজেকটিভ লেন্স ও আয়না ব্যবহার করে।</li>
+                    <li>2000 - 50,000 গুণ বড়ো করে দেখা যায়।</li>
+                </ul>
+            </li>
+            <li><strong>ইলেকট্রন অণুবীক্ষণ যন্ত্র:</strong>
+                <ul>
+                    <li>কোনো বস্তুকে 50,000-3,00,000 গুণ বড়ো করে দেখা যায়।</li>
+                    <li>লেন্স থাকে না।</li>
+                    <li>উৎপন্ন প্রতিবিম্ব ফোটোগ্রাফিক ফিল্মের সাহায্যে দেখা যায়।</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2>ধন্যবাদ</h2>
+    </div>
+
+    <nav class="navigation">
+        <!-- পূর্ববর্তী পেজ হলো class6.html -->
+        <a href="class6.html" class="nav-button">পূর্ববর্তী</a>
+
+        <!-- পেজ নম্বর লিঙ্ক -->
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button active">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+
+        <!-- পরবর্তী পেজ হলো class8.html -->
+        <a href="class8.html" class="nav-button">পরবর্তী</a>
+        
+        <!-- হোম পেজে ফিরে যাওয়ার লিঙ্ক -->
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme and Mode Setup
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+
+            // Scroll Buttons Setup
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            // Digital Clock
+            const clockElement = document.getElementById('digital-clock');
+            function updateClock() {
+                if(clockElement) {
+                    const now = new Date();
+                    const options = {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: true,
+                        timeZone: 'Asia/Kolkata'
+                    };
+                    clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+                }
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            // Automatic Copyright Year
+            const yearSpan = document.getElementById('copyright-year');
+            if(yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+</body>
+</html>
