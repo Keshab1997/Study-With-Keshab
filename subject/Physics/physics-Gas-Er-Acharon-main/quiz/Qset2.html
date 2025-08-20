@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ২ - গ্যাসের আচরণ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset3.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "গ্যাসের আচরণ", 
+            setName: "Quiz Set 2",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "গ্যাসের আচরণ - Set 2",
+            
+            questions: [
+                {
+                    question: "পরম শূন্য উষ্ণতা হল –",
+                    options: ["0°C", "-273°C", "273°C", "100°C"],
+                    answer: 1,
+                    explanation: "যে উষ্ণতায় সমস্ত আদর্শ গ্যাসের আয়তন তাত্ত্বিকভাবে শূন্য হয়ে যায়, তাকে পরম শূন্য উষ্ণতা বলে। এর মান -273.15°C।"
+                },
+                {
+                    question: "যদি সেলসিয়াস স্কেলে ও কেলভিন স্কেলে কোনো তাপমাত্রাকে যথাক্রমে t ও T দ্বারা প্রকাশ করা হয় তবে তাদের মধ্যে সম্পর্কটি হবে –",
+                    options: ["t = T + 273", "T + t = 273", "T = 273 + t", "T = t/273"],
+                    answer: 2,
+                    explanation: "কেলভিন স্কেলের তাপমাত্রা (T) পেতে হলে সেলসিয়াস স্কেলের তাপমাত্রার (t) সাথে 273 (প্রায়) যোগ করতে হয়। সুতরাং, T = t + 273।"
+                },
+                {
+                    question: "পরম স্কেলে বিশুদ্ধ জলের হিমাঙ্ক –",
+                    options: ["0 K", "100 K", "273 K", "-273 K"],
+                    answer: 2,
+                    explanation: "বিশুদ্ধ জলের হিমাঙ্ক হল 0°C। পরম স্কেলে বা কেলভিন স্কেলে এর মান 0 + 273 = 273 K।"
+                },
+                {
+                    question: "পরম শূন্য তাপমাত্রায় গ্যাসের অণুগুলির গতিবেগ –",
+                    options: ["সর্বোচ্চ", "সর্বনিম্ন", "শূন্য", "অপরিবর্তিত থাকে"],
+                    answer: 2,
+                    explanation: "গ্যাসের অণুগুলির গতিশক্তি তার পরম উষ্ণতার সমানুপাতিক। তাই পরম শূন্য উষ্ণতায় (0 K) অণুগুলির গতিশক্তি ও গতিবেগ উভয়ই শূন্য হয়।"
+                },
+                {
+                    question: "কখন একটি বাস্তব গ্যাস আদর্শ গ্যাসের ন্যায় আচরণ করে?",
+                    options: ["উচ্চচাপে ও নিম্ন তাপমাত্রায়", "নিম্নচাপে ও উচ্চ তাপমাত্রায়", "উচ্চচাপে ও উচ্চ তাপমাত্রায়", "নিম্নচাপে ও নিম্ন তাপমাত্রায়"],
+                    answer: 1,
+                    explanation: "নিম্ন চাপ ও উচ্চ তাপমাত্রায় বাস্তব গ্যাসের অণুগুলির মধ্যে আকর্ষণ বল এবং তাদের নিজস্ব আয়তন নগণ্য হয়ে যায়, ফলে তারা আদর্শ গ্যাসের মতো আচরণ করে।"
+                },
+                {
+                    question: "আদর্শ গ্যাসের অণুগুলির শক্তি –",
+                    options: ["শুধুমাত্র স্থিতিশক্তি", "শুধুমাত্র গতিশক্তি", "গতিশক্তি ও স্থিতিশক্তির সমষ্টি", "গতিশক্তি ও স্থিতিশক্তির অন্তরফল"],
+                    answer: 1,
+                    explanation: "আদর্শ গ্যাসের মডেলে অণুগুলির মধ্যে কোনো আকর্ষণ বা বিকর্ষণ বল ধরা হয় না, তাই তাদের কোনো স্থিতিশক্তি থাকে না, কেবল গতিশক্তি থাকে।"
+                },
+                {
+                    question: "0°C তাপমাত্রায় কোনো আদর্শ গ্যাসের আয়তন –",
+                    options: ["শূন্য", "শূন্যের বেশি", "শূন্যের কম", "বলা সম্ভব নয়"],
+                    answer: 1,
+                    explanation: "গ্যাসের আয়তন কেবল পরম শূন্য তাপমাত্রায় (-273°C) তাত্ত্বিকভাবে শূন্য হয়। 0°C (যা 273 K) উষ্ণতায় গ্যাসের একটি নির্দিষ্ট ধনাত্মক আয়তন থাকে।"
+                },
+                {
+                    question: "গ্যাসের সূত্রগুলিতে গ্যাসের কোন্ রাশিটি সর্বদা স্থির ধরা হয়?",
+                    options: ["গ্যাসের ভর", "গ্যাসের চাপ", "গ্যাসের আয়তন", "কোনোটিই নয়"],
+                    answer: 0,
+                    explanation: "বয়েল, চার্লস এবং অ্যাভোগাড্রোর সূত্রে সর্বদা 'নির্দিষ্ট ভরের' গ্যাসের কথা বলা হয়, অর্থাৎ গ্যাসের ভরকে স্থির বা ধ্রুবক ধরা হয়।"
+                },
+                {
+                    question: "বয়েলের সূত্রতে চলরাশিগুলি কী কী?",
+                    options: ["উষ্ণতা ও চাপ", "চাপ ও আয়তন", "আয়তন ও উষ্ণতা", "ভর ও চাপ"],
+                    answer: 1,
+                    explanation: "বয়েলের সূত্রে উষ্ণতা ও ভর স্থির থাকে এবং চাপ ও আয়তন হলো পরিবর্তনশীল রাশি বা চলরাশি।"
+                },
+                {
+                    question: "কোন্ কোন্‌ গ্যাসের আচরণ প্রায় আদর্শ গ্যাসের মতো?",
+                    options: ["যেসব গ্যাসের অণুর আয়তন ছোটো ও আকর্ষণ বল কম", "যেসব গ্যাসের অণুর আয়তন বড়ো", "সব গ্যাসই", "কোনো গ্যাসই নয়"],
+                    answer: 0,
+                    explanation: "যেসব গ্যাসের অণুর আয়তন কম এবং আন্তরাণবিক আকর্ষণ বল নগণ্য (যেমন হাইড্রোজেন, হিলিয়াম), তারা সহজে আদর্শ গ্যাসের মতো আচরণ করে।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

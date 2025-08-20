@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - গ্যাসের আচরণ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "গ্যাসের আচরণ", 
+            setName: "Quiz Set 1",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "গ্যাসের আচরণ - Set 1",
+            
+            questions: [
+                {
+                    question: "বয়েলের সূত্রে স্থির রাখা হয় –",
+                    options: ["গ্যাসের ভর", "গ্যাসের উষ্ণতা", "গ্যাসের উষ্ণতা ও ভর উভয়ই", "কোনোটিই নয়"],
+                    answer: 2,
+                    explanation: "বয়েলের সূত্রে গ্যাসের উষ্ণতা (Temperature) এবং ভর (Mass) উভয়ই স্থির থাকে।"
+                },
+                {
+                    question: "ভর ছাড়াও বয়েলের সূত্রে ধ্রুবক হল –",
+                    options: ["উষ্ণতা", "চাপ", "আয়তন", "কোনোটিই নয়"],
+                    answer: 0,
+                    explanation: "বয়েলের সূত্রে ভর এবং উষ্ণতা উভয়ই ধ্রুবক বা স্থির থাকে।"
+                },
+                {
+                    question: "স্থির উষ্ণতায় যদি চাপ কমে যায় তবে কোনো নির্দিষ্ট পরিমাণ গ্যাসের আয়তন?",
+                    options: ["বেড়ে যাবে", "কমে যাবে", "একই থাকবে", "গ্যাসের স্বভাবের উপর নির্ভর করে"],
+                    answer: 0,
+                    explanation: "বয়েলের সূত্র (V ∝ 1/P) অনুযায়ী, স্থির উষ্ণতায় চাপ কমলে গ্যাসের আয়তন আনুপাতিকভাবে বেড়ে যায়।"
+                },
+                {
+                    question: "বয়েলের সূত্রের P-V লেখচিত্রটির প্রকৃতি হল –",
+                    options: ["সরলরেখা", "অধিবৃত্ত", "বৃত্ত", "সমপরাবৃত্ত"],
+                    answer: 3,
+                    explanation: "স্থির উষ্ণতায় গ্যাসের চাপ (P) এবং আয়তনের (V) সম্পর্কটি হলো PV = ধ্রুবক, যা একটি সমপরাবৃত্তের (Rectangular Hyperbola) সমীকরণ।"
+                },
+                {
+                    question: "বয়েলের সূত্রের সমীকরণটি হল –",
+                    options: ["PV = ধ্রুবক", "V/T = ধ্রুবক", "P/T = ধ্রুবক", "PV/T = ধ্রুবক"],
+                    answer: 0,
+                    explanation: "স্থির উষ্ণতায় ও ভরে গ্যাসের চাপ ও আয়তনের গুণফল ধ্রুবক থাকে (PV = ধ্রুবক)। এটিই বয়েলের সূত্রের গাণিতিক রূপ।"
+                },
+                {
+                    question: "স্থির উষ্ণতায় নির্দিষ্ট ভরের গ্যাসের চাপ দ্বিগুণ করলে ওর আয়তন হয় –",
+                    options: ["দ্বিগুণ", "অর্ধেক", "চারগুণ", "অপরিবর্তিত"],
+                    answer: 1,
+                    explanation: "বয়েলের সূত্রানুযায়ী চাপ ও আয়তন ব্যস্তানুপাতিক (inversely proportional)। তাই চাপ দ্বিগুণ (2P) হলে আয়তন অর্ধেক (V/2) হবে।"
+                },
+                {
+                    question: "ভর ছাড়াও চার্লসের সূত্রে ধ্রুবক হল –",
+                    options: ["উষ্ণতা", "চাপ", "আয়তন", "কোনোটিই নয়"],
+                    answer: 1,
+                    explanation: "চার্লসের সূত্রে নির্দিষ্ট ভরের গ্যাসের চাপ (Pressure) স্থির রাখা হয়।"
+                },
+                {
+                    question: "স্থির চাপে নির্দিষ্ট ভরের গ্যাসের আয়তন ও তাপমাত্রার সম্পর্কটি হল –",
+                    options: ["বয়েলের সূত্র", "রেনোর চাপের সূত্র", "চার্লসের সূত্র", "অ্যাভোগাড্রো সূত্র"],
+                    answer: 2,
+                    explanation: "স্থির চাপে নির্দিষ্ট ভরের গ্যাসের আয়তন তার পরম উষ্ণতার সমানুপাতিক (V ∝ T)। এটি চার্লসের সূত্র।"
+                },
+                {
+                    question: "চার্লসের সূত্রের V-T (কেলভিন স্কেলে) লেখচিত্রটির প্রকৃতি হল –",
+                    options: ["মূলবিন্দুগামী সরলরেখা", "অধিবৃত্ত", "বৃত্ত", "সমপরাবৃত্ত"],
+                    answer: 0,
+                    explanation: "চার্লসের সূত্র (V ∝ T) অনুযায়ী আয়তন (V) এবং পরম উষ্ণতার (T) লেখচিত্র একটি মূলবিন্দুগামী সরলরেখা হয়।"
+                },
+                {
+                    question: "কোন্ তাপমাত্রায় সমস্ত গ্যাসের আয়তন গণনা অনুযায়ী শূন্য হয়ে যায়?",
+                    options: ["273°C", "-273°C", "273 K", "0°C"],
+                    answer: 1,
+                    explanation: "পরম শূন্য তাপমাত্রা অর্থাৎ -273°C (বা আরও সঠিকভাবে -273.15°C) উষ্ণতায় যেকোনো আদর্শ গ্যাসের আয়তন তাত্ত্বিকভাবে শূন্য হয়ে যায়।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

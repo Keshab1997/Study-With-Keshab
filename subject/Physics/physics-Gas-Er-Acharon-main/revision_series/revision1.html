@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>গ্যাসের আচরণ - Responsive</title>
+    <!-- Google Fonts for Bengali and English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Integrated CSS with Responsive Design -->
+    <style>
+        /* --- Global Styles & Resets --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* --- Main Content Styling --- */
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2.5rem;
+        }
+
+        .topic-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            border-left: 5px solid #3498db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #3498db;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        h4 {
+            color: #2c3e50;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        code, .formula, blockquote {
+            background-color: #ecf0f1;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: 'Poppins', monospace;
+            color: #34495e;
+            display: block;
+            margin: 1rem 0;
+            border-left: 4px solid #95a5a6;
+            word-wrap: break-word; /* Prevents overflow */
+        }
+
+        .formula {
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .ideal-gas-eq {
+            font-size: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            color: #2980b9;
+            border-left-color: #2980b9;
+        }
+
+        .faq-item {
+            margin-top: 1.5rem;
+            border-top: 1px dashed #ccc;
+            padding-top: 1rem;
+        }
+
+        .faq-item:first-child {
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        /* --- Page Navigation Buttons --- */
+        .page-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0 1rem 0;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background-color: #fff;
+            color: #3498db;
+            border-color: #3498db;
+        }
+
+        .btn-secondary:hover {
+            background-color: #3498db;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            margin-top: 2rem;
+        }
+
+        /* --- RESPONSIVE DESIGN (For Mobile and Tablet) --- */
+        
+        /* For Tablets and smaller screens (768px and below) */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            .topic-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* For small mobile phones (480px and below) */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .logo {
+                font-size: 1.5rem;
+            }
+            .page-navigation {
+                flex-direction: column; /* Stack buttons vertically */
+                gap: 0.75rem;
+            }
+            .btn {
+                width: 100%; /* Make buttons take full width */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">গ্যাসের আচরণ</div>
+    </header>
+
+    <main class="container">
+        <h1>গ্যাসের আচরণ (সহজ পাঠ)</h1>
+        <p class="intro-text">এই অধ্যায়ে আমরা গ্যাসের কিছু মজার ধর্ম এবং তাদের সূত্রগুলো নিয়ে জানব।</p>
+
+        <div class="topic-card">
+            <h2>১. গ্যাসকে বুঝতে হলে কী কী জানতে হবে?</h2>
+            <p>গ্যাসের অবস্থা বোঝানোর জন্য আমরা মূলত চারটি জিনিস ব্যবহার করি:</p>
+            
+            <h4>ক) আয়তন (Volume, V)</h4>
+            <ul>
+                <li><strong>সহজ কথা:</strong> গ্যাসকে যে পাত্রে রাখা হয়, সেই পুরো পাত্রের জায়গাই হলো গ্যাসের আয়তন।</li>
+                <li><strong>গুরুত্বপূর্ণ তথ্য:</strong> STP-তে ১ মোল যেকোনো গ্যাসের আয়তন হয় <strong>২২.৪ লিটার</strong>।</li>
+            </ul>
+
+            <h4>খ) চাপ (Pressure, P)</h4>
+            <ul>
+                <li><strong>সহজ কথা:</strong> বন্ধ পাত্রে গ্যাসের কণাগুলো দৌড়াদৌড়ি করে পাত্রের দেওয়ালে যে ধাক্কা মারে, তাই হলো চাপ।</li>
+            </ul>
+
+            <h4>গ) উষ্ণতা (Temperature, T)</h4>
+            <ul>
+                <li><strong>সহজ কথা:</strong> উষ্ণতা হলো গ্যাসের কণাগুলো কতটা জোরে ছোটাছুটি করছে তার মাপ।</li>
+                <li><strong>সম্পর্ক (খুব গুরুত্বপূর্ণ):</strong> <code>কেলভিন (K) = সেলসিয়াস (°C) + 273</code></li>
+            </ul>
+        </div>
+
+        <div class="topic-card">
+            <h2>২. গ্যাসের সূত্রাবলী (Gas Laws)</h2>
+            
+            <h4>ক) বয়েলের সূত্র (Boyle's Law)</h4>
+            <p><strong>মূল কথা:</strong> যদি উষ্ণতা স্থির থাকে, তবে গ্যাসের উপর <strong>চাপ বাড়ালে আয়তন কমে</strong> এবং <strong>চাপ কমালে আয়তন বাড়ে</strong>।</p>
+            <p class="formula">P₁V₁ = P₂V₂</p>
+
+            <h4>খ) চার্লসের সূত্র (Charles's Law)</h4>
+            <p><strong>মূল কথা:</strong> যদি চাপ স্থির থাকে, তবে গ্যাসের <strong>উষ্ণতা বাড়ালে আয়তনও বাড়বে</strong>।</p>
+            <p class="formula">V₁/T₁ = V₂/T₂</p>
+            
+            <h4>গ) অ্যাভোগাড্রোর সূত্র (Avogadro's Law)</h4>
+            <p><strong>মূল কথা:</strong> যদি চাপ ও উষ্ণতা স্থির থাকে, তবে গ্যাসের <strong>অণুর সংখ্যা বাড়ালে আয়তনও বাড়বে</strong>।</p>
+        </div>
+
+        <div class="topic-card">
+            <h2>৩. আদর্শ গ্যাস সমীকরণ</h2>
+            <p>বয়েল, চার্লস ও অ্যাভোগাড্রোর সূত্র মিলিয়ে তৈরি হয়েছে এই "মাস্টার ফর্মুলা":</p>
+            <blockquote class="ideal-gas-eq">
+                PV = nRT
+            </blockquote>
+        </div>
+
+        <div class="topic-card">
+            <h2>৪. আদর্শ গ্যাস বনাম বাস্তব গ্যাস</h2>
+            <ul>
+                <li><strong>আদর্শ গ্যাস:</strong> এরা সব নিয়মকানুন (গ্যাস সূত্র) মেনে চলে। বাস্তবে এদের অস্তিত্ব নেই।</li>
+                <li><strong>বাস্তব গ্যাস:</strong> আমাদের চারপাশের সব গ্যাস।</li>
+            </ul>
+            <p><strong>বাস্তব গ্যাস কখন আদর্শের মতো আচরণ করে?</strong><br>
+            শর্ত: <strong>উচ্চ উষ্ণতা</strong> এবং <strong>নিম্ন চাপে</strong>।
+            </p>
+        </div>
+        
+        <div class="topic-card">
+            <h2>৫. গ্যাসের গতীয় তত্ত্ব (গ্যাসের অণুরা কী করে?)</h2>
+            <ol>
+                <li><strong>ছোটাছুটি:</strong> অণুরা সব সময় সরলরেখায় এদিক-ওদিক দৌড়ায়।</li>
+                <li><strong>সংঘর্ষ:</strong> দৌড়ানোর সময় একে অপরের সাথে ও পাত্রের দেওয়ালে ধাক্কা খায়।</li>
+                <li><strong>ফাঁকা জায়গা:</strong> অণুদের নিজেদের আয়তন পাত্রের তুলনায় খুবই কম।</li>
+            </ol>
+        </div>
+
+        <div class="topic-card faq-section">
+            <h2>৬. কিছু মজার প্রশ্ন ও উত্তর</h2>
+            <div class="faq-item">
+                <h4>প্রশ্ন: পুকুরের তলা থেকে বুদবুদ ওপরে উঠলে বড় হয় কেন?</h4>
+                <p><strong>উত্তর:</strong> কারণ ওপরে জলের চাপ কম। বয়েলের সূত্র অনুযায়ী, চাপ কমলে আয়তন বাড়ে।</p>
+            </div>
+            <div class="faq-item">
+                <h4>প্রশ্ন: চলন্ত গাড়ির টায়ারের চাপ বাড়ে কেন?</h4>
+                <p><strong>উত্তর:</strong> চাকা চলার সময় ঘর্ষণে গরম হয়। ভেতরের বায়ুর উষ্ণতা বাড়ে, তাই চাপও বাড়ে।</p>
+            </div>
+             <div class="faq-item">
+                <h4>প্রশ্ন: ঘরের এক কোণে পারফিউম স্প্রে করলে গন্ধ ছড়াতে সময় লাগে কেন?</h4>
+                <p><strong>উত্তর:</strong> কারণ পারফিউমের কণাগুলো সোজা পথে আসতে পারে না। বাতাসের অন্য কণাগুলোর সাথে ধাক্কা খেতে খেতে আসে। এই প্রক্রিয়াকে <strong>ব্যাপন</strong> বলে।</p>
+            </div>
+			<!-- এখানে চিহ্নগুলির ব্যাখ্যা যোগ করা হয়েছে -->
+            <div class="symbol-explanation">
+                <h4>সমীকরণের চিহ্নগুলি:</h4>
+                <ul>
+                    <li><strong>P</strong> = গ্যাসের চাপ (Pressure)</li>
+                    <li><strong>V</strong> = গ্যাসের আয়তন (Volume)</li>
+                    <li><strong>n</strong> = গ্যাসের মোল সংখ্যা (Number of moles)</li>
+                    <li><strong>R</strong> = সার্বজনীন গ্যাস ধ্রুবক (Universal Gas Constant)</li>
+                    <li><strong>T</strong> = পরম উষ্ণতা (কেলভিন এককে)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="page-navigation">
+            <a href="revision1.html" class="btn btn-secondary">পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary">হোম</a>
+            <a href="revision2.html" class="btn btn-secondary">পরবর্তী</a>
+        </div>
+        
+    </main>
+
+    <footer>
+        <p>&copy; ২০২৪ | কেশব সরকার</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>গ্যাসের আচরণের রিভিশন (সুন্দর বাটন)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e0e0e0;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+        }
+
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            color: #1a73e8;
+            border-bottom: 2px solid #eef2f7;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            font-size: 1.6em;
+        }
+
+        h3 {
+            color: #333;
+            font-size: 1.2em;
+        }
+        
+        strong {
+            color: #c93756; 
+        }
+
+        code {
+            display: inline-block;
+            background-color: #eef2f7;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
+            border: 1px solid #d1d9e2;
+        }
+
+        .qa-section {
+            margin-top: 20px;
+            padding: 15px 20px;
+            background-color: #fafbff;
+            border-left: 5px solid #1a73e8;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .qa-section p {
+            margin: 5px 0;
+        }
+        
+        /* --- নতুন বাটন সেকশনের ডিজাইন --- */
+        .page-navigation {
+            display: flex;
+            justify-content: center; /* বাটনগুলোকে মাঝখানে আনবে */
+            align-items: center;
+            gap: 15px; /* বাটনগুলোর মধ্যে ফাঁকা জায়গা */
+            margin-top: 40px;
+            border-top: 2px solid #eef2f7;
+            padding-top: 25px;
+            flex-wrap: wrap; 
+        }
+
+        .btn {
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* প্রধান বাটন (হোম) */
+        .btn-primary {
+            background-color: #007bff;
+            background-image: linear-gradient(180deg, #007bff 0%, #0056b3 100%);
+        }
+
+        /* সেকেন্ডারি বাটন (পূর্ববর্তী/পরবর্তী) */
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        /* --- মোবাইল ডিভাইসের জন্য রেসপন্সিভ স্টাইল --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.4em;
+            }
+
+            .page-navigation {
+                flex-direction: column; /* বাটনগুলো একটির নিচে আরেকটি আসবে */
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>গ্যাসের আচরণের রিভিশন</h1>
+
+        <!-- কন্টেন্ট এখানে শুরু -->
+        <h2>১. বয়েলের সূত্র</h2>
+        <p><strong>সহজ কথায়:</strong> তাপমাত্রা স্থির থাকলে, গ্যাসের <strong>চাপ (Pressure)</strong> বাড়ালে তার <strong>আয়তন (Volume)</strong> কমে যায়।</p>
+        <p><strong>সমীকরণ:</strong> <code>P₁V₁ = P₂V₂</code></p>
+
+        <h2>২. চার্লসের সূত্র</h2>
+        <p><strong>সহজ কথায়:</strong> চাপ স্থির থাকলে, গ্যাসের <strong>তাপমাত্রা (Temperature)</strong> বাড়ালে তার <strong>আয়তন (Volume)</strong> বাড়ে। তাপমাত্রা অবশ্যই <strong>কেলভিন (K)</strong> এককে নিতে হবে।</p>
+        <p><strong>সমীকরণ:</strong> <code>V₁/T₁ = V₂/T₂</code></p>
+        
+        <h2>৫. আদর্শ গ্যাস সমীকরণ (সবার বস!)</h2>
+        <p><strong>সহজ কথায়:</strong> এটি সব সূত্রকে একত্রিত করে। গ্যাসের চাপ, আয়তন, পরিমাণ এবং তাপমাত্রার মধ্যে সম্পর্ক দেখায়।</p>
+        <p><strong>সমীকরণ:</strong> <code>PV = nRT</code></p>
+
+        <h2>৬. গ্রাহামের ব্যাপন সূত্র</h2>
+        <p><strong>সহজ কথায়:</strong> যে গ্যাস যত <strong>হালকা</strong>, সে তত দ্রুত ছড়িয়ে পড়তে পারে। গ্যাসের ব্যাপন হার তার <strong>আণবিক ভরের</strong> বর্গমূলের ব্যস্তানুপাতিক।</p>
+        
+        <h2>পরীক্ষার জন্য গুরুত্বপূর্ণ প্রশ্নোত্তর</h2>
+
+        <div class="qa-section">
+            <h3>প্রশ্ন: বয়েলের সূত্রটি কী?</h3>
+            <p><strong>উত্তর:</strong> স্থির তাপমাত্রায়, গ্যাসের চাপ তার আয়তনের ব্যস্তানুপাতিক।</p>
+        </div>
+        <div class="qa-section">
+            <h3>প্রশ্ন: আদর্শ গ্যাস সমীকরণটি কী?</h3>
+            <p><strong>উত্তর:</strong> <code>PV = nRT</code></p>
+        </div>
+        <div class="qa-section">
+            <h3>প্রশ্ন: চার্লসের সূত্রে তাপমাত্রার একক কী?</h3>
+            <p><strong>উত্তর:</strong> কেলভিন (K)।</p>
+        </div>
+
+        <!-- নতুন ডিজাইন করা নেভিগেশন বাটন -->
+        <div class="page-navigation">
+            <a href="revision1.html" class="btn btn-secondary">পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary">হোম</a>
+            <a href="revision3.html" class="btn btn-secondary">পরবর্তী</a>
+        </div>
+    </div>
+
+</body>
+</html>

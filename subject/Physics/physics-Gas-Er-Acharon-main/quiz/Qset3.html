@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - গ্যাসের আচরণ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset4.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "গ্যাসের আচরণ", 
+            setName: "Quiz Set 3",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "গ্যাসের আচরণ - Set 3",
+            
+            questions: [
+                {
+                    question: "আদর্শ গ্যাসের অণুর আয়তন কত ধরা হয়?",
+                    options: ["খুব বড়ো", "শূন্য", "ছোটো", "নির্ণয় করা সম্ভব নয়"],
+                    answer: 1,
+                    explanation: "আদর্শ গ্যাসের স্বীকার্য অনুযায়ী, গ্যাসের অণুগুলির দ্বারা দখলীকৃত আয়তন পাত্রের মোট আয়তনের তুলনায় নগণ্য, তাই এটি শূন্য ধরা হয়।"
+                },
+                {
+                    question: "যে নির্দিষ্ট তাপমাত্রায় কোনো বাস্তব গ্যাস وسیع চাপ পরিসরে আদর্শ গ্যাসের মতো আচরণ করে, তার নাম কী?",
+                    options: ["ইউটেকটিক তাপমাত্রা", "কুরি বিন্দু", "বয়েল তাপমাত্রা", "পরমশূন্য তাপমাত্রা"],
+                    answer: 2,
+                    explanation: "বয়েল তাপমাত্রায় একটি বাস্তব গ্যাস وسیع চাপ পরিসরে বয়েলের সূত্র (PV = ধ্রুবক) মেনে চলে, অর্থাৎ আদর্শ গ্যাসের মতো আচরণ করে।"
+                },
+                {
+                    question: "পরমশূন্য তাপমাত্রার মান ফারেনহাইট স্কেলে কত?",
+                    options: ["-273°F", "-459.67°F", "0°F", "32°F"],
+                    answer: 1,
+                    explanation: "পরমশূন্য তাপমাত্রা হল 0 K বা -273.15°C। ফারেনহাইট স্কেলে এর মান প্রায় -459.67°F।"
+                },
+                {
+                    question: "পরমশূন্য তাপমাত্রায় কোনো আদর্শ গ্যাসের কোন্ রাশির মান তাত্ত্বিকভাবে শূন্য হয়?",
+                    options: ["আয়তন", "চাপ", "আয়তন ও চাপ উভয়ই", "কোনোটিই নয়"],
+                    answer: 2,
+                    explanation: "চার্লসের সূত্রানুযায়ী আয়তন এবং গেলুসাকের সূত্রানুযায়ী চাপ—উভয়ই পরমশূন্য তাপমাত্রায় তাত্ত্বিকভাবে শূন্য হয়ে যায়।"
+                },
+                {
+                    question: "কেলভিন স্কেলে জলের স্ফুটনাঙ্ক কত?",
+                    options: ["-273 K", "-373 K", "273 K", "373 K"],
+                    answer: 3,
+                    explanation: "জলের স্ফুটনাঙ্ক 100°C। কেলভিন স্কেলে এর মান T(K) = 100 + 273 = 373 K।"
+                },
+                {
+                    question: "নীচের কোন্টি গ্যাসের সূত্রাবলি (বয়েল, চার্লস) অনুসরণ করে না?",
+                    options: ["সম্পৃক্ত বাষ্প", "অসম্পৃক্ত বাষ্প", "উভয়েই", "সবাই অনুসরণ করে"],
+                    answer: 0,
+                    explanation: "সম্পৃক্ত বাষ্পের চাপ শুধুমাত্র উষ্ণতার উপর নির্ভরশীল, আয়তনের উপর নয়। তাই এটি বয়েলের সূত্র মেনে চলে না।"
+                },
+                {
+                    question: "কোন্ তাপমাত্রার স্কেলে ঋণাত্মক পাঠ সম্ভব নয়?",
+                    options: ["সেলসিয়াস স্কেল", "ফারেনহাইট স্কেল", "কেলভিন স্কেল", "রোমার স্কেল"],
+                    answer: 2,
+                    explanation: "কেলভিন স্কেলের সর্বনিম্ন মান হল পরমশূন্য (0 K), এর নিচে কোনো তাপমাত্রা সম্ভব নয়। তাই কেলভিন স্কেলে কোনো ঋণাত্মক মান হয় না।"
+                },
+                {
+                    question: "300 ml একটি গ্যাসকে 27°C থেকে ঠান্ডা করে -3°C তাপমাত্রায় আনা হল। স্থির চাপে এখন গ্যাসের আয়তন হবে –",
+                    options: ["540 ml", "135 ml", "270 ml", "350 ml"],
+                    answer: 2,
+                    explanation: "চার্লসের সূত্র V₁/T₁ = V₂/T₂ অনুযায়ী, V₁=300ml, T₁=27+273=300K, T₂=-3+273=270K। সুতরাং, V₂ = (V₁×T₂)/T₁ = (300×270)/300 = 270ml।"
+                },
+                {
+                    question: "বাস্তব গ্যাসগুলি আদর্শ গ্যাসের ন্যায় আচরণ করবে যখন –",
+                    options: ["তাপমাত্রা ও চাপ উভয়ই খুব বেশি", "তাপমাত্রা বেশি কিন্তু চাপ کم", "তাপমাত্রা کم এবং চাপ বেশি", "তাপমাত্রা ও চাপ উভয়ই کم"],
+                    answer: 1,
+                    explanation: "উচ্চ তাপমাত্রা ও নিম্ন চাপে গ্যাসের অণুগুলির মধ্যেকার আকর্ষণ বল এবং অণুগুলির নিজস্ব আয়তন নগণ্য হয়ে যায়, ফলে বাস্তব গ্যাস আদর্শ গ্যাসের মতো আচরণ করে।"
+                },
+                {
+                    question: "নীচের মধ্যে কোন্টি গ্যাসের আচরণের সঙ্গে সম্পর্কিত নয়?",
+                    options: ["বয়েলের সূত্র", "চার্লসের সূত্র", "গেলুসাকের সূত্র", "ফ্যারাডের সূত্র"],
+                    answer: 3,
+                    explanation: "ফ্যারাডের সূত্র তড়িৎচুম্বকীয় আবেশ এবং তড়িৎ বিশ্লেষণ সংক্রান্ত, যা গ্যাসের আচরণের সাথে সম্পর্কিত নয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

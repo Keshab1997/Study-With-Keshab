@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৫ - গ্যাসের আচরণ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset4.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="#" class="btn btn-secondary disabled">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "গ্যাসের আচরণ", 
+            setName: "Quiz Set 5",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "গ্যাসের আচরণ - Set 5",
+            
+            questions: [
+                {
+                    question: "চার্লসের সূত্রে কোন্ কোন্ রাশি ধ্রুবক?",
+                    options: ["চাপ ও ভর", "তাপমাত্রা ও ভর", "আয়তন ও চাপ", "চাপ ও আয়তন"],
+                    answer: 0,
+                    explanation: "চার্লসের সূত্রে গ্যাসের চাপ এবং ভর উভয়কেই স্থির বা ধ্রুবক রাখা হয়।"
+                },
+                {
+                    question: "আদর্শ গ্যাস সমীকরণে (PV=nRT) চলরাশি কোন্ গুলি?",
+                    options: ["চাপ", "তাপমাত্রা", "আয়তন", "সবগুলিই"],
+                    answer: 3,
+                    explanation: "আদর্শ গ্যাস সমীকরণে গ্যাসের অবস্থা বোঝাতে চাপ (P), আয়তন (V), এবং তাপমাত্রা (T) এই তিনটি রাশিই পরিবর্তনশীল বা চলরাশি।"
+                },
+                {
+                    question: "গ্যাস ভর্তি সিলিন্ডার থেকে গ্যাস লিক্ করে কী পদ্ধতিতে?",
+                    options: ["ব্যাপন", "ছিদ্র ব্যাপন (Effusion)", "অভিস্রবণ", "স্ফুটন"],
+                    answer: 1,
+                    explanation: "কোনো পাত্রের ক্ষুদ্র ছিদ্র দিয়ে উচ্চচাপের স্থান থেকে নিম্নচাপের স্থানে গ্যাসের অণুর বেরিয়ে আসাকে ছিদ্র ব্যাপন বা Effusion বলে।"
+                },
+                {
+                    question: "অ্যাভোগাড্রোর সূত্রে স্থির রাখা হয় –",
+                    options: ["গ্যাসের ভর ও আয়তন", "গ্যাসের আয়তন ও চাপ", "গ্যাসের উষ্ণতা ও ভর", "গ্যাসের চাপ ও গ্যাসের উষ্ণতা"],
+                    answer: 3,
+                    explanation: "অ্যাভোগাড্রোর সূত্রে গ্যাসের চাপ ও উষ্ণতা স্থির থাকে। এই অবস্থায় গ্যাসের আয়তন তার মোল সংখ্যার সমানুপাতিক হয়।"
+                },
+                {
+                    question: "অ্যাভোগাড্রোর সূত্রের V-n লেখচিত্রটির প্রকৃতি হল –",
+                    options: ["মূলবিন্দুগামী সরলরেখা", "অধিবৃত্ত", "বৃত্ত", "সমপরাবৃত্ত"],
+                    answer: 0,
+                    explanation: "অ্যাভোগাড্রোর সূত্র অনুযায়ী V ∝ n (যখন P এবং T স্থির)। এটি একটি মূলবিন্দুগামী সরলরেখার সমীকরণ (y = mx)।"
+                },
+                {
+                    question: "স্থির চাপে ও উষ্ণতায় কোনো গ্যাসের আয়তন ও ভরের মধ্যে সম্পর্কটি কোন সূত্রের সাহায্যে পাওয়া যায়?",
+                    options: ["বয়েলের সূত্র", "রেনোর চাপের সূত্র", "চার্লসের সূত্র", "অ্যাভোগাড্রো সূত্র"],
+                    answer: 3,
+                    explanation: "অ্যাভোগাড্রো সূত্র অনুযায়ী V ∝ n (মোল সংখ্যা)। যেহেতু গ্যাসের ভর তার মোল সংখ্যার সমানুপাতিক, তাই স্থির চাপ ও উষ্ণতায় গ্যাসের আয়তন তার ভরেরও সমানুপাতিক হয়।"
+                },
+                {
+                    question: "চার্লসের সূত্রে স্থির রাখা হয় –",
+                    options: ["গ্যাসের ভর", "গ্যাসের চাপ", "গ্যাসের চাপ ও ভর উভয়ই", "কোনোটিই নয়"],
+                    answer: 2,
+                    explanation: "চার্লসের সূত্রের সংজ্ঞাতেই বলা আছে, 'স্থির চাপে নির্দিষ্ট ভরের' গ্যাসের ক্ষেত্রে আয়তন ও তাপমাত্রার সম্পর্ক। সুতরাং চাপ ও ভর উভয়ই স্থির থাকে।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

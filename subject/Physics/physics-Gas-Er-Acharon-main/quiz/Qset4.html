@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৪ - গ্যাসের আচরণ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset3.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset5.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "গ্যাসের আচরণ", 
+            setName: "Quiz Set 4",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "গ্যাসের আচরণ - Set 4",
+            
+            questions: [
+                {
+                    question: "নীচের কোন্ সূত্রগুলি আদর্শ গ্যাস মেনে চলে?",
+                    options: ["বয়েলের সূত্র", "চার্লসের সূত্র", "অ্যাভোগাড্রো সূত্র", "উপরের সবগুলি"],
+                    answer: 3,
+                    explanation: "আদর্শ গ্যাস বয়েল, চার্লস এবং অ্যাভোগাড্রোর সূত্রকে নিখুঁতভাবে মেনে চলে। এই তিনটি সূত্রের সমন্বিত রূপই হলো আদর্শ গ্যাস সমীকরণ (PV=nRT)।"
+                },
+                {
+                    question: "অক্সিজেন গ্যাসের বাষ্প ঘনত্ব হল –",
+                    options: ["12", "16", "18", "32"],
+                    answer: 1,
+                    explanation: "কোনো গ্যাসের বাষ্প ঘনত্ব (Vapour Density) = আণবিক ভর / 2। অক্সিজেন (O₂) গ্যাসের আণবিক ভর ৩২। সুতরাং, বাষ্প ঘনত্ব = 32 / 2 = 16।"
+                },
+                {
+                    question: "NTP-তে 22g CO₂-এর আয়তন কত?",
+                    options: ["22.4 L", "11.2 L", "44 L", "2.24 L"],
+                    answer: 1,
+                    explanation: "CO₂-এর আণবিক ভর 44g। অর্থাৎ, 44g CO₂ = 1 মোল। NTP-তে 1 মোল যেকোনো গ্যাসের আয়তন 22.4 L। অতএব, 22g CO₂ (0.5 মোল) এর আয়তন হবে 22.4 / 2 = 11.2 L।"
+                },
+                {
+                    question: "নীচের কোন্ অবস্থায় একটি বাস্তব গ্যাস আদর্শ গ্যাসের আচরণ থেকে সবচেয়ে বেশি বিচ্যুত হয়?",
+                    options: ["নিম্ন তাপমাত্রা ও উচ্চ চাপ", "উচ্চ তাপমাত্রা ও নিম্ন চাপ", "নিম্ন তাপমাত্রা ও নিম্ন চাপ", "উচ্চ তাপমাত্রা ও উচ্চ চাপ"],
+                    answer: 0,
+                    explanation: "বাস্তব গ্যাসগুলি নিম্ন তাপমাত্রা ও উচ্চ চাপে আদর্শ গ্যাসের আচরণ থেকে সবচেয়ে বেশি বিচ্যুত হয়। কারণ এই অবস্থায় আন্তরাণবিক আকর্ষণ বল এবং অণুগুলির আয়তনকে নগণ্য ধরা যায় না।"
+                },
+                {
+                    question: "নির্দিষ্ট চাপে কোনো স্থিরভরের গ্যাসের আয়তন কীসের সঙ্গে সমানুপাতিক?",
+                    options: ["পরম তাপমাত্রা", "ঘনত্ব", "চাপ", "এগুলির কোনোটিই নয়"],
+                    answer: 0,
+                    explanation: "এটি চার্লসের সূত্রের সরাসরি বিবৃতি। স্থির চাপে নির্দিষ্ট ভরের গ্যাসের আয়তন তার পরম উষ্ণতার (কেলভিন স্কেলের তাপমাত্রা) সমানুপাতিক (V ∝ T)।"
+                },
+                {
+                    question: "ভ্যান্ডারওয়ালস গ্যাস সমীকরণ কোন্ গ্যাসের আচরণ ব্যাখ্যা করে?",
+                    options: ["আদর্শ গ্যাস", "বাস্তব গ্যাস", "শুধুমাত্র নিষ্ক্রিয় গ্যাস", "শুধুমাত্র দ্বিপরমাণুক গ্যাস"],
+                    answer: 1,
+                    explanation: "ভ্যান্ডারওয়ালস সমীকরণটি আদর্শ গ্যাস সমীকরণের একটি সংশোধিত রূপ, যা বাস্তব গ্যাসের আচরণ ব্যাখ্যা করার জন্য অণুগুলির নিজস্ব আয়তন এবং আন্তরাণবিক আকর্ষণ বলকে বিবেচনা করে।"
+                },
+                {
+                    question: "'একই তাপমাত্রা এবং চাপে সম-আয়তন সকল গ্যাসে সমান সংখ্যক অণু থাকে' - এটি কার সূত্র?",
+                    options: ["বয়েল", "চার্লস", "অ্যাভোগাড্রো", "গেলুসাক"],
+                    answer: 2,
+                    explanation: "এটি অ্যাভোগাড্রোর সূত্র। এই সূত্রানুযায়ী, একই চাপ ও উষ্ণতায় গ্যাসের আয়তন তার মোল সংখ্যার (অণুর সংখ্যার) সমানুপাতিক (V ∝ n)।"
+                },
+                {
+                    question: "স্থির উষ্ণতায় নির্দিষ্ট ভরের গ্যাসের চাপ ও আয়তনের গুণফল স্থির থাকে। এটি হল –",
+                    options: ["গেলুসাকের সূত্র", "চার্লসের সূত্র", "বয়েলের সূত্র", "চাপের সূত্র"],
+                    answer: 2,
+                    explanation: "এটি বয়েলের সূত্রের গাণিতিক রূপ। স্থির উষ্ণতায় নির্দিষ্ট ভরের গ্যাসের চাপ (P) এবং আয়তন (V) এর গুণফল সর্বদা ধ্রুবক থাকে (PV = ধ্রুবক)।"
+                },
+                {
+                    question: "আদর্শ গ্যাসের গতীয় তত্ত্বের স্বীকার্য অনুসারে –",
+                    options: ["গ্যাসের অণুগুলির মধ্যে আকর্ষণ বল আছে", "গ্যাসের অণুগুলির আয়তন আছে", "গ্যাসের অণুগুলির মধ্যে কোনো আকর্ষণ বল নেই", "অণুগুলির গতিশক্তি তাপমাত্রার উপর নির্ভরশীল নয়"],
+                    answer: 2,
+                    explanation: "আদর্শ গ্যাসের গতীয় তত্ত্বের একটি মূল স্বীকার্য হলো, গ্যাসের অণুগুলির মধ্যে কোনো আকর্ষণ বা বিকর্ষণ বল কাজ করে না এবং তাদের আয়তন পাত্রের আয়তনের তুলনায় নগণ্য।"
+                },
+                {
+                    question: "STP-তে 4.4g CO₂ -এর আয়তন কত?",
+                    options: ["2.4 L", "2.24 L", "4.4 L", "22.4 L"],
+                    answer: 1,
+                    explanation: "CO₂-এর আণবিক ভর 44g (1 মোল)। অতএব, 4.4g CO₂ = 0.1 মোল। STP-তে 1 মোল গ্যাসের আয়তন 22.4 L, সুতরাং 0.1 মোল গ্যাসের আয়তন হবে 2.24 L।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

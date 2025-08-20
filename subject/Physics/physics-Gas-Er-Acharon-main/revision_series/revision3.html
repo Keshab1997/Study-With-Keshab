@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>গ্যাসের সূত্র - আধুনিক প্রশ্নোত্তর</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #6c757d;
+            --light-bg: #f8f9fa;
+            --dark-text: #343a40;
+            --light-text: #ffffff;
+            --border-color: #dee2e6;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Noto Sans Bengali', Arial, sans-serif;
+            margin: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: var(--light-text);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        /* === নতুন নেভিগেশন ট্যাব ডিজাইন === */
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px; /* গ্যাপ বাড়ানো হয়েছে */
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0; /* প্যাডিং সরানো হয়েছে কারণ বর্ডার এখন বাটনে */
+        }
+
+        .nav-button {
+            background-color: transparent; /* ব্যাকগ্রাউন্ড সরানো হয়েছে */
+            color: var(--secondary-color); /* ডিফল্ট রঙ পরিবর্তন */
+            border: none;
+            border-bottom: 3px solid transparent; /* নিচে বর্ডারের জন্য জায়গা রাখা হয়েছে */
+            padding: 12px 20px;
+            border-radius: 8px 8px 0 0; /* ট্যাব লুকের জন্য */
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700; /* ফন্ট ওয়েট বাড়ানো হয়েছে */
+            transition: all 0.3s ease;
+            margin-bottom: -2px; /* বর্ডারের সাথে মেলানোর জন্য */
+        }
+
+        .nav-button:hover {
+            background-color: #f1f3f5; /* হোভারে হালকা ব্যাকগ্রাউন্ড */
+            color: var(--primary-color);
+        }
+
+        .nav-button.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color); /* সক্রিয় ট্যাবের নিচে বর্ডার */
+        }
+        
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question {
+            background-color: var(--light-text);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+        }
+
+        .question h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .toggle-answer-btn {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.2s ease;
+        }
+
+        .toggle-answer-btn:hover {
+            background-color: #5a6268;
+        }
+
+        .answer-block {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e6f7ff;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 0 5px 5px 0;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* === নতুন ফুটার বাটন ডিজাইন === */
+        .page-navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 10px 25px;
+            border-radius: 25px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            border-color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #5a6268;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+            .nav-button {
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>গ্যাসের সূত্র - প্রশ্নোত্তর</h1>
+    </header>
+
+    <nav id="page-navigation">
+        <button class="nav-button" data-page="page1">পেজ ১ (১-১০)</button>
+        <button class="nav-button" data-page="page2">পেজ ২ (১১-২০)</button>
+        <button class="nav-button" data-page="page3">পেজ ৩ (২১-৩০)</button>
+        <button class="nav-button" data-page="page4">পেজ ৪ (৩১-৪০)</button>
+    </nav>
+
+    <!-- পেজ ১ থেকে ৪ এর বিষয়বস্তু অপরিবর্তিত থাকবে -->
+    <div id="page1" class="page">
+        <h2>পেজ ১: প্রশ্ন ১-১০</h2>
+        <div class="question">
+            <h3>প্রশ্ন ১:</h3>
+            <p class="question-text">বয়েল-এর সূত্রে স্থির রাখা হয় –<br>(a) গ্যাসের ভর (b) গ্যাসের উষ্ণতা (c) গ্যাসের উষ্ণতা ও ভর উভয়ই (d) কোনোটিই নয়</p>
+            <button class="toggle-answer-btn">উত্তর দেখুন</button>
+            <div class="answer-block">
+                <strong>উত্তর:</strong> (c) গ্যাসের উষ্ণতা ও ভর উভয়ই<br><strong>ব্যাখ্যা:</strong> বয়েলের সূত্রের সংজ্ঞা অনুযায়ী, "স্থির উষ্ণতায়, নির্দিষ্ট ভরের কোনো গ্যাসের আয়তন তার চাপের সঙ্গে ব্যস্তানুপাতে পরিবর্তিত হয়।" সুতরাং, এই সূত্রে গ্যাসের উষ্ণতা এবং ভর উভয়কেই স্থির বা ধ্রুবক রাখা হয়।
+            </div>
+        </div>
+        <div class="question">
+            <h3>প্রশ্ন ২:</h3>
+            <p class="question-text">ভর ছাড়াও বয়েল-এর সূত্রে ধ্রুবক হল –<br>(a) উষ্ণতা (b) চাপ (c) আয়তন (d) কোনোটিই নয়</p>
+            <button class="toggle-answer-btn">উত্তর দেখুন</button>
+            <div class="answer-block">
+                <strong>উত্তর:</strong> (a) উষ্ণতা<br><strong>ব্যাখ্যা:</strong> বয়েলের সূত্রে গ্যাসের ভর এবং উষ্ণতা স্থির থাকে, আর চাপ ও আয়তন পরিবর্তিত হয়। প্রশ্নটিতে 'ভর ছাড়া' অন্য ধ্রুবকটি জানতে চাওয়া হয়েছে, যা হলো উষ্ণতা।
+            </div>
+        </div>
+        <div class="question">
+            <h3>প্রশ্ন ৩:</h3>
+            <p class="question-text">স্থির উষ্ণতায় যদি চাপ কমে যায় তবে কোনো নির্দিষ্ট পরিমাণ গ্যাসের আয়তন?<br>(A) বেড়ে যাবে (B) কমে যাবে (C) একই থাকবে (D) গ্যাসের স্বভাবের উপর নির্ভর করে বেড়ে বা কমে যাবে</p>
+            <button class="toggle-answer-btn">উত্তর দেখুন</button>
+            <div class="answer-block">
+                <strong>উত্তর:</strong> (A) বেড়ে যাবে<br><strong>ব্যাখ্যা:</strong> বয়েলের সূত্র অনুযায়ী, গ্যাসের আয়তন (V) চাপের (P) সঙ্গে ব্যস্তানুপাতিক (V ∝ 1/P)। এর অর্থ হলো, চাপ কমলে আয়তন বাড়বে এবং চাপ বাড়লে আয়তন কমবে।
+            </div>
+        </div>
+        <div class="question">
+            <h3>প্রশ্ন ৪:</h3>
+            <p class="question-text">বয়েলের সূত্রের P-V লেখচিত্রটির প্রকৃতি হল –<br>(a) সরলরেখা (b) অধিবৃত্ত (c) বৃত্ত (d) সমপরাবৃত্ত</p>
+            <button class="toggle-answer-btn">উত্তর দেখুন</button>
+            <div class="answer-block">
+                <strong>উত্তর:</strong> (d) সমপরাবৃত্ত<br><strong>ব্যাখ্যা:</strong> বয়েলের সূত্রের গাণিতিক রূপ PV = k (ধ্রুবক)। এই সমীকরণটি একটি সমপরাবৃত্ত বা Rectangular Hyperbola-এর সমীকরণ। তাই স্থির উষ্ণতায় চাপ (P) বনাম আয়তন (V) লেখচিত্রটি সমপরাবৃত্তীয় হয়।
+            </div>
+        </div>
+        <div class="question">
+            <h3>প্রশ্ন ৫:</h3>
+            <p class="question-text">বয়েলের সূত্রের সমীকরণটি হল –<br>(a) PV = ধ্রুবক (b) V/T = ধ্রুবক (c) P/T = ধ্রুবক (d) PV/T = ধ্রুবক</p>
+            <button class="toggle-answer-btn">উত্তর দেখুন</button>
+            <div class="answer-block">
+                <strong>উত্তর:</strong> (a) PV = ধ্রুবক<br><strong>ব্যাখ্যা:</strong> (a) PV = ধ্রুবক হলো বয়েলের সূত্রের গাণিতিক রূপ। (b) V/T = ধ্রুবক হলো চার্লসের সূত্র। (c) P/T = ধ্রুবক হলো গেলুসাকের চাপের সূত্র।
+            </div>
+        </div>
+        <div class="question">
+            <h3>প্রশ্ন ৬:</h3>
+            <p class="question-text">স্থির উষ্ণতায় নির্দিষ্ট ভরের গ্যাসের চাপ দ্বিগুণ করলে ওর আয়তন হয় –<br>(a) দ্বিগুণ (b) অর্ধেক (c) চারগুণ (d) অপরিবর্তিত থাকে</p>
+            <button class="toggle-answer-btn">উত্তর দেখুন</button>
+            <div class="answer-block">
+                <strong>উত্তর:</strong> (b) অর্ধেক<br><strong>ব্যাখ্যা:</strong> যেহেতু চাপ ও আয়তন ব্যস্তানুপাতিক, তাই চাপ দ্বিগুণ (2P) করলে আয়তনকে অর্ধেক (V/2) হতে হবে, যাতে তাদের গুণফল (2P × V/2 = PV) ধ্রুবক থাকে।
+            </div>
+        </div>
+        <div class="question">
+            <h3>প্রশ্ন ৭:</h3>
+            <p class="question-text">ভর ছাড়াও চার্লসের সূত্রে ধ্রুবক হল –<br>(a) উষ্ণতা (b) চাপ (c) আয়তন (d) কোনোটিই নয়</p>
+            <button class="toggle-answer-btn">উত্তর দেখুন</button>
+            <div class="answer-block">
+                <strong>উত্তর:</strong> (b) চাপ<br><strong>ব্যাখ্যা:</strong> চার্লসের সূত্রের সংজ্ঞা হলো "স্থির চাপে, নির্দিষ্ট ভরের কোনো গ্যাসের আয়তন তার পরম উষ্ণতার সমানুপাতিক।" সুতরাং, ভর ছাড়া অন্য ধ্রুবকটি হলো চাপ।
+            </div>
+        </div>
+        <div class="question">
+            <h3>প্রশ্ন ৮:</h3>
+            <p class="question-text">স্থির চাপে নির্দিষ্ট ভরের গ্যাসের আয়তন ও তাপমাত্রার সম্পর্কটি হল –<br>(a) বয়েলের সূত্র (b) রেনোর চাপের সূত্র (c) চার্লসের সূত্র (d) অ্যাভোগাড্রো সূত্র</p>
+            <button class="toggle-answer-btn">উত্তর দেখুন</button>
+            <div class="answer-block">
+                <strong>উত্তর:</strong> (c) চার্লসের সূত্র<br><strong>ব্যাখ্যা:</strong> স্থির চাপে গ্যাসের আয়তন ও তাপমাত্রার সম্পর্কটি চার্লসের সূত্র দ্বারা বর্ণিত হয়।
+            </div>
+        </div>
+        <div class="question">
+            <h3>প্রশ্ন ৯:</h3>
+            <p class="question-text">চার্লসের সূত্রের V-T লেখচিত্রটির প্রকৃতি হল –<br>(a) সরলরেখা (b) অধিবৃত্ত (c) বৃত্ত (d) সমপরাবৃত্ত</p>
+            <button class="toggle-answer-btn">উত্তর দেখুন</button>
+            <div class="answer-block">
+                <strong>উত্তর:</strong> (a) সরলরেখা<br><strong>ব্যাখ্যা:</strong> কেলভিন স্কেলে চার্লসের সূত্রটি হলো V ∝ T বা V = kT। এটি y = mx সমীকরণের অনুরূপ, যা মূলবিন্দুগামী একটি সরলরেখার সমীকরণ।
+            </div>
+        </div>
+        <div class="question">
+            <h3>প্রশ্ন ১০:</h3>
+            <p class="question-text">কোন্ তাপমাত্রায় সমস্ত গ্যাসের আয়তন গণনা অনুযায়ী শূন্য হয়ে যায়?<br>(a) 273°C (b) -273°C (c) 273K (d) 0°C</p>
+            <button class="toggle-answer-btn">উত্তর দেখুন</button>
+            <div class="answer-block">
+                <strong>উত্তর:</strong> (b) -273°C<br><strong>ব্যাখ্যা:</strong> চার্লসের সূত্র অনুযায়ী, -273°C উষ্ণতায় যেকোনো গ্যাসের আয়তন তাত্ত্বিকভাবে শূন্য হয়। এই উষ্ণতাকেই পরম শূন্য উষ্ণতা বা 0 কেলভিন (0 K) বলা হয়।
+            </div>
+        </div>
+    </div>
+    <div id="page2" class="page">
+        <h2>পেজ ২: প্রশ্ন ১১-২০</h2>
+        <div class="question"><h3>প্রশ্ন ১১:</h3><p class="question-text">পরম শূন্য উষ্ণতা হল –<br>(a) 0°C (b) -273°C (c) 273°C (d) 100°C</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (b) -273°C<br><strong>ব্যাখ্যা:</strong> যে তাত্ত্বিক উষ্ণতায় গ্যাসের আয়তন শূন্য হয় এবং অণুগুলির গতিশক্তি লোপ পায়, তাকে পরম শূন্য উষ্ণতা বলে, যার মান -273°C (বা আরও নিখুঁতভাবে -273.15°C)।</div></div>
+        <div class="question"><h3>প্রশ্ন ১২:</h3><p class="question-text">যদি সেলসিয়াস স্কেলে ও কেলভিন স্কেলে কোনো তাপমাত্রাকে যথাক্রমে t ও T দ্বারা প্রকাশ করা হয় তবে তাদের মধ্যে সম্পর্কটি হবে –<br>(a) t = T + 273 (b) T + t = 273 (c) T = 273 + t (d) T = t/273</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (c) T = 273 + t<br><strong>ব্যাখ্যা:</strong> কেলভিন স্কেলের মান পেতে হলে সেলসিয়াস স্কেলের মানের সাথে 273 যোগ করতে হয়।</div></div>
+        <div class="question"><h3>প্রশ্ন ১৩:</h3><p class="question-text">পরম স্কেলে বিশুদ্ধ জলের হিমাঙ্ক –<br>(a) 0 K (b) 100 K (c) 273 K (d) -273 K</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (c) 273 K<br><strong>ব্যাখ্যা:</strong> বিশুদ্ধ জলের হিমাঙ্ক সেলসিয়াস স্কেলে 0°C। কেলভিন স্কেলে এর মান হবে T = 0 + 273 = 273 K।</div></div>
+        <div class="question"><h3>প্রশ্ন ১৪:</h3><p class="question-text">পরম শূন্য তাপমাত্রায় গ্যাসের অণুগুলির গতিবেগ –<br>(a) সর্বোচ্চ (b) সর্বনিম্ন (c) শূন্য</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (c) শূন্য<br><strong>ব্যাখ্যা:</strong> গ্যাসের উষ্ণতা তার অণুগুলির গড় গতিশক্তির পরিমাপ। পরম শূন্য উষ্ণতায় (0 K) গ্যাসের গতিশক্তি তাত্ত্বিকভাবে শূন্য হয়ে যায়, তাই অণুগুলির গতিবেগও শূন্য হয়।</div></div>
+        <div class="question"><h3>প্রশ্ন ১৫:</h3><p class="question-text">কখন একটি বাস্তব গ্যাস আদর্শ গ্যাসের ন্যায় আচরণ করে?<br>(a) উচ্চচাপে ও নিম্ন তাপমাত্রায় (b) নিম্নচাপে ও উচ্চ তাপমাত্রায় (c) উচ্চচাপে ও উচ্চ তাপমাত্রায় (d) নিম্নচাপে ও নিম্ন তাপমাত্রায়</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (b) নিম্নচাপে ও উচ্চ তাপমাত্রায়<br><strong>ব্যাখ্যা:</strong> উচ্চ উষ্ণতায় অণুগুলির গতিশক্তি অনেক বেশি থাকে এবং নিম্ন চাপে অণুগুলি পরস্পর থেকে দূরে থাকে। এই দুই শর্তে অণুগুলির মধ্যে আকর্ষণ বল এবং তাদের নিজস্ব আয়তন নগণ্য হয়ে যায়, ফলে বাস্তব গ্যাস আদর্শ গ্যাসের মতো আচরণ করে।</div></div>
+        <div class="question"><h3>প্রশ্ন ১৬:</h3><p class="question-text">আদর্শ গ্যাসের অণুগুলির শক্তি –<br>(a) শুধুমাত্র স্থিতিশক্তি (b) শুধুমাত্র গতিশক্তি (c) গতিশক্তি ও স্থিতিশক্তির সমষ্টি (d) গতিশক্তি ও স্থিতিশক্তির অন্তরফল</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (b) শুধুমাত্র গতিশক্তি<br><strong>ব্যাখ্যা:</strong> আদর্শ গ্যাসের মডেলে অণুগুলির মধ্যে কোনো আকর্ষণ বা বিকর্ষণ বল নেই বলে ধরে নেওয়া হয়। তাই এদের কোনো স্থিতিশক্তি থাকে না, শুধুমাত্র গতিশক্তি থাকে।</div></div>
+        <div class="question"><h3>প্রশ্ন ১৭:</h3><p class="question-text">0°C তাপমাত্রায় কোনো আদর্শ গ্যাসের আয়তন –<br>(a) = 0 (b) > 0 (c) < 0 (d) কোনোটিই নয়</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (b) > 0<br><strong>ব্যাখ্যা:</strong> আদর্শ গ্যাসের আয়তন শুধুমাত্র পরম শূন্য উষ্ণতায় (-273°C বা 0 K) শূন্য হয়। 0°C (যা 273 K) পরম শূন্য উষ্ণতার চেয়ে অনেক বেশি, তাই এই উষ্ণতায় গ্যাসের আয়তন অবশ্যই শূন্যের থেকে বেশি হবে।</div></div>
+        <div class="question"><h3>প্রশ্ন ১৮:</h3><p class="question-text">গ্যাসের সূত্রগুলিতে গ্যাসের কোন্ রাশিটি সর্বদা স্থির ধরা হয়?<br>(a) গ্যাসের ভর (b) গ্যাসের চাপ (c) গ্যাসের আয়তন (d) কোনোটিই নয়</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (a) গ্যাসের ভর<br><strong>ব্যাখ্যা:</strong> বয়েলের সূত্র, চার্লসের সূত্র বা গেলুসাকের চাপের সূত্র – সবক্ষেত্রেই "নির্দিষ্ট ভরের" গ্যাসের কথা বলা হয়। অর্থাৎ, গ্যাসের ভরকে সর্বদা স্থির বা ধ্রুবক হিসেবে ধরা হয়।</div></div>
+        <div class="question"><h3>প্রশ্ন ১৯:</h3><p class="question-text">বয়েলের সূত্রতে চলরাশিগুলি কী কী?<br>(ক) তাপমাত্রা (খ) চাপ (গ) আয়তন (ঘ) চাপ ও আয়তন উভয়ই</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (ঘ) চাপ ও আয়তন উভয়ই<br><strong>ব্যাখ্যা:</strong> বয়েলের সূত্রে চাপ এবং আয়তন পরিবর্তনশীল, যখন উষ্ণতা এবং ভর স্থির।</div></div>
+        <div class="question"><h3>প্রশ্ন ২০:</h3><p class="question-text">কোন্ কোন্‌ গ্যাসের আচরণ প্রায় আদর্শ গ্যাসের মতো?<br>(ক) যে সমস্ত গ্যাসের অণুর আয়তন ছোটো (খ) যে সমস্ত গ্যাসের অণুর আয়তন বড়ো (গ) সমস্ত গ্যাসই (ঘ) কোনো গ্যাসই নয়</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (ক) যে সমস্ত গ্যাসের অণুর আয়তন ছোটো<br><strong>ব্যাখ্যা:</strong> ছোটো অণু যুক্ত গ্যাস (যেমন হিলিয়াম) আদর্শ আচরণের কাছাকাছি।</div></div>
+    </div>
+    <div id="page3" class="page">
+        <h2>পেজ ৩: প্রশ্ন ২১-৩০</h2>
+        <div class="question"><h3>প্রশ্ন ২১:</h3><p class="question-text">আদর্শ গ্যাসের অণুর আয়তন কত?<br>(ক) খুব বড়ো (খ) 0 (গ) ছোটো (ঘ) নির্ণয় করা সম্ভব নয়</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (খ) 0<br><strong>ব্যাখ্যা:</strong> আদর্শ গ্যাস মডেলে অণুর আয়তন নগণ্য ধরা হয়।</div></div>
+        <div class="question"><h3>প্রশ্ন ২২:</h3><p class="question-text">যে নির্দিষ্ট তাপমাত্রায় কোনো বাস্তব গ্যাস, আদর্শ গ্যাসের মতো আচরণ করে, তার নাম কী?<br>(ক) ইউটেকটিক তাপমাত্রা (খ) কুরি বিন্দু (গ) বয়েলের তাপমাত্রা (ঘ) পরমশূন্য তাপমাত্রা</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (গ) বয়েলের তাপমাত্রা<br><strong>ব্যাখ্যা:</strong> বয়েলের তাপমাত্রায় বাস্তব গ্যাস আদর্শের মতো।</div></div>
+        <div class="question"><h3>প্রশ্ন ২৩:</h3><p class="question-text">পরমশূন্য তাপমাত্রার মান ফারেনহাইট স্কেলে কত?<br>(ক) -273°F (খ) -459.67°F (গ) 0°F (ঘ) 32°F</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (খ) -459.67°F<br><strong>ব্যাখ্যা:</strong> পরম শূন্য ফারেনহাইটে -459.67°F।</div></div>
+        <div class="question"><h3>প্রশ্ন ২৪:</h3><p class="question-text">পরমশূন্য তাপমাত্রায় কোনো গ্যাসের কোন্ কোন্ রাশির মান শূন্য হয়?<br>(ক) আয়তন (খ) চাপ (গ) আয়তন ও চাপ (ঘ) কোনোটিই নয়</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (গ) আয়তন ও চাপ<br><strong>ব্যাখ্যা:</strong> পরম শূন্যে আয়তন এবং চাপ তাত্ত্বিকভাবে শূন্য।</div></div>
+        <div class="question"><h3>প্রশ্ন ২৫:</h3><p class="question-text">কেলভিন তাপমাত্রায় জলের স্ফুটনাঙ্ক কত?<br>(ক) -273 K (খ) -373 K (গ) 273 K (ঘ) 373 K</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (ঘ) 373 K<br><strong>ব্যাখ্যা:</strong> জলের স্ফুটনাঙ্ক 100°C = 373 K।</div></div>
+        <div class="question"><h3>প্রশ্ন ২৬:</h3><p class="question-text">নীচের কোন্টি গ্যাসের সূত্রাবলি অনুসরণ করে না?<br>(ক) সম্পৃক্ত বাষ্প (খ) অসম্পৃক্ত বাষ্প (গ) উভয়েই (ঘ) সবাই অনুসরণ করে</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (ক) সম্পৃক্ত বাষ্প<br><strong>ব্যাখ্যা:</strong> সম্পৃক্ত বাষ্প গ্যাসের সূত্র অনুসরণ করে না।</div></div>
+        <div class="question"><h3>প্রশ্ন ২৭:</h3><p class="question-text">কোন্ তাপমাত্রার স্কেলে ঋণাত্মক তাপমাত্রার পাঠ সম্ভব?<br>(ক) সেন্টিগ্রেড স্কেল (খ) ফারেনহাইট স্কেল (গ) কেলভিন স্কেল (ঘ) কখনও সম্ভব নয়</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (ক) সেন্টিগ্রেড স্কেল<br><strong>ব্যাখ্যা:</strong> সেন্টিগ্রেডে ঋণাত্মক পাঠ সম্ভব।</div></div>
+        <div class="question"><h3>প্রশ্ন ২৮:</h3><p class="question-text">300 ml একটি গ্যাসকে 27°c থেকে ঠান্ডা করে 3°c তাপমাত্রায় আনা হল। স্থির চাপে এখন গ্যাসের আয়তন হবে –<br>(ক) 540 ml (খ) 135 ml (গ) 270 ml (ঘ) 350 ml</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (গ) 270 ml<br><strong>ব্যাখ্যা:</strong> চার্লসের সূত্র: V₂ = V₁ × (T₂/T₁) = 300 × ((273+3)/(273+27)) = 300 × (276/300) = 276 ml। এখানে আপনার দেওয়া উত্তরে সামান্য ভুল ছিল, সঠিক উত্তর 276 ml। আমি প্রশ্নের ব্যাখ্যাটি সংশোধন করে দিলাম। তবে প্রদত্ত বিকল্প অনুযায়ী (গ) 270 ml নিকটতম।</div></div>
+        <div class="question"><h3>প্রশ্ন ২৯:</h3><p class="question-text">বাস্তব গ্যাসগুলি আদর্শ গ্যাসের ন্যায় আচরণ করবে যখন –<br>(ক) তাপমাত্রা ও চাপ উভয়ই খুব বেশি (খ) তাপমাত্রা বেশি কিন্তু চাপ কম (গ) তাপমাত্রা কম এবং চাপ বেশি (ঘ) তাপমাত্রা ও চাপ উভয়ই কম</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (খ) তাপমাত্রা বেশি কিন্তু চাপ কম<br><strong>ব্যাখ্যা:</strong> উচ্চ তাপমাত্রা এবং নিম্ন চাপে আদর্শ আচরণ।</div></div>
+        <div class="question"><h3>প্রশ্ন ৩০:</h3><p class="question-text">নীচের মধ্যে কোন্টি গ্যাসের সূত্রের সঙ্গে সম্পর্কিত নয়?<br>(ক) বয়েলের সূত্র (খ) চার্লসের সূত্র (গ) গেলুসাকের সূত্র (ঘ) ফ্যারাডের সূত্র</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (ঘ) ফ্যারাডের সূত্র<br><strong>ব্যাখ্যা:</strong> ফ্যারাডের সূত্র বিদ্যুৎস্থিতি সম্পর্কিত।</div></div>
+    </div>
+    <div id="page4" class="page">
+        <h2>পেজ ৪: প্রশ্ন ৩১-৪০</h2>
+        <div class="question"><h3>প্রশ্ন ৩১:</h3><p class="question-text">নীচের কোন্ সূত্রটি আদর্শ গ্যাস মেনে চলে?<br>(ক) গ্যাসের সূত্র (সাধারণভাবে) (খ) বয়েলের সূত্র (গ) চার্লসের সূত্র (ঘ) অ্যাভোগাড্রো সূত্র</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (ক) গ্যাসের সূত্র (সাধারণভাবে)<br><strong>ব্যাখ্যা:</strong> আদর্শ গ্যাস সব সূত্র মেনে চলে।</div></div>
+        <div class="question"><h3>প্রশ্ন ৩২:</h3><p class="question-text">অক্সিজেন গ্যাসের বাষ্প ঘনত্ব হল –<br>(ক) 12 (খ) 16 (গ) 18 (ঘ) 28</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (খ) 16<br><strong>ব্যাখ্যা:</strong> O₂-এর আণবিক ভর 32, বাষ্প ঘনত্ব = আণবিক ভর / 2 = 32/2 = 16।</div></div>
+        <div class="question"><h3>প্রশ্ন ৩৩:</h3><p class="question-text">NTP-তে 22g CO₂-এর আয়তন কত?<br>(ক) 22.4 L (খ) 11.2 L (গ) 6.5 L (ঘ) 8.5 L</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (খ) 11.2 L<br><strong>ব্যাখ্যা:</strong> CO₂-এর মোলার ভর (12 + 2×16) = 44g। 44g CO₂-এর আয়তন 22.4 L। সুতরাং, 22g CO₂ (0.5 মোল)-এর আয়তন হবে 0.5 × 22.4 = 11.2 L।</div></div>
+        <div class="question"><h3>প্রশ্ন ৩৪:</h3><p class="question-text">নীচের কোন্ অবস্থার কারণে আদর্শ গ্যাসের ন্যায় কোনো বাস্তব গ্যাস আচরণ করে না?<br>(ক) তাপমাত্রা কম এবং চাপ বেশি (খ) বেশি তাপমাত্রা ও কম চাপ (গ) কম তাপমাত্রা (ঘ) বেশি তাপমাত্রা</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (ক) তাপমাত্রা কম এবং চাপ বেশি<br><strong>ব্যাখ্যা:</strong> এই অবস্থায় গ্যাসের অণুগুলি কাছাকাছি চলে আসে এবং তাদের মধ্যে আকর্ষণ বল ও নিজস্ব আয়তনকে আর নগণ্য ধরা যায় না, ফলে আদর্শ আচরণ থেকে বিচ্যুতি ঘটে।</div></div>
+        <div class="question"><h3>প্রশ্ন ৩৫:</h3><p class="question-text">নির্দিষ্ট চাপে কোনো স্থিরভরের গ্যাসের আয়তন কীসের সঙ্গে সমানুপাতিক?<br>(ক) তাপমাত্রা (পরম) (খ) ঘনত্ব (গ) উভয়ই (ঘ) এগুলির কোনোটিই নয়</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (ক) তাপমাত্রা (পরম)<br><strong>ব্যাখ্যা:</strong> চার্লসের সূত্র অনুসারে, স্থির চাপে নির্দিষ্ট ভরের গ্যাসের আয়তন তার পরম উষ্ণতার (কেলভিন স্কেলে) সমানুপাতিক (V ∝ T)।</div></div>
+        <div class="question"><h3>প্রশ্ন ৩৬:</h3><p class="question-text">ভ্যান্ডারওয়াল গ্যাস সমীকরণ কোন্ আচরণ ব্যাখ্যা করে?<br>(ক) আদর্শ গ্যাস (খ) বাস্তব গ্যাস (গ) গ্যাসের মিশ্রণ (ঘ) দ্বিপরমাণুক গ্যাস</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (খ) বাস্তব গ্যাস<br><strong>ব্যাখ্যা:</strong> ভ্যান ডার ওয়ালস সমীকরণটি বাস্তব গ্যাসের আচরণের বিচ্যুতির কারণ (অণুগুলির আয়তন ও আকর্ষণ বল) বিবেচনায় এনে তৈরি করা হয়েছে।</div></div>
+        <div class="question"><h3>প্রশ্ন ৩৭:</h3><p class="question-text">'নির্দিষ্ট তাপমাত্রা এবং চাপে কোনো গ্যাসের আয়তন তার অণুর সংখ্যার সঙ্গে সমানুপাতিক' এটি কোন্ বিজ্ঞানী বলেন?<br>(ক) বয়েল (খ) চার্লস (গ) অ্যাভোগাড্রো (ঘ) এঁদের কেউ নন</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (গ) অ্যাভোগাড্রো<br><strong>ব্যাখ্যা:</strong> এটি অ্যাভোগাড্রোর সূত্র, যা বলে স্থির উষ্ণতা ও চাপে সম-আয়তন সকল গ্যাসে সমান সংখ্যক অণু থাকে (V ∝ n)।</div></div>
+        <div class="question"><h3>প্রশ্ন ৩৮:</h3><p class="question-text">স্থির উষ্ণতায় নির্দিষ্ট ভরের গ্যাসের চাপ ও আয়তনের গুণফল হল স্থির। এটি হল –<br>(ক) গেলুসাকের সূত্র (খ) চার্লসের সূত্র (গ) বয়েল সূত্র (ঘ) চাপের সূত্র</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (গ) বয়েল সূত্র<br><strong>ব্যাখ্যা:</strong> এটি বয়েলের সূত্রের গাণিতিক রূপ: PV = ধ্রুবক।</div></div>
+        <div class="question"><h3>প্রশ্ন ৩৯:</h3><p class="question-text">গ্যাসের গতীয় তত্ত্বানুসারে –<br>(ক) গ্যাসের অণুগুলির মধ্যে আন্তঃআণবিক আকর্ষণ বল বর্তমান (খ) গ্যাসের অণুগুলির কিছুটা আয়তন আছে (গ) গ্যাসের অণুগুলির মধ্যে কোনো আন্তঃআণবিক আকর্ষণ নেই (ঘ) প্রত্যেকটি ধাক্কার জন্য অণুগুলির গতি কমে যায়</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (গ) গ্যাসের অণুগুলির মধ্যে কোনো আন্তঃআণবিক আকর্ষণ নেই<br><strong>ব্যাখ্যা:</strong> আদর্শ গ্যাসের গতীয় তত্ত্বের অন্যতম স্বীকার্য হলো অণুগুলির মধ্যে কোনো আকর্ষণ বা বিকর্ষণ বল নেই।</div></div>
+        <div class="question"><h3>প্রশ্ন ৪০:</h3><p class="question-text">STP তে 4.4g CO₂ -এর আয়তন কত?<br>(ক) 2.4 L (খ) 2.24 L (গ) 4.4 L (ঘ) 22.4 L</p><button class="toggle-answer-btn">উত্তর দেখুন</button><div class="answer-block"><strong>উত্তর:</strong> (খ) 2.24 L<br><strong>ব্যাখ্যা:</strong> CO₂-এর মোলার ভর 44g। 4.4g CO₂ মানে 4.4/44 = 0.1 মোল। STP-তে 1 মোল গ্যাসের আয়তন 22.4 L। সুতরাং, 0.1 মোল গ্যাসের আয়তন হবে 0.1 × 22.4 = 2.24 L।</div></div>
+    </div>
+
+    <footer>
+       <div class="page-navigation">
+            <a href="revision2.html" class="btn btn-secondary">পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary">হোম</a>
+        </div>
+    </footer>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const navButtons = document.querySelectorAll('.nav-button');
+        const pages = document.querySelectorAll('.page');
+        const answerToggleButtons = document.querySelectorAll('.toggle-answer-btn');
+
+        // Function to show a specific page
+        function showPage(pageId) {
+            // Hide all pages
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Deactivate all nav buttons
+            navButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show the target page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Activate the corresponding nav button
+            const activeButton = document.querySelector(`.nav-button[data-page="${pageId}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+        }
+
+        // Add click event listeners to nav buttons
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const pageId = button.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+
+        // Add click event listeners to answer toggle buttons
+        answerToggleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const answerBlock = button.nextElementSibling;
+                const isVisible = answerBlock.style.display === 'block';
+                
+                if (isVisible) {
+                    answerBlock.style.display = 'none';
+                    button.textContent = 'উত্তর দেখুন';
+                } else {
+                    answerBlock.style.display = 'block';
+                    button.textContent = 'উত্তর লুকান';
+                }
+            });
+        });
+
+        // Show the first page by default on load
+        showPage('page1');
+    });
+</script>
+
+</body>
+</html>
