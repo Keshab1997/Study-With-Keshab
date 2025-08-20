@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 06 - আলোর গতি এবং বাঁকা আয়নার জাদু</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d81b60;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #004d40;
+        }
+        
+        h3, h4 {
+            font-size: 1.6em;
+        }
+
+        p, ul, ol, li {
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #c2185b;
+        }
+
+        blockquote {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            margin: 20px 0;
+            padding: 15px 20px;
+            font-style: italic;
+            font-size: 1.1em;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+
+        .diagram {
+            max-width: 600px;
+            background: #fff;
+            padding: 15px;
+        }
+
+        .math-section {
+            background-color: #f1f8e9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #689f38;
+            margin-top: 30px;
+        }
+        .math-section h4 {
+            color: #33691e;
+            border-bottom-color: #dcedc8;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Navigation Styles */
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .nav-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .nav-button.active {
+            background-color: #d81b60;
+            color: white;
+            border-color: #d81b60;
+        }
+
+        .nav-button.disabled {
+            color: #aaa;
+            pointer-events: none;
+            background-color: #f5f5f5;
+        }
+        
+        .home-button {
+            background-color: #1e88e5;
+            color: white;
+            border-color: #1e88e5;
+        }
+        .home-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CLASS 06</h1>
+        <h2>বিষয়: আলোর গতি এবং বাঁকা আয়নার জাদু</h2>
+
+        <p>নমস্কার বন্ধুরা!<br>গত ক্লাসে আমরা আলোর সবচেয়ে বড় জাদু, অভ্যন্তরীণ পূর্ণ প্রতিফলন দেখেছি। আজ আমরা প্রথমে আলোর গতি আর প্রতিসরাঙ্কের কিছু মজার অঙ্ক কষব, তারপর সোজা আয়না ছেড়ে বাঁকা আয়নার এক নতুন জগতে প্রবেশ করব! চলো, শুরু করা যাক।</p>
+
+        <div class="math-section">
+            <h3>অঙ্ক কষার পালা: প্রতিসরাঙ্ক ও আলোর বেগ</h3>
+            <p>আমরা তো জানি, <strong>প্রতিসরাঙ্ক (μ)</strong> হলো কোনো মাধ্যমে আলোর 'স্লো-মোশন' হওয়ার মাপ। যে মাধ্যমের প্রতিসরাঙ্ক যত বেশি, সেখানে আলোর বেগ তত কম।</p>
+            
+            <blockquote>গুরুত্বপূর্ণ সূত্র:<br>μ = (শূন্যস্থানে আলোর বেগ, c) / (ওই মাধ্যমে আলোর বেগ, v)</blockquote>
+
+            <h4>চলো, কয়েকটি অঙ্ক সমাধান করি!</h4>
+            <ul>
+                <li><strong>প্রশ্ন ১:</strong> শূন্য মাধ্যমে আলোর বেগ 3 × 10¹⁰ সেমি/সে। কাচের প্রতিসরাঙ্ক 1.5 হলে, কাচের মধ্যে আলোর বেগ কত?<br>
+                <strong>সমাধান:</strong> v = c / μ = (3 × 10¹⁰) / 1.5 = <strong>2 × 10¹⁰ সেমি/সে</strong>।</li>
+                
+                <li><strong>প্রশ্ন ২:</strong> হীরার প্রতিসরাঙ্ক 2.42। হীরার মধ্যে আলোর বেগ কত? (শূন্যস্থানে আলোর বেগ 3 × 10⁸ মি/সে)<br>
+                <strong>সমাধান:</strong> v = c / μ = (3 × 10⁸) / 2.42 ≈ <strong>1.24 × 10⁸ মি/সে</strong>।</li>
+                
+                <li><strong>প্রশ্ন ৩:</strong> কাচের প্রতিসরাঙ্ক 1.5 আর জলের 1.33। কাচে আলোর বেগ 2 × 10⁸ মি/সে হলে, জলে আলোর বেগ কত?<br>
+                <strong>সমাধান:</strong> আমরা জানি, μ_কাচ / μ_জল = v_জল / v_কাচ <br>
+                1.5 / 1.33 = v_জল / (2 × 10⁸) <br>
+                v_জল = (1.5 / 1.33) × 2 × 10⁸ ≈ <strong>2.26 × 10⁸ মি/সে</strong>।</li>
+            </ul>
+        </div>
+
+        <h3>নতুন জগৎ: গোলীয় দর্পণ (Spherical Mirror)</h3>
+        <p>এতদিন আমরা সমতল বা সোজা আয়না নিয়ে কথা বলেছি। কিন্তু আয়না যদি বাঁকা হয়? ভাবো, একটা চকচকে স্টিলের চামচ। চামচের ভেতরের দিকটাও একটা আয়না, আবার বাইরের দিকটাও একটা আয়না! এইরকম বাঁকা আয়নাকেই বলে <strong>গোলীয় দর্পণ</strong>।</p>
+        <img src="https://keydifferences.com/wp-content/uploads/2017/11/convex-vs-concave-mirror1.jpg
+" alt="চামচে অবতল ও উত্তল দর্পণের উদাহরণ">
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>দর্পণের নাম</th>
+                    <th>দেখতে কেমন?</th>
+                    <th>মনে রাখার উপায়</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>অবতল দর্পণ (Concave Mirror)</strong></td>
+                    <td>ভেতরের দিকটা প্রতিফলক।</td>
+                    <td>চামচের ভেতরের <strong>অবতল</strong> বা নিচু অংশ।</td>
+                </tr>
+                <tr>
+                    <td><strong>উত্তল দর্পণ (Convex Mirror)</strong></td>
+                    <td>বাইরের দিকটা প্রতিফলক।</td>
+                    <td>চামচের বাইরের <strong>উত্তল</strong> বা উঁচু অংশ।</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>গোলীয় দর্পণের পরিবারের সদস্যরা</h3>
+        <p>এই বাঁকা আয়নাগুলোর কিছু গুরুত্বপূর্ণ অংশ আছে। চলো তাদের সাথে পরিচিত হই।</p>
+        <img src="https://i0.wp.com/letsunderstands.wordpress.com/wp-content/uploads/2019/10/spherical-mirrors.png?ssl=1
+" alt="গোলীয় দর্পণের বিভিন্ন অংশ" class="diagram">
+        <ul>
+            <li><strong>মেরু (Pole, P):</strong> দর্পণের ঠিক মাঝখানের বিন্দু।</li>
+            <li><strong>বক্রতাকেন্দ্র (Centre of Curvature, C):</strong> দর্পণটা যে কাল্পনিক গোলকের অংশ, সেই গোলকের কেন্দ্র।</li>
+            <li><strong>বক্রতা ব্যাসার্ধ (Radius of Curvature, r):</strong> মেরু থেকে বক্রতাকেন্দ্র পর্যন্ত দূরত্ব (CP)।</li>
+            <li><strong>প্রধান অক্ষ (Principal Axis):</strong> মেরু আর বক্রতাকেন্দ্র দিয়ে যাওয়া সোজা কাল্পনিক রেখা।</li>
+            <li><strong>ফোকাস (Focus, F):</strong> সমান্তরাল আলোকরশ্মি দর্পণে প্রতিফলনের পর যে বিন্দুতে মিলিত হয় (অবতল) বা যে বিন্দু থেকে আসছে বলে মনে হয় (উত্তল)।</li>
+            <li><strong>ফোকাস দূরত্ব (Focal length, f):</strong> মেরু থেকে ফোকাস পর্যন্ত দূরত্ব (FP)।</li>
+        </ul>
+
+        <blockquote>সবচেয়ে গুরুত্বপূর্ণ সম্পর্ক: বক্রতা ব্যাসার্ধ, ফোকাস দূরত্বের ঠিক দ্বিগুণ!<br><strong>r = 2f</strong></blockquote>
+
+        <h3>কোথায় কোন দর্পণ ব্যবহার হয়?</h3>
+        <img src="https://worksheets.clipart-library.com/images2/concave-and-convex-mirrors-worksheet/concave-and-convex-mirrors-worksheet-10.jpg
+" alt="অবতল দর্পণের ব্যবহার">
+        <table>
+            <thead>
+                <tr>
+                    <th>দর্পণের ধরন</th>
+                    <th>কাজ</th>
+                    <th>ব্যবহার</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>অবতল দর্পণ</strong></td>
+                    <td>• আলোকরশ্মিকে এক জায়গায় মিলিত করে <br> • বস্তুর বড় প্রতিবিম্ব তৈরি করে</td>
+                    <td>• দাড়ি কামানোর আয়না (বড় দেখায়) <br> • দাঁতের ডাক্তার ব্যবহার করেন (দাঁত বড় দেখায়) <br> • গাড়ির হেডলাইট, টর্চ (শক্তিশালী আলোর বিম তৈরি করে)</td>
+                </tr>
+                <tr>
+                    <td><strong>উত্তল দর্পণ</strong></td>
+                    <td>• আলোকরশ্মিকে ছড়িয়ে দেয় <br> • অনেক বড় জায়গার ছোট প্রতিবিম্ব দেখায়</td>
+                    <td>• গাড়ির <strong>ভিউ-ফাইন্ডার/সাইড মিরর</strong> (পেছনের অনেক বড় রাস্তা দেখা যায়) <br> • রাস্তার মোড়ে বা দোকানে সিকিউরিটি মিরর হিসেবে</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>না ছুঁয়ে কীভাবে চিনবে কোন দর্পণ?</h3>
+        <p>একদম সহজ! আয়নাটার খুব কাছে তোমার আঙুল নিয়ে যাও:</p>
+        <ul>
+            <li>যদি প্রতিবিম্ব <strong>সমান আকারের</strong> হয় → <strong>সমতল দর্পণ</strong></li>
+            <li>যদি প্রতিবিম্ব <strong>বড়</strong> দেখায় → <strong>অবতল দর্পণ</strong></li>
+            <li>যদি প্রতিবিম্ব <strong>ছোট</strong> দেখায় → <strong>উত্তল দর্পণ</strong></li>
+        </ul>
+
+        <h3 style="text-align: center; border: none; color: #004d40; margin-top: 40px;">Thank You!</h3>
+    </div>
+
+    <nav class="navigation">
+        <a href="class5.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button active">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html"="nav-button">9</a>
+        <a href="class10.html" class="nav-button">10</a>
+        <a href="class11.html" class="nav-button">11</a>
+        <a href="class12.html" class="nav-button">12</a>
+        <a href="class13.html" class="nav-button">13</a>
+        <a href="class14.html" class="nav-button">14</a>
+        <a href="class7.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+</body>
+</html>

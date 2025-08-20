@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>তাপ ও তাপমাত্রা (অষ্টম পর্ব) - Class 08</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-size: 1.1em; border-radius: 5px; }
+        .mcq-item { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed #ddd; }
+        .mcq-item:last-child { border-bottom: none; }
+        .mcq-item ul { list-style-type: none; padding-left: 0; }
+        .mcq-item li { margin-bottom: 8px; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://img.freepik.com/premium-vector/hot-temperature-icon-logo-vector-design-template_827767-4299.jpg" alt="Logo" class="logo">
+        <h1>তাপ ও তাপমাত্রা</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 08</h2>
+        <h3>বিগত বছরের পরীক্ষার প্রশ্নাবলী ও বিশ্লেষণ</h3>
+
+        <!-- All 47 Questions Start Here -->
+
+        <div class="mcq-item">
+            <h4>1. এস আই পদ্ধতিতে তাপের একক কী?</h4>
+            <p><em>(SSC NTPC পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) জুল</li>
+                <li>(B) ব্রিটিশ থার্মাল একক</li>
+                <li>(C) ক্যালোরি</li>
+                <li>(D) এদের কোনোটিই নয়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (A) জুল</strong><br><strong>ব্যাখ্যা:</strong> আন্তর্জাতিক পদ্ধতিতে (SI) তাপ বা শক্তির একক হলো জুল (Joule)। CGS পদ্ধতিতে তাপের একক হলো ক্যালোরি (Calorie)।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>2. 1 জুল = কত ক্যালোরি?</h4>
+            <p><em>(SSC CGL পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 4.2 ক্যালোরি</li>
+                <li>(B) 0.24 ক্যালোরি</li>
+                <li>(C) 0.42 ক্যালোরি</li>
+                <li>(D) 0.024 ক্যালোরি</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) 0.24 ক্যালোরি</strong><br><strong>ব্যাখ্যা:</strong> আমরা জানি, 1 ক্যালোরি ≈ 4.2 জুল। সুতরাং, 1 জুল = 1 / 4.2 ক্যালোরি ≈ 0.24 ক্যালোরি।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>3. ফারেনহাইট স্কেলে জলের হিমাঙ্ক কত?</h4>
+            <p><em>(SSC MTS & CGSL পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 180°F</li>
+                <li>(B) 32°F</li>
+                <li>(C) 212°F</li>
+                <li>(D) 100°F</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) 32°F</strong><br><strong>ব্যাখ্যা:</strong> সেলসিয়াস স্কেলে জলের হিমাঙ্ক 0°C এবং স্ফুটনাঙ্ক 100°C। ফারেনহাইট স্কেলে জলের হিমাঙ্ক 32°F এবং স্ফুটনাঙ্ক 212°F।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>4. সেলসিয়াস স্কেলের প্রাথমিক অন্তরটি কত ভাগে বিভক্ত?</h4>
+            <p><em>(RRB GROUP-D পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 180 ভাগে</li>
+                <li>(B) 100 ভাগে</li>
+                <li>(C) 68 ভাগে</li>
+                <li>(D) 32 ভাগে</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) 100 ভাগে</strong><br><strong>ব্যাখ্যা:</strong> সেলসিয়াস স্কেলের নিম্নস্থিরাঙ্ক (0°C) এবং ঊর্ধ্বস্থিরাঙ্ক (100°C)-এর মধ্যবর্তী পাল্লাকে সমান 100টি ভাগে ভাগ করা হয়।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>5. মানুষের দেহের স্বাভাবিক উষ্ণতা হল-</h4>
+            <p><em>(WBPSC পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 98.4°C</li>
+                <li>(B) -40°C</li>
+                <li>(C) 98.4°F</li>
+                <li>(D) 100°C</li>
+            </ul>
+            <blockquote><strong>উত্তর: (C) 98.4°F (বা 98.6°F)</strong><br><strong>ব্যাখ্যা:</strong> মানুষের শরীরের স্বাভাবিক তাপমাত্রা সেলসিয়াস স্কেলে প্রায় 37°C এবং ফারেনহাইট স্কেলে প্রায় 98.6°F।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>6. তাপের কোন্ রূপটির ধর্ম আলোর ধর্মের সদৃশ?</h4>
+            <p><em>(SSC RRB পরীক্ষা)</em></p>
+             <ul>
+                <li>(A) বোধগম্য তাপ</li>
+                <li>(B) বিকীর্ণ তাপ</li>
+                <li>(C) লীনতাপ</li>
+                <li>(D) এদের সবগুলিই</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) বিকীর্ণ তাপ</strong><br><strong>ব্যাখ্যা:</strong> বিকীর্ণ তাপ আলোর মতোই মাধ্যম ছাড়াই শূন্যস্থানে চলাচল করতে পারে, সরলরেখায় চলে এবং এর গতি আলোর গতির সমান।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>7. যখন কঠিনকে তাপ দেওয়া হয়, তখন এর তাপমাত্রা-</h4>
+            <ul>
+                <li>(A) বৃদ্ধি পায়</li>
+                <li>(B) হয় বৃদ্ধি পায় বা একই থাকে</li>
+                <li>(C) হ্রাস পায়</li>
+                <li>(D) একই থাকে</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) হয় বৃদ্ধি পায় বা একই থাকে</strong><br><strong>ব্যাখ্যা:</strong> কঠিন পদার্থকে তাপ দিলে তার তাপমাত্রা বাড়তে থাকে। কিন্তু যখন পদার্থটি গলনাঙ্কে পৌঁছায়, তখন অবস্থার পরিবর্তনের (গলন) সময় অতিরিক্ত তাপ গ্রহণ করলেও তাপমাত্রা স্থির থাকে।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>8. 4°C তাপমাত্রায় 1 লিটার জলের ভর হল-</h4>
+            <p><em>(FOOD SI 2014 পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 1 গ্রাম</li>
+                <li>(B) 1 কেজি</li>
+                <li>(C) 1 মিলিগ্রাম</li>
+                <li>(D) 1 কুইন্টাল</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) 1 কেজি</strong><br><strong>ব্যাখ্যা:</strong> 4°C তাপমাত্রায় জলের ঘনত্ব সর্বাধিক হয়, যা 1 g/cm³। 1 লিটার = 1000 cm³। সুতরাং, 1 লিটার জলের ভর = 1000 গ্রাম = 1 কেজি।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>9. কোনো বস্তুতে তাপ দিলে বস্তুটির তাপমাত্রা-</h4>
+            <p><em>(SSC CGL পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) সর্বদা বাড়বে</li>
+                <li>(B) সর্বদা কমবে</li>
+                <li>(C) একই থাকবে</li>
+                <li>(D) বাড়বে, বা একই থাকতে পারে</li>
+            </ul>
+            <blockquote><strong>উত্তর: (D) বাড়বে, বা একই থাকতে পারে</strong><br><strong>ব্যাখ্যা:</strong> তাপ দিলে সাধারণত তাপমাত্রা বাড়ে। কিন্তু অবস্থার পরিবর্তনের সময় (যেমন গলন বা বাষ্পীভবন) তাপ দিলেও তাপমাত্রা স্থির থাকে।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>10. এসআই পদ্ধতিতে বিশুদ্ধ জলের আপেক্ষিক তাপ হল-</h4>
+            <p><em>(SSC CGSL পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 4000 জুল/কেজি·K</li>
+                <li>(B) 4200 জুল/কেজি·K</li>
+                <li>(C) 4100 জুল/কেজি·K</li>
+                <li>(D) 4.2 জুল/কেজি·K</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) 4200 জুল/কেজি·K</strong><br><strong>ব্যাখ্যা:</strong> CGS পদ্ধতিতে জলের আপেক্ষিক তাপ 1 cal/g°C। SI পদ্ধতিতে এর মান হলো 4200 J/kg·K।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>11. সেঁক দেওয়ার বোতলে যে তরলটি ব্যবহার করা উচিত তা হল-</h4>
+            <p><em>(SSC MTS পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) গ্লিসারিন</li>
+                <li>(B) জল</li>
+                <li>(C) অ্যালকোহল</li>
+                <li>(D) দুধ</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) জল</strong><br><strong>ব্যাখ্যা:</strong> জলের আপেক্ষিক তাপ খুব বেশি। তাই এটি ধীরে ধীরে গরম হয় এবং ধীরে ধীরে ঠান্ডা হয়, ফলে অনেকক্ষণ ধরে তাপ সরবরাহ করতে পারে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>12. শীতপ্রধান দেশে ঘর গরম রাখার জন্য ঘরের মধ্যে গরম জলের প্রবাহ পাঠানো হয়, কারণ-</h4>
+            <p><em>(RRB NTPC পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) জল সহজলভ্য</li>
+                <li>(B) জল যৌগিক পদার্থ</li>
+                <li>(C) জলের আপেক্ষিক তাপ বেশি</li>
+                <li>(D) কোনোটিই নয়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (C) জলের আপেক্ষিক তাপ বেশি</strong><br><strong>ব্যাখ্যা:</strong> জলের আপেক্ষিক তাপ বেশি হওয়ায় এটি প্রচুর পরিমাণে তাপ ধরে রাখতে পারে এবং ধীরে ধীরে সেই তাপ বর্জন করে ঘরকে গরম রাখে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>13. তামার আপেক্ষিক তাপের মান-</h4>
+            <p><em>(RRB GROUP-D পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 0.009 Cal/g°C</li>
+                <li>(B) 0.9 Cal/g°C</li>
+                <li>(C) 0.09 Cal/g°C</li>
+                <li>(D) 9 Cal/g°C</li>
+            </ul>
+            <blockquote><strong>উত্তর: (C) 0.09 Cal/g°C</strong><br><strong>ব্যাখ্যা:</strong> এটি একটি তথ্যভিত্তিক প্রশ্ন। তামার আপেক্ষিক তাপের মান প্রায় 0.09 ক্যালোরি/গ্রাম°C।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>14. কোনো বস্তুর তাপগ্রাহিতা 40 ক্যালোরি/°C হলে জলসম হবে-</h4>
+            <p><em>(SSC MTS পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 40 গ্রাম</li>
+                <li>(B) 40 গ্রাম/°C</li>
+                <li>(C) 40 ক্যালোরি</li>
+                <li>(D) 40 ক্যালোরি/°C</li>
+            </ul>
+            <blockquote><strong>উত্তর: (A) 40 গ্রাম</strong><br><strong>ব্যাখ্যা:</strong> CGS পদ্ধতিতে কোনো বস্তুর তাপগ্রাহিতার সাংখ্যমান তার জলসমের সাংখ্যমানের সমান হয়। তাপগ্রাহিতার একক cal/°C এবং জলসমের একক গ্রাম (g)।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>15. বস্তুর তাপগ্রাহিতা হল-</h4>
+            <p><em>(RRB GROUP-D পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) বস্তুর তাপের হ্রাস বা বৃদ্ধি</li>
+                <li>(B) ভর ও আপেক্ষিক তাপের গুণফল</li>
+                <li>(C) ভর ও আপেক্ষিক তাপের অনুপাত</li>
+                <li>(D) কোনোটিই নয়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) ভর ও আপেক্ষিক তাপের গুণফল</strong><br><strong>ব্যাখ্যা:</strong> তাপগ্রাহিতার সূত্রটি হলো: তাপগ্রাহিতা = বস্তুর ভর (m) × আপেক্ষিক তাপ (s)।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>16. নিম্নলিখিত কোন্ স্কেলে তাপমাত্রার মান কখনও ঋণাত্মক হবে না?</h4>
+            <p><em>(SSC CGL পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) সেলসিয়াস</li>
+                <li>(B) ফারেনহাইট</li>
+                <li>(C) রয়মার</li>
+                <li>(D) কেলভিন</li>
+            </ul>
+            <blockquote><strong>উত্তর: (D) কেলভিন</strong><br><strong>ব্যাখ্যা:</strong> কেলভিন স্কেলের সর্বনিম্ন মান 0 K (পরম শূন্য উষ্ণতা), যার নিচে কোনো তাপমাত্রা থাকা সম্ভব নয়। তাই এই স্কেলে কোনো ঋণাত্মক মান নেই।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>17. তাপের মাত্রা হল-</h4>
+            <p><em>(SSC MTS পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) [ML²T⁻²]</li>
+                <li>(B) [ML²T²]</li>
+                <li>(C) [ML⁻²T²]</li>
+                <li>(D) [ML⁻¹T⁻²]</li>
+            </ul>
+            <blockquote><strong>উত্তর: (A) [ML²T⁻²]</strong><br><strong>ব্যাখ্যা:</strong> তাপ এক প্রকার শক্তি। কাজ বা শক্তির মাত্রা হলো [ML²T⁻²], সুতরাং তাপের মাত্রাও একই।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>18. কোন্ তাপমাত্রায় সেলসিয়াস ও ফারেনহাইট স্কেলের পাঠ সমান?</h4>
+            <p><em>(RAILWAY TC পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 32°</li>
+                <li>(B) -40°</li>
+                <li>(C) -32°</li>
+                <li>(D) -212°</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) -40°</strong><br><strong>ব্যাখ্যা:</strong> এটি একটি বহুল প্রচলিত প্রশ্ন। -40° তাপমাত্রায় সেলসিয়াস ও ফারেনহাইট স্কেল একই মান দেখায়।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>19. মানুষের শরীরের স্বাভাবিক তাপমাত্রা-</h4>
+            <p><em>(SSC MTS পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 37°F</li>
+                <li>(B) 37°C</li>
+                <li>(C) 37K</li>
+                <li>(D) কোনোটিই নয়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) 37°C</strong><br><strong>ব্যাখ্যা:</strong> মানুষের শরীরের স্বাভাবিক তাপমাত্রা সেলসিয়াস স্কেলে 37°C এবং ফারেনহাইট স্কেলে 98.6°F।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>20. তাপের পরিমাপের জন্য নিম্নলিখিত কোন্ রাশিটির প্রয়োজন হয় না?</h4>
+            <p><em>(SSC CGSL পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) ভর</li>
+                <li>(B) আপেক্ষিক তাপ</li>
+                <li>(C) আপেক্ষিক ঘনত্ব</li>
+                <li>(D) তাপমাত্রার পরিবর্তন</li>
+            </ul>
+            <blockquote><strong>উত্তর: (C) আপেক্ষিক ঘনত্ব</strong><br><strong>ব্যাখ্যা:</strong> গৃহীত বা বর্জিত তাপের সূত্রটি হলো H = m × s × t। এখানে ভর (m), আপেক্ষিক তাপ (s) এবং তাপমাত্রার পরিবর্তন (t) প্রয়োজন। আপেক্ষিক ঘনত্বের প্রয়োজন হয় না।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>21. একটি ত্রুটিপূর্ণ থার্মোমিটারের নিম্নস্থিরাঙ্ক ও ঊর্ধ্বস্থিরাঙ্ক যথাক্রমে 5°C এবং 105°C। এই থার্মোমিটার 25°C পাঠ দিলে, প্রকৃত পাঠ হবে-</h4>
+            <p><em>(RRB GROUP-D পরীক্ষা)</em></p>
+             <ul>
+                <li>(A) 35°C</li>
+                <li>(B) 20°C</li>
+                <li>(C) 30°C</li>
+                <li>(D) 15°C</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) 20°C</strong><br><strong>ব্যাখ্যা:</strong><br>
+            সূত্র: `(ত্রুটিপূর্ণ পাঠ - নিম্নস্থিরাঙ্ক) / (ঊর্ধ্বস্থিরাঙ্ক - নিম্নস্থিরাঙ্ক) = (সঠিক পাঠ - নিম্নস্থিরাঙ্ক) / (ঊর্ধ্বস্থিরাঙ্ক - নিম্নস্থিরাঙ্ক)`<br>
+            => `(25 - 5) / (105 - 5) = (C - 0) / (100 - 0)`<br>
+            => `20 / 100 = C / 100`<br>
+            => `C = 20`। সুতরাং, প্রকৃত পাঠ হবে 20°C।
+            </blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>22. থার্মোমিটারের তরল হিসেবে পারদ ব্যবহারের সুবিধার জন্য কোনটি প্রযোজ্য নয়?</h4>
+            <p><em>(SSC MTS পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) বিশুদ্ধ পারদ সহজলভ্য</li>
+                <li>(B) পারদ অস্বচ্ছ ও চকচকে</li>
+                <li>(C) পারদের আপেক্ষিক তাপ সর্বাপেক্ষা বেশি</li>
+                <li>(D) পারদের আয়তনের পরিবর্তন খুব নিয়মানুগ</li>
+            </ul>
+            <blockquote><strong>উত্তর: (C) পারদের আপেক্ষিক তাপ সর্বাপেক্ষা বেশি</strong><br><strong>ব্যাখ্যা:</strong> পারদের আপেক্ষিক তাপ কম, বেশি নয়। কম আপেক্ষিক তাপের সুবিধা হলো এটি পরীক্ষাধীন বস্তু থেকে খুব কম তাপ গ্রহণ করে বস্তুর সঠিক তাপমাত্রা নির্দেশ করতে পারে। অন্য অপশনগুলি পারদ ব্যবহারের সুবিধা।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>23. পারদের হিমাঙ্ক-</h4>
+            <p><em>(SSC CGL পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) -40°C</li>
+                <li>(B) 0°C</li>
+                <li>(C) -39°C</li>
+                <li>(D) 100°C</li>
+            </ul>
+            <blockquote><strong>উত্তর: (C) -39°C</strong><br><strong>ব্যাখ্যা:</strong> পারদের হিমাঙ্ক -39°C এবং স্ফুটনাঙ্ক 357°C।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>24. কোন্ তাপমাত্রায় ফারেনহাইট ও কেলভিন স্কেলের পাঠ সমান?</h4>
+            <p><em>(WBPSC MISC পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 32°F = 32K</li>
+                <li>(B) 212°F = 212K</li>
+                <li>(C) 574.25°F = 574.25K</li>
+                <li>(D) 306.75°F = 306.75K</li>
+            </ul>
+            <blockquote><strong>উত্তর: (C) 574.25°F = 574.25K</strong><br><strong>ব্যাখ্যা:</strong><br>
+            সূত্র: `(F - 32) / 9 = (K - 273) / 5`<br>
+            => `(x - 32) / 9 = (x - 273) / 5`<br>
+            => `5x - 160 = 9x - 2457`<br>
+            => `4x = 2297`<br>
+            => `x = 574.25`
+            </blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>25. সিজিএস পদ্ধতিতে জলের বাষ্পীভবনের লীনতাপ হল-</h4>
+            <p><em>(SSC MTS পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 537 ক্যালোরি/গ্রাম</li>
+                <li>(B) 22.68 x 10⁵ ক্যালোরি/গ্রাম</li>
+                <li>(C) 80 ক্যালোরি/গ্রাম</li>
+                <li>(D) 100 ক্যালোরি/গ্রাম</li>
+            </ul>
+            <blockquote><strong>উত্তর: (A) 537 ক্যালোরি/গ্রাম</strong><br><strong>ব্যাখ্যা:</strong> CGS পদ্ধতিতে জলের বাষ্পীভবনের লীনতাপ 537 cal/g এবং বরফ গলনের লীনতাপ 80 cal/g।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>26. উষ্ণতা স্থির রেখে একক ভরের কঠিন পদার্থকে তরল পদার্থে রূপান্তরিত করতে প্রয়োজনীয় তাপ হল-</h4>
+            <p><em>(SSC MTS পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) গলনের লীনতাপ</li>
+                <li>(B) বিকীর্ণ তাপ</li>
+                <li>(C) আপেক্ষিক তাপ</li>
+                <li>(D) বোধগম্য তাপ</li>
+            </ul>
+            <blockquote><strong>উত্তর: (A) গলনের লীনতাপ</strong><br><strong>ব্যাখ্যা:</strong> এটি গলনের লীনতাপের সংজ্ঞা। উষ্ণতা স্থির রেখে অবস্থার পরিবর্তনের জন্য যে তাপ প্রয়োজন হয়, তাকে লীনতাপ বলে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>27. সম্পৃক্ত বাষ্পকে অসম্পৃক্ত বাষ্পে পরিণত করার উপায় হল-</h4>
+            <p><em>(WBPSC MISC পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) আয়তন বাড়ানো</li>
+                <li>(B) উষ্ণতা বাড়ানো</li>
+                <li>(C) চাপ কমানো</li>
+                <li>(D) সবগুলিই</li>
+            </ul>
+            <blockquote><strong>উত্তর: (D) সবগুলিই</strong><br><strong>ব্যাখ্যা:</strong> উষ্ণতা বাড়ালে বা চাপ কমালে বাষ্পের ঘনত্ব কমে যায়, ফলে তা অসম্পৃক্ত হয়ে পড়ে। একইভাবে, আয়তন বাড়ালেও ঘনত্ব কমে এবং বাষ্প অসম্পৃক্ত হয়।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>28. অসম্পৃক্ত বাষ্পকে সম্পৃক্ত করার উপায় হল-</h4>
+            <p><em>(WBSC পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) আয়তন কমানো</li>
+                <li>(B) উষ্ণতা কমানো</li>
+                <li>(C) চাপ বাড়ানো</li>
+                <li>(D) সবগুলিই</li>
+            </ul>
+            <blockquote><strong>উত্তর: (D) সবগুলিই</strong><br><strong>ব্যাখ্যা:</strong> উষ্ণতা কমালে বা চাপ বাড়ালে বাষ্পের ঘনত্ব বেড়ে সম্পৃক্ত অবস্থায় পৌঁছায়। আয়তন কমালেও একই ঘটনা ঘটে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>29. শিশিরাঙ্কের মান-</h4>
+            <p><em>(SSC MTS পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 0°C এর সমান হতে পারে</li>
+                <li>(B) 0°C এর কম হতে পারে</li>
+                <li>(C) সর্বদাই 0°C-এর বেশি হয়</li>
+                <li>(D) বলা সম্ভব নয়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (A), (B) এবং (C) তিনটিই সম্ভব।</strong><br><strong>ব্যাখ্যা:</strong> শিশিরাঙ্ক হলো সেই তাপমাত্রা যেখানে বায়ু জলীয় বাষ্প দ্বারা সম্পৃক্ত হয়। এই তাপমাত্রা পারিপার্শ্বিক বায়ুর তাপমাত্রার ওপর নির্ভর করে এবং এটি 0°C এর বেশি, সমান বা কমও হতে পারে। (এই প্রশ্নের বিকল্পগুলিতে সমস্যা আছে)।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>30. স্পর্শ করে বেশি ঠান্ডা মনে হবে-</h4>
+            <p><em>(WBPSC MISC পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 0°C উষ্ণতার জল</li>
+                <li>(B) 0°C উষ্ণতার বরফ</li>
+                <li>(C) বরফ ও জলের মিশ্রণ</li>
+                <li>(D) বরফ ও নুনের মিশ্রণ</li>
+            </ul>
+            <blockquote><strong>উত্তর: (D) বরফ ও নুনের মিশ্রণ</strong><br><strong>ব্যাখ্যা:</strong> বরফ ও নুনের মিশ্রণ একটি হিমমিশ্রণ (Freezing Mixture), যার তাপমাত্রা 0°C থেকে অনেক কমে গিয়ে প্রায় -23°C পর্যন্ত হতে পারে। তাই এটি স্পর্শ করলে সবচেয়ে বেশি ঠান্ডা লাগবে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>31. অবস্থান্তরের সময় পদার্থের উষ্ণতা-</h4>
+            <p><em>(RAILWAY ALP)</em></p>
+            <ul>
+                <li>(A) বাড়ে</li>
+                <li>(B) একই থাকে</li>
+                <li>(C) কমে</li>
+                <li>(D) বলা সম্ভব নয়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) একই থাকে</strong><br><strong>ব্যাখ্যা:</strong> পদার্থের অবস্থার পরিবর্তনের সময় (যেমন গলন বা স্ফুটন) প্রযুক্ত তাপ লীনতাপ হিসেবে ব্যবহৃত হয়, তাই উষ্ণতা স্থির থাকে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>32. স্থির চাপে বিশুদ্ধ কেলাসাকার পদার্থের-</h4>
+            <p><em>(SSC MTS পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) গলনাঙ্ক ও হিমাঙ্ক একই</li>
+                <li>(B) গলনাঙ্ক অপেক্ষা হিমাঙ্ক কম</li>
+                <li>(C) গলনাঙ্ক অপেক্ষা হিমাঙ্ক বেশি</li>
+                <li>(D) কোনোটিই নয়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (A) গলনাঙ্ক ও হিমাঙ্ক একই</strong><br><strong>ব্যাখ্যা:</strong> একটি বিশুদ্ধ কেলাসাকার পদার্থের ক্ষেত্রে যে তাপমাত্রায় গলন শুরু হয়, সেই একই তাপমাত্রায় কঠিনীভবন বা হিমাঙ্কও ঘটে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>33. লীনতাপ থার্মোমিটারের পাঠ-</h4>
+            <p><em>(SSC CGSL পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) পরিবর্তন করে না</li>
+                <li>(B) পরিবর্তন করে</li>
+                <li>(C) কখনও পরিবর্তন করে আবার কখনও করে না</li>
+                <li>(D) কোনোটিই নয়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (A) পরিবর্তন করে না</strong><br><strong>ব্যাখ্যা:</strong> লীনতাপ শুধুমাত্র পদার্থের অবস্থার পরিবর্তন ঘটায়, উষ্ণতার কোনো পরিবর্তন ঘটায় না। তাই থার্মোমিটারের পাঠ একই থাকে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>34. হাত বেশি পুড়বে-</h4>
+            <p><em>(RAILWAY TC পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 100°C-এর জলে</li>
+                <li>(B) 95°C-এর জলে</li>
+                <li>(C) 100°C এর বাষ্পে</li>
+                <li>(D) 0°C-এর বরফে</li>
+            </ul>
+            <blockquote><strong>উত্তর: (C) 100°C এর বাষ্পে</strong><br><strong>ব্যাখ্যা:</strong> 100°C-এর বাষ্পে 100°C-এর জলের তাপ ছাড়াও অতিরিক্ত 537 ক্যালোরি/গ্রাম লীনতাপ থাকে। এই অতিরিক্ত তাপের জন্য বাষ্পে হাত বেশি পোড়ে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>35. বটমলির পরীক্ষার সময় পারিপার্শ্বিক বায়ুর উষ্ণতা হওয়া দরকার-</h4>
+            <p><em>(RRB GROUP D পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) 0°C</li>
+                <li>(B) 0°C-এর কম</li>
+                <li>(C) 0°C-এর বেশি</li>
+                <li>(D) বলা সম্ভব নয়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (C) 0°C-এর বেশি</strong><br><strong>ব্যাখ্যা:</strong> বটমলির পরীক্ষা (পুনঃশিলীভবন) দেখানোর জন্য পারিপার্শ্বিক তাপমাত্রা 0°C এর বেশি হতে হয়, যাতে চাপের ফলে গলে যাওয়া বরফ চাপ সরানোর পর পারিপার্শ্বিক পরিবেশ থেকে তাপ গ্রহণ করে আবার জমে যেতে পারে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>36. জলে কোনো অপদ্রব্য মিশ্রিত থাকলে জলের স্ফুটনাঙ্ক-</h4>
+            <p><em>(RAILWAY ALP)</em></p>
+            <ul>
+                <li>(A) হ্রাস পায়</li>
+                <li>(B) বৃদ্ধি পায়</li>
+                <li>(C) অপরিবর্তিত থাকে</li>
+                <li>(D) প্রথমে হ্রাস পায় পরে বৃদ্ধি পায়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) বৃদ্ধি পায়</strong><br><strong>ব্যাখ্যা:</strong> তরলে কোনো অনুদ্বায়ী অপদ্রব্য (যেমন লবণ) মেশানো হলে তার স্ফুটনাঙ্ক বেড়ে যায়।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>37. চাপ বৃদ্ধিতে জলের স্ফুটনাঙ্ক-</h4>
+            <p><em>(WBPSC MISC পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) বাড়ে</li>
+                <li>(B) কমে</li>
+                <li>(C) অপরিবর্তিত থাকে</li>
+                <li>(D) প্রথমে হ্রাস পায় পরে বৃদ্ধি পায়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (A) বাড়ে</strong><br><strong>ব্যাখ্যা:</strong> তরলের উপর চাপ বাড়ালে অণুগুলির বাষ্পে পরিণত হতে বেশি শক্তির প্রয়োজন হয়, ফলে স্ফুটনাঙ্ক বৃদ্ধি পায়। প্রেশার কুকার এই নীতিতে কাজ করে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>38. কোনো বস্তুর তাপগ্রাহিতা নির্ভর করে না-</h4>
+            <p><em>(SSC CGL পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) প্রদত্ত তাপের ওপর</li>
+                <li>(B) বস্তুর আয়তনের ওপর</li>
+                <li>(C) তাপমাত্রা বৃদ্ধির ওপর</li>
+                <li>(D) বস্তুর ভরের ওপর</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) বস্তুর আয়তনের ওপর</strong><br><strong>ব্যাখ্যা:</strong> তাপগ্রাহিতা (C) = ভর (m) × আপেক্ষিক তাপ (s)। এটি বস্তুর ভর ও উপাদানের (আপেক্ষিক তাপ) ওপর নির্ভরশীল, কিন্তু সরাসরি আয়তনের ওপর নির্ভরশীল নয়।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>39. কোনো পদার্থের তাপমাত্রা 1K বৃদ্ধি করার জন্য প্রয়োজনীয় তাপকে বলে-</h4>
+            <p><em>(RRB GROUP-D পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) আপেক্ষিক তাপ</li>
+                <li>(B) জলসম</li>
+                <li>(C) তাপগ্রাহিতা</li>
+                <li>(D) এনট্রপি</li>
+            </ul>
+            <blockquote><strong>উত্তর: (C) তাপগ্রাহিতা</strong><br><strong>ব্যাখ্যা:</strong> এটি তাপগ্রাহিতার সংজ্ঞা। কোনো বস্তুর উষ্ণতা একক পরিমাণ (1K বা 1°C) বৃদ্ধি করতে যে তাপ লাগে, তাকে তাপগ্রাহিতা বলে। আপেক্ষিক তাপ হলো একক ভরের জন্য প্রয়োজনীয় তাপ।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>40. ইঞ্জিনের রেডিয়েটর ঠান্ডা করার জন্য জল ব্যবহৃত হয়, কারণ-</h4>
+            <p><em>(WBPSC MISC পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) জলের নিম্ন স্ফুটনাঙ্ক</li>
+                <li>(B) জলের উচ্চ আপেক্ষিক তাপ</li>
+                <li>(C) জলের কম ঘনত্ব</li>
+                <li>(D) জলের সহজলভ্যতা</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) জলের উচ্চ আপেক্ষিক তাপ</strong><br><strong>ব্যাখ্যা:</strong> জলের উচ্চ আপেক্ষিক তাপের কারণে এটি ইঞ্জিন থেকে প্রচুর পরিমাণে তাপ শোষণ করতে পারে এবং নিজের তাপমাত্রা খুব বেশি না বাড়িয়েই ইঞ্জিনকে ঠান্ডা রাখতে পারে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>41. আপেক্ষিক তাপের সংজ্ঞায় নীচের কোন্ রাশিটির কোনো প্রয়োজন হয় না?</h4>
+            <p><em>(WBPSC MISC পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) তাপ</li>
+                <li>(B) তাপমাত্রা</li>
+                <li>(C) ভর</li>
+                <li>(D) আয়তন</li>
+            </ul>
+            <blockquote><strong>উত্তর: (D) আয়তন</strong><br><strong>ব্যাখ্যা:</strong> আপেক্ষিক তাপ (s) = H / (m × t)। এর সংজ্ঞায় তাপ (H), ভর (m) এবং তাপমাত্রার পরিবর্তন (t) প্রয়োজন, কিন্তু আয়তনের প্রয়োজন হয় না।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>42. ভাত রান্না করতে সবচেয়ে বেশি সময় লাগবে-</h4>
+            <p><em>(SSC MTS পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) সমুদ্রপৃষ্ঠে</li>
+                <li>(B) সিমলায়</li>
+                <li>(C) সমুদ্রপৃষ্ঠ থেকে 100 মিটার নীচে কোনো সাবমেরিনে</li>
+                <li>(D) এভারেস্টের চূড়ায়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (D) এভারেস্টের চূড়ায়</strong><br><strong>ব্যাখ্যা:</strong> উচ্চতা বাড়ার সাথে সাথে বায়ুর চাপ কমে যায়, ফলে জলের স্ফুটনাঙ্কও কমে যায়। এভারেস্টের চূড়ায় চাপ সবচেয়ে কম, তাই জল অনেক কম তাপমাত্রায় ফুটে যাবে এবং ভাত সেদ্ধ হতে সবচেয়ে বেশি সময় লাগবে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>43. প্রেসার কুকারে ভাত দ্রুত রান্না হয়-</h4>
+            <p><em>(FOOD SI 2014 পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) এটা সবসময় বাষ্প পালাতে দেয়</li>
+                <li>(B) এটি তাপ শক্তিকে সহজে বের হতে দেয় না</li>
+                <li>(C) উচ্চ চাপ ধানের শীষের শক্ত আবরণকে চূর্ণ করে দেয়</li>
+                <li>(D) উচ্চ চাপ পানির স্ফুটনাঙ্ক বাড়ায়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (D) উচ্চ চাপ পানির স্ফুটনাঙ্ক বাড়ায়</strong><br><strong>ব্যাখ্যা:</strong> প্রেশার কুকারের ভেতরে আবদ্ধ বাষ্পের চাপ বাড়তে থাকায় জলের স্ফুটনাঙ্ক 100°C থেকে বেড়ে প্রায় 120°C হয়ে যায়। এই উচ্চ তাপমাত্রার জলে রান্না দ্রুত সম্পন্ন হয়।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>44. কোনো গ্যাসকে, যে তাপমাত্রার কম তাপমাত্রায় রাখলে, কেবলমাত্র চাপ প্রয়োগ করে তরলে পরিণত করা যায়, তাকে বলে-</h4>
+            <p><em>(WBPSC MISC পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) শিশিরাঙ্ক</li>
+                <li>(B) সংকট তাপমাত্রা</li>
+                <li>(C) হিমাঙ্ক</li>
+                <li>(D) বাষ্পাঙ্ক</li>
+            </ul>
+            <blockquote><strong>উত্তর: (B) সংকট তাপমাত্রা (Critical Temperature)</strong><br><strong>ব্যাখ্যা:</strong> সংকট তাপমাত্রা হলো সর্বোচ্চ তাপমাত্রা যার নিচে থাকলে কোনো গ্যাসকে শুধুমাত্র চাপ প্রয়োগ করে তরলে পরিণত করা সম্ভব।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>45. দুই খণ্ড বরফকে চেপে ধরলে, এক খণ্ডে পরিণত হয়, কারণ-</h4>
+            <p><em>(SSC CGL পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) চাপে তাপশক্তির উদ্ভব হয়</li>
+                <li>(B) চাপে তাপশক্তি শোষিত হয়</li>
+                <li>(C) চাপ বাড়লে বরফের গলনাঙ্ক হ্রাস পায়</li>
+                <li>(D) চাপ বাড়লে বরফের গলনাঙ্ক বৃদ্ধি পায়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (C) চাপ বাড়লে বরফের গলনাঙ্ক হ্রাস পায়</strong><br><strong>ব্যাখ্যা:</strong> বরফের উপর চাপ বাড়ালে তার গলনাঙ্ক 0°C থেকে কমে যায়। ফলে সংযোগস্থলের বরফ গলে যায়। চাপ সরিয়ে নিলে গলনাঙ্ক আবার বেড়ে যায় এবং ওই জল জমে গিয়ে টুকরো দুটিকে জোড়া লাগিয়ে দেয়। এই ঘটনাকে পুনঃশিলীভবন বলে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>46. প্রেশার কুকার যন্ত্রে রান্না তাড়াতাড়ি হয়। কারণ বাষ্পচাপ বৃদ্ধির ফলে-</h4>
+            <p><em>(RRB GROUP-D পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) স্ফুটনাঙ্ক বৃদ্ধি পায়</li>
+                <li>(B) স্ফুটনাঙ্ক হ্রাস পায়</li>
+                <li>(C) লীনতাপ বৃদ্ধি পায়</li>
+                <li>(D) লীনতাপ হ্রাস পায়</li>
+            </ul>
+            <blockquote><strong>উত্তর: (A) স্ফুটনাঙ্ক বৃদ্ধি পায়</strong><br><strong>ব্যাখ্যা:</strong> বাষ্পচাপ বাড়ার ফলে জলের স্ফুটনাঙ্ক বাড়ে, যার ফলে উচ্চ তাপমাত্রায় রান্না করা সম্ভব হয় এবং রান্না তাড়াতাড়ি হয়।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>47. জলের আপেক্ষিক তাপ অন্যান্য কঠিন বা তরল পদার্থের থেকে বেশি। সেজন্য জল-</h4>
+            <p><em>(SSC MTS পরীক্ষা)</em></p>
+            <ul>
+                <li>(A) দ্রুত গরম হয়, কিন্তু ধীরে ধীরে ঠান্ডা হয়</li>
+                <li>(B) ধীরে ধীরে গরম হয়, কিন্তু দ্রুত ঠান্ডা হয়</li>
+                <li>(C) গরম ও ঠান্ডা হয় দ্রুত</li>
+                <li>(D) গরম ও ঠান্ডা হয় ধীরে ধীরে</li>
+            </ul>
+            <blockquote><strong>উত্তর: (D) গরম ও ঠান্ডা হয় ধীরে ধীরে</strong><br><strong>ব্যাখ্যা:</strong> উচ্চ আপেক্ষিক তাপের অর্থ হলো, উষ্ণতা বাড়াতে যেমন বেশি তাপ লাগে (ধীরে গরম হয়), তেমনই উষ্ণতা কমাতেও বেশি তাপ বর্জন করতে হয় (ধীরে ঠান্ডা হয়)।</blockquote>
+        </div>
+        
+        <h2>ধন্যবাদ</h2>
+    </div>
+
+    <nav class="navigation">
+        <a href="class7.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button active">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class9.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2024 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme and Dark Mode functionality
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+
+            // Scroll buttons functionality
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+            
+            // --- নতুন কোড: কি-বোর্ড দিয়ে অটো-স্ক্রল ---
+            let isAutoScrolling = false;
+            let scrollInterval;
+            const scrollSpeed = 1; // প্রতি ধাপে 1 পিক্সেল স্ক্রল হবে
+            const scrollDelay = 15; // 15 মিলিসেকেন্ড পর পর
+
+            window.addEventListener('keydown', (event) => {
+                // শুধুমাত্র Spacebar চাপলে কাজ করবে
+                if (event.key === ' ') {
+                    event.preventDefault(); // Spacebar-এর ডিফল্ট কাজ (পেজ জাম্প) বন্ধ করা হলো
+
+                    if (isAutoScrolling) {
+                        // যদি স্ক্রলিং চালু থাকে, তবে বন্ধ করো
+                        clearInterval(scrollInterval);
+                        isAutoScrolling = false;
+                    } else {
+                        // যদি স্ক্রলিং বন্ধ থাকে, তবে চালু করো
+                        isAutoScrolling = true;
+                        scrollInterval = setInterval(() => {
+                            // যদি পেজের শেষে পৌঁছে যায়, তাহলে স্ক্রলিং বন্ধ করো
+                            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                                clearInterval(scrollInterval);
+                                isAutoScrolling = false;
+                            } else {
+                                window.scrollBy(0, scrollSpeed);
+                            }
+                        }, scrollDelay);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

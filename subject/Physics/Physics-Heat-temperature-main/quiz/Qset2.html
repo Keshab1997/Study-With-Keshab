@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ২ - তাপ ও তাপমাত্রা</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset3.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "তাপ ও তাপমাত্রা", 
+            setName: "Quiz Set 2",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "তাপ ও তাপমাত্রা - Set 2 (প্রশ্ন ১১-২০)",
+            
+            questions: [
+                {
+                    question: "সেঁক দেওয়ার বোতলে যে তরলটি ব্যবহার করা উচিত তা হল-",
+                    options: ["গ্লিসারিন", "জল", "অ্যালকোহল", "দুধ"],
+                    answer: 1,
+                    explanation: "জলের আপেক্ষিক তাপ খুব বেশি। তাই এটি ধীরে ধীরে গরম হয় এবং ধীরে ধীরে ঠান্ডা হয়, ফলে অনেকক্ষণ ধরে তাপ সরবরাহ করতে পারে।"
+                },
+                {
+                    question: "শীতপ্রধান দেশে ঘর গরম রাখার জন্য ঘরের মধ্যে গরম জলের প্রবাহ পাঠানো হয়, কারণ-",
+                    options: ["জল সহজলভ্য", "জল যৌগিক পদার্থ", "জলের আপেক্ষিক তাপ বেশি", "কোনোটিই নয়"],
+                    answer: 2,
+                    explanation: "জলের আপেক্ষিক তাপ বেশি হওয়ায় এটি প্রচুর পরিমাণে তাপ ধরে রাখতে পারে এবং ধীরে ধীরে সেই তাপ বর্জন করে ঘরকে গরম রাখে।"
+                },
+                {
+                    question: "তামার আপেক্ষিক তাপের মান-",
+                    options: ["0.009 Cal/g°C", "0.9 Cal/g°C", "0.09 Cal/g°C", "9 Cal/g°C"],
+                    answer: 2,
+                    explanation: "এটি একটি তথ্যভিত্তিক প্রশ্ন। তামার আপেক্ষিক তাপের মান প্রায় 0.09 ক্যালোরি/গ্রাম°C।"
+                },
+                {
+                    question: "কোনো বস্তুর তাপগ্রাহিতা 40 ক্যালোরি/°C হলে জলসম হবে-",
+                    options: ["40 গ্রাম", "40 গ্রাম/°C", "40 ক্যালোরি", "40 ক্যালোরি/°C"],
+                    answer: 0,
+                    explanation: "CGS পদ্ধতিতে কোনো বস্তুর তাপগ্রাহিতার সাংখ্যমান তার জলসমের সাংখ্যমানের সমান হয়। জলসমের একক গ্রাম (g)।"
+                },
+                {
+                    question: "বস্তুর তাপগ্রাহিতা হল-",
+                    options: ["বস্তুর তাপের হ্রাস বা বৃদ্ধি", "ভর ও আপেক্ষিক তাপের গুণফল", "ভর ও আপেক্ষিক তাপের অনুপাত", "কোনোটিই নয়"],
+                    answer: 1,
+                    explanation: "তাপগ্রাহিতার সূত্রটি হলো: তাপগ্রাহিতা = বস্তুর ভর (m) × আপেক্ষিক তাপ (s)।"
+                },
+                {
+                    question: "নিম্নলিখিত কোন্ স্কেলে তাপমাত্রার মান কখনও ঋণাত্মক হবে না?",
+                    options: ["সেলসিয়াস", "ফারেনহাইট", "রয়মার", "কেলভিন"],
+                    answer: 3,
+                    explanation: "কেলভিন স্কেলের সর্বনিম্ন মান 0 K (পরম শূন্য উষ্ণতা), যার নিচে কোনো তাপমাত্রা থাকা সম্ভব নয়। তাই এই স্কেলে কোনো ঋণাত্মক মান নেই।"
+                },
+                {
+                    question: "তাপের মাত্রা হল-",
+                    options: ["[ML²T⁻²]", "[ML²T²]", "[ML⁻²T²]", "[ML⁻¹T⁻²]"],
+                    answer: 0,
+                    explanation: "তাপ এক প্রকার শক্তি। কাজ বা শক্তির মাত্রা হলো [ML²T⁻²], সুতরাং তাপের মাত্রাও একই।"
+                },
+                {
+                    question: "কোন্ তাপমাত্রায় সেলসিয়াস ও ফারেনহাইট স্কেলের পাঠ সমান?",
+                    options: ["32°", "-40°", "-32°", "-212°"],
+                    answer: 1,
+                    explanation: "এটি একটি বহুল প্রচলিত প্রশ্ন। -40° তাপমাত্রায় সেলসিয়াস ও ফারেনহাইট স্কেল একই মান দেখায়।"
+                },
+                {
+                    question: "মানুষের শরীরের স্বাভাবিক তাপমাত্রা-",
+                    options: ["37°F", "37°C", "37K", "কোনোটিই নয়"],
+                    answer: 1,
+                    explanation: "মানুষের শরীরের স্বাভাবিক তাপমাত্রা সেলসিয়াস স্কেলে 37°C এবং ফারেনহাইট স্কেলে 98.6°F।"
+                },
+                {
+                    question: "তাপের পরিমাপের জন্য নিম্নলিখিত কোন্ রাশিটির প্রয়োজন হয় না?",
+                    options: ["ভর", "আপেক্ষিক তাপ", "আপেক্ষিক ঘনত্ব", "তাপমাত্রার পরিবর্তন"],
+                    answer: 2,
+                    explanation: "গৃহীত বা বর্জিত তাপের সূত্রটি হলো H = m × s × t। এখানে ভর, আপেক্ষিক তাপ এবং তাপমাত্রার পরিবর্তন প্রয়োজন। আপেক্ষিক ঘনত্বের প্রয়োজন হয় না।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

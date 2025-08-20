@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৪ - তাপ ও তাপমাত্রা</title>
+
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- কুইজ স্টাইল ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- Firebase কনফিগ -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End Firebase Script Section === -->
+</head>
+<body class="day-mode">
+
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <div id="quiz-container">
+            <p class="text-center font-semibold">প্রশ্ন লোড হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</p>
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset3.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset5.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+
+    <script>
+        // === কুইজ সেট ডেটা (Firebase ইন্টিগ্রেশনের জন্য একি স্ট্রাকচার) ===
+        const quizSet = {
+            chapterName: "তাপ ও তাপমাত্রা",
+            setName: "Quiz Set 4",
+
+            // UI তে প্রদর্শিত নাম
+            name: "তাপ ও তাপমাত্রা - Set 4 (প্রশ্ন ৩১-৪০)",
+
+            questions: [
+                {
+                    question: "অবস্থান্তরের সময় পদার্থের উষ্ণতা-",
+                    options: ["বাড়ে", "একই থাকে", "কমে", "বলা সম্ভব নয়"],
+                    answer: 1,
+                    explanation: "পদার্থের অবস্থার পরিবর্তনের সময় (যেমন গলন বা স্ফুটন) প্রযুক্ত তাপ লীনতাপ হিসেবে ব্যবহৃত হয়, তাই উষ্ণতা স্থির থাকে।"
+                },
+                {
+                    question: "স্থির চাপে বিশুদ্ধ কেলাসাকার পদার্থের-",
+                    options: ["গলনাঙ্ক ও হিমাঙ্ক একই", "গলনাঙ্ক অপেক্ষা হিমাঙ্ক কম", "গলনাঙ্ক অপেক্ষা হিমাঙ্ক বেশি", "কোনোটিই নয়"],
+                    answer: 0,
+                    explanation: "একটি বিশুদ্ধ কেলাসাকার পদার্থের ক্ষেত্রে যে তাপমাত্রায় গলন শুরু হয়, সেই একই তাপমাত্রায় কঠিনীভবন বা হিমাঙ্কও ঘটে।"
+                },
+                {
+                    question: "লীনতাপ থার্মোমিটারের পাঠ-",
+                    options: ["পরিবর্তন করে না", "পরিবর্তন করে", "কখনও পরিবর্তন করে আবার কখনও করে না", "কোনোটিই নয়"],
+                    answer: 0,
+                    explanation: "লীনতাপ শুধুমাত্র পদার্থের অবস্থার পরিবর্তন ঘটায়, উষ্ণতার কোনো পরিবর্তন ঘটায় না। তাই থার্মোমিটারের পাঠ একই থাকে।"
+                },
+                {
+                    question: "হাত বেশি পুড়বে-",
+                    options: ["100°C-এর জলে", "95°C-এর জলে", "100°C এর বাষ্পে", "0°C-এর বরফে"],
+                    answer: 2,
+                    explanation: "100°C-এর বাষ্পে 100°C-এর জলের তাপ ছাড়াও অতিরিক্ত 537 ক্যালোরি/গ্রাম লীনতাপ থাকে। এই অতিরিক্ত তাপের জন্য বাষ্পে হাত বেশি পোড়ে।"
+                },
+                {
+                    question: "বটমলির পরীক্ষার সময় পারিপার্শ্বিক বায়ুর উষ্ণতা হওয়া দরকার-",
+                    options: ["0°C", "0°C-এর কম", "0°C-এর বেশি", "বলা সম্ভব নয়"],
+                    answer: 2,
+                    explanation: "বটমলির পরীক্ষা (পুনঃশিলীভবন) দেখানোর জন্য পারিপার্শ্বিক তাপমাত্রা 0°C এর বেশি হতে হয়, যাতে চাপের ফলে গলে যাওয়া বরফ চাপ সরানোর পর আবার জমে যেতে পারে।"
+                },
+                {
+                    question: "জলে কোনো অপদ্রব্য মিশ্রিত থাকলে জলের স্ফুটনাঙ্ক-",
+                    options: ["হ্রাস পায়", "বৃদ্ধি পায়", "অপরিবর্তিত থাকে", "প্রথমে হ্রাস পায় পরে বৃদ্ধি পায়"],
+                    answer: 1,
+                    explanation: "তরলে কোনো অনুদ্বায়ী অপদ্রব্য (যেমন লবণ) মেশানো হলে তার স্ফুটনাঙ্ক বেড়ে যায়।"
+                },
+                {
+                    question: "চাপ বৃদ্ধিতে জলের স্ফুটনাঙ্ক-",
+                    options: ["বাড়ে", "কমে", "অপরিবর্তিত থাকে", "প্রথমে হ্রাস পায় পরে বৃদ্ধি পায়"],
+                    answer: 0,
+                    explanation: "তরলের উপর চাপ বাড়ালে অণুগুলির বাষ্পে পরিণত হতে বেশি শক্তির প্রয়োজন হয়, ফলে স্ফুটনাঙ্ক বৃদ্ধি পায়। প্রেশার কুকার এই নীতিতে কাজ করে।"
+                },
+                {
+                    question: "কোনো বস্তুর তাপগ্রাহিতা নির্ভর করে না-",
+                    options: ["প্রদত্ত তাপের ওপর", "বস্তুর আয়তনের ওপর", "তাপমাত্রা বৃদ্ধির ওপর", "বস্তুর ভরের ওপর"],
+                    answer: 1,
+                    explanation: "তাপগ্রাহিতা (C) = ভর (m) × আপেক্ষিক তাপ (s)। এটি বস্তুর ভর ও উপাদানের ওপর নির্ভরশীল, কিন্তু সরাসরি আয়তনের ওপর নির্ভরশীল নয়।"
+                },
+                {
+                    question: "কোনো পদার্থের তাপমাত্রা 1K বৃদ্ধি করার জন্য প্রয়োজনীয় তাপকে বলে-",
+                    options: ["আপেক্ষিক তাপ", "জলসম", "তাপগ্রাহিতা", "এনট্রপি"],
+                    answer: 2,
+                    explanation: "এটি তাপগ্রাহিতার সংজ্ঞা। কোনো বস্তুর উষ্ণতা একক পরিমাণ (1K বা 1°C) বৃদ্ধি করতে যে তাপ লাগে, তাকে তাপগ্রাহিতা বলে।"
+                },
+                {
+                    question: "ইঞ্জিনের রেডিয়েটর ঠান্ডা করার জন্য জল ব্যবহৃত হয়, কারণ-",
+                    options: ["জলের নিম্ন স্ফুটনাঙ্ক", "জলের উচ্চ আপেক্ষিক তাপ", "জলের কম ঘনত্ব", "জলের সহজলভ্যতা"],
+                    answer: 1,
+                    explanation: "জলের উচ্চ আপেক্ষিক তাপের কারণে এটি ইঞ্জিন থেকে প্রচুর পরিমাণে তাপ শোষণ করতে পারে এবং নিজের তাপমাত্রা খুব বেশি না বাড়িয়েই ইঞ্জিনকে ঠান্ডা রাখতে পারে।"
+                }
+            ]
+        };
+    </script>
+
+    <!-- মূল কুইজ স্ক্রিপ্ট -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

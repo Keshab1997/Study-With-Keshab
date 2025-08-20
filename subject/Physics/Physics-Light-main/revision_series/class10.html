@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 - লেন্সের জগৎ - গঠন থেকে ক্ষমতা</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d81b60;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #004d40;
+        }
+        
+        h3, h4 {
+            font-size: 1.6em;
+        }
+
+        p, ul, ol, li {
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #c2185b;
+        }
+
+        blockquote {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            margin: 20px 0;
+            padding: 15px 20px;
+            font-style: italic;
+            font-size: 1.2em;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+
+        .diagram {
+            max-width: 600px;
+            background: #fff;
+            padding: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Navigation Styles */
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .nav-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .nav-button.active {
+            background-color: #d81b60;
+            color: white;
+            border-color: #d81b60;
+        }
+        
+        .home-button {
+            background-color: #1e88e5;
+            color: white;
+            border-color: #1e88e5;
+        }
+        .home-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CLASS 10</h1>
+        <h2>বিষয়: লেন্সের জগৎ - গঠন থেকে ক্ষমতা</h2>
+
+        <p>নমস্কার বন্ধুরা!<br>গত ক্লাসে আমরা লেন্সের সাথে পরিচিত হয়েছি। আজ আমরা লেন্সের অন্দরমহলে প্রবেশ করব। জানব লেন্সের গঠন কেমন, তার ক্ষমতা বলতে কী বোঝায়, এবং একটি লেন্সের সামনে বস্তু রাখলে তার প্রতিবিম্ব কেমন ও কোথায় তৈরি হয়।</p>
+
+        <h3>লেন্স কী? (What is a Lens?)</h3>
+        <p><strong>সংজ্ঞা:</strong> দুটি গোলীয় তল অথবা একটি গোলীয় ও একটি সমতল দ্বারা সীমাবদ্ধ স্বচ্ছ প্রতিসারক মাধ্যমকে <strong>লেন্স</strong> বলে। সোজা কথায়, এটি এমন একটি স্বচ্ছ কাচ যা আলোকে বাঁকিয়ে দিতে পারে।</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>লেন্সের নাম</th>
+                    <th>দেখতে কেমন?</th>
+                    <th>কাজ কী?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>উত্তল লেন্স (Convex Lens)</strong></td>
+                    <td>মধ্যভাগ মোটা, দুই প্রান্ত সরু (মোটা পেট!)।</td>
+                    <td>আলোকে এক বিন্দুতে মিলিত করে (অভিসারী)।</td>
+                </tr>
+                <tr>
+                    <td><strong>অবতল লেন্স (Concave Lens)</strong></td>
+                    <td>মধ্যভাগ সরু, দুই প্রান্ত মোটা (সরু কোমর!)।</td>
+                    <td>আলোকে চারদিকে ছড়িয়ে দেয় (অপসারী)।</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>লেন্সের পরিবারের সদস্যরা</h3>
+        <p>একটি লেন্সের অনেকগুলো গুরুত্বপূর্ণ অংশ আছে। চলো, তাদের সাথে পরিচিত হই।</p>
+       
+        <ul>
+            <li><strong>বক্রতা কেন্দ্র (C₁, C₂):</strong> লেন্সের তলগুলো যে কাল্পনিক গোলকের অংশ, সেই গোলকগুলোর কেন্দ্র।</li>
+            <li><strong>প্রধান অক্ষ:</strong> দুটি বক্রতা কেন্দ্রের মধ্যে দিয়ে যাওয়া কাল্পনিক সরলরেখা।</li>
+            <li><strong>আলোককেন্দ্র (O):</strong> লেন্সের ঠিক মাঝখানের বিন্দু, যার মধ্যে দিয়ে গেলে আলোকরশ্মি সোজা চলে যায়, একটুও বাঁকে না।</li>
+            <li><strong>ফোকাস (F):</strong> সমান্তরাল আলোকরশ্মি প্রতিসরণের পর যে বিন্দুতে মিলিত হয় (উত্তল) বা যে বিন্দু থেকে আসছে বলে মনে হয় (অবতল)।</li>
+            <li><strong>ফোকাস দূরত্ব (f):</strong> আলোককেন্দ্র (O) থেকে ফোকাস (F) পর্যন্ত দূরত্ব।</li>
+        </ul>
+
+        <h3>না ছুঁয়ে কীভাবে চিনবে কোন লেন্স?</h3>
+        <p>খুব সহজ! লেন্সের খুব কাছে তোমার আঙুল নিয়ে যাও:</p>
+        <ul>
+            <li>যদি আঙুলটিকে <strong>বড়</strong> দেখায় → এটি একটি <strong>উত্তল লেন্স</strong> (বিবর্ধক কাচের মতো)।</li>
+            <li>যদি আঙুলটিকে <strong>ছোট</strong> দেখায় → এটি একটি <strong>অবতল লেন্স</strong>।</li>
+        </ul>
+
+        <h3>লেন্সের ক্ষমতা (Power of Lens)</h3>
+        <p>তোমার চশমার পাওয়ার কত? +2 নাকি -1.5? এই পাওয়ার বা ক্ষমতা কী?<br>
+        <strong>সংজ্ঞা:</strong> কোনো লেন্স আলোকরশ্মিকে কতটা বেশি বা কম বাঁকাতে পারে (অভিসারী বা অপসারী করতে পারে), তার পরিমাপই হলো <strong>লেন্সের ক্ষমতা (Power, P)</strong>।</p>
+        <blockquote>P = 1 / f (এখানে f অবশ্যই **মিটার** এককে হতে হবে)</blockquote>
+        <ul>
+            <li><strong>একক:</strong> ডায়োপ্টার (Dioptre, D)</li>
+            <li>ফোকাস দূরত্ব যত <strong>কম</strong>, লেন্সের ক্ষমতা তত <strong>বেশি</strong> (কারণ এটি আলোকে বেশি বাঁকাতে পারে)।</li>
+            <li>উত্তল লেন্সের ক্ষমতা <strong>ধনাত্মক (+)</strong>।</li>
+            <li>অবতল লেন্সের ক্ষমতা <strong>ঋণাত্মক (-)**।</li>
+        </ul>
+
+        <h3>লেন্সের ব্যবহার</h3>
+      
+        <table>
+            <thead>
+                <tr>
+                    <th>লেন্সের ধরন</th>
+                    <th>ব্যবহার</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>উত্তল লেন্স (+)</strong></td>
+                    <td>• বিবর্ধক কাচ (Magnifying glass) হিসেবে <br> • ক্যামেরা, প্রজেক্টর, অণুবীক্ষণ ও দূরবীক্ষণ যন্ত্রে <br> • <strong>দূরদৃষ্টি (Hypermetropia)</strong> ত্রুটি সারাতে চশমায়</td>
+                </tr>
+                <tr>
+                    <td><strong>অবতল লেন্স (-)</strong></td>
+                    <td>• <strong>ক্ষ্রস্বদৃষ্টি (Myopia)</strong> ত্রুটি সারাতে চশমায় <br> • গাড়ির হেডলাইটে আলোর বিম তৈরি করতে <br> • শক্তিশালী টেলিস্কোপে</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>লেন্স দ্বারা গঠিত প্রতিবিম্ব (এক নজরে)</h3>
+        
+        <h4>উত্তল লেন্স (Convex Lens)</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>বস্তুর অবস্থান</th>
+                    <th>প্রতিবিম্বের অবস্থান</th>
+                    <th>প্রকৃতি</th>
+                    <th>আকার</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>অসীমে</td>
+                    <td>ফোকাসে (F₂)</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                    <td>অতি ক্ষুদ্র</td>
+                </tr>
+                <tr>
+                    <td>2F₁-এর বাইরে</td>
+                    <td>F₂ ও 2F₂-এর মধ্যে</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                    <td>ছোট</td>
+                </tr>
+                <tr>
+                    <td>2F₁-তে</td>
+                    <td>2F₂-তে</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                    <td>সমান</td>
+                </tr>
+                <tr>
+                    <td>F₁ ও 2F₁-এর মধ্যে</td>
+                    <td>2F₂-এর বাইরে</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                    <td>বড়</td>
+                </tr>
+                <tr>
+                    <td>F₁-তে</td>
+                    <td>অসীমে</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                    <td>বিশাল বড়</td>
+                </tr>
+                <tr>
+                    <td>F₁ ও O-এর মধ্যে</td>
+                    <td>বস্তুর দিকেই</td>
+                    <td><strong>অসদ্‌ ও সোজা</strong></td>
+                    <td>বড়</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h4>অবতল লেন্স (Concave Lens)</h4>
+        <p>অবতল লেন্স সবসময়, বস্তু যেখানেই থাকুক না কেন, একটি <strong>ছোট, সোজা ও অসদ্‌</strong> প্রতিবিম্ব তৈরি করে।</p>
+
+        <h3 style="text-align: center; border: none; color: #004d40; margin-top: 40px;">Thank You!</h3>
+    </div>
+
+    <nav class="navigation">
+        <a href="class9.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class10.html" class="nav-button active">10</a>
+        <a href="class11.html" class="nav-button">11</a>
+        <a href="class12.html" class="nav-button">12</a>
+        <a href="class13.html" class="nav-button">13</a>
+        <a href="class14.html" class="nav-button">14</a>
+        <a href="class11.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+</body>
+</html>

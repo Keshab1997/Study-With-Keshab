@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 11 - লেন্সের প্রতিবিম্ব এবং গণিতের সমাধান</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d81b60;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #004d40;
+        }
+        
+        h3, h4 {
+            font-size: 1.6em;
+        }
+
+        p, ul, ol, li {
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #c2185b;
+        }
+
+        blockquote {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            margin: 20px 0;
+            padding: 15px 20px;
+            font-style: italic;
+            font-size: 1.2em;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+
+        .diagram {
+            max-width: 600px;
+            background: #fff;
+            padding: 15px;
+        }
+        
+        .math-section {
+            background-color: #f1f8e9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #689f38;
+            margin-top: 30px;
+        }
+        .math-section h3 {
+            color: #33691e;
+            border-bottom-color: #dcedc8;
+            margin-top: 0;
+        }
+        .math-section h4 {
+             color: #558b2f;
+             border-bottom: 1px solid #dcedc8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Navigation Styles */
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .nav-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .nav-button.active {
+            background-color: #d81b60;
+            color: white;
+            border-color: #d81b60;
+        }
+        
+        .home-button {
+            background-color: #1e88e5;
+            color: white;
+            border-color: #1e88e5;
+        }
+        .home-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CLASS 11</h1>
+        <h2>বিষয়: লেন্সের প্রতিবিম্ব এবং গণিতের সমাধান</h2>
+
+        <p>নমস্কার বন্ধুরা!<br>গত ক্লাসে আমরা লেন্সের সাথে পরিচিত হয়েছি। আজ আমরা দেখব লেন্সের সামনে বিভিন্ন জায়গায় বস্তু রাখলে তার প্রতিবিম্ব কেমন হয় এবং লেন্সের সূত্র ব্যবহার করে কীভাবে বিভিন্ন মজার সমস্যার সমাধান করা যায়।</p>
+
+        <h3>লেন্স দ্বারা গঠিত প্রতিবিম্ব (এক নজরে)</h3>
+        <h4>উত্তল লেন্স (Convex Lens)</h4>
+        <img src="https://storage.googleapis.com/tb-img/production/21/06/F1_Shraddha_Jitendra_21.06.2021_D10.png
+" alt="উত্তল লেন্স দ্বারা প্রতিবিম্ব গঠন" class="diagram">
+        <table>
+            <thead>
+                <tr>
+                    <th>বস্তুর অবস্থান</th>
+                    <th>প্রতিবিম্বের অবস্থান</th>
+                    <th>প্রকৃতি</th>
+                    <th>আকার</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>অসীমে</td>
+                    <td>ফোকাসে (F₂)</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                    <td>অতি ক্ষুদ্র</td>
+                </tr>
+                <tr>
+                    <td>2F₁-এর বাইরে</td>
+                    <td>F₂ ও 2F₂-এর মধ্যে</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                    <td>ছোট</td>
+                </tr>
+                <tr>
+                    <td>2F₁-তে</td>
+                    <td>2F₂-তে</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                    <td>সমান</td>
+                </tr>
+                <tr>
+                    <td>F₁ ও 2F₁-এর মধ্যে</td>
+                    <td>2F₂-এর বাইরে</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                    <td>বড়</td>
+                </tr>
+                <tr>
+                    <td>F₁-তে</td>
+                    <td>অসীমে</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                    <td>বিশাল বড়</td>
+                </tr>
+                <tr>
+                    <td>F₁ ও O-এর মধ্যে</td>
+                    <td>বস্তুর দিকেই</td>
+                    <td><strong>অসদ্‌ ও সোজা</strong></td>
+                    <td>বড়</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h4>অবতল লেন্স (Concave Lens)</h4>
+        <p>অবতল লেন্স সবসময়, বস্তু যেখানেই থাকুক না কেন, একটি <strong>ছোট, সোজা ও অসদ্‌</strong> প্রতিবিম্ব তৈরি করে।</p>
+        
+        <h3>লেন্সের সূত্র: গণিতের চাবিকাঠি</h3>
+        <h4>১. লেন্স সূত্র (Lens Formula)</h4>
+        <blockquote>1/f = 1/v - 1/u</blockquote>
+
+        <h4>২. রৈখিক বিবর্ধন (Linear Magnification)</h4>
+        <blockquote>m = v / u</blockquote>
+
+        <h4>চিহ্নের নিয়ম (New Cartesian Sign Convention):</h4>
+        <ul>
+            <li>বস্তু দূরত্ব `u` সবসময় <strong>ঋণাত্মক (-)</strong>।</li>
+            <li><strong>উত্তল লেন্সের</strong> ফোকাস `f` <strong>ধনাত্মক (+)</strong>।</li>
+            <li><strong>অবতল লেন্সের</strong> ফোকাস `f` <strong>ঋণাত্মক (-)**।</li>
+            <li><strong>সদ্‌ প্রতিবিম্বের</strong> দূরত্ব `v` <strong>ধনাত্মক (+)</strong>।</li>
+            <li><strong>অসদ্‌ প্রতিবিম্বের</strong> দূরত্ব `v` <strong>ঋণাত্মক (-)**।</li>
+        </ul>
+
+        <div class="math-section">
+            <h3>চলো, অঙ্ক কষি!</h3>
+            <h4>প্রশ্ন ১:</h4> 
+            <p>একটি উত্তল লেন্সের ফোকাস দূরত্ব 50 সেমি হলে, তার ক্ষমতা কত?</p>
+            <p><strong>সমাধান:</strong> f = 50 সেমি <br>
+            P = 100/f = 100/50 = <strong>+2 D</strong> (উত্তল বলে ধনাত্মক)</p>
+            <hr>
+            <h4>প্রশ্ন ২:</h4>
+            <p>একজন ব্যক্তির চশমার ক্ষমতা +2.5 D। তার লেন্সের ফোকাস দূরত্ব কত?</p>
+            <p><strong>সমাধান:</strong> P = +2.5 D <br>
+            f = 100/P = 100/2.5 = <strong>40 সেমি</strong>। এটি একটি উত্তল লেন্স।</p>
+            <hr>
+            <h4>প্রশ্ন ৩:</h4>
+            <p>7 সেমি লম্বা একটি বস্তুকে উত্তল লেন্স থেকে 12 সেমি দূরে রাখা হলো। যদি 24 সেমি দূরে প্রতিবিম্ব তৈরি হয়, তবে প্রতিবিম্বের দৈর্ঘ্য কত?</p>
+            <p><strong>দেওয়া আছে:</strong> বস্তুর উচ্চতা (h₁) = 7 সেমি, u = 12 সেমি, v = 24 সেমি <br>
+            <strong>বিবর্ধন (m) নির্ণয়:</strong> m = v/u = 24/12 = 2 <br>
+            <strong>প্রতিবিম্বের উচ্চতা (h₂) নির্ণয়:</strong> m = h₂/h₁ => h₂ = m × h₁ = 2 × 7 = <strong>14 সেমি</strong>।</p>
+            <hr>
+            <h4>প্রশ্ন ৪:</h4>
+            <p>একটি উত্তল লেন্সের ফোকাস দূরত্ব 10 সেমি। লেন্স থেকে 30 সেমি দূরে বস্তু রাখলে প্রতিবিম্ব কোথায় তৈরি হবে?</p>
+            <p><strong>দেওয়া আছে:</strong> f = +10 সেমি, u = -30 সেমি <br>
+            <strong>সূত্র:</strong> 1/f = 1/v - 1/u <br>
+            1/10 = 1/v - 1/(-30) => 1/10 = 1/v + 1/30 <br>
+            1/v = 1/10 - 1/30 = (3 - 1) / 30 = 2/30 = 1/15 <br>
+            <strong>v = +15 সেমি</strong>। (ধনাত্মক চিহ্ন মানে প্রতিবিম্বটি সদ্‌ এবং লেন্সের অপর পাশে তৈরি হয়েছে)।</p>
+            <hr>
+             <h4>প্রশ্ন ৫:</h4>
+            <p>একটি উত্তল লেন্স থেকে 10 সেমি দূরে বস্তু রাখলে, তার 3 গুণ বিবর্ধিত একটি অসদ্‌ প্রতিবিম্ব তৈরি হয়। প্রতিবিম্বের দূরত্ব কত?</p>
+            <p><strong>দেওয়া আছে:</strong> u = -10 সেমি, m = +3 (অসদ্‌ বলে বিবর্ধন ধনাত্মক)<br>
+            <strong>আমরা জানি:</strong> m = v/u <br>
+            3 = v / (-10)  => v = 3 × (-10) = <strong>-30 সেমি</strong>। (ঋণাত্মক চিহ্ন মানে প্রতিবিম্বটি অসদ্‌ এবং বস্তুর দিকেই তৈরি হয়েছে)।</p>
+        </div>
+
+        <h3 style="text-align: center; border: none; color: #004d40; margin-top: 40px;">Thank You!</h3>
+    </div>
+
+    <nav class="navigation">
+        <a href="class10.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class10.html" class="nav-button">10</a>
+        <a href="class11.html" class="nav-button active">11</a>
+        <a href="class12.html" class="nav-button">12</a>
+        <a href="class13.html" class="nav-button">13</a>
+        <a href="class14.html" class="nav-button">14</a>
+        <a href="class12.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+</body>
+</html>

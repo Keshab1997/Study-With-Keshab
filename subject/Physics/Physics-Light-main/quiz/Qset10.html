@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১০ - আলো</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset9.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset11.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "আলো", 
+            setName: "Set 10",                  
+
+            // পুরোনো সিস্টেমের জন্য এই প্রপার্টিটি রাখা হলো
+            name: "আলো (Light) - Set 10 (প্রশ্ন ৯১-১০০)",
+            
+            questions: [
+                {
+                    question: "একটি বস্তুর সমান আকারের সদ প্রতিবিম্ব পাওয়ার জন্য, বস্তুটিকে একটি উত্তল লেন্সের সামনে কোথায় স্থাপন করা উচিত?",
+                    options: ["2F₁ দূরত্বে", "F₁ এবং 2F₁ এর মধ্যে", "অসীম দূরত্বে", "F₁ এ"],
+                    answer: 0,
+                    explanation: "উত্তল লেন্সের সামনে 2F₁ দূরত্বে বস্তু রাখলে, লেন্সের অপর পাশে 2F₂ দূরত্বে বস্তুর সমান আকারের সদ ও উল্টানো প্রতিবিম্ব গঠিত হয়।"
+                },
+                {
+                    question: "একটি লেন্সের কোন বিন্দুর মধ্যে দিয়ে যাওয়া আলোর রশ্মি কোনো বিচ্যুতি ছাড়াই অগ্রসর হয়?",
+                    options: ["প্রধান ফোকাস", "প্রধান অক্ষ", "বক্রতার কেন্দ্র", "আলোককেন্দ্র (Optical Center)"],
+                    answer: 3,
+                    explanation: "আলোককেন্দ্র হলো লেন্সের প্রধান অক্ষের উপর অবস্থিত এমন একটি বিন্দু যার মধ্যে দিয়ে গেলে আলোকরশ্মির কোনো চ্যুতি বা বিচ্যুতি ঘটে না।"
+                },
+                {
+                    question: "যখন একটি বস্তুকে উত্তল লেন্সের 2F অবস্থানে রাখা হয়, তখন প্রতিবিম্বের আকার কেমন হয়?",
+                    options: ["বস্তুর আকারের সমান", "বিবর্ধিত", "খুব ছোট", "খর্বাকার"],
+                    answer: 0,
+                    explanation: "বস্তুকে 2F দূরত্বে রাখলে, প্রতিবিম্বটিও 2F দূরত্বে গঠিত হয় এবং এর আকার বস্তুর আকারের সমান হয়।"
+                },
+                {
+                    question: "একটি লেন্সের ক্ষমতা (power) কিসের ব্যস্তানুপাতিক?",
+                    options: ["ব্যাসার্ধের", "ফোকাস দূরত্বের", "ফোকাসের", "বক্রতার ব্যাসার্ধের"],
+                    answer: 1,
+                    explanation: "লেন্সের ক্ষমতা (P) তার ফোকাস দূরত্বের (f) ব্যস্তানুপাতিক, অর্থাৎ P = 1/f।"
+                },
+                {
+                    question: "একটি গোলীয় দর্পণ এবং একটি পাতলা গোলীয় লেন্স প্রতিটির ফোকাস দূরত্ব -20 সেমি। এই পরিস্থিতিতে নিচের কোনটি সত্য হতে পারে?",
+                    options: ["উভয়ই উত্তল", "দর্পণটি অবতল এবং লেন্সটি উত্তল", "দর্পণটি উত্তল এবং লেন্সটি অবতল", "উভয়ই অবতল"],
+                    answer: 3,
+                    explanation: "চিহ্ন প্রথা অনুযায়ী, অবতল দর্পণ এবং অবতল লেন্স উভয়েরই ফোকাস দূরত্ব ঋণাত্মক (-) ধরা হয়।"
+                },
+                {
+                    question: "অবতল লেন্সের ফোকাস দূরত্বকে কী ধরা হয়?",
+                    options: ["ঋণাত্মক", "ধনাত্মক", "শূন্য", "অসীম"],
+                    answer: 0,
+                    explanation: "চিহ্ন প্রথা অনুযায়ী, অবতল লেন্সের ফোকাস দূরত্ব সর্বদা ঋণাত্মক হয়।"
+                },
+                {
+                    question: "যে বিন্দুতে সমান্তরাল রশ্মিগুচ্ছ লেন্সে প্রতিসরণের পর মিলিত হয় (বা যে বিন্দু থেকে অপসৃত হচ্ছে বলে মনে হয়) তাকে কী বলে?",
+                    options: ["বক্রতার কেন্দ্র", "প্রধান অক্ষ", "মেরু", "ফোকাস"],
+                    answer: 3,
+                    explanation: "সংজ্ঞা অনুযায়ী, এই বিন্দুটিকে লেন্সের প্রধান ফোকাস বলা হয়।"
+                },
+                {
+                    question: "একটি লেন্সের ক্ষমতা +2D হলে, এর ফোকাস দূরত্ব কত হবে?",
+                    options: ["40 মিটার", "50 মিটার", "40 সেমি", "50 সেমি"],
+                    answer: 3,
+                    explanation: "ফোকাস দূরত্ব (সেমি) = 100 / ক্ষমতা (D) = 100 / 2 = 50 সেমি।"
+                },
+                {
+                    question: "একটি লেন্সের ক্ষমতা -2.0D। লেন্সের ধরন এবং এর ফোকাস দূরত্ব কত হবে?",
+                    options: ["উত্তল, -0.5 মি", "অবতল, -0.5 মি", "অবতল, 0.5 মি", "উত্তল, 0.5 মি"],
+                    answer: 1,
+                    explanation: "ক্ষমতা ঋণাত্মক (-) হওয়ায় এটি একটি অবতল লেন্স। ফোকাস দূরত্ব (মিটার) = 1 / ক্ষমতা (D) = 1 / (-2.0) = -0.5 মিটার।"
+                },
+                {
+                    question: "লেন্সের ফোকাস বিন্দু এবং আলোককেন্দ্রের মধ্যে দূরত্বকে কী বলা হয়?",
+                    options: ["বক্রতার ব্যাসার্ধ", "প্রধান রেখা", "ফোকাস দূরত্ব", "ফোকাস বিন্দু"],
+                    answer: 2,
+                    explanation: "সংজ্ঞা অনুযায়ী, লেন্সের আলোককেন্দ্র থেকে প্রধান ফোকাস পর্যন্ত দূরত্বকে ফোকাস দূরত্ব (focal length) বলে।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

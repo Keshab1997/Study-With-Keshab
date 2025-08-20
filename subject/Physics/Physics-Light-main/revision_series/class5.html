@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 05 - আলোর সবচেয়ে বড় জাদু - অভ্যন্তরীণ পূর্ণ প্রতিফলন</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d81b60;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #004d40;
+        }
+        
+        h3, h4 {
+            font-size: 1.6em;
+        }
+
+        p, ul, ol, li {
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #c2185b;
+        }
+
+        blockquote {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            margin: 20px 0;
+            padding: 15px 20px;
+            font-style: italic;
+            font-size: 1.1em;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+
+        .diagram {
+            max-width: 550px;
+            background: #fff;
+            padding: 15px;
+        }
+
+        .math-section {
+            background-color: #fff9c4;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #fbc02d;
+            margin-top: 30px;
+        }
+        .math-section h4 {
+            color: #af5200;
+            border-bottom: 2px solid #ffecb3;
+        }
+        
+        /* Navigation Styles */
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .nav-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .nav-button.active {
+            background-color: #d81b60;
+            color: white;
+            border-color: #d81b60;
+        }
+
+        .nav-button.disabled {
+            color: #aaa;
+            pointer-events: none;
+            background-color: #f5f5f5;
+        }
+        
+        .home-button {
+            background-color: #1e88e5;
+            color: white;
+            border-color: #1e88e5;
+        }
+        .home-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CLASS 05</h1>
+        <h2>বিষয়: আলোর সবচেয়ে বড় জাদু - অভ্যন্তরীণ পূর্ণ প্রতিফলন</h2>
+
+        <p>নমস্কার বন্ধুরা!<br>গত ক্লাসগুলোতে আমরা দেখেছি আলো কীভাবে ধাক্কা খেয়ে ফিরে আসে (প্রতিফলন) আর কীভাবে এক জায়গা থেকে অন্য জায়গায় যাওয়ার সময় পথ বেঁকে যায় (প্রতিসরণ)। আজ আমরা আলোর সবচেয়ে অবাক করা একটি জাদু দেখব, যার নাম <strong>অভ্যন্তরীণ পূর্ণ প্রতিফলন</strong>। এই জাদুর কারণেই হীরা এত চকচক করে আর মরুভূমিতে মরীচিকা দেখা যায়!</p>
+        
+        <blockquote>শুরুর আগে একটি শর্ত মনে রাখতে হবে: আজকের সব জাদুর ঘটনা তখনই ঘটবে, যখন আলো <strong>ঘন মাধ্যম</strong> (যেমন: জল বা কাচ) থেকে <strong>লঘু মাধ্যমে</strong> (যেমন: বাতাস) যাওয়ার চেষ্টা করবে।</blockquote>
+        
+        <h3>সংকট কোণ কী? (Critical Angle)</h3>
+        <p>ভাবো, আলো জল থেকে বাতাসে যাওয়ার চেষ্টা করছে। তুমি যদি আপতন কোণকে বাড়াতে থাকো, তাহলে এক সময় আলোকরশ্মিটি দুটি মাধ্যমের বিভেদতল ঘেঁষে বেরিয়ে যাবে। যে বিশেষ আপতন কোণের জন্য এমনটা হয়, তাকেই বলে <strong>সংকট কোণ (Critical Angle, i<sub>c</sub>)</strong>।</p>
+        <p><strong>সংজ্ঞা:</strong> ঘন মাধ্যম থেকে লঘু মাধ্যমে যাওয়ার সময়, ঘন মাধ্যমে যে বিশেষ আপতন কোণের জন্য প্রতিসরণ কোণ ৯০° হয়, তাকে সংকট কোণ বলে।</p>
+        
+        <img src="https://www.teachers.gov.bd/shared/contents/2020/November/23/photo/image_519305_1606115996.jpg
+" alt="সংকট কোণ ও পূর্ণ প্রতিফলনের ডায়াগ্রাম" class="diagram">
+        
+        <h4>সংকট কোণের শর্ত:</h4>
+        <ol>
+            <li>আলোকে অবশ্যই <strong>ঘন মাধ্যম থেকে লঘু মাধ্যমে</strong> যেতে হবে।</li>
+            <li>প্রতিসরণ কোণ ঠিক <strong>৯০°</strong> হতে হবে।</li>
+        </ol>
+        
+        <h3>অভ্যন্তরীণ পূর্ণ প্রতিফলন (Total Internal Reflection)</h3>
+        <p>এখন আসল জাদুটা শুরু হবে! যদি তুমি আপতন কোণকে সংকট কোণের চেয়েও <strong>বেশি</strong> করে দাও, তাহলে আলো আর লঘু মাধ্যমে যেতেই পারে না। সে বিভেদতলে ধাক্কা খেয়ে আয়নার মতো আবার ঘন মাধ্যমেই সম্পূর্ণ ফিরে আসে। আলোর এই ঘটনাকেই বলে <strong>অভ্যন্তরীণ পূর্ণ প্রতিফলন</strong>।</p>
+        
+        <h4>শর্ত:</h4>
+        <ol>
+            <li>আলোকে <strong>ঘন মাধ্যম থেকে লঘু মাধ্যমে</strong> যেতে হবে।</li>
+            <li>আপতন কোণকে <strong>সংকট কোণের চেয়ে বেশি</strong> হতে হবে।</li>
+        </ol>
+
+        <h4>বাস্তব উদাহরণ:</h4>
+        <ul>
+            <li><strong>হীরার চমক:</strong> হীরার সংকট কোণ খুব কম (২৪.৪°)। তাই আলো একবার হীরার ভেতরে ঢুকলে, বারবার অভ্যন্তরীণ পূর্ণ প্রতিফলন ঘটিয়ে ভেতরেই আটকে থাকে এবং সবদিক থেকে ঝলমল করে।</li>
+            <img src="https://nsliveastro.com/ciadmin/uploads/1701679100DIAMOND.jpg
+" alt="হীরার চমক" style="max-width: 400px;">
+            <li><strong>মরীচিকা:</strong> মরুভূমিতে গরমের দিনে নিচের দিকের বাতাস হালকা (লঘু) আর ওপরের বাতাস ভারী (ঘন) হয়ে যায়। দূরের কোনো গাছ থেকে আলো আসার সময় অভ্যন্তরীণ পূর্ণ প্রতিফলনের ফলে আমাদের চোখে গাছের একটি উল্টো প্রতিবিম্ব তৈরি হয়, যা দেখে জলের ছায়া বলে মনে হয়।</li>
+            <img src="https://cdn.britannica.com/31/63031-050-EA430436/rays-path-image-line-conditions-layer-observer.jpg
+" alt="মরুভূমির মরীচিকা">
+            <li><strong>অপটিক্যাল ফাইবার:</strong> এই প্রযুক্তিতেও আলোর অভ্যন্তরীণ পূর্ণ প্রতিফলন ব্যবহার করে দ্রুত গতিতে ইন্টারনেট ডেটা বা তথ্য পাঠানো হয়।</li>
+            <img src="https://www.hdv-fiber.com/uploads/0217.jpg
+" alt="অপটিক্যাল ফাইবার" class="diagram">
+        </ul>
+
+        <h2>গণিতের মজা: চলো কিছু অঙ্ক কষি</h2>
+        <div class="math-section">
+            <h4>১. প্রতিসরণের চ্যুতি (Deviation)</h4>
+            <p>আলো প্রতিসরণের সময় তার আসল পথ থেকে যে কোণে বেঁকে যায়, তাকে <strong>চ্যুতি (δ)</strong> বলে।</p>
+            <blockquote>সূত্র: δ = | i - r | (বড় কোণ থেকে ছোট কোণ বিয়োগ)</blockquote>
+            <p><strong>প্রশ্ন:</strong> আলো কাচ থেকে বাতাসে যাওয়ার সময় আপতন কোণ (i) 40° এবং প্রতিসরণ কোণ (r) 50° হলে চ্যুতি কত?<br>
+            <strong>উত্তর:</strong> চ্যুতি (δ) = |40° - 50°| = |-10°| = <strong>10°</strong>।</p>
+        </div>
+
+        <div class="math-section">
+            <h4>২. প্রতিসরাঙ্ক ও আলোর বেগ</h4>
+            <p>প্রতিসরাঙ্ক (μ) বলে দেয়, একটি মাধ্যমে আলোর বেগ কতটা কমে যায়।</p>
+            <blockquote>সূত্র: μ = (শূন্যস্থানে আলোর বেগ, c) / (ওই মাধ্যমে আলোর বেগ, v)</blockquote>
+            <p><strong>প্রশ্ন:</strong> কাচের প্রতিসরাঙ্ক 1.5। শূন্যস্থানে আলোর বেগ 3 × 10⁸ m/s হলে, কাচের মধ্যে আলোর বেগ কত?<br>
+            <strong>উত্তর:</strong> 1.5 = (3 × 10⁸) / v <br>
+            সুতরাং, v = (3 × 10⁸) / 1.5 = <strong>2 × 10⁸ m/s</strong>।</p>
+        </div>
+
+        <div class="math-section">
+            <h4>৩. সংকট কোণ ও প্রতিসরাঙ্ক</h4>
+            <blockquote>সূত্র: sin(i<sub>c</sub>) = 1 / μ (যদি লঘু মাধ্যমটি বাতাস বা শূন্যস্থান হয়)</blockquote>
+            <p><strong>প্রশ্ন:</strong> একটি মাধ্যমের প্রতিসরাঙ্ক 1.5 হলে, তার সংকট কোণ কত?<br>
+            <strong>উত্তর:</strong> sin(i<sub>c</sub>) = 1 / 1.5 = 0.667 <br>
+            i<sub>c</sub> = sin⁻¹(0.667) ≈ <strong>41.8°</strong>।</p>
+        </div>
+        
+        <div class="math-section">
+            <h4>৪. স্নেলের সূত্র (Snell's Law)</h4>
+            <p>এই সূত্রটিই প্রতিসরণের মূল চাবিকাঠি।</p>
+            <blockquote>সূত্র: μ₁ sin(i) = μ₂ sin(r)  <br> অথবা <br> μ₁/μ₂ = v₂/v₁ </blockquote>
+            <p><strong>প্রশ্ন:</strong> কাচের প্রতিসরাঙ্ক (μ₁) 1.5 এবং জলের (μ₂) 1.33। কাচে আলোর বেগ 2 × 10⁸ m/s হলে, জলে আলোর বেগ (v₂) কত?<br>
+            <strong>সমাধান:</strong> আমরা জানি, μ₁/μ₂ = v₂/v₁ <br>
+            1.5 / 1.33 = v₂ / (2 × 10⁸) <br>
+            v₂ = (1.5 / 1.33) × (2 × 10⁸) ≈ 1.1278 × (2 × 10⁸) ≈ <strong>2.26 × 10⁸ m/s</strong>।</p>
+        </div>
+
+        <h3 style="text-align: center; border: none; color: #004d40; margin-top: 40px;">Thank You!</h3>
+    </div>
+
+    <nav class="navigation">
+        <a href="class4.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button active">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class10.html" class="nav-button">10</a>
+        <a href="class11.html" class="nav-button">11</a>
+        <a href="class12.html" class="nav-button">12</a>
+        <a href="class13.html" class="nav-button">13</a>
+        <a href="class14.html" class="nav-button">14</a>
+        <a href="class6.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+</body>
+</html>

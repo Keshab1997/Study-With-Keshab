@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১৩ - আলো</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset12.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset14.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "আলো", 
+            setName: "Set 13",                  
+
+            // পুরোনো সিস্টেমের জন্য এই প্রপার্টিটি রাখা হলো
+            name: "আলো (Light) - Set 13 (প্রশ্ন ১২১-১৩০)",
+            
+            questions: [
+                {
+                    question: "প্রিজমের মধ্য দিয়ে আলো অতিক্রম করে বর্ণালী গঠন করার ঘটনাটি প্রথম কোন ব্যক্তি পর্যবেক্ষণ করেন?",
+                    options: ["পল ভিলার্ড", "বেঞ্জামিন ফ্রাঙ্কলিন", "আইজ্যাক নিউটন", "পিয়েরে কুরি"],
+                    answer: 2,
+                    explanation: "স্যার আইজ্যাক নিউটন প্রথম পরীক্ষা করে দেখান যে প্রিজমের মাধ্যমে সাদা আলোকে তার উপাদান রঙগুলিতে (বর্ণালী) বিভক্ত করা যায়।"
+                },
+                {
+                    question: "কাচের প্রিজম দ্বারা সাদা আলোর বিচ্ছুরণের পরে, সাতটি রঙের মধ্যে কোনটি সবচেয়ে কম বিচ্যুত হয়?",
+                    options: ["নীল", "বেগুনি", "লাল", "কমলা"],
+                    answer: 2,
+                    explanation: "লাল রঙের আলোর তরঙ্গদৈর্ঘ্য সবচেয়ে বেশি, তাই কাঁচ মাধ্যমে এর বেগও সবচেয়ে বেশি। ফলে এর বিচ্যুতি সবচেয়ে কম হয়।"
+                },
+                {
+                    question: "সাদা আলোর নিচের কোন রঙের তরঙ্গদৈর্ঘ্য সবচেয়ে বেশি?",
+                    options: ["বেগুনি", "কমলা", "লাল", "সবুজ"],
+                    answer: 2,
+                    explanation: "দৃশ্যমান আলোর সাতটি রঙের মধ্যে লাল রঙের তরঙ্গদৈর্ঘ্য সবচেয়ে বেশি এবং বেগুনি রঙের তরঙ্গদৈর্ঘ্য সবচেয়ে কম।"
+                },
+                {
+                    question: "যখন সাদা আলো একটি প্রিজমের মধ্য দিয়ে যায়, তখন এটি বিচ্ছুরিত হয় কেন?",
+                    options: ["প্রিজম সাতটি রঙ তৈরি করে", "সাদা আলোর সাতটি রঙ কাঁচের মধ্যে বিভিন্ন গতিতে ভ্রমণ করে", "রঙগুলি প্রিজম দ্বারা প্রতিফলিত হয়", "সাতটি রঙ একই গতিতে প্রতিসৃত হয়"],
+                    answer: 1,
+                    explanation: "প্রিজমের উপাদানে (কাঁচ) বিভিন্ন রঙের আলোর বেগ ভিন্ন ভিন্ন হয়। এর ফলে প্রতিসরাঙ্কও ভিন্ন হয়, যা আলোর বিচ্ছুরণের মূল কারণ।"
+                },
+                {
+                    question: "সূর্যের সাদা আলো কয়টি মূল রঙ নিয়ে গঠিত?",
+                    options: ["তিন", "দুই", "সাত", "পাঁচ"],
+                    answer: 2,
+                    explanation: "সূর্যের সাদা আলো সাতটি মূল রঙের (বেনীআসহকলা বা VIBGYOR) সমাহার।"
+                },
+                {
+                    question: "কোন ধরনের দর্পণ পার্শ্বীয় পরিবর্তন (Lateral Inversion) দেখায়?",
+                    options: ["উত্তল দর্পণ", "অবতল দর্পণ", "আয়তক্ষেত্রাকার দর্পণ", "সমতল দর্পণ"],
+                    answer: 3,
+                    explanation: "সমতল দর্পণে প্রতিবিম্বের পার্শ্বীয় পরিবর্তন ঘটে, যেখানে দর্শকের ডান দিক প্রতিবিম্বের বাম দিক এবং বাম দিক ডান দিক বলে মনে হয়।"
+                },
+                {
+                    question: "যারা বাইফোকাল লেন্স পরেন, তারা সাধারণত কোন দৃষ্টিজনিত ত্রুটিতে আক্রান্ত?",
+                    options: ["হাইপারমেট্রোপিয়া", "প্রেসবায়োপিয়া", "মায়োপিয়া", "ছানি"],
+                    answer: 1,
+                    explanation: "প্রেসবায়োপিয়া (চালশে) রোগে আক্রান্ত ব্যক্তিরা দূরের এবং কাছের উভয় বস্তু দেখতে সমস্যায় পড়েন। বাইফোকাল লেন্স এই দুটি সমস্যারই সমাধান করে।"
+                },
+                {
+                    question: "পরিষ্কার আকাশের নীল রঙ কোন আলোকীয় ঘটনার কারণে হয়?",
+                    options: ["আলোর বিক্ষেপণ (Scattering)", "আলোর প্রতিফলন", "আলোর বিচ্ছুরণ (Dispersion)", "আলোর প্রতিসরণ"],
+                    answer: 0,
+                    explanation: "বায়ুমণ্ডলের ধূলিকণা ও গ্যাসীয় অণু দ্বারা নীল আলোর তরঙ্গদৈর্ঘ্য সবচেয়ে বেশি বিক্ষিপ্ত (scattered) হয়, তাই আকাশ নীল দেখায়।"
+                },
+                {
+                    question: "LED এর পূর্ণরূপ কী?",
+                    options: ["Linear Emergency Device", "Light Emitting Diode", "Liquid Emitting Display", "Light Ejecting Device"],
+                    answer: 1,
+                    explanation: "LED এর পূর্ণরূপ হলো Light Emitting Diode।"
+                },
+                {
+                    question: "মায়োপিয়া' আর কী নামে পরিচিত?",
+                    options: ["দূরদৃষ্টি", "ক্ষীণদৃষ্টি বা নিকট-দৃষ্টি", "প্রেসবায়োপিয়া", "বিষমদৃষ্টি"],
+                    answer: 1,
+                    explanation: "মায়োপিয়া হলো ক্ষীণদৃষ্টি বা নিকট-দৃষ্টি (Nearsightedness), যেখানে কাছের বস্তু স্পষ্ট দেখা গেলেও দূরের বস্তু ঝাপসা দেখায়।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 09 - দর্পণের গণিত এবং নতুন বন্ধু - লেন্স</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d81b60;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #004d40;
+        }
+        
+        h3, h4 {
+            font-size: 1.6em;
+        }
+
+        p, ul, ol, li {
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #c2185b;
+        }
+
+        blockquote {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            margin: 20px 0;
+            padding: 15px 20px;
+            font-style: italic;
+            font-size: 1.2em;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+
+        .diagram {
+            max-width: 500px;
+            background: #fff;
+            padding: 15px;
+        }
+        
+        .math-section {
+            background-color: #f1f8e9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #689f38;
+            margin-top: 30px;
+        }
+        .math-section h4 {
+            color: #33691e;
+            border-bottom-color: #dcedc8;
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Navigation Styles */
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .nav-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .nav-button.active {
+            background-color: #d81b60;
+            color: white;
+            border-color: #d81b60;
+        }
+        
+        .home-button {
+            background-color: #1e88e5;
+            color: white;
+            border-color: #1e88e5;
+        }
+        .home-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CLASS 09</h1>
+        <h2>বিষয়: দর্পণের গণিত এবং নতুন বন্ধু - লেন্স</h2>
+
+        <p>নমস্কার বন্ধুরা!<br>গত ক্লাসে আমরা দর্পণের সূত্রগুলো শিখেছিলাম। আজ আমরা সেই সূত্র দিয়ে আরও কিছু অঙ্ক কষব এবং তারপর দর্পণের জগৎ থেকে বেরিয়ে <strong>লেন্স</strong> নামক এক নতুন ও অত্যন্ত গুরুত্বপূর্ণ বন্ধুর সাথে পরিচিত হব। আমাদের চোখ থেকে শুরু করে ক্যামেরা, টেলিস্কোপ—সব জায়গায় এই লেন্সের কারসাজি!</p>
+
+        <div class="math-section">
+            <h3>দর্পণের গণিত: আরও কিছু অনুশীলন</h3>
+            <h4>প্রশ্ন:</h4> 
+            <p>একটি উত্তল দর্পণের বক্রতা ব্যাসার্ধ ৫ সেমি। এর সামনে ১০ সেমি দূরে বস্তু রাখলে বিবর্ধন কত হবে?</p>
+            <ul>
+                <li><strong>ধাপ ১: ফোকাস দূরত্ব (f) বের করি।</strong><br>
+                r = +5 সেমি (উত্তল বলে ধনাত্মক) <br>
+                f = r/2 = +2.5 সেমি</li>
+                <li><strong>ধাপ ২: প্রতিবিম্বের দূরত্ব (v) বের করি।</strong><br>
+                u = -10 সেমি<br>
+                সূত্র: 1/f = 1/v + 1/u  => 1/2.5 = 1/v + 1/(-10) <br>
+                1/v = 1/2.5 + 1/10 = (4 + 1) / 10 = 5/10 = 1/2 <br>
+                v = +2 সেমি (ধনাত্মক, মানে প্রতিবিম্বটি অসদ্‌ এবং দর্পণের পেছনে)</li>
+                <li><strong>ধাপ ৩: বিবর্ধন (m) বের করি।</strong><br>
+                m = -v/u = -(+2) / (-10) = 2/10 = <strong>0.2</strong><br>
+                (বিবর্ধন 1-এর থেকে ছোট, মানে প্রতিবিম্বটি ছোট হয়েছে।)</li>
+            </ul>
+        </div>
+
+        <h2>নতুন বন্ধু: লেন্স (Lens)</h2>
+        <p>আমরা এতদিন আয়না বা দর্পণ নিয়ে কথা বলেছি, যার এক পিঠে প্রলেপ দেওয়া থাকে এবং আলো <strong>প্রতিফলিত</strong> হয়। কিন্তু লেন্স হলো একটি স্বচ্ছ মাধ্যম (যেমন কাচ), যার ভেতর দিয়ে আলো <strong>প্রতিসৃত</strong> হয়ে (অর্থাৎ, বেঁকে গিয়ে) চলে যায়।</p>
+        <img src="https://physicsgoln.com/wp-content/uploads/2023/07/%E0%A6%9C%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AE%E0%A6%BF%E0%A6%A4%E0%A6%BF%E0%A6%95-%E0%A6%86%E0%A6%B2%E0%A7%8B%E0%A6%95%E0%A6%AC%E0%A6%BF%E0%A6%9C%E0%A7%8D%E0%A6%9E%E0%A6%BE%E0%A6%A8-%E0%A6%8F%E0%A6%B0-%E0%A6%B2%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%B8-1-e1690443830110.png
+" alt="উত্তল ও অবতল লেন্স" class="diagram">
+        <table>
+            <thead>
+                <tr>
+                    <th>লেন্সের নাম</th>
+                    <th>দেখতে কেমন?</th>
+                    <th>কাজ কী?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>উত্তল লেন্স (Convex Lens)</strong></td>
+                    <td>মধ্যভাগ মোটা, দুই প্রান্ত সরু।</td>
+                    <td>আলোকে এক বিন্দুতে মিলিত করে (অভিসারী)।</td>
+                </tr>
+                <tr>
+                    <td><strong>অবতল লেন্স (Concave Lens)</strong></td>
+                    <td>মধ্যভাগ সরু, দুই প্রান্ত মোটা।</td>
+                    <td>আলোকে চারদিকে ছড়িয়ে দেয় (অপসারী)।</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>লেন্সের ক্ষমতা (Power of Lens)</h3>
+        <p>তোমার চশমার পাওয়ার কত? +2 নাকি -1.5? এই পাওয়ার বা ক্ষমতা কী?<br>
+        <strong>সংজ্ঞা:</strong> কোনো লেন্স আলোকরশ্মিকে কতটা বেশি বা কম বাঁকাতে পারে, তার পরিমাপই হলো <strong>লেন্সের ক্ষমতা (Power, P)</strong>।</p>
+        <blockquote>P = 1 / f  (f অবশ্যই মিটার এককে)</blockquote>
+        <ul>
+            <li><strong>একক:</strong> ডায়োপ্টার (Dioptre, D)</li>
+            <li>উত্তল লেন্সের ক্ষমতা <strong>ধনাত্মক (+)</strong>।</li>
+            <li>অবতল লেন্সের ক্ষমতা <strong>ঋণাত্মক (-)**।</li>
+        </ul>
+        <p><strong>উদাহরণ:</strong> একটি উত্তল লেন্সের ফোকাস দূরত্ব ৫০ সেমি। তার ক্ষমতা কত?<br>
+        f = 50 সেমি = 0.5 মিটার<br>
+        P = 1 / 0.5 = <strong>+2 D</strong></p>
+
+        <h3>কোথায় কোন লেন্স ব্যবহার হয়?</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>লেন্সের ধরন</th>
+                    <th>ব্যবহার</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>উত্তল লেন্স (+)</strong></td>
+                    <td>• বিবর্ধক কাচ (Magnifying glass) হিসেবে <br> • ক্যামেরা, প্রজেক্টর, অণুবীক্ষণ ও দূরবীক্ষণ যন্ত্রে <br> • <strong>দূরদৃষ্টি (Hypermetropia)</strong> ত্রুটি সারাতে চশমায়</td>
+                </tr>
+                <tr>
+                    <td><strong>অবতল লেন্স (-)</strong></td>
+                    <td>• <strong>ক্ষ্রস্বদৃষ্টি (Myopia)</strong> ত্রুটি সারাতে চশমায় <br> • গাড়ির হেডলাইটে আলোর বিম তৈরি করতে <br> • শক্তিশালী টেলিস্কোপে</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>লেন্স দিয়ে তৈরি প্রতিবিম্ব (সংক্ষেপে)</h3>
+        <p>উত্তল লেন্স দিয়ে প্রতিবিম্ব তৈরি হওয়ার নিয়মগুলো অনেকটা অবতল দর্পণের মতোই!</p>
+        <table>
+            <caption>উত্তল লেন্সের জন্য প্রতিবিম্ব</caption>
+            <thead>
+                <tr>
+                    <th>বস্তুর অবস্থান</th>
+                    <th>প্রতিবিম্বের অবস্থান</th>
+                    <th>প্রকৃতি</th>
+                    <th>আকার</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2f দূরত্বে</td>
+                    <td>2f দূরত্বে</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                    <td>সমান</td>
+                </tr>
+                <tr>
+                    <td>f ও 2f-এর মধ্যে</td>
+                    <td>2f-এর বাইরে</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                    <td>বড়</td>
+                </tr>
+                <tr>
+                    <td>2f-এর বাইরে</td>
+                    <td>f ও 2f-এর মধ্যে</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                    <td>ছোট</td>
+                </tr>
+                <tr>
+                    <td>f ও আলোককেন্দ্রের মধ্যে</td>
+                    <td>বস্তুর দিকেই</td>
+                    <td><strong>অসদ্‌ ও সোজা</strong></td>
+                    <td>বড়</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>অবতল লেন্সের জন্য:</strong> অবতল লেন্স সবসময় বস্তুর একটি <strong>ছোট, সোজা ও অসদ্‌</strong> প্রতিবিম্ব তৈরি করে।</p>
+
+        <h3 style="text-align: center; border: none; color: #004d40; margin-top: 40px;">Thank You!</h3>
+    </div>
+
+    <nav class="navigation">
+        <a href="class8.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button active">9</a>
+        <a href="class10.html" class="nav-button">10</a>
+        <a href="class11.html" class="nav-button">11</a>
+        <a href="class12.html" class="nav-button">12</a>
+        <a href="class13.html" class="nav-button">13</a>
+        <a href="class14.html" class="nav-button">14</a>
+        <a href="class10.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+</body>
+</html>

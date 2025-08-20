@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - তাপ ও তাপমাত্রা</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset4.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "তাপ ও তাপমাত্রা", 
+            setName: "Quiz Set 3",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "তাপ ও তাপমাত্রা - Set 3 (প্রশ্ন ২১-৩০)",
+            
+            questions: [
+                {
+                    question: "একটি ত্রুটিপূর্ণ থার্মোমিটারের নিম্নস্থিরাঙ্ক ও ঊর্ধ্বস্থিরাঙ্ক যথাক্রমে 5°C এবং 105°C। এই থার্মোমিটার 25°C পাঠ দিলে, প্রকৃত পাঠ হবে-",
+                    options: ["35°C", "20°C", "30°C", "15°C"],
+                    answer: 1,
+                    explanation: "সূত্র: (ত্রুটিপূর্ণ পাঠ - নিম্নস্থিরাঙ্ক) / পাল্লা = (সঠিক পাঠ - নিম্নস্থিরাঙ্ক) / পাল্লা। => (25-5)/(105-5) = (C-0)/(100-0) => 20/100 = C/100 => C = 20°C।"
+                },
+                {
+                    question: "থার্মোমিটারের তরল হিসেবে পারদ ব্যবহারের সুবিধার জন্য কোনটি প্রযোজ্য নয়?",
+                    options: ["বিশুদ্ধ পারদ সহজলভ্য", "পারদ অস্বচ্ছ ও চকচকে", "পারদের আপেক্ষিক তাপ সর্বাপেক্ষা বেশি", "পারদের আয়তনের পরিবর্তন খুব নিয়মানুগ"],
+                    answer: 2,
+                    explanation: "পারদের আপেক্ষিক তাপ কম, বেশি নয়। কম আপেক্ষিক তাপের সুবিধা হলো এটি পরীক্ষাধীন বস্তু থেকে খুব কম তাপ গ্রহণ করে বস্তুর সঠিক তাপমাত্রা নির্দেশ করতে পারে।"
+                },
+                {
+                    question: "পারদের হিমাঙ্ক-",
+                    options: ["-40°C", "0°C", "-39°C", "100°C"],
+                    answer: 2,
+                    explanation: "পারদের হিমাঙ্ক -39°C এবং স্ফুটনাঙ্ক 357°C।"
+                },
+                {
+                    question: "কোন্ তাপমাত্রায় ফারেনহাইট ও কেলভিন স্কেলের পাঠ সমান?",
+                    options: ["32°", "212°", "574.25°", "306.75°"],
+                    answer: 2,
+                    explanation: "(F-32)/9 = (K-273)/5 সূত্রে F=K=x ধরে সমাধান করলে x = 574.25 পাওয়া যায়।"
+                },
+                {
+                    question: "সিজিএস পদ্ধতিতে জলের বাষ্পীভবনের লীনতাপ হল-",
+                    options: ["537 ক্যালোরি/গ্রাম", "22.68 x 10⁵ ক্যালোরি/গ্রাম", "80 ক্যালোরি/গ্রাম", "100 ক্যালোরি/গ্রাম"],
+                    answer: 0,
+                    explanation: "CGS পদ্ধতিতে জলের বাষ্পীভবনের লীনতাপ 537 cal/g এবং বরফ গলনের লীনতাপ 80 cal/g।"
+                },
+                {
+                    question: "উষ্ণতা স্থির রেখে একক ভরের কঠিন পদার্থকে তরল পদার্থে রূপান্তরিত করতে প্রয়োজনীয় তাপ হল-",
+                    options: ["গলনের লীনতাপ", "বিকীর্ণ তাপ", "আপেক্ষিক তাপ", "বোধগম্য তাপ"],
+                    answer: 0,
+                    explanation: "এটি গলনের লীনতাপের সংজ্ঞা। উষ্ণতা স্থির রেখে অবস্থার পরিবর্তনের জন্য যে তাপ প্রয়োজন হয়, তাকে লীনতাপ বলে।"
+                },
+                {
+                    question: "সম্পৃক্ত বাষ্পকে অসম্পৃক্ত বাষ্পে পরিণত করার উপায় হল-",
+                    options: ["আয়তন বাড়ানো", "উষ্ণতা বাড়ানো", "চাপ কমানো", "সবগুলিই"],
+                    answer: 3,
+                    explanation: "উষ্ণতা বাড়ালে, চাপ কমালে বা আয়তন বাড়ালে বাষ্পের ঘনত্ব কমে যায়, ফলে তা অসম্পৃক্ত হয়ে পড়ে।"
+                },
+                {
+                    question: "অসম্পৃক্ত বাষ্পকে সম্পৃক্ত করার উপায় হল-",
+                    options: ["আয়তন কমানো", "উষ্ণতা কমানো", "চাপ বাড়ানো", "সবগুলিই"],
+                    answer: 3,
+                    explanation: "উষ্ণতা কমালে, চাপ বাড়ালে বা আয়তন কমালে বাষ্পের ঘনত্ব বেড়ে সম্পৃক্ত অবস্থায় পৌঁছায়।"
+                },
+                {
+                    question: "শিশিরাঙ্কের মান-",
+                    options: ["0°C এর সমান হতে পারে", "0°C এর কম হতে পারে", "সর্বদাই 0°C-এর বেশি হয়", "সবগুলিই সম্ভব"],
+                    answer: 3,
+                    explanation: "শিশিরাঙ্ক হলো সেই তাপমাত্রা যেখানে বায়ু জলীয় বাষ্প দ্বারা সম্পৃক্ত হয়। এটি পারিপার্শ্বিক বায়ুর তাপমাত্রার ওপর নির্ভর করে এবং এটি 0°C এর বেশি, সমান বা কমও হতে পারে।"
+                },
+                {
+                    question: "স্পর্শ করে বেশি ঠান্ডা মনে হবে-",
+                    options: ["0°C উষ্ণতার জল", "0°C উষ্ণতার বরফ", "বরফ ও জলের মিশ্রণ", "বরফ ও নুনের মিশ্রণ"],
+                    answer: 3,
+                    explanation: "বরফ ও নুনের মিশ্রণ একটি হিমমিশ্রণ (Freezing Mixture), যার তাপমাত্রা 0°C থেকে অনেক কমে গিয়ে প্রায় -23°C পর্যন্ত হতে পারে।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

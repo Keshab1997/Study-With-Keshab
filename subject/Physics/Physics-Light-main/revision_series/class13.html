@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 13 - আলোর অধ্যায়ের উপর গুরুত্বপূর্ণ MCQ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d81b60;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #004d40;
+        }
+        
+        h3 {
+            font-size: 1.6em;
+            color: #00695c;
+        }
+
+        p { font-size: 1.1em; }
+        strong { color: #c2185b; }
+        
+        .keyboard-info {
+            background-color: #e3f2fd;
+            border: 1px solid #90caf9;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        .mcq-selector-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .mcq-selector-container label {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #004d40;
+            margin-right: 10px;
+        }
+        #mcq-set-selector {
+            padding: 8px 12px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            border: 2px solid #004d40;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .mcq-item {
+            background-color: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-left: 5px solid #1e88e5;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .mcq-item.is-visible {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-left-color: #d81b60;
+        }
+
+        .mcq-item p.question {
+            font-weight: 600;
+            font-size: 1.2em;
+            color: #1a237e;
+            margin-top: 0;
+        }
+        .mcq-item ul.options {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .mcq-item .option {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .mcq-item .option:hover {
+            background-color: #f0f2f5;
+            border-color: #1e88e5;
+        }
+
+        .mcq-item .option.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+            font-weight: bold;
+        }
+        .mcq-item .option.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+            font-weight: bold;
+        }
+
+        .mcq-item ul.answered .option {
+            cursor: default;
+            pointer-events: none;
+        }
+        
+        .answer-explanation {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .nav-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+        }
+        .nav-button.active {
+            background-color: #d81b60;
+            color: white;
+            border-color: #d81b60;
+        }
+        .home-button {
+            background-color: #1e88e5;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CLASS 13</h1>
+        <h2>বিষয়: আলোর অধ্যায়ের উপর গুরুত্বপূর্ণ MCQ অনুশীলন</h2>
+        <p>বন্ধুরা, চলো আলোর অধ্যায় থেকে আমরা কতটা শিখেছি তা কিছু গুরুত্বপূর্ণ বহুনির্বাচনী প্রশ্ন (MCQ) সমাধানের মাধ্যমে ঝালিয়ে নিই। নিচের ড্রপডাউন থেকে অনুশীলন সেট বেছে নাও এবং সঠিক অপশনে ক্লিক করে নিজের প্রস্তুতি যাচাই করো।</p>
+        
+        
+
+        <div class="mcq-selector-container">
+            <label for="mcq-set-selector">অনুশীলনী সেট বাছুন:</label>
+            <select id="mcq-set-selector">
+                <option value="set1">Set 1</option>
+                <option value="set2">Set 2</option>
+                <option value="set3">Set 3</option>
+                <option value="set4">Set 4</option>
+                <option value="set5">Set 5</option>
+                <option value="set6">Set 6</option>
+            </select>
+        </div>
+
+        <div id="mcq-container">
+            <!-- Set 1 -->
+            <div id="set1" class="mcq-set" style="display: block;">
+                <h3>অনুশীলনী সেট - ১</h3>
+                <!-- Q1 -->
+                <div class="mcq-item">
+                    <p class="question">১. যে সকল পদার্থের মাধ্যমে বস্তুকে দেখা যায় কিন্তু স্পষ্টভাবে দেখা যায় না তাদেরকে কী বলে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) স্বচ্ছ</li>
+                        <li class="option">(খ) অস্বচ্ছ</li>
+                        <li class="option" data-correct="true">(গ) ঈষৎ স্বচ্ছ</li>
+                        <li class="option">(ঘ) দীপ্তি</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) ঈষৎ স্বচ্ছ</p>
+                        <p><strong>ব্যাখ্যা:</strong> ঈষৎ স্বচ্ছ পদার্থের মধ্যে দিয়ে আলো আংশিকভাবে যায়, তাই বস্তু দেখা যায় কিন্তু স্পষ্ট নয়। যেমন- ঘষা কাচ, তৈলাক্ত কাগজ।</p>
+                    </div>
+                </div>
+                <!-- Q2 -->
+                <div class="mcq-item">
+                    <p class="question">২. নিচের কোনটি প্রাথমিক রঙ নয়?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) কমলা</li>
+                        <li class="option">(খ) বেগুনী</li>
+                        <li class="option">(গ) সবুজ</li>
+                        <li class="option">(ঘ) নীল</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) কমলা</p>
+                        <p><strong>ব্যাখ্যা:</strong> আলোর প্রাথমিক রঙ হল লাল, সবুজ এবং নীল। কমলা একটি গৌণ রঙ।</p>
+                    </div>
+                </div>
+                <!-- Q3 -->
+                <div class="mcq-item">
+                    <p class="question">৩. কোন পদার্থের মধ্য দিয়ে আলো সহজে যেতে পারে?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) স্বচ্ছ</li>
+                        <li class="option">(খ) ঈষৎ স্বচ্ছ</li>
+                        <li class="option">(গ) অস্বচ্ছ</li>
+                        <li class="option">(ঘ) কাঁচযুক্ত</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) স্বচ্ছ</p>
+                        <p><strong>ব্যাখ্যা:</strong> স্বচ্ছ পদার্থের মধ্যে দিয়ে আলো প্রায় পুরোটাই যেতে পারে, তাই বস্তুকে স্পষ্টভাবে দেখা যায়। যেমন- কাচ, জল।</p>
+                    </div>
+                </div>
+                <!-- Q4 -->
+                <div class="mcq-item">
+                    <p class="question">৪. রঙিন টেলিভিশনে ব্যবহৃত প্রাথমিক রংগুলি হল-</p>
+                    <ul class="options">
+                        <li class="option">(ক) সবুজ, হলুদ, লাল</li>
+                        <li class="option">(খ) লাল, হলুদ, নীল</li>
+                        <li class="option">(গ) নীল, হলুদ, সবুজ</li>
+                        <li class="option" data-correct="true">(ঘ) লাল, সবুজ, নীল</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) লাল, সবুজ, নীল</p>
+                        <p><strong>ব্যাখ্যা:</strong> রঙিন টেলিভিশন বা যেকোনো ডিজিটাল স্ক্রিনে RGB (Red, Green, Blue) এই তিনটি প্রাথমিক রঙ ব্যবহার করে অন্যান্য সব রঙ তৈরি করা হয়।</p>
+                    </div>
+                </div>
+                <!-- Q5 -->
+                <div class="mcq-item">
+                    <p class="question">৫. ভ্যাকুয়ামে বা শূন্যস্থানে আলোর বেগ কত?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) 3 x 10⁸ m/s</li>
+                        <li class="option">(খ) 2 x 10⁸ m/s</li>
+                        <li class="option">(গ) 3 x 10⁷ m/s</li>
+                        <li class="option">(ঘ) 3 x 10⁶ m/s</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) 3 x 10⁸ m/s</p>
+                        <p><strong>ব্যাখ্যা:</strong> শূন্যস্থানে আলোর গতিবেগ সর্বোচ্চ এবং এর স্বীকৃত মান প্রায় 3 x 10⁸ মিটার/সেকেন্ড।</p>
+                    </div>
+                </div>
+                <!-- Q6 -->
+                <div class="mcq-item">
+                    <p class="question">৬. ভ্যাকুয়ামে আলোর গতি সঠিকভাবে অনুমান করা হয় m/s.</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) 3.00 x 10⁸</li>
+                        <li class="option">(খ) 3.10 x 10⁸</li>
+                        <li class="option">(গ) 3.12 x 10⁸</li>
+                        <li class="option">(ঘ) 3.15 x 10⁸</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) 3.00 x 10⁸</p>
+                        <p><strong>ব্যাখ্যা:</strong> আন্তর্জাতিকভাবে শূন্যস্থানে আলোর বেগের গৃহীত মান 299,792,458 m/s, যা সাধারণত 3.00 x 10⁸ m/s হিসেবে লেখা হয়।</p>
+                    </div>
+                </div>
+                <!-- Q7 -->
+                <div class="mcq-item">
+                    <p class="question">৭. নিচের কোন মাধ্যমে আলোর গতি সর্বাধিক?</p>
+                    <ul class="options">
+                        <li class="option">(ক) জল</li>
+                        <li class="option">(খ) বায়ু</li>
+                        <li class="option" data-correct="true">(গ) ভ্যাকুয়াম</li>
+                        <li class="option">(ঘ) কাচ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) ভ্যাকুয়াম</p>
+                        <p><strong>ব্যাখ্যা:</strong> আলো চলাচলে বাধা দেওয়ার মতো কোনো কণা না থাকায় ভ্যাকুয়াম বা শূন্যস্থানে আলোর গতি সর্বাধিক হয়।</p>
+                    </div>
+                </div>
+                <!-- Q8 -->
+                <div class="mcq-item">
+                    <p class="question">৮. আলোর কোয়ান্টাম তত্ত্ব কে দিয়েছিলেন?</p>
+                    <ul class="options">
+                        <li class="option">(ক) আইনস্টাইন</li>
+                        <li class="option">(খ) নিউটন</li>
+                        <li class="option" data-correct="true">(গ) প্ল্যাঙ্ক</li>
+                        <li class="option">(ঘ) ফ্যারাডে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) প্ল্যাঙ্ক</p>
+                        <p><strong>ব্যাখ্যা:</strong> ম্যাক্স প্ল্যাঙ্ক প্রথম আলোর কোয়ান্টাম তত্ত্বের ধারণা দেন, যেখানে বলা হয় আলো নির্দিষ্ট শক্তির প্যাকেট বা 'কোয়ান্টা' (ফোটন) হিসেবে নির্গত বা শোষিত হয়।</p>
+                    </div>
+                </div>
+                <!-- Q9 -->
+                <div class="mcq-item">
+                    <p class="question">৯. আলো যে একটি অনুপ্রস্থ তরঙ্গ, তা কোন ঘটনা দ্বারা নিশ্চিতভাবে প্রমাণ করা যায়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) বিচ্ছুরণ</li>
+                        <li class="option">(খ) ব্যতিচার</li>
+                        <li class="option">(গ) অপবর্তন</li>
+                        <li class="option" data-correct="true">(ঘ) মেরুকরণ বা সমবর্তন</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) মেরুকরণ বা সমবর্তন</p>
+                        <p><strong>ব্যাখ্যা:</strong> শুধুমাত্র অনুপ্রস্থ তরঙ্গেরই মেরুকরণ (Polarization) সম্ভব, অনুদৈর্ঘ্য তরঙ্গের (যেমন শব্দ) সম্ভব নয়। তাই এই ঘটনাটি প্রমাণ করে আলো একটি অনুপ্রস্থ তরঙ্গ।</p>
+                    </div>
+                </div>
+                <!-- Q10 -->
+                <div class="mcq-item">
+                    <p class="question">১০. যে সকল বস্তু নিজে আলো উৎপন্ন করে না তাকে কী বলা হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) স্বচ্ছ বস্তু</li>
+                        <li class="option">(খ) আলোকিত বস্তু</li>
+                        <li class="option" data-correct="true">(গ) নিষ্প্রভ বস্তু</li>
+                        <li class="option">(ঘ) ঈষৎ স্বচ্ছ বস্তু</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) নিষ্প্রভ বস্তু</p>
+                        <p><strong>ব্যাখ্যা:</strong> যে সকল বস্তুর নিজস্ব আলো নেই, কিন্তু অন্যের আলোয় আলোকিত হয়, তাদের নিষ্প্রভ (Non-luminous) বস্তু বলে। যেমন- চাঁদ, বই, টেবিল।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Set 2 -->
+            <div id="set2" class="mcq-set" style="display: none;">
+                <h3>অনুশীলনী সেট - ২</h3>
+                <!-- Q11 -->
+                <div class="mcq-item">
+                    <p class="question">১১. যে সকল বস্তু নিজস্ব আলো উৎপন্ন করে, তাদের কী বলা হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) স্বচ্ছ বস্তু</li>
+                        <li class="option">(খ) পরিষ্কার বস্তু</li>
+                        <li class="option">(গ) নিষ্প্রভ বস্তু</li>
+                        <li class="option" data-correct="true">(ঘ) আলোকিত বস্তু</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) আলোকিত বস্তু</p>
+                        <p><strong>ব্যাখ্যা:</strong> যে সকল বস্তুর নিজস্ব আলো আছে, তাদের আলোকিত বা স্বপ্রভ (Luminous) বস্তু বলে। যেমন- সূর্য, তারা, জোনাকি।</p>
+                    </div>
+                </div>
+                <!-- Q12 -->
+                <div class="mcq-item">
+                    <p class="question">১২. একটি পদার্থের প্রতিসরণাঙ্ক এবং আলোর গতির মধ্যে সম্পর্ক কী?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) প্রতিসরণাঙ্ক = (শূন্যস্থানে আলোর গতি) / (পদার্থে আলোর গতি)</li>
+                        <li class="option">(খ) প্রতিসরণাঙ্ক = (শূন্যস্থানে আলোর গতি) + (পদার্থে আলোর গতি)</li>
+                        <li class="option">(গ) প্রতিসরণাঙ্ক = (পদার্থে আলোর গতি) / (শূন্যস্থানে আলোর গতি)</li>
+                        <li class="option">(ঘ) এর মধ্যে কোনোটিই সঠিক নয়</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) প্রতিসরণাঙ্ক = (শূন্যস্থানে আলোর গতি) / (পদার্থে আলোর গতি)</p>
+                        <p><strong>ব্যাখ্যা:</strong> কোনো মাধ্যমের প্রতিসরণাঙ্ক (μ) = c/v, যেখানে c হলো শূন্যস্থানে আলোর বেগ এবং v হলো ওই মাধ্যমে আলোর বেগ।</p>
+                    </div>
+                </div>
+                <!-- Q13 -->
+                <div class="mcq-item">
+                    <p class="question">১৩. আমরা ঘাসের রঙ সবুজ দেখতে পাই কারণ-</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) এটি আমাদের চোখে সবুজ রঙের আলো প্রতিফলিত করে</li>
+                        <li class="option">(খ) এটি সবুজ আলো শোষণ করে</li>
+                        <li class="option">(গ) এটি সবুজ ছাড়া সমস্ত আলো প্রতিফলিত করে</li>
+                        <li class="option">(ঘ) এটি আমাদের চোখে সাদা আলো প্রতিফলিত করে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) এটি আমাদের চোখে সবুজ রঙের আলো প্রতিফলিত করে</p>
+                        <p><strong>ব্যাখ্যা:</strong> ঘাসের মধ্যে থাকা ক্লোরোফিল সাদা আলোর সবুজ রঙ বাদে বাকি রঙগুলি শোষণ করে নেয় এবং শুধুমাত্র সবুজ রঙকে প্রতিফলিত করে। তাই আমরা ঘাসকে সবুজ দেখি।</p>
+                    </div>
+                </div>
+                <!-- Q14 -->
+                <div class="mcq-item">
+                    <p class="question">১৪. সূর্যের আলোতে সবুজ দেখায় এমন কাপড় লাল আলোর নিচে দেখলে কালো দেখায় কেন?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) কাপড়টি সম্পূর্ণরূপে লাল রঙ শোষণ করে নেয়</li>
+                        <li class="option">(খ) এটি প্রতিসরণের কারণে হয়</li>
+                        <li class="option">(গ) এটি আলোর বিচ্ছুরণের প্রভাব</li>
+                        <li class="option">(ঘ) এটি প্যারালাক্স ত্রুটির কারণে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) কাপড়টি সম্পূর্ণরূপে লাল রঙ শোষণ করে নেয়</p>
+                        <p><strong>ব্যাখ্যা:</strong> সবুজ কাপড়ের ধর্ম হলো সবুজ আলো প্রতিফলিত করা এবং অন্য রঙের আলো শোষণ করা। লাল আলোয় রাখলে কাপড়টি লাল আলোকে শোষণ করে নেয় এবং প্রতিফলিত করার মতো কোনো আলো না থাকায় একে কালো দেখায়।</p>
+                    </div>
+                </div>
+                <!-- Q15 -->
+                <div class="mcq-item">
+                    <p class="question">১৫. মহাকাশচারীরা মহাকাশযান থেকে আকাশকে কেমন দেখেন?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) কালো</li>
+                        <li class="option">(খ) নীল</li>
+                        <li class="option">(গ) লাল</li>
+                        <li class="option">(ঘ) কমলা</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) কালো</p>
+                        <p><strong>ব্যাখ্যা:</strong> মহাকাশে আলোর বিক্ষেপণের জন্য কোনো বায়ুমণ্ডল নেই। তাই সূর্য ছাড়া আকাশের বাকি অংশ থেকে কোনো আলো চোখে আসে না, ফলে আকাশ কালো দেখায়।</p>
+                    </div>
+                </div>
+                <!-- Q16 -->
+                <div class="mcq-item">
+                    <p class="question">১৬. প্রকৃত সূর্যোদয়ের কিছু আগে এবং সূর্যাস্তের কিছু পরেও সূর্যকে দেখা যাওয়ার কারণ কী?</p>
+                    <ul class="options">
+                        <li class="option">(ক) বায়ুমণ্ডলীয় প্রতিফলন</li>
+                        <li class="option" data-correct="true">(খ) বায়ুমণ্ডলীয় প্রতিসরণ</li>
+                        <li class="option">(গ) আলোর বিক্ষেপণ</li>
+                        <li class="option">(ঘ) আলোর বিচ্ছুরণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) বায়ুমণ্ডলীয় প্রতিসরণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> সূর্য যখন দিগন্তের নিচে থাকে, তখন সূর্যের আলোকরশ্মি বায়ুমণ্ডলের ঘন স্তর দিয়ে আসার সময় প্রতিসৃত হয়ে বেঁকে আমাদের চোখে পৌঁছায়। ফলে আমরা সূর্যকে তার আসল অবস্থানের চেয়ে উপরে দেখি।</p>
+                    </div>
+                </div>
+                <!-- Q17 -->
+                <div class="mcq-item">
+                    <p class="question">১৭. আলো যখন লঘু মাধ্যম থেকে ঘন মাধ্যমে প্রবেশ করে, তখন কী হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) এর গতি প্রথমে হ্রাস পায় তারপর বৃদ্ধি পায়</li>
+                        <li class="option">(খ) এর গতি বৃদ্ধি পায়</li>
+                        <li class="option" data-correct="true">(গ) এর গতি কমে যায়</li>
+                        <li class="option">(ঘ) এর গতি একই থাকে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) এর গতি কমে যায়</p>
+                        <p><strong>ব্যাখ্যা:</strong> ঘন মাধ্যমে কণার ঘনত্ব বেশি হওয়ায় আলোর গতিপথ বাধাগ্রস্ত হয় এবং তার বেগ কমে যায়।</p>
+                    </div>
+                </div>
+                <!-- Q18 -->
+                <div class="mcq-item">
+                    <p class="question">১৮. একটি মাধ্যমের প্রতিসরণাঙ্ক 1.5 হলে, সেই মাধ্যমে আলোর গতি কত?</p>
+                    <ul class="options">
+                        <li class="option">(ক) 3.0 x 10⁸ m/s</li>
+                        <li class="option" data-correct="true">(খ) 2.0 x 10⁸ m/s</li>
+                        <li class="option">(গ) 1.5 x 10⁸ m/s</li>
+                        <li class="option">(ঘ) 1.2 x 10⁸ m/s</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) 2.0 x 10⁸ m/s</p>
+                        <p><strong>ব্যাখ্যা:</strong> আমরা জানি, v = c/μ। এখানে c = 3 x 10⁸ m/s এবং μ = 1.5। সুতরাং, v = (3 x 10⁸) / 1.5 = 2 x 10⁸ m/s।</p>
+                    </div>
+                </div>
+                <!-- Q19 -->
+                <div class="mcq-item">
+                    <p class="question">১৯. টিন্ডাল প্রভাব (Tyndall effect) আলোর কোন ঘটনার সাথে সম্পর্কিত?</p>
+                    <ul class="options">
+                        <li class="option">(ক) প্রতিফলন</li>
+                        <li class="option" data-correct="true">(খ) বিক্ষেপণ</li>
+                        <li class="option">(গ) বিচ্ছুরণ</li>
+                        <li class="option">(ঘ) প্রতিসরণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) বিক্ষেপণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> টিন্ডাল প্রভাব হলো কোলয়েড দ্রবণের কণা দ্বারা আলোর বিক্ষেপণ, যার ফলে আলোর গতিপথ দৃশ্যমান হয়।</p>
+                    </div>
+                </div>
+                <!-- Q20 -->
+                <div class="mcq-item">
+                    <p class="question">২০. নিচের কোনটি আলোর বিচ্ছুরণের উদাহরণ?</p>
+                    <ul class="options">
+                        <li class="option">(ক) আকাশের নীল রং</li>
+                        <li class="option">(খ) তারার ঝিকিমিকি</li>
+                        <li class="option" data-correct="true">(গ) কাচের প্রিজমের মাধ্যমে সাদা আলোর বিভাজন</li>
+                        <li class="option">(ঘ) মরীচিকা</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) কাচের প্রিজমের মাধ্যমে সাদা আলোর বিভাজন</p>
+                        <p><strong>ব্যাখ্যা:</strong> বিচ্ছুরণ হলো সাদা আলোর তার উপাদান রঙে ভেঙে যাওয়া। প্রিজম এই কাজটি করে। রামধনুও বিচ্ছুরণের একটি প্রাকৃতিক উদাহরণ।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Set 3 -->
+            <div id="set3" class="mcq-set" style="display: none;">
+                <h3>অনুশীলনী সেট - ৩</h3>
+                <!-- Q21 -->
+                <div class="mcq-item">
+                    <p class="question">২১. আকাশের নীল রঙের কারণ:</p>
+                    <ul class="options">
+                        <li class="option">(ক) আলোর প্রতিসরণ</li>
+                        <li class="option" data-correct="true">(খ) আলোর বিক্ষেপণ</li>
+                        <li class="option">(গ) আলোর অপবর্তন</li>
+                        <li class="option">(ঘ) আলোর বিচ্ছুরণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) আলোর বিক্ষেপণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> বায়ুমণ্ডলের অণুগুলি কম তরঙ্গদৈর্ঘ্যের নীল আলোকে বেশি পরিমাণে বিক্ষিপ্ত করে, যা আমাদের চোখে এসে পৌঁছায়। তাই আকাশ নীল দেখায়।</p>
+                    </div>
+                </div>
+                <!-- Q22 -->
+                <div class="mcq-item">
+                    <p class="question">২২. মেঘের রঙ সাদা হওয়ার কারণ কী?</p>
+                    <ul class="options">
+                        <li class="option">(ক) আলোর প্রতিসরণ</li>
+                        <li class="option">(খ) বিকিরণ</li>
+                        <li class="option">(গ) আলোর প্রতিফলন</li>
+                        <li class="option" data-correct="true">(ঘ) আলোর বিক্ষেপণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) আলোর বিক্ষেপণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> মেঘের মধ্যে থাকা বড় জলকণাগুলি সূর্যের আলোর সমস্ত রঙকে প্রায় সমানভাবে বিক্ষিপ্ত করে। সমস্ত রঙের মিশ্রণ সাদা হওয়ায় মেঘকে সাদা দেখায়।</p>
+                    </div>
+                </div>
+                <!-- Q23 -->
+                <div class="mcq-item">
+                    <p class="question">২৩. আকাশ নীল দেখায় কারণ:</p>
+                    <ul class="options">
+                        <li class="option">(ক) নীল ছাড়া সাদা আলোর সব রংই বায়ুর অণু দ্বারা শোষিত হয়।</li>
+                        <li class="option">(খ) সব রঙের আলো সঠিক অনুপাতে থাকে।</li>
+                        <li class="option" data-correct="true">(গ) কম তরঙ্গদৈর্ঘ্যের নীল আলো বায়ুর অণু দ্বারা সবচেয়ে বেশি বিক্ষিপ্ত হয়।</li>
+                        <li class="option">(ঘ) সাদা আলো সমস্ত বায়ুর অণু দ্বারা প্রতিফলিত হয়।</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) কম তরঙ্গদৈর্ঘ্যের নীল আলো বায়ুর অণু দ্বারা সবচেয়ে বেশি বিক্ষিপ্ত হয়।</p>
+                        <p><strong>ব্যাখ্যা:</strong> র‍্যালের বিক্ষেপণ সূত্র অনুযায়ী, আলোর বিক্ষেপণের পরিমাণ তার তরঙ্গদৈর্ঘ্যের চতুর্থ ঘাতের ব্যস্তানুপাতিক। নীল আলোর তরঙ্গদৈর্ঘ্য কম হওয়ায় এর বিক্ষেপণ সবচেয়ে বেশি হয়।</p>
+                    </div>
+                </div>
+                <!-- Q24 -->
+                <div class="mcq-item">
+                    <p class="question">২৪. তরল পদার্থে ভাসমান কণার সাথে আলোর সংঘর্ষের ফলে সৃষ্ট ঝলকের প্রক্রিয়াকে কী বলা হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) রমন প্রভাব</li>
+                        <li class="option">(খ) স্নেলের সূত্র</li>
+                        <li class="option" data-correct="true">(গ) টিন্ডাল প্রভাব</li>
+                        <li class="option">(ঘ) হাইগেনস নীতি</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) টিন্ডাল প্রভাব</p>
+                        <p><strong>ব্যাখ্যা:</strong> কোলয়েড দ্রবণে ভাসমান কণা দ্বারা আলোর বিক্ষেপণের ঘটনাকে টিন্ডাল প্রভাব বলে, যা আলোর দৃশ্যমান পথ তৈরি করে।</p>
+                    </div>
+                </div>
+                <!-- Q25 -->
+                <div class="mcq-item">
+                    <p class="question">২৫. যখন আলো একটি উজ্জ্বল মসৃণ পৃষ্ঠের উপর পড়ে, তখন কোন ধরনের প্রতিফলন ঘটে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) বিক্ষিপ্ত</li>
+                        <li class="option">(খ) অনিয়মিত</li>
+                        <li class="option" data-correct="true">(গ) নিয়মিত</li>
+                        <li class="option">(ঘ) সাধারণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) নিয়মিত</p>
+                        <p><strong>ব্যাখ্যা:</strong> মসৃণ এবং উজ্জ্বল পৃষ্ঠে (যেমন আয়না) আলোর নিয়মিত প্রতিফলন (Regular Reflection) ঘটে, যেখানে প্রতিফলিত রশ্মিগুলি সমান্তরাল থাকে।</p>
+                    </div>
+                </div>
+                <!-- Q26 -->
+                <div class="mcq-item">
+                    <p class="question">২৬. সমতল দর্পণ দ্বারা গঠিত প্রতিবিম্বের প্রকৃতি কী?</p>
+                    <ul class="options">
+                        <li class="option">(ক) সদ্‌ এবং সোজা</li>
+                        <li class="option">(খ) সদ্‌ এবং উল্টানো</li>
+                        <li class="option">(গ) অসদ্‌ এবং উল্টানো</li>
+                        <li class="option" data-correct="true">(ঘ) অসদ্‌ এবং পার্শ্বীয়ভাবে উল্টানো</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) অসদ্‌ এবং পার্শ্বীয়ভাবে উল্টানো</p>
+                        <p><strong>ব্যাখ্যা:</strong> সমতল দর্পণে গঠিত প্রতিবিম্ব অসদ্‌ (Virtual) হয়, পর্দায় ফেলা যায় না এবং পার্শ্বীয়ভাবে উল্টানো (Laterally Inverted) হয়, অর্থাৎ ডান ও বাম দিক পরিবর্তিত হয়ে যায়।</p>
+                    </div>
+                </div>
+                <!-- Q27 -->
+                <div class="mcq-item">
+                    <p class="question">২৭. একটি সমতল আয়না দ্বারা গঠিত প্রতিবিম্ব সবসময় হয়-</p>
+                    <ul class="options">
+                        <li class="option">(ক) সদ্‌ এবং সোজা</li>
+                        <li class="option">(খ) অসদ্‌ এবং সদ্‌</li>
+                        <li class="option">(গ) সদ্‌ এবং উল্টানো</li>
+                        <li class="option" data-correct="true">(ঘ) অসদ্‌ এবং সোজা</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) অসদ্‌ এবং সোজা</p>
+                        <p><strong>ব্যাখ্যা:</strong> সমতল আয়নায় প্রতিবিম্বটি সর্বদা অসদ্‌ (পর্দায় ফেলা যায় না) এবং সোজা বা সমশীর্ষ (Erect) হয়।</p>
+                    </div>
+                </div>
+                <!-- Q28 -->
+                <div class="mcq-item">
+                    <p class="question">২৮. রোগীদের দাঁতের বড় ছবি দেখতে দাঁতের ডাক্তাররা কোন ধরনের আয়না ব্যবহার করেন?</p>
+                    <ul class="options">
+                        <li class="option">(ক) সমতল আয়না</li>
+                        <li class="option">(খ) উত্তল আয়না</li>
+                        <li class="option" data-correct="true">(গ) অবতল আয়না</li>
+                        <li class="option">(ঘ) অধিবৃত্তীয় আয়না</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) অবতল আয়না</p>
+                        <p><strong>ব্যাখ্যা:</strong> অবতল আয়নার ফোকাসের মধ্যে দাঁতকে রাখলে একটি বিবর্ধিত (বড়) এবং সোজা অসদ্‌ প্রতিবিম্ব তৈরি হয়, যা ডাক্তারদের দেখতে সুবিধা করে।</p>
+                    </div>
+                </div>
+                <!-- Q29 -->
+                <div class="mcq-item">
+                    <p class="question">২৯. একটি গোলাকার আয়নার প্রতিফলক পৃষ্ঠের কেন্দ্রবিন্দুকে কী বলা হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) বক্রতার কেন্দ্র</li>
+                        <li class="option" data-correct="true">(খ) মেরু</li>
+                        <li class="option">(গ) ফোকাস</li>
+                        <li class="option">(ঘ) প্রধান অক্ষ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) মেরু</p>
+                        <p><strong>ব্যাখ্যা:</strong> গোলীয় দর্পণের প্রতিফলক তলের ঠিক মধ্যবিন্দুটিকে এর মেরু (Pole) বলা হয়।</p>
+                    </div>
+                </div>
+                <!-- Q30 -->
+                <div class="mcq-item">
+                    <p class="question">৩০. নিচের কোনটি বস্তুর চেয়ে বড় অসদ্‌ প্রতিবিম্ব তৈরি করতে পারে?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) অবতল আয়না</li>
+                        <li class="option">(খ) অবতল লেন্স</li>
+                        <li class="option">(গ) উত্তল দর্পণ</li>
+                        <li class="option">(ঘ) সমতল আয়না</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) অবতল আয়না</p>
+                        <p><strong>ব্যাখ্যা:</strong> একমাত্র অবতল আয়না বস্তুকে ফোকাস ও মেরুর মধ্যে রাখলে একটি বিবর্ধিত এবং অসদ্‌ প্রতিবিম্ব তৈরি করতে পারে। উত্তল দর্পণ এবং অবতল লেন্স সর্বদা ছোট অসদ্‌ প্রতিবিম্ব তৈরি করে।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Set 4 -->
+            <div id="set4" class="mcq-set" style="display: none;">
+                <h3>অনুশীলনী সেট - ৪</h3>
+                <!-- Q31 -->
+                <div class="mcq-item">
+                    <p class="question">৩১. যানবাহনে রিয়ার-ভিউ মিরর হিসেবে কোন ধরনের আয়না ব্যবহার করা হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) অবতল এবং উত্তল</li>
+                        <li class="option">(খ) অবতল</li>
+                        <li class="option" data-correct="true">(গ) উত্তল</li>
+                        <li class="option">(ঘ) সমতল</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) উত্তল</p>
+                        <p><strong>ব্যাখ্যা:</strong> উত্তল আয়না একটি বিস্তৃত এলাকার ছোট এবং সোজা প্রতিবিম্ব তৈরি করে, যা চালককে পিছনের যানবাহন দেখতে সাহায্য করে।</p>
+                    </div>
+                </div>
+                <!-- Q32 -->
+                <div class="mcq-item">
+                    <p class="question">৩২. উত্তল দর্পণ কোথায় ব্যবহার করা হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) শেভিং আয়না</li>
+                        <li class="option">(খ) গাড়ির হেডলাইট</li>
+                        <li class="option" data-correct="true">(গ) রিয়ার-ভিউ মিরর</li>
+                        <li class="option">(ঘ) দাঁতের আয়না</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) রিয়ার-ভিউ মিরর</p>
+                        <p><strong>ব্যাখ্যা:</strong> উত্তল দর্পণ গাড়ির রিয়ার-ভিউ মিরর হিসেবে ব্যবহৃত হয় কারণ এটি বিস্তৃত দৃশ্যপট প্রদান করে।</p>
+                    </div>
+                </div>
+                <!-- Q33 -->
+                <div class="mcq-item">
+                    <p class="question">৩৩. একটি অবতল আয়নার বক্রতার ব্যাসার্ধ 30 সেমি। কার্টেসিয়ান সাইন কনভেনশন অনুযায়ী, এর ফোকাস দূরত্ব কত?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) -15 সেমি</li>
+                        <li class="option">(খ) -30 সেমি</li>
+                        <li class="option">(গ) +15 সেমি</li>
+                        <li class="option">(ঘ) +30 সেমি</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) -15 সেমি</p>
+                        <p><strong>ব্যাখ্যা:</strong> ফোকাস দূরত্ব (f) = বক্রতার ব্যাসার্ধ (R) / 2। সুতরাং f = 30/2 = 15 সেমি। কার্টেসিয়ান চিহ্ন প্রথা অনুযায়ী, অবতল আয়নার ফোকাস দূরত্ব ঋণাত্মক হয়। তাই f = -15 সেমি।</p>
+                    </div>
+                </div>
+                <!-- Q34 -->
+                <div class="mcq-item">
+                    <p class="question">৩৪. একটি গোলাকার আয়নার বক্রতার কেন্দ্র কী?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) এটি সেই ফাঁপা গোলকের কেন্দ্র যার অংশ হল আয়নাটি</li>
+                        <li class="option">(খ) এটি একটি গোলাকার আয়নার মধ্যবিন্দু</li>
+                        <li class="option">(গ) এটি এমন একটি বিন্দু যেখান থেকে আলো আসছে বলে মনে হয়</li>
+                        <li class="option">(ঘ) এটি প্রধান অক্ষের উপর একটি বিন্দু</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) এটি সেই ফাঁপা গোলকের কেন্দ্র যার অংশ হল আয়নাটি</p>
+                        <p><strong>ব্যাখ্যা:</strong> গোলীয় আয়না একটি কাল্পনিক গোলকের অংশ। সেই গোলকের কেন্দ্রকেই বক্রতার কেন্দ্র (Centre of Curvature) বলা হয়।</p>
+                    </div>
+                </div>
+                <!-- Q35 -->
+                <div class="mcq-item">
+                    <p class="question">৩৫. যে বিন্দুতে সমান্তরাল রশ্মিগুচ্ছ প্রতিফলনের পর মিলিত হয় বা মিলিত হচ্ছে বলে মনে হয়, তাকে কী বলে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) উন্মেষ</li>
+                        <li class="option">(খ) মেরু</li>
+                        <li class="option">(গ) প্রধান অক্ষ</li>
+                        <li class="option" data-correct="true">(ঘ) ফোকাস</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) ফোকাস</p>
+                        <p><strong>ব্যাখ্যা:</strong> প্রধান অক্ষের সমান্তরাল আলোকরশ্মি গোলীয় দর্পণে প্রতিফলিত হওয়ার পর যে বিন্দুতে মিলিত হয় (অবতল দর্পণে) বা যে বিন্দু থেকে অপসৃত হচ্ছে বলে মনে হয় (উত্তল দর্পণে), তাকে মুখ্য ফোকাস বলে।</p>
+                    </div>
+                </div>
+                <!-- Q36 -->
+                <div class="mcq-item">
+                    <p class="question">৩৬. একটি আয়নার ফোকাস দূরত্ব (f) এবং বক্রতার ব্যাসার্ধ (R) এর মধ্যে সম্পর্ক কী?</p>
+                    <ul class="options">
+                        <li class="option">(ক) R = f/2</li>
+                        <li class="option" data-correct="true">(খ) R = 2f</li>
+                        <li class="option">(গ) f = 2R</li>
+                        <li class="option">(ঘ) R = f</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) R = 2f</p>
+                        <p><strong>ব্যাখ্যা:</strong> গোলীয় দর্পণের বক্রতার ব্যাসার্ধ তার ফোকাস দূরত্বের দ্বিগুণ হয়।</p>
+                    </div>
+                </div>
+                <!-- Q37 -->
+                <div class="mcq-item">
+                    <p class="question">৩৭. একটি গোলাকার আয়নার ফোকাস দূরত্ব হল-</p>
+                    <ul class="options">
+                        <li class="option">(ক) এর বক্রতার ব্যাসার্ধের দ্বিগুণ</li>
+                        <li class="option">(খ) এর বক্রতার ব্যাসার্ধের তিনগুণ</li>
+                        <li class="option" data-correct="true">(গ) এর বক্রতার ব্যাসার্ধের অর্ধেক</li>
+                        <li class="option">(ঘ) এর বক্রতার ব্যাসার্ধের সমান</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) এর বক্রতার ব্যাসার্ধের অর্ধেক</p>
+                        <p><strong>ব্যাখ্যা:</strong> ফোকাস দূরত্ব (f) = বক্রতার ব্যাসার্ধ (R) / 2।</p>
+                    </div>
+                </div>
+                <!-- Q38 -->
+                <div class="mcq-item">
+                    <p class="question">৩৮. কোন দর্পণকে অভিসারী আয়নাও বলা হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) উত্তল আয়না</li>
+                        <li class="option" data-correct="true">(খ) অবতল আয়না</li>
+                        <li class="option">(গ) সমতল আয়না</li>
+                        <li class="option">(ঘ) এগুলোর কোনোটিই নয়</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) অবতল আয়না</p>
+                        <p><strong>ব্যাখ্যা:</strong> অবতল আয়না সমান্তরাল আলোকরশ্মিকে একটি বিন্দুতে মিলিত বা অভিসারী করে, তাই একে অভিসারী (Converging) আয়না বলা হয়।</p>
+                    </div>
+                </div>
+                <!-- Q39 -->
+                <div class="mcq-item">
+                    <p class="question">৩৯. দর্পণ সমীকরণের ক্ষেত্রে নিচের কোন বিবৃতিটি সঠিক?</p>
+                    <ul class="options">
+                        <li class="option">(ক) বক্রতার কেন্দ্র মেরু থেকে সমান দূরে।</li>
+                        <li class="option" data-correct="true">(খ) সমস্ত দূরত্ব অবশ্যই আয়নার মেরু থেকে পরিমাপ করতে হবে।</li>
+                        <li class="option">(গ) সমস্ত রশ্মি মেরুতে বিচ্যুত হবে।</li>
+                        <li class="option">(ঘ) মেরু এবং ফোকাস একই বিন্দুতে।</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) সমস্ত দূরত্ব অবশ্যই আয়নার মেরু থেকে পরিমাপ করতে হবে।</p>
+                        <p><strong>ব্যাখ্যা:</strong> কার্টেসিয়ান চিহ্ন প্রথা অনুযায়ী, দর্পণের সমীকরণে সমস্ত দূরত্ব (বস্তু দূরত্ব, প্রতিবিম্ব দূরত্ব, ফোকাস দূরত্ব) মেরু থেকে মাপা হয়।</p>
+                    </div>
+                </div>
+                <!-- Q40 -->
+                <div class="mcq-item">
+                    <p class="question">৪০. যে গোলীয় দর্পণের প্রতিফলক পৃষ্ঠটি ভেতরের দিকে বাঁকা থাকে, তাকে কী বলে?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) অবতল আয়না</li>
+                        <li class="option">(খ) উত্তল দর্পণ</li>
+                        <li class="option">(গ) সমতল-অবতল আয়না</li>
+                        <li class="option">(ঘ) সমতল আয়না</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) অবতল আয়না</p>
+                        <p><strong>ব্যাখ্যা:</strong> যে দর্পণের প্রতিফলক তলটি ভেতরের দিকে অবতল বা বাঁকানো থাকে, তাকে অবতল (Concave) আয়না বলে।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Set 5 -->
+            <div id="set5" class="mcq-set" style="display: none;">
+                <h3>অনুশীলনী সেট - ৫</h3>
+                <!-- Q41 -->
+                <div class="mcq-item">
+                    <p class="question">৪১. আপনি যদি একটি আয়নায় তাকান এবং দেখেন যে আপনার প্রতিবিম্ব আপনার থেকে ছোট, তবে আয়নাটি কোন ধরনের?</p>
+                    <ul class="options">
+                        <li class="option">(ক) প্ল্যানো-অবতল আয়না</li>
+                        <li class="option">(খ) অবতল আয়না</li>
+                        <li class="option">(গ) সমতল আয়না</li>
+                        <li class="option" data-correct="true">(ঘ) উত্তল দর্পণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) উত্তল দর্পণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> উত্তল দর্পণ সর্বদা বস্তুর একটি ছোট, সোজা এবং অসদ্‌ প্রতিবিম্ব তৈরি করে।</p>
+                    </div>
+                </div>
+                <!-- Q42 -->
+                <div class="mcq-item">
+                    <p class="question">৪২. গোলীয় আয়না আলোর কোন নীতির উপর কাজ করে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) আলোর বিকিরণ</li>
+                        <li class="option">(খ) আলোর প্রতিসরণ</li>
+                        <li class="option">(গ) আলোর বিচ্ছুরণ</li>
+                        <li class="option" data-correct="true">(ঘ) আলোর প্রতিফলন</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) আলোর প্রতিফলন</p>
+                        <p><strong>ব্যাখ্যা:</strong> সমস্ত ধরনের দর্পণ বা আয়না আলোর প্রতিফলন নীতির উপর ভিত্তি করে কাজ করে।</p>
+                    </div>
+                </div>
+                <!-- Q43 -->
+                <div class="mcq-item">
+                    <p class="question">৪৩. নিচের বিবৃতিগুলোর মধ্যে কোনটি সত্য?</p>
+                    <ul class="options">
+                        <li class="option">(ক) বক্রতার ব্যাসার্ধ ফোকাস দৈর্ঘ্যের সমান</li>
+                        <li class="option">(খ) বক্রতার ব্যাসার্ধ ফোকাস দৈর্ঘ্যের অর্ধেক</li>
+                        <li class="option">(গ) বক্রতার ব্যাসার্ধ ফোকাস দৈর্ঘ্যের তিনগুণ</li>
+                        <li class="option" data-correct="true">(ঘ) বক্রতার ব্যাসার্ধ ফোকাস দৈর্ঘ্যের দ্বিগুণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) বক্রতার ব্যাসার্ধ ফোকাস দৈর্ঘ্যের দ্বিগুণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> গোলীয় দর্পণের ক্ষেত্রে, R = 2f।</p>
+                    </div>
+                </div>
+                <!-- Q44 -->
+                <div class="mcq-item">
+                    <p class="question">৪৪. আয়নার সাধারণ সূত্র বা সমীকরণ কোনটি?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) 1/f = 1/v + 1/u</li>
+                        <li class="option">(খ) 1/f = 1/u - 1/v</li>
+                        <li class="option">(গ) 1/f = 1/v - 1/u</li>
+                        <li class="option">(ঘ) 1/u - 1/v = 1/f</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) 1/f = 1/v + 1/u</p>
+                        <p><strong>ব্যাখ্যা:</strong> গোলীয় দর্পণের সাধারণ সমীকরণটি হলো 1/f = 1/v + 1/u, যেখানে f ফোকাস দূরত্ব, v প্রতিবিম্ব দূরত্ব এবং u বস্তু দূরত্ব।</p>
+                    </div>
+                </div>
+                <!-- Q45 -->
+                <div class="mcq-item">
+                    <p class="question">৪৫. আয়নার সূত্রে 'v' কী নির্দেশ করে?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) প্রতিবিম্বের দূরত্ব</li>
+                        <li class="option">(খ) বস্তুর দূরত্ব</li>
+                        <li class="option">(গ) উল্লম্ব দূরত্ব</li>
+                        <li class="option">(ঘ) প্রতিবিম্বের উচ্চতা</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) প্রতিবিম্বের দূরত্ব</p>
+                        <p><strong>ব্যাখ্যা:</strong> দর্পণের সূত্রে, v হলো দর্পণের মেরু থেকে প্রতিবিম্বের দূরত্ব।</p>
+                    </div>
+                </div>
+                <!-- Q46 -->
+                <div class="mcq-item">
+                    <p class="question">৪৬. বক্রতার ব্যাসার্ধ R হলে একটি গোলাকার আয়নার ফোকাস দূরত্ব কত হবে?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) R/2</li>
+                        <li class="option">(খ) 2R</li>
+                        <li class="option">(গ) 3R</li>
+                        <li class="option">(ঘ) R</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) R/2</p>
+                        <p><strong>ব্যাখ্যা:</strong> ফোকাস দূরত্ব (f) বক্রতার ব্যাসার্ধের (R) অর্ধেক হয়, অর্থাৎ f = R/2।</p>
+                    </div>
+                </div>
+                <!-- Q47 -->
+                <div class="mcq-item">
+                    <p class="question">৪৭. একটি বস্তু একটি উত্তল আয়নার সামনে স্থাপন করা হলে কী ধরনের প্রতিবিম্ব তৈরি হবে?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) অসদ্‌, সোজা এবং ছোট</li>
+                        <li class="option">(খ) সদ্‌, উল্টানো এবং ছোট</li>
+                        <li class="option">(গ) সদ্‌, সোজা এবং বড়</li>
+                        <li class="option">(ঘ) অসদ্‌, উল্টানো এবং ছোট</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) অসদ্‌, সোজা এবং ছোট</p>
+                        <p><strong>ব্যাখ্যা:</strong> উত্তল আয়না সর্বদা বস্তুর একটি অসদ্‌ (Virtual), সোজা (Erect) এবং ছোট (Diminished) প্রতিবিম্ব গঠন করে, যা দর্পণের মেরু ও ফোকাসের মধ্যে তৈরি হয়।</p>
+                    </div>
+                </div>
+                <!-- Q48 -->
+                <div class="mcq-item">
+                    <p class="question">৪৮. যদি একটি আয়নার ফোকাস দূরত্ব +15 সেমি হয়, তাহলে সেটি কোন ধরনের আয়না?</p>
+                    <ul class="options">
+                        <li class="option">(ক) সমতল আয়না</li>
+                        <li class="option">(খ) অবতল আয়না</li>
+                        <li class="option" data-correct="true">(গ) উত্তল দর্পণ</li>
+                        <li class="option">(ঘ) অবতল লেন্স</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) উত্তল দর্পণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> চিহ্ন প্রথা অনুযায়ী, উত্তল দর্পণের ফোকাস দূরত্ব ধনাত্মক (+) এবং অবতল দর্পণের ফোকাস দূরত্ব ঋণাত্মক (-) ধরা হয়।</p>
+                    </div>
+                </div>
+                <!-- Q49 -->
+                <div class="mcq-item">
+                    <p class="question">৪৯. একটি বস্তুকে উত্তল আয়নার সামনে অসীম এবং মেরুর মধ্যে কোনো বিন্দুতে রাখলে প্রতিবিম্বটি কেমন হবে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) সদ্‌ এবং বড়</li>
+                        <li class="option">(খ) সদ্‌ এবং ছোট</li>
+                        <li class="option" data-correct="true">(গ) অসদ্‌ এবং ছোট</li>
+                        <li class="option">(ঘ) অসদ্‌ এবং বড়</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) অসদ্‌ এবং ছোট</p>
+                        <p><strong>ব্যাখ্যা:</strong> উত্তল দর্পণের সামনে বস্তু যেখানেই রাখা হোক না কেন, প্রতিবিম্ব সর্বদা অসদ্‌, সোজা এবং ছোট আকারের হয়।</p>
+                    </div>
+                </div>
+                <!-- Q50 -->
+                <div class="mcq-item">
+                    <p class="question">৫০. একটি অবতল দর্পণে ফোকাস এবং মেরুর মাঝখানে একটি বস্তু স্থাপন করা হলে, প্রতিবিম্বের ধরন কী হবে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) অসম্পূর্ণ</li>
+                        <li class="option">(খ) সদ্‌</li>
+                        <li class="option" data-correct="true">(গ) অসদ্‌</li>
+                        <li class="option">(ঘ) সম্পূর্ণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) অসদ্‌</p>
+                        <p><strong>ব্যাখ্যা:</strong> এটি অবতল দর্পণের একটি বিশেষ ক্ষেত্র। যখন বস্তু ফোকাস (F) এবং মেরুর (P) মধ্যে থাকে, তখন দর্পণের পিছনে একটি বিবর্ধিত, সোজা এবং অসদ্‌ (Virtual) প্রতিবিম্ব তৈরি হয়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Set 6 -->
+            <div id="set6" class="mcq-set" style="display: none;">
+                <h3>অনুশীলনী সেট - ৬</h3>
+                <!-- Q51 -->
+                <div class="mcq-item">
+                    <p class="question">৫১. অবতল আয়নার সামনে যখন কোনো বস্তুকে অসীমে রাখা হয়, তখন তার প্রতিবিম্ব কোথায় গঠিত হয়?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) ফোকাসে (F)</li>
+                        <li class="option">(খ) ফোকাস (F) এবং কেন্দ্র (C) এর মধ্যে</li>
+                        <li class="option">(গ) বক্রতার কেন্দ্রে (C)</li>
+                        <li class="option">(ঘ) কেন্দ্র থেকে দূরে (C)</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) ফোকাসে (F)</p>
+                        <p><strong>ব্যাখ্যা:</strong> অসীম থেকে আগত সমান্তরাল রশ্মিগুচ্ছ অবতল দর্পণে প্রতিফলনের পর মুখ্য ফোকাসে মিলিত হয়। তাই প্রতিবিম্ব ফোকাসে তৈরি হয়।</p>
+                    </div>
+                </div>
+                <!-- Q52 -->
+                <div class="mcq-item">
+                    <p class="question">৫২. অবতল আয়নার বক্রতার কেন্দ্রের বাইরে কোনো বস্তুকে স্থাপন করা হলে, প্রতিবিম্বটি কোথায় তৈরি হবে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) C-এর বাইরে</li>
+                        <li class="option">(খ) ফোকাসের উপর</li>
+                        <li class="option">(গ) C-তে</li>
+                        <li class="option" data-correct="true">(ঘ) F এবং C এর মধ্যে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) F এবং C এর মধ্যে</p>
+                        <p><strong>ব্যাখ্যা:</strong> বস্তু যখন বক্রতার কেন্দ্রের (C) বাইরে থাকে, তখন তার সদ্‌, উল্টানো এবং ছোট প্রতিবিম্ব ফোকাস (F) এবং বক্রতার কেন্দ্রের (C) মধ্যে তৈরি হয়।</p>
+                    </div>
+                </div>
+                <!-- Q53 -->
+                <div class="mcq-item">
+                    <p class="question">৫৩. দাঁতের চিকিৎসকরা অবতল আয়না ব্যবহার করেন কারণ এটি দ্বারা গঠিত প্রতিবিম্বটি হয়-</p>
+                    <ul class="options">
+                        <li class="option">(ক) সদ্‌ এবং বড়</li>
+                        <li class="option">(খ) অসদ্‌ কিন্তু ঝাপসা</li>
+                        <li class="option">(গ) সদ্‌ কিন্তু ছোট</li>
+                        <li class="option" data-correct="true">(ঘ) অসদ্‌ এবং বড়</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) অসদ্‌ এবং বড়</p>
+                        <p><strong>ব্যাখ্যা:</strong> দাঁতকে ফোকাস ও মেরুর মধ্যে রেখে দেখলে একটি বিবর্ধিত (বড়), সোজা এবং অসদ্‌ প্রতিবিম্ব পাওয়া যায়, যা পরীক্ষার জন্য সুবিধাজনক।</p>
+                    </div>
+                </div>
+                <!-- Q54 -->
+                <div class="mcq-item">
+                    <p class="question">৫৪. যানবাহনের হেডলাইটে কোন আয়না ব্যবহৃত হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) সমতল আয়না</li>
+                        <li class="option">(খ) সমতল-উত্তল আয়না</li>
+                        <li class="option">(গ) উত্তল দর্পণ</li>
+                        <li class="option" data-correct="true">(ঘ) অবতল আয়না</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) অবতল আয়না</p>
+                        <p><strong>ব্যাখ্যা:</strong> হেডলাইটের বাল্বটিকে অবতল দর্পণের ফোকাসে রাখা হয়। ফলে প্রতিফলনের পর আলোকরশ্মি একটি শক্তিশালী সমান্তরাল রশ্মিগুচ্ছে পরিণত হয়ে বহুদূর পর্যন্ত যায়।</p>
+                    </div>
+                </div>
+                <!-- Q55 -->
+                <div class="mcq-item">
+                    <p class="question">৫৫. অবতল আয়নার বক্রতার কেন্দ্রে একটি বস্তু স্থাপন করা হলে, এর প্রতিবিম্ব কোথায় গঠিত হবে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) ফোকাস এবং বক্রতা কেন্দ্রের মধ্যে</li>
+                        <li class="option">(খ) ফোকাসে</li>
+                        <li class="option">(গ) বক্রতার কেন্দ্রের বাইরে</li>
+                        <li class="option" data-correct="true">(ঘ) বক্রতার কেন্দ্রে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) বক্রতার কেন্দ্রে</p>
+                        <p><strong>ব্যাখ্যা:</strong> বস্তু বক্রতার কেন্দ্রে থাকলে, তার প্রতিবিম্বও বক্রতার কেন্দ্রেই তৈরি হয়। প্রতিবিম্বটি সদ্‌, উল্টানো এবং বস্তুর সমান আকারের হয়।</p>
+                    </div>
+                </div>
+                <!-- Q56 -->
+                <div class="mcq-item">
+                    <p class="question">৫৬. নিচের কোনটিতে অবতল আয়না ব্যবহার করা হয় না?</p>
+                    <ul class="options">
+                        <li class="option">(ক) সার্চলাইট</li>
+                        <li class="option" data-correct="true">(খ) রিয়ার-ভিউ মিরর</li>
+                        <li class="option">(গ) গাড়ির হেডলাইট</li>
+                        <li class="option">(ঘ) সৌর চুল্লি</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) রিয়ার-ভিউ মিরর</p>
+                        <p><strong>ব্যাখ্যা:</strong> রিয়ার-ভিউ মিরর বা সাইড-ভিউ মিররে উত্তল আয়না ব্যবহার করা হয়, অবতল আয়না নয়।</p>
+                    </div>
+                </div>
+                <!-- Q57 -->
+                <div class="mcq-item">
+                    <p class="question">৫৭. কোন দর্পণকে অপরিবর্তিত আয়নাও বলা যেতে পারে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) অবতল আয়না</li>
+                        <li class="option">(খ) উত্তল আয়না</li>
+                        <li class="option">(গ) প্ল্যানো-উত্তল আয়না</li>
+                        <li class="option" data-correct="true">(ঘ) সমতল আয়না</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) সমতল আয়না</p>
+                        <p><strong>ব্যাখ্যা:</strong> সমতল আয়নায় গঠিত প্রতিবিম্বের আকার বস্তুর আকারের সমান হয়, অর্থাৎ বিবর্ধন 1। তাই একে অপরিবর্তিত আয়না বলা যেতে পারে।</p>
+                    </div>
+                </div>
+                <!-- Q58 -->
+                <div class="mcq-item">
+                    <p class="question">৫৮. যদি একটি অবতল আয়নার বক্রতার ব্যাসার্ধ 6.2 সেমি হয়, তাহলে এর ফোকাস দূরত্ব কত হবে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) 12.4 সেমি</li>
+                        <li class="option">(খ) -12.4 সেমি</li>
+                        <li class="option" data-correct="true">(গ) -3.1 সেমি</li>
+                        <li class="option">(ঘ) 3.1 সেমি</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) -3.1 সেমি</p>
+                        <p><strong>ব্যাখ্যা:</strong> f = R/2 = 6.2/2 = 3.1 সেমি। অবতল আয়নার ফোকাস দূরত্ব ঋণাত্মক হয়, তাই f = -3.1 সেমি।</p>
+                    </div>
+                </div>
+                <!-- Q59 -->
+                <div class="mcq-item">
+                    <p class="question">৫৯. যখন একটি বস্তুকে বক্রতার কেন্দ্র (C) এবং ফোকাসের (F) মধ্যে স্থাপন করা হয়, তখন অবতল আয়নায় প্রতিবিম্বটি কোথায় তৈরি হবে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) F-এ</li>
+                        <li class="option">(খ) C-তে</li>
+                        <li class="option">(গ) অসীমে</li>
+                        <li class="option" data-correct="true">(ঘ) C এর বাইরে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) C এর বাইরে</p>
+                        <p><strong>ব্যাখ্যা:</strong> বস্তু যখন C এবং F এর মধ্যে থাকে, তখন তার প্রতিবিম্ব বক্রতার কেন্দ্রের (C) বাইরে গঠিত হয় এবং এটি সদ্‌, উল্টানো ও বিবর্ধিত হয়।</p>
+                    </div>
+                </div>
+                <!-- Q60 -->
+                <div class="mcq-item">
+                    <p class="question">৬০. প্রতিবিম্বের উচ্চতা এবং বস্তুর উচ্চতার অনুপাতকে কী বলা হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) পার্শ্বীয় সরণ</li>
+                        <li class="option">(খ) দর্পণের সূত্র</li>
+                        <li class="option">(গ) প্রতিফলনের সূত্র</li>
+                        <li class="option" data-correct="true">(ঘ) রৈখিক বিবর্ধন</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) রৈখিক বিবর্ধন</p>
+                        <p><strong>ব্যাখ্যা:</strong> রৈখিক বিবর্ধন (m) = (প্রতিবিম্বের উচ্চতা) / (বস্তুর উচ্চতা)।</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="class12.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class10.html" class="nav-button">10</a>
+        <a href="class11.html" class="nav-button">11</a>
+        <a href="class12.html" class="nav-button">12</a>
+        <a href="class13.html" class="nav-button active">13</a>
+        <a href="class14.html" class="nav-button">14</a>
+        <a href="class14.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <script>
+        // JS for dropdown, click, and keyboard navigation
+        document.getElementById('mcq-set-selector').addEventListener('change', function() {
+            document.querySelectorAll('.mcq-set').forEach(set => set.style.display = 'none');
+            document.getElementById(this.value).style.display = 'block';
+        });
+
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const parentOptions = this.parentElement;
+                
+                if (parentOptions.classList.contains('answered')) return;
+                parentOptions.classList.add('answered');
+
+                const isCorrect = this.getAttribute('data-correct') === 'true';
+                const mcqItem = this.closest('.mcq-item');
+                const explanation = mcqItem.querySelector('.answer-explanation');
+
+                if (isCorrect) {
+                    this.classList.add('correct');
+                } else {
+                    this.classList.add('incorrect');
+                    const correctOption = parentOptions.querySelector('[data-correct="true"]');
+                    if(correctOption) correctOption.classList.add('correct');
+                }
+
+                if(explanation) explanation.style.display = 'block';
+            });
+        });
+
+        let currentVisibleMcqItem = null;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if(currentVisibleMcqItem) currentVisibleMcqItem.classList.remove('is-visible');
+                    currentVisibleMcqItem = entry.target;
+                    currentVisibleMcqItem.classList.add('is-visible');
+                } else {
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, { root: null, threshold: 0.6 });
+
+        document.querySelectorAll('.mcq-item').forEach(item => observer.observe(item));
+
+        document.addEventListener('keydown', (event) => {
+            if (!currentVisibleMcqItem) return;
+
+            if (['1', '2', '3', '4'].includes(event.key)) {
+                event.preventDefault();
+                const optionIndex = parseInt(event.key, 10) - 1;
+                const options = currentVisibleMcqItem.querySelectorAll('.option');
+                if (options[optionIndex]) {
+                    options[optionIndex].click();
+                }
+            }
+
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const allQuestions = Array.from(document.querySelectorAll('.mcq-set[style*="block"] .mcq-item'));
+                const currentIndex = allQuestions.findIndex(item => item === currentVisibleMcqItem);
+
+                if (currentIndex !== -1 && currentIndex < allQuestions.length - 1) {
+                    const nextQuestion = allQuestions[currentIndex + 1];
+                    nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

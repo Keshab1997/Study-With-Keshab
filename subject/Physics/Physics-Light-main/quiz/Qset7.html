@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৭ - আলো</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset6.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset8.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "আলো", 
+            setName: "Set 7",                  
+
+            // পুরোনো সিস্টেমের জন্য এই প্রপার্টিটি রাখা হলো
+            name: "আলো (Light) - Set 7 (প্রশ্ন ৬১-৭০)",
+            
+            questions: [
+                {
+                    question: "একটি সাধারণ বিবর্ধক কাচ (magnifying glass) এ কী থাকে?",
+                    options: ["উচ্চ ফোকাস দূরত্বের উত্তল লেন্স", "ছোট ফোকাস দূরত্বের অবতল লেন্স", "উচ্চ ফোকাস দূরত্বের অবতল লেন্স", "ছোট ফোকাস দূরত্বের উত্তল লেন্স"],
+                    answer: 3,
+                    explanation: "বিবর্ধক কাচে ছোট ফোকাস দূরত্বের উত্তল লেন্স ব্যবহার করা হয়। ফোকাস দূরত্ব যত কম হবে, বিবর্ধন ক্ষমতা তত বেশি হবে।"
+                },
+                {
+                    question: "নিচের কোনটি আলোর প্রতিসরণের উদাহরণ নয়?",
+                    options: ["রংধনু গঠন", "তারার মিটমিট করা", "মানুষের চোখের দ্বারা প্রতিবিম্ব গঠন", "অস্তগামী সূর্যের লালচে রঙ"],
+                    answer: 3,
+                    explanation: "অস্তগামী সূর্যের লালচে রঙ আলোর বিক্ষেপণের (scattering) কারণে হয়, প্রতিসরণের কারণে নয়। বাকিগুলো প্রতিসরণের সাথে সম্পর্কিত।"
+                },
+                {
+                    question: "রাতে আকাশে তারাগুলো মিটমিট করে কেন?",
+                    options: ["আলোর প্রতিফলন", "বায়ুমণ্ডলের বিভিন্ন স্তরে আলোর প্রতিসরণের কারণে", "আলোর বিচ্ছুরণের কারণে", "আলোর বিক্ষেপণের কারণে"],
+                    answer: 1,
+                    explanation: "বায়ুমণ্ডলের বিভিন্ন স্তরের ঘনত্ব ও তাপমাত্রা ভিন্ন হওয়ায় আলোর বারবার প্রতিসরণ ঘটে, তাই তারাগুলোকে মিটমিট করতে দেখা যায়।"
+                },
+                {
+                    question: "জলে ডোবানো একটি চামচকে বাঁকা দেখায়। এটি আলোর কোন ঘটনার উদাহরণ?",
+                    options: ["প্রতিফলন", "প্রতিসরণ", "অভ্যন্তরীণ পূর্ণ প্রতিফলন", "বিচ্ছুরণ"],
+                    answer: 1,
+                    explanation: "আলো যখন ঘন মাধ্যম (জল) থেকে লঘু মাধ্যমে (বায়ু) আসে, তখন প্রতিসরণের কারণে আপাতভাবে বাঁকা দেখায়।"
+                },
+                {
+                    question: "হীরার দ্যুতির (sparkling) জন্য প্রধানত কোনটি দায়ী?",
+                    options: ["অভ্যন্তরীণ পূর্ণ প্রতিফলন", "হীরার উচ্চ প্রতিসরণাঙ্ক", "আলোর বিচ্ছুরণ", "আলোর বিক্ষেপণ"],
+                    answer: 0,
+                    explanation: "হীরার উচ্চ প্রতিসরণাঙ্ক এবং নির্দিষ্ট কোণে কাটার ফলে আলোর অভ্যন্তরীণ পূর্ণ প্রতিফলন ঘটে, যা এর দ্যুতির প্রধান কারণ।"
+                },
+                {
+                    question: "বায়ুর পরম প্রতিসরণাঙ্কের মান প্রায় কত?",
+                    options: ["1.03", "1.003", "1.0003", "1"],
+                    answer: 2,
+                    explanation: "শূন্য মাধ্যমের সাপেক্ষে বায়ুর পরম প্রতিসরণাঙ্কের মান প্রায় 1.0003, যা গণনার সুবিধার জন্য অনেক সময় 1 ধরা হয়।"
+                },
+                {
+                    question: "প্রতিসরণাঙ্কের একক কী?",
+                    options: ["m⁻¹", "ডায়োপট্র", "কোনো একক নেই", "মিটার/সেকেন্ড"],
+                    answer: 2,
+                    explanation: "প্রতিসরণাঙ্ক হলো দুটি সমজাতীয় রাশির (দুটি মাধ্যমে আলোর বেগ) অনুপাত, তাই এর কোনো একক নেই।"
+                },
+                {
+                    question: "জলের প্রতিসরণাঙ্ক 4/3 হলে, জলে আলোর গতিবেগ কত হবে? (শূন্য মাধ্যমে আলোর বেগ c = 3x10⁸ m/s)",
+                    options: ["2.25 × 10⁸ m/s", "1.5 × 10⁸ m/s", "2.67 × 10⁸ m/s", "4 × 10⁸ m/s"],
+                    answer: 0,
+                    explanation: "আলোর গতিবেগ (v) = c / μ = (3 × 10⁸) / (4/3) = (9/4) × 10⁸ = 2.25 × 10⁸ m/s।"
+                },
+                {
+                    question: "যেকোনো মাধ্যমের পরম প্রতিসরণাঙ্কের মান সর্বদা-",
+                    options: ["একের কম", "১ এর সমান", "একের বেশি", "শূন্য"],
+                    answer: 2,
+                    explanation: "শূন্য মাধ্যম ছাড়া অন্য যেকোনো মাধ্যমে আলোর বেগ কমে যায়, তাই পরম প্রতিসরণাঙ্কের মান সর্বদা ১-এর চেয়ে বেশি হয়।"
+                },
+                {
+                    question: "রাতে তারার মিটমিট করার কারণ কী?",
+                    options: ["বায়ুমণ্ডলীয় প্রতিসরণ", "আলোর বিচ্ছুরণ", "আলোর প্রতিফলন", "আলোর বিক্ষেপণ"],
+                    answer: 0,
+                    explanation: "বায়ুমণ্ডলের বিভিন্ন স্তরের ঘনত্বের পরিবর্তনের কারণে আলোর বারবার প্রতিসরণ ঘটে, যা তারার মিটমিট করার কারণ।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

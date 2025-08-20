@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আলো | Study With Keshab</title>
+    
+    <!-- প্রধান CSS ফাইল -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- আইকন ব্যবহারের জন্য Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- চার্ট ব্যবহারের জন্য Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    
+    <!-- পেজ লোডিং এর সময় হাইড করার জন্য স্টাইল -->
+    <style>
+      body.auth-loading { visibility: hidden; opacity: 0; }
+    </style>
+</head>
+<body class="day-mode homepage theme-blue auth-loading">
+
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <header class="main-header">
+        <img src="images/logo.jpg" alt="লোগো" class="profile-pic" id="logo-easter-egg">
+        <div class="header-text">
+            <h1>অধ্যায়: আলো</h1>
+            <p>আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী</p>
+        </div>
+        <button id="dark-mode-toggle" class="dark-mode-button" title="দিন/রাত মোড পরিবর্তন করুন">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </header>
+    
+    <div class="search-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="search-bar" placeholder="যেকোনো সেকশন খুঁজুন...">
+    </div>
+
+    <nav class="nav-grid">
+        <a href="https://keshab1997.github.io/Study-With-Keshab/" class="nav-button color-home"><i class="fa-solid fa-house"></i><span>হোম</span></a>
+        <a href="#dashboard" class="nav-button color-dashboard"><i class="fa-solid fa-chart-line"></i><span>ড্যাশবোর্ড</span></a>
+        <a href="#class-notes" class="nav-button color-notes"><i class="fa-solid fa-book-open"></i><span>ক্লাস নোট</span></a>
+        <a href="#quiz-sets" class="nav-button color-quiz"><i class="fa-solid fa-file-circle-question"></i><span>কুইজ সেট</span></a>
+        <button id="formula-sheet-btn" class="nav-button color-formulas"><i class="fa-solid fa-square-root-variable"></i><span>সূত্র তালিকা</span></button>
+        <a href="#leaderboard" class="nav-button color-leaderboard"><i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span></a>
+    </nav>
+
+    <main>
+        <!-- === এই লাইনটি নতুন যোগ করা হয়েছে === -->
+        <script>
+            const CURRENT_CHAPTER_NAME = "আলো";
+        </script>
+        
+        <!-- ইউজার প্রোফাইল কার্ড -->
+        <section class="card" id="user-profile-card">
+            <div class="profile-header">
+                <img id="user-profile-pic" src="images/default-avatar.png" alt="Profile Picture" class="profile-pic-large">
+                <div class="profile-info">
+                    <h2 id="user-display-name">লোড হচ্ছে...</h2>
+                    <p id="user-email">লোড হচ্ছে...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ড্যাশবোর্ড সেকশন -->
+        <section class="card" id="dashboard">
+             <h2><i class="fa-solid fa-chart-line icon-title"></i> আমার ড্যাশবোর্ড</h2>
+             <div class="dashboard-grid">
+                <div class="dashboard-item"><h3>অধ্যায়ের অগ্রগতি (কুইজ)</h3><div class="progress-bar-container"><div class="progress-bar" id="chapter-progress-bar" style="width: 0%;"></div></div><p id="chapter-progress-text">0% সম্পন্ন</p></div>
+                <div class="dashboard-item"><h3>সামগ্রিক পারফরম্যান্স</h3><canvas id="quiz-pie-chart"></canvas></div>
+                <div class="dashboard-item"><h3>দৈনিক চ্যালেঞ্জ</h3><div id="daily-challenge" class="challenge-box"><p id="challenge-text">আজকের চ্যালেঞ্জ লোড হচ্ছে...</p></div></div>
+                <div class="dashboard-item"><h3>আমার অ্যাচিভমেন্টস</h3><div class="achievements-container" id="achievements-container"></div></div>
+             </div>
+        </section>
+
+        <!-- ক্লাস নোট সেকশন -->
+        <section class="card" id="class-notes">
+            <h2><i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট (PDF)</h2>
+            <p>লেকচারের সাথে মিলিয়ে পড়ার জন্য ক্লাস নোটগুলো ডাউনলোড করুন।</p>
+            <div class="link-container">
+                <a href="https://drive.google.com/file/d/1sSKTBKGasXSliW6OIl_rY9mzvy0lcFAx/view?usp=drive_link" target="_blank">নোট 1</a>
+                <a href="https://drive.google.com/file/d/1t7kfDtJoTGxg0RODjKol7sLrju8Ih3ZR/view?usp=drive_link" target="_blank">নোট 2</a>
+                <a href="https://drive.google.com/file/d/1t7KkxosPfEFAeRiHYTDDyUwNMa2LBX0A/view?usp=drive_link" target="_blank">নোট 3</a>
+                <a href="https://drive.google.com/file/d/1t38mFaWWqqNNwFF-KqLO0bWvKrAF8AAf/view?usp=drive_link" target="_blank">নোট 4</a>
+                <a href="https://drive.google.com/file/d/1t1oolq3goT1Mh4pOEnH0xVZQ4f7ArwWV/view?usp=drive_link" target="_blank">নোট 5</a>
+                <a href="https://drive.google.com/file/d/1t19LF0_oPfQUUJy5y9iYdV_7BeJmBnPb/view?usp=drive_link" target="_blank">নোট 6</a>
+                <a href="https://drive.google.com/file/d/1sn4iBo9KW9KIaX4zy7lo6pGLNRPsBp02/view?usp=drive_link" target="_blank">নোট 7</a>
+                <a href="https://drive.google.com/file/d/1sgX6IhBGmUZpgLBa4XS5ZPPHs0ZzPb03/view?usp=drive_link" target="_blank">নোট 8</a>
+                <a href="https://drive.google.com/file/d/1sfOYYjft0vI5xvcIlzCKUpIUxicrK589/view?usp=drive_link" target="_blank">নোট 9</a>
+                <a href="https://drive.google.com/file/d/1sfNKT4oH92Jj3N1Gp688IObwA3lgAHc5/view?usp=drive_link" target="_blank">নোট 10</a>
+                <a href="https://drive.google.com/file/d/1sdPigDsal-54gXdqJqfhkAgowSmzAqwy/view?usp=drive_link" target="_blank">নোট 11</a>
+                <a href="https://drive.google.com/file/d/1sWaoGwJlaWrLmfJCkM5LtOCW9mmUzfrI/view?usp=drive_link" target="_blank">নোট 12</a>
+                <a href="https://drive.google.com/file/d/1sVpObTnDcu3n7hdOc_OkMK07FiO2bcL9/view?usp=drive_link" target="_blank">নোট 13</a>
+                <a href="https://drive.google.com/file/d/1sTejw2SX1aWU-Z7At05lgHSMdQDyrxpQ/view?usp=drive_link" target="_blank">নোট 14</a>
+            </div>
+        </section>
+        
+        <!-- কুইজ সেট সেকশন -->
+        <section class="card" id="quiz-sets">
+             <h2><i class="fa-solid fa-file-circle-question icon-title"></i> কুইজ সেট</h2>
+             <p>নিজের প্রস্তুতি যাচাই করার জন্য ইন্টারেক্টিভ কুইজগুলোতে অংশ নিন।</p>
+             <div class="link-container">
+                 <a href="quiz/Qset1.html">📝 Quiz Set 1</a><a href="quiz/Qset2.html">📝 Quiz Set 2</a><a href="quiz/Qset3.html">📝 Quiz Set 3</a><a href="quiz/Qset4.html">📝 Quiz Set 4</a><a href="quiz/Qset5.html">📝 Quiz Set 5</a><a href="quiz/Qset6.html">📝 Quiz Set 6</a><a href="quiz/Qset7.html">📝 Quiz Set 7</a><a href="quiz/Qset8.html">📝 Quiz Set 8</a><a href="quiz/Qset9.html">📝 Quiz Set 9</a><a href="quiz/Qset10.html">📝 Quiz Set 10</a><a href="quiz/Qset11.html">📝 Quiz Set 11</a><a href="quiz/Qset12.html">📝 Quiz Set 12</a><a href="quiz/Qset13.html">📝 Quiz Set 13</a><a href="quiz/Qset14.html">📝 Quiz Set 14</a>
+             </div>
+        </section>
+
+        <!-- রিভিশন লেকচার সেকশন -->
+        <section class="card" id="revision-lectures">
+            <h2><i class="fa-solid fa-star icon-title"></i> রিভিশন লেকচার</h2>
+            <p>গুরুত্বপূর্ণ বিষয়গুলো দ্রুত ঝালিয়ে নেওয়ার জন্য বিশেষ রিভিশন পেজগুলো দেখুন।</p>
+            <div class="link-container">
+                <a href="revision_series/class1.html">📘 Class 1</a><a href="revision_series/class2.html">📘 Class 2</a><a href="revision_series/class3.html">📘 Class 3</a><a href="revision_series/class4.html">📘 Class 4</a><a href="revision_series/class5.html">📘 Class 5</a><a href="revision_series/class6.html">📘 Class 6</a><a href="revision_series/class7.html">📘 Class 7</a><a href="revision_series/class8.html">📘 Class 8</a><a href="revision_series/class9.html">📘 Class 9</a><a href="revision_series/class10.html">📘 Class 10</a><a href="revision_series/class11.html">📘 Class 11</a><a href="revision_series/class12.html">📘 Class 12</a><a href="revision_series/class13.html">📘 Class 13</a><a href="revision_series/class14.html">📘 Class 14</a>
+            </div>
+        </section>
+
+        <!-- লিডারবোর্ড সেকশন -->
+        <section class="card" id="leaderboard">
+            <h2><i class="fa-solid fa-trophy icon-title"></i> লিডারবোর্ড</h2>
+            <p>এই অধ্যায়ের সর্বোচ্চ স্কোরারদের তালিকা।</p>
+            <div class="leaderboard-container">
+                <table>
+                    <thead><tr><th>#</th><th>নাম</th><th>মোট স্কোর</th><th>বিস্তারিত</th></tr></thead>
+                    <tbody id="leaderboard-body"><!-- JavaScript দ্বারা ডেটা লোড হবে --></tbody>
+                </table>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Modal -->
+    <div id="formula-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h2>🌟 গুরুত্বপূর্ণ সূত্র তালিকা (আলো)</h2>
+            <ul>
+                <li>🔍 দর্পণের সূত্র (Mirror Formula): 1/f = 1/v + 1/u</li>
+                <li>💧 প্রতিসরণের সূত্র (Snell's Law): n₁sin(i) = n₂sin(r)</li>
+                <li>🔬 লেন্সের সূত্র (Lens Formula): 1/f = 1/v - 1/u</li>
+                <li>📏 বিবর্ধন (Magnification, m): m = -v/u</li>
+                <li>💡 লেন্সের ক্ষমতা (Power of Lens, P): P = 1/f (f মিটার এককে)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <a id="back-to-top" href="#"><i class="fas fa-arrow-up"></i></a>
+    
+    <footer>
+        <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <!-- Firebase এবং পেজ প্রটেকশন স্ক্রিপ্ট -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script>
+        (function() {
+            firebase.auth().onAuthStateChanged(user => {
+                if (!user) {
+                    window.location.href = 'https://keshab1997.github.io/Study-With-Keshab/login.html'; 
+                } else {
+                    document.body.classList.remove('auth-loading');
+                }
+            });
+        })();
+    </script>
+    
+    <!-- প্রধান জাভাস্ক্রিপ্ট ফাইল -->
+    <script src="js/script.js"></script>
+    
+</body>
+</html>

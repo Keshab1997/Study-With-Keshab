@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 09 - MCQ Practice (তাপ ও তাপমাত্রা)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        /* --- Global Styles & Theming Variables --- */
+        :root {
+            --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60;
+            --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b;
+            --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd;
+            --blockquote-border: #2196f3; --nav-button-bg: #fff;
+            --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1);
+            --correct-bg: #2ecc71; --incorrect-bg: #e74c3c;
+        }
+        [data-theme="forest"] {
+            --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; 
+            --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; 
+            --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60;
+        }
+        [data-theme="ocean"] {
+            --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; 
+            --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; 
+            --blockquote-bg: #e4f1fe; --blockquote-border: #3498db;
+        }
+        [data-theme="sunset"] {
+            --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; 
+            --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; 
+            --blockquote-bg: #fff8e1; --blockquote-border: #f57c00;
+        }
+        .dark-mode {
+            --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; 
+            --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; 
+            --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; 
+            --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; 
+            --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f;
+        }
+
+        /* --- Base Layout & Typography --- */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        
+        /* --- Header, Footer, Navigation --- */
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+
+        /* --- Controls (Theme, Dark Mode, Set Selector) --- */
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+        /* --- MCQ Specific Styles --- */
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question {
+            margin-bottom: 40px; padding: 20px; border-radius: 10px;
+            border: 2px solid transparent; /* Prevents layout shift on highlight */
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+        .mcq-question.active-question {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5);
+        }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        
+        /* --- Utility Styles --- */
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://img.freepik.com/premium-vector/hot-temperature-icon-logo-vector-design-template_827767-4299.jpg
+" alt="Logo" class="logo">
+        <h1>তাপ ও তাপমাত্রা</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন ১-১০)</option>
+                <option value="2">Set 2 (প্রশ্ন ১১-২০)</option>
+                <option value="3">Set 3 (প্রশ্ন ২১-৩০)</option>
+                <option value="4">Set 4 (প্রশ্ন ৩১-৪০)</option>
+                <option value="5">Set 5 (প্রশ্ন ৪১-৪৭)</option>
+            </select>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 09 - বিগত বছরের পরীক্ষার প্রশ্নাবলী</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="class8.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button active">9</a>
+        <a href="#" class="nav-button disabled">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2024 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- AUDIO SETUP ---
+            const correctSound = new Audio('correct.mp3');
+            const wrongSound = new Audio('wrong.mp3');
+
+            // --- THEME, MODE, & SCROLL BUTTON LOGIC (Unchanged) ---
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) {
+                if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+                else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+                localStorage.setItem('selected_mode', mode);
+            }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+                scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+                scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            // --- INTERACTIVE MCQ LOGIC (UPDATED WITH AUDIO) ---
+            const mcqData = [
+                { q: "এস আই পদ্ধতিতে তাপের একক কী? *(SSC NTPC পরীক্ষা)*", o: ["জুল", "ব্রিটিশ থার্মাল একক", "ক্যালোরি", "এদের কোনোটিই নয়"], a: 0, ex: "আন্তর্জাতিক পদ্ধতিতে (SI) তাপ বা শক্তির একক হলো জুল (Joule)। CGS পদ্ধতিতে তাপের একক হলো ক্যালোরি (Calorie)।" },
+                { q: "1 জুল = কত ক্যালোরি? *(SSC CGL পরীক্ষা)*", o: ["4.2 ক্যালোরি", "0.24 ক্যালোরি", "0.42 ক্যালোরি", "0.024 ক্যালোরি"], a: 1, ex: "আমরা জানি, 1 ক্যালোরি ≈ 4.2 জুল। সুতরাং, 1 জুল = 1 / 4.2 ক্যালোরি ≈ 0.24 ক্যালোরি।" },
+                { q: "ফারেনহাইট স্কেলে জলের হিমাঙ্ক কত? *(SSC MTS & CGSL পরীক্ষা)*", o: ["180°F", "32°F", "212°F", "100°F"], a: 1, ex: "সেলসিয়াস স্কেলে জলের হিমাঙ্ক 0°C এবং স্ফুটনাঙ্ক 100°C। ফারেনহাইট স্কেলে জলের হিমাঙ্ক 32°F এবং স্ফুটনাঙ্ক 212°F।" },
+                { q: "সেলসিয়াস স্কেলের প্রাথমিক অন্তরটি কত ভাগে বিভক্ত? *(RRB GROUP-D পরীক্ষা)*", o: ["180 ভাগে", "100 ভাগে", "68 ভাগে", "32 ভাগে"], a: 1, ex: "সেলসিয়াস স্কেলের নিম্নস্থিরাঙ্ক (জলের হিমাঙ্ক) 0°C এবং ঊর্ধ্বস্থিরাঙ্ক (জলের স্ফুটনাঙ্ক) 100°C। এই দুই বিন্দুর মধ্যবর্তী পাল্লাকে সমান 100টি ভাগে ভাগ করা হয়।" },
+                { q: "মানুষের দেহের স্বাভাবিক উষ্ণতা হল- *(WBPSC পরীক্ষা)*", o: ["98.4°C", "-40°C", "98.4°F", "100°C"], a: 2, ex: "মানুষের শরীরের স্বাভাবিক তাপমাত্রা সেলসিয়াস স্কেলে প্রায় 37°C এবং ফারেনহাইট স্কেলে প্রায় 98.6°F। প্রদত্ত অপশনগুলির মধ্যে 98.4°F 가장 가까운।"},
+                { q: "তাপের কোন্ রূপটির ধর্ম আলোর ধর্মের সদৃশ? *(SSC RRB পরীক্ষা)*", o: ["বোধগম্য তাপ", "বিকীর্ণ তাপ", "লীনতাপ", "এদের সবগুলিই"], a: 1, ex: "বিকীর্ণ তাপ আলোর মতোই মাধ্যম ছাড়াই শূন্যস্থানে চলাচল করতে পারে, সরলরেখায় চলে এবং এর গতি আলোর গতির সমান।" },
+                { q: "যখন কঠিনকে তাপ দেওয়া হয়, তখন এর তাপমাত্রা-", o: ["বৃদ্ধি পায়", "হয় বৃদ্ধি পায় বা একই থাকে", "হ্রাস পায়", "একই থাকে"], a: 1, ex: "কঠিন পদার্থকে তাপ দিলে তার তাপমাত্রা বাড়তে থাকে। কিন্তু যখন পদার্থটি গলনাঙ্কে পৌঁছায়, তখন অবস্থার পরিবর্তনের (গলন) সময় অতিরিক্ত তাপ গ্রহণ করলেও তাপমাত্রা স্থির থাকে।" },
+                { q: "4°C তাপমাত্রায় 1 লিটার জলের ভর হল- *(FOOD SI 2014 পরীক্ষা)*", o: ["1 গ্রাম", "1 কেজি", "1 মিলিগ্রাম", "1 কুইন্টাল"], a: 1, ex: "4°C তাপমাত্রায় জলের ঘনত্ব সর্বাধিক হয়, যা 1 গ্রাম/ঘন সেন্টিমিটার (g/cm³)। 1 লিটার = 1000 ঘন সেন্টিমিটার। সুতরাং, 1 লিটার জলের ভর = 1000 গ্রাম = 1 কেজি।" },
+                { q: "কোনো বস্তুতে তাপ দিলে বস্তুটির তাপমাত্রা- *(SSC CGL পরীক্ষা)*", o: ["সর্বদা বাড়বে", "সর্বদা কমবে", "একই থাকবে", "বাড়বে, বা একই থাকতে পারে"], a: 3, ex: "তাপ দিলে সাধারণত তাপমাত্রা বাড়ে। কিন্তু অবস্থার পরিবর্তনের সময় (যেমন গলন বা বাষ্পীভবন) তাপ দিলেও তাপমাত্রা স্থির থাকে, কারণ তখন প্রযুক্ত তাপ লীনতাপ হিসেবে ব্যবহৃত হয়।"},
+                { q: "এসআই পদ্ধতিতে বিশুদ্ধ জলের আপেক্ষিক তাপ হল- *(SSC CGSL পরীক্ষা)*", o: ["4000 জুল/কেজি·K", "4200 জুল/কেজি·K", "4100 জুল/কেজি·K", "4.2 জুল/কেজি·K"], a: 1, ex: "CGS পদ্ধতিতে জলের আপেক্ষিক তাপ 1 cal/g°C। SI পদ্ধতিতে এর মান হলো 4200 J/kg·K।" },
+                { q: "সেঁক দেওয়ার বোতলে যে তরলটি ব্যবহার করা উচিত তা হল- *(SSC MTS পরীক্ষা)*", o: ["গ্লিসারিন", "জল", "অ্যালকোহল", "দুধ"], a: 1, ex: "জলের আপেক্ষিক তাপ খুব বেশি। তাই এটি ধীরে ধীরে গরম হয় এবং ধীরে ধীরে ঠান্ডা হয়, ফলে অনেকক্ষণ ধরে তাপ সরবরাহ করতে পারে।" },
+                { q: "শীতপ্রধান দেশে ঘর গরম রাখার জন্য ঘরের মধ্যে গরম জলের প্রবাহ পাঠানো হয়, কারণ- *(RRB NTPC পরীক্ষা)*", o: ["জল সহজলভ্য", "জল যৌগিক পদার্থ", "জলের আপেক্ষিক তাপ বেশি", "কোনোটিই নয়"], a: 2, ex: "জলের আপেক্ষিক তাপ বেশি হওয়ায় এটি প্রচুর পরিমাণে তাপ ধরে রাখতে পারে এবং ধীরে ধীরে সেই তাপ বর্জন করে ঘরকে গরম রাখে।" },
+                { q: "তামার আপেক্ষিক তাপের মান- *(RRB GROUP-D পরীক্ষা)*", o: ["0.009 Cal/g°C", "0.9 Cal/g°C", "0.09 Cal/g°C", "9 Cal/g°C"], a: 2, ex: "এটি একটি তথ্যভিত্তিক প্রশ্ন। তামার আপেক্ষিক তাপের মান প্রায় 0.09 ক্যালোরি/গ্রাম°C।" },
+                { q: "কোনো বস্তুর তাপগ্রাহিতা 40 ক্যালোরি/°C হলে জলসম হবে- *(SSC MTS পরীক্ষা)*", o: ["40 গ্রাম", "40 গ্রাম/°C", "40 ক্যালোরি", "40 ক্যালোরি/°C"], a: 0, ex: "CGS পদ্ধতিতে কোনো বস্তুর তাপগ্রাহিতার সাংখ্যমান তার জলসমের সাংখ্যমানের সমান হয়। তাপগ্রাহিতার একক cal/°C এবং জলসমের একক গ্রাম (g)।" },
+                { q: "বস্তুর তাপগ্রাহিতা হল- *(RRB GROUP-D পরীক্ষা)*", o: ["বস্তুর তাপের হ্রাস বা বৃদ্ধি", "ভর ও আপেক্ষিক তাপের গুণফল", "ভর ও আপেক্ষিক তাপের অনুপাত", "কোনোটিই নয়"], a: 1, ex: "তাপগ্রাহিতার সূত্রটি হলো: তাপগ্রাহিতা = বস্তুর ভর (m) × আপেক্ষিক তাপ (s)।" },
+                { q: "নিম্নলিখিত কোন্ স্কেলে তাপমাত্রার মান কখনও ঋণাত্মক হবে না? *(SSC CGL পরীক্ষা)*", o: ["সেলসিয়াস", "ফারেনহাইট", "রয়মার", "কেলভিন"], a: 3, ex: "কেলভিন স্কেলের সর্বনিম্ন মান 0 K (পরম শূন্য উষ্ণতা), যার নিচে কোনো তাপমাত্রা থাকা সম্ভব নয়। তাই এই স্কেলে কোনো ঋণাত্মক মান নেই।" },
+                { q: "তাপের মাত্রা হল- *(SSC MTS পরীক্ষা)*", o: ["[ML²T⁻²]", "[ML²T²]", "[ML⁻²T²]", "[ML⁻¹T⁻²]"], a: 0, ex: "তাপ এক প্রকার শক্তি। কাজ বা শক্তির মাত্রা হলো [ML²T⁻²], সুতরাং তাপের মাত্রাও একই।" },
+                { q: "কোন্ তাপমাত্রায় সেলসিয়াস ও ফারেনহাইট স্কেলের পাঠ সমান? *(RAILWAY TC পরীক্ষা)*", o: ["32°", "-40°", "-32°", "-212°"], a: 1, ex: "এটি একটি বহুল প্রচলিত প্রশ্ন। -40° তাপমাত্রায় সেলসিয়াস ও ফারেনহাইট স্কেল একই মান দেখায়।" },
+                { q: "মানুষের শরীরের স্বাভাবিক তাপমাত্রা- *(SSC MTS পরীক্ষা)*", o: ["37°F", "37°C", "37K", "কোনোটিই নয়"], a: 1, ex: "মানুষের শরীরের স্বাভাবিক তাপমাত্রা সেলসিয়াস স্কেলে 37°C এবং ফারেনহাইট স্কেলে 98.6°F।" },
+                { q: "তাপের পরিমাপের জন্য নিম্নলিখিত কোন্ রাশিটির প্রয়োজন হয় না? *(SSC CGSL পরীক্ষা)*", o: ["ভর", "আপেক্ষিক তাপ", "আপেক্ষিক ঘনত্ব", "তাপমাত্রার পরিবর্তন"], a: 2, ex: "গৃহীত বা বর্জিত তাপের সূত্রটি হলো H = m × s × t। এখানে ভর (m), আপেক্ষিক তাপ (s) এবং তাপমাত্রার পরিবর্তন (t) প্রয়োজন। আপেক্ষিক ঘনত্বের প্রয়োজন হয় না।" },
+                { q: "একটি ত্রুটিপূর্ণ থার্মোমিটারের নিম্নস্থিরাঙ্ক ও ঊর্ধ্বস্থিরাঙ্ক যথাক্রমে 5°C এবং 105°C। এই থার্মোমিটার 25°C পাঠ দিলে, প্রকৃত পাঠ হবে- *(RRB GROUP-D পরীক্ষা)*", o: ["35°C", "20°C", "30°C", "15°C"], a: 1, ex: "সূত্র: (ত্রুটিপূর্ণ পাঠ - নিম্নস্থিরাঙ্ক) / (ঊর্ধ্বস্থিরাঙ্ক - নিম্নস্থিরাঙ্ক) = (সঠিক পাঠ - 0) / (100 - 0)। মান বসালে, (25 - 5) / (105 - 5) = C / 100 => 20 / 100 = C / 100 => C = 20°C।" },
+                { q: "থার্মোমিটারের তরল হিসেবে পারদ ব্যবহারের সুবিধার জন্য কোটি প্রযোজ্য নয়? *(SSC MTS পরীক্ষা)*", o: ["বিশুদ্ধ পারদ সহজলভ্য", "পারদ অস্বচ্ছ ও চকচকে", "পারদের আপেক্ষিক তাপ সর্বাপেক্ষা বেশি", "পারদের আয়তনের পরিবর্তন খুব নিয়মানুগ"], a: 2, ex: "পারদের আপেক্ষিক তাপ কম, বেশি নয়। কম আপেক্ষিক তাপের সুবিধা হলো এটি পরীক্ষাধীন বস্তু থেকে খুব কম তাপ গ্রহণ করে বস্তুর সঠিক তাপমাত্রা নির্দেশ করতে পারে।" },
+                { q: "পারদের হিমাঙ্ক- *(SSC CGL পরীক্ষা)*", o: ["-40°C", "0°C", "-39°C", "100°C"], a: 2, ex: "পারদের হিমাঙ্ক -39°C এবং স্ফুটনাঙ্ক 357°C।" },
+                { q: "কোন্ তাপমাত্রায় ফারেনহাইট ও কেলভিন স্কেলের পাঠ সমান? *(WBPSC MISC পরীক্ষা)*", o: ["32°", "212°", "574.25°", "306.75°"], a: 2, ex: "সূত্র (F-32)/9 = (K-273)/5। F = K = x ধরে সমাধান করলে x = 574.25 পাওয়া যায়।" },
+                { q: "সিজিএস পদ্ধতিতে জলের বাষ্পীভবনের লীনতাপ হল- *(SSC MTS পরীক্ষা)*", o: ["537 ক্যালোরি/গ্রাম", "22.68 x 10⁵ ক্যালোরি/গ্রাম", "80 ক্যালোরি/গ্রাম", "100 ক্যালোরি/গ্রাম"], a: 0, ex: "CGS পদ্ধতিতে জলের বাষ্পীভবনের লীনতাপ 537 cal/g এবং বরফ গলনের লীনতাপ 80 cal/g।" },
+                { q: "উষ্ণতা স্থির রেখে একক ভরের কঠিন পদার্থকে তরল পদার্থে রূপান্তরিত করতে প্রয়োজনীয় তাপ হল- *(SSC MTS পরীক্ষা)*", o: ["গলনের লীনতাপ", "বিকীর্ণ তাপ", "আপেক্ষিক তাপ", "বোধগম্য তাপ"], a: 0, ex: "এটি গলনের লীনতাপের সংজ্ঞা। উষ্ণতা স্থির রেখে অবস্থার পরিবর্তনের জন্য যে তাপ প্রয়োজন হয়, তাকে লীনতাপ বলে।" },
+                { q: "সম্পৃক্ত বাষ্পকে অসম্পৃক্ত বাষ্পে পরিণত করার উপায় হল- *(WBPSC MISC পরীক্ষা)*", o: ["আয়তন বাড়ানো", "উষ্ণতা বাড়ানো", "চাপ কমানো", "সবগুলিই"], a: 3, ex: "উষ্ণতা বাড়ালে বা চাপ কমালে বাষ্পের ঘনত্ব কমে যায়, ফলে তা অসম্পৃক্ত হয়ে পড়ে। একইভাবে, আয়তন বাড়ালেও ঘনত্ব কমে এবং বাষ্প অসম্পৃক্ত হয়।" },
+                { q: "অসম্পৃক্ত বাষ্পকে সম্পৃক্ত করার উপায় হল- *(WBSC পরীক্ষা)*", o: ["আয়তন কমানো", "উষ্ণতা কমানো", "চাপ বাড়ানো", "সবগুলিই"], a: 3, ex: "উষ্ণতা কমালে বা চাপ বাড়ালে বাষ্পের ঘনত্ব বেড়ে সম্পৃক্ত অবস্থায় পৌঁছায়। আয়তন কমালেও একই ঘটনা ঘটে।" },
+                { q: "শিশিরাঙ্কের মান- *(SSC MTS পরীক্ষা)*", o: ["0°C এর সমান হতে পারে", "0°C এর কম হতে পারে", "সর্বদাই 0°C-এর বেশি হয়", "বলা সম্ভব নয়"], a: 3, ex: "শিশিরাঙ্কের মান পারিপার্শ্বিক বায়ুর তাপমাত্রা ও আর্দ্রতার ওপর নির্ভর করে। এটি 0°C এর বেশি, সমান বা কম হতে পারে। তাই নির্দিষ্ট শর্ত ছাড়া 'বলা সম্ভব নয়'। তবে অন্য অপশনগুলির তুলনায় এটি বেশি ব্যাপক।" },
+                { q: "স্পর্শ করে বেশি ঠান্ডা মনে হবে- *(WBPSC MISC পরীক্ষা)*", o: ["0°C উষ্ণতার জল", "0°C উষ্ণতার বরফ", "বরফ ও জলের মিশ্রণ", "বরফ ও নুনের মিশ্রণ"], a: 3, ex: "বরফ ও নুনের মিশ্রণ একটি হিমমিশ্রণ (Freezing Mixture), যার তাপমাত্রা 0°C থেকে অনেক কমে গিয়ে প্রায় -23°C পর্যন্ত হতে পারে। তাই এটি স্পর্শ করলে সবচেয়ে বেশি ঠান্ডা লাগবে।" },
+                { q: "অবস্থান্তরের সময় পদার্থের উষ্ণতা- *(RAILWAY ALP)*", o: ["বাড়ে", "একই থাকে", "কমে", "বলা সম্ভব নয়"], a: 1, ex: "পদার্থের অবস্থার পরিবর্তনের সময় (যেমন গলন বা স্ফুটন) প্রযুক্ত তাপ লীনতাপ হিসেবে ব্যবহৃত হয়, তাই উষ্ণতা স্থির থাকে।" },
+                { q: "স্থির চাপে বিশুদ্ধ কেলাসাকার পদার্থের- *(SSC MTS পরীক্ষা)*", o: ["গলনাঙ্ক ও হিমাঙ্ক একই", "গলনাঙ্ক অপেক্ষা হিমাঙ্ক کم", "গলনাঙ্ক অপেক্ষা হিমাঙ্ক বেশি", "কোনোটিই নয়"], a: 0, ex: "একটি বিশুদ্ধ কেলাসাকার পদার্থের ক্ষেত্রে যে তাপমাত্রায় গলন শুরু হয়, সেই একই তাপমাত্রায় কঠিনীভবন বা হিমাঙ্কও ঘটে।" },
+                { q: "লীনতাপ থার্মোমিটারের পাঠ- *(SSC CGSL পরীক্ষা)*", o: ["পরিবর্তন করে না", "পরিবর্তন করে", "কখনও পরিবর্তন করে আবার কখনও করে না", "কোনোটিই নয়"], a: 0, ex: "লীনতাপ শুধুমাত্র পদার্থের অবস্থার পরিবর্তন ঘটায়, উষ্ণতার কোনো পরিবর্তন ঘটায় না। তাই থার্মোমিটারের পাঠ একই থাকে।" },
+                { q: "হাত বেশি পুড়বে- *(RAILWAY TC পরীক্ষা)*", o: ["100°C-এর জলে", "95°C-এর জলে", "100°C এর বাষ্পে", "0°C-এর বরফে"], a: 2, ex: "100°C-এর বাষ্পে 100°C-এর জলের তাপ ছাড়াও অতিরিক্ত 537 ক্যালোরি/গ্রাম লীনতাপ থাকে। এই অতিরিক্ত তাপের জন্য বাষ্পে হাত বেশি পোড়ে।" },
+                { q: "বটমলির পরীক্ষার সময় পারিপার্শ্বিক বায়ুর উষ্ণতা হওয়া দরকার- *(RRB GROUP D পরীক্ষা)*", o: ["0°C", "0°C-এর কম", "0°C-এর বেশি", "বলা সম্ভব নয়"], a: 2, ex: "বটমলির পরীক্ষা (পুনঃশিলীভবন) দেখানোর জন্য পারিপার্শ্বিক তাপমাত্রা 0°C এর বেশি হতে হয়, যাতে চাপের ফলে গলে যাওয়া বরফ চাপ সরানোর পর পারিপার্শ্বিক পরিবেশ থেকে তাপ গ্রহণ করে আবার জমে যেতে পারে।" },
+                { q: "জলে কোনো অপদ্রব্য মিশ্রিত থাকলে জলের স্ফুটনাঙ্ক- *(RAILWAY ALP)*", o: ["হ্রাস পায়", "বৃদ্ধি পায়", "অপরিবর্তিত থাকে", "প্রথমে হ্রাস পায় পরে বৃদ্ধি পায়"], a: 1, ex: "তরলে কোনো অনুদ্বায়ী অপদ্রব্য (যেমন লবণ) মেশানো হলে তার স্ফুটনাঙ্ক বেড়ে যায়।" },
+                { q: "চাপ বৃদ্ধিতে জলের স্ফুটনাঙ্ক- *(WBPSC MISC পরীক্ষা)*", o: ["বাড়ে", "কমে", "অপরিবর্তিত থাকে", "প্রথমে হ্রাস পায় পরে বৃদ্ধি পায়"], a: 0, ex: "তরলের উপর চাপ বাড়ালে অণুগুলির বাষ্পে পরিণত হতে বেশি শক্তির প্রয়োজন হয়, ফলে স্ফুটনাঙ্ক বৃদ্ধি পায়। প্রেশার কুকার এই নীতিতে কাজ করে।" },
+                { q: "কোনো বস্তুর তাপগ্রাহিতা নির্ভর করে না- *(SSC CGL পরীক্ষা)*", o: ["প্রদত্ত তাপের ওপর", "বস্তুর আয়তনের ওপর", "তাপমাত্রা বৃদ্ধির ওপর", "বস্তুর ভরের ওপর"], a: 1, ex: "তাপগ্রাহিতা (C) = ভর (m) × আপেক্ষিক তাপ (s)। এটি বস্তুর ভর ও উপাদানের (আপেক্ষিক তাপ) ওপর নির্ভরশীল, কিন্তু সরাসরি আয়তনের ওপর নির্ভরশীল নয়।" },
+                { q: "কোনো পদার্থের তাপমাত্রা 1K বৃদ্ধি করার জন্য প্রয়োজনীয় তাপকে বলে- *(RRB GROUP-D পরীক্ষা)*", o: ["আপেক্ষিক তাপ", "জলসম", "তাপগ্রাহিতা", "এনট্রপি"], a: 2, ex: "এটি তাপগ্রাহিতার সংজ্ঞা। কোনো বস্তুর উষ্ণতা একক পরিমাণ (1K বা 1°C) বৃদ্ধি করতে যে তাপ লাগে, তাকে তাপগ্রাহিতা বলে। আপেক্ষিক তাপ হলো একক ভরের জন্য প্রয়োজনীয় তাপ।" },
+                { q: "ইঞ্জিনের রেডিয়েটর ঠান্ডা করার জন্য জল ব্যবহৃত হয়, কারণ- *(WBPSC MISC পরীক্ষা)*", o: ["জলের নিম্ন স্ফুটনাঙ্ক", "জলের উচ্চ আপেক্ষিক তাপ", "জলের কম ঘনত্ব", "জলের সহজলভ্যতা"], a: 1, ex: "জলের উচ্চ আপেক্ষিক তাপের কারণে এটি ইঞ্জিন থেকে প্রচুর পরিমাণে তাপ শোষণ করতে পারে এবং নিজের তাপমাত্রা খুব বেশি না বাড়িয়েই ইঞ্জিনকে ঠান্ডা রাখতে পারে।" },
+                { q: "আপেক্ষিক তাপের সংজ্ঞায় নীচের কোন্ রাশিটির কোনো প্রয়োজন হয় না? *(WBPSC MISC পরীক্ষা)*", o: ["তাপ", "তাপমাত্রা", "ভর", "আয়তন"], a: 3, ex: "আপেক্ষিক তাপ (s) = H / (m × t)। এর সংজ্ঞায় তাপ (H), ভর (m) এবং তাপমাত্রার পরিবর্তন (t) প্রয়োজন, কিন্তু আয়তনের প্রয়োজন হয় না।" },
+                { q: "ভাত রান্না করতে সবচেয়ে বেশি সময় লাগবে- *(SSC MTS পরীক্ষা)*", o: ["সমুদ্রপৃষ্ঠে", "সিমলায়", "সমুদ্রপৃষ্ঠ থেকে 100 মিটার নীচে কোনো সাবমেরিনে", "এভারেস্টের চূড়ায়"], a: 3, ex: "উচ্চতা বাড়ার সাথে সাথে বায়ুর চাপ কমে যায়, ফলে জলের স্ফুটনাঙ্কও কমে যায়। এভারেস্টের চূড়ায় চাপ সবচেয়ে কম, তাই জল অনেক কম তাপমাত্রায় ফুটে যাবে এবং ভাত সেদ্ধ হতে সবচেয়ে বেশি সময় লাগবে।" },
+                { q: "প্রেসার কুকারে ভাত দ্রুত রান্না হয় কারণ- *(FOOD SI 2014 পরীক্ষা)*", o: ["এটা সবসময় বাষ্প পালাতে দেয়", "এটি তাপ শক্তিকে সহজে বের হতে দেয় না", "উচ্চ চাপ ধানের শীষের শক্ত আবরণকে চূর্ণ করে দেয়", "উচ্চ চাপ পানির স্ফুটনাঙ্ক বাড়ায়"], a: 3, ex: "প্রেশার কুকারের ভেতরে আবদ্ধ বাষ্পের চাপ বাড়তে থাকায় জলের স্ফুটনাঙ্ক 100°C থেকে বেড়ে প্রায় 120°C হয়ে যায়। এই উচ্চ তাপমাত্রার জলে রান্না দ্রুত সম্পন্ন হয়।" },
+                { q: "কোনো গ্যাসকে, যে তাপমাত্রার কম তাপমাত্রায় রাখলে, কেবলমাত্র চাপ প্রয়োগ করে তরলে পরিণত করা যায়, তাকে বলে- *(WBPSC MISC পরীক্ষা)*", o: ["শিশিরাঙ্ক", "সংকট তাপমাত্রা", "হিমাঙ্ক", "বাষ্পাঙ্ক"], a: 1, ex: "সংকট তাপমাত্রা হলো সর্বোচ্চ তাপমাত্রা যার নিচে থাকলে কোনো গ্যাসকে শুধুমাত্র চাপ প্রয়োগ করে তরলে পরিণত করা সম্ভব।" },
+                { q: "দুই খণ্ড বরফকে চেপে ধরলে, এক খণ্ডে পরিণত হয়, কারণ- *(SSC CGL পরীক্ষা)*", o: ["চাপে তাপশক্তির উদ্ভব হয়", "চাপে তাপশক্তি শোষিত হয়", "চাপ বাড়লে বরফের গলনাঙ্ক হ্রাস পায়", "চাপ বাড়লে বরফের গলনাঙ্ক বৃদ্ধি পায়"], a: 2, ex: "বরফের উপর চাপ বাড়ালে তার গলনাঙ্ক 0°C থেকে কমে যায়। ফলে সংযোগস্থলের বরফ গলে যায়। চাপ সরিয়ে নিলে গলনাঙ্ক আবার বেড়ে যায় এবং ওই জল জমে গিয়ে টুকরো দুটিকে জোড়া লাগিয়ে দেয়। এই ঘটনাকে পুনঃশিলীভবন বলে।" },
+                { q: "প্রেশার কুকার যন্ত্রে রান্না তাড়াতাড়ি হয়। কারণ বাষ্পচাপ বৃদ্ধির ফলে- *(RRB GROUP-D পরীক্ষা)*", o: ["স্ফুটনাঙ্ক বৃদ্ধি পায়", "স্ফুটনাঙ্ক হ্রাস পায়", "লীনতাপ বৃদ্ধি পায়", "লীনতাপ হ্রাস পায়"], a: 0, ex: "বাষ্পচাপ বাড়ার ফলে জলের স্ফুটনাঙ্ক বাড়ে, যার ফলে উচ্চ তাপমাত্রায় রান্না করা সম্ভব হয় এবং রান্না তাড়াতাড়ি হয়।" },
+                { q: "জলের আপেক্ষিক তাপ অন্যান্য কঠিন বা তরল পদার্থের থেকে বেশি। সেজন্য জল- *(SSC MTS পরীক্ষা)*", o: ["দ্রুত গরম হয়, কিন্তু ধীরে ধীরে ঠান্ডা হয়", "ধীরে ধীরে গরম হয়, কিন্তু দ্রুত ঠান্ডা হয়", "গরম ও ঠান্ডা হয় দ্রুত", "গরম ও ঠান্ডা হয় ধীরে ধীরে"], a: 3, ex: "উচ্চ আপেক্ষিক তাপের অর্থ হলো, উষ্ণতা বাড়াতে যেমন বেশি তাপ লাগে (ধীরে গরম হয়), তেমনই উষ্ণতা কমাতেও বেশি তাপ বর্জন করতে হয় (ধীরে ঠান্ডা হয়)।" }
+            ];
+
+            const mcqContainer = document.getElementById('mcq-container');
+            const mcqSetSelector = document.getElementById('mcqSetSelector');
+            const scoreTracker = document.getElementById('score-tracker');
+            
+            let score = 0;
+            let totalQuestionsInSet = 0;
+
+            function generateMCQs(setNumber) {
+                mcqContainer.innerHTML = '';
+                score = 0;
+                
+                const questionsPerSet = 10;
+                const start = (setNumber - 1) * questionsPerSet;
+                const end = Math.min(start + questionsPerSet, mcqData.length);
+                const questionSet = mcqData.slice(start, end);
+
+                totalQuestionsInSet = questionSet.length;
+                updateScoreDisplay();
+
+                questionSet.forEach((item, index) => {
+                    const globalIndex = start + index;
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'mcq-question';
+                    questionDiv.id = `q-${globalIndex}`;
+                    
+                    let optionsHTML = item.o.map((option, i) => 
+                        `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                    ).join('');
+                    
+                    questionDiv.innerHTML = `
+                        <h4>প্রশ্ন ${globalIndex + 1}: ${item.q}</h4>
+                        <div class="mcq-options">${optionsHTML}</div>
+                        <div class="mcq-explanation"><strong>ব্যাখ্যা:</strong> ${item.ex}</div>
+                    `;
+                    mcqContainer.appendChild(questionDiv);
+                });
+                setupOptionListeners();
+                setupIntersectionObserver();
+            }
+            
+            function updateScoreDisplay() {
+                scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+            }
+
+            function handleOptionClick(e) {
+                const selectedOption = e.target.closest('.mcq-option');
+                if (!selectedOption) return;
+                const questionDiv = selectedOption.closest('.mcq-question');
+                if (questionDiv.classList.contains('answered')) return;
+                questionDiv.classList.add('answered');
+                const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+                const selectedIndex = parseInt(selectedOption.dataset.index);
+                const correctIndex = mcqData[globalIndex].a;
+                if (selectedIndex === correctIndex) {
+                    selectedOption.classList.add('correct');
+                    correctSound.play().catch(e => console.log("Audio play failed"));
+                    score++;
+                    updateScoreDisplay();
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    wrongSound.play().catch(e => console.log("Audio play failed"));
+                    questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+                }
+                questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+            }
+
+            function setupOptionListeners() {
+                mcqContainer.addEventListener('click', handleOptionClick);
+            }
+            
+            mcqSetSelector.addEventListener('change', (e) => {
+                generateMCQs(parseInt(e.target.value, 10));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                const activeQuestion = document.querySelector('.mcq-question.active-question');
+                if (!activeQuestion) return;
+                
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const nextQuestion = activeQuestion.nextElementSibling;
+                    if (nextQuestion) {
+                        nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                } else if (['1', '2', '3', '4'].includes(e.key) && !activeQuestion.classList.contains('answered')) {
+                    e.preventDefault();
+                    const optionIndex = parseInt(e.key) - 1;
+                    const optionToClick = activeQuestion.querySelector(`.mcq-option[data-index="${optionIndex}"]`);
+                    if (optionToClick) {
+                        optionToClick.click();
+                    }
+                }
+            });
+
+            function setupIntersectionObserver() {
+                const questions = document.querySelectorAll('.mcq-question');
+                if (questions.length === 0) return;
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const prevActive = document.querySelector('.mcq-question.active-question');
+                            if (prevActive) prevActive.classList.remove('active-question');
+                            entry.target.classList.add('active-question');
+                        }
+                    });
+                }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+                questions.forEach(q => observer.observe(q));
+            }
+            
+            generateMCQs(1);
+        });
+    </script>
+</body>
+</html>

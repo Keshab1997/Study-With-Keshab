@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৯ - আলো</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset8.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset10.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "আলো", 
+            setName: "Set 9",                  
+
+            // পুরোনো সিস্টেমের জন্য এই প্রপার্টিটি রাখা হলো
+            name: "আলো (Light) - Set 9 (প্রশ্ন ৮১-৯০)",
+            
+            questions: [
+                {
+                    question: "আকাশে তারা মিটমিট করে জ্বলে কেন?",
+                    options: ["বায়ুমণ্ডলীয় বিক্ষেপণ", "বায়ুমণ্ডলীয় প্রতিফলন", "বায়ুমণ্ডলীয় বিচ্ছুরণ", "বায়ুমণ্ডলীয় প্রতিসরণ"],
+                    answer: 3,
+                    explanation: "বায়ুমণ্ডলের বিভিন্ন স্তরের ঘনত্ব এবং তাপমাত্রার পরিবর্তনের কারণে আলোর বারবার প্রতিসরণ ঘটে, তাই তারাগুলোকে মিটমিট করতে দেখা যায়।"
+                },
+                {
+                    question: "অপটিক্যাল ফাইবার কোন নীতির উপর ভিত্তি করে কাজ করে?",
+                    options: ["আলোর বিচ্ছুরণ", "আলোর বিক্ষেপণ", "পূর্ণ অভ্যন্তরীণ প্রতিফলন", "আলোর প্রতিসরণ"],
+                    answer: 2,
+                    explanation: "অপটিক্যাল ফাইবারে, পূর্ণ অভ্যন্তরীণ প্রতিফলনের মাধ্যমে সংকেত বা আলো প্রায় শক্তি ক্ষয় ছাড়াই এক প্রান্ত থেকে অন্য প্রান্তে যায়।"
+                },
+                {
+                    question: "উত্তল লেন্সের সামনে বস্তু কোথায় রাখলে প্রতিবিম্বটি বিবর্ধিত, অসদ এবং সমশীর্ষ হয়?",
+                    options: ["ফোকাস (F) এবং আলোককেন্দ্রের (O) মধ্যে", "2F দূরত্বে", "ফোকাসে (F)", "অসীম দূরত্বে"],
+                    answer: 0,
+                    explanation: "উত্তল লেন্সের ফোকাস এবং আলোককেন্দ্রের মধ্যে বস্তু রাখলে একটি বিবর্ধিত (বড়), অসদ ও সমশীর্ষ প্রতিবিম্ব গঠিত হয়, যা বিবর্ধক কাচ হিসেবে কাজ করে।"
+                },
+                {
+                    question: "অবতল লেন্সের ফোকাসের দিকে আপতিত আলোক রশ্মি প্রতিসরণের পর কীভাবে নির্গত হয়?",
+                    options: ["প্রধান অক্ষের সমান্তরালভাবে", "প্রধান ফোকাসের মধ্যে দিয়ে", "কোনো বিচ্যুতি ছাড়াই", "বক্রতা কেন্দ্রের মধ্যে দিয়ে"],
+                    answer: 0,
+                    explanation: "অবতল লেন্সের ক্ষেত্রে, যে রশ্মি ফোকাসের দিকে অগ্রসর হয় বলে মনে হয়, তা প্রতিসরণের পর প্রধান অক্ষের সমান্তরালভাবে নির্গত হয়।"
+                },
+                {
+                    question: "হাইপারমেট্রোপিয়া (দূরদৃষ্টি) ত্রুটি সংশোধনের জন্য কোন লেন্স ব্যবহার করা হয়?",
+                    options: ["বাইফোকাল লেন্স", "অবতল লেন্স", "উত্তল লেন্স", "সিলিন্ড্রিক্যাল লেন্স"],
+                    answer: 2,
+                    explanation: "হাইপারমেট্রোপিয়া বা দূরদৃষ্টির ক্ষেত্রে আলোকরশ্মি রেটিনার পেছনে মিলিত হয়। উত্তল লেন্স আলোকরশ্মিকে অভিসারী করে রেটিনার উপর ফেলতে সাহায্য করে।"
+                },
+                {
+                    question: "যে লেন্সের মধ্যভাগ সরু এবং প্রান্তভাগ পুরু, তাকে কী বলা হয়?",
+                    options: ["অবতল লেন্স", "সমতল লেন্স", "উত্তল লেন্স", "নলাকার লেন্স"],
+                    answer: 0,
+                    explanation: "অবতল লেন্সের মধ্যভাগ সরু এবং প্রান্তভাগ ক্রমশ পুরু হয়। এটি আলোকরশ্মিকে অপসারী করে, তাই একে অপসারী লেন্সও বলে।"
+                },
+                {
+                    question: "মায়োপিয়া (ক্ষীণদৃষ্টি) আক্রান্ত ব্যক্তির দৃষ্টি সংশোধনের জন্য কোন ধরনের লেন্স প্রয়োজন?",
+                    options: ["অপসারী লেন্স (অবতল)", "বাইফোকাল লেন্স", "সিলিন্ড্রিক্যাল লেন্স", "অভিসারী লেন্স (উত্তল)"],
+                    answer: 0,
+                    explanation: "মায়োপিয়া বা ক্ষীণদৃষ্টির ক্ষেত্রে আলোকরশ্মি রেটিনার সামনে মিলিত হয়। অবতল (অপসারী) লেন্স আলোকরশ্মিকে কিছুটা ছড়িয়ে দিয়ে সঠিক স্থানে অর্থাৎ রেটিনায় ফেলতে সাহায্য করে।"
+                },
+                {
+                    question: "একটি উত্তল লেন্সের ফোকাস দূরত্ব 50 সেমি হলে, এর ক্ষমতা (Power) কত?",
+                    options: ["+4 D", "+2 D", "+1 D", "+3 D"],
+                    answer: 1,
+                    explanation: "লেন্সের ক্ষমতা (P) = 100 / ফোকাস দূরত্ব (সেমি)। সুতরাং, P = 100 / 50 = +2 D (ডায়োপ্টার)। উত্তল লেন্সের ক্ষমতা ধনাত্মক হয়।"
+                },
+                {
+                    question: "একটি উত্তল লেন্সের ফোকাস দূরত্ব 2.5 মিটার। এর ক্ষমতা নির্ণয় করুন।",
+                    options: ["+0.3 D", "+0.2 D", "+0.4 D", "+0.5 D"],
+                    answer: 2,
+                    explanation: "লেন্সের ক্ষমতা (P) = 1 / ফোকাস দূরত্ব (মিটার)। সুতরাং, P = 1 / 2.5 = +0.4 D (ডায়োপ্টার)।"
+                },
+                {
+                    question: "প্রচলিত চিহ্নরীতি অনুযায়ী, একটি উত্তল লেন্সের ফোকাস দূরত্ব কী ধরনের হয়?",
+                    options: ["ধনাত্মক", "শূন্য", "ঋণাত্মক", "অসীম"],
+                    answer: 0,
+                    explanation: "প্রচলিত চিহ্নরীতি অনুযায়ী, উত্তল লেন্সের ফোকাস দূরত্বকে ধনাত্মক (+) এবং অবতল লেন্সের ফোকাস দূরত্বকে ঋণাত্মক (-) ধরা হয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

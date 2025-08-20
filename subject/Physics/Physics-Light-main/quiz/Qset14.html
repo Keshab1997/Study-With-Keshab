@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১৪ - আলো</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset13.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <!-- এটি শেষ সেট, তাই 'পরবর্তী' বাটনটি নিষ্ক্রিয় -->
+            <a href="#" class="btn btn-secondary disabled">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "আলো", 
+            setName: "Set 14",                  
+
+            // পুরোনো সিস্টেমের জন্য এই প্রপার্টিটি রাখা হলো
+            name: "আলো (Light) - Set 14 (প্রশ্ন ১৩১-১৩৪)",
+            
+            questions: [
+                {
+                    question: "আলোক রশ্মি তাদের মূল পথ থেকে বিচ্যুত হওয়ার ঘটনাকে, যখন তারা একটি মাধ্যম থেকে অন্য মাধ্যমে চলে যায়, তাকে কী বলা হয়?",
+                    options: ["ব্যতিচার", "প্রতিফলন", "বিক্ষেপণ", "প্রতিসরণ"],
+                    answer: 3,
+                    explanation: "এক স্বচ্ছ মাধ্যম থেকে অন্য স্বচ্ছ মাধ্যমে যাওয়ার সময় আলোর গতিপথের পরিবর্তন হওয়াকে আলোর প্রতিসরণ বলে।"
+                },
+                {
+                    question: "সূর্যোদয় এবং সূর্যাস্তের সময় পর্বতের চূড়াগুলি যে গোলাপী বা কমলা বর্ণ ধারণ করে, সেই ঘটনাটির নাম কী?",
+                    options: ["Brillouin বিক্ষেপণ", "বিভ্রান্তির বৃত্ত", "আলপেনগ্লো (Alpenglow)", "ব্যারেল বিকৃতি"],
+                    answer: 2,
+                    explanation: "এই ঘটনাকে আলপেনগ্লো (Alpenglow) বলা হয়, যা সূর্যোদয় বা সূর্যাস্তের সময় পর্বতচূড়ায় দেখা যায়। এটি মূলত আলোর বিক্ষেপণের ফল।"
+                },
+                {
+                    question: "সূর্য দ্বারা নির্গত আলোর স্বাভাবিক রঙ কী?",
+                    options: ["হলুদ", "কমলা", "লাল", "সাদা"],
+                    answer: 3,
+                    explanation: "সূর্যের আলো মূলত সাদা, যা সাতটি মূল রঙের (বেনীআসহকলা) মিশ্রণ। বায়ুমণ্ডল ভেদ করার সময় বিক্ষেপণের কারণে এটিকে আমরা সাধারণত হলুদ দেখি।"
+                },
+                {
+                    question: "বায়ুর পরম প্রতিসরণাঙ্কের মান প্রায় কত?",
+                    options: ["1.03", "1.003", "1.00003", "1.0003"],
+                    answer: 3,
+                    explanation: "শূন্য মাধ্যমের সাপেক্ষে বায়ুর পরম প্রতিসরণাঙ্কের মান প্রায় 1.0003, যা গণনার সুবিধার জন্য অনেক সময় 1 ধরা হয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

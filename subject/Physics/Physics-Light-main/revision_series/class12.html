@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 12 - আলোর রঙিন জগৎ - বিচ্ছুরণ ও বিক্ষেপণ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d81b60;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #004d40;
+        }
+        
+        h3, h4 {
+            font-size: 1.6em;
+        }
+
+        p, ul, ol, li {
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #c2185b;
+        }
+
+        blockquote {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            margin: 20px 0;
+            padding: 15px 20px;
+            font-style: italic;
+            font-size: 1.1em;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+
+        .diagram {
+            max-width: 600px;
+            background: #fff;
+            padding: 15px;
+        }
+        
+        .qa-section {
+            background-color: #fffde7;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #fbc02d;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Navigation Styles */
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .nav-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .nav-button.active {
+            background-color: #d81b60;
+            color: white;
+            border-color: #d81b60;
+        }
+        
+        .home-button {
+            background-color: #1e88e5;
+            color: white;
+            border-color: #1e88e5;
+        }
+        .home-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CLASS 12</h1>
+        <h2>বিষয়: আলোর রঙিন জগৎ - বিচ্ছুরণ ও বিক্ষেপণ</h2>
+
+        <p>নমস্কার বন্ধুরা!<br>আমরা এতদিন আলোর প্রতিফলন ও প্রতিসরণের মতো ঘটনা দেখেছি। আজ আমরা আলোর সবচেয়ে সুন্দর এবং রঙিন একটি ঘটনা দেখব, যার নাম <strong>আলোর বিচ্ছুরণ</strong>। এই ঘটনার জন্যই আমরা আকাশে রামধনু দেখতে পাই! চলো, এই রঙিন জগতে ডুব দেওয়া যাক।</p>
+
+        <h3>আলোর বিচ্ছুরণ কী? (Dispersion of Light)</h3>
+        <p><strong>সংজ্ঞা:</strong> কোনো স্বচ্ছ মাধ্যমের (যেমন প্রিজম) মধ্যে দিয়ে যাওয়ার সময় সাদা বা বহুবর্ণী আলো তার উপাদান বর্ণগুলিতে বিশ্লিষ্ট বা ভেঙে যাওয়ার ঘটনাকে <strong>আলোর বিচ্ছুরণ</strong> বলে।</p>
+        <img src="https://i0.wp.com/cbse.myindialist.com/wp-content/uploads/2019/06/062019_2034_Refractiono2.jpg
+" alt="প্রিজমের মধ্যে দিয়ে আলোর বিচ্ছুরণ" class="diagram">
+        <p>সাদা আলো আসলে একা নয়, তার ভেতরে সাতজন বন্ধু লুকিয়ে থাকে! প্রিজম সেই বন্ধুদের আলাদা করে দেয়।</p>
+        
+        <h3>বর্ণালি কী? (Spectrum)</h3>
+        <p>আলোর বিচ্ছুরণের ফলে পর্দায় যে সাতটি রঙের পটি বা ব্যান্ড তৈরি হয়, তাকে <strong>বর্ণালি</strong> বলে। এই সাতটি রঙকে আমরা মনে রাখি <strong>বেনীআসহকলা (VIBGYOR)</strong> নামে।</p>
+        <ul>
+            <li><strong>বে</strong> - বেগুনি (Violet)</li>
+            <li><strong>নী</strong> - নীল (Indigo)</li>
+            <li><strong>আ</strong> - আকাশি (Blue)</li>
+            <li><strong>স</strong> - সবুজ (Green)</li>
+            <li><strong>হ</strong> - হলুদ (Yellow)</li>
+            <li><strong>ক</strong> - কমলা (Orange)</li>
+            <li><strong>লা</strong> - লাল (Red)</li>
+        </ul>
+
+        <h3>রঙের জগৎ: প্রাথমিক, গৌণ ও পরিপূরক</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>রঙের ধরন</th>
+                    <th>সংজ্ঞা</th>
+                    <th>উদাহরণ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>প্রাথমিক বর্ণ</strong></td>
+                    <td>যে তিনটি রঙ দিয়ে বাকি সব রঙ তৈরি করা যায়।</td>
+                    <td><strong>লাল, সবুজ, নীল</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>গৌণ বর্ণ</strong></td>
+                    <td>দুটি প্রাথমিক রঙ মিশিয়ে যা তৈরি হয়।</td>
+                    <td>লাল + সবুজ = <strong>হলুদ</strong> <br> সবুজ + নীল = <strong>ময়ূরকণ্ঠী নীল</strong> <br> লাল + নীল = <strong>ম্যাজেন্টা</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>পরিপূরক বর্ণ</strong></td>
+                    <td>যে দুটি রঙ মিশিয়ে আবার সাদা রঙ ফিরে পাওয়া যায়।</td>
+                    <td>হলুদ + নীল = <strong>সাদা</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>কেন জিনিসপত্র রঙিন দেখায়?</h3>
+        <ul>
+            <li><strong>লাল গোলাপকে লাল দেখায় কেন?</strong> কারণ গোলাপ ফুলটি সাদা আলোর বাকি সব রঙ শোষণ করে নেয়, শুধু <strong>লাল রঙটিকেই প্রতিফলিত করে</strong> আমাদের চোখে পাঠায়।</li>
+            <li><strong>সবুজ পাতাকে সবুজ দেখায় কেন?</strong> কারণ পাতাটি শুধু <strong>সবুজ রঙকেই প্রতিফলিত করে</strong>, বাকি সব রঙ শোষণ করে।</li>
+            <li><strong>কালো বস্তুকে কালো দেখায় কেন?</strong> কারণ এটি <strong>সব রঙের আলোকে শোষণ করে নেয়</strong>, কোনো রঙই প্রতিফলিত করে না।</li>
+            <li><strong>সাদা বস্তুকে সাদা দেখায় কেন?</strong> কারণ এটি <strong>সব রঙের আলোকেই প্রতিফলিত করে দেয়</strong>।</li>
+        </ul>
+        <div class="qa-section">
+            <p><strong>মজার প্রশ্ন:</strong> একটি লাল গোলাপকে যদি সবুজ আলোয় দেখা হয়, তবে কেমন দেখাবে?<br>
+            <strong>উত্তর:</strong> <strong>কালো</strong>। কারণ, গোলাপটি সবুজ আলোকে শোষণ করে নেবে, প্রতিফলিত করার মতো কোনো লাল আলোই সেখানে নেই!</p>
+        </div>
+
+        <h2>আলোর বিক্ষেপণ (Scattering of Light)</h2>
+        <p>সূর্যের আলো যখন পৃথিবীর বায়ুমণ্ডলে প্রবেশ করে, তখন ধূলিকণা ও গ্যাস অণুর সাথে ধাক্কা খেয়ে চারদিকে ছড়িয়ে পড়ে। আলোর এই ছড়িয়ে পড়াকেই <strong>বিক্ষেপণ</strong> বলে।</p>
+        <img src="https://pbs.twimg.com/media/FXxrNCkacAAjP3O.jpg
+" alt="আলোর বিক্ষেপণের জন্য আকাশ নীল দেখায়">
+
+        <h3>বিক্ষেপণের কারসাজি</h3>
+        <ul>
+            <li><strong>আকাশ নীল দেখায় কেন?</strong> নীল আলোর তরঙ্গদৈর্ঘ্য কম, তাই বায়ুমণ্ডলের কণারা নীল আলোকে সবচেয়ে <strong>বেশি বিক্ষিপ্ত করে</strong> বা ছড়িয়ে দেয়। এই ছড়িয়ে পড়া নীল আলোই আমাদের চোখে এসে পৌঁছায়, তাই আকাশকে নীল দেখায়।</li>
+            <li><strong>বিপদ সংকেত লাল হয় কেন?</strong> লাল আলোর তরঙ্গদৈর্ঘ্য সবচেয়ে বেশি, তাই এর <strong>বিক্ষেপণ সবচেয়ে কম</strong> হয়। ফলে, লাল আলো অনেক দূর থেকেও স্পষ্ট দেখা যায়।</li>
+            <li><strong>মেঘ সাদা দেখায় কেন?</strong> মেঘের মধ্যে থাকা জলের কণাগুলো সব রঙের আলোকেই প্রায় সমানভাবে ছড়িয়ে দেয়। সব রঙ একসাথে মিশে গেলে কী রঙ হয়? ঠিক ধরেছ, <strong>সাদা</strong>!</li>
+            <li><strong>চাঁদের আকাশ কালো কেন?</strong> চাঁদে কোনো বায়ুমণ্ডল নেই। তাই সেখানে আলোর বিক্ষেপণ হওয়ার মতো কোনো কণাও নেই। ফলে, চাঁদের আকাশ একদম <strong>কালো</strong> দেখায়।</li>
+        </ul>
+
+        <h2>তড়িৎচুম্বকীয় তরঙ্গ (Electromagnetic Wave)</h2>
+        <p>আলো আসলে এক ধরনের <strong>তড়িৎচুম্বকীয় তরঙ্গ</strong>। এই তরঙ্গের একটি বিশাল পরিবার আছে, যাদের অনেককেই আমরা খালি চোখে দেখতে পাই না।</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/EM_Spectrum_Properties_edit.svg/800px-EM_Spectrum_Properties_edit.svg.png
+" alt="তড়িৎচুম্বকীয় বর্ণালী">
+        <blockquote><strong>পরিবারের সদস্যরা (কম্পাঙ্ক অনুযায়ী):</strong><br>গামা রশ্মি > এক্স-রে > অতিবেগুনি রশ্মি > <strong>দৃশ্যমান আলো</strong> > অবলোহিত রশ্মি > মাইক্রোওয়েভ > বেতার তরঙ্গ</blockquote>
+        <h4>ক্ষতিকারক প্রভাব:</h4>
+        <ul>
+            <li><strong>অতিবেগুনি (UV) রশ্মি:</strong> ত্বকের ক্যানসার ঘটাতে পারে।</li>
+            <li><strong>এক্স-রে ও গামা রশ্মি:</strong> কোষ ধ্বংস করতে পারে এবং অত্যন্ত ক্ষতিকারক।</li>
+        </ul>
+        
+        <h3>কিছু জরুরি তথ্য এক নজরে</h3>
+        <ul>
+            <li>সূর্য থেকে পৃথিবীতে আলো আসতে সময় লাগে প্রায় <strong>৮ মিনিট ২০ সেকেন্ড</strong>।</li>
+            <li>শূন্য মাধ্যমে আলোর বেগ <strong>3 × 10⁸ মি/সে</strong>।</li>
+            <li>লাল আলোর তরঙ্গদৈর্ঘ্য <strong>সবচেয়ে বেশি</strong> (কম বাঁকে), বেগুনি আলোর তরঙ্গদৈর্ঘ্য <strong>সবচেয়ে কম</strong> (বেশি বাঁকে)।</li>
+            <li>অ্যাম্বুলেন্স গাড়িতে শব্দটি উল্টো লেখা থাকে, যাতে সামনের গাড়ির চালক তার আয়নায় <strong>পার্শ্বীয় পরিবর্তনের</strong> ফলে শব্দটিকে সোজা দেখতে পায়।</li>
+        </ul>
+
+        <h3 style="text-align: center; border: none; color: #004d40; margin-top: 40px;">Thank You!</h3>
+    </div>
+
+    <nav class="navigation">
+        <a href="class11.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class10.html" class="nav-button">10</a>
+        <a href="class11.html" class="nav-button">11</a>
+        <a href="class12.html" class="nav-button active">12</a>
+        <a href="class13.html" class="nav-button">13</a>
+        <a href="class14.html" class="nav-button">14</a>
+        <a href="class13.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+</body>
+</html>

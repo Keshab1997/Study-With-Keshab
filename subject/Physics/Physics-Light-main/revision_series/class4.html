@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 04 - আলোর কারসাজি - আমাদের চারপাশের দুনিয়া</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d81b60;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #004d40;
+        }
+        
+        h3, h4 {
+            font-size: 1.6em;
+        }
+
+        p, ul, ol, li {
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #c2185b;
+        }
+
+        blockquote {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            margin: 20px 0;
+            padding: 15px 20px;
+            font-style: italic;
+            font-size: 1.1em;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+
+        .diagram {
+            max-width: 500px;
+            background: #fff;
+            padding: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .qa-section {
+            background-color: #f1f8e9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #689f38;
+            margin-top: 20px;
+        }
+
+        /* Navigation Styles */
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .nav-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .nav-button.active {
+            background-color: #d81b60;
+            color: white;
+            border-color: #d81b60;
+        }
+
+        .nav-button.disabled {
+            color: #aaa;
+            pointer-events: none;
+            background-color: #f5f5f5;
+        }
+        
+        .home-button {
+            background-color: #1e88e5;
+            color: white;
+            border-color: #1e88e5;
+        }
+        .home-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CLASS 04</h1>
+        <h2>বিষয়: আলোর কারসাজি - আমাদের চারপাশের দুনিয়া</h2>
+
+        <p>নমস্কার বন্ধুরা!<br>আমরা তো আলোর প্রতিফলন আর প্রতিসরণ নিয়ে অনেক কিছু শিখেছি। কিন্তু এই ঘটনাগুলো কি শুধু বইয়ের পাতাতেই থাকে? একদম না! আজ আমরা দেখব, এই বিষয়গুলো আমাদের প্রতিদিনের জীবনে কীভাবে জাদু দেখায়। চলো, গোয়েন্দার মতো করে চারপাশের ঘটনাগুলোর রহস্য সমাধান করি!</p>
+
+        <h3>রহস্য ১: প্রতিফলনের জাদু (The Magic of Reflection)</h3>
+
+        <div class="qa-section">
+            <h4>প্রশ্ন: জুতো পালিশ করলে চকচক করে কেন?</h4>
+            <p><strong>উত্তর:</strong> যখন জুতো ময়লা থাকে, তখন তার উপরিতল হয় অমসৃণ। সেখানে আলোর <strong>বিক্ষিপ্ত প্রতিফলন</strong> হয় (আলোকরশ্মিগুলো চারদিকে ছড়িয়ে পড়ে)। কিন্তু যখন তুমি জুতো পালিশ করো, তখন তার উপরিতল মসৃণ হয়ে যায়। আর মসৃণ তলে আলোকরশ্মি খুব শান্তশিষ্ট ছাত্রের মতো <strong>নিয়মিত প্রতিফলন</strong> ঘটায়। তাই আমাদের চোখে ধাঁধা লাগে আর জুতো চকচকে দেখায়।</p>
+            <img src="https://qph.cf2.quoracdn.net/main-qimg-aee47f05ab0f2d3bb34e6e9916042a29
+" alt="নিয়মিত বনাম বিক্ষিপ্ত প্রতিফলন" class="diagram">
+        </div>
+
+        <div class="qa-section">
+            <h4>প্রশ্ন: সিনেমার পর্দায় আয়না ব্যবহার হয় না কেন?</h4>
+            <p><strong>উত্তর:</strong> ভাবো তো, সিনেমার পর্দায় যদি একটা বিশাল আয়না থাকত, কী হতো? আয়নাতে হয় <strong>নিয়মিত প্রতিফলন</strong>। ফলে, প্রজেক্টর থেকে আসা আলোকরশ্মিগুলো প্রতিফলিত হয়ে শুধু হলের একটি নির্দিষ্ট কোণায় থাকা দর্শকদের চোখেই পড়ত। বাকিরা কিছুই দেখতে পেত না!</p>
+            <p>এজন্যই সিনেমার পর্দা <strong>সাদা ও অমসৃণ</strong> করা হয়।</p>
+            <ul>
+                <li><strong>অমসৃণ:</strong> যাতে <strong>বিক্ষিপ্ত প্রতিফলন</strong> হয় এবং আলো চারদিকে ছড়িয়ে পড়ে। ফলে হলের সব দর্শক ছবিটি স্পষ্ট দেখতে পায়।</li>
+                <li><strong>সাদা:</strong> যাতে সব রঙের আলো প্রতিফলিত হয়। পর্দা যদি কালো হতো, তবে সব আলো শোষিত হয়ে যেত, আর আমরা কোনো ছবিই দেখতে পেতাম না!</li>
+            </ul>
+             <img src="https://moviereviewinbangla.com/wp-content/uploads/2025/06/%E0%A6%B8%E0%A6%BF%E0%A6%A8%E0%A7%87%E0%A6%AE%E0%A6%BE%E0%A6%B0-%E0%A6%AA%E0%A6%B0%E0%A7%8D%E0%A6%A6%E0%A6%BE-%E0%A6%B8%E0%A6%BE%E0%A6%A6%E0%A6%BE-%E0%A6%93-%E0%A6%85%E0%A6%AE%E0%A6%B8%E0%A7%83%E0%A6%A3-%E0%A6%95%E0%A6%B0%E0%A6%BE-%E0%A6%B9%E0%A6%AF%E0%A6%BC-%E0%A6%95%E0%A7%87%E0%A6%A8-2.png
+" alt="সিনেমার পর্দায় বিক্ষিপ্ত প্রতিফলন">
+        </div>
+
+        <div class="qa-section">
+            <h4>প্রশ্ন: আয়নায় মুখ দেখা গেলেও দেয়ালে যায় না কেন?</h4>
+            <p><strong>উত্তর:</strong> এতক্ষণে তোমরা নিশ্চয়ই গোয়েন্দার মতো উত্তরটা ধরে ফেলেছ! কারণটা হলো প্রতিফলনের ধরন। আয়নার তল মসৃণ, তাই সেখানে <strong>নিয়মিত প্রতিফলন</strong> হয় এবং একটি স্পষ্ট প্রতিবিম্ব তৈরি হয়। কিন্তু দেয়ালের তল অমসৃণ, তাই সেখানে আলোর <strong>বিক্ষিপ্ত প্রতিফলন</strong> হয়। ফলে আলো চারদিকে ছড়িয়ে পড়ে, কিন্তু কোনো স্পষ্ট প্রতিবিম্ব তৈরি হয় না।</p>
+        </div>
+
+        <div class="qa-section">
+            <h4>প্রশ্ন: আয়নার পেছনে কী থাকে? কেন থাকে?</h4>
+            <p><strong>উত্তর:</strong> শুধু এক টুকরো কাচ কিন্তু আয়না নয়! কাচ তো স্বচ্ছ, আলো ওর ভেতর দিয়ে চলে যায়। আয়না বানানোর জন্য কাচের এক পিঠে পারদ বা রুপার একটি পাতলা <strong>প্রলেপ (Silvering)</strong> দেওয়া হয়। এই অস্বচ্ছ প্রলেপটিই একটি চমৎকার প্রতিফলক তল হিসেবে কাজ করে এবং প্রায় সমস্ত আলোকে প্রতিফলিত করে একটি ঝকঝকে প্রতিবিম্ব তৈরি করে।</p>
+        </div>
+
+        <h3>রহস্য ২: ঊষা ও গোধূলির আলো</h3>
+        <p>সূর্য ডুবে যাওয়ার পরেও কিছুক্ষণ আকাশে আলো থাকে, আবার সূর্য ওঠার আগেও আকাশ আলোকিত হয়ে যায়। কীভাবে?</p>
+        <p><strong>উত্তর:</strong> সূর্য দিগন্তের নিচে চলে গেলেও তার আলোকরশ্মি পৃথিবীর বায়ুমণ্ডলের অনেক ওপর পর্যন্ত পৌঁছায়। সেখানে থাকা ধূলিকণা ও গ্যাসকণায় সেই আলোর <strong>বিক্ষিপ্ত প্রতিফলন</strong> ঘটে। সেই প্রতিফলিত আলোই পৃথিবীতে ছড়িয়ে পড়ে এবং আমরা <strong>গোধূলি</strong> (সূর্যাস্তের পর) বা <strong>ঊষা</strong> (সূর্যোদয়ের আগে)-র আলো দেখতে পাই।</p>
+        
+
+        <h3>রহস্য ৩: প্রতিসরণের জাদু (The Magic of Refraction)</h3>
+        <p>মনে আছে তো? আলো যখন এক মাধ্যম থেকে অন্য মাধ্যমে (যেমন: বাতাস থেকে জলে) প্রবেশ করে, তখন সে তার পথ থেকে একটু বেঁকে যায়। এই ঘটনাকেই <strong>প্রতিসরণ</strong> বলে।</p>
+        <img src="http://stickmanphysics.com/wp-content/uploads/2021/04/Refraction.jpg
+         " alt="জলে ডোবানো পেন্সিল বাঁকা দেখায়" class="diagram">
+
+        <h4>প্রতিসরণের নিয়ম (স্নেলের সূত্র)</h4>
+        <ol>
+            <li>আপতিত রশ্মি, প্রতিসৃত রশ্মি এবং অভিলম্ব একই সমতলে থাকে।</li>
+            <li>`sin(i) / sin(r) = n` (একটি ধ্রুবক)। এই `n`-কেই বলে <strong>প্রতিসরাঙ্ক</strong>। এটি বলে দেয় আলো কতটা বেঁকে যাবে।</li>
+        </ol>
+
+        <h4>প্রতিসরণের অবাক করা ঘটনা</h4>
+        <ul>
+            <li><strong>জলে ডোবানো পেন্সিল বাঁকা দেখায়:</strong> একটি গ্লাসের জলে চামচ ডোবালে দেখবে, জলের নিচে চামচের অংশটি কেমন যেন বেঁকে গেছে। এটা প্রতিসরণের জন্যই হয়।</li>
+            <li><strong>পুকুরের গভীরতা কম মনে হওয়া:</strong> জলের তলায় থাকা কোনো বস্তু থেকে আলো যখন আমাদের চোখে আসে, তখন প্রতিসরণের ফলে বস্তুটিকে তার আসল অবস্থানের চেয়ে একটু ওপরে দেখা যায়। তাই পুকুর বা বালতির তলা কম গভীর মনে হয়।</li>
+            <li><strong>সূর্যকে আগে দেখা ও পরেও দেখা:</strong> প্রতিসরণের জন্যই সূর্য ওঠার একটু আগেই আমরা সূর্যকে দেখতে পাই এবং ডোবার পরেও কিছুক্ষণ দেখতে পাই।</li>
+            <li><strong>তারারা কেন মিটমিট করে?:</strong> পৃথিবীর বায়ুমণ্ডলের বিভিন্ন স্তরের ঘনত্ব আলাদা। তারাদের আলো সেই স্তরগুলো দিয়ে আসার সময় বারবার প্রতিসৃত হয় ও কাঁপতে থাকে। তাই আমাদের চোখে মনে হয় তারারা ঝিকমিক করছে।</li>
+        </ul>
+        <img src="https://i.sstatic.net/V3plu.gif
+        " alt="বায়ুমণ্ডলে আলোর প্রতিসরণের জন্য তারাদের ঝিকমিক করতে দেখা যায়।">
+
+        <h3>সবশেষে, চ্যুতিকোণ (Angle of Deviation)</h3>
+        <p>প্রতিফলনের ফলে আলোকরশ্মি তার আসল পথ থেকে মোট যে কোণে বেঁকে যায়, তাকে <strong>চ্যুতিকোণ (δ)</strong> বলে।</p>
+        <blockquote>সূত্র: δ = 180° - 2i (এখানে 'i' হলো আপতন কোণ)</blockquote>
+
+        <h3 style="text-align: center; border: none; color: #004d40; margin-top: 40px;">Thank You!</h3>
+    </div>
+
+    <nav class="navigation">
+        <a href="class3.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button active">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class10.html" class="nav-button">10</a>
+        <a href="class11.html" class="nav-button">11</a>
+        <a href="class12.html" class="nav-button">12</a>
+        <a href="class13.html" class="nav-button">13</a>
+        <a href="class14.html" class="nav-button">14</a>
+        <a href="class5.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+</body>
+</html>

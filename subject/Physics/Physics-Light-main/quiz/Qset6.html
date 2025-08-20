@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৬ - আলো</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset5.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset7.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "আলো", 
+            setName: "Set 6",                  
+
+            // পুরোনো সিস্টেমের জন্য এই প্রপার্টিটি রাখা হলো
+            name: "আলো (Light) - Set 6 (প্রশ্ন ৫১-৬০)",
+            
+            questions: [
+                {
+                    question: "অবতল দর্পণের সামনে যখন কোনো বস্তুকে অসীমে রাখা হয়, তখন তার প্রতিবিম্ব কোথায় গঠিত হয়?",
+                    options: ["বক্রতার কেন্দ্রে (C)", "প্রধান ফোকাসে (F)", "ফোকাস (F) এবং কেন্দ্রের (C) মধ্যে", "কেন্দ্রের (C) বাইরে"],
+                    answer: 1,
+                    explanation: "অসীম দূরত্ব থেকে আসা সমান্তরাল রশ্মিগুচ্ছ অবতল দর্পণে প্রতিফলনের পর প্রধান ফোকাসে মিলিত হয়। তাই প্রতিবিম্ব ফোকাসে গঠিত হয়।"
+                },
+                {
+                    question: "অবতল দর্পণের বক্রতার কেন্দ্রের বাইরে কোনো বস্তুকে স্থাপন করা হলে, প্রতিবিম্বটি কোথায় তৈরি হবে?",
+                    options: ["C-এর বাইরে", "ফোকাসের উপর", "C-তে", "ফোকাস এবং C-এর মধ্যে"],
+                    answer: 3,
+                    explanation: "বস্তু বক্রতার কেন্দ্রের বাইরে থাকলে, তার প্রতিবিম্ব বক্রতার কেন্দ্র (C) এবং প্রধান ফোকাসের (F) মধ্যে গঠিত হয়। প্রতিবিম্বটি সদ, উল্টানো এবং ছোট আকারের হয়।"
+                },
+                {
+                    question: "দাঁতের চিকিৎসকরা একটি অবতল দর্পণ ব্যবহার করেন কারণ এটিতে নির্মিত প্রতিবিম্বটি হয়...",
+                    options: ["সদ এবং বিবর্ধিত", "অসদ কিন্তু ঝাপসা", "সদ কিন্তু ছোট", "অসদ এবং বিবর্ধিত"],
+                    answer: 3,
+                    explanation: "বস্তুকে (দাঁত) ফোকাস ও মেরুর মধ্যে রাখলে অবতল দর্পণ একটি বিবর্ধিত, সোজা এবং অসদ প্রতিবিম্ব গঠন করে, যা চিকিৎসকের দেখতে সুবিধা হয়।"
+                },
+                {
+                    question: "যানবাহনের হেডলাইটে কোন ধরনের দর্পণ ব্যবহৃত হয়?",
+                    options: ["সমতল দর্পণ", "সমতল-উত্তল দর্পণ", "উত্তল দর্পণ", "অবতল দর্পণ"],
+                    answer: 3,
+                    explanation: "হেডলাইটের বাল্বটিকে অবতল দর্পণের ফোকাসে রাখা হয়, যাতে প্রতিফলনের পর আলোকরশ্মি সমান্তরালভাবে অনেক দূর পর্যন্ত যেতে পারে।"
+                },
+                {
+                    question: "অবতল দর্পণের বক্রতার কেন্দ্রে একটি বস্তু স্থাপন করা হলে, তার প্রতিবিম্ব কোথায় গঠিত হবে?",
+                    options: ["ফোকাস এবং বক্রতার কেন্দ্রের মধ্যে", "ফোকাসে", "বক্রতার কেন্দ্রের বাইরে", "বক্রতার কেন্দ্রে"],
+                    answer: 3,
+                    explanation: "বস্তুকে বক্রতার কেন্দ্রে (C) রাখলে, তার প্রতিবিম্বও বক্রতার কেন্দ্রেই গঠিত হয়। প্রতিবিম্বটি সদ, উল্টানো এবং বস্তুর সমান আকারের হয়।"
+                },
+                {
+                    question: "নিচের কোনটিতে অবতল দর্পণ ব্যবহার করা হয় না?",
+                    options: ["সার্চ লাইট", "রিয়ার-ভিউ মিরর", "গাড়ির হেডলাইট", "সৌরচুল্লি"],
+                    answer: 1,
+                    explanation: "রিয়ার-ভিউ মিররে উত্তল দর্পণ ব্যবহার করা হয় কারণ এটি একটি প্রশস্ত দৃশ্য প্রদান করে। বাকিগুলোতে অবতল দর্পণ ব্যবহৃত হয়।"
+                },
+                {
+                    question: "কোন দর্পণে গঠিত প্রতিবিম্বের আকার সর্বদা বস্তুর আকারের সমান হয়?",
+                    options: ["অবতল দর্পণ", "উত্তল দর্পণ", "প্ল্যানো-উত্তল দর্পণ", "সমতল দর্পণ"],
+                    answer: 3,
+                    explanation: "সমতল দর্পণ সর্বদা বস্তুর সমান আকারের, অসদ এবং সমশীর্ষ প্রতিবিম্ব গঠন করে।"
+                },
+                {
+                    question: "যদি একটি অবতল দর্পণের বক্রতার ব্যাসার্ধ 6.2 সেমি হয়, তাহলে এর ফোকাস দূরত্ব কত হবে?",
+                    options: ["-12.4 সেমি", "-3.1 সেমি", "3.1 সেমি", "6.2 সেমি"],
+                    answer: 1, // অবতল দর্পণের জন্য ঋণাত্মক চিহ্ন যোগ করা হলো
+                    explanation: "ফোকাস দূরত্ব (f) = R/2 = 6.2/2 = 3.1 সেমি। যেহেতু এটি একটি অবতল দর্পণ, চিহ্ন প্রথা অনুযায়ী ফোকাস দূরত্ব ঋণাত্মক হবে, অর্থাৎ -3.1 সেমি।"
+                },
+                {
+                    question: "যখন একটি বস্তুকে অবতল দর্পণের বক্রতার কেন্দ্র (C) এবং ফোকাসের (F) মধ্যে স্থাপন করা হয়, তখন প্রতিবিম্বটি কোথায় তৈরি হবে?",
+                    options: ["F-এ", "C-তে", "অসীমে", "C-এর বাইরে"],
+                    answer: 3,
+                    explanation: "বস্তুকে C এবং F-এর মধ্যে রাখলে, প্রতিবিম্বটি বক্রতার কেন্দ্রের (C) বাইরে গঠিত হয়। এটি সদ, উল্টানো এবং বিবর্ধিত হয়।"
+                },
+                {
+                    question: "প্রতিবিম্বের উচ্চতা এবং বস্তুর উচ্চতার অনুপাতকে কী বলা হয়?",
+                    options: ["পার্শ্বীয় পরিবর্তন", "দর্পণ সূত্র", "প্রতিফলনের প্রথম সূত্র", "রৈখিক বিবর্ধন"],
+                    answer: 3,
+                    explanation: "রৈখিক বিবর্ধন (Linear Magnification) = প্রতিবিম্বের উচ্চতা (h') / বস্তুর উচ্চতা (h)।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

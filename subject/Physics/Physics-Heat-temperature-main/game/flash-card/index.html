@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>স্মার্ট ফ্ল্যাশ কার্ড</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-color-theme="default" data-mode="light">
+
+    <main class="flashcard-game-container">
+        <header>
+           
+			<!-- নতুন: লোগো এবং টাইটেলকে একসাথে রাখার জন্য একটি কন্টেইনার -->
+    <div class="title-container">
+        <!-- নতুন: লogo যোগ করা হয়েছে -->
+        <img src="logo.png" alt="স্মার্ট ফ্ল্যাশকার্ড লোগো" class="header-logo">
+        <h1>স্মার্ট ফ্ল্যাশ কার্ড</h1>
+    </div>
+            <div class="set-selector-container">
+                <label for="set-selector">সেট:</label>
+                <select id="set-selector"></select>
+            </div>
+        </header>
+
+        <!-- থিম কন্ট্রোল -->
+        <div class="controls-panel">
+            <div class="theme-selector">
+                <span>থিম:</span>
+                <button class="theme-btn" data-theme="default" title="ডিফল্ট থিম"></button>
+                <button class="theme-btn" data-theme="forest" title="ফরেস্ট থিম"></button>
+                <button class="theme-btn" data-theme="ocean" title="ওশান থিম"></button>
+                <button class="theme-btn" data-theme="sunset" title="সানসেট থিম"></button>
+                <button class="theme-btn" data-theme="rose" title="রোজ থিম"></button>
+            </div>
+            <div class="mode-switcher">
+                <span>☀️</span>
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <span>🌙</span>
+            </div>
+        </div>
+        
+        <div id="flashcard" role="button" tabindex="0" aria-label="কার্ডটি উল্টাতে ক্লিক করুন">
+            <div class="card-inner">
+                <div class="card-face card-front">
+                    <p id="card-front-text">লোড হচ্ছে...</p>
+                </div>
+                <div class="card-face card-back">
+                    <div class="card-back-content">
+                        <p id="card-back-text">উত্তর</p>
+                        <p id="card-explanation">ব্যাখ্যা</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- প্রোগ্রেস বার -->
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        <p id="card-counter" aria-live="polite">0 / 0</p>
+        
+        <div class="controls">
+            <button id="prev-btn">◀ আগেরটি</button>
+            <button id="shuffle-btn">Shuffle 🔄</button>
+            <button id="next-btn">পরেরটি ▶</button>
+        </div>
+
+        <div class="extra-controls">
+             <button id="mark-learned-btn">✅ শিখেছি</button>
+             <button id="restart-btn" class="hidden">🔄 আবার শুরু করুন</button>
+        </div>
+        
+    </main>
+
+    <footer>
+        <p> <strong>কেশব সরকার </strong></p>
+        <p>&copy; 2025 সর্বস্বত্ব সংরক্ষিত</p>
+    </footer>
+
+    <script src="data.js"></script> 
+    <script src="script.js"></script>
+</body>
+</html>

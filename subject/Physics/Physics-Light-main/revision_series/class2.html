@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 02 - আলোর প্রতিফলন</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d81b60;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #004d40;
+        }
+        
+        h3, h4 {
+            font-size: 1.6em;
+        }
+
+        p, ul {
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #c2185b;
+        }
+
+        blockquote {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            margin: 20px 0;
+            padding: 15px 20px;
+            font-style: italic;
+            font-size: 1.1em;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+        
+        .diagram {
+            max-width: 500px;
+            background: #fff;
+            padding: 15px;
+        }
+        
+        .problem-solving {
+            background-color: #fff9c4;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #fbc02d;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: '✔ ';
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+
+        /* Navigation Styles */
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .nav-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .nav-button.active {
+            background-color: #d81b60;
+            color: white;
+            border-color: #d81b60;
+        }
+
+        .nav-button.disabled {
+            color: #aaa;
+            pointer-events: none; /* Makes the button unclickable */
+            background-color: #f5f5f5;
+        }
+        
+        .home-button {
+            background-color: #1e88e5;
+            color: white;
+            border-color: #1e88e5;
+        }
+        .home-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CLASS 02</h1>
+        <h2>বিষয়: আলোর দারুণ এক খেলা - প্রতিফলন</h2>
+
+        <p>নমস্কার বন্ধুরা!<br>আগের ক্লাসে আমরা আলোর সাথে বন্ধুত্ব করেছিলাম, তাই না? আজ আমরা আলোর একটা দারুণ খেলা দেখব। তোমরা দেয়ালে বল ছুঁড়ে খেলো তো? বলটা দেয়ালে ধাক্কা খেয়ে আবার তোমার দিকেই ফিরে আসে।</p>
+        <p>মজার ব্যাপার হলো, আলোও ঠিক এই খেলাটাই খেলে!</p>
+        
+        <h3>প্রতিফলন কী? (What is Reflection?)</h3>
+        <p>যখন আলো কোনো চকচকে জিনিসে (যেমন আয়না বা স্টিলের থালা) গিয়ে ধাক্কা খায়, তখন ও আবার ফিরে আসে। আলোর এই ধাক্কা খেয়ে ফিরে আসার ঘটনাকেই বিজ্ঞানের ভাষায় বলে <strong>আলোর প্রতিফলন (Reflection)</strong>।</p>
+        <img src="https://i.ytimg.com/vi/rUQGiTqrpoo/hqdefault.jpg
+" alt="শান্ত জলে গাছের সুন্দর প্রতিফলন">
+
+        <h3>খেলার মাঠ ও খেলোয়াড়দের চিনে নিই</h3>
+        <p>চলো, এই খেলার সাথে জড়িত সবাইকে আমরা চিনে নিই।</p>
+       
+        
+        <h4>খেলোয়াড়দের পরিচয়:</h4>
+        <ul>
+            <li><strong>আপতিত রশ্মি:</strong> যে আলোটা এসে আয়নায় ধাক্কা মারে।</li>
+            <li><strong>প্রতিফলিত রশ্মি:</strong> যে আলোটা ধাক্কা খেয়ে ফিরে যায়।</li>
+            <li><strong>প্রতিফলক তল:</strong> যে মাঠে (আয়না বা মসৃণ জায়গা) খেলাটা হচ্ছে।</li>
+            <li><strong>আপতন বিন্দু:</strong> মাঠের যে জায়গায় আলোটা এসে ধাক্কা খায়।</li>
+            <li><strong>অভিলম্ব:</strong> এটা একটা কাল্পনিক সোজা দাগ (রেফারি-র মতো!), যা আমাদের কোণ মাপতে সাহায্য করে।</li>
+            <li><strong>আপতন কোণ (i):</strong> আপতিত রশ্মি, অভিলম্বের সাথে যে কোণ তৈরি করে।</li>
+            <li><strong>প্রতিফলন কোণ (r):</strong> প্রতিফলিত রশ্মি, অভিলম্বের সাথে যে কোণ তৈরি করে।</li>
+        </ul>
+
+        <h3>প্রতিফলনের খেলার নিয়ম (Laws of Reflection)</h3>
+        <p>আলোর এই খেলার দুটো খুব সহজ নিয়ম আছে। আলো কিন্তু এই নিয়মগুলো খুব ভালো করে মেনে চলে!</p>
+        <p><strong>নিয়ম ১:</strong> আপতিত রশ্মি, প্রতিফলিত রশ্মি আর অভিলম্ব—এই তিনজন খেলোয়াড় সব সময় <strong>একই মাঠে (সমতলে)</strong> থাকে। কেউ মাঠের বাইরে যায় না।</p>
+        <p><strong>নিয়ম ২:</strong> <strong>আপতন কোণ (i) আর প্রতিফলন কোণ (r) সব সময় সমান হয়।</strong> অর্থাৎ, আলো যে কোণে এসে ধাক্কা মারে, ঠিক সেই কোণেই ফিরে যায়। একটুও এদিক-ওদিক হয় না।</p>
+        <blockquote><strong>i = r</strong></blockquote>
+
+        <h2>প্রতিফলনের প্রকারভেদ (Types of Reflection)</h2>
+        <p>প্রতিফলন দুই রকমের হয়, মাঠের ওপর নির্ভর করে।</p>
+
+        <h4>১. নিয়মিত প্রতিফলন (Regular Reflection)</h4>
+        <p>যখন মাঠটা খুব মসৃণ আর চকচকে হয় (যেমন আয়না, নতুন স্টিলের বাসন), তখন আলোর রশ্মিরা খুব শান্তশিষ্ট ছাত্রের মতো সার বেঁধে আসে এবং সার বেঁধেই ফিরে যায়।</p>
+        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20210224202142/7.JPG
+" alt="নিয়মিত প্রতিফলনের ডায়াগ্রাম" class="diagram">
+
+        <h4>২. বিক্ষিপ্ত প্রতিফলন (Diffuse Reflection)</h4>
+        <p>যখন মাঠটা অমসৃণ বা এবড়োখেবড়ো হয় (যেমন বইয়ের পাতা, দেয়াল, কাঠ), তখন আলোর রশ্মিরা ছুটির ঘণ্টার পর তোমরা যেমন মাঠে ছড়িয়ে পড়ো, ঠিক তেমন চারদিকে ছড়িয়ে পড়ে।</p>
+        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20210221184656/8.JPG
+" alt="বিক্ষিপ্ত প্রতিফলনের ডায়াগ্রাম" class="diagram">
+        <blockquote><strong>মজার তথ্য:</strong> এই বিক্ষিপ্ত প্রতিফলনের জন্যই আমরা চারপাশের সেইসব জিনিস দেখতে পাই, যেগুলো আয়নার মতো চকচকে নয়! যেমন - বই, খাতা, টেবিল।</blockquote>
+
+        <h2>চ্যুতি কোণ কী? (Angle of Deviation)</h2>
+        <p>ভাবো তো, আয়নাটা যদি না থাকত, তাহলে আলোকরশ্মিটা কোন পথে যেত? সোজা পথে, তাই না? কিন্তু আয়না থাকায় ধাক্কা খেয়ে ও অন্য পথে চলে গেল। আলোর এই <strong>পথ পরিবর্তন করাকে</strong> চ্যুতি বলে।</p>
+        <p>আলোকরশ্মি তার আসল পথ থেকে মোট যে কোণে বেঁকে যায়, তাকে <strong>চ্যুতিকোণ (δ)</strong> বলে।</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Deviation_angle_of_a_beam_of_light_entering_a_medium_with_refractive_index.png
+" alt="চ্যুতিকোণের ডায়াগ্রাম" class="diagram">
+        <blockquote>সূত্র: δ = 180° - 2i</blockquote>
+
+        <h2>চলো, কয়েকটি অঙ্ক কষি!</h2>
+        <div class="problem-solving">
+            <p><strong>প্রশ্ন ১:</strong> একটি আলোকরশ্মি আয়নার ওপর এমনভাবে পড়ল যে আপতন কোণ হলো ৩০°। প্রতিফলন কোণ কত হবে?</p>
+            <p><strong>উত্তর:</strong> আমরা জানি, i = r। তাই আপতন কোণ ৩০° হলে, প্রতিফলন কোণও <strong>৩০°</strong> হবে।</p>
+            <hr>
+            <p><strong>প্রশ্ন ২:</strong> আপতন কোণ ৬০° হলে চ্যুতিকোণ কত হবে?</p>
+            <p><strong>উত্তর:</strong> সূত্রটি হলো: δ = 180° - 2i <br> δ = 180° - (2 × 60°) <br> δ = 180° - 120° = <strong>60°</strong></p>
+            <hr>
+            <p><strong>প্রশ্ন ৩:</strong> একটি আলোকরশ্মি সমতল দর্পণের তলের সাথে ৫০° কোণে আপতিত হলে, প্রতিফলন কোণ কত?</p>
+            <p><strong>উত্তর:</strong> এখানে আলোটা দর্পণের সাথে ৫০° কোণ করেছে, অভিলম্বের সাথে নয়।<br> অভিলম্ব আর দর্পণের কোণ হলো ৯০°।<br> তাহলে, আপতন কোণ (i) = ৯০° - ৫০° = ৪০° <br> যেহেতু i = r, তাই প্রতিফলন কোণও হবে <strong>৪০°</strong>।</p>
+        </div>
+        
+        <p style="margin-top: 30px;">তাহলে আজ আমরা আলোর প্রতিফলন নামের দারুণ খেলাটা শিখে গেলাম! আমরা জানলাম খেলার নিয়ম কী, খেলোয়াড় কারা আর কত রকমের খেলা হয়।</p>
+        <h3 style="text-align: center; border: none; color: #004d40;">Thank You!</h3>
+    </div>
+
+    <nav class="navigation">
+        <a href="class1.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button active">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class10.html" class="nav-button">10</a>
+        <a href="class11.html" class="nav-button">11</a>
+        <a href="class12.html" class="nav-button">12</a>
+        <a href="class13.html" class="nav-button">13</a>
+        <a href="class14.html" class="nav-button">14</a>
+        <a href="class3.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+</body>
+</html>

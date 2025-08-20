@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ২ - আলো</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset3.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "আলো", 
+            setName: "Set 2",                  
+
+            // পুরোনো সিস্টেমের জন্য এই প্রপার্টিটি রাখা হলো
+            name: "আলো (Light) - Set 2 (প্রশ্ন ১১-২০)",
+            
+            questions: [
+                {
+                    question: "যে সকল বস্তু নিজে থেকে আলো উৎপন্ন করতে পারে, তাদের কী বলা হয়?",
+                    options: ["স্বচ্ছ বস্তু", "পরিষ্কার বস্তু", "আলোহীন বস্তু", "আলোকিত বস্তু"],
+                    answer: 3,
+                    explanation: "নিজস্ব আলো উৎপন্ন করলে তাকে আলোকিত (Luminous) বস্তু বলে।"
+                },
+                {
+                    question: "একটি পদার্থের প্রতিসরণ সূচক কিভাবে হয় বাতাসে আলোর গতির সাথে সম্পর্কিত?",
+                    options: ["বায়ুতে আলোর গতি / পদার্থে আলোর গতি", "বায়ুতে আলোর গতি + পদার্থে আলোর গতি", "পদার্থে আলোর গতি / বায়ুতে আলোর গতি", "বায়ুতে আলোর গতি − পদার্থে আলোর গতি"],
+                    answer: 0,
+                    explanation: "প্রতিসরাঙ্ক = বায়ুতে আলোর গতি / পদার্থে আলোর গতি"
+                },
+                {
+                    question: "আমরা ঘাসের রঙ সবুজ দেখতে পাই কারণ-",
+                    options: ["এটি আমাদের চোখে সবুজ রঙের আলো প্রতিফলিত করে", "এটি সবুজ আলো শোষণ করে", "এটি সবুজ ছাড়া সমস্ত আলো প্রতিফলিত করে", "এটি আমাদের চোখে সাদা আলো প্রতিফলিত করে"],
+                    answer: 0,
+                    explanation: "ঘাস সবুজ আলো প্রতিফলিত করে, তাই সবুজ দেখায়।"
+                },
+                {
+                    question: "সূর্যের আলোতে সবুজ দেখায় এমন কাপড় লাল আলোর নিচে দেখলে কালো দেখায় কেন?",
+                    options: ["কাপড়টি সম্পূর্ণরূপে লাল রং শুষে নেয়", "এটি প্রতিসরণের কারণে হয়", "এটি আলোর বিচ্ছুরণের প্রভাব", "এটি প্যারালাক্স ত্রুটির কারণে"],
+                    answer: 0,
+                    explanation: "সবুজ কাপড় লাল আলো শোষণ করে, প্রতিফলিত না হলে কালো দেখায়।"
+                },
+                {
+                    question: "মহাকাশচারীরা মহাকাশযান থেকে আকাশ দেখেন-",
+                    options: ["কালো", "নীল", "লাল", "কমলা"],
+                    answer: 0,
+                    explanation: "মহাকাশে বায়ুমণ্ডল নেই, তাই আকাশ কালো দেখায়।"
+                },
+                {
+                    question: "প্রকৃত সূর্যোদয়ের কয়েক মিনিট আগে এবং সূর্যাস্তের প্রায় দুই মিনিট পর সূর্য দৃশ্যমান হওয়ার জন্য কাকে দায়ী করা যেতে পারে?",
+                    options: ["বায়ুমণ্ডলীয় প্রতিফলন", "বায়ুমণ্ডলীয় প্রতিসরণ", "সূর্যালোক বায়ুমণ্ডলে উপস্থিত জলের ছোট ফোঁটা দ্বারা ছড়িয়ে পড়ে", "বায়ুমণ্ডলীয় বিচ্ছুরণ"],
+                    answer: 1, // সঠিক উত্তর হবে 'বায়ুমণ্ডলীয় প্রতিসরণ'
+                    explanation: "বায়ুমণ্ডলীয় প্রতিসরণের জন্য সূর্যোদয় ও সূর্যাস্তের সময় সূর্য কিছুক্ষণ আগে ও পরে দেখা যায়।"
+                },
+                {
+                    question: "আলো যখন একটি বিরল মাধ্যম থেকে একটি ঘন মাধ্যমে প্রবেশ করে, তখন কী ঘটে?",
+                    options: ["এর গতি প্রথমে হ্রাস পায় তারপর বৃদ্ধি পায়", "এর গতি বৃদ্ধি পায়", "এর গতি কমে যায়", "এর গতি একই থাকে"],
+                    answer: 2,
+                    explanation: "ঘন মাধ্যমে আলো প্রবেশ করলে গতি কমে যায়।"
+                },
+                {
+                    question: "একটি মাধ্যমের প্রতিসরণ সূচক 1.5 হলে, ঐ মাধ্যমে আলোর গতি কত?",
+                    options: ["3.0 x 10⁸ m/s", "2.0 x 10⁸ m/s", "1.5 x 10⁸ m/s", "1.2 x 10⁸ m/s"],
+                    answer: 1,
+                    explanation: "আলোর গতি (v) = শূন্য মাধ্যমে আলোর গতি (c) / প্রতিসরাঙ্ক (μ) = (3 x 10⁸ m/s) / 1.5 = 2 x 10⁸ m/s"
+                },
+                {
+                    question: "Tyndall প্রভাব আলোর ..... এর সাথে সম্পর্কিত।",
+                    options: ["প্রতিফলন", "বিক্ষিপ্তকরণ", "বিচ্ছুরণ", "প্রতিসরণ"],
+                    answer: 1,
+                    explanation: "Tyndall effect হল কোলয়েডাল কণার দ্বারা আলোর বিক্ষিপ্তকরণ (scattering)।"
+                },
+                {
+                    question: "নিচের কোনটি আলোর বিচ্ছুরণের উদাহরণ?",
+                    options: ["আকাশের নীল রং", "তারার ঝিকিমিকি", "কাচের প্রিজমের মাধ্যমে সাদা আলোর বিভাজন", "রংধনু"],
+                    answer: 2,
+                    explanation: "প্রিজমে সাদা আলো সাতটি রঙে বিভক্ত হয়ে যাওয়া আলোর বিচ্ছুরণের একটি ক্লাসিক উদাহরণ। রংধনু এবং আকাশের নীল রঙ বিক্ষেপণের উদাহরণ।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

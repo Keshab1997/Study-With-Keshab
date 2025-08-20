@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>তাপ ও তাপমাত্রা (সপ্তম পর্ব) - Class 07</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-style: italic; font-size: 1.1em; border-radius: 5px; }
+        img { max-width: 100%; height: auto; display: block; margin: 25px auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 10px; padding-left: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: var(--table-header-bg); color: var(--table-header-text); font-weight: 600; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://img.freepik.com/premium-vector/hot-temperature-icon-logo-vector-design-template_827767-4299.jpg" alt="Logo" class="logo">
+        <h1>তাপ ও তাপমাত্রা</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 07</h2>
+
+        <h3>বাষ্পের দুনিয়া: সম্পৃক্ত ও অসম্পৃক্ত</h3>
+        <p>ভাবুন, একটা ঘরে 10টা চেয়ার আছে।</p>
+        <ul>
+            <li><strong>সম্পৃক্ত বাষ্প (Saturated Vapour):</strong> যদি ঘরে ঠিক 10 জন লোক এসে সব চেয়ারে বসে যায়, তবে ঘরটা লোক দিয়ে "সম্পৃক্ত" বা "ভর্তি" হয়ে যায়। ঠিক তেমনই, একটি নির্দিষ্ট তাপমাত্রায়, কোনো বন্ধ জায়গায় সর্বাধিক যে পরিমাণ বাষ্প থাকতে পারে, সেই পরিমাণ বাষ্প উপস্থিত থাকলে তাকে <strong>সম্পৃক্ত বাষ্প</strong> বলে। এর বেশি বাষ্প ওই জায়গায় আর থাকতে পারে না।</li>
+            <li><strong>অসম্পৃক্ত বাষ্প (Unsaturated Vapour):</strong> যদি ওই 10টা চেয়ারের ঘরে মাত্র 4 জন লোক বসে থাকে, তবে ঘরটা "অসম্পৃক্ত"। অর্থাৎ, আরও লোক বসার জায়গা আছে। তেমনই, একটি জায়গায় যতটা বাষ্প থাকতে পারত, তার চেয়ে কম বাষ্প থাকলে তাকে <strong>অসম্পৃক্ত বাষ্প</strong> বলে।</li>
+        </ul>
+
+        <h3>বাষ্প বনাম গ্যাস: পার্থক্যটা কোথায়?</h3>
+        <p>দুটোই বায়বীয় অবস্থা, কিন্তু এদের মধ্যে একটা সূক্ষ্ম পার্থক্য আছে।</p>
+        <ul>
+            <li><strong>বাষ্প:</strong> হলো তরলের "মুডি" বায়বীয় রূপ। একে অল্প চাপ দিলেই আবার তরলে পরিণত করা যায়।</li>
+            <li><strong>গ্যাস:</strong> হলো পদার্থের "স্থায়ী" বায়বীয় রূপ। একে শুধু চাপ দিয়ে তরল করা যায় না, অনেক ঠান্ডাও করতে হয়।</li>
+        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>বৈশিষ্ট্য</th>
+                    <th>বাষ্প (Vapour)</th>
+                    <th>গ্যাস (Gas)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>পরিচয়</strong></td>
+                    <td>তরলের বায়বীয় অবস্থা (যেমন, জলীয় বাষ্প)।</td>
+                    <td>স্থায়ী বায়বীয় পদার্থ (যেমন, অক্সিজেন, হাইড্রোজেন)।</td>
+                </tr>
+                <tr>
+                    <td><strong>তরলে পরিণত করা</strong></td>
+                    <td>খুব সহজে, শুধু চাপ দিলেই হয়।</td>
+                    <td>কঠিন, চাপ দেওয়ার সাথে সাথে ঠান্ডাও করতে হয়।</td>
+                </tr>
+                <tr>
+                    <td><strong>গুরুত্বপূর্ণ শর্ত</strong></td>
+                    <td>এটি সংকট উষ্ণতার (Critical Temperature) নীচে থাকে।</td>
+                    <td>এটি সংকট উষ্ণতার উপরে থাকে।</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>শিশিরাঙ্ক, কুয়াশা ও মেঘ: প্রকৃতির জলছবি</h3>
+        
+        <h4>১. শিশিরাঙ্ক (Dew Point):</h4>
+        <blockquote><strong>সহজ ভাষায়:</strong> বাতাস একটা স্পঞ্জের মতো, যা জলীয় বাষ্প ধরে রাখে। বাতাস ঠান্ডা হলে তার জলীয় বাষ্প ধরে রাখার ক্ষমতা কমে যায়। যে তাপমাত্রায় বাতাস আর জলীয় বাষ্প ধরে রাখতে না পেরে তাকে জলের ফোঁটা হিসেবে ছেড়ে দেয়, সেই তাপমাত্রাকেই <strong>শিশিরাঙ্ক</strong> বলে।</blockquote>
+        <p><strong>উদাহরণ:</strong> ভোরের বেলা ঘাসের উপর শিশির জমে, কারণ তখন তাপমাত্রা শিশিরাঙ্কে পৌঁছে যায়।</p>
+        
+        <h4>২. কুয়াশা (Fog) ও ধোঁয়াশা (Smog):</h4>
+        <ul>
+            <li><strong>কুয়াশা:</strong> এটা আর কিছুই নয়, মাটির কাছাকাছি ভেসে থাকা মেঘ। যখন ভূপৃষ্ঠের কাছাকাছি বাতাসের তাপমাত্রা শিশিরাঙ্কে পৌঁছায়, তখন জলীয় বাষ্প ছোট ছোট জলকণায় পরিণত হয়ে বাতাসে ভেসে বেড়ায়। এটাই কুয়াশা।</li>
+            <li><strong>ধোঁয়াশা (Smog):</strong> শহরের দূষিত ধোঁয়া (Smoke) যখন কুয়াশার (Fog) সাথে মেশে, তখন তৈরি হয় <strong>ধোঁয়াশা (Smog)</strong>।</li>
+        </ul>
+
+        <h4>৩. মেঘ (Cloud):</h4>
+        <p><strong>মেঘ আর কুয়াশা একই জিনিস</strong>, শুধু তাদের উচ্চতা আলাদা। অনেক উঁচুতে যখন জলীয় বাষ্প জমে ছোট ছোট জলকণা বা বরফকণায় পরিণত হয়, তখন তাকে আমরা মেঘ বলি।</p>
+        <img src="https://backoffice.channel24bd.tv/media/imgAll/2023December/seetkal-kemn-hbe-suru-kbe-janalen-abhawabidra-1702048997.jpg
+" alt="মেঘ, কুয়াশা ও শিশিরের প্রাকৃতিক দৃশ্য।">
+
+        <h3>কিছু সাধারণ প্রশ্ন ও তার সহজ উত্তর</h3>
+        <ul>
+            <li><strong>প্রশ্ন: মেঘলা রাতে শিশির জমে না কেন?</strong><br>
+            <strong>উত্তর:</strong> মেঘ আকাশের জন্য একটা কম্বলের মতো কাজ করে। এটি পৃথিবী থেকে বেরিয়ে যাওয়া তাপকে আবার পৃথিবীতেই ফিরিয়ে দেয়। ফলে, ভূপৃষ্ঠ যথেষ্ট ঠান্ডা হতে পারে না এবং তাপমাত্রা শিশিরাঙ্কের নীচে নামে না। তাই শিশিরও জমে না।</li>
+            <li><strong>প্রশ্ন: বেলা বাড়লে কুয়াশা মিলিয়ে যায় কেন?</strong><br>
+            <strong>উত্তর:</strong> সূর্যের তাপে বাতাস গরম হয়ে যায়। গরম বাতাস আরও বেশি জলীয় বাষ্প ধরে রাখতে পারে। তাই কুয়াশার ছোট ছোট জলকণাগুলো আবার উবে গিয়ে অদৃশ্য জলীয় বাষ্পে পরিণত হয়।</li>
+            <li><strong>প্রশ্ন: বরফ-জল রাখা গ্লাসের বাইরে জল জমে কেন?</strong><br>
+            <strong>উত্তর:</strong> গ্লাসের ঠান্ডা সংস্পর্শে এসে বাতাসের জলীয় বাষ্প ঘনীভূত হয়ে জলের ফোঁটায় পরিণত হয় এবং গ্লাসের গায়ে লেগে যায়। এটা আসলে গ্লাসের বাইরের বাতাসের জল, ভেতরের নয়।</li>
+        </ul>
+
+        <h3>আর্দ্রতা: বাতাসে জলীয় বাষ্পের পরিমাণ</h3>
+        <ul>
+            <li><strong>আপেক্ষিক আর্দ্রতা (Relative Humidity):</strong> এটা একটা শতকরা হিসাব। বাতাসে তার ধারণক্ষমতার কত শতাংশ জলীয় বাষ্প আছে, সেটাই আপেক্ষিক আর্দ্রতা। যেমন, "আপেক্ষিক আর্দ্রতা 40%" মানে হলো, ওই তাপমাত্রায় বাতাস যতটা জলীয় বাষ্প ধরে রাখতে পারত, তার 40% ধরে রেখেছে।</li>
+            <li><strong>পরম আর্দ্রতা (Absolute Humidity):</strong> এটা সরাসরি পরিমাণ। প্রতি ঘনমিটার বাতাসে ঠিক কত গ্রাম জলীয় বাষ্প আছে, সেটাই পরম আর্দ্রতা।</li>
+        </ul>
+
+        <h3>গলনাঙ্ক ও স্ফুটনাঙ্ক: কখন বদলায়?</h3>
+
+        <h4>১. গলনাঙ্ক (Melting Point) কখন বদলায়?</h4>
+        <ul>
+            <li><strong>চাপের প্রভাবে:</strong>
+                <ul>
+                    <li><strong>বরফের মতো পদার্থের ক্ষেত্রে:</strong> চাপ বাড়ালে গলনাঙ্ক <strong>কমে যায়</strong>। (এজন্যই দুটি বরফ খণ্ডকে চাপ দিলে জোড়া লেগে যায়)।</li>
+                    <li><strong>মোমের মতো পদার্থের ক্ষেত্রে:</strong> চাপ বাড়ালে গলনাঙ্ক <strong>বেড়ে যায়</strong>।</li>
+                </ul>
+            </li>
+            <li><strong>ভেজাল মেশালে:</strong> যেকোনো বিশুদ্ধ পদার্থে ভেজাল (অপদ্রব্য) মেশালে তার গলনাঙ্ক <strong>কমে যায়</strong>।</li>
+        </ul>
+
+        <h4>২. স্ফুটনাঙ্ক (Boiling Point) কখন বদলায়?</h4>
+        <ul>
+            <li><strong>চাপের প্রভাবে:</strong>
+                <ul>
+                    <li>চাপ বাড়ালে স্ফুটনাঙ্ক <strong>বাড়ে</strong>। (এটাই প্রেশার কুকারের মূলনীতি)।</li>
+                    <li>চাপ কমালে স্ফুটনাঙ্ক <strong>কমে</strong>। (এজন্যই দার্জিলিং-এর মতো উঁচু জায়গায় জল তাড়াতাড়ি ফুটে যায়)।</li>
+                </ul>
+            </li>
+            <li><strong>ভেজাল মেশালে:</strong> তরলে কোনো অপদ্রব্য (যেমন, লবণ) মেশালে তার স্ফুটনাঙ্ক <strong>বেড়ে যায়</strong>। তাই লবণ-জল বিশুদ্ধ জলের চেয়ে বেশি তাপমাত্রায় ফোটে।</li>
+        </ul>
+
+        <h3>দৈনন্দিন জীবনে তাপের কিছু দারুণ ব্যবহার</h3>
+        <ul>
+            <li><strong>প্রেশার কুকারে রান্না:</strong> কুকারের ভেতরে বাষ্পের চাপে জল 100°C-এর চেয়ে অনেক বেশি (প্রায় 120°C) তাপমাত্রায় ফোটে। ফলে খাবার খুব তাড়াতাড়ি সিদ্ধ হয়।</li>
+            <li><strong>হিমমিশ্রণ (Freezing Mixture):</strong> বরফের সাথে লবণ মেশালে মিশ্রণের তাপমাত্রা কমে গিয়ে -23°C পর্যন্ত নেমে যেতে পারে। এটি আইসক্রিম তৈরি বা মাছ সংরক্ষণে ব্যবহার করা হয়।</li>
+            <li><strong>গ্রীষ্মকালে সাদা পোশাক:</strong> সাদা রং তাপ শোষণ না করে প্রায় পুরোটাই ফিরিয়ে দেয় (প্রতিফলিত করে)। তাই গরমকালে সাদা পোশাক পরলে আরাম লাগে।</li>
+        </ul>
+
+        <h3>থার্মোমিটার: কেন পারদ সেরা?</h3>
+        <p>থার্মোমিটারে পারদ ব্যবহারের অনেক সুবিধা আছে:</p>
+        <ol>
+            <li>এটি তাপের সুপরিবাহী, তাই দ্রুত সঠিক তাপমাত্রা দেখায়।</li>
+            <li>কাঁচের গায়ে লেগে থাকে না।</li>
+            <li>চকচকে হওয়ায় দেখতে সুবিধা হয়।</li>
+            <li>অনেক কম (-39°C) থেকে অনেক বেশি (357°C) তাপমাত্রা মাপতে পারে।</li>
+        </ol>
+
+        <h2>ধন্যবাদ</h2>
+    </div>
+
+    <nav class="navigation">
+        <a href="class6.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button active">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class8.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2024 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>তাপ ও তাপমাত্রা (তৃতীয় পর্ব) - Class 03</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-style: italic; font-size: 1.1em; border-radius: 5px; }
+        img { max-width: 100%; height: auto; display: block; margin: 25px auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        .math-formula { background-color: var(--blockquote-bg); padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center; font-size: 1.3em; font-family: 'Courier New', Courier, monospace; border: 1px solid var(--blockquote-border); color: var(--heading-color-1); overflow-x: auto; }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 10px; padding-left: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: var(--table-header-bg); color: var(--table-header-text); font-weight: 600; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://img.freepik.com/premium-vector/hot-temperature-icon-logo-vector-design-template_827767-4299.jpg" alt="Logo" class="logo">
+        <h1>তাপ ও তাপমাত্রা</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 03</h2>
+
+        <h3>অবস্থার পরিবর্তন বা অবস্থান্তর কী?</h3>
+        <p>খুব সহজ! বরফ গলে জল হওয়া, বা জল ফুটে বাষ্প হওয়া—এগুলোই হলো <strong>অবস্থার পরিবর্তন</strong>।</p>
+        <p>অর্থাৎ, তাপ দিলে বা তাপ বের করে নিলে কোনো পদার্থের এক অবস্থা (যেমন: কঠিন, তরল, গ্যাসীয়) থেকে অন্য অবস্থায় বদলে যাওয়াই হলো <strong>অবস্থান্তর (Change of State)</strong>।</p>
+        <p>এই পরিবর্তন দুই রকম হতে পারে:</p>
+        <ol>
+            <li><strong>উচ্চ-অবস্থান্তর:</strong> যখন বস্তু তাপ <strong>গ্রহণ করে</strong> উপরের ধাপে যায় (যেমন: কঠিন → তরল → গ্যাস)।</li>
+            <li><strong>নিম্ন-অবস্থান্তর:</strong> যখন বস্তু তাপ <strong>বর্জন করে</strong> নীচের ধাপে নেমে আসে (যেমন: গ্যাস → তরল → কঠিন)।</li>
+        </ol>
+        <img src="https://www.crestolympiads.com/assets/images/science/effect-of-change-of-temperature5.png" alt="অবস্থার পরিবর্তন চক্র">
+        
+        <h3>অবস্থার পরিবর্তনগুলোর পরিচয়</h3>
+        <p>আসুন, প্রতিটি পরিবর্তনের নাম ও কাজ জেনে নিই:</p>
+        <ol>
+            <li><strong>গলন (Melting):</strong> কঠিন গলে তরল হওয়া।
+                <ul>
+                    <li><strong>মূল শর্ত:</strong> তাপমাত্রা স্থির থাকে।</li>
+                    <li><strong>উদাহরণ:</strong> 0°C তাপমাত্রায় বরফ গলে জল হওয়া।</li>
+                </ul>
+            </li>
+            <li><strong>বাষ্পীভবন (Vaporisation):</strong> তরল ফুটে বাষ্পে পরিণত হওয়া।
+                <ul>
+                    <li><strong>উদাহরণ:</strong> 100°C তাপমাত্রায় জল ফুটে বাষ্পে পরিণত হওয়া।</li>
+                </ul>
+            </li>
+            <li><strong>ঘনীভবন (Condensation):</strong> বাষ্প ঠান্ডা হয়ে তরলে পরিণত হওয়া।
+                <ul>
+                    <li><strong>উদাহরণ:</strong> গরম ভাতের হাঁড়ির ঢাকনার নীচে জলের ফোঁটা জমা বা শীতে ঘাসের উপর শিশির পড়া।</li>
+                </ul>
+            </li>
+            <li><strong>কঠিনীভবন (Freezing):</strong> তরল জমে কঠিন হওয়া।
+                <ul>
+                    <li><strong>মূল শর্ত:</strong> তাপমাত্রা স্থির থাকে।</li>
+                    <li><strong>উদাহরণ:</strong> 0°C তাপমাত্রায় জল জমে বরফ হওয়া।</li>
+                </ul>
+            </li>
+            <li><strong>ঊর্ধ্বপাতন (Sublimation):</strong> এটা একটা মজার ঘটনা!
+                <ul>
+                    <li><strong>কী হয়:</strong> কিছু কঠিন পদার্থকে তাপ দিলে তা তরল না হয়ে <strong>সরাসরি গ্যাস বা বাষ্পে</strong> পরিণত হয়।</li>
+                    <li><strong>উদাহরণ:</strong> কর্পূর, ন্যাপথলিন, আয়োডিন। (এগুলো জ্বালালে তরল হয় না, সরাসরি উবে যায়)।</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>তাপগ্রাহিতা ও জলসম: দুটি মজার ধারণা</h3>
+        <p>এই দুটি বিষয় প্রায় একই রকম শোনালেও এদের মধ্যে সূক্ষ্ম পার্থক্য আছে।</p>
+        
+        <h4>তাপগ্রাহিতা (Thermal Capacity):</h4>
+        <ul>
+            <li><strong>মানে কী?</strong> কোনো বস্তুর "তাপ ধারণ করার ক্ষমতা" বা পেটুকপনাকেই তার তাপগ্রাহিতা বলে।</li>
+            <li><strong>সংজ্ঞা:</strong> কোনো বস্তুর তাপমাত্রা মাত্র <strong>1° সেলসিয়াস বাড়াতে</strong> মোট যে পরিমাণ তাপ লাগে, সেটাই হলো ওই বস্তুর <strong>তাপগ্রাহিতা</strong>।</li>
+            <li><strong>সূত্র:</strong> তাপগ্রাহিতা = বস্তুর ভর × আপেক্ষিক তাপ (`C = m × s`)</li>
+            <li><strong>একক:</strong> CGS: ক্যালোরি/°C; SI: জুল/কেলভিন (J/K)</li>
+        </ul>
+        
+        <h4>জলসম (Water Equivalent):</h4>
+        <ul>
+            <li><strong>মানে কী?</strong> জলসম হলো একটা <strong>তুলনামূলক ধারণা</strong>। কোনো বস্তুর তাপ ধারণ ক্ষমতাকে জলের পরিমাণের সাথে তুলনা করা হয়।</li>
+            <li><strong>উদাহরণ দিয়ে বুঝি:</strong> ধরুন, একটা লোহার বলের তাপমাত্রা 1°C বাড়াতে 100 ক্যালোরি তাপ লাগলো। এখন, ওই 100 ক্যালোরি তাপ দিয়ে কতটুকু জলের তাপমাত্রা 1°C বাড়ানো যাবে? যেহেতু জলের আপেক্ষিক তাপ 1, তাই <strong>100 গ্রাম</strong> জলের তাপমাত্রা 1°C বাড়ানো যাবে। তাহলে, ওই লোহার বলটির <strong>জলসম হলো 100 গ্রাম</strong>।</li>
+            <li><strong>সূত্র:</strong> জলসম = বস্তুর ভর × আপেক্ষিক তাপ (`W = m × s`)</li>
+            <li><strong>একক:</strong> CGS: <strong>গ্রাম (gm)</strong>; SI: <strong>কিলোগ্রাম (kg)</strong></li>
+        </ul>
+
+        <h4>তাপগ্রাহিতা ও জলসমের মূল পার্থক্য:</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>বৈশিষ্ট্য</th>
+                    <th>তাপগ্রাহিতা</th>
+                    <th>জলসম</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>পরিচয়</strong></td>
+                    <td>এটি একটি <strong>তাপের পরিমাণ</strong> বোঝায়।</td>
+                    <td>এটি একটি <strong>জলের ভর</strong> বোঝায়।</td>
+                </tr>
+                <tr>
+                    <td><strong>একক</strong></td>
+                    <td>ক্যালোরি/°C (CGS) বা জুল/K (SI)।</td>
+                    <td>গ্রাম (CGS) বা কিলোগ্রাম (SI)।</td>
+                </tr>
+                <tr>
+                    <td><strong>সাংখ্যমান</strong></td>
+                    <td>CGS পদ্ধতিতে এর মান জলসমের সমান হলেও SI পদ্ধতিতে সমান <strong>নয়</strong>।</td>
+                    <td>CGS পদ্ধতিতে এর মান তাপগ্রাহিতার সমান হলেও SI পদ্ধতিতে সমান <strong>নয়</strong>।</td>
+                </tr>
+            </tbody>
+        </table>
+        
+
+        <h3>পুনরালোচনা ও অঙ্ক: তাপমাত্রা স্কেলের রূপান্তর</h3>
+        <p>চলো, আগের ক্লাসের সূত্রগুলো দিয়ে কয়েকটি অঙ্ক করে নিই।</p>
+        <ol>
+            <li>
+                <strong>167°F তাপমাত্রা সেলসিয়াস ও কেলভিন স্কেলে কত?</strong><br>
+                সেলসিয়াস: `C = 5/9 × (167 - 32) = 5/9 × 135 = <strong>75°C</strong>`<br>
+                কেলভিন: `K = 75 + 273 = <strong>348 K</strong>`
+            </li>
+            <li>
+                <strong>মানুষের শরীরের স্বাভাবিক তাপমাত্রা 98.6°F হলে সেলসিয়াসে কত?</strong><br>
+                সেলসিয়াস: `C = 5/9 × (98.6 - 32) = 5/9 × 66.6 = <strong>37°C</strong>`
+            </li>
+            <li>
+                <strong>কোন তাপমাত্রায় সেলসিয়াস ও ফারেনহাইট স্কেলের মান সমান হয়?</strong><br>
+                এই বিশেষ তাপমাত্রাটি হলো <strong>-40°</strong>। অর্থাৎ, `-40°C = -40°F`।
+            </li>
+            <li>
+                <strong>60°C তাপমাত্রা ফারেনহাইট স্কেলে কত?</strong><br>
+                ফারেনহাইট: `F = (9/5 × 60) + 32 = (9 × 12) + 32 = 108 + 32 = <strong>140°F</strong>`
+            </li>
+        </ol>
+
+        <h3>গুরুত্বপূর্ণ সূত্র একনজরে</h3>
+        <ul>
+            <li><strong>তাপ গণনা:</strong> <div class="math-formula">H = mst</div></li>
+            <li><strong>আপেক্ষিক তাপ:</strong> <div class="math-formula">s = H / (m × t)</div></li>
+            <li><strong>তাপগ্রাহিতা:</strong> <div class="math-formula">C = m × s</div></li>
+            <li><strong>জলসম:</strong> <div class="math-formula">W = m × s</div></li>
+            <li><strong>স্কেলের সম্পর্ক:</strong> <div class="math-formula">C/5 = (F-32)/9 = (K-273)/5</div></li>
+        </ul>
+
+        <h2>ধন্যবাদ</h2>
+    </div>
+
+    <nav class="navigation">
+        <a href="class2.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button active">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class4.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2024 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+        });
+    </script>
+</body>
+</html>

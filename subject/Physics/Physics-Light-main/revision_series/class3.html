@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 03 - আয়নার জাদু ও আলোর বাঁক</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d81b60;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #004d40;
+        }
+        
+        h3, h4 {
+            font-size: 1.6em;
+        }
+
+        p, ul, ol, li {
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #c2185b;
+        }
+
+        blockquote {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            margin: 20px 0;
+            padding: 15px 20px;
+            font-style: italic;
+            font-size: 1.1em;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+
+        .diagram {
+            max-width: 500px;
+            background: #fff;
+            padding: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .qa-section {
+            background-color: #f1f8e9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #689f38;
+            margin-top: 20px;
+        }
+
+        /* Navigation Styles */
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .nav-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .nav-button.active {
+            background-color: #d81b60;
+            color: white;
+            border-color: #d81b60;
+        }
+
+        .nav-button.disabled {
+            color: #aaa;
+            pointer-events: none;
+            background-color: #f5f5f5;
+        }
+        
+        .home-button {
+            background-color: #1e88e5;
+            color: white;
+            border-color: #1e88e5;
+        }
+        .home-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CLASS 03</h1>
+        <h2>বিষয়: আয়নার জাদু, আলোর বাঁক এবং আরও অনেক কিছু</h2>
+
+        <p>নমস্কার বন্ধুরা!<br>গত ক্লাসে আমরা আলোর প্রতিফলন নিয়ে জেনেছি। আজ আমরা আরও গভীরে ডুব দেব। দেখব আয়না কী কী জাদু দেখাতে পারে, আলো কখন তার সোজা পথ থেকে একটু বেঁকে যায়, আর সেই কারণে আমাদের চারপাশে কী কী অবাক করা ঘটনা ঘটে!</p>
+        
+        <h3>প্রতিবিম্ব কী? (What is an Image?)</h3>
+        <p>আয়নার সামনে দাঁড়ালে আয়নার ভেতরে ঠিক তোমার মতো দেখতে আর একজনকে দেখা যায়, তাই না? ওই ভেতরের বন্ধুটিই হলো তোমার <strong>প্রতিবিম্ব</strong>।</p>
+        <p><strong>সংজ্ঞা:</strong> কোনো একটি বিন্দু থেকে আলোকরশ্মি ছড়িয়ে পড়ে যদি আয়নায় প্রতিফলিত (বা লেন্সে প্রতিসৃত) হওয়ার পর অন্য কোনো বিন্দুতে মিলিত হয় (বা মিলিত হচ্ছে বলে মনে হয়), তাহলে ওই দ্বিতীয় বিন্দুকে প্রথম বিন্দুর <strong>প্রতিবিম্ব</strong> বলে।</p>
+        
+        <h4>প্রতিবিম্ব দুই প্রকার:</h4>
+        <img src="http://images.slideplayer.com/19/5777108/slides/slide_9.jpg
+" alt="সদবিম্ব ও অসদবিম্বের পার্থক্য">
+        <table>
+            <thead>
+                <tr>
+                    <th>প্রতিবিম্বের নাম</th>
+                    <th>বৈশিষ্ট্য</th>
+                    <th>উদাহরণ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>সদ্‌বিম্ব (Real Image)</strong></td>
+                    <td>• রশ্মিগুলো সত্যি সত্যি মিলিত হয়। <br> • একে পর্দায় ফেলা যায়।</td>
+                    <td>সিনেমার পর্দায় দেখা ছবি।</td>
+                </tr>
+                <tr>
+                    <td><strong>অসদ্‌বিম্ব (Virtual Image)</strong></td>
+                    <td>• রশ্মিগুলো মিলিত হচ্ছে বলে মনে হয়, কিন্তু সত্যি মেলে না। <br> • একে পর্দায় ফেলা যায় না।</td>
+                    <td>আয়নায় আমরা নিজেদের যে মুখ দেখি।</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>সমতল দর্পণে তোমার প্রতিবিম্বের বৈশিষ্ট্য</h3>
+        <p>সাধারণ আয়না (সমতল দর্পণ) আমাদের যে প্রতিবিম্ব দেখায়, তার কিছু নির্দিষ্ট নিয়ম আছে:</p>
+        <ul>
+            <li><strong>দূরত্ব:</strong> আয়না থেকে তুমি যত দূরে, প্রতিবিম্বও আয়নার ভেতরে ঠিক ততটাই দূরে।</li>
+            <li><strong>আকার:</strong> তোমার আকার আর প্রতিবিম্বের আকার একদম সমান।</li>
+            <li><strong>সোজা:</strong> প্রতিবিম্ব সবসময় সোজা (সমশীর্ষ) হয়, উল্টো হয় না।</li>
+            <li><strong>পার্শ্বীয় পরিবর্তন:</strong> ডান এবং বাম দিকটা উল্টে যায়।</li>
+            <li><strong>বস্তুর সরণ:</strong> তুমি যদি আয়নার দিকে ১ মিটার এগিয়ে যাও, তোমার প্রতিবিম্বও ১ মিটার এগিয়ে আসবে। ফলে তোমাদের মধ্যেকার দূরত্ব ২ মিটার কমে যাবে!</li>
+        </ul>
+        <img src="https://curiophysics.com/wp-content/uploads/2021/07/%E0%A4%B8%E0%A4%AE%E0%A4%A4%E0%A4%B2-%E0%A4%A6%E0%A4%B0%E0%A5%8D%E0%A4%AA%E0%A4%A3-%E0%A4%A6%E0%A5%8D%E0%A4%B5%E0%A4%BE%E0%A4%B0%E0%A4%BE-%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A4%E0%A4%BF%E0%A4%AC%E0%A4%BF%E0%A4%AE%E0%A5%8D%E0%A4%AC-%E0%A4%A8%E0%A4%BF%E0%A4%B0%E0%A5%8D%E0%A4%AE%E0%A4%BE%E0%A4%A3-Curio-Physics.png
+" alt="সমতল দর্পণে প্রতিবিম্বের দূরত্ব" class="diagram">
+
+        <h3>পার্শ্বীয় পরিবর্তন (Lateral Inversion)</h3>
+        <p>এটাই আয়নার সবচেয়ে মজার জাদু! সমতল দর্পণে তোমার ডান হাতকে বাম হাত আর বাম হাতকে ডান হাত বলে মনে হয়। এই ডান-বাম উল্টে যাওয়াকেই <strong>পার্শ্বীয় পরিবর্তন</strong> বলে।</p>
+        <img src="https://mammothmemory.net/images/user/base/Physics/Mirrors/Laterally%20inverted/laterally-inverted-17.-image-3.52ca4ef.jpg
+" alt="অ্যাম্বুলেন্সের সামনেLateral Inversion এর ব্যবহার">
+        <blockquote><strong>জানতে হবে:</strong> ইংরেজি বর্ণমালার কিছু অক্ষর (যেমন A, H, M, O, T) আয়নায় উল্টায় না, কারণ এরা প্রতিসম। কিন্তু B, C, F, P, R ইত্যাদি অক্ষর উল্টে যায়।</blockquote>
+
+        <h3>একাধিক দর্পণে প্রতিবিম্বের সংখ্যা</h3>
+        <p>দুটো আয়নাকে যদি একে অপরের সাথে কোণ করে রাখা হয়, তাহলে একটি বস্তুর অনেকগুলো প্রতিবিম্ব দেখা যায়! পার্লারে বা সেলুনে খেয়াল করেছ?</p>
+        
+        <blockquote>সূত্র: যদি দুটি দর্পণের মধ্যে কোণ 'X' হয়, তবে প্রতিবিম্বের সংখ্যা = <strong>(360°/X) - 1</strong></blockquote>
+        <ul>
+            <li><strong>উদাহরণ ১:</strong> কোণ 90° হলে, প্রতিবিম্বের সংখ্যা = (360/90) - 1 = 4 - 1 = <strong>3 টি</strong>।</li>
+            <li><strong>উদাহরণ ২:</strong> কোণ 60° হলে, প্রতিবিম্বের সংখ্যা = (360/60) - 1 = 6 - 1 = <strong>5 টি</strong>।</li>
+            <li><strong>উদাহরণ ৩:</strong> আয়না দুটো সমান্তরাল হলে (কোণ 0°), অসীম সংখ্যক প্রতিবিম্ব তৈরি হয়!</li>
+        </ul>
+
+        <h3>আলো ও দর্পণ নিয়ে কিছু প্রশ্ন-উত্তর</h3>
+        <div class="qa-section">
+            <p><strong>1. প্রশ্ন:</strong> পালিশ করা জুতো চকচক করে কেন?<br>
+            <strong>উত্তর:</strong> পালিশ করার ফলে জুতোর উপরিতল মসৃণ হয়ে যায়, তাই সেখানে <strong>নিয়মিত প্রতিফলন</strong> হয়।</p>
+            <p><strong>2. প্রশ্ন:</strong> সিনেমার পর্দা সাদা ও অমসৃণ হয় কেন?<br>
+            <strong>উত্তর:</strong> অমসৃণ হয় যাতে <strong>বিক্ষিপ্ত প্রতিফলন</strong> হয় এবং হলের সব দর্শক ছবিটি স্পষ্ট দেখতে পায়। আর সাদা হয় যাতে সব রঙের আলো প্রতিফলিত হতে পারে, শোষিত না হয়ে যায়।</p>
+            <p><strong>3. প্রশ্ন:</strong> আয়নায় মুখ দেখা গেলেও দেয়ালে যায় না কেন?<br>
+            <strong>উত্তর:</strong> আয়নায় মসৃণ তলের জন্য <strong>নিয়মিত প্রতিফলন</strong> হয়, কিন্তু দেয়ালের অমসৃণ তলে <strong>বিক্ষিপ্ত প্রতিফলন</strong> হয়।</p>
+            <p><strong>4. প্রশ্ন:</strong> আয়নার পেছনে পারদের প্রলেপ দেওয়া হয় কেন?<br>
+            <strong>উত্তর:</strong> কাচ স্বচ্ছ। প্রলেপ না দিলে আলো সোজা চলে যাবে। পারদের প্রলেপ একটি প্রতিফলক তল তৈরি করে, যা প্রায় সমস্ত আলোকে প্রতিফলিত করে একটি স্পষ্ট প্রতিবিম্ব তৈরি করে।</p>
+        </div>
+
+        <h3>ঊষা ও গোধূলি</h3>
+        <p>সূর্য ওঠার একটু আগে এবং সূর্য ডোবার একটু পরেও আকাশে আলো থাকে কেন? কারণ, সূর্যরশ্মি সরাসরি না এলেও বায়ুমণ্ডলে থাকা ধূলিকণায় <strong>বিক্ষিপ্ত প্রতিফলন</strong> হয়ে সেই আলো আমাদের চোখে এসে পৌঁছায়। সূর্যোদয়ের আগের এই আলোকে <strong>ঊষা</strong> এবং সূর্যাস্তের পরের এই আলোকে <strong>গোধূলি</strong> বলে।</p>
+        <img src="https://static.wixstatic.com/media/e82c2f_873954ebc84a44f3bd1254a174c1b63f~mv2.jpg/v1/fill/w_568,h_378,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/e82c2f_873954ebc84a44f3bd1254a174c1b63f~mv2.jpg
+" alt="গোধূলি বেলায় আকাশের সুন্দর দৃশ্য">
+
+        <h2>আলোর পথ পরিবর্তন: প্রতিসরণ (Refraction)</h2>
+        <p>আলো সব সময় সোজা পথে চলে, কিন্তু যখন ও এক স্বচ্ছ মাধ্যম থেকে অন্য স্বচ্ছ মাধ্যমে (যেমন: বাতাস থেকে জলে) প্রবেশ করে, তখন দুই মাধ্যমের বিভেদতলে সে তার চলার পথ থেকে একটু বেঁকে যায়। আলোর এই পথ পরিবর্তন করার ঘটনাকেই <strong>প্রতিসরণ</strong> বলে।</p>
+        <img src="https://i.ytimg.com/vi/v6cxLDHtCHE/sddefault.jpg
+" alt="আলোর প্রতিসরণের ডায়াগ্রাম" class="diagram">
+
+        <h3>প্রতিসরণের সূত্র (স্নেলের সূত্র - Snell's Law)</h3>
+        <ol>
+            <li>আপতিত রশ্মি, প্রতিসৃত রশ্মি এবং দুই মাধ্যমের বিভেদতলের ওপর আঁকা অভিলম্ব—সবাই <strong>একই সমতলে</strong> থাকে।</li>
+            <li>দুটি নির্দিষ্ট মাধ্যম ও নির্দিষ্ট রঙের আলোর জন্য, আপতন কোণের সাইন (sin i) এবং প্রতিসরণ কোণের সাইন (sin r) -এর অনুপাত সর্বদা <strong>ধ্রুবক</strong> থাকে। এই ধ্রুবককেই বলে <strong>প্রতিসরাঙ্ক (n)</strong>।</li>
+        </ol>
+        <blockquote>সূত্র: sin i / sin r = n (ধ্রুবক)</blockquote>
+
+        <h3>প্রতিসরাঙ্ক (Refractive Index)</h3>
+        <p>প্রতিসরাঙ্ক হলো একটি সংখ্যা যা বোঝায় যে একটি মাধ্যমের ভেতর আলো কতটা ধীরে চলে বা কতটা বেশি বাঁক নেয়। যেমন, বায়ুর সাপেক্ষে কাচের প্রতিসরাঙ্ক ১.৫।</p>
+        
+        <h3>প্রতিসরণের কিছু প্রাকৃতিক ঘটনা</h3>
+        <p>আলোর এই পথ বদলানোর জন্য আমাদের চারপাশে অনেক মজার ঘটনা ঘটে:</p>
+        
+        <ul>
+            <li><strong>জলে ডোবানো দণ্ড বাঁকা দেখা:</strong> গ্লাসের জলে একটি চামচ বা পেন্সিল ডোবালে সেটিকে বাঁকা মনে হয়।</li>
+            <li><strong>জলের গভীরতা কম মনে হওয়া:</strong> পুকুরের তলদেশ বা বালতির তলা যতটা গভীর, তার চেয়ে কম গভীর মনে হয়।</li>
+            <li><strong>সূর্যোদয় ও সূর্যাস্ত:</strong> সূর্য দিগন্তের নিচে থাকলেও প্রতিসরণের জন্য আমরা সূর্যকে একটু আগেই উদয় হতে দেখি এবং ডোবার পরেও কিছুক্ষণ দেখতে পাই।</li>
+            <li><strong>নক্ষত্রের ঝিকিমিকি:</strong> বায়ুমণ্ডলের বিভিন্ন স্তরে আলোর বারবার প্রতিসরণের ফলে তারাদের ঝিকমিক করতে দেখা যায়।</li>
+        </ul>
+        
+        <h3 style="text-align: center; border: none; color: #004d40; margin-top: 40px;">Thank You!</h3>
+    </div>
+
+    <nav class="navigation">
+        <a href="class2.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button active">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class10.html" class="nav-button">10</a>
+        <a href="class11.html" class="nav-button">11</a>
+        <a href="class12.html" class="nav-button">12</a>
+        <a href="class13.html" class="nav-button">13</a>
+        <a href="class14.html" class="nav-button">14</a>
+        <a href="class4.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+</body>
+</html>

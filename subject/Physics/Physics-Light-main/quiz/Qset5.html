@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৫ - আলো</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset4.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset6.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "আলো", 
+            setName: "Set 5",                  
+
+            // পুরোনো সিস্টেমের জন্য এই প্রপার্টিটি রাখা হলো
+            name: "আলো (Light) - Set 5 (প্রশ্ন ৪১-৫০)",
+            
+            questions: [
+                {
+                    question: "আপনি যদি একটি আয়নায় তাকান এবং দেখতে পান যে আপনার প্রতিবিম্বটি আপনার থেকে ছোট, তাহলে আয়নাটি কী ধরনের?",
+                    options: ["প্ল্যানো-অবতল দর্পণ", "অবতল দর্পণ", "সমতল দর্পণ", "উত্তল দর্পণ"],
+                    answer: 3,
+                    explanation: "উত্তল দর্পণ সর্বদা একটি ছোট এবং সোজা অসদ প্রতিবিম্ব গঠন করে।"
+                },
+                {
+                    question: "গোলীয় দর্পণের ধারণা আলোর কোন ঘটনার উপর ভিত্তি করে তৈরি?",
+                    options: ["আলোর বিকিরণ", "আলোর প্রতিসরণ", "আলোর বিচ্ছুরণ", "আলোর প্রতিফলন"],
+                    answer: 3,
+                    explanation: "গোলীয় দর্পণ আলোর প্রতিফলন নীতির উপর কাজ করে।"
+                },
+                {
+                    question: "নিচের বিবৃতিগুলোর মধ্যে কোনটি সত্য?",
+                    options: ["বক্রতার ব্যাসার্ধ ফোকাস দূরত্বের সমান", "বক্রতার ব্যাসার্ধ ফোকাস দূরত্বের অর্ধেক", "বক্রতার ব্যাসার্ধ ফোকাস দূরত্বের তিনগুণ", "বক্রতার ব্যাসার্ধ ফোকাস দূরত্বের দ্বিগুণ"],
+                    answer: 3,
+                    explanation: "গোলীয় দর্পণের ক্ষেত্রে বক্রতার ব্যাসার্ধ (R) ফোকাস দূরত্বের (f) দ্বিগুণ হয়, অর্থাৎ R = 2f।"
+                },
+                {
+                    question: "দর্পণের সূত্র (Mirror formula) কোনটি?",
+                    options: ["1/f = 1/u - 1/v", "1/v - 1/u = 1/f", "1/f = 1/v + 1/u", "1/u + 1/f = 1/v"],
+                    answer: 2,
+                    explanation: "সঠিক দর্পণ সূত্রটি হলো: 1/f = 1/v + 1/u, যেখানে f=ফোকাস দূরত্ব, v=প্রতিবিম্বের দূরত্ব, u=বস্তুর দূরত্ব।"
+                },
+                {
+                    question: "দর্পণ সূত্রে 'v' কী নির্দেশ করে?",
+                    options: ["প্রতিবিম্বের দূরত্ব", "বস্তুর দূরত্ব", "উল্লম্ব দূরত্ব", "প্রতিবিম্বের উচ্চতা"],
+                    answer: 0,
+                    explanation: "'v' দ্বারা দর্পণের মেরু থেকে প্রতিবিম্বের দূরত্ব বোঝানো হয়।"
+                },
+                {
+                    question: "বক্রতার ব্যাসার্ধ R হলে একটি গোলীয় দর্পণের ফোকাস দূরত্ব কত হবে?",
+                    options: ["R/2", "2R", "3R", "R"],
+                    answer: 0,
+                    explanation: "ফোকাস দূরত্ব (f) বক্রতার ব্যাসার্ধের (R) অর্ধেক হয়, অর্থাৎ f = R/2।"
+                },
+                {
+                    question: "একটি বস্তুকে উত্তল দর্পণের সামনে স্থাপন করা হলে কী ধরনের প্রতিবিম্ব তৈরি হবে?",
+                    options: ["অসদ, সোজা, ছোট আকারের, মেরু এবং ফোকাসের মধ্যে", "সদ, উল্টানো, ছোট আকারের", "সদ, সোজা, বড় আকারের", "অসদ, সোজা, বড় আকারের"],
+                    answer: 0,
+                    explanation: "উত্তল দর্পণ সর্বদা একটি ছোট, সোজা (সমশীর্ষ) এবং অসদ প্রতিবিম্ব গঠন করে, যা দর্পণের মেরু ও ফোকাসের মধ্যে অবস্থিত হয়।"
+                },
+                {
+                    question: "যদি একটি দর্পণের ফোকাস দূরত্ব +15 সেমি হয়, তাহলে সেটি কী ধরনের দর্পণ?",
+                    options: ["সমতল দর্পণ", "অবতল দর্পণ", "উত্তল দর্পণ", "ডাবল লেন্স"],
+                    answer: 2,
+                    explanation: "চিহ্ন প্রথা অনুযায়ী, উত্তল দর্পণের ফোকাস দূরত্ব ধনাত্মক (+) এবং অবতল দর্পণের ফোকাস দূরত্ব ঋণাত্মক (-) ধরা হয়।"
+                },
+                {
+                    question: "একটি বস্তুকে উত্তল দর্পণের সামনে অসীম এবং মেরুর মধ্যে যেকোনো বিন্দুতে রাখলে প্রতিবিম্বটি কেমন হবে?",
+                    options: ["সদ এবং বড়", "সদ এবং ছোট", "অসদ এবং ছোট", "অসদ এবং বড়"],
+                    answer: 2,
+                    explanation: "উত্তল দর্পণের সামনে বস্তু যেখানেই রাখা হোক না কেন, প্রতিবিম্বটি সর্বদা অসদ, সোজা এবং ছোট আকারের হবে।"
+                },
+                {
+                    question: "একটি অবতল দর্পণে ফোকাস এবং মেরুর মাঝখানে একটি বস্তু স্থাপন করা হলে, প্রতিবিম্বের ধরন কী হবে?",
+                    options: ["অসম্পূর্ণ", "সদ", "অসদ", "উল্টানো"],
+                    answer: 2,
+                    explanation: "অবতল দর্পণের ক্ষেত্রে বস্তুকে ফোকাস ও মেরুর মধ্যে রাখলে একটি বিবর্ধিত, সোজা এবং অসদ (virtual) প্রতিবিম্ব গঠিত হয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

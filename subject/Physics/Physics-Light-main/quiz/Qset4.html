@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৪ - আলো</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset3.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset5.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "আলো", 
+            setName: "Set 4",                  
+
+            // পুরোনো সিস্টেমের জন্য এই প্রপার্টিটি রাখা হলো
+            name: "আলো (Light) - Set 4 (প্রশ্ন ৩১-৪০)",
+            
+            questions: [
+                {
+                    question: "যানবাহনে রিয়ার ভিউ মিরর (Rear-view mirror) হিসেবে কোন ধরনের দর্পণ ব্যবহার করা হয়?",
+                    options: ["অবতল এবং উত্তল", "অবতল", "উত্তল", "সমতল"],
+                    answer: 2,
+                    explanation: "উত্তল দর্পণ সর্বদা একটি ছোট এবং সোজা প্রতিবিম্ব গঠন করে এবং এটি একটি বিস্তৃত ক্ষেত্রের দৃশ্য দেখায়, যা চালকের জন্য সুবিধাজনক।"
+                },
+                {
+                    question: "উত্তল দর্পণ কোথায় ব্যবহার করা হয়?",
+                    options: ["শেভিং দর্পণে", "গাড়ির হেডলাইটে", "রিয়ার-ভিউ মিররে", "দাঁতের ডাক্তারের দর্পণে"],
+                    answer: 2,
+                    explanation: "গাড়ির রিয়ার-ভিউ মিররে উত্তল দর্পণ ব্যবহৃত হয় কারণ এটি একটি প্রশস্ত দৃশ্য প্রদান করে।"
+                },
+                {
+                    question: "একটি অবতল দর্পণের বক্রতার ব্যাসার্ধ 30 সেমি। কার্টেসিয়ান চিহ্ন প্রথা অনুসরণ করে, এর ফোকাস দূরত্ব কত?",
+                    options: ["-15 সেমি", "-30 সেমি", "+15 সেমি", "+30 সেমি"],
+                    answer: 0,
+                    explanation: "ফোকাস দূরত্ব (f) = বক্রতার ব্যাসার্ধ (R) / 2। সুতরাং, f = 30/2 = 15 সেমি। অবতল দর্পণের ফোকাস দূরত্ব ঋণাত্মক ধরা হয়, তাই উত্তর -15 সেমি।"
+                },
+                {
+                    question: "একটি গোলীয় দর্পণের বক্রতার কেন্দ্র কী?",
+                    options: ["দর্পণটি যে কাল্পনিক গোলকের অংশ, তার কেন্দ্র", "গোলীয় দর্পণের মধ্যবিন্দু", "উত্তল দর্পণের প্রধান অক্ষের একটি বিন্দু", "অবতল দর্পণের প্রধান ফোকাস"],
+                    answer: 0,
+                    explanation: "গোলীয় দর্পণ যে গোলকের অংশ, সেই গোলকের কেন্দ্রকেই দর্পণের বক্রতার কেন্দ্র (Centre of Curvature) বলা হয়।"
+                },
+                {
+                    question: "প্রধান অক্ষের সমান্তরাল রশ্মিগুচ্ছ প্রতিফলনের পর যে বিন্দুতে মিলিত হয় (বা যেখান থেকে অপসৃত হচ্ছে বলে মনে হয়), তাকে কী বলে?",
+                    options: ["উন্মেষ (Aperture)", "মেরু (Pole)", "প্রধান অক্ষ (Principal Axis)", "ফোকাস (Focus)"],
+                    answer: 3,
+                    explanation: "সংজ্ঞা অনুযায়ী, এই বিন্দুটিকে দর্পণের প্রধান ফোকাস বলা হয়।"
+                },
+                {
+                    question: "একটি দর্পণের ফোকাস দূরত্ব (f) এবং বক্রতার ব্যাসার্ধ (R) এর মধ্যে সম্পর্ক কী?",
+                    options: ["R = f/2", "R = 2f", "f = 2R", "R = f"],
+                    answer: 1,
+                    explanation: "গোলীয় দর্পণের বক্রতার ব্যাসার্ধ তার ফোকাস দূরত্বের দ্বিগুণ হয়। অর্থাৎ, R = 2f।"
+                },
+                {
+                    question: "একটি গোলীয় দর্পণের ফোকাস দূরত্ব হলো-",
+                    options: ["এর বক্রতার ব্যাসার্ধের দ্বিগুণ", "এর বক্রতার ব্যাসার্ধের তিনগুণ", "এর বক্রতার ব্যাসার্ধের অর্ধেক", "এর বক্রতার ব্যাসার্ধের সমান"],
+                    answer: 2,
+                    explanation: "ফোকাস দূরত্ব, f = R/2। অর্থাৎ, এটি বক্রতার ব্যাসার্ধের অর্ধেক।"
+                },
+                {
+                    question: "কোন দর্পণকে অভিসারী দর্পণও (Converging Mirror) বলা হয়?",
+                    options: ["উত্তল দর্পণ", "অবতল দর্পণ", "সমতল দর্পণ", "এগুলোর কোনোটিই নয়"],
+                    answer: 1,
+                    explanation: "অবতল দর্পণ সমান্তরাল আলোকরশ্মিকে একটি বিন্দুতে মিলিত করে (অভিসারী করে), তাই একে অভিসারী দর্পণ বলা হয়।"
+                },
+                {
+                    question: "দর্পণ সমীকরণের ক্ষেত্রে নিচের কোন বিবৃতিটি সঠিক?",
+                    options: ["বক্রতার কেন্দ্র মেরু এবং ফোকাসের মাঝে থাকে", "সমস্ত দূরত্ব দর্পণের মেরু থেকে পরিমাপ করতে হয়", "সমস্ত রশ্মি প্রধান অক্ষে মিলিত হয়", "মেরু এবং ফোকাস একই বিন্দু"],
+                    answer: 1,
+                    explanation: "চিহ্ন প্রথা অনুযায়ী, গোলীয় দর্পণের ক্ষেত্রে সমস্ত দূরত্ব এর মেরু (Pole) থেকে পরিমাপ করা হয়।"
+                },
+                {
+                    question: "যদি একটি গোলীয় দর্পণের প্রতিফলক পৃষ্ঠটি ভেতরের দিকে বাঁকা হয়, তবে তাকে কী বলা হয়?",
+                    options: ["অবতল দর্পণ", "উত্তল দর্পণ", "উভয়", "সমতল দর্পণ"],
+                    answer: 0,
+                    explanation: "যে গোলীয় দর্পণের প্রতিফলক তলটি ভেতরের দিকে (কেন্দ্রের দিকে) বাঁকানো থাকে, তাকে অবতল দর্পণ (Concave Mirror) বলে।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

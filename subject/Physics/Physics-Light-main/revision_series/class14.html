@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 14 - আলোর অধ্যায়ের উপর গুরুত্বপূর্ণ MCQ (পার্ট ২)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d81b60;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #004d40;
+        }
+        
+        h3 {
+            font-size: 1.6em;
+            color: #00695c;
+        }
+
+        p { font-size: 1.1em; }
+        strong { color: #c2185b; }
+        
+        .keyboard-info {
+            background-color: #e3f2fd;
+            border: 1px solid #90caf9;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        .mcq-selector-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .mcq-selector-container label {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #004d40;
+            margin-right: 10px;
+        }
+        #mcq-set-selector {
+            padding: 8px 12px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            border: 2px solid #004d40;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .mcq-item {
+            background-color: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-left: 5px solid #1e88e5;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        /* Highlight the active question for keyboard navigation */
+        .mcq-item.is-visible {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-left-color: #d81b60;
+        }
+
+        .mcq-item p.question {
+            font-weight: 600;
+            font-size: 1.2em;
+            color: #1a237e;
+            margin-top: 0;
+        }
+        .mcq-item ul.options {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .mcq-item .option {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .mcq-item .option:hover {
+            background-color: #f0f2f5;
+            border-color: #1e88e5;
+        }
+
+        .mcq-item .option.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+            font-weight: bold;
+        }
+        .mcq-item .option.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+            font-weight: bold;
+        }
+
+        .mcq-item ul.answered .option {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .answer-explanation {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .nav-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+        }
+        .nav-button.active {
+            background-color: #d81b60;
+            color: white;
+            border-color: #d81b60;
+        }
+        .home-button {
+            background-color: #1e88e5;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CLASS 14</h1>
+        <h2>বিষয়: আলোর অধ্যায়ের উপর গুরুত্বপূর্ণ MCQ (পার্ট ২)</h2>
+        <p>বন্ধুরা, চলো আলোর অধ্যায় থেকে আরও কিছু গুরুত্বপূর্ণ বহুনির্বাচনী প্রশ্ন (MCQ) সমাধানের মাধ্যমে নিজেদের প্রস্তুতি আরও মজবুত করি। নিচের ড্রপডাউন থেকে অনুশীলন সেট বেছে নাও এবং সঠিক অপশনে ক্লিক করে উত্তর যাচাই করো।</p>
+        
+       
+        
+        <div class="mcq-selector-container">
+            <label for="mcq-set-selector">অনুশীলনী সেট বাছুন:</label>
+            <select id="mcq-set-selector">
+                <option value="set1">Set 1</option>
+                <option value="set2">Set 2</option>
+                <option value="set3">Set 3</option>
+                <option value="set4">Set 4</option>
+                <option value="set5">Set 5</option>
+                <option value="set6">Set 6</option>
+                <option value="set7">Set 7</option>
+            </select>
+        </div>
+
+        <div id="mcq-container">
+            <!-- Set 1 to 7 questions will be here -->
+            <!-- Set 1 -->
+            <div id="set1" class="mcq-set" style="display: block;">
+                <h3>অনুশীলনী সেট - ১</h3>
+                <!-- Q1 -->
+                <div class="mcq-item">
+                    <p class="question">১. একটি সাধারণ ম্যাগনিফাইং গ্লাস কী দিয়ে তৈরি?</p>
+                    <ul class="options">
+                        <li class="option">(ক) উচ্চ ফোকাল দৈর্ঘ্যের উত্তল লেন্স</li>
+                        <li class="option">(খ) ছোট ফোকাল দৈর্ঘ্যের অবতল লেন্স</li>
+                        <li class="option">(গ) উচ্চ ফোকাল দৈর্ঘ্যের অবতল লেন্স</li>
+                        <li class="option" data-correct="true">(ঘ) ছোট ফোকাল দৈর্ঘ্যের উত্তল লেন্স</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) ছোট ফোকাল দৈর্ঘ্যের উত্তল লেন্স</p>
+                        <p><strong>ব্যাখ্যা:</strong> ম্যাগনিফাইং গ্লাসে ছোট ফোকাস দূরত্বের উত্তল লেন্স ব্যবহৃত হয়। ফোকাস দূরত্ব যত কম হয়, বিবর্ধন ক্ষমতা তত বেশি হয়।</p>
+                    </div>
+                </div>
+                <!-- Q2 to Q10 are similar... -->
+                 <div class="mcq-item">
+                    <p class="question">২. নিচের কোনটি আলোর প্রতিসরণের উদাহরণ নয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) রামধনু গঠন</li>
+                        <li class="option">(খ) তারার মিটমিট করা</li>
+                        <li class="option">(গ) মানুষের চোখের দ্বারা চিত্র গঠন</li>
+                        <li class="option" data-correct="true">(ঘ) অস্তগামী সূর্যের লাল রং</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) অস্তগামী সূর্যের লাল রং</p>
+                        <p><strong>ব্যাখ্যা:</strong> অস্তগামী সূর্যের লাল রং আলোর বিক্ষেপণের (Scattering) উদাহরণ। অন্যগুলি প্রতিসরণের সাথে সম্পর্কিত।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৩. রাতে আকাশে তারাগুলো মিটমিট করে কেন?</p>
+                    <ul class="options">
+                        <li class="option">(ক) অগ্রিম আলোর কারণে</li>
+                        <li class="option" data-correct="true">(খ) তারার আলোর বায়ুমণ্ডলীয় প্রতিসরণের কারণে</li>
+                        <li class="option">(গ) আলোর বিচ্ছুরণের কারণে</li>
+                        <li class="option">(ঘ) গরম বাতাসের কারণে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) তারার আলোর বায়ুমণ্ডলীয় প্রতিসরণের কারণে</p>
+                        <p><strong>ব্যাখ্যা:</strong> বায়ুমণ্ডলের বিভিন্ন স্তরের ঘনত্ব ও তাপমাত্রা ভিন্ন হওয়ায় তারার আলো বারবার প্রতিসৃত হয় এবং আমাদের চোখে কম্পমান বলে মনে হয়।</p>
+                    </div>
+                </div>
+                 <div class="mcq-item">
+                    <p class="question">৪. একটি চামচ যা পানিতে ডোবালে বাঁকানো দেখায়, তা নিচের কোনটির উদাহরণ?</p>
+                    <ul class="options">
+                        <li class="option">(ক) প্রতিফলন</li>
+                        <li class="option" data-correct="true">(খ) প্রতিসরণ</li>
+                        <li class="option">(গ) ধারণ</li>
+                        <li class="option">(ঘ) বিচ্ছুরণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) প্রতিসরণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> আলো যখন জল (ঘন মাধ্যম) থেকে বায়ুতে (লঘু মাধ্যম) আসে, তখন প্রতিসৃত হয়ে বেঁকে যায়। তাই চামচটিকে বাঁকা দেখায়।</p>
+                    </div>
+                </div>
+                 <div class="mcq-item">
+                    <p class="question">৫. হীরার উজ্জ্বলতার প্রধান কারণ কী?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) অভ্যন্তরীণ পূর্ণ প্রতিফলন</li>
+                        <li class="option">(খ) হীরার উচ্চ প্রতিসরণাঙ্ক</li>
+                        <li class="option">(গ) বিচ্ছুরণ</li>
+                        <li class="option">(ঘ) প্রতিফলন</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) অভ্যন্তরীণ পূর্ণ প্রতিফলন</p>
+                        <p><strong>ব্যাখ্যা:</strong> হীরার সংকট কোণ খুব কম (প্রায় 24.4°)। তাই আলো একবার প্রবেশ করলে বারবার অভ্যন্তরীণ পূর্ণ প্রতিফলন ঘটে, যা হীরাকে উজ্জ্বল করে তোলে।</p>
+                    </div>
+                </div>
+                 <div class="mcq-item">
+                    <p class="question">৬. বায়ুর পরম প্রতিসরণাঙ্ক কত?</p>
+                    <ul class="options">
+                        <li class="option">(ক) 1.03</li>
+                        <li class="option">(খ) 1.003</li>
+                        <li class="option">(গ) 1.00003</li>
+                        <li class="option" data-correct="true">(ঘ) 1.0003</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) 1.0003</p>
+                        <p><strong>ব্যাখ্যা:</strong> সাধারণ অবস্থায় (STP) বায়ুর পরম প্রতিসরণাঙ্ক প্রায় 1.0003।</p>
+                    </div>
+                </div>
+                 <div class="mcq-item">
+                    <p class="question">৭. প্রতিসরণাঙ্কের একক কী?</p>
+                    <ul class="options">
+                        <li class="option">(ক) m⁻¹</li>
+                        <li class="option">(খ) ডায়োপ্টার</li>
+                        <li class="option" data-correct="true">(গ) কোনো একক নেই</li>
+                        <li class="option">(ঘ) রেডিয়ান</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) কোনো একক নেই</p>
+                        <p><strong>ব্যাখ্যা:</strong> প্রতিসরণাঙ্ক দুটি সমজাতীয় রাশির (বেগের) অনুপাত হওয়ায় এটি একটি এককবিহীন সংখ্যা।</p>
+                    </div>
+                </div>
+                 <div class="mcq-item">
+                    <p class="question">৮. পানির প্রতিসরণাঙ্ক 4/3 হলে পানিতে আলোর গতিবেগ কত হবে? (c = 3x10⁸ m/s)</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) 2.25 × 10⁸ m/s</li>
+                        <li class="option">(খ) 1.5 × 10⁸ m/s</li>
+                        <li class="option">(গ) 2.67 × 10⁸ m/s</li>
+                        <li class="option">(ঘ) 4 × 10⁸ m/s</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) 2.25 × 10⁸ m/s</p>
+                        <p><strong>ব্যাখ্যা:</strong> v = c/μ = (3 × 10⁸) / (4/3) = (3 × 3 × 10⁸) / 4 = 2.25 × 10⁸ m/s।</p>
+                    </div>
+                </div>
+                 <div class="mcq-item">
+                    <p class="question">৯. যেকোনো মাধ্যমের পরম প্রতিসরণাঙ্কের মান সাধারণত-</p>
+                    <ul class="options">
+                        <li class="option">(ক) একের কম</li>
+                        <li class="option">(খ) 1</li>
+                        <li class="option" data-correct="true">(গ) একের অধিক</li>
+                        <li class="option">(ঘ) 0</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) একের অধিক</p>
+                        <p><strong>ব্যাখ্যা:</strong> যেহেতু শূন্যস্থানে আলোর বেগ সর্বোচ্চ, তাই অন্য যেকোনো মাধ্যমে বেগ কম হয়। ফলে প্রতিসরণাঙ্ক (c/v) সর্বদা ১ এর বেশি হয়।</p>
+                    </div>
+                </div>
+                 <div class="mcq-item">
+                    <p class="question">১০. রাতে তারার মিটমিট করার কারণ হল-</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) বায়ুমণ্ডলীয় প্রতিসরণ</li>
+                        <li class="option">(খ) আলোর বিচ্ছুরণ</li>
+                        <li class="option">(গ) আলোর প্রতিফলন</li>
+                        <li class="option">(ঘ) অভ্যন্তরীণ পূর্ণ প্রতিফলন</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) বায়ুমণ্ডলীয় প্রতিসরণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> এটি প্রশ্ন ৩ এর পুনরাবৃত্তি। বায়ুমণ্ডলের ঘনত্বের পরিবর্তনের কারণে আলোর প্রতিসরণের ফলেই তারা মিটমিট করে।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Set 2 to 7 are hidden initially -->
+            <div id="set2" class="mcq-set" style="display: none;">
+                <h3>অনুশীলনী সেট - ২</h3>
+                 <!-- Q11 to Q20 -->
+                 <div class="mcq-item">
+                    <p class="question">১১. যখন আলোর রশ্মি ঘন মাধ্যম থেকে লঘু মাধ্যমে ভ্রমণ করে, এটি-</p>
+                    <ul class="options">
+                        <li class="option">(ক) অভিলম্বের দিকে বেঁকে যায় এবং গতি কমে</li>
+                        <li class="option">(খ) অভিলম্ব থেকে দূরে সরে যায় এবং গতি কমে</li>
+                        <li class="option">(গ) অভিলম্বের দিকে বেঁকে যায় এবং গতি বাড়ে</li>
+                        <li class="option" data-correct="true">(ঘ) অভিলম্ব থেকে দূরে সরে যায় এবং গতি বাড়ে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) অভিলম্ব থেকে দূরে সরে যায় এবং গতি বাড়ে</p>
+                        <p><strong>ব্যাখ্যা:</strong> ঘন থেকে লঘু মাধ্যমে গেলে আলোর গতিপথ কম বাধাগ্রস্ত হয়, ফলে গতি বাড়ে এবং রশ্মিটি অভিলম্ব থেকে দূরে সরে যায়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">১২. একটি মাধ্যমে আলোর রশ্মির বাঁককে কী বলা হয়?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) প্রতিসরণ</li>
+                        <li class="option">(খ) প্রতিফলন</li>
+                        <li class="option">(গ) বিচ্ছুরণ</li>
+                        <li class="option">(ঘ) বিচ্যুতি</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) প্রতিসরণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> আলো এক স্বচ্ছ মাধ্যম থেকে অন্য স্বচ্ছ মাধ্যমে যাওয়ার সময় তার গতিপথের যে পরিবর্তন হয়, তাকে প্রতিসরণ বলে।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">১৩. একটি গ্লাসের জলে রাখা একটি লেবুকে বাইরে থেকে দেখলে তার আসল আকারের চেয়ে বড় মনে হয়। এর কারণ কী?</p>
+                    <ul class="options">
+                        <li class="option">(ক) আলোর প্রতিফলন</li>
+                        <li class="option">(খ) অভ্যন্তরীণ পূর্ণ প্রতিফলন</li>
+                        <li class="option" data-correct="true">(গ) আলোর প্রতিসরণ</li>
+                        <li class="option">(ঘ) আলোর বিক্ষেপণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) আলোর প্রতিসরণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> লেবু থেকে আলোকরশ্মি জল (ঘন মাধ্যম) থেকে বায়ুতে (লঘু মাধ্যম) আসার সময় প্রতিসৃত হয়। ফলে আমাদের চোখে লেবুটিকে তার আসল অবস্থানের চেয়ে উপরে এবং বড় মনে হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">১৪. হীরার পরম প্রতিসরণাঙ্ক কত?</p>
+                    <ul class="options">
+                        <li class="option">(ক) 2.32</li>
+                        <li class="option">(খ) 2.23</li>
+                        <li class="option" data-correct="true">(গ) 2.42</li>
+                        <li class="option">(ঘ) 2.24</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) 2.42</p>
+                        <p><strong>ব্যাখ্যা:</strong> হীরার প্রতিসরণাঙ্ক খুবই উচ্চ, যার স্বীকৃত মান প্রায় 2.42।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">১৫. সূর্যোদয় এবং সূর্যাস্তের সময় সূর্যকে কিছুটা চ্যাপ্টা বা ডিম্বাকৃতি দেখার কারণ কী?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) প্রতিসরণ</li>
+                        <li class="option">(খ) বিক্ষেপণ</li>
+                        <li class="option">(গ) প্রতিফলন</li>
+                        <li class="option">(ঘ) বিচ্ছুরণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) প্রতিসরণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> বায়ুমণ্ডলীয় প্রতিসরণের কারণে সূর্যের নিচের অংশ থেকে আসা আলো উপরের অংশ থেকে আসা আলোর চেয়ে বেশি বাঁকে। তাই সূর্যকে কিছুটা চ্যাপ্টা দেখায়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">১৬. একটি আলোর রশ্মি পানি থেকে গ্লাসে (কাচে) যায়। এক্ষেত্রে কোনটি ঘটবে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) গতি বাড়ে এবং অভিলম্বের দিকে বাঁকে</li>
+                        <li class="option">(খ) গতি বাড়ে এবং অভিলম্ব থেকে দূরে সরে যায়</li>
+                        <li class="option" data-correct="true">(গ) গতি কমে এবং অভিলম্বের দিকে বাঁকে</li>
+                        <li class="option">(ঘ) গতি কমে এবং অভিলম্ব থেকে দূরে সরে যায়</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) গতি কমে এবং অভিলম্বের দিকে বাঁকে</p>
+                        <p><strong>ব্যাখ্যা:</strong> কাচ জলের চেয়ে ঘন মাধ্যম। তাই আলো যখন জল থেকে কাচে প্রবেশ করে, তখন তার গতি কমে যায় এবং এটি অভিলম্বের দিকে বেঁকে যায়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">১৭. আলো যখন একটি ঘন মাধ্যম থেকে লঘু মাধ্যমে প্রবেশ করে, তখন তার গতির উপর কী প্রভাব পড়ে?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) বৃদ্ধি পায়</li>
+                        <li class="option">(খ) হ্রাস পায় এবং তারপর বৃদ্ধি পায়</li>
+                        <li class="option">(গ) কোনো পরিবর্তন নেই</li>
+                        <li class="option">(ঘ) হ্রাস পায়</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) বৃদ্ধি পায়</p>
+                        <p><strong>ব্যাখ্যা:</strong> লঘু মাধ্যমে আলোর চলাচলে বাধা কম থাকে, তাই ঘন মাধ্যম থেকে লঘু মাধ্যমে প্রবেশ করলে আলোর গতি বৃদ্ধি পায়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">১৮. বায়ুমণ্ডলীয় প্রতিসরণের কারণে, সূর্যোদয় এবং সূর্যাস্ত প্রায় কতটা বিলম্বিত হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) 3 মিনিট</li>
+                        <li class="option" data-correct="true">(খ) 4 মিনিট</li>
+                        <li class="option">(গ) 2 মিনিট</li>
+                        <li class="option">(ঘ) 1 মিনিট</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) 4 মিনিট</p>
+                        <p><strong>ব্যাখ্যা:</strong> সূর্যোদয়ের প্রায় 2 মিনিট আগে সূর্যকে দেখা যায় এবং সূর্যাস্তের প্রায় 2 মিনিট পরেও দেখা যায়। মোট দিনের দৈর্ঘ্য প্রায় 4 মিনিট বৃদ্ধি পায়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">১৯. নিচের কোন মাধ্যমের প্রতিসরণাঙ্ক সবচেয়ে কম?</p>
+                    <ul class="options">
+                        <li class="option">(ক) পেট্রোল</li>
+                        <li class="option" data-correct="true">(খ) বায়ু</li>
+                        <li class="option">(গ) তেল</li>
+                        <li class="option">(ঘ) হীরা</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) বায়ু</p>
+                        <p><strong>ব্যাখ্যা:</strong> প্রদত্ত বিকল্পগুলির মধ্যে বায়ুর ঘনত্ব সবচেয়ে কম, তাই এর প্রতিসরণাঙ্কও সবচেয়ে কম (প্রায় ১)।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">২০. কোন ক্ষেত্রে আপতিত রশ্মি, প্রতিসৃত/প্রতিফলিত রশ্মি এবং অভিলম্ব একই সমতলে থাকে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) শুধুমাত্র আপতনের ক্ষেত্রে</li>
+                        <li class="option" data-correct="true">(খ) প্রতিসরণ এবং প্রতিফলন উভয়ই</li>
+                        <li class="option">(গ) শুধুমাত্র প্রতিফলনের ক্ষেত্রে</li>
+                        <li class="option">(ঘ) শুধুমাত্র প্রতিসরণের ক্ষেত্রে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) প্রতিসরণ এবং প্রতিফলন উভয়ই</p>
+                        <p><strong>ব্যাখ্যা:</strong> এটি প্রতিফলন এবং প্রতিসরণ উভয়েরই প্রথম সূত্র যে, আপতিত রশ্মি, প্রতিফলিত/প্রতিসৃত রশ্মি এবং আপতন বিন্দুতে অঙ্কিত অভিলম্ব সর্বদা একই সমতলে থাকে।</p>
+                    </div>
+                </div>
+            </div>
+            <div id="set3" class="mcq-set" style="display: none;">
+                <h3>অনুশীলনী সেট - ৩</h3>
+                <!-- Q21 to Q30 -->
+                <div class="mcq-item">
+                    <p class="question">২১. তারাগুলি আকাশে ঝিকমিক করে কারণ-</p>
+                    <ul class="options">
+                        <li class="option">(ক) বায়ুমণ্ডল দ্বারা আলোর বিচ্ছুরণ</li>
+                        <li class="option">(খ) বায়ুমণ্ডল দ্বারা আলোর প্রতিফলন</li>
+                        <li class="option">(গ) বায়ুমণ্ডল দ্বারা আলোর বিক্ষেপণ</li>
+                        <li class="option" data-correct="true">(ঘ) বায়ুমণ্ডল দ্বারা আলোর প্রতিসরণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) বায়ুমণ্ডল দ্বারা আলোর প্রতিসরণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> এটি প্রশ্ন ৩ এবং ১০ এর অনুরূপ। বায়ুমণ্ডলের ঘনত্বের পরিবর্তনের কারণে আলোর প্রতিসরণের ফলেই তারা মিটমিট করে।</p>
+                    </div>
+                </div>
+                 <div class="mcq-item">
+                    <p class="question">২২. অপটিক্যাল ফাইবার কোন নীতির উপর কাজ করে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) বিচ্ছুরণ</li>
+                        <li class="option">(খ) বিক্ষেপণ</li>
+                        <li class="option" data-correct="true">(গ) অভ্যন্তরীণ পূর্ণ প্রতিফলন</li>
+                        <li class="option">(ঘ) প্রতিসরণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) অভ্যন্তরীণ পূর্ণ প্রতিফলন</p>
+                        <p><strong>ব্যাখ্যা:</strong> অপটিক্যাল ফাইবারে আলোকরশ্মি সংকট কোণের চেয়ে বেশি কোণে আপতিত হয়ে বারবার অভ্যন্তরীণ পূর্ণ প্রতিফলন ঘটায় এবং প্রায় শক্তি ক্ষয় ছাড়াই এক প্রান্ত থেকে অন্য প্রান্তে পৌঁছায়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">২৩. একটি উত্তল লেন্সে বস্তু কোথায় রাখলে তার প্রতিবিম্ব বিবর্ধিত, অসদ্‌ এবং সোজা হয়?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) F এবং O এর মধ্যে</li>
+                        <li class="option">(খ) 2F এ</li>
+                        <li class="option">(গ) F এ</li>
+                        <li class="option">(ঘ) অসীমে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) F এবং O এর মধ্যে</p>
+                        <p><strong>ব্যাখ্যা:</strong> বস্তু যখন উত্তল লেন্সের ফোকাস (F) এবং আলোককেন্দ্রের (O) মধ্যে থাকে, তখন লেন্সটি একটি বিবর্ধক কাঁচের মতো কাজ করে এবং একটি বড়, সোজা ও অসদ্‌ প্রতিবিম্ব গঠন করে।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">২৪. একটি অবতল লেন্সের মুখ্য ফোকাসের দিকে আপতিত রশ্মি প্রতিসরণের পর কীভাবে নির্গত হবে?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) প্রধান অক্ষের সমান্তরাল</li>
+                        <li class="option">(খ) মুখ্য ফোকাসের মাধ্যমে</li>
+                        <li class="option">(গ) কোনো বিচ্যুতি ছাড়াই</li>
+                        <li class="option">(ঘ) বক্রতা কেন্দ্রের মাধ্যমে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) প্রধান অক্ষের সমান্তরাল</p>
+                        <p><strong>ব্যাখ্যা:</strong> যে রশ্মি অবতল লেন্সের ফোকাসের দিকে আসে, সেটি প্রতিসরণের পর প্রধান অক্ষের সমান্তরাল হয়ে যায়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">২৫. হাইপারমেট্রোপিয়া (দূরদৃষ্টি) কোন লেন্স ব্যবহার করে সংশোধন করা হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) বাইফোকাল লেন্স</li>
+                        <li class="option">(খ) ট্রাইফোকাল লেন্স</li>
+                        <li class="option" data-correct="true">(গ) উত্তল লেন্স</li>
+                        <li class="option">(ঘ) অবতল লেন্স</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) উত্তল লেন্স</p>
+                        <p><strong>ব্যাখ্যা:</strong> হাইপারমেট্রোপিয়ায় চোখের ফোকাস ক্ষমতা কমে যায় এবং প্রতিবিম্ব রেটিনার পিছনে গঠিত হয়। উত্তল লেন্স আলোকরশ্মিকে অভিসারী করে প্রতিবিম্বকে রেটিনার উপর ফেলতে সাহায্য করে।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">২৬. যে লেন্স মাঝখানে সরু এবং তার পরিধিতে পুরু তাকে কী বলা হয়?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) অবতল লেন্স</li>
+                        <li class="option">(খ) সমান্তরাল লেন্স</li>
+                        <li class="option">(গ) উত্তল লেন্স</li>
+                        <li class="option">(ঘ) নলাকার লেন্স</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) অবতল লেন্স</p>
+                        <p><strong>ব্যাখ্যা:</strong> এটি অবতল লেন্সের গঠনগত বৈশিষ্ট্য। এর মাঝের অংশ সরু এবং প্রান্তের দিক মোটা হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">২৭. মায়োপিয়া (নিকটদৃষ্টি) আক্রান্ত ব্যক্তির দৃষ্টি সংশোধনের জন্য কোন ধরনের লেন্স প্রয়োজন?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) অপসারী লেন্স (অবতল লেন্স)</li>
+                        <li class="option">(খ) বাইফোকাল লেন্স</li>
+                        <li class="option">(গ) নলাকার লেন্স</li>
+                        <li class="option">(ঘ) অভিসারী লেন্স (উত্তল লেন্স)</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) অপসারী লেন্স (অবতল লেন্স)</p>
+                        <p><strong>ব্যাখ্যা:</strong> মায়োপিয়াতে চোখের ফোকাস ক্ষমতা বেড়ে যায় এবং প্রতিবিম্ব রেটিনার সামনে গঠিত হয়। অবতল (অপসারী) লেন্স আলোকরশ্মিকে ছড়িয়ে দিয়ে প্রতিবিম্বকে সঠিকভাবে রেটিনার উপর ফেলে।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">২৮. একটি উত্তল লেন্সের ফোকাস দূরত্ব 50 সেমি। এর ক্ষমতা (Power) কত?</p>
+                    <ul class="options">
+                        <li class="option">(ক) +4D</li>
+                        <li class="option">(খ) +1D</li>
+                        <li class="option" data-correct="true">(গ) +2D</li>
+                        <li class="option">(ঘ) +3D</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) +2D</p>
+                        <p><strong>ব্যাখ্যা:</strong> f = 50 সেমি = 0.5 মিটার। P = 1/f(m) = 1/0.5 = +2 ডায়োপ্টার।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">২৯. একটি উত্তল লেন্সের ফোকাস দূরত্ব 2.5 মিটার। এর ক্ষমতা কত?</p>
+                    <ul class="options">
+                        <li class="option">(ক) +0.3 D</li>
+                        <li class="option">(খ) +0.2 D</li>
+                        <li class="option" data-correct="true">(গ) +0.4 D</li>
+                        <li class="option">(ঘ) +0.5 D</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) +0.4 D</p>
+                        <p><strong>ব্যাখ্যা:</strong> P = 1/f(m) = 1/2.5 = 10/25 = 0.4 ডায়োপ্টার। উত্তল লেন্স হওয়ায় ক্ষমতা ধনাত্মক।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৩০. একটি উত্তল লেন্সের ফোকাস দূরত্ব হয়-</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) ধনাত্মক</li>
+                        <li class="option">(খ) শূন্য</li>
+                        <li class="option">(গ) ঋণাত্মক</li>
+                        <li class="option">(ঘ) অসীম</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) ধনাত্মক</p>
+                        <p><strong>ব্যাখ্যা:</strong> চিহ্ন প্রথা অনুযায়ী, উত্তল (অভিসারী) লেন্সের ফোকাস দূরত্বকে ধনাত্মক ধরা হয়।</p>
+                    </div>
+                </div>
+            </div>
+            <div id="set4" class="mcq-set" style="display: none;">
+                <h3>অনুশীলনী সেট - ৪</h3>
+                 <!-- Q31 to Q40 -->
+                <div class="mcq-item">
+                    <p class="question">৩১. বস্তুর সমান আকারের সদ্‌ প্রতিবিম্ব পাওয়ার জন্য একটি উত্তল লেন্সের সামনে বস্তুটিকে কোথায় স্থাপন করা উচিত?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) 2F দূরত্বে</li>
+                        <li class="option">(খ) 2F থেকে দূরে</li>
+                        <li class="option">(গ) অসীমে</li>
+                        <li class="option">(ঘ) F দূরত্বে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) 2F দূরত্বে</p>
+                        <p><strong>ব্যাখ্যা:</strong> উত্তল লেন্সের দ্বিগুণ ফোকাস দূরত্বে (2F) বস্তু রাখলে, লেন্সের অপর পাশে 2F দূরত্বেই বস্তুর সমান আকারের সদ্‌ ও উল্টো প্রতিবিম্ব গঠিত হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৩২. একটি লেন্সের কোন বিন্দুর মধ্য দিয়ে যাওয়া আলোর রশ্মি কোনো বিচ্যুতি ছাড়াই চলে যায়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) মুখ্য ফোকাস</li>
+                        <li class="option">(খ) প্রধান অক্ষ</li>
+                        <li class="option">(গ) বক্রতার কেন্দ্র</li>
+                        <li class="option" data-correct="true">(ঘ) আলোক কেন্দ্র</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) আলোক কেন্দ্র</p>
+                        <p><strong>ব্যাখ্যা:</strong> আলোক কেন্দ্র (Optical Centre) হলো লেন্সের প্রধান অক্ষের উপর অবস্থিত এমন একটি বিন্দু যার মধ্যে দিয়ে গেলে আলোকরশ্মির কোনো চ্যুতি বা বিচ্যুতি ঘটে না।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৩৩. যখন একটি বস্তুকে উত্তল লেন্সের 2F অবস্থানে রাখা হয়, তখন প্রতিবিম্বের আকার কেমন হয়?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) বস্তুর আকারের সমান</li>
+                        <li class="option">(খ) বিবর্ধিত</li>
+                        <li class="option">(গ) অতি ক্ষুদ্র</li>
+                        <li class="option">(ঘ) ছোট</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) বস্তুর আকারের সমান</p>
+                        <p><strong>ব্যাখ্যা:</strong> এটি প্রশ্ন ৩১ এর অনুরূপ। 2F অবস্থানে রাখা বস্তুর প্রতিবিম্ব সমান আকারের হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৩৪. একটি লেন্সের ক্ষমতা (Power) কিসের ব্যস্তানুপাতিক?</p>
+                    <ul class="options">
+                        <li class="option">(ক) ব্যাসার্ধের</li>
+                        <li class="option" data-correct="true">(খ) ফোকাস দূরত্বের</li>
+                        <li class="option">(গ) উন্মেষের</li>
+                        <li class="option">(ঘ) বক্রতার ব্যাসার্ধের</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) ফোকাস দূরত্বের</p>
+                        <p><strong>ব্যাখ্যা:</strong> লেন্সের ক্ষমতা (P) তার ফোকাস দূরত্বের (f) ব্যস্তানুপাতিক, অর্থাৎ P ∝ 1/f।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৩৫. একটি গোলাকার আয়না এবং একটি পাতলা গোলাকার লেন্স প্রতিটির ফোকাস দূরত্ব -20 সেমি। এক্ষেত্রে কোনটি সত্য?</p>
+                    <ul class="options">
+                        <li class="option">(ক) উভয়ই উত্তল</li>
+                        <li class="option">(খ) আয়নাটি অবতল এবং লেন্সটি উত্তল</li>
+                        <li class="option">(গ) আয়নাটি উত্তল এবং লেন্সটি অবতল</li>
+                        <li class="option" data-correct="true">(ঘ) উভয়ই অবতল</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) উভয়ই অবতল</p>
+                        <p><strong>ব্যাখ্যা:</strong> চিহ্ন প্রথা অনুযায়ী, অবতল আয়না এবং অবতল লেন্স উভয়েরই ফোকাস দূরত্ব ঋণাত্মক হয়। তাই উভয়ই অবতল প্রকৃতির।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৩৬. অবতল লেন্সের ফোকাস দূরত্ব হয়-</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) ঋণাত্মক</li>
+                        <li class="option">(খ) ধনাত্মক</li>
+                        <li class="option">(গ) শূন্য</li>
+                        <li class="option">(ঘ) অসীম</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) ঋণাত্মক</p>
+                        <p><strong>ব্যাখ্যা:</strong> চিহ্ন প্রথা অনুযায়ী, অবতল (অপসারী) লেন্সের ফোকাস দূরত্বকে ঋণাত্মক ধরা হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৩৭. অভিসারী বিন্দু বা যে বিন্দু থেকে রশ্মি অপসৃত হচ্ছে বলে মনে হয়, তাকে কী বলে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) বক্রতার কেন্দ্র</li>
+                        <li class="option">(খ) প্রধান অক্ষ</li>
+                        <li class="option">(গ) মেরু</li>
+                        <li class="option" data-correct="true">(ঘ) ফোকাস</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) ফোকাস</p>
+                        <p><strong>ব্যাখ্যা:</strong> এই বিন্দুটিকে লেন্সের মুখ্য ফোকাস বলা হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৩৮. +2D ক্ষমতা সম্পন্ন একটি লেন্সের ফোকাস দূরত্ব হবে-</p>
+                    <ul class="options">
+                        <li class="option">(ক) 40 মি</li>
+                        <li class="option">(খ) 50 মি</li>
+                        <li class="option">(গ) 40 সেমি</li>
+                        <li class="option" data-correct="true">(ঘ) 50 সেমি</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) 50 সেমি</p>
+                        <p><strong>ব্যাখ্যা:</strong> f = 1/P = 1/2 = 0.5 মিটার = 50 সেমি।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৩৯. একটি লেন্সের ক্ষমতা +2.0D। লেন্সের ধরন এবং এর ফোকাস দূরত্ব কত হবে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) উত্তল, -0.5 মি</li>
+                        <li class="option">(খ) অবতল, -0.5 মি</li>
+                        <li class="option">(গ) অবতল, +0.5 মি</li>
+                        <li class="option" data-correct="true">(ঘ) উত্তল, +0.5 মি</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) উত্তল, +0.5 মি</p>
+                        <p><strong>ব্যাখ্যা:</strong> ক্ষমতা ধনাত্মক হওয়ায় লেন্সটি উত্তল। f = 1/P = 1/2.0 = +0.5 মিটার।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৪০. লেন্সের ফোকাস বিন্দু এবং আলোক কেন্দ্রের মধ্যে দূরত্বকে কী বলে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) বক্রতার ব্যাসার্ধ</li>
+                        <li class="option">(খ) প্রধান অক্ষ</li>
+                        <li class="option" data-correct="true">(গ) ফোকাস দূরত্ব</li>
+                        <li class="option">(ঘ) উন্মেষ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) ফোকাস দূরত্ব</p>
+                        <p><strong>ব্যাখ্যা:</strong> সংজ্ঞা অনুযায়ী, লেন্সের আলোক কেন্দ্র থেকে মুখ্য ফোকাস পর্যন্ত দূরত্বকে ফোকাস দূরত্ব বলে।</p>
+                    </div>
+                </div>
+            </div>
+            <div id="set5" class="mcq-set" style="display: none;">
+                <h3>অনুশীলনী সেট - ৫</h3>
+                 <!-- Q41 to Q50 -->
+                 <div class="mcq-item">
+                    <p class="question">৪১. যদি একটি সংশোধনমূলক লেন্সের ক্ষমতা +2.0D হয়, তাহলে এটি একটি-</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) উত্তল লেন্স</li>
+                        <li class="option">(খ) উত্তল দর্পণ</li>
+                        <li class="option">(গ) অবতল লেন্স</li>
+                        <li class="option">(ঘ) অবতল আয়না</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) উত্তল লেন্স</p>
+                        <p><strong>ব্যাখ্যা:</strong> ধনাত্মক ক্ষমতা সম্পন্ন লেন্স হল উত্তল লেন্স, যা দূরদৃষ্টি (হাইপারমেট্রোপিয়া) সংশোধনে ব্যবহৃত হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৪২. একটি অবতল লেন্সের আলোক কেন্দ্রের মধ্য দিয়ে যাওয়া আলোর রশ্মি প্রতিসরণের পর কীভাবে বেরিয়ে আসবে?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) কোনো বিচ্যুতি ছাড়াই</li>
+                        <li class="option">(খ) প্রধান ফোকাস থেকে</li>
+                        <li class="option">(গ) বক্রতার কেন্দ্র থেকে</li>
+                        <li class="option">(ঘ) প্রধান অক্ষের সমান্তরাল হয়ে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) কোনো বিচ্যুতি ছাড়াই</p>
+                        <p><strong>ব্যাখ্যা:</strong> যেকোনো লেন্সের (উত্তল বা অবতল) আলোক কেন্দ্রের মধ্যে দিয়ে যাওয়া রশ্মির কোনো চ্যুতি হয় না, এটি সোজা পথে বেরিয়ে যায়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৪৩. আলো চোখের কোন অংশ দিয়ে প্রবেশ করে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) সিলিয়ারি পেশী</li>
+                        <li class="option">(খ) আইরিস</li>
+                        <li class="option" data-correct="true">(গ) কর্নিয়া</li>
+                        <li class="option">(ঘ) লেন্স</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) কর্নিয়া</p>
+                        <p><strong>ব্যাখ্যা:</strong> কর্নিয়া হলো চোখের সবচেয়ে বাইরের স্বচ্ছ স্তর, যার মধ্যে দিয়ে আলো প্রথম চোখে প্রবেশ করে।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৪৪. দূরদৃষ্টিকে আর কী বলা হয়?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) হাইপারমেট্রোপিয়া</li>
+                        <li class="option">(খ) মায়োপিয়া</li>
+                        <li class="option">(গ) অ্যামেট্রোপিয়া</li>
+                        <li class="option">(ঘ) প্রেসবায়োপিয়া</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) হাইপারমেট্রোপিয়া</p>
+                        <p><strong>ব্যাখ্যা:</strong> দূরদৃষ্টির ডাক্তারি পরিভাষা হলো হাইপারমেট্রোপিয়া।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৪৫. মানুষের নিকট দৃষ্টির ত্রুটিকে কী বলা হয়?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) মায়োপিয়া</li>
+                        <li class="option">(খ) হাইপারমেট্রোপিয়া</li>
+                        <li class="option">(গ) ছানি</li>
+                        <li class="option">(ঘ) প্রেসবায়োপিয়া</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) মায়োপিয়া</p>
+                        <p><strong>ব্যাখ্যা:</strong> নিকট দৃষ্টির ত্রুটি বা ক্ষীণদৃষ্টির ডাক্তারি পরিভাষা হলো মায়োপিয়া।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৪৬. মায়োপিয়ায় আক্রান্ত ব্যক্তিরা কোন লেন্স ব্যবহার করেন?</p>
+                    <ul class="options">
+                        <li class="option">(ক) নলাকার</li>
+                        <li class="option" data-correct="true">(খ) অবতল</li>
+                        <li class="option">(গ) উত্তল-অবতল</li>
+                        <li class="option">(ঘ) উত্তল</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) অবতল</p>
+                        <p><strong>ব্যাখ্যা:</strong> মায়োপিয়া বা নিকটদৃষ্টির ত্রুটি সংশোধনের জন্য উপযুক্ত ফোকাস দূরত্বের অবতল লেন্সের চশমা ব্যবহার করা হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৪৭. যে দৃষ্টির ত্রুটিতে একজন ব্যক্তি দূরের বস্তু পরিষ্কারভাবে দেখতে পায় না, তাকে কী বলে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) হাইপারমেট্রোপিয়া</li>
+                        <li class="option" data-correct="true">(খ) মায়োপিয়া</li>
+                        <li class="option">(গ) রাতকানা</li>
+                        <li class="option">(ঘ) প্রেসবায়োপিয়া</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) মায়োপিয়া</p>
+                        <p><strong>ব্যাখ্যা:</strong> মায়োপিয়া বা নিকটদৃষ্টিতে আক্রান্ত ব্যক্তিরা কাছের জিনিস স্পষ্ট দেখলেও দূরের জিনিস ঝাপসা দেখেন।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৪৮. হাইপারমেট্রোপিয়া বা দূরদৃষ্টিতে আক্রান্ত ব্যক্তির নিকট বিন্দুটি স্বাভাবিক নিকট বিন্দু থেকে-</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) আরও দূরে থাকে</li>
+                        <li class="option">(খ) ২৫ সেমি দূরে থাকে</li>
+                        <li class="option">(গ) কাছে থাকে</li>
+                        <li class="option">(ঘ) একই স্থানে থাকে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) আরও দূরে থাকে</p>
+                        <p><strong>ব্যাখ্যা:</strong> স্বাভাবিক চোখের নিকট বিন্দু ২৫ সেমি। হাইপারমেট্রোপিয়ায় এই বিন্দুটি চোখ থেকে আরও দূরে সরে যায়, ফলে ২৫ সেমি দূরত্বের বস্তু দেখতে অসুবিধা হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৪৯. সুস্থ চোখে কোনো বস্তুর প্রতিবিম্ব কোথায় গঠিত হয়?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) রেটিনায়</li>
+                        <li class="option">(খ) রেটিনার পিছনে</li>
+                        <li class="option">(গ) কর্নিয়ায়</li>
+                        <li class="option">(ঘ) রেটিনার আগে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) রেটিনায়</p>
+                        <p><strong>ব্যাখ্যা:</strong> স্বাভাবিক বা সুস্থ চোখে লেন্স দ্বারা প্রতিসরণের পর বস্তুর একটি স্পষ্ট প্রতিবিম্ব রেটিনার উপর গঠিত হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৫০. হাইপারমেট্রোপিয়ায় ভুক্তভোগীরা কোন লেন্স ব্যবহার করে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) অবতল</li>
+                        <li class="option" data-correct="true">(খ) উত্তল</li>
+                        <li class="option">(গ) নলাকার</li>
+                        <li class="option">(ঘ) সমতল</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) উত্তল</p>
+                        <p><strong>ব্যাখ্যা:</strong> এটি প্রশ্ন ২৫ এর পুনরাবৃত্তি। হাইপারমেট্রোপিয়া বা দূরদৃষ্টির ত্রুটি সংশোধনে উত্তল লেন্স ব্যবহার করা হয়।</p>
+                    </div>
+                </div>
+            </div>
+            <div id="set6" class="mcq-set" style="display: none;">
+                <h3>অনুশীলনী সেট - ৬</h3>
+                <!-- Q51 to Q60 -->
+                <div class="mcq-item">
+                    <p class="question">৫১. বাইফোকাল বা দ্বি-ফোকাল লেন্স কারা ব্যবহার করেন?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) যাদের মায়োপিয়া এবং হাইপারমেট্রোপিয়া উভয়ই আছে</li>
+                        <li class="option">(খ) যাদের শুধু মায়োপিয়া আছে</li>
+                        <li class="option">(গ) যাদের শুধু হাইপারমেট্রোপিয়া আছে</li>
+                        <li class="option">(ঘ) যাদের চোখে ছানি আছে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) যাদের মায়োপিয়া এবং হাইপারমেট্রোপিয়া উভয়ই আছে</p>
+                        <p><strong>ব্যাখ্যা:</strong> এই অবস্থাকে প্রেসবায়োপিয়া বলা হয়। বাইফোকাল লেন্সে দুটি ভিন্ন ফোকাস দূরত্বের অংশ থাকে, যা দূর এবং কাছের উভয় বস্তু দেখতে সাহায্য করে।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৫২. এই ডিভাইসগুলির মধ্যে কোনটি শুধুমাত্র উত্তল লেন্স ব্যবহার করে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) গাড়ির হেডলাইট</li>
+                        <li class="option">(খ) টর্চলাইট</li>
+                        <li class="option" data-correct="true">(গ) অণুবীক্ষণ যন্ত্র (Microscope)</li>
+                        <li class="option">(ঘ) পেরিস্কোপ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) অণুবীক্ষণ যন্ত্র (Microscope)</p>
+                        <p><strong>ব্যাখ্যা:</strong> সরল এবং যৌগিক উভয় অণুবীক্ষণ যন্ত্রেই বস্তুকে বিবর্ধিত করে দেখার জন্য উত্তল লেন্স ব্যবহৃত হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৫৩. থিয়েটারে 3D সিনেমা দেখার সময় বিশেষ চশমা পরতে হয় কারণ-</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) চশমা আমাদের বাম এবং ডান চোখকে ভিন্ন ভিন্ন চিত্র দেখতে দেয়</li>
+                        <li class="option">(খ) 3D ফিল্ম বিশেষ রঙ ব্যবহার করে যা সাধারণ চোখে দেখা যায় না</li>
+                        <li class="option">(গ) 3D ফিল্ম খুব উজ্জ্বল হয়</li>
+                        <li class="option">(ঘ) চশমা উভয় চোখকে একই চিত্র দেখতে সাহায্য করে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) চশমা আমাদের বাম এবং ডান চোখকে ভিন্ন ভিন্ন চিত্র দেখতে দেয়</p>
+                        <p><strong>ব্যাখ্যা:</strong> 3D প্রযুক্তিতে দুটি ভিন্ন দৃষ্টিকোণ থেকে ধারণ করা ছবি একই সাথে দেখানো হয়। বিশেষ চশমা (যেমন পোলারাইজড চশমা) প্রতিটি চোখে একটি করে নির্দিষ্ট ছবি পাঠায়, যা মস্তিষ্কে গভীরতার অনুভূতি বা 3D প্রভাব তৈরি করে।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৫৪. পেরিস্কোপে কী ব্যবহৃত হয়?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) সমতল আয়না</li>
+                        <li class="option">(খ) অবতল লেন্স</li>
+                        <li class="option">(গ) প্রিজম</li>
+                        <li class="option">(ঘ) উত্তল লেন্স</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) সমতল আয়না</p>
+                        <p><strong>ব্যাখ্যা:</strong> সরল পেরিস্কোপে দুটি সমতল আয়না 45° কোণে স্থাপন করে আলোর প্রতিফলন ঘটিয়ে বাধা টপকে দেখা হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৫৫. নিচের কোনটিতে অপটিক্যাল লেন্স নেই?</p>
+                    <ul class="options">
+                        <li class="option">(ক) পেরিস্কোপ</li>
+                        <li class="option">(খ) অণুবীক্ষণ যন্ত্র</li>
+                        <li class="option">(গ) দূরবীক্ষণ যন্ত্র</li>
+                        <li class="option" data-correct="true">(ঘ) স্টেথোস্কোপ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) স্টেথোস্কোপ</p>
+                        <p><strong>ব্যাখ্যা:</strong> স্টেথোস্কোপ শব্দ শোনার যন্ত্র, এতে কোনো লেন্স বা আয়না ব্যবহৃত হয় না। পেরিস্কোপে আয়না থাকে, যা অপটিক্যাল যন্ত্র, কিন্তু লেন্স থাকে না। তবে স্টেথোস্কোপ কোনো অপটিক্যাল যন্ত্রই নয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৫৬. কোনটি সূর্যের আলোকে তার উপাদান রঙে ভাগ করতে পারে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) প্রতিসরণ</li>
+                        <li class="option" data-correct="true">(খ) প্রিজম</li>
+                        <li class="option">(গ) প্রতিফলন</li>
+                        <li class="option">(ঘ) বিকিরণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) প্রিজম</p>
+                        <p><strong>ব্যাখ্যা:</strong> প্রিজমের মধ্যে দিয়ে যাওয়ার সময় আলোর বিচ্ছুরণ ঘটে এবং সাদা আলো তার সাতটি উপাদান রঙে (বেনীআসহকলা) বিভক্ত হয়ে যায়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৫৭. প্রিজম কী করে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) আলো প্রতিফলিত করে</li>
+                        <li class="option">(খ) আলোকে যেতে বাধা দেয়</li>
+                        <li class="option" data-correct="true">(গ) এর মধ্য দিয়ে যাওয়া আলোকে ছড়িয়ে দেয় বা বিচ্ছুরিত করে</li>
+                        <li class="option">(ঘ) আলোকে শোষণ করে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) এর মধ্য দিয়ে যাওয়া আলোকে ছড়িয়ে দেয় বা বিচ্ছুরিত করে</p>
+                        <p><strong>ব্যাখ্যা:</strong> প্রিজমের প্রধান কাজ হলো আলোর প্রতিসরণ ও বিচ্ছুরণ ঘটানো। এটি সাদা আলোকে তার উপাদান রঙে বিশ্লিষ্ট করে।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৫৮. রামধনু একটি প্রাকৃতিক ঘটনা, যা আলোর কোন ধর্মকে দেখায়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) প্রতিসরণ</li>
+                        <li class="option">(খ) অপবর্তন</li>
+                        <li class="option">(গ) প্রতিফলন</li>
+                        <li class="option" data-correct="true">(ঘ) বিচ্ছুরণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) বিচ্ছুরণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> বৃষ্টির কণার মধ্যে সূর্যের আলোর প্রতিসরণ, অভ্যন্তরীণ পূর্ণ প্রতিফলন এবং বিচ্ছুরণের সম্মিলিত ফলেই আকাশে রামধনু তৈরি হয়। এর মধ্যে মূল ঘটনাটি হলো বিচ্ছুরণ।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৫৯. কোন রঙ একটি প্রিজমের মাধ্যমে সবচেয়ে কম বিচ্যুত হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) বেগুনী</li>
+                        <li class="option" data-correct="true">(খ) লাল</li>
+                        <li class="option">(গ) নীল</li>
+                        <li class="option">(ঘ) সবুজ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) লাল</p>
+                        <p><strong>ব্যাখ্যা:</strong> লাল আলোর তরঙ্গদৈর্ঘ্য সবচেয়ে বেশি, তাই কাচের মতো মাধ্যমে এর গতিবেগ অন্য রঙের চেয়ে বেশি থাকে এবং এটি সবচেয়ে কম বাঁকে বা বিচ্যুত হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৬০. সাদা আলোর প্রতিটি রঙ ভিন্ন কোণে প্রিজমে প্রতিসৃত হলে যে রঙিন পটি গঠিত হয় তাকে কী বলে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) রঙের বিস্তার</li>
+                        <li class="option">(খ) রামধনু</li>
+                        <li class="option">(গ) রঙিন ছবি</li>
+                        <li class="option" data-correct="true">(ঘ) বর্ণালী</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) বর্ণালী</p>
+                        <p><strong>ব্যাখ্যা:</strong> আলোর বিচ্ছুরণের ফলে সৃষ্ট এই সাতটি রঙের পটিকে বর্ণালী বা Spectrum বলা হয়।</p>
+                    </div>
+                </div>
+            </div>
+            <div id="set7" class="mcq-set" style="display: none;">
+                <h3>অনুশীলনী সেট - ৭</h3>
+                <!-- Q61 to Q74 -->
+                <div class="mcq-item">
+                    <p class="question">৬১. প্রিজমের মধ্য দিয়ে আলো অতিক্রম করিয়ে বর্ণালী গঠনকারী প্রথম বিজ্ঞানী কে?</p>
+                    <ul class="options">
+                        <li class="option">(ক) পল ভিলার্ড</li>
+                        <li class="option">(খ) বেঞ্জামিন ফ্রাঙ্কলিন</li>
+                        <li class="option" data-correct="true">(গ) আইজ্যাক নিউটন</li>
+                        <li class="option">(ঘ) পিয়েরে কুরি</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) আইজ্যাক নিউটন</p>
+                        <p><strong>ব্যাখ্যা:</strong> বিজ্ঞানী আইজ্যাক নিউটন প্রথম প্রিজম ব্যবহার করে প্রমাণ করেন যে সাদা আলো সাতটি ভিন্ন রঙের আলোর মিশ্রণ।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৬২. কাচের প্রিজম দ্বারা বিচ্ছুরণের পরে সাদা আলোর সাতটি রঙের মধ্যে কোনটি সবচেয়ে কম বিচ্যুত হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) নীল</li>
+                        <li class="option">(খ) বেগুনি</li>
+                        <li class="option" data-correct="true">(গ) লাল</li>
+                        <li class="option">(ঘ) কমলা</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) লাল</p>
+                        <p><strong>ব্যাখ্যা:</strong> এটি প্রশ্ন ৫৯ এর পুনরাবৃত্তি। লাল আলোর তরঙ্গদৈর্ঘ্য বেশি হওয়ায় এর বিচ্যুতি সবচেয়ে কম হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৬৩. সাদা আলোর উপাদান রঙগুলির মধ্যে কোনটির তরঙ্গদৈর্ঘ্য সবচেয়ে বেশি?</p>
+                    <ul class="options">
+                        <li class="option">(ক) বেগুনি</li>
+                        <li class="option">(খ) কমলা</li>
+                        <li class="option" data-correct="true">(গ) লাল</li>
+                        <li class="option">(ঘ) সবুজ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) লাল</p>
+                        <p><strong>ব্যাখ্যা:</strong> দৃশ্যমান আলোর মধ্যে লাল রঙের তরঙ্গদৈর্ঘ্য সর্বাধিক (প্রায় 700 nm) এবং বেগুনি রঙের তরঙ্গদৈর্ঘ্য সর্বনিম্ন (প্রায় 400 nm)।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৬৪. যখন সাদা আলো একটি প্রিজমের মধ্য দিয়ে যায়, তখন এটি বিচ্ছুরিত হয় কেন?</p>
+                    <ul class="options">
+                        <li class="option">(ক) প্রিজম নতুন রঙ তৈরি করে</li>
+                        <li class="option" data-correct="true">(খ) সাদা আলোর সাতটি রঙ ভিন্ন গতিতে প্রিজমের মধ্য দিয়ে যায়</li>
+                        <li class="option">(গ) রঙগুলি প্রিজম দ্বারা প্রতিফলিত হয়</li>
+                        <li class="option">(ঘ) সব রঙ একই গতিতে প্রতিসৃত হয়</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) সাদা আলোর সাতটি রঙ ভিন্ন গতিতে প্রিজমের মধ্য দিয়ে যায়</p>
+                        <p><strong>ব্যাখ্যা:</strong> প্রিজমের উপাদানের প্রতিসরণাঙ্ক আলোর তরঙ্গদৈর্ঘ্যের উপর নির্ভরশীল। ভিন্ন রঙের আলোর তরঙ্গদৈর্ঘ্য ভিন্ন হওয়ায়, প্রিজমের মধ্যে তাদের গতিবেগও ভিন্ন হয়। ফলে তারা ভিন্ন কোণে বেঁকে গিয়ে আলাদা হয়ে যায়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৬৫. সূর্যের আলো কয়টি রঙ নিয়ে গঠিত?</p>
+                    <ul class="options">
+                        <li class="option">(ক) তিন</li>
+                        <li class="option">(খ) দুই</li>
+                        <li class="option" data-correct="true">(গ) সাত</li>
+                        <li class="option">(ঘ) পাঁচ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) সাত</p>
+                        <p><strong>ব্যাখ্যা:</strong> সূর্যের সাদা আলো সাতটি মূল রঙের (বেনীআসহকলা) সমষ্টি।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৬৬. কোন ধরনের আয়না আলোর পার্শ্বীয় পরিবর্তন (Lateral Inversion) দেখায়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) উত্তল দর্পণ</li>
+                        <li class="option">(খ) অবতল আয়না</li>
+                        <li class="option">(গ) আয়তক্ষেত্রাকার আয়না</li>
+                        <li class="option" data-correct="true">(ঘ) সমতল আয়না</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) সমতল আয়না</p>
+                        <p><strong>ব্যাখ্যা:</strong> সমতল আয়নায় প্রতিবিম্বের ডান দিক বস্তুর বাম দিক এবং বাম দিক বস্তুর ডান দিক বলে মনে হয়। এই ঘটনাকেই পার্শ্বীয় পরিবর্তন বলে।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৬৭. যারা বাইফোকাল লেন্স পরেন, তারা কোন দৃষ্টির ত্রুটিতে ভোগেন?</p>
+                    <ul class="options">
+                        <li class="option">(ক) হাইপারমেট্রোপিয়া</li>
+                        <li class="option" data-correct="true">(খ) প্রেসবায়োপিয়া</li>
+                        <li class="option">(গ) মায়োপিয়া</li>
+                        <li class="option">(ঘ) ছানি</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) প্রেসবায়োপিয়া</p>
+                        <p><strong>ব্যাখ্যা:</strong> প্রেসবায়োপিয়া বা চালশে হলো বয়জনিত দৃষ্টির ত্রুটি, যেখানে কাছের ও দূরের উভয় জিনিস দেখতে অসুবিধা হয়। এর সংশোধনের জন্য বাইফোকাল লেন্স ব্যবহৃত হয়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৬৮. পরিষ্কার আকাশের নীল রঙ কোন ঘটনার কারণে হয়?</p>
+                    <ul class="options">
+                        <li class="option" data-correct="true">(ক) আলোর বিক্ষেপণ</li>
+                        <li class="option">(খ) আলোর প্রতিফলন</li>
+                        <li class="option">(গ) আলোর বিচ্ছুরণ</li>
+                        <li class="option">(ঘ) আলোর প্রতিসরণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ক) আলোর বিক্ষেপণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> বায়ুমণ্ডলের কণা দ্বারা নীল আলোর সর্বাধিক বিক্ষেপণের (Scattering) জন্য আকাশকে নীল দেখায়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৬৯. LED এর পূর্ণরূপ কী?</p>
+                    <ul class="options">
+                        <li class="option">(ক) লিনিয়ার ইমার্জেন্সি ডিভাইস</li>
+                        <li class="option" data-correct="true">(খ) লাইট এমিটিং ডায়োড</li>
+                        <li class="option">(গ) লিকুইড এমিটিং ডিসপ্লে</li>
+                        <li class="option">(ঘ) লাইট এমিটিং ডিভাইস</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) লাইট এমিটিং ডায়োড</p>
+                        <p><strong>ব্যাখ্যা:</strong> LED এর পুরো নাম হলো Light Emitting Diode।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৭০. 'মায়োপিয়া' কী নামেও পরিচিত?</p>
+                    <ul class="options">
+                        <li class="option">(ক) দূরদৃষ্টি</li>
+                        <li class="option" data-correct="true">(খ) নিকট-দৃষ্টি</li>
+                        <li class="option">(গ) প্রেসবায়োপিয়া</li>
+                        <li class="option">(ঘ) চালশে</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (খ) নিকট-দৃষ্টি</p>
+                        <p><strong>ব্যাখ্যা:</strong> মায়োপিয়া হলো ক্ষীণদৃষ্টি বা নিকট-দৃষ্টির ত্রুটি, যেখানে কাছের বস্তু স্পষ্ট দেখা গেলেও দূরের বস্তু ঝাপসা দেখায়।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৭১. আলোক রশ্মি তাদের মূল পথ থেকে বিচ্যুত হওয়ার ঘটনাকে, যখন তারা একটি মাধ্যম থেকে অন্য মাধ্যমে চলে যায়, তাকে কী বলা হয়?</p>
+                    <ul class="options">
+                        <li class="option">(ক) ব্যতিচার</li>
+                        <li class="option">(খ) প্রতিফলন</li>
+                        <li class="option">(গ) অপবর্তন</li>
+                        <li class="option" data-correct="true">(ঘ) প্রতিসরণ</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) প্রতিসরণ</p>
+                        <p><strong>ব্যাখ্যা:</strong> এটি আলোর প্রতিসরণের সংজ্ঞা।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৭২. সূর্যোদয় এবং সূর্যাস্তের সময় পর্বতের চূড়াগুলি যে গোলাপী বা কমলা বর্ণ ধারণ করে, সেই ঘটনাটির নাম কী?</p>
+                    <ul class="options">
+                        <li class="option">(ক) টিন্ডাল প্রভাব</li>
+                        <li class="option">(খ) মরীচিকা</li>
+                        <li class="option" data-correct="true">(গ) আলপেনগ্লো (Alpenglow)</li>
+                        <li class="option">(ঘ) অরোরা</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (গ) আলপেনগ্লো (Alpenglow)</p>
+                        <p><strong>ব্যাখ্যা:</strong> আলপেনগ্লো একটি বায়ুমণ্ডলীয় অপটিক্যাল ঘটনা, যেখানে সূর্য দিগন্তের নিচে থাকা সত্ত্বেও তার লালচে আলো পর্বতের চূড়ায় প্রতিফলিত হয়ে এই আভা তৈরি করে।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৭৩. সূর্য দ্বারা নির্গত আলোর রং কী?</p>
+                    <ul class="options">
+                        <li class="option">(ক) হলুদ</li>
+                        <li class="option">(খ) কমলা</li>
+                        <li class="option">(গ) লাল</li>
+                        <li class="option" data-correct="true">(ঘ) সাদা</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) সাদা</p>
+                        <p><strong>ব্যাখ্যা:</strong> সূর্য থেকে নির্গত আলো দৃশ্যমান বর্ণালীর সমস্ত রঙের মিশ্রণ, তাই এটি মূলত সাদা। বায়ুমণ্ডলের কারণে আমরা একে অনেক সময় হলুদ দেখি।</p>
+                    </div>
+                </div>
+                <div class="mcq-item">
+                    <p class="question">৭৪. বায়ুর পরম প্রতিসরণাঙ্ক কত?</p>
+                    <ul class="options">
+                        <li class="option">(ক) 1.03</li>
+                        <li class="option">(খ) 1.003</li>
+                        <li class="option">(গ) 1.00003</li>
+                        <li class="option" data-correct="true">(ঘ) 1.0003</li>
+                    </ul>
+                    <div class="answer-explanation">
+                        <p><strong>সঠিক উত্তর:</strong> (ঘ) 1.0003</p>
+                        <p><strong>ব্যাখ্যা:</strong> এটি প্রশ্ন ৬ এর পুনরাবৃত্তি। বায়ুর পরম প্রতিসরণাঙ্কের মান প্রায় 1.0003।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="class13.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class10.html" class="nav-button">10</a>
+        <a href="class11.html" class="nav-button">11</a>
+        <a href="class12.html" class="nav-button">12</a>
+        <a href="class13.html" class="nav-button">13</a>
+        <a href="class14.html" class="nav-button active">14</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <script>
+        // JS for dropdown and click functionality
+        document.getElementById('mcq-set-selector').addEventListener('change', function() {
+            document.querySelectorAll('.mcq-set').forEach(set => set.style.display = 'none');
+            document.getElementById(this.value).style.display = 'block';
+        });
+
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const parentOptions = this.parentElement;
+                
+                if (parentOptions.classList.contains('answered')) return;
+                parentOptions.classList.add('answered');
+
+                const isCorrect = this.getAttribute('data-correct') === 'true';
+                const mcqItem = this.closest('.mcq-item');
+                const explanation = mcqItem.querySelector('.answer-explanation');
+
+                if (isCorrect) {
+                    this.classList.add('correct');
+                } else {
+                    this.classList.add('incorrect');
+                    const correctOption = parentOptions.querySelector('[data-correct="true"]');
+                    if(correctOption) correctOption.classList.add('correct');
+                }
+
+                if(explanation) explanation.style.display = 'block';
+            });
+        });
+
+        // Keyboard navigation functionality
+        let currentVisibleMcqItem = null;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Remove highlight from previous item
+                    if(currentVisibleMcqItem) currentVisibleMcqItem.classList.remove('is-visible');
+                    // Set and highlight new item
+                    currentVisibleMcqItem = entry.target;
+                    currentVisibleMcqItem.classList.add('is-visible');
+                } else {
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, { root: null, threshold: 0.6 });
+
+        document.querySelectorAll('.mcq-item').forEach(item => observer.observe(item));
+
+        document.addEventListener('keydown', (event) => {
+            if (!currentVisibleMcqItem) return;
+
+            // Handle 1, 2, 3, 4 for options
+            if (['1', '2', '3', '4'].includes(event.key)) {
+                event.preventDefault();
+                const optionIndex = parseInt(event.key, 10) - 1;
+                const options = currentVisibleMcqItem.querySelectorAll('.option');
+                if (options[optionIndex]) {
+                    options[optionIndex].click();
+                }
+            }
+
+            // Handle Enter for next question
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const allQuestions = Array.from(document.querySelectorAll('.mcq-set[style*="block"] .mcq-item'));
+                const currentIndex = allQuestions.findIndex(item => item === currentVisibleMcqItem);
+
+                if (currentIndex !== -1 && currentIndex < allQuestions.length - 1) {
+                    const nextQuestion = allQuestions[currentIndex + 1];
+                    nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

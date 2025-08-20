@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 07 - বাঁকা আয়নার সামনে বস্তু এবং এক নতুন বন্ধু - প্রিজম</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d81b60;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #004d40;
+        }
+        
+        h3, h4 {
+            font-size: 1.6em;
+        }
+
+        p, ul, ol, li {
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #c2185b;
+        }
+
+        blockquote {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            margin: 20px 0;
+            padding: 15px 20px;
+            font-style: italic;
+            font-size: 1.1em;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+
+        .diagram {
+            max-width: 650px;
+            background: #fff;
+            padding: 15px;
+        }
+        
+        .math-section {
+            background-color: #f1f8e9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #689f38;
+            margin-top: 30px;
+        }
+        .math-section h4 {
+            color: #33691e;
+            border-bottom-color: #dcedc8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Navigation Styles */
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .nav-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .nav-button.active {
+            background-color: #d81b60;
+            color: white;
+            border-color: #d81b60;
+        }
+
+        .nav-button.disabled {
+            color: #aaa;
+            pointer-events: none;
+            background-color: #f5f5f5;
+        }
+        
+        .home-button {
+            background-color: #1e88e5;
+            color: white;
+            border-color: #1e88e5;
+        }
+        .home-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CLASS 07</h1>
+        <h2>বিষয়: বাঁকা আয়নার সামনে বস্তু এবং এক নতুন বন্ধু - প্রিজম</h2>
+
+        <p>নমস্কার বন্ধুরা!<br>গত ক্লাসে আমরা গোলীয় দর্পণ বা বাঁকা আয়নাদের সাথে পরিচিত হয়েছি। আজ আমরা দেখব, এই বাঁকা আয়নাগুলোর সামনে বিভিন্ন জায়গায় কোনো বস্তুকে রাখলে তার প্রতিবিম্ব কোথায় এবং কেমন তৈরি হয়। এটা অনেকটা জাদুর মতো! শেষে আমরা প্রিজম নামে এক নতুন বন্ধুর সাথেও পরিচিত হব।</p>
+
+        <h3>চলো, একটা বস্তুকে অবতল দর্পণের দিকে এগিয়ে নিয়ে যাই!</h3>
+        <p>ভাবো, তুমি একটা মোমবাতি হাতে নিয়ে একটা অবতল দর্পণের অনেক দূর থেকে ধীরে ধীরে আয়নার দিকে এগিয়ে যাচ্ছ। চলো দেখি, মোমবাতির প্রতিবিম্বের কী কী পরিবর্তন হয়!</p>
+        <img src="https://storage.googleapis.com/tb-img/production/21/05/concave.PNG
+" alt="অবতল দর্পণে বিভিন্ন অবস্থানে প্রতিবিম্ব গঠন" class="diagram">
+        <table>
+            <thead>
+                <tr>
+                    <th>বস্তুর অবস্থান</th>
+                    <th>প্রতিবিম্বের অবস্থান</th>
+                    <th>আকার</th>
+                    <th>প্রকৃতি</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>১. অসীমে</strong></td>
+                    <td>ফোকাসে (F)</td>
+                    <td>বিন্দুর মতো</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                </tr>
+                <tr>
+                    <td><strong>২. বক্রতাকেন্দ্রের (C) বাইরে</strong></td>
+                    <td>ফোকাস (F) ও বক্রতাকেন্দ্রের (C) মধ্যে</td>
+                    <td>ছোট</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                </tr>
+                <tr>
+                    <td><strong>৩. বক্রতাকেন্দ্রে (C)</strong></td>
+                    <td>বক্রতাকেন্দ্রেই (C)</td>
+                    <td>সমান আকারের</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                </tr>
+                <tr>
+                    <td><strong>৪. C ও F-এর মধ্যে</strong></td>
+                    <td>বক্রতাকেন্দ্রের (C) বাইরে</td>
+                    <td>বড় (বিবর্ধিত)</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                </tr>
+                <tr>
+                    <td><strong>৫. ফোকাসে (F)</strong></td>
+                    <td>অসীমে</td>
+                    <td>অত্যন্ত বিবর্ধিত</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                </tr>
+                <tr>
+                    <td><strong>৬. ফোকাস (F) ও মেরুর (P) মধ্যে</strong></td>
+                    <td>দর্পণের পেছনে</td>
+                    <td>বড় (বিবর্ধিত)</td>
+                    <td><strong>অসদ্‌ ও সোজা</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <blockquote><strong>মজার ব্যাপার:</strong> একমাত্র শেষ ক্ষেত্রেই (ফোকাস ও মেরুর মধ্যে) অবতল দর্পণ একটি সোজা ও অসদ্‌ প্রতিবিম্ব তৈরি করে। এই কারণেই দাড়ি কামানোর আয়না বা মেকআপ মিরর হিসেবে অবতল দর্পণ ব্যবহার করা হয়, যাতে মুখটা বড় ও সোজা দেখা যায়!</blockquote>
+
+        <h4>উত্তল দর্পণের ক্ষেত্রে কী হয়?</h4>
+        <p>উত্তল দর্পণ সবসময় একই রকম কাজ করে। বস্তুকে যেখানেই রাখো না কেন, প্রতিবিম্বটি সবসময় <strong>দর্পণের পেছনে, ছোট, অসদ্‌ ও সোজা</strong> হবে। এই কারণেই গাড়ির সাইড মিররে উত্তল দর্পণ থাকে, যাতে পেছনের অনেক বড় রাস্তার একটা ছোট ও সোজা ছবি দেখা যায়।</p>
+        <img src="https://circuitglobe.com/wp-content/uploads/2020/02/formation-of-virtual-image.jpg
+" alt="উত্তল দর্পণে প্রতিবিম্ব গঠন" style="max-width: 400px; background-color: white; padding: 10px;">
+
+        <h3>রৈখিক বিবর্ধন (Linear Magnification, m)</h3>
+        <p>প্রতিবিম্বটা বস্তুর চেয়ে কত গুণ বড় বা ছোট হলো, সেটা মাপার জন্যই আছে <strong>রৈখিক বিবর্ধন (m)</strong>।</p>
+        <blockquote>সূত্র: m = (প্রতিবিম্বের উচ্চতা) / (বস্তুর উচ্চতা) = v / u</blockquote>
+        <ul>
+            <li><code>m > 1</code> হলে, প্রতিবিম্বটি বস্তু থেকে <strong>বড়</strong>।</li>
+            <li><code>m < 1</code> হলে, প্রতিবিম্বটি বস্তু থেকে <strong>ছোট</strong>।</li>
+            <li><code>m = 1</code> হলে, প্রতিবিম্ব ও বস্তুর আকার <strong>সমান</strong>।</li>
+        </ul>
+
+        <div class="math-section">
+            <h3>চলো, দুটো অঙ্ক কষি!</h3>
+            <h4>প্রশ্ন ১:</h4> 
+            <p>একটি উত্তল দর্পণের সামনে ৩০ সেমি দূরে একটি বস্তু রাখলে তার উচ্চতার ১/৩ গুণ উচ্চতার প্রতিবিম্ব তৈরি হয়। প্রতিবিম্বের দূরত্ব (v) কত?</p>
+            <ul>
+                <li><strong>দেওয়া আছে:</strong> u = 30 সেমি, m = 1/3</li>
+                <li><strong>আমরা জানি:</strong> m = v/u</li>
+                <li><strong>সমাধান:</strong> v = m × u = (1/3) × 30 = <strong>10 সেমি</strong>।</li>
+            </ul>
+            <hr>
+            <h4>প্রশ্ন ২:</h4>
+            <p>একটি অবতল দর্পণের ৫ সেমি সামনে ২.৫ মিমি লম্বা একটি বস্তু রাখায় ১ সেমি (অর্থাৎ ১০ মিমি) লম্বা একটি সদ্‌বিম্ব তৈরি হলো। প্রতিবিম্বের অবস্থান (v) নির্ণয় করো।</p>
+            <ul>
+                <li><strong>দেওয়া আছে:</strong> u = 5 সেমি, বস্তুর উচ্চতা = ২.৫ মিমি, প্রতিবিম্বের উচ্চতা = ১০ মিমি</li>
+                <li><strong>বিবর্ধন (m) নির্ণয়:</strong> m = (প্রতিবিম্বের উচ্চতা) / (বস্তুর উচ্চতা) = 10 / 2.5 = 4</li>
+                <li><strong>প্রতিবিম্বের দূরত্ব (v) নির্ণয়:</strong> v = m × u = 4 × 5 = <strong>20 সেমি</strong>।</li>
+            </ul>
+        </div>
+        
+        <h3>আমাদের নতুন বন্ধু: প্রিজম (Prism)</h3>
+        <p>এবার আমরা আয়না ছেড়ে একটা নতুন স্বচ্ছ বন্ধুর সাথে পরিচিত হব, যার নাম <strong>প্রিজম</strong>। তোমরা নিশ্চয়ই দেখেছ, একটা কাচের ত্রিভুজের মতো জিনিস, যার মধ্যে দিয়ে আলো গেলে রামধনু তৈরি হয়!</p>
+        <img src="https://www.accurateopticsindia.com/wp-content/uploads/2023/06/Right-Angle-Prism.jpeg
+" alt="প্রিজমের বিভিন্ন অংশ" class="diagram" style="background-color: white;">
+        <ul>
+            <li><strong>প্রতিসারক তল:</strong> যে দুটি মসৃণ তলে আলোর প্রতিসরণ ঘটে।</li>
+            <li><strong>প্রান্তরেখা:</strong> প্রতিসারক তল দুটি যে রেখায় মিলিত হয়।</li>
+            <li><strong>ভূমি:</strong> প্রান্তরেখার ঠিক উল্টো দিকের তল।</li>
+            <li><strong>প্রতিসারক কোণ (A):</strong> দুটি প্রতিসারক তলের মধ্যবর্তী কোণ।</li>
+        </ul>
+
+        <h3 style="text-align: center; border: none; color: #004d40; margin-top: 40px;">Thank You!</h3>
+    </div>
+
+    <nav class="navigation">
+        <a href="class6.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button active">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class10.html" class="nav-button">10</a>
+        <a href="class11.html" class="nav-button">11</a>
+        <a href="class12.html" class="nav-button">12</a>
+        <a href="class13.html" class="nav-button">13</a>
+        <a href="class14.html" class="nav-button">14</a>
+        <a href="class8.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১২ - আলো</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset11.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset13.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "আলো", 
+            setName: "Set 12",                  
+
+            // পুরোনো সিস্টেমের জন্য এই প্রপার্টিটি রাখা হলো
+            name: "আলো (Light) - Set 12 (প্রশ্ন ১১১-১২০)",
+            
+            questions: [
+                {
+                    question: "বাইফোকাল (Bifocal) লেন্স এমন ব্যক্তিরা ব্যবহার করেন যারা কোন সমস্যায় ভুক্তভোগী?",
+                    options: ["মায়োপিয়া এবং হাইপারমেট্রোপিয়া উভয়ই", "শুধুমাত্র মায়োপিয়া", "শুধুমাত্র হাইপারমেট্রোপিয়া", "অ্যাস্টিগমাটিজম"],
+                    answer: 0,
+                    explanation: "বয়স বাড়ার সাথে সাথে যখন মায়োপিয়া (ক্ষীণদৃষ্টি) এবং হাইপারমেট্রোপিয়া (দূরদৃষ্টি) উভয় সমস্যাই দেখা দেয় (প্রেসবায়োপিয়া), তখন বাইফোকাল লেন্স ব্যবহার করা হয়।"
+                },
+                {
+                    question: "এই ডিভাইসগুলির মধ্যে কোনটি শুধুমাত্র উত্তল লেন্স ব্যবহার করে?",
+                    options: ["গাড়ির হেডলাইট", "টর্চলাইট", "মাইক্রোস্কোপ", "পেরিস্কোপ"],
+                    answer: 2,
+                    explanation: "মাইক্রোস্কোপে বস্তু দেখার জন্য অভিনেত্র (eyepiece) এবং অভিলক্ষ্য (objective) উভয় ক্ষেত্রেই উত্তল লেন্স ব্যবহার করা হয়।"
+                },
+                {
+                    question: "থিয়েটারে 3D সিনেমা দেখার সময় বিশেষ চশমা পরতে হয়, কারণ:",
+                    options: ["চশমা আমাদের বাম এবং ডান চোখকে দুটি সামান্য ভিন্ন প্রতিবিম্ব দেখতে দেয়", "3D ফিল্মে বিশেষ রঙ ব্যবহার করা হয়", "3D ফিল্ম খুব উজ্জ্বল হয়", "চশমা উভয় চোখকে একই প্রতিবিম্ব দেখতে দেয়"],
+                    answer: 0,
+                    explanation: "3D চশমা (পোলারাইজড গ্লাস) প্রতিটি চোখে সামান্য ভিন্ন কোণ থেকে দেখানো ছবি ফিল্টার করে পাঠায়, যা মস্তিষ্ক একত্রিত করে একটি ত্রিমাত্রিক (3D) অনুভূতি তৈরি করে।"
+                },
+                {
+                    question: "একটি সাধারণ পেরিস্কোপে কী ব্যবহৃত হয়?",
+                    options: ["সমতল দর্পণ", "অবতল লেন্স", "প্রিজম", "উত্তল লেন্স"],
+                    answer: 0,
+                    explanation: "সাধারণ পেরিস্কোপে দুটি সমতল দর্পণ 45° কোণে একে অপরের সমান্তরালে রাখা হয়, যা আলোর প্রতিফলন নীতির উপর কাজ করে।"
+                },
+                {
+                    question: "নিচের কোনটিতে অপটিক্যাল লেন্স বা দর্পণ থাকে না?",
+                    options: ["পেরিস্কোপ", "মাইক্রোস্কোপ", "টেলিস্কোপ", "স্টেথোস্কোপ"],
+                    answer: 3,
+                    explanation: "স্টেথোস্কোপ একটি শব্দ শোনার যন্ত্র, যা শব্দ তরঙ্গকে কেন্দ্রীভূত করে। এতে কোনো লেন্স বা দর্পণ থাকে না।"
+                },
+                {
+                    question: "কোনটি সূর্যের আলোকে তার উপাদান রঙে (সাতটি রঙ) ভাগ করতে পারে?",
+                    options: ["আলোর প্রতিসরণ", "প্রিজম", "আলোর প্রতিফলন", "আলোর বিক্ষেপণ"],
+                    answer: 1,
+                    explanation: "প্রিজমের মধ্যে দিয়ে যাওয়ার সময় সাদা আলো প্রতিসৃত হয় এবং তার উপাদান রঙগুলিতে (বর্ণালী) বিভক্ত হয়ে যায়। এই ঘটনাকে বিচ্ছুরণ বলে।"
+                },
+                {
+                    question: "প্রিজম আলোর সাথে কী করে?",
+                    options: ["আলো প্রতিফলিত করে", "আলোর গতিপথ রুদ্ধ করে", "আলোর বিচ্ছুরণ ঘটায়", "আলোর শোষণ করে"],
+                    answer: 2,
+                    explanation: "প্রিজমের প্রধান কাজ হলো আলোর প্রতিসরণ ঘটানো, যার ফলস্বরূপ আলোর বিচ্ছুরণ ঘটে এবং সাদা আলো সাতটি রঙে বিভক্ত হয়।"
+                },
+                {
+                    question: "রংধনু একটি প্রাকৃতিক ঘটনা, যা আলোর কোন ধর্ম প্রদর্শন করে?",
+                    options: ["প্রতিসরণ", "প্রতিফলন", "অভ্যন্তরীণ পূর্ণ প্রতিফলন", "বিচ্ছুরণ"],
+                    answer: 3,
+                    explanation: "রংধনু হলো বৃষ্টির কণার মধ্যে দিয়ে সূর্যের আলোর প্রতিসরণ, অভ্যন্তরীণ পূর্ণ প্রতিফলন এবং বিচ্ছুরণের একটি সম্মিলিত ফল, যার মধ্যে বিচ্ছুরণই প্রধান ঘটনা।"
+                },
+                {
+                    question: "সাদা আলো প্রিজমের মধ্যে দিয়ে যাওয়ার সময় কোন রঙের আলোর বিচ্যুতি সবচেয়ে কম হয়?",
+                    options: ["বেগুনি", "লাল", "নীল", "সবুজ"],
+                    answer: 1,
+                    explanation: "লাল রঙের আলোর তরঙ্গদৈর্ঘ্য সবচেয়ে বেশি, তাই প্রিজমের মধ্যে দিয়ে যাওয়ার সময় এর বিচ্যুতি সবচেয়ে কম হয়।"
+                },
+                {
+                    question: "সাদা আলোর প্রতিটি রঙ ভিন্ন কোণে প্রিজমে প্রতিসৃত হলে যে রঙিন পটি তৈরি হয়, তাকে কী বলে?",
+                    options: ["রঙের বিস্তার", "রংধনু", "রঙিন প্রতিবিম্ব", "বর্ণালী (Spectrum)"],
+                    answer: 3,
+                    explanation: "প্রিজমের মাধ্যমে সাদা আলো সাতটি রঙে বিভক্ত হলে যে রঙিন পটি বা ব্যান্ড তৈরি হয়, তাকে আলোর বর্ণালী বা Spectrum বলে।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

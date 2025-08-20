@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - তাপ ও তাপমাত্রা</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "তাপ ও তাপমাত্রা", 
+            setName: "Quiz Set 1", // সামঞ্জস্যের জন্য "Quiz Set X" ফরম্যাট ব্যবহার করা হলো             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "তাপ ও তাপমাত্রা - Set 1 (প্রশ্ন ১-১০)",
+            
+            questions: [
+                {
+                    question: "এস আই পদ্ধতিতে তাপের একক কী?",
+                    options: ["জুল", "ব্রিটিশ থার্মাল একক", "ক্যালোরি", "এদের কোনোটিই নয়"],
+                    answer: 0,
+                    explanation: "আন্তর্জাতিক পদ্ধতিতে (SI) তাপ বা শক্তির একক হলো জুল (Joule)। CGS পদ্ধতিতে তাপের একক হলো ক্যালোরি (Calorie)।"
+                },
+                {
+                    question: "1 জুল = কত ক্যালোরি?",
+                    options: ["4.2 ক্যালোরি", "0.24 ক্যালোরি", "0.42 ক্যালোরি", "0.024 ক্যালোরি"],
+                    answer: 1,
+                    explanation: "আমরা জানি, 1 ক্যালোরি ≈ 4.2 জুল। সুতরাং, 1 জুল = 1 / 4.2 ক্যালোরি ≈ 0.24 ক্যালোরি।"
+                },
+                {
+                    question: "ফারেনহাইট স্কেলে জলের হিমাঙ্ক কত?",
+                    options: ["180°F", "32°F", "212°F", "100°F"],
+                    answer: 1,
+                    explanation: "ফারেনহাইট স্কেলে জলের হিমাঙ্ক 32°F এবং স্ফুটনাঙ্ক 212°F।"
+                },
+                {
+                    question: "সেলসিয়াস স্কেলের প্রাথমিক অন্তরটি কত ভাগে বিভক্ত?",
+                    options: ["180 ভাগে", "100 ভাগে", "68 ভাগে", "32 ভাগে"],
+                    answer: 1,
+                    explanation: "সেলসিয়াস স্কেলের নিম্নস্থিরাঙ্ক (0°C) এবং ঊর্ধ্বস্থিরাঙ্ক (100°C)-এর মধ্যবর্তী পাল্লাকে সমান 100টি ভাগে ভাগ করা হয়।"
+                },
+                {
+                    question: "মানুষের দেহের স্বাভাবিক উষ্ণতা হল-",
+                    options: ["98.4°C", "-40°C", "98.4°F", "100°C"],
+                    answer: 2,
+                    explanation: "মানুষের শরীরের স্বাভাবিক তাপমাত্রা সেলসিয়াস স্কেলে প্রায় 37°C এবং ফারেনহাইট স্কেলে প্রায় 98.6°F।"
+                },
+                {
+                    question: "তাপের কোন্ রূপটির ধর্ম আলোর ধর্মের সদৃশ?",
+                    options: ["বোধগম্য তাপ", "বিকীর্ণ তাপ", "লীনতাপ", "এদের সবগুলিই"],
+                    answer: 1,
+                    explanation: "বিকীর্ণ তাপ আলোর মতোই মাধ্যম ছাড়াই শূন্যস্থানে চলাচল করতে পারে এবং এর গতি আলোর গতির সমান।"
+                },
+                {
+                    question: "যখন কঠিনকে তাপ দেওয়া হয়, তখন এর তাপমাত্রা-",
+                    options: ["বৃদ্ধি পায়", "হয় বৃদ্ধি পায় বা একই থাকে", "হ্রাস পায়", "একই থাকে"],
+                    answer: 1,
+                    explanation: "কঠিন পদার্থকে তাপ দিলে তার তাপমাত্রা বাড়তে থাকে। কিন্তু গলনাঙ্কে পৌঁছালে অবস্থার পরিবর্তনের সময় তাপমাত্রা স্থির থাকে।"
+                },
+                {
+                    question: "4°C তাপমাত্রায় 1 লিটার জলের ভর হল-",
+                    options: ["1 গ্রাম", "1 কেজি", "1 মিলিগ্রাম", "1 কুইন্টাল"],
+                    answer: 1,
+                    explanation: "4°C তাপমাত্রায় জলের ঘনত্ব সর্বাধিক হয় (1 g/cm³)। 1 লিটার = 1000 cm³। সুতরাং, 1 লিটার জলের ভর = 1000 গ্রাম = 1 কেজি।"
+                },
+                {
+                    question: "কোনো বস্তুতে তাপ দিলে বস্তুটির তাপমাত্রা-",
+                    options: ["সর্বদা বাড়বে", "সর্বদা কমবে", "একই থাকবে", "বাড়বে, বা একই থাকতে পারে"],
+                    answer: 3,
+                    explanation: "তাপ দিলে সাধারণত তাপমাত্রা বাড়ে। কিন্তু অবস্থার পরিবর্তনের সময় (গলন বা বাষ্পীভবন) তাপ দিলেও তাপমাত্রা স্থির থাকে।"
+                },
+                {
+                    question: "এসআই পদ্ধতিতে বিশুদ্ধ জলের আপেক্ষিক তাপ হল-",
+                    options: ["4000 জুল/কেজি·K", "4200 জুল/কেজি·K", "4100 জুল/কেজি·K", "4.2 জুল/কেজি·K"],
+                    answer: 1,
+                    explanation: "CGS পদ্ধতিতে জলের আপেক্ষিক তাপ 1 cal/g°C। SI পদ্ধতিতে এর মান হলো 4200 J/kg·K।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

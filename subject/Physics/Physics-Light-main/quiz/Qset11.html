@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১১ - আলো</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset10.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset12.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "আলো", 
+            setName: "Set 11",                  
+
+            // পুরোনো সিস্টেমের জন্য এই প্রপার্টিটি রাখা হলো
+            name: "আলো (Light) - Set 11 (প্রশ্ন ১০১-১১০)",
+            
+            questions: [
+                {
+                    question: "যদি একটি সংশোধনমূলক লেন্সের ক্ষমতা +2.0D হয়, তাহলে এটি কী ধরনের লেন্স?",
+                    options: ["উত্তল লেন্স", "উত্তল দর্পণ", "অবতল লেন্স", "অবতল দর্পণ"],
+                    answer: 0,
+                    explanation: "লেন্সের ক্ষমতা ধনাত্মক (+) হলে, সেটি একটি উত্তল লেন্স হয়। এটি অভিসারী লেন্স হিসেবে কাজ করে।"
+                },
+                {
+                    question: "একটি লেন্সের আলোককেন্দ্রের মধ্যে দিয়ে যাওয়া আলোর রশ্মি প্রতিসরণের পর কীভাবে নির্গত হবে?",
+                    options: ["কোনো বিচ্যুতি ছাড়াই", "প্রধান ফোকাস থেকে", "বক্রতার কেন্দ্র থেকে", "প্রধান অক্ষের সমান্তরালভাবে"],
+                    answer: 0,
+                    explanation: "সংজ্ঞা অনুযায়ী, আলোককেন্দ্র হলো লেন্সের এমন একটি বিন্দু যার মধ্যে দিয়ে গেলে আলোকরশ্মির কোনো বিচ্যুতি ঘটে না।"
+                },
+                {
+                    question: "আলো চোখের কোন অংশের মাধ্যমে প্রথম প্রবেশ করে?",
+                    options: ["সিলিয়ারি পেশী", "আইরিস", "কর্নিয়া", "লেন্স"],
+                    answer: 2,
+                    explanation: "কর্নিয়া হলো চোখের সবচেয়ে বাইরের স্বচ্ছ স্তর, যার মাধ্যমে আলো প্রথম চোখে প্রবেশ করে।"
+                },
+                {
+                    question: "দূরদৃষ্টিকে আর কী বলা হয়?",
+                    options: ["হাইপারমেট্রোপিয়া", "মায়োপিয়া", "অ্যাস্টিগমাটিজম", "প্রেসবায়োপিয়া"],
+                    answer: 0,
+                    explanation: "দূরদৃষ্টি বা দূরদর্শিতার ইংরেজি নাম হলো হাইপারমেট্রোপিয়া (Hypermetropia)।"
+                },
+                {
+                    question: "মানুষের ক্ষীণদৃষ্টি বা নিকটদৃষ্টিকে কী বলা হয়?",
+                    options: ["মায়োপিয়া", "হাইপারমেট্রোপিয়া", "ছানি", "প্রেসবায়োপিয়া"],
+                    answer: 0,
+                    explanation: "ক্ষীণদৃষ্টি বা নিকটদৃষ্টির ইংরেজি নাম হলো মায়োপিয়া (Myopia)।"
+                },
+                {
+                    question: "মায়োপিয়ায় আক্রান্ত ব্যক্তিরা কোন ধরনের লেন্স ব্যবহার করেন?",
+                    options: ["নলাকার", "অবতল", "উত্তল-অবতল", "উত্তল"],
+                    answer: 1,
+                    explanation: "মায়োপিয়া সংশোধনের জন্য উপযুক্ত ফোকাস দূরত্বের অবতল লেন্স ব্যবহার করা হয়, যা আলোকরশ্মিকে সঠিক স্থানে কেন্দ্রীভূত করে।"
+                },
+                {
+                    question: "যে দৃষ্টিজনিত ত্রুটিতে একজন ব্যক্তি দূরের বস্তু পরিষ্কারভাবে দেখতে পায় না, তাকে কী বলে?",
+                    options: ["হাইপারমেট্রোপিয়া", "মায়োপিয়া", "রাতকানা", "ট্যারা চোখ"],
+                    answer: 1,
+                    explanation: "মায়োপিয়া বা ক্ষীণদৃষ্টিতে আক্রান্ত ব্যক্তি কাছের বস্তু স্পষ্ট দেখলেও দূরের বস্তু ঝাপসা দেখে।"
+                },
+                {
+                    question: "হাইপারমেট্রোপিয়া বা দূরদৃষ্টিতে আক্রান্ত ব্যক্তির নিকটবিন্দু স্বাভাবিক নিকটবিন্দু থেকে কী হয়?",
+                    options: ["আরও দূরে সরে যায়", "কাছে চলে আসে", "একই থাকে", "ঝাপসা হয়ে যায়"],
+                    answer: 0, // উত্তরটি আরও স্পষ্ট করা হলো
+                    explanation: "একজন সুস্থ চোখের নিকটবিন্দু ২৫ সেমি। হাইপারমেট্রোপিয়ায় আক্রান্ত হলে নিকটবিন্দু ২৫ সেমি থেকে আরও দূরে সরে যায়।"
+                },
+                {
+                    question: "একজন সুস্থ স্বাভাবিক দৃষ্টির ব্যক্তির চোখে কোনো বস্তুর প্রতিবিম্ব কোথায় গঠিত হয়?",
+                    options: ["রেটিনায়", "রেটিনার পিছনে", "কর্নিয়ায়", "রেটিনার আগে"],
+                    answer: 0,
+                    explanation: "সুস্থ চোখে আলোকরশ্মি সঠিকভাবে প্রতিসৃত হয়ে রেটিনার উপর একটি স্পষ্ট প্রতিবিম্ব গঠন করে।"
+                },
+                {
+                    question: "হাইপারমেট্রোপিয়ায় ভুক্তভোগীরা কোন ধরনের লেন্স ব্যবহার করে?",
+                    options: ["অবতল", "উত্তল", "নলাকার", "বাইফোকাল"],
+                    answer: 1,
+                    explanation: "হাইপারমেট্রোপিয়া বা দূরদৃষ্টি সংশোধনের জন্য উপযুক্ত ফোকাস দূরত্বের উত্তল লেন্স ব্যবহার করা হয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

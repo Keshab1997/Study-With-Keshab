@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 08 - বাঁকা আয়নার গণিত এবং প্রিজমের অন্দরমহল</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #1a237e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d81b60;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #004d40;
+        }
+        
+        h3, h4 {
+            font-size: 1.6em;
+        }
+
+        p, ul, ol, li {
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #c2185b;
+        }
+
+        blockquote {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            margin: 20px 0;
+            padding: 15px 20px;
+            font-style: italic;
+            font-size: 1.2em;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+
+        .diagram {
+            max-width: 550px;
+            background: #fff;
+            padding: 15px;
+        }
+        
+        .math-section {
+            background-color: #f1f8e9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #689f38;
+            margin-top: 30px;
+        }
+        .math-section h4 {
+            color: #33691e;
+            border-bottom-color: #dcedc8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Navigation Styles */
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .nav-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .nav-button.active {
+            background-color: #d81b60;
+            color: white;
+            border-color: #d81b60;
+        }
+        
+        .home-button {
+            background-color: #1e88e5;
+            color: white;
+            border-color: #1e88e5;
+        }
+        .home-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CLASS 08</h1>
+        <h2>বিষয়: বাঁকা আয়নার গণিত এবং প্রিজমের অন্দরমহল</h2>
+
+        <p>নমস্কার বন্ধুরা!<br>গত ক্লাসে আমরা দেখেছি, বাঁকা আয়নার সামনে বিভিন্ন জায়গায় বস্তু রাখলে তার প্রতিবিম্ব কেমন হয়। আজ আমরা সেই প্রতিবিম্বের অবস্থান, আকার ইত্যাদি সঠিকভাবে বের করার জন্য কিছু সূত্র শিখব এবং সেই সূত্র ব্যবহার করে কিছু মজার অঙ্ক কষব। শেষে আমরা প্রিজম সম্পর্কে আরও কিছু জানব।</p>
+
+        <h3>গোলীয় দর্পণে প্রতিবিম্ব তৈরির সারসংক্ষেপ</h3>
+        <p>চলো, এক নজরে আবার দেখে নিই অবতল দর্পণের সামনে একটি মোমবাতিকে এগিয়ে নিয়ে গেলে কী কী হয়:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>বস্তুর অবস্থান</th>
+                    <th>প্রতিবিম্বের অবস্থান</th>
+                    <th>প্রতিবিম্বের আকার</th>
+                    <th>প্রতিবিম্বের প্রকৃতি</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>অসীমে</td>
+                    <td>ফোকাসে (F)</td>
+                    <td>অতি ক্ষুদ্র (বিন্দু)</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                </tr>
+                <tr>
+                    <td>বক্রতাকেন্দ্রের (C) বাইরে</td>
+                    <td>F ও C-এর মধ্যে</td>
+                    <td>ছোট</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                </tr>
+                <tr>
+                    <td>বক্রতাকেন্দ্রে (C)</td>
+                    <td>বক্রতাকেন্দ্রে (C)</td>
+                    <td>সমান</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                </tr>
+                <tr>
+                    <td>C ও F-এর মধ্যে</td>
+                    <td>C-এর বাইরে</td>
+                    <td>বড়</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                </tr>
+                <tr>
+                    <td>ফোকাসে (F)</td>
+                    <td>অসীমে</td>
+                    <td>বিশাল বড়</td>
+                    <td>সদ্‌ ও উল্টো</td>
+                </tr>
+                <tr>
+                    <td>F ও মেরুর (P) মধ্যে</td>
+                    <td>দর্পণের পেছনে</td>
+                    <td>বড়</td>
+                    <td><strong>অসদ্‌ ও সোজা</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>মনে রেখো:</strong> উত্তল দর্পণ সবসময় বস্তুর একটি <strong>ছোট, সোজা ও অসদ্‌</strong> প্রতিবিম্ব তৈরি করে।</p>
+
+        <h3>দর্পণের সূত্র: গণিতের জাদু</h3>
+        <p>এইবার আমরা সেই সূত্রগুলো শিখব, যা দিয়ে আমরা না এঁকেই বলে দিতে পারব প্রতিবিম্ব কোথায় ও কেমন তৈরি হবে!</p>
+
+        <h4>১. ফোকাস ও বক্রতা ব্যাসার্ধের সম্পর্ক</h4>
+        <blockquote>r = 2f</blockquote>
+        
+        <h4>২. দর্পণের সাধারণ সূত্র (Mirror Formula)</h4>
+        <blockquote>1/f = 1/v + 1/u</blockquote>
+        <ul>
+            <li><code>u</code> = বস্তু দূরত্ব (দর্পণ থেকে বস্তুর দূরত্ব)</li>
+            <li><code>v</code> = প্রতিবিম্ব দূরত্ব (দর্পণ থেকে প্রতিবিম্বের দূরত্ব)</li>
+            <li><code>f</code> = ফোকাস দূরত্ব</li>
+        </ul>
+
+        <h4>৩. রৈখিক বিবর্ধন (Linear Magnification, m)</h4>
+        <blockquote>m = (প্রতিবিম্বের উচ্চতা) / (বস্তুর উচ্চতা) = -v / u</blockquote>
+        <p>*(চিহ্নের নিয়ম অনুযায়ী এখানে একটি ঋণাত্মক চিহ্ন আসে, যা প্রতিবিম্বটি সোজা না উল্টো তা বোঝায়)*</p>
+
+        <div class="math-section">
+            <h3>চলো, অঙ্ক কষি! (চিহ্নের নিয়ম সহ)</h3>
+            <img src="https://www.vedantu.com/seo/content-images/1db192b9-1b71-4c5d-9cd8-aba0411cb33f.png
+" alt="গোলীয় দর্পণের জন্য চিহ্নের নিয়ম" class="diagram">
+            <h4>চিহ্নের নিয়ম (New Cartesian Sign Convention):</h4>
+            <ul>
+                <li>দর্পণের সামনে যা কিছু আছে (বস্তু দূরত্ব <code>u</code>), তা <strong>ঋণাত্মক (-)</strong>।</li>
+                <li><strong>অবতল দর্পণের</strong> ফোকাস (<code>f</code>) ও বক্রতা ব্যাসার্ধ (<code>r</code>) <strong>ঋণাত্মক (-)</strong>।</li>
+                <li><strong>উত্তল দর্পণের</strong> ফোকাস (<code>f</code>) ও বক্রতা ব্যাসার্ধ (<code>r</code>) <strong>ধনাত্মক (+)</strong>।</li>
+                <li><strong>সদ্‌ প্রতিবিম্বের</strong> দূরত্ব (<code>v</code>) <strong>ঋণাত্মক (-)</strong>, <strong>অসদ্‌ প্রতিবিম্বের</strong> দূরত্ব (<code>v</code>) <strong>ধনাত্মক (+)</strong>।</li>
+            </ul>
+            <hr>
+            <h4>প্রশ্ন ১:</h4>
+            <p>একটি অবতল দর্পণের বক্রতা ব্যাসার্ধ ৩০ সেমি। এর ফোকাস দূরত্ব কত?</p>
+            <p><strong>সমাধান:</strong> r = -30 সেমি (অবতল বলে ঋণাত্মক)। <br> f = r/2 = -30 / 2 = <strong>-15 সেমি</strong>।</p>
+            <hr>
+            <h4>প্রশ্ন ২:</h4>
+            <p>একটি অবতল দর্পণের ফোকাস দূরত্ব ২০ সেমি। দর্পণ থেকে ৩০ সেমি দূরে বস্তু রাখলে প্রতিবিম্ব কোথায় তৈরি হবে?</p>
+            <p><strong>দেওয়া আছে:</strong> f = -20 সেমি, u = -30 সেমি।<br>
+            <strong>সূত্র:</strong> 1/f = 1/v + 1/u <br>
+            1/(-20) = 1/v + 1/(-30) <br>
+            1/v = 1/30 - 1/20 = (2 - 3) / 60 = -1/60 <br>
+            <strong>v = -60 সেমি</strong>। (ঋণাত্মক চিহ্ন মানে প্রতিবিম্বটি সদ্‌ এবং দর্পণের সামনে তৈরি হয়েছে)।</p>
+            <hr>
+            <h4>প্রশ্ন ৩:</h4>
+            <p>একটি অবতল দর্পণের সামনে ৩০ সেমি দূরে ১.২ সেমি উচ্চতার একটি বস্তু রাখায়, ৬০ সেমি দূরে একটি সদ্‌ প্রতিবিম্ব তৈরি হলো। প্রতিবিম্বের উচ্চতা কত?</p>
+            <p><strong>দেওয়া আছে:</strong> u = -30 সেমি, v = -60 সেমি (সদ্‌ বলে ঋণাত্মক), বস্তুর উচ্চতা (h₁) = 1.2 সেমি।<br>
+            <strong>বিবর্ধন (m) নির্ণয়:</strong> m = -v/u = -(-60) / (-30) = -2 <br>
+            <strong>প্রতিবিম্বের উচ্চতা (h₂) নির্ণয়:</strong> m = h₂/h₁ <br>
+            -2 = h₂ / 1.2  => h₂ = -2 × 1.2 = <strong>-2.4 সেমি</strong>। (ঋণাত্মক চিহ্ন মানে প্রতিবিম্বটি উল্টো)।</p>
+        </div>
+
+        <h3>প্রিজম (Prism): এক ঝলকে</h3>
+        <p>আমরা গত ক্লাসে প্রিজমের সাথে পরিচিত হয়েছি। আজ তার গঠনটা আরেকবার ঝালিয়ে নিই।</p>
+        <img src="https://www.mpboardonline.com/answer/class-10-science-em/img/13-1.jpg
+" alt="প্রিজমের বিভিন্ন অংশ" class="diagram" style="background-color: white; max-width: 400px;">
+        <ul>
+            <li><strong>প্রতিসারক তল:</strong> যে দুটি মসৃণ তলে আলোর প্রতিসরণ ঘটে।</li>
+            <li><strong>ভূমি:</strong> প্রতিসারক তল দুটির বিপরীত দিকের তল।</li>
+            <li><strong>প্রতিসারক কোণ (A):</strong> দুটি প্রতিসারক তলের মধ্যবর্তী কোণ।</li>
+        </ul>
+        
+        <h3 style="text-align: center; border: none; color: #004d40; margin-top: 40px;">Thank You!</h3>
+    </div>
+
+    <nav class="navigation">
+        <a href="class7.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button active">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class10.html" class="nav-button">10</a>
+        <a href="class11.html" class="nav-button">11</a>
+        <a href="class12.html" class="nav-button">12</a>
+        <a href="class13.html" class="nav-button">13</a>
+        <a href="class14.html" class="nav-button">14</a>
+        <a href="class9.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+</body>
+</html>

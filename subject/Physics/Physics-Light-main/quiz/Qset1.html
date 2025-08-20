@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - আলো</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "আলো", 
+            setName: "Set 1",                  
+
+            // পুরোনো সিস্টেমের জন্য এই প্রপার্টিটি রাখা হলো
+            name: "আলো (Light) - Set 1 (প্রশ্ন ১-১০)",
+            
+            questions: [
+                {
+                    question: "যেসব পদার্থের মাধ্যমে বস্তুকে দেখা যায়, কিন্তু স্পষ্টভাবে দেখা যায় না, তাদের কী বলা হয়?",
+                    options: ["স্বচ্ছ", "অস্বচ্ছ", "ঈষৎ স্বচ্ছ", "দীপ্তি"],
+                    answer: 2,
+                    explanation: "ঈষৎ স্বচ্ছ পদার্থের মধ্যে দিয়ে আলো আংশিকভাবে যায়, তাই বস্তু দেখা যায় কিন্তু স্পষ্ট নয়। যেমন- ঘষা কাচ, তৈলাক্ত কাগজ।"
+                },
+                {
+                    question: "নিচের কোন রঙটি প্রাথমিক রঙের অন্তর্ভুক্ত নয়?",
+                    options: ["কমলা", "বেগুনী", "সবুজ", "নীল"],
+                    answer: 0,
+                    explanation: "প্রাথমিক রঙ: লাল, সবুজ, নীল। কমলা প্রাথমিক রঙ নয়।"
+                },
+                {
+                    question: "কোন পদার্থের মধ্য দিয়ে আলো যেতে পারে?",
+                    options: ["স্বচ্ছ", "ঈষৎ স্বচ্ছ", "অস্বচ্ছ", "কাঁচযুক্ত"],
+                    answer: 0,
+                    explanation: "স্বচ্ছ পদার্থের মধ্যে দিয়ে আলো সহজে যেতে পারে। যেমন- কাচ, জল।"
+                },
+                {
+                    question: "রঙিন টেলিভিশনে ব্যবহৃত প্রাথমিক রংগুলি হল-",
+                    options: ["সবুজ, হলুদ, লাল", "লাল, হলুদ, নীল", "নীল, হলুদ, সবুজ", "লাল, সবুজ, নীল"],
+                    answer: 3,
+                    explanation: "রঙিন টিভিতে RGB (Red, Green, Blue) প্রাথমিক রঙ ব্যবহৃত হয়।"
+                },
+                {
+                    question: "ভ্যাকুয়ামে আলোর বেগ কত?",
+                    options: ["3 x 10⁸ m/s", "2 x 10⁸ m/s", "3 x 10⁷ m/s", "3 x 10⁶ m/s"],
+                    answer: 0,
+                    explanation: "ভ্যাকুয়ামে আলোর সর্বোচ্চ গতি 3 x 10⁸ m/s।"
+                },
+                {
+                    question: "ভ্যাকুয়ামে আলোর গতি অনুমান করা হয় m/s.",
+                    options: ["3.00 x 10⁸", "3.10 x 10⁸", "3.12 x 10⁸", "3.15 x 10⁸"],
+                    answer: 0,
+                    explanation: "আন্তর্জাতিকভাবে গৃহীত মান 3.00 x 10⁸ m/s।"
+                },
+                {
+                    question: "নিচের কোন মাধ্যমে আলোর গতি সর্বাধিক?",
+                    options: ["জল", "বায়ু", "ভ্যাকুয়াম", "কাচ"],
+                    answer: 2,
+                    explanation: "ভ্যাকুয়ামে আলোর গতি সর্বাধিক, কোনো বাধা নেই।"
+                },
+                {
+                    question: "আলোর কোয়ান্টাম তত্ত্ব দিয়েছিলেন -",
+                    options: ["আইনস্টাইন", "নিউটন", "প্ল্যাঙ্ক", "ফ্যারাডে"],
+                    answer: 2,
+                    explanation: "ম্যাক্স প্ল্যাঙ্ক আলোর কোয়ান্টাম তত্ত্ব দেন (Quantum Theory)।"
+                },
+                {
+                    question: "আলো একটি অনুপ্রস্থ তরঙ্গ, যা একমাত্র ঘটনা এটা প্রমাণ করে?",
+                    options: ["আলোর বিচ্ছুরণ", "হস্তক্ষেপ", "ডিফিউশন", "মেরুকরণ"],
+                    answer: 3,
+                    explanation: "মেরুকরণ (Polarization) দ্বারা প্রমাণ হয় আলো অনুপ্রস্থ তরঙ্গ।"
+                },
+                {
+                    question: "যে সকল বস্তু নিজে আলো উৎপন্ন করে না তাকে বলা হয়-",
+                    options: ["স্বচ্ছ বস্তু", "স্বচ্ছ বস্তু", "নিষ্প্রভ বস্তু", "আলোকিত বস্তু"],
+                    answer: 2,
+                    explanation: "নিজে আলো উৎপন্ন না করলে তাকে নিষ্প্রভ (Non-luminous) বস্তু বলে।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

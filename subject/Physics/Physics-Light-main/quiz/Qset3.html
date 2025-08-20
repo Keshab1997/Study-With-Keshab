@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - আলো</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset4.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "আলো", 
+            setName: "Set 3",                  
+
+            // পুরোনো সিস্টেমের জন্য এই প্রপার্টিটি রাখা হলো
+            name: "আলো (Light) - Set 3 (প্রশ্ন ২১-৩০)",
+            
+            questions: [
+                {
+                    question: "আকাশের নীল রঙের কারণ:",
+                    options: ["আলোর প্রতিসরণ", "আলোর বিক্ষেপণ", "আলোর প্রতিফলন", "আলোর বিচ্ছুরণ"],
+                    answer: 1, // সঠিক উত্তর 'বিক্ষেপণ' হবে
+                    explanation: "বায়ুমণ্ডলের কণা দ্বারা নীল আলোর তরঙ্গদৈর্ঘ্য সবচেয়ে বেশি বিক্ষিপ্ত (scattered) হয়, তাই আকাশ নীল দেখায়।"
+                },
+                {
+                    question: "মেঘের রঙ সাদা হওয়ার কারণ-",
+                    options: ["আলোর প্রতিসরণ", "বিকিরণ", "আলোর প্রতিফলন", "আলোর বিক্ষেপণ"],
+                    answer: 3, // সঠিক উত্তর 'বিক্ষেপণ' হবে
+                    explanation: "মেঘের জলকণাগুলো সূর্যের আলোর সব রঙকে প্রায় সমানভাবে বিক্ষিপ্ত করে, ফলে মিশ্র রঙটি সাদা দেখায়।"
+                },
+                {
+                    question: "আকাশ নীল দেখায় কেন?",
+                    options: ["নীল ছাড়া সাদা আলোর সব রং বায়ুর অণু দ্বারা শোষিত হয়", "সব রঙের আলো সঠিক অনুপাতে থাকে", "নীল আলোর তরঙ্গদৈর্ঘ্য কম হওয়ায় এটি বায়ুর অণু দ্বারা সবচেয়ে বেশি বিক্ষিপ্ত হয়", "সাদা আলো সমস্ত বায়ুর অণু দ্বারা প্রতিফলিত হয়"],
+                    answer: 2,
+                    explanation: "রেইলির বিক্ষেপণ সূত্র অনুযায়ী, কম তরঙ্গদৈর্ঘ্যের নীল আলো সবচেয়ে বেশি বিক্ষিপ্ত হয়, তাই আকাশ নীল দেখায়।"
+                },
+                {
+                    question: "আলোর তরল পদার্থে ভাসমান কণার সাথে সংঘর্ষের ফলে সৃষ্ট ঝলকের প্রক্রিয়াকে বলা হয়:",
+                    options: ["রমন প্রভাব", "শামুক প্রভাব", "টিন্ডাল প্রভাব", "হাইজেন এর প্রভাব"],
+                    answer: 2,
+                    explanation: "কোলয়েডাল দ্রবণে আলোর রশ্মির পথ দৃশ্যমান হওয়ার ঘটনাকে টিন্ডাল প্রভাব বলে, যা আলোর বিক্ষেপণের কারণে ঘটে।"
+                },
+                {
+                    question: "যখন আলো একটি মসৃণ ও উজ্জ্বল পৃষ্ঠের উপর পড়ে, তখন কী ধরনের প্রতিফলন ঘটে?",
+                    options: ["বিচ্ছুরিত প্রতিফলন", "অনিয়মিত প্রতিফলন", "নিয়মিত প্রতিফলন", "স্বাভাবিক প্রতিফলন"],
+                    answer: 2,
+                    explanation: "মসৃণ ও উজ্জ্বল পৃষ্ঠে আপতিত সমান্তরাল রশ্মিগুচ্ছ প্রতিফলনের পরেও সমান্তরাল থাকে, একে নিয়মিত প্রতিফলন বলে।"
+                },
+                {
+                    question: "সমতল দর্পণ দ্বারা গঠিত প্রতিবিম্ব-",
+                    options: ["সদ এবং পার্শ্বীয়ভাবে সোজা", "সদ এবং সোজা", "অসদ এবং পার্শ্বীয়ভাবে সোজা", "অসদ এবং পার্শ্বীয়ভাবে উল্টানো"],
+                    answer: 3,
+                    explanation: "সমতল দর্পণে গঠিত প্রতিবিম্ব অসদ (virtual) হয় এবং এর পার্শ্বীয় পরিবর্তন (lateral inversion) ঘটে, অর্থাৎ ডান দিক বাম এবং বাম দিক ডান দেখায়।"
+                },
+                {
+                    question: "একটি সমতল আয়না দ্বারা গঠিত প্রতিবিম্ব সবসময় হয়-",
+                    options: ["সদ এবং সোজা", "অসদ এবং সোজা", "সদ এবং উল্টানো", "অসদ এবং পার্শ্বীয়ভাবে উল্টানো"],
+                    answer: 1, // প্রতিবিম্ব সোজা (erect) হয়
+                    explanation: "সমতল দর্পণে সর্বদা অসদ, সমশীর্ষ (সোজা) এবং বস্তুর সমান আকারের প্রতিবিম্ব গঠিত হয়।"
+                },
+                {
+                    question: "রোগীদের দাঁতের বড় প্রতিবিম্ব দেখতে দাঁতের ডাক্তাররা কোন ধরনের দর্পণ ব্যবহার করেন?",
+                    options: ["উত্তল দর্পণ", "সমতল দর্পণ", "অবতল দর্পণ", "গোলাকার দর্পণ"],
+                    answer: 2,
+                    explanation: "বস্তুকে ফোকাস দূরত্বের মধ্যে রাখলে অবতল দর্পণ একটি বিবর্ধিত ও অসদ প্রতিবিম্ব গঠন করে, যা দাঁত পরীক্ষার জন্য সুবিধাজনক।"
+                },
+                {
+                    question: "একটি গোলাকার দর্পণের প্রতিফলক পৃষ্ঠের কেন্দ্রকে কী বলা হয়?",
+                    options: ["বক্রতার কেন্দ্র", "মেরু", "ফোকাস", "প্রধান অক্ষ"],
+                    answer: 1,
+                    explanation: "গোলীয় দর্পণের প্রতিফলক তলের মধ্যবিন্দুকে দর্পণের মেরু (Pole) বলা হয়।"
+                },
+                {
+                    question: "নিচের কোনটি বস্তুর চেয়ে বড় অসদ প্রতিবিম্ব তৈরি করতে পারে?",
+                    options: ["অবতল দর্পণ", "অবতল লেন্স", "উত্তল দর্পণ", "সমতল দর্পণ"],
+                    answer: 0,
+                    explanation: "অবতল দর্পণের সামনে বস্তুকে ফোকাস ও মেরুর মধ্যে রাখলে একটি বিবর্ধিত (বড়) ও অসদ প্রতিবিম্ব তৈরি হয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>
