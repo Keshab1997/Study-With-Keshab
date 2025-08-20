@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Practice - Biology কোশ</title>
+    
+    <!-- Google Fonts Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>Biology: কোশ</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1: কোশের প্রাথমিক ধারণা (প্রশ্ন ১-১০)</option>
+                <option value="2">Set 2: কোশের প্রকারভেদ (প্রশ্ন ১১-২০)</option>
+                <option value="3">Set 3: কোশপ্রাচীর ও কোশপর্দা (প্রশ্ন ২১-৩৫)</option>
+                <option value="4">Set 4: সাইটোপ্লাজম ও নিউক্লিয়াস (প্রশ্ন ৩৬-৫১)</option>
+                <option value="5">Set 5: নিউক্লিয়াস, মাইটোকনড্রিয়া ও প্লাস্টিড (প্রশ্ন ৫২-৬৯)</option>
+                <option value="6">Set 6: ER, গলগি বডি ও লাইসোজোম (প্রশ্ন ৭০-৮০)</option>
+                <option value="7">Set 7: ভ্যাকুওল ও রাইবোজোম (প্রশ্ন ৮১-৯১)</option>
+                <option value="8">Set 8: সেন্ট্রোজোম ও মাইক্রোটিউবিউল (প্রশ্ন ৯২-১০৩)</option>
+                <option value="9">Set 9: বিশেষ ধারণা (প্রশ্ন ১০৪-১১৫)</option>
+            </select>
+        </div>
+        <div id="digital-clock" class="digital-clock"></div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 id="mcq-set-title"></h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here by JavaScript -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <!-- External JavaScript Files -->
+    <!-- Note: Data must be loaded BEFORE the script that uses it -->
+    <script src="mcq-data.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

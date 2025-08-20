@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - Biology কোশ</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container"></div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset4.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology কোশ",
+            setName: "Quiz Set 3",
+            name: "Biology কোশ - Set 3 (প্রশ্ন ২১-৩০)",
+            questions: [
+                {
+                    question: "নিচের কোন কোশের অর্গানেলগুলি ঝিল্লি দ্বারা রেখাযুক্ত নয়?",
+                    options: ["লাইসোজোম", "রাইবোজোম", "নিউক্লিয়াস", "গলগি বডি"],
+                    answer: 1,
+                    explanation: "রাইবোজোম ঝিল্লিবিহীন অঙ্গাণু।"
+                },
+                {
+                    question: "কোশের ঝিল্লি (Cell membrane) সম্বন্ধে নিচের কোন বিবৃতিটি সঠিক নয়?",
+                    options: ["এটি সেলুলোজ দিয়ে তৈরি", "এটি সমস্ত পদার্থ দ্বারা ভেদ্য", "এটি নমনীয় এবং কোশকে বহু পদার্থ গ্রাস করতে সাহায্য করে", "অক্সিজেন ও কার্বনডাই অক্সাইডের মতো গ্যাসগুলিকে ছড়িয়ে পড়তে দেয় না।"],
+                    answer: 0,
+                    explanation: "কোশপর্দা সেলুলোজ দিয়ে নয়, লিপিড ও প্রোটিন দিয়ে তৈরি।"
+                },
+                {
+                    question: "নিউক্লিয়াস ও সাইটোপ্লাজমের বিভিন্ন অংশে বস্তুর পরিবহন সম্পন্ন হয় সাধারণত যার মাধ্যমে—",
+                    options: ["রাইবোজোম", "মাইটোকন্ড্রিয়া", "লাইসোজোম", "এন্ডোপ্লাজমিক রেটিকুলাম"],
+                    answer: 3,
+                    explanation: "এন্ডোপ্লাজমিক রেটিকুলাম কোশে পদার্থ পরিবহন করে।"
+                },
+                {
+                    question: "কোন কোশ অঙ্গানুগুলির নিজস্ব DNA ও রাইবোজোম আছে?",
+                    options: ["গলগি বস্তু ও এন্ডোপ্লাজমিক রেটিকুলাম", "মাইটোকন্ড্রিয়া ও প্লাস্টিড", "লাইসোজোম ও গলগি বস্তু", "কোশগহ্বর ও প্লাস্টিড"],
+                    answer: 1,
+                    explanation: "মাইটোকন্ড্রিয়া ও প্লাস্টিডে নিজস্ব DNA ও রাইবোজোম থাকে।"
+                },
+                {
+                    question: "নিম্নলিখিতদের মধ্যে কোনটি প্রোক্যারিওটিক?",
+                    options: ["ইডোগোনিয়াম", "কনড্রাস ক্রিসপাস", "অসিলেটোরিয়া", "কারা"],
+                    answer: 2,
+                    explanation: "অসিলেটোরিয়া একটি নীলাভ-সবুজ শৈবাল, যা প্রোক্যারিওটিক।"
+                },
+                {
+                    question: "ক্রিস্টি দেখা যায়—",
+                    options: ["ক্লোরোপ্লাস্টিডে", "নিউক্লিয়াসে", "কোষপ্রাচীরে", "মাইটোকন্ড্রিয়ায়"],
+                    answer: 3,
+                    explanation: "মাইটোকন্ড্রিয়ার অন্তঃপর্দার ভাঁজকে ক্রিস্টি বলে।"
+                },
+                {
+                    question: "টোটিপোটেন্সি কি?",
+                    options: ["পরিণত জীবের একটি কোষের যে-কোনো কোষে পরিবর্তনের ক্ষমতা", "কোষের মেরুবিভাজন", "স্নায়ুকোশের মোট তড়িৎ আধানের পার্থক্য", "সাইনান্সের স্নায়ু স্পন্দন পরিবহণের ক্ষমতা"],
+                    answer: 0,
+                    explanation: "টোটিপোটেন্সি মানে একটি কোষ থেকে সম্পূর্ণ জীব তৈরি হওয়ার ক্ষমতা।"
+                },
+                {
+                    question: "কোষপর্দা কোথায় দেখতে পাওয়া যায়?",
+                    options: ["উদ্ভিদ কোষ", "প্রাণী কোষ", "উদ্ভিদ এবং প্রাণী কোষ", "কোনটাই নয়"],
+                    answer: 2,
+                    explanation: "দুই ধরনের কোশেই কোশপর্দা থাকে।"
+                },
+                {
+                    question: "দেহকোশের ডিপ্লয়েড নিউক্লিয়াসকে বলা হয়—",
+                    options: ["প্রোনিউক্লিয়াস", "অ্যাম্ফিনিউক্লিয়াস", "হেমিনিউক্লিয়াস", "হেটারোক্যারিয়ন"],
+                    answer: 3,
+                    explanation: "ডিপ্লয়েড নিউক্লিয়াসকে হেটারোক্যারিয়ন বলে।"
+                },
+                {
+                    question: "কোশবাদ বা কোশতত্ত্বের প্রবর্তক হলেন—",
+                    options: ["ওয়াটসন ও ক্লিক", "ড্যানিয়েল ও ড্যাভসন", "স্লেইডেন ও স্বোয়ান", "নিকসন"],
+                    answer: 2,
+                    explanation: "স্লেইডেন ও স্বোয়ান কোশতত্ত্বের প্রবর্তক।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>
