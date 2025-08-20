@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" id="viewportMeta">
+    <title>উদ্ভিদের চলন - Class 01</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        h4 { border-bottom: 1px dotted #ccc; }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); font-weight: 600; }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-style: italic; font-size: 1.1em; border-radius: 5px; }
+        img { max-width: 100%; height: auto; display: block; margin: 25px auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 10px; padding-left: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: var(--table-header-bg); color: var(--table-header-text); font-weight: 600; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .theme-buttons button, #toggleViewBtn { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover, #toggleViewBtn:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo">
+    <h1>অধ্যায়: উদ্ভিদের সংবেদনশীলতা ও সাড়া প্রদান: চলন</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <!-- === নতুন ডেস্কটপ মোড বাটন === -->
+    <button id="toggleViewBtn">ডেস্কটপ মোড</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 01</h2>
+
+    <h3>১.১ সংবেদনশীলতা এবং উদ্দীপক (Sensitivity and Stimulus)</h3>
+    <p>জীবের অন্যতম প্রধান ধর্ম হলো উত্তেজনায় সাড়া দেওয়ার ক্ষমতা। পরিবেশের যে-কোনো পরিবর্তন যা জীবের মধ্যে প্রতিক্রিয়া সৃষ্টি করে, তাকে <strong>উদ্দীপক (Stimulus)</strong> বলে। যেমন— আলো, তাপ, স্পর্শ, অভিকর্ষ, জল, রাসায়নিক পদার্থ ইত্যাদি। উদ্দীপকের প্রভাবে জীবের সাড়া প্রদানের ক্ষমতাকে <strong>সংবেদনশীলতা বা উত্তেজিতা (Sensitivity)</strong> বলা হয়।</p>
+    <ul>
+        <li><strong>উদ্দীপক:</strong> বাহ্যিক (আলো, তাপ) বা অভ্যন্তরীণ (হরমোন, রসস্ফীতি চাপ) হতে পারে।</li>
+        <li><strong>সাড়া:</strong> উদ্দীপকের প্রভাবে জীবদেহে যে প্রতিক্রিয়া সৃষ্টি হয়, তাকে সাড়া (Response) বলে।</li>
+    </ul>
+
+    <h3>১.২ উদ্ভিদের সাড়া প্রদান ও জগদীশ চন্দ্র বসুর অবদান</h3>
+    <p>প্রাণীর মতো উদ্ভিদেরও সংবেদনশীলতা আছে। ভারতীয় বিজ্ঞানী <strong>আচার্য জগদীশ চন্দ্র বসু</strong> প্রথম প্রমাণ করেন যে, উদ্ভিদও বাহ্যিক উদ্দীপকের প্রভাবে সাড়া দেয়। তিনি <strong>ক্রেসকোগ্রাফ (Crescograph)</strong> যন্ত্রের সাহায্যে দেখান যে, উদ্ভিদদেহে সামান্যতম বৃদ্ধি বা চলন পরিমাপ করা সম্ভব। তাঁর গবেষণা লজ্জাবতী, বনচাঁড়াল প্রভৃতি উদ্ভিদকে কেন্দ্র করে পরিচালিত হয়েছিল।</p>
+
+    <h3>১.৩ চলন ও গমন (Movement and Locomotion)</h3>
+    <ul>
+        <li><strong>চলন (Movement):</strong> যখন জীব এক স্থানে স্থির থেকে স্বতঃস্ফূর্তভাবে বা উদ্দীপকের প্রভাবে অঙ্গপ্রত্যঙ্গ সঞ্চালন করে, তখন তাকে চলন বলে। অধিকাংশ উদ্ভিদ চলনে সক্ষম।</li>
+        <li><strong>গমন (Locomotion):</strong> যখন জীব স্বেচ্ছায় অঙ্গপ্রত্যঙ্গ সঞ্চালনের মাধ্যমে এক স্থান থেকে অন্য স্থানে যায়, তখন তাকে গমন বলে। অধিকাংশ প্রাণী গমনে সক্ষম। কিছু নিম্নশ্রেণির উদ্ভিদ (যেমন— ভলভক্স, ক্ল্যামাইডোমোনাস) গমনে সক্ষম।</li>
+    </ul>
+
+    <h3>১.৪ উদ্ভিদ চলনের প্রকারভেদ</h3>
+    <p>উদ্দীপকের প্রকৃতি ও প্রভাবের ওপর ভিত্তি করে উদ্ভিদের চলনকে প্রধানত দুটি ভাগে ভাগ করা যায়:</p>
+    <ol>
+        <li><strong>স্বতঃস্ফূর্ত চলন (Autonomic Movement):</strong> অভ্যন্তরীণ উদ্দীপকের প্রভাবে ঘটে।</li>
+        <li><strong>আবিষ্ট বা প্যারটোনিক চলন (Paratonic Movement):</strong> বাহ্যিক উদ্দীপকের প্রভাবে ঘটে।</li>
+    </ol>
+    
+    <h4>১.৪.১ স্বতঃস্ফূর্ত চলন (Autonomic Movement)</h4>
+    <p><strong>১. প্রকরণ চলন (Movement of Variation):</strong> এটি কোষের রসস্ফীতি চাপের তারতম্যের কারণে সংঘটিত একটি স্বতঃস্ফূর্ত বক্র চলন। <strong>উদাহরণ: বনচাঁড়াল</strong> (Indian Telegraph Plant) উদ্ভিদের যৌগিক পত্রের তিনটি ফলকের মধ্যে পাশের দুটি ছোটো ফলক দিনের বেলায় কোনো বাহ্যিক উদ্দীপক ছাড়াই পর্যায়ক্রমে ওঠানামা করতে থাকে।</p>
+    <p><strong>২. বৃদ্ধিজনিত চলন (Movement of Growth):</strong> উদ্ভিদ অঙ্গের বৃদ্ধির সময় এই প্রকার স্বতঃস্ফূর্ত চলন দেখা যায়। <strong>উদাহরণ: নুটেশন বা বলন (Nutation)</strong> লতানো গাছের কান্ডের আগা বৃদ্ধির সময় সর্পিল গতিতে ঘুরতে ঘুরতে বৃদ্ধি পায়।</p>
+
+    <h4>১.৪.২ আবিষ্ট বা প্যারটোনিক চলন (Paratonic Movement)</h4>
+    <p>বাহ্যিক উদ্দীপকের দ্বারা নিয়ন্ত্রিত এই চলনকে তিন ভাগে ভাগ করা হয়:</p>
+
+    <h4>১. ট্যাকটিক চলন (Tactic Movement) বা আবিষ্ট সামগ্রিক চলন</h4>
+    <blockquote>বাহ্যিক উদ্দীপকের প্রভাবে যখন সমগ্র উদ্ভিদদেহ বা তার কোনো অংশ (যেমন— জননকোষ) স্থান পরিবর্তন করে, তখন তাকে ট্যাকটিক চলন বলে। এটিই উদ্ভিদের গমন।</blockquote>
+    <ul>
+        <li><strong>ফোটোট্যাকটিক চলন:</strong> আলোর প্রভাবে ঘটে। উদাহরণ: <strong>ক্ল্যামাইডোমোনাস, ভলভক্স</strong> শৈবাল আলোর উৎসের দিকে গমন করে।</li>
+        <li><strong>কেমোট্যাকটিক চলন:</strong> রাসায়নিক পদার্থের প্রভাবে ঘটে। উদাহরণ: <strong>ফার্ন ও মসের শুক্রাণু</strong> যথাক্রমে ম্যালিক অ্যাসিড ও সুক্রোজের আকর্ষণে ডিম্বাণুর দিকে গমন করে।</li>
+    </ul>
+
+    <h4>২. ট্রপিক চলন (Tropic Movement) বা দিক্‌নির্ণীত বক্র চলন</h4>
+    <blockquote>বাহ্যিক উদ্দীপকের উৎসের গতিপথ অনুসারে উদ্ভিদ অঙ্গের যে বৃদ্ধিজনিত বক্র চলন হয়, তাকে ট্রপিক চলন বলে।</blockquote>
+    <p><strong>অক্সিন হরমোনের ভূমিকা:</strong> ট্রপিক চলন নিয়ন্ত্রণে অক্সিন হরমোন প্রধান ভূমিকা পালন করে। আলোর প্রভাবে অক্সিন অন্ধকার দিকে এবং অভিকর্ষের প্রভাবে অক্সিন নিচের দিকে স্থানান্তরিত হয়, যা কোষের অসম বৃদ্ধির মাধ্যমে অঙ্গকে বাঁকিয়ে দেয়।</p>
+    <ul>
+        <li><strong>ফোটোট্রপিক চলন (Phototropic):</strong> কান্ড আলোর উৎসের দিকে বেঁকে যায় (<strong>অনুকূল</strong>), কিন্তু মূল আলোর বিপরীতে যায় (<strong>প্রতিকূল</strong>)।</li>
+        <li><strong>জিওট্রপিক চলন (Geotropic):</strong> প্রধান মূল অভিকর্ষের দিকে বৃদ্ধি পায় (<strong>অনুকূল</strong>), কিন্তু কান্ড অভিকর্ষের বিপরীতে যায় (<strong>প্রতিকূল</strong>)। বিশেষ উদাহরণ: ম্যানগ্রোভ অরণ্যের <strong>সুন্দরী গাছের শ্বাসমূল (নিউম্যাটোফোর)</strong> প্রতিকূল অভিকর্ষবৃত্তীয় চলন দেখায়।</li>
+        <li><strong>হাইড্রোট্রপিক চলন (Hydrotropic):</strong> মূল জলের উৎসের দিকে বৃদ্ধি পায় (<strong>অনুকূল</strong>)।</li>
+    </ul>
+
+    <h4>৩. ন্যাস্টিক চলন (Nastic Movement) বা ব্যপ্তিজনিত বক্র চলন</h4>
+    <blockquote>বাহ্যিক উদ্দীপকের গতিপথ দ্বারা নিয়ন্ত্রিত না হয়ে, উদ্দীপকের তীব্রতা (Intensity) দ্বারা উদ্ভিদ অঙ্গের যে রসস্ফীতিজনিত বক্র চলন হয়, তাকে ন্যাস্টিক চলন বলে।</blockquote>
+    <p><strong>কৌশল:</strong> এই চলন সাধারণত উদ্ভিদ অঙ্গের গোড়ায় অবস্থিত <strong>পালভিনাস (Pulvinus)</strong> নামক স্ফীত অংশের কোষের রসস্ফীতি চাপের (Turgor pressure) পরিবর্তনের ফলে ঘটে।</p>
+    <ul>
+        <li><strong>ফোটোন্যাস্টি:</strong> আলোর তীব্রতার প্রভাবে ঘটে। (উদাহরণ: <strong>পদ্ম, সূর্যমুখী</strong>)।</li>
+        <li><strong>থার্মোন্যাস্টি:</strong> উষ্ণতার তীব্রতার প্রভাবে ঘটে। (উদাহরণ: <strong>টিউলিপ ফুল</strong>)।</li>
+        <li><strong>সিসমোন্যাস্টি:</strong> স্পর্শ বা আঘাতের প্রভাবে ঘটে। (উদাহরণ: <strong>লজ্জাবতী লতা</strong>)।</li>
+        <li><strong>কেমোন্যাস্টি:</strong> রাসায়নিক পদার্থের তীব্রতায় ঘটে। (উদাহরণ: <strong>সূর্যশিশির, ডায়োনিয়া</strong>)।</li>
+        <li><strong>নিকটিন্যাস্টি (Sleep Movement):</strong> আলো ও উষ্ণতার যৌথ প্রভাবে ঘটে। (উদাহরণ: <strong>তেঁতুল, বাবলা</strong> গাছের পাতা)।</li>
+    </ul>
+
+    <h3>১.৫ বিভিন্ন প্রকার চলনের মধ্যে পার্থক্য</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>বৈশিষ্ট্য</th>
+                <th>ট্যাকটিক চলন</th>
+                <th>ট্রপিক চলন</th>
+                <th>ন্যাস্টিক চলন</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>সংজ্ঞা</strong></td>
+                <td>সামগ্রিক স্থান পরিবর্তন (গমন)।</td>
+                <td>উৎসের গতিপথ-নির্ভর বৃদ্ধিজনিত বক্র চলন।</td>
+                <td>তীব্রতা-নির্ভর রসস্ফীতিজনিত বক্র চলন।</td>
+            </tr>
+            <tr>
+                <td><strong>উদ্দীপকের প্রভাব</strong></td>
+                <td>গতিপথ দ্বারা নিয়ন্ত্রিত।</td>
+                <td>গতিপথ দ্বারা নিয়ন্ত্রিত।</td>
+                <td>তীব্রতা দ্বারা নিয়ন্ত্রিত।</td>
+            </tr>
+            <tr>
+                <td><strong>হরমোনের ভূমিকা</strong></td>
+                <td>নেই।</td>
+                <td>অক্সিন হরমোন দ্বারা নিয়ন্ত্রিত।</td>
+                <td>নেই।</td>
+            </tr>
+            <tr>
+                <td><strong>প্রকৃতি</strong></td>
+                <td>এটি গমন।</td>
+                <td>এটি স্থায়ী ও বৃদ্ধিজনিত।</td>
+                <td>এটি অস্থায়ী ও রসস্ফীতিজনিত।</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<nav class="navigation">
+    <a href="#" class="nav-button disabled">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button active">1</a>
+    <a href="class2.html" class="nav-button">2</a>
+    <a href="class3.html" class="nav-button">3</a>
+    <a href="class2.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- থিম এবং ডার্ক মোড লজিক ---
+        const themeButtons = document.querySelectorAll('.theme-buttons button');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+        function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+        const savedTheme = localStorage.getItem('selected_theme');
+        const savedMode = localStorage.getItem('selected_mode');
+        if (savedTheme) applyTheme(savedTheme);
+        if (savedMode) applyMode(savedMode);
+        themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+        darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+
+        // --- স্ক্রল বাটন লজিক ---
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const bodyHeight = document.body.offsetHeight;
+            if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+            if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+        });
+        scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+        // --- ডিজিটাল ঘড়ি ---
+        const clockElement = document.getElementById('digital-clock');
+        function updateClock() {
+            if(clockElement) {
+                const now = new Date();
+                const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' };
+                clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+            }
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // --- কপিরাইট বছর ---
+        const yearSpan = document.getElementById('copyright-year');
+        if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+
+        // --- নতুন: ডেস্কটপ/মোবাইল মোড টগল লজিক ---
+        const toggleBtn = document.getElementById('toggleViewBtn');
+        const viewportMeta = document.getElementById('viewportMeta');
+        let isDesktopView = localStorage.getItem('viewMode') === 'desktop';
+
+        function applyViewMode() {
+            if (isDesktopView) {
+                viewportMeta.setAttribute('content', 'width=1280');
+                toggleBtn.textContent = 'মোবাইল মোড';
+            } else {
+                viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0');
+                toggleBtn.textContent = 'ডেস্কটপ মোড';
+            }
+        }
+        
+        toggleBtn.addEventListener('click', () => {
+            isDesktopView = !isDesktopView; // অবস্থা পরিবর্তন করুন
+            localStorage.setItem('viewMode', isDesktopView ? 'desktop' : 'mobile');
+            applyViewMode();
+        });
+
+        // পেজ লোড হওয়ার সময় সঠিক মোড প্রয়োগ করুন
+        applyViewMode();
+    });
+</script>
+</body>
+</html>

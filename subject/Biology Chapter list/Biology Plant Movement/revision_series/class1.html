@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Practice - উদ্ভিদের চলন</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        /* --- Global Styles & Theming Variables --- */
+        :root {
+            --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60;
+            --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b;
+            --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd;
+            --blockquote-border: #2196f3; --nav-button-bg: #fff;
+            --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1);
+            --correct-bg: #2ecc71; --incorrect-bg: #e74c3c;
+        }
+        [data-theme="forest"] {
+            --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; 
+            --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; 
+            --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60;
+        }
+        [data-theme="ocean"] {
+            --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; 
+            --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; 
+            --blockquote-bg: #e4f1fe; --blockquote-border: #3498db;
+        }
+        [data-theme="sunset"] {
+            --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; 
+            --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; 
+            --blockquote-bg: #fff8e1; --blockquote-border: #f57c00;
+        }
+        .dark-mode {
+            --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; 
+            --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; 
+            --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; 
+            --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; 
+            --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f;
+        }
+
+        /* --- Base Layout & Typography --- */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2, h3 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        
+        /* --- Header, Footer, Navigation --- */
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+
+        /* --- Controls (Theme, Dark Mode, Clock, Set Selector) --- */
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+
+        /* --- MCQ Specific Styles --- */
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question { margin-bottom: 40px; padding: 20px; border-radius: 10px; border: 2px solid transparent; transition: box-shadow 0.3s, border-color 0.3s; }
+        .mcq-question.active-question { border-color: var(--accent-color); box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5); }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        
+        /* --- Utility Styles --- */
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>উদ্ভিদের চলন (Plant Movement)</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন ১-১১)</option>
+                <option value="2">Set 2 (প্রশ্ন ১২-২২)</option>
+                <option value="3">Set 3 (প্রশ্ন ২৩-৩৩)</option>
+                <option value="4">Set 4 (প্রশ্ন ৩৪-৪৪)</option>
+            </select>
+        </div>
+        <div id="digital-clock" class="digital-clock"></div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+    
+    <div class="container" style="text-align: center; padding-top: 15px; padding-bottom: 25px;">
+        <h3 style="color: var(--heading-color-3); border-bottom: none; margin-bottom: 15px; font-size: 1.5em;">ক্লাস নোট PDF ডাউনলোড করুন</h3>
+        <a href="https://drive.google.com/file/d/1Snzcwf1NACTIBgOI8C-Z3mCvBCT7hzBJ/view?usp=drive_link" target="_blank" class="nav-button">Class 1 PDF</a>
+        <a href="https://drive.google.com/file/d/1T-aBPOf-JI1S9dbs44-9bzzdfxRa0C2z/view?usp=drive_link" target="_blank" class="nav-button">Class 2 PDF</a>
+        <a href="https://drive.google.com/file/d/1Sz3UVPmIJlbOq4Fz3XgCXFtCJds5GnQd/view?usp=drive_link" target="_blank" class="nav-button">Class 3 PDF</a>
+        <a href="https://drive.google.com/file/d/1StBOF8awoFiWnEN4WDVHJR0LGVF2Q6hG/view?usp=drive_link" target="_blank" class="nav-button">PYQ PDF</a>
+    </div>
+
+    <div class="container">
+        <h2>বিগত বছরের পরীক্ষার প্রশ্নাবলী</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- AUDIO SETUP ---
+        const correctSound = new Audio('../sounds/correct.mp3');
+        const wrongSound = new Audio('../sounds/wrong.mp3');
+
+        // --- THEME, MODE, CLOCK & SCROLL BUTTON LOGIC ---
+        const themeButtons = document.querySelectorAll('.theme-buttons button');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+        const clockElement = document.getElementById('digital-clock');
+        const yearSpan = document.getElementById('copyright-year');
+        
+        function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme_plant', theme); }
+        function applyMode(mode) {
+            if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+            else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+            localStorage.setItem('selected_mode_plant', mode);
+        }
+        function updateClock() {
+            if(clockElement) {
+                const now = new Date();
+                const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' };
+                clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+            }
+        }
+
+        const savedTheme = localStorage.getItem('selected_theme_plant');
+        const savedMode = localStorage.getItem('selected_mode_plant');
+        if (savedTheme) applyTheme(savedTheme);
+        if (savedMode) applyMode(savedMode);
+        
+        themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+        darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+        
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+            scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+            scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+        });
+        scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+        
+        updateClock();
+        setInterval(updateClock, 1000);
+        if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+
+        // --- INTERACTIVE MCQ LOGIC ---
+        const mcqData = [
+            // Set 1 (1-11)
+            { q: "লজ্জাবতী লতায় কী প্রকার চলন দেখা যায়?", o: ["থার্মোন্যাস্টি", "সিসমোন্যাস্টি", "নিকটিন্যাস্টি", "কেমোন্যাস্টি"], a: 1, ex: "ব্যাখ্যা: লজ্জাবতী লতাকে স্পর্শ করলে বা আঘাত করলে এর পাতাগুলি তৎক্ষণাৎ মুড়ে যায়। এই প্রকার চলন স্পর্শ বা কম্পনের মতো উদ্দীপনার তীব্রতা দ্বারা নিয়ন্ত্রিত হয়। এই ঘটনাকে সিসমোন্যাস্টি চলন বলে।" },
+            { q: "গমনে সক্ষম উদ্ভিদ কোনটি?", o: ["ভলভক্স", "মিউকর", "ডায়াটম", "লোহিত শৈবাল"], a: 0, ex: "ব্যাখ্যা: ভলভক্স (Volvox) হল এক প্রকার কলোনি গঠনকারী সবুজ শৈবাল। এর প্রতিটি কোষে ফ্ল্যাজেলা থাকে, যার সাহায্যে এরা সাঁতার কেটে স্থান পরিবর্তন করতে পারে, অর্থাৎ গমনে সক্ষম। ডায়াটমও গমনে সক্ষম।" },
+            { q: "সূর্যমুখী উদ্ভিদের ফুল কার প্রভাবে ফোটে?", o: ["আলোর প্রকৃতি", "আলোর তীব্রতা", "আলোর অভিমুখ", "অন্ধকার পরিবেশ"], a: 1, ex: "ব্যাখ্যা: সূর্যমুখী ফুলের প্রস্ফুটন (ফোটা) আলোর তীব্রতার উপর নির্ভরশীল। এটি এক প্রকার ফোটোন্যাস্টিক চলন। দিনের বেলায় বেশি আলোর তীব্রতায় ফুল ফোটে। (উল্লেখ্য, সূর্যের দিকে মুখ ঘোরানো হলো ফোটোট্রপিক চলন)।" },
+            { q: "রাত্রিবেলায় ফুল ফোটে-এটি কী প্রকার চলন পদ্ধতি?", o: ["ফোটোন্যাস্টি", "থার্মোন্যাস্টি", "নেগেটিভ ফোটোট্রপিক", "সিসমোন্যাস্টি"], a: 0, ex: "ব্যাখ্যা: কিছু ফুল যেমন জুঁই, হাসনুহানা কম আলোর তীব্রতায় অর্থাৎ রাত্রিবেলায় ফোটে। এই প্রকার চলন আলোর তীব্রতা দ্বারা নিয়ন্ত্রিত হয়, তাই এটি ফোটোন্যাস্টিক চলনের উদাহরণ।" },
+            { q: "কোনটি কেমোন্যাস্টি চলনের উদাহরণ?", o: ["বিটপ অঙ্গের বক্রতা", "মূলের বৃদ্ধি", "ড্রসেরা উদ্ভিদের পতঙ্গ শিকার", "সূর্যমুখী ফুল ফোটা"], a: 2, ex: "ব্যাখ্যা: সূর্যশিশির (ড্রসেরা) বা কলসপত্রীর মতো পতঙ্গভুক উদ্ভিদরা পতঙ্গের দেহের প্রোটিনের সংস্পর্শে এলে তাদের পাতা বা কর্ষিকা বেঁকে গিয়ে পতঙ্গকে আবদ্ধ করে। এটি রাসায়নিক পদার্থের প্রভাবে ঘটে, তাই এটি কেমোন্যাস্টি চলন।" },
+            { q: "গমনক্ষম শৈবালের গমন অঙ্গ কোনটি?", o: ["সিলিয়া", "ফ্লাজেলা", "চক্ষুবিন্দু", "কোশদেহ"], a: 1, ex: "ব্যাখ্যা: ক্ল্যামাইডোমোনাস, ভলভক্স ইত্যাদি গমনক্ষম শৈবালের প্রধান গমন অঙ্গ হল ফ্লাজেলা। ফ্লাজেলার সঞ্চালনের মাধ্যমে এরা জলে স্থান পরিবর্তন করে।" },
+            { q: "কোন প্রকার চলনে জীব স্থান পরিবর্তন করে?", o: ["ট্রপিক", "ট্যাকটিক", "ন্যাস্টিক", "সবগুলি"], a: 1, ex: "ব্যাখ্যা: ট্যাকটিক চলনে বাহ্যিক উদ্দীপকের প্রভাবে উদ্ভিদ বা উদ্ভিদ কোষের সামগ্রিক স্থান পরিবর্তন ঘটে। একে গমনও বলা হয়। যেমন - ভলভক্সের আলোর দিকে গমন।" },
+            { q: "টিউলিপ ফুল কখন ফোটে?", o: ["যখন তাপমাত্রা বাড়ে", "যখন আলোর তীব্রতা বাড়ে", "যখন তাপমাত্রা কমে", "যখন আলোর তীব্রতা কমে"], a: 0, ex: "ব্যাখ্যা: টিউলিপ ফুলের প্রস্ফুটন উষ্ণতা বা তাপমাত্রার তীব্রতার উপর নির্ভরশীল। বেশি উষ্ণতায় ফুল ফোটে এবং কম উষ্ণতায় বন্ধ হয়ে যায়। এই প্রকার চলনকে থার্মোন্যাস্টি চলন বলে।" },
+            { q: "পরিবেশের বিভিন্ন ধরনের পরিবর্তন শনাক্ত করে, সেই অনুযায়ী জীবের সাড়া প্রদানের ক্ষমতাই হল-", o: ["উপযোজন", "উদ্দীপক", "সংবেদনশীলতা", "আত্তীকরণ"], a: 2, ex: "ব্যাখ্যা: পরিবেশের পরিবর্তন (যেমন - আলো, তাপ, স্পর্শ) শনাক্ত করে সেই অনুযায়ী প্রতিক্রিয়া বা সাড়া দেওয়ার ক্ষমতাকে জীবের সংবেদনশীলতা বা উত্তেজিতা বলে।" },
+            { q: "উদ্দীপক হল এক ধরনের-", o: ["সংবেদন", "প্রত্যক্ষণ", "সাড়া", "শক্তি"], a: 3, ex: "ব্যাখ্যা: উদ্দীপক হলো পরিবেশের এমন কোনো পরিবর্তন বা শক্তি (যেমন - আলোক শক্তি, তাপ শক্তি, যান্ত্রিক শক্তি) যা জীবদেহে প্রতিক্রিয়া সৃষ্টি করে।" },
+            { q: "উদ্দীপকের তীব্রতা দ্বারা নিয়ন্ত্রিত চলনকে বলা হয়-", o: ["ট্রপিক চলন", "ট্যাকটিক চলন", "ন্যাস্টিক চলন", "কেমোট্যাকসিস"], a: 2, ex: "ব্যাখ্যা: যে বক্র চলন উদ্দীপকের গতিপথ দ্বারা নিয়ন্ত্রিত না হয়ে উদ্দীপকের তীব্রতা দ্বারা নিয়ন্ত্রিত হয়, তাকে ন্যাস্টিক চলন বলে। যেমন - পদ্মফুলের ফোটা।" },
+            
+            // Set 2 (12-22)
+            { q: "একটি অভ্যন্তরীণ উদ্দীপনার উদাহরণ হল-", o: ["কোশের রসস্ফীতিজনিত চাপের পরিবর্তন", "আলোর তীব্রতার পরিবর্তন", "অভিকর্ষ", "স্পর্শ"], a: 0, ex: "ব্যাখ্যা: আলো, অভিকর্ষ, স্পর্শ হলো বাহ্যিক উদ্দীপক। অন্যদিকে, হরমোন, কোশের রসস্ফীতি চাপের পরিবর্তন ইত্যাদি হলো অভ্যন্তরীণ উদ্দীপক যা জীবদেহের ভিতর থেকেই উৎপন্ন হয়।" },
+            { q: "জগদীশ চন্দ্র বসু বনচাঁড়াল ছাড়া অপর কোন্ উদ্ভিদ নিয়ে কাজ করেন?", o: ["লজ্জাবতী", "সূর্যমুখী", "টিউলিপ", "কোনোটিই নয়"], a: 0, ex: "ব্যাখ্যা: আচার্য জগদীশ চন্দ্র বসু উদ্ভিদের সংবেদনশীলতা প্রমাণ করার জন্য বনচাঁড়াল এবং লজ্জাবতী উভয় উদ্ভিদ নিয়েই বিস্তারিত গবেষণা করেছিলেন।" },
+            { q: "দিনের আলোয় পদ্মফুলের প্রস্ফুটন একপ্রকার-", o: ["ন্যাস্টিক চলন", "ট্যাকটিক চলন", "ট্রপিক চলন", "প্রকরণ চলন"], a: 0, ex: "ব্যাখ্যা: দিনের বেলায় আলোর তীব্রতা বেশি থাকায় পদ্মফুল ফোটে এবং রাতে আলোর তীব্রতা কমে গেলে বন্ধ হয়ে যায়। এটি আলোর তীব্রতার উপর নির্ভরশীল, তাই এটি ফোটোন্যাস্টিক চলন, যা এক প্রকার ন্যাস্টিক চলন।" },
+            { q: "অভিকর্ষের গতিপথ অনুসারে নিয়ন্ত্রিত উদ্ভিদ-অঙ্গের চলনকে বলা হয়-", o: ["হাইড্রোট্রপিক চলন", "ফোটোট্রপিক চলন", "জিওট্রপিক চলন", "কেমোট্রপিক চলন"], a: 2, ex: "ব্যাখ্যা: উদ্ভিদ অঙ্গের চলন যখন পৃথিবীর অভিকর্ষ বলের গতিপথ অনুসারে হয়, তখন তাকে জিওট্রপিক চলন বলে। যেমন - মূলের মাটির দিকে বৃদ্ধি (অনুকূল জিওট্রপিক)।" },
+            { q: "বহিস্থ উদ্দীপক দ্বারা নিয়ন্ত্রিত উদ্ভিদের সামগ্রিক চলন বা গমনকে বলে-", o: ["হাইড্রোট্রপিক চলন", "জিওট্রপিক চলন", "কেমোট্রপিক চলন", "ট্যাকটিক চলন"], a: 3, ex: "ব্যাখ্যা: বাহ্যিক উদ্দীপকের প্রভাবে যখন সমগ্র উদ্ভিদদেহ বা কোষ স্থান পরিবর্তন করে, তখন তাকে ট্যাকটিক চলন বা গমন বলে। যেমন - শৈবালের আলোর দিকে গমন।" },
+            { q: "আলোক উদ্দীপকের প্রভাবে সমগ্র উদ্ভিদ বা উদ্ভিদ অঙ্গের স্থান পরিবর্তনকে বলে-", o: ["ফোটোন্যাস্টিক", "স্বতঃস্ফূর্ত চলন", "ফোটোট্রপিক চলন", "ফোটোট্যাকটিক চলন"], a: 3, ex: "ব্যাখ্যা: আলোর প্রভাবে যখন সমগ্র জীবদেহ বা কোষ স্থান পরিবর্তন করে (গমন), তখন তাকে ফোটোট্যাকটিক চলন বলে। যেমন - ক্ল্যামাইডোমোনাসের আলোর উৎসের দিকে গমন।" },
+            { q: "উদ্ভিদ-অঙ্গের বক্র চলন যখন বাহ্যিক উদ্দীপকের গতিপথ অনুসারে হয় তখন তাকে বলে-", o: ["ট্যাকটিক চলন", "ট্রপিক চলন", "ন্যাস্টিক চলন", "অটোনমিক চলন"], a: 1, ex: "ব্যাখ্যা: উদ্ভিদ অঙ্গের যে বক্র চলন বাহ্যিক উদ্দীপকের উৎস বা গতিপথ দ্বারা নিয়ন্ত্রিত হয়, তাকে ট্রপিক বা দিক্‌নির্ণীত চলন বলে। যেমন - কান্ডের আলোর দিকে বেঁকে যাওয়া।" },
+            { q: "ন্যাস্টিক চলন যখন কোনো রাসায়নিক বস্তুর প্রভাবে হয় তখন তাকে বলা হয়-", o: ["থার্মোন্যাস্টিক চলন", "নিকটিন্যাস্টিক চলন", "কেমোন্যাস্টিক চলন", "সিমোন্যাস্টিক চলন"], a: 2, ex: "ব্যাখ্যা: কোনো রাসায়নিক পদার্থের তীব্রতার প্রভাবে যখন ন্যাস্টিক চলন ঘটে, তখন তাকে কেমোন্যাস্টিক চলন বলে। যেমন - পতঙ্গভুক উদ্ভিদের পতঙ্গ শিকার।" },
+            { q: "সূর্যশিশির ও ডায়োনিয়া উদ্ভিদের ক্ষেত্রে পতঙ্গকে ঘিরে ফেলে খাদ্যরূপে গ্রহণ হল-", o: ["সিমোন্যাস্টিক চলন", "থার্মোন্যাস্টিক চলন", "ফোটোন্যাস্টিক চলন", "কেমোন্যাস্টিক চলন"], a: 3, ex: "ব্যাখ্যা: পতঙ্গভুক উদ্ভিদ সূর্যশিশির (ড্রসেরা) বা ডায়োনিয়ার পাতা পতঙ্গের দেহের প্রোটিনের সংস্পর্শে এলে পাতার কর্ষিকাগুলি বেঁকে গিয়ে পতঙ্গকে আবদ্ধ করে। এটি কেমোন্যাস্টিক চলন।" },
+            { q: "লজ্জাবতী লতা-কে স্পর্শ করলে পাতার পত্রকগুলি তৎক্ষণাৎ মুড়ে যায়, একে বলে-", o: ["নিকটিন্যাস্টিক চলন", "সিমোন্যাস্টিক চলন", "হাইপোন্যাস্টিক চলন", "কেমোন্যাস্টিক চলন"], a: 1, ex: "ব্যাখ্যা: স্পর্শ বা আঘাতের মতো যান্ত্রিক উদ্দীপনার ফলে লজ্জাবতী পাতার পত্রকগুলি নুয়ে পড়ে। এই প্রকার চলনকে সিমোন্যাস্টিক বা সিসমোন্যাস্টিক চলন বলা হয়।" },
+            { q: "জুঁই ফুলের পাপড়ি রাতের বেলায় প্রস্ফুটিত হয়-এটি কোন প্রকার চলন?", o: ["ফোটোন্যাস্টিক চলন", "থার্মোন্যাস্টিক চলন", "কেমোন্যাস্টিক চলন", "সিমোন্যাস্টি চলন"], a: 0, ex: "ব্যাখ্যা: জুঁই ফুল কম আলোর তীব্রতায় অর্থাৎ রাতে ফোটে এবং দিনের বেশি আলোতে বন্ধ হয়ে যায়। আলোর তীব্রতা দ্বারা নিয়ন্ত্রিত এই চলন হলো ফোটোন্যাস্টিক চলন।" },
+
+            // Set 3 (23-33)
+            { q: "উদ্ভিদ কান্ডের আলোর দিকে বৃদ্ধি পায়, এটি একপ্রকার-", o: ["ফোটোট্রপিক চলন", "জিওট্রপিক চলন", "হাইড্রোট্রপিক চলন", "কেমোট্রপিক চলন"], a: 0, ex: "ব্যাখ্যা: উদ্ভিদ কান্ডের চলন আলোর উৎস বা গতিপথ দ্বারা নিয়ন্ত্রিত হয়। কান্ড সবসময় আলোর উৎসের দিকে বৃদ্ধি পায়, তাই এটি অনুকূল আলোকবৃত্তীয় বা পজিটিভ ফোটোট্রপিক চলন।" },
+            { q: "সুন্দরীগাছের শ্বাসমূল মাটির ওপরে উঠে আসে- এটি কোন্ প্রকার চলন?", o: ["অনুকূল জলবৃত্তীয় চলন", "অনুকূল অভিকর্ষবৃত্তীয় চলন", "প্রতিকূল অভিকর্ষবৃত্তীয় চলন", "প্রতিকূল আলোকবৃত্তীয় চলন"], a: 2, ex: "ব্যাখ্যা: লবণাক্ত মাটিতে অক্সিজেনের অভাব মেটানোর জন্য সুন্দরী গাছের শ্বাসমূল (নিউম্যাটোফোর) অভিকর্ষের বিপরীতে অর্থাৎ মাটির উপরে উঠে আসে। তাই এটি প্রতিকূল অভিকর্ষবৃত্তীয় চলন।" },
+            { q: "নীচের যে জীবটি গমনে সক্ষম তা হল-", o: ["মিউকর", "পেনিসিলিয়াম", "ঈস্ট", "ক্ল্যামাইডোমোনাস"], a: 3, ex: "ব্যাখ্যা: ক্ল্যামাইডোমোনাস একটি এককোষী শৈবাল যার দুটি ফ্ল্যাজেলা থাকে। এই ফ্ল্যাজেলার সাহায্যে এটি জলে সাঁতার কেটে স্থান পরিবর্তন করতে পারে, অর্থাৎ গমনে সক্ষম।" },
+            { q: "অভিকর্ষ প্রতিকূলবর্তী মূল কাদের দেখা যায়?", o: ["হ্যালোফাইট", "জেরোফাইট", "হাইড্রোফাইট", "সবগুলি"], a: 0, ex: "ব্যাখ্যা: হ্যালোফাইট বা লবণাম্বু উদ্ভিদ (যেমন - সুন্দরী) লবণাক্ত মাটিতে জন্মায়। এদের মূল অভিকর্ষের বিপরীতে বৃদ্ধি পেয়ে শ্বাসমূল বা নিউম্যাটোফোর গঠন করে।" },
+            { q: "বনচাঁড়ালের পার্শ্বপত্রে দেখা যায়-", o: ["জিওট্রপিক চলন", "প্রকরণ চলন", "ফোটোন্যাস্টিক চলন", "সিমোন্যাস্টিক চলন"], a: 1, ex: "ব্যাখ্যা: বনচাঁড়াল উদ্ভিদের ত্রিফলকের পাশের দুটি ছোটো পত্রক রসস্ফীতি চাপের তারতম্যের জন্য পর্যায়ক্রমে ওঠানামা করে। এটি একটি স্বতঃস্ফূর্ত বক্র চলন, যা প্রকরণ চলন নামে পরিচিত।" },
+            { q: "টিউলিপ ফুলের উন্মোচন হল একপ্রকার-", o: ["ফোটোন্যাস্টিক চলন", "নিকটিন্যাস্টিক চলন", "থার্মোন্যাস্টিক চলন", "কেমোন্যাস্টিক চলন"], a: 2, ex: "ব্যাখ্যা: টিউলিপ ফুল বেশি উষ্ণতায় ফোটে এবং কম উষ্ণতায় বন্ধ হয়ে যায়। উষ্ণতার তীব্রতা দ্বারা নিয়ন্ত্রিত এই ন্যাস্টিক চলনকে থার্মোন্যাস্টিক চলন বলে।" },
+            { q: "পারিপার্শ্বিকের যে কারণের প্রভাবে জীবদেহে প্রতিক্রিয়ার সৃষ্টি হয়, তাকে বলে-", o: ["সাড়া", "উত্তেজিতা / সংবেদনশীলতা", "কারক", "উদ্দীপক"], a: 3, ex: "ব্যাখ্যা: পরিবেশের যে সমস্ত পরিবর্তন (যেমন - আলো, তাপ) জীব শনাক্ত করতে পারে এবং তার প্রভাবে সাড়া প্রদান করে, সেই পরিবর্তনগুলিকে উদ্দীপক বলে।" },
+            { q: "উদ্দীপকের প্রভাবে সৃষ্ট প্রতিক্রিয়াকে বলে-", o: ["সাড়া", "উত্তেজিতা", "কারক", "উদ্দীপক"], a: 0, ex: "ব্যাখ্যা: উদ্দীপকের প্রভাবে জীবদেহে যে প্রতিক্রিয়া বা পরিবর্তন লক্ষ্য করা যায়, তাকেই সাড়া বলে। যেমন - গরম বস্তুতে হাত লাগলে হাত সরিয়ে নেওয়া একটি সাড়া।" },
+            { q: "সংবেদনশীলতা দেখা যায় হয়-", o: ["কেবল প্রাণীতে", " কেবল উদ্ভিদে", "প্রাণী এবং উদ্ভিদ উভয়েই", "এদের কোনোটিতেই নয়"], a: 2, ex: "ব্যাখ্যা: সংবেদনশীলতা বা উত্তেজিতা হলো জীবের একটি মৌলিক ধর্ম। প্রাণী এবং উদ্ভিদ উভয়ই বিভিন্ন উদ্দীপকের প্রভাবে সাড়া প্রদান করতে পারে।" },
+            { q: "নীচের যে উদ্ভিদটিতে সংবেদনশীলতা ভালো করে বোঝা যায়, সেটি হল-", o: ["কচুরিপানা", "স্থলপদ্ম", "লজ্জাবতী লতা", "বাসক"], a: 2, ex: "ব্যাখ্যা: লজ্জাবতী লতাকে স্পর্শ করলে তার পাতা দ্রুত মুড়ে যায়। এই প্রতিক্রিয়াটি খুব স্পষ্ট এবং দ্রুত হওয়ায় এর সংবেদনশীলতা খুব সহজে বোঝা যায়।" },
+            { q: "উদ্ভিদের সংবেদনশীলতা সংক্রান্ত আবিষ্কারের সঙ্গে যুক্ত বিজ্ঞানী হলেন-", o: ["ড. সি ভি রমন", "আচার্য প্রফুল্ল চন্দ্র রায়", "ড. এডওয়ার্ড জেনার", "আচার্য জগদীশ চন্দ্ৰ বোস"], a: 3, ex: "ব্যাখ্যা: বিজ্ঞানী আচার্য জগদীশ চন্দ্র বসু প্রথম ক্রেসকোগ্রাফ যন্ত্রের সাহায্যে প্রমাণ করেন যে, উদ্ভিদেরও প্রাণীর মতো সংবেদনশীলতা আছে এবং তারা বাহ্যিক উদ্দীপকের প্রভাবে সাড়া দেয়।" },
+
+            // Set 4 (34-44)
+            { q: "নীচের যেটি উদ্ভিদের সাড়াপ্রদানে বাহ্যিক উদ্দীপক নয়-", o: ["বিষ", "হরমোন", "উত্তাপ", "স্পর্শ"], a: 1, ex: "ব্যাখ্যা: বিষ, উত্তাপ এবং স্পর্শ হলো পরিবেশের বাহ্যিক উদ্দীপক। কিন্তু হরমোন উদ্ভিদের দেহের ভিতরেই উৎপন্ন হয়, তাই এটি একটি অভ্যন্তরীণ উদ্দীপক।" },
+            { q: "নীচের যে উদ্ভিদটির ত্রিফলক পত্রের, দুটি পত্রক পর্যায়ক্রমিকভাবে ওঠা-নামা করতে পারে, সেটি হল-", o: ["সুন্দরী উদ্ভিদ", "পদ্ম", "বনচাঁড়াল", "তুলসী"], a: 2, ex: "ব্যাখ্যা: বনচাঁড়াল (Indian Telegraph Plant) উদ্ভিদের যৌগিক পত্রের পাশের দুটি ছোটো পত্রক দিনের বেলায় রসস্ফীতিজনিত চাপের তারতম্যের কারণে স্বতঃস্ফূর্তভাবে ওঠানামা করে। এই চলনকে প্রকরণ চলন বলে।" },
+            { q: "উদ্ভিদের সাড়া পরিমাপক যন্ত্রটি হল-", o: ["ক্রেসকোগ্রাফ", "আর্কমিটার", "সিসমোগ্রাফ", "হাইগ্রোমিটার"], a: 0, ex: "ব্যাখ্যা: আচার্য জগদীশ চন্দ্র বসু উদ্ভিদের বৃদ্ধি এবং বাহ্যিক উদ্দীপকের প্রতি সাড়া পরিমাপ করার জন্য ক্রেসকোগ্রাফ যন্ত্র আবিষ্কার করেন।" },
+            { q: "প্রকরণ চলনের জন্য দায়ী হল-", o: ["কোশের সংখ্যা বৃদ্ধি", "কোশের রসস্ফীতি চাপের তারতম্য", "কোশের মধ্যে ভ্যাকুওলের সংখ্যা বৃদ্ধি", "কোশের মধ্যে উষ্ণতার তারতম্য"], a: 1, ex: "ব্যাখ্যা: বনচাঁড়াল উদ্ভিদের পত্রবৃন্তের গোড়ায় অবস্থিত পালভিনাস (Pulvinus) এর কোষে রসস্ফীতি চাপের পর্যায়ক্রমিক পরিবর্তনের ফলেই প্রকরণ চলন ঘটে।" },
+            { q: "ফোটোন্যাস্টিক চলন দেখা যায়-", o: ["সূর্যমুখী ফুলে", "পতঙ্গভুক উদ্ভিদে", "লজ্জাবতী লতায়", "কোনোটিতেই নয়"], a: 0, ex: "ব্যাখ্যা: সূর্যমুখী, পদ্ম ইত্যাদি ফুলের প্রস্ফুটন আলোর তীব্রতা দ্বারা নিয়ন্ত্রিত হয়। তাই এদের চলন ফোটোন্যাস্টিক চলনের উদাহরণ।" },
+            { q: "ক্রেসকোগ্রাফ যন্ত্র নিয়ে কাজ করেছিলেন বিজ্ঞানী-", o: ["সত্যেন্দ্রনাথ বোস", "জগদীশ চন্দ্র বসু", "প্রফুল্লচন্দ্র রায়", "নিউটন"], a: 1, ex: "ব্যাখ্যা: বিজ্ঞানী জগদীশ চন্দ্র বসু ক্রেসকোগ্রাফ যন্ত্রের আবিষ্কারক এবং এই যন্ত্র ব্যবহার করে তিনি উদ্ভিদের সংবেদনশীলতা ও বৃদ্ধি সংক্রান্ত যুগান্তকারী গবেষণা করেন।" },
+            { q: "উদ্ভিদের যে চলন জলের উৎসের গতিপথ দ্বারা নির্ণীত, তাকে বলে-", o: ["জিওট্রপিক", "ফোটোট্যাকটিক", "হাইড্রোট্রপিক", "হাইড্রোট্যাকটিক"], a: 2, ex: "ব্যাখ্যা: উদ্ভিদ অঙ্গের (বিশেষত মূলের) চলন যখন জলের উৎসের গতিপথ দ্বারা নিয়ন্ত্রিত হয়, তখন তাকে হাইড্রোট্রপিক বা জলবৃত্তীয় চলন বলে।" },
+            { q: "পরাগনালির বৃদ্ধি কী প্রকার চলন?", o: ["কেমোট্রপিক", "কেমোন্যাস্টিক", "কেমোট্যাকটিক", "এগুলির কোনোটাই নয়"], a: 0, ex: "ব্যাখ্যা: পরাগরেণু থেকে নির্গত পরাগনালি ডিম্বকের রাসায়নিক পদার্থের প্রভাবে ডিম্বকের দিকে বৃদ্ধি পায়। রাসায়নিকের গতিপথ দ্বারা নিয়ন্ত্রিত এই প্রকার চলন হলো কেমোট্রপিক চলন।" },
+            { q: "যে সকল রেণু গমনে সক্ষম তাদেরকে বলা হয়-", o: ["কনিডিয়া", "অ্যাপ্লানোস্পোর", "জুস্পোর", "ওইডিয়া"], a: 2, ex: "ব্যাখ্যা: ফ্ল্যাজেলাযুক্ত, সচল বা গমনক্ষম রেণুকে জুস্পোর বা চলরেণু বলা হয়। এগুলি সাধারণত শৈবাল ও ছত্রাকের মধ্যে দেখা যায়।" },
+            { q: "পতঙ্গভুক উদ্ভিদের চলন হল-", o: ["কেমোন্যাস্টিক চলন", "কেমোট্যাকটিক চলন", "কেমোট্রপিক চলন", "কোনোটিই নয়"], a: 0, ex: "ব্যাখ্যা: পতঙ্গভুক উদ্ভিদের পাতা বা কর্ষিকা পতঙ্গের দেহের প্রোটিনের সংস্পর্শে এলে উদ্দীপিত হয় এবং পতঙ্গকে আবদ্ধ করে। এটি উদ্দীপকের তীব্রতা দ্বারা নিয়ন্ত্রিত হয়, তাই এটি কেমোন্যাস্টিক চলন।" },
+            { q: "নীচের যে জীবটিতে সামগ্রিক চলন দেখা যায়-", o: ["মিউকর-এ", "ভলভক্স-এ", "মিক্সোমাইসিটিস-এ", "বনচাঁড়ালে"], a: 1, ex: "ব্যাখ্যা: ভলভক্স হলো একটি কলোনিয়াল শৈবাল যা ফ্ল্যাজেলার সাহায্যে সামগ্রিকভাবে স্থান পরিবর্তন বা গমন করতে পারে।" }
+        ];
+
+        const mcqContainer = document.getElementById('mcq-container');
+        const mcqSetSelector = document.getElementById('mcqSetSelector');
+        const scoreTracker = document.getElementById('score-tracker');
+        
+        let score = 0;
+        let totalQuestionsInSet = 0;
+        const setBoundaries = [0, 11, 22, 33, 44]; // Start index of each set + end index of last set
+
+        function generateMCQs(setNumber) {
+            mcqContainer.innerHTML = '';
+            score = 0;
+            
+            const start = setBoundaries[setNumber - 1];
+            const end = setBoundaries[setNumber];
+            const questionSet = mcqData.slice(start, end);
+
+            totalQuestionsInSet = questionSet.length;
+            updateScoreDisplay();
+
+            questionSet.forEach((item, index) => {
+                const globalIndex = start + index;
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'mcq-question';
+                questionDiv.id = `q-${globalIndex}`;
+                
+                let optionsHTML = item.o.map((option, i) => 
+                    `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                ).join('');
+                
+                questionDiv.innerHTML = `
+                    <h4>প্রশ্ন ${globalIndex + 1}: ${item.q}</h4>
+                    <div class="mcq-options">${optionsHTML}</div>
+                    <div class="mcq-explanation">${item.ex}</div>
+                `;
+                mcqContainer.appendChild(questionDiv);
+            });
+            setupOptionListeners();
+            setupIntersectionObserver();
+        }
+        
+        function updateScoreDisplay() {
+            scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+        }
+
+        function handleOptionClick(e) {
+            const selectedOption = e.target.closest('.mcq-option');
+            if (!selectedOption) return;
+            const questionDiv = selectedOption.closest('.mcq-question');
+            if (questionDiv.classList.contains('answered')) return;
+            questionDiv.classList.add('answered');
+            const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+            const selectedIndex = parseInt(selectedOption.dataset.index);
+            const correctIndex = mcqData[globalIndex].a;
+            if (selectedIndex === correctIndex) {
+                selectedOption.classList.add('correct');
+                correctSound.play().catch(e => {});
+                score++;
+                updateScoreDisplay();
+            } else {
+                selectedOption.classList.add('incorrect');
+                wrongSound.play().catch(e => {});
+                questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+            }
+            questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+        }
+
+        function setupOptionListeners() {
+            mcqContainer.addEventListener('click', handleOptionClick);
+        }
+        
+        mcqSetSelector.addEventListener('change', (e) => {
+            generateMCQs(parseInt(e.target.value, 10));
+        });
+
+        document.addEventListener('keydown', (e) => {
+            const activeQuestion = document.querySelector('.mcq-question.active-question');
+            if (!activeQuestion) return;
+            
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const nextQuestion = activeQuestion.nextElementSibling;
+                if (nextQuestion) {
+                    nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            } else if (['1', '2', '3', '4'].includes(e.key) && !activeQuestion.classList.contains('answered')) {
+                e.preventDefault();
+                const optionIndex = parseInt(e.key) - 1;
+                const optionToClick = activeQuestion.querySelector(`.mcq-option[data-index="${optionIndex}"]`);
+                if (optionToClick) {
+                    optionToClick.click();
+                }
+            }
+        });
+
+        function setupIntersectionObserver() {
+            const questions = document.querySelectorAll('.mcq-question');
+            if (questions.length === 0) return;
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const prevActive = document.querySelector('.mcq-question.active-question');
+                        if (prevActive) prevActive.classList.remove('active-question');
+                        entry.target.classList.add('active-question');
+                    }
+                });
+            }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+            questions.forEach(q => observer.observe(q));
+        }
+        
+        generateMCQs(1);
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" id="viewportMeta">
+    <title>উদ্ভিদের চলন (PYQ) - Class 3</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        p { font-size: 1.1em; margin-bottom: 5px; }
+        strong { color: var(--accent-color); font-weight: 600; }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 15px 0; padding: 10px 20px; font-size: 1.1em; border-radius: 5px; }
+        blockquote strong { color: var(--heading-color-2); }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 25px; padding-left: 10px; }
+        .options-list { list-style-type: upper-alpha; padding-left: 40px; }
+        .options-list li { margin-bottom: 5px; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .theme-buttons button, #toggleViewBtn { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover, #toggleViewBtn:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>উদ্ভিদের চলন (Plant Movement) - PYQ</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div id="digital-clock" class="digital-clock"></div>
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <!-- === নতুন ডেস্কটপ মোড বাটন === -->
+        <button id="toggleViewBtn">ডেস্কটপ মোড</button>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 3</h2>
+        <ol>
+            <li>
+                <p>লজ্জাবতী লতায় কী প্রকার চলন দেখা যায়?</p>
+                <ol class="options-list">
+                    <li>থার্মোন্যাস্টি</li>
+                    <li>সিসমোন্যাস্টি</li>
+                    <li>নিকটিন্যাস্টি</li>
+                    <li>কেমোন্যাস্টি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) সিসমোন্যাস্টি।</strong><br><small><i>ব্যাখ্যা: লজ্জাবতী লতাকে স্পর্শ করলে বা আঘাত করলে এর পাতাগুলি তৎক্ষণাৎ মুড়ে যায়। এই প্রকার চলন স্পর্শ বা কম্পনের মতো উদ্দীপনার তীব্রতা দ্বারা নিয়ন্ত্রিত হয়, উদ্দীপকের গতিপথ দ্বারা নয়। এই ঘটনাকে সিসমোন্যাস্টি চলন বলে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>গমনে সক্ষম উদ্ভিদ কোনটি?</p>
+                <ol class="options-list">
+                    <li>ভলভক্স</li>
+                    <li>মিউকর</li>
+                    <li>ডায়াটম</li>
+                    <li>লোহিত শৈবাল</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) ভলভক্স (এবং c) ডায়াটম)।</strong><br><small><i>ব্যাখ্যা: ভলভক্স (Volvox) হল এক প্রকার কলোনি গঠনকারী সবুজ শৈবাল। এর প্রতিটি কোষে ফ্ল্যাজেলা থাকে, যার সাহায্যে এরা সাঁতার কেটে স্থান পরিবর্তন করতে পারে, অর্থাৎ গমনে সক্ষম। ডায়াটমও গ্লাইডিং পদ্ধতিতে স্থান পরিবর্তন করতে পারে। প্রদত্ত বিকল্পগুলির মধ্যে ভলভক্স একটি উৎকৃষ্ট উদাহরণ।</i></small></blockquote>
+            </li>
+            <li>
+                <p>সূর্যমুখী উদ্ভিদের ফুল কার প্রভাবে ফোটে?</p>
+                <ol class="options-list">
+                    <li>আলোর প্রকৃতি</li>
+                    <li>আলোর তীব্রতা</li>
+                    <li>আলোর অভিমুখ</li>
+                    <li>অন্ধকার পরিবেশ</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) আলোর তীব্রতা।</strong><br><small><i>ব্যাখ্যা: সূর্যমুখী ফুলের প্রস্ফুটন (ফোটা) আলোর তীব্রতার উপর নির্ভরশীল। এটি এক প্রকার ফোটোন্যাস্টিক চলন। দিনের বেলায় বেশি আলোর তীব্রতায় ফুল ফোটে এবং রাতের বেলায় কম আলোতে বন্ধ হয়ে যায়। (উল্লেখ্য, সূর্যের দিকে মুখ ঘোরানো হলো ফোটোট্রপিক চলন)।</i></small></blockquote>
+            </li>
+            <li>
+                <p>রাত্রিবেলায় ফুল ফোটে-এটি কী প্রকার চলন পদ্ধতি?</p>
+                <ol class="options-list">
+                    <li>ফোটোন্যাস্টি</li>
+                    <li>থার্মোন্যাস্টি</li>
+                    <li>নেগেটিভ ফোটোট্রপিক</li>
+                    <li>সিসমোন্যাস্টি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) ফোটোন্যাস্টি।</strong><br><small><i>ব্যাখ্যা: কিছু ফুল যেমন জুঁই, হাসনুহানা কম আলোর তীব্রতায় অর্থাৎ রাত্রিবেলায় ফোটে। এই প্রকার চলন আলোর তীব্রতা দ্বারা নিয়ন্ত্রিত হয়, তাই এটি ফোটোন্যাস্টিক চলনের উদাহরণ।</i></small></blockquote>
+            </li>
+            <li>
+                <p>কোনটি কেমোন্যাস্টি চলনের উদাহরণ?</p>
+                <ol class="options-list">
+                    <li>বিটপ অঙ্গের বক্রতা</li>
+                    <li>মূলের বৃদ্ধি</li>
+                    <li>ড্রসেরা উদ্ভিদের পতঙ্গ শিকার</li>
+                    <li>সূর্যমুখী ফুল ফোটা</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) ড্রসেরা উদ্ভিদের পতঙ্গ শিকার।</strong><br><small><i>ব্যাখ্যা: সূর্যশিশির (ড্রসেরা) বা কলসপত্রীর মতো পতঙ্গভুক উদ্ভিদরা পতঙ্গের দেহের প্রোটিনের সংস্পর্শে এলে তাদের পাতা বা কর্ষিকা বেঁকে গিয়ে পতঙ্গকে আবদ্ধ করে। এটি রাসায়নিক পদার্থের (প্রোটিন) প্রভাবে ঘটে, তাই এটি কেমোন্যাস্টি চলন।</i></small></blockquote>
+            </li>
+            <li>
+                <p>গমনক্ষম শৈবালের গমন অঙ্গ কোনটি?</p>
+                <ol class="options-list">
+                    <li>সিলিয়া</li>
+                    <li>ফ্লাজেলা</li>
+                    <li>চক্ষুবিন্দু</li>
+                    <li>কোশদেহ</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) ফ্লাজেলা।</strong><br><small><i>ব্যাখ্যা: ক্ল্যামাইডোমোনাস, ভলভক্স ইত্যাদি গমনক্ষম শৈবালের প্রধান গমন অঙ্গ হল ফ্লাজেলা। ফ্লাজেলার সঞ্চালনের মাধ্যমে এরা জলে স্থান পরিবর্তন করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>কোন প্রকার চলনে জীব স্থান পরিবর্তন করে?</p>
+                <ol class="options-list">
+                    <li>ট্রপিক</li>
+                    <li>ট্যাকটিক</li>
+                    <li>ন্যাস্টিক</li>
+                    <li>সবগুলি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) ট্যাকটিক।</strong><br><small><i>ব্যাখ্যা: ট্যাকটিক চলনে বাহ্যিক উদ্দীপকের প্রভাবে উদ্ভিদ বা উদ্ভিদ কোষের সামগ্রিক স্থান পরিবর্তন ঘটে। একে গমনও বলা হয়। যেমন - ভলভক্সের আলোর দিকে গমন। ট্রপিক ও ন্যাস্টিক চলনে কেবল অঙ্গ সঞ্চালন হয়, স্থান পরিবর্তন হয় না।</i></small></blockquote>
+            </li>
+            <li>
+                <p>টিউলিপ ফুল কখন ফোটে?</p>
+                <ol class="options-list">
+                    <li>যখন তাপমাত্রা বাড়ে</li>
+                    <li>যখন আলোর তীব্রতা বাড়ে</li>
+                    <li>যখন তাপমাত্রা কমে</li>
+                    <li>যখন আলোর তীব্রতা কমে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) যখন তাপমাত্রা বাড়ে।</strong><br><small><i>ব্যাখ্যা: টিউলিপ ফুলের প্রস্ফুটন উষ্ণতা বা তাপমাত্রার তীব্রতার উপর নির্ভরশীল। বেশি উষ্ণতায় ফুল ফোটে এবং কম উষ্ণতায় বন্ধ হয়ে যায়। এই প্রকার চলনকে থার্মোন্যাস্টি চলন বলে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>পরিবেশের বিভিন্ন ধরনের পরিবর্তন শনাক্ত করে, সেই অনুযায়ী জীবের সাড়া প্রদানের ক্ষমতাই হল-</p>
+                <ol class="options-list">
+                    <li>উপযোজন</li>
+                    <li>উদ্দীপক</li>
+                    <li>সংবেদনশীলতা</li>
+                    <li>আত্তীকরণ</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) সংবেদনশীলতা।</strong><br><small><i>ব্যাখ্যা: পরিবেশের পরিবর্তন (যেমন - আলো, তাপ, স্পর্শ) শনাক্ত করে সেই অনুযায়ী প্রতিক্রিয়া বা সাড়া দেওয়ার ক্ষমতাকে জীবের সংবেদনশীলতা বা উত্তেজিতা বলে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>উদ্দীপক হল এক ধরনের-</p>
+                <ol class="options-list">
+                    <li>সংবেদন</li>
+                    <li>প্রত্যক্ষণ</li>
+                    <li>সাড়া</li>
+                    <li>শক্তি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) শক্তি।</strong><br><small><i>ব্যাখ্যা: উদ্দীপক হলো পরিবেশের এমন কোনো পরিবর্তন বা শক্তি (যেমন - আলোক শক্তি, তাপ শক্তি, যান্ত্রিক শক্তি) যা জীবদেহে প্রতিক্রিয়া সৃষ্টি করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>উদ্দীপকের তীব্রতা দ্বারা নিয়ন্ত্রিত চলনকে বলা হয়-</p>
+                <ol class="options-list">
+                    <li>ট্রপিক চলন</li>
+                    <li>ট্যাকটিক চলন</li>
+                    <li>ন্যাস্টিক চলন</li>
+                    <li>কেমোট্যাকসিস</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) ন্যাস্টিক চলন।</strong><br><small><i>ব্যাখ্যা: যে বক্র চলন উদ্দীপকের গতিপথ দ্বারা নিয়ন্ত্রিত না হয়ে উদ্দীপকের তীব্রতা দ্বারা নিয়ন্ত্রিত হয়, তাকে ন্যাস্টিক চলন বলে। যেমন - পদ্মফুলের ফোটা।</i></small></blockquote>
+            </li>
+            <li>
+                <p>একটি অভ্যন্তরীণ উদ্দীপনার উদাহরণ হল-</p>
+                <ol class="options-list">
+                    <li>কোশের রসস্ফীতিজনিত চাপের পরিবর্তন</li>
+                    <li>আলোর তীব্রতার পরিবর্তন</li>
+                    <li>অভিকর্ষ</li>
+                    <li>স্পর্শ</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) কোশের রসস্ফীতিজনিত চাপের পরিবর্তন।</strong><br><small><i>ব্যাখ্যা: আলো, অভিকর্ষ, স্পর্শ হলো বাহ্যিক উদ্দীপক। অন্যদিকে, হরমোন, কোশের রসস্ফীতি চাপের পরিবর্তন ইত্যাদি হলো অভ্যন্তরীণ উদ্দীপক যা জীবদেহের ভিতর থেকেই উৎপন্ন হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>জগদীশ চন্দ্র বসু বনচাঁড়াল ছাড়া অপর কোন্ উদ্ভিদ নিয়ে কাজ করেন?</p>
+                <ol class="options-list">
+                    <li>লজ্জাবতী</li>
+                    <li>সূর্যমুখী</li>
+                    <li>টিউলিপ</li>
+                    <li>কোনোটিই নয়</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) লজ্জাবতী।</strong><br><small><i>ব্যাখ্যা: আচার্য জগদীশ চন্দ্র বসু উদ্ভিদের সংবেদনশীলতা প্রমাণ করার জন্য বনচাঁড়াল এবং লজ্জাবতী উভয় উদ্ভিদ নিয়েই বিস্তারিত গবেষণা করেছিলেন।</i></small></blockquote>
+            </li>
+            <li>
+                <p>দিনের আলোয় পদ্মফুলের প্রস্ফুটন একপ্রকার-</p>
+                <ol class="options-list">
+                    <li>ন্যাস্টিক চলন</li>
+                    <li>ট্যাকটিক চলন</li>
+                    <li>ট্রপিক চলন</li>
+                    <li>প্রকরণ চলন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) ন্যাস্টিক চলন।</strong><br><small><i>ব্যাখ্যা: দিনের বেলায় আলোর তীব্রতা বেশি থাকায় পদ্মফুল ফোটে এবং রাতে আলোর তীব্রতা কমে গেলে বন্ধ হয়ে যায়। যেহেতু এই চলন আলোর তীব্রতার উপর নির্ভরশীল, তাই এটি ফোটোন্যাস্টিক চলন, যা এক প্রকার ন্যাস্টিক চলন।</i></small></blockquote>
+            </li>
+            <li>
+                <p>অভিকর্ষের গতিপথ অনুসারে নিয়ন্ত্রিত উদ্ভিদ-অঙ্গের চলনকে বলা হয়-</p>
+                <ol class="options-list">
+                    <li>হাইড্রোট্রপিক চলন</li>
+                    <li>ফোটোট্রপিক চলন</li>
+                    <li>জিওট্রপিক চলন</li>
+                    <li>কেমোট্রপিক চলন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) জিওট্রপিক চলন।</strong><br><small><i>ব্যাখ্যা: উদ্ভিদ অঙ্গের চলন যখন পৃথিবীর অভিকর্ষ বলের গতিপথ অনুসারে হয়, তখন তাকে জিওট্রপিক চলন বলে। যেমন - মূলের মাটির দিকে বৃদ্ধি (অনুকূল জিওট্রপিক) এবং কান্ডের উপরের দিকে বৃদ্ধি (প্রতিকূল জিওট্রপিক)।</i></small></blockquote>
+            </li>
+            <li>
+                <p>বহিস্থ উদ্দীপক দ্বারা নিয়ন্ত্রিত উদ্ভিদের সামগ্রিক চলন বা গমনকে বলে-</p>
+                <ol class="options-list">
+                    <li>হাইড্রোট্রপিক চলন</li>
+                    <li>জিওট্রপিক চলন</li>
+                    <li>কেমোট্রপিক চলন</li>
+                    <li>ট্যাকটিক চলন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) ট্যাকটিক চলন।</strong><br><small><i>ব্যাখ্যা: বাহ্যিক উদ্দীপকের প্রভাবে যখন সমগ্র উদ্ভিদদেহ বা কোষ স্থান পরিবর্তন করে, তখন তাকে ট্যাকটিক চলন বা গমন বলে। যেমন - শৈবালের আলোর দিকে গমন।</i></small></blockquote>
+            </li>
+            <li>
+                <p>আলোক উদ্দীপকের প্রভাবে সমগ্র উদ্ভিদ বা উদ্ভিদ অঙ্গের স্থান পরিবর্তনকে বলে-</p>
+                <ol class="options-list">
+                    <li>ফোটোন্যাস্টিক</li>
+                    <li>স্বতঃস্ফূর্ত চলন</li>
+                    <li>ফোটোট্রপিক চলন</li>
+                    <li>ফোটোট্যাকটিক চলন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) ফোটোট্যাকটিক চলন।</strong><br><small><i>ব্যাখ্যা: আলোর প্রভাবে যখন সমগ্র জীবদেহ বা কোষ স্থান পরিবর্তন করে (গমন), তখন তাকে ফোটোট্যাকটিক চলন বলে। যেমন - ক্ল্যামাইডোমোনাসের আলোর উৎসের দিকে গমন।</i></small></blockquote>
+            </li>
+            <li>
+                <p>উদ্ভিদ-অঙ্গের বক্র চলন যখন বাহ্যিক উদ্দীপকের গতিপথ অনুসারে হয় তখন তাকে বলে-</p>
+                <ol class="options-list">
+                    <li>ট্যাকটিক চলন</li>
+                    <li>ট্রপিক চলন</li>
+                    <li>ন্যাস্টিক চলন</li>
+                    <li>অটোনমিক চলন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) ট্রপিক চলন।</strong><br><small><i>ব্যাখ্যা: উদ্ভিদ অঙ্গের যে বক্র চলন বাহ্যিক উদ্দীপকের উৎস বা গতিপথ দ্বারা নিয়ন্ত্রিত হয়, তাকে ট্রপিক বা দিক্‌নির্ণীত চলন বলে। যেমন - কান্ডের আলোর দিকে বেঁকে যাওয়া।</i></small></blockquote>
+            </li>
+            <li>
+                <p>ন্যাস্টিক চলন যখন কোনো রাসায়নিক বস্তুর প্রভাবে হয় তখন তাকে বলা হয়-</p>
+                <ol class="options-list">
+                    <li>থার্মোন্যাস্টিক চলন</li>
+                    <li>নিকটিন্যাস্টিক চলন</li>
+                    <li>কেমোন্যাস্টিক চলন</li>
+                    <li>সিমোন্যাস্টিক চলন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) কেমোন্যাস্টিক চলন।</strong><br><small><i>ব্যাখ্যা: কোনো রাসায়নিক পদার্থের তীব্রতার প্রভাবে যে ন্যাস্টিক চলন হয়, তাকে কেমোন্যাস্টিক চলন বলে। যেমন - পতঙ্গভুক উদ্ভিদ সূর্যশিশিরের পতঙ্গ শিকা
