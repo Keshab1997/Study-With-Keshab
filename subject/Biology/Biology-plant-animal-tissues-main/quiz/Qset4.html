@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৪ - Biology: উদ্ভিদ ও প্রাণী কলা</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container"></div>
+
+        <div class="page-navigation">
+            <a href="Qset3.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="#" class="btn btn-secondary disabled">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology: উদ্ভিদ ও প্রাণী কলা",
+            setName: "Quiz Set 4",
+            name: "Biology: উদ্ভিদ ও প্রাণী কলা - Set 4 (প্রশ্ন ৪৬-৫৫)",
+            questions: [
+                { question: "মানবদেহের শ্বাসনালীতে থাকে যে আবরণী কলা, তার নাম- (SSC CGL-2021)", options: ["আঁইশাকার আবরণী কলা", "স্তম্ভাকার আবরণী কলা", "রোমশ আবরণী কলা", "গ্রন্থিময় আবরণী কলা"], answer: 2, explanation: "শ্বাসনালীর অন্তঃপ্রাচীরে সিলিয়াযুক্ত বা রোমশ আবরণী কলা থাকে, যা শ্লেষ্মা ও ধূলিকণাকে বাইরে ঠেলে দেয়।" },
+                { question: "পেশিতন্তুর আবরণের নাম হল- (RRB ALP&TEC-2017)", options: ["নিউরোলেমা", "অ্যাক্সোলেমা", "সারকোলেমা", "সারকোপ্লাজম"], answer: 2, explanation: "প্রতিটি পেশিতন্তু বা পেশিকোষের বাইরের আবরণকে সারকোলেমা বলা হয়।" },
+                { question: "মায়োফাইব্রিল থাকে- (WBCS PRELI'07)", options: ["আবরণী কলায়", "স্নায়ুকলায়", "পেশিকলায়", "অস্থি কলায়"], answer: 2, explanation: "মায়োফাইব্রিল হল পেশিকলার সাইটোপ্লাজমে অবস্থিত সংকোচনশীল প্রোটিন তন্তু।" },
+                { question: "সোয়ান কোশ দেখা যায়- (WBCS PRELI'06)", options: ["নেফ্রনে", "ফ্লোয়েম কলায়", "জাইলেম কলায়", "নিউরোনে"], answer: 3, explanation: "সোয়ান কোষ হল এক প্রকার নিউরোগ্লিয়া কোষ যা নিউরোনের অ্যাক্সনকে আবৃত করে মায়েলিন আবরণী গঠন করে।" },
+                { question: "অস্থির ধাত্রে দেখা যায়- (SSC GROUP-B-2021)", options: ["ক্যালশিয়াম", "লিগনিন", "লৌহ", "জৈব বস্তু"], answer: 0, explanation: "অস্থির ধাত্র প্রধানত জৈব বস্তু (ওসেইন) এবং অজৈব লবণ (ক্যালসিয়াম ফসফেট) দ্বারা গঠিত।" },
+                { question: "যে প্রাণীকোশে সেন্ট্রোজোম থাকে না, তা হল- (RRB GROUP-C-2018)", options: ["পেশিকোশ", "অস্থি কোশ", "স্নায়ুকোশ", "প্লাজমা কোশ"], answer: 2, explanation: "পরিণত স্নায়ুকোষ বা নিউরোনে সেন্ট্রোজোম না থাকায় এটি বিভাজিত হতে পারে না।" },
+                { question: "সবচেয়ে বেশি দেখা যায় কোন প্রকার যোগকলা? (RRB NTPC-2021)", options: ["অ্যাডিপোজ কলা", "অ্যারিওলার কলা", "শ্বেততন্তু কলা", "রেটিকুলার কলা"], answer: 1, explanation: "অ্যারিওলার কলা দেহের সর্বত্র অঙ্গ-প্রত্যঙ্গের মধ্যে ফাঁকা স্থান পূরণ করে এবং এটি সবচেয়ে বিস্তৃত যোগকলা।" },
+                { question: "হিমাটোলজি কোন্ কলার সঙ্গে সংযুক্ত? (WBCS PRELI'08)", options: ["লসিকা", "হিমোগ্লোবিন", "রক্ত", "অস্থি"], answer: 2, explanation: "হিমাটোলজি হল চিকিৎসাবিজ্ঞানের সেই শাখা যা রক্ত এবং রক্তের রোগ নিয়ে আলোচনা করে।" },
+                { question: "আবরণী কলায় কেরাটিন নামক প্রোটিন থাকলে তা- (RRB ALP&TEC STAGE-1ST)", options: ["নরম হয়", "শক্ত হয়", "অর্ধশক্ত হয়", "কোনোটিই নয়"], answer: 1, explanation: "কেরাটিন একটি অদ্রবণীয় এবং শক্ত প্রোটিন, যা ত্বক, চুল, নখ ইত্যাদিকে জলরোধী ও দৃঢ় করে তোলে।" },
+                { question: "কেরাটিন-যুক্ত আবরণী কলা কোথায় থাকে না? (WBCS PRELI'07)", options: ["শিং", "নখ", "পালক", "অন্ত্র"], answer: 3, explanation: "শিং, নখ এবং পালক কেরাটিন দ্বারা গঠিত। অন্ত্রের আবরণী কলায় কেরাটিন থাকে না।" }
+            ]
+        };
+    </script>
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ২ - Biology: উদ্ভিদ ও প্রাণী কলা</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container"></div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset3.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology: উদ্ভিদ ও প্রাণী কলা",
+            setName: "Quiz Set 2",
+            name: "Biology: উদ্ভিদ ও প্রাণী কলা - Set 2 (প্রশ্ন ১৬-৩০)",
+            questions: [
+                { question: "প্যারেনকাইমা কোশের কোশপ্রাচীর যে বস্তু দ্বারা নির্মিত, তা হল- (WBCS PRELI'08)", options: ["লিগনিন", "কাইটিন", "সেলুলোজ", "হেমিসেলুলোজ"], answer: 2, explanation: "প্যারেনকাইমা কোষের পাতলা কোষপ্রাচীর মূলত সেলুলোজ দ্বারা নির্মিত হয়।" },
+                { question: "যে কলা সালোকসংশ্লেষ পদ্ধতিতে খাদ্য তৈরি করে, তা হল- (RRB ALP&TEC-2018)", options: ["এরেনকাইমা", "ক্লোরেনকাইমা", "কোলেনকাইমা", "স্ক্লেরেনকাইমা"], answer: 1, explanation: "ক্লোরোফিলযুক্ত প্যারেনকাইমা কলাকে ক্লোরেনকাইমা বলে, যা সালোকসংশ্লেষ প্রক্রিয়ায় খাদ্য তৈরি করে।" },
+                { question: "এর মধ্যে কোন্ কলাকে যান্ত্রিক কলা বলা হয়? (WBCS PRELI'12)", options: ["স্ক্লেরেনকাইমা", "প্যারেনকাইমা", "জাইলেম", "ফ্লোয়েম"], answer: 0, explanation: "স্ক্লেরেনকাইমা এবং কোলেনকাইমা উদ্ভিদকে যান্ত্রিক দৃঢ়তা প্রদান করে বলে এদের যান্ত্রিক কলা বলা হয়।" },
+                { question: "এর মধ্যে কোন্ কলা উদ্ভিদ অঙ্গের বৃদ্ধিতে সহায়তা করে? (RAILWAY GROUP-D-2017)", options: ["কোলেনকাইমা", "ক্লোরেনকাইমা", "প্যারেনকাইমা", "এরেনকাইমা"], answer: 0, explanation: "কোলেনকাইমা কলা বর্ধনশীল অঙ্গকে স্থিতিস্থাপকতা ও যান্ত্রিক দৃঢ়তা প্রদান করে তার বৃদ্ধিতে সহায়তা করে।" },
+                { question: "এর মধ্যে কোন কলা উদ্ভিদদেহে ঊর্ধ্বমুখী পরিবহণে সহায়তা করে? (WBCS PRELI'08)", options: ["স্ক্লেরেনকাইমা", "প্যারেনকাইমা", "জাইলেম", "ফ্লোয়েম"], answer: 2, explanation: "জাইলেম কলার মাধ্যমে মূল থেকে জল ও খনিজ লবণ পাতায় অর্থাৎ ঊর্ধ্বমুখে পরিবাহিত হয়।" },
+                { question: "জাইলেমে অবস্থিত প্রান্তপ্রাচীরবিহীন, নলাকার, মৃত উপাদানটি হল- (SSC GROUP-D-2019)", options: ["ট্রাকিড", "ট্রাকিয়া", "জাইলেম তন্তু", "সবকটি"], answer: 1, explanation: "ট্রাকিয়া বা ভেসেল হল চওড়া, নলাকার কোষ যা প্রান্তপ্রাচীর বিগলিত হয়ে একটি দীর্ঘ অবিচ্ছিন্ন নালী গঠন করে।" },
+                { question: "ফ্লোয়েমের যে উপাদান বর্জ্য পদার্থ সঞ্চয় করে, তা হল- (WBCS PRELI'07)", options: ["ট্রাকিড", "ফ্লোয়েম প্যারেনকাইমা", "ট্রাকিয়া", "ফ্লোয়েম তন্তু"], answer: 1, explanation: "ফ্লোয়েম প্যারেনকাইমা খাদ্য সঞ্চয়ের পাশাপাশি ট্যানিন, রেজিন-এর মতো বর্জ্য পদার্থও সঞ্চয় করে।" },
+                { question: "ফ্লোয়েমের যে উপাদান উদ্ভিদকে যান্ত্রিক দৃঢ়তা প্রদান করে, তা হল- (WBCS PRELI'12)", options: ["ট্রাকিড", "ট্রাকিয়া", "ফ্লোয়েম তন্তু", "সবকটি"], answer: 2, explanation: "ফ্লোয়েম তন্তু বা বাস্ট ফাইবার হল স্ক্লেরেনকাইমা জাতীয় মৃত কোষ, যা উদ্ভিদ অঙ্গকে যান্ত্রিক দৃঢ়তা প্রদান করে।" },
+                { question: "পাট, শণ, কার্পাস-এগুলি কোন্ জাতীয় কলা? (SSC-2021)", options: ["প্যারেনকাইমা", "ক্লোরেনকাইমা", "কোলেনকাইমা", "স্ক্লেরেনকাইমা তন্তু"], answer: 3, explanation: "পাট ও শণের তন্তু আসলে স্ক্লেরেনকাইমা তন্তু (Sclerenchyma Fibre)।" },
+                { question: "যে কলার জন্য আপেল বা নাসপাতির শক্তভাব সৃষ্টি হয়, তা হল- (CDS-2021)", options: ["প্যারেনকাইমা", "কোলেনকাইমা", "স্ক্লেরেনকাইমা", "জাইলেম"], answer: 2, explanation: "আপেল বা নাসপাতির শাঁসে স্ক্লেরাইড বা প্রস্তর কোষ (এক প্রকার স্ক্লেরেনকাইমা) থাকার কারণে কচকচে ও শক্ত ভাব সৃষ্টি হয়।" },
+                { question: "প্রধান সালোকসংশ্লেষকারী কলা হল- (WBCS PRELI'12)", options: ["কোলেনকাইমা", "প্যারেনকাইমা", "স্ক্লেরেনকাইমা", "ফ্লোয়েম"], answer: 1, explanation: "পাতার মেসোফিল কলার ক্লোরেনকাইমা (যা এক ধরনের প্যারেনকাইমা) প্রধান সালোকসংশ্লেষকারী কলা।" },
+                { question: "নার্ভতন্ত্রের গঠনমূলক একক হল- (NDA)", options: ["অ্যাক্সন", "ডেনড্রন", "নিউরোন", "কোশদেহ"], answer: 2, explanation: "নিউরোন বা স্নায়ুকোষ হল স্নায়ুতন্ত্রের গঠনগত ও কার্যগত একক।" },
+                { question: "বিভিন্ন অঙ্গের মধ্যে সমন্বয়সাধনকারী কলা হল- (ANM/GNM-2021)", options: ["পেশিকলা", "আবরণী কলা", "স্নায়ুকলা", "ক্ষরণকারী কলা"], answer: 2, explanation: "স্নায়ুকলা উদ্দীপনা গ্রহণ, প্রেরণ এবং প্রতিক্রিয়া সৃষ্টির মাধ্যমে দেহের বিভিন্ন অঙ্গ ও তন্ত্রের মধ্যে সমন্বয়সাধন করে।" },
+                { question: "চর্বিযুক্ত কলা হল- (SLST-16)", options: ["অস্থি কলা", "রক্ত কলা", "অ্যাডিপোজ কলা", "অ্যারিওলার কলা"], answer: 2, explanation: "অ্যাডিপোজ কলা বা মেদকলা স্নেহপদার্থ বা চর্বি সঞ্চয় করে রাখে।" },
+                { question: "যোগকলার মধ্যে উপস্থিত স্থির কোশটির নাম- (WBCS PRELI'08)", options: ["প্লাজমা কোশ", "হিস্টিওসাইট", "মাস্ট কোশ", "ফাইব্রোব্লাস্ট"], answer: 3, explanation: "ফাইব্রোব্লাস্ট হল যোগকলার প্রধান স্থির কোষ যা ধাত্র এবং তন্তু উৎপাদন করে।" }
+            ]
+        };
+    </script>
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

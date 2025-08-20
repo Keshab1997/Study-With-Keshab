@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Practice - Biology: প্রাণী ও উদ্ভিদ কলা</title>
+    
+    <!-- Google Fonts Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- External CSS File Link (style.css নামক ফাইলটি প্রয়োজন) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>Biology: প্রাণী ও উদ্ভিদ কলা</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1: কলার প্রাথমিক ধারণা ও ভাজক কলা (প্রশ্ন ১-৯)</option>
+                <option value="2">Set 2: সরল স্থায়ী কলা (প্রশ্ন ১০-২৭)</option>
+                <option value="3">Set 3: জটিল স্থায়ী কলা (প্রশ্ন ২৮-৩৫)</option>
+                <option value="4">Set 4: আবরণী ও যোগকলা (প্রশ্ন ৩৬-৪৫)</option>
+                <option value="5">Set 5: পেশী ও স্নায়ুকলা (প্রশ্ন ৪৬-৫৫)</option>
+                <option value="6">Set 6: বিগত বছরের প্রশ্ন (উদ্ভিদ কলা)</option>
+                <option value="7">Set 7: বিগত বছরের প্রশ্ন (প্রাণী কলা)</option>
+            </select>
+        </div>
+        <div id="digital-clock" class="digital-clock"></div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 id="mcq-set-title"></h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- প্রশ্নগুলো জাভাস্ক্রিপ্ট দ্বারা এখানে লোড হবে -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <!-- External JavaScript Files -->
+    <script src="tissue-mcq-data.js"></script>
+    <script src="script.js"></script> <!-- আগের script.js ফাইলটিই এখানে কাজ করবে -->
+
+</body>
+</html>

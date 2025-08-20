@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - Biology: উদ্ভিদ ও প্রাণী কলা</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container"></div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset4.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology: উদ্ভিদ ও প্রাণী কলা",
+            setName: "Quiz Set 3",
+            name: "Biology: উদ্ভিদ ও প্রাণী কলা - Set 3 (প্রশ্ন ৩১-৪৫)",
+            questions: [
+                { question: "রক্তবাহের অন্তঃআবরণে থাকে- (ANM/GNM-2021)", options: ["যোজক কলা", "স্নায়ুকলা", "আবরণী কলা", "পেশিকলা"], answer: 2, explanation: "রক্তবাহের অন্তঃপ্রাচীর সরল আঁইশাকার আবরণী কলা (এন্ডোথেলিয়াম) দ্বারা আবৃত থাকে।" },
+                { question: "অস্থি একপ্রকার- (ANM/GNM-2021)", options: ["স্নায়ুকলা", "পেশিকলা", "যোজক কলা", "আবরণী কলা"], answer: 2, explanation: "অস্থি একটি কঠিন কঙ্কাল যোজক কলা, যা দেহের কাঠামো গঠন করে।" },
+                { question: "যে বহুকোশী প্রাণীটির দেহে স্নায়ুতন্ত্র থাকে না, সেটি হল- (CDS-2021)", options: ["ফিতাকৃমি", "গোলকৃমি", "তারা মাছ", "স্পঞ্জ"], answer: 3, explanation: "স্পঞ্জ (পরিফেরা পর্বের প্রাণী) হল বহুকোষী প্রাণী যাদের দেহে কোনো নির্দিষ্ট কলা বা স্নায়ুতন্ত্র গঠিত হয়নি।" },
+                { question: "হাঙর, শংকর প্রভৃতি মাছের অন্তঃকঙ্কালে যে কলা থাকে, তা হল- (SLST-16)", options: ["অস্থি কলা", "অ্যারিওলার কলা", "তরুণাস্থি কলা", "অ্যাডিপোজ কলা"], answer: 2, explanation: "হাঙর, শংকর প্রভৃতি মাছ কনড্রিকথিস বা তরুণাস্থিযুক্ত মাছ শ্রেণীর অন্তর্গত, এদের অন্তঃকঙ্কাল তরুণাস্থি দ্বারা নির্মিত।" },
+                { question: "তরল যোগকলার উদাহরণ হল- (WBCS PRELI'15)", options: ["তরুণাস্থি কলা", "রক্ত", "পীততন্তুময় কলা", "অ্যারিওলার কলা"], answer: 1, explanation: "রক্ত একটি তরল যোজক কলা, কারণ এর ধাত্র বা ম্যাট্রিক্স তরল (প্লাজমা)।" },
+                { question: "দেহের কাঠামো গঠন ও ভার বহনে সাহায্য করে- (WBCS PRELI'15)", options: ["রক্ত", "স্নায়ুকলা", "পেশিকলা", "অস্থি কলা"], answer: 3, explanation: "অস্থি কঙ্কালতন্ত্র গঠন করে, যা দেহের কাঠামো তৈরি করে এবং ভার বহন করে।" },
+                { question: "অ্যারিওলার কলায় পাওয়া যায় না- (WBCS PRELI'12)", options: ["মাস্ট কোশ", "প্লাজমা কোশ", "মেদ কোশ", "ফাইব্রোব্লাস্ট"], answer: 2, explanation: "মেদ কোষ বা ফ্যাট সেল প্রধানত অ্যাডিপোজ কলায় পাওয়া যায়।" },
+                { question: "বর্ণহীন রক্তযুক্ত একটি প্রাণী হল- (WBCS PRELI'10)", options: ["প্রজাপতি", "শামুক", "কাঁকড়া", "কেঁচো"], answer: 0, explanation: "পতঙ্গ শ্রেণীর প্রাণীদের রক্তে হিমোগ্লোবিন থাকে না, তাই তাদের রক্ত (হিমোলিম্ফ) বর্ণহীন।" },
+                { question: "সিলিয়াযুক্ত আবরণীকলা দেখা যায়- (WBCS PRELI'08)", options: ["পাকস্থলীতে", "ডিম্বনালী পথে", "ফুসফুসের প্লুরায়", "লালাগ্রন্থিতে"], answer: 1, explanation: "ডিম্বনালীর অন্তঃপ্রাচীরে সিলিয়াযুক্ত আবরণী কলা থাকে, যা ডিম্বাণুকে জরায়ুর দিকে যেতে সাহায্য করে।" },
+                { question: "নিউরোনের কোশদেহস্থিত সাইটোপ্লাজমকে বলে- (WBCS PRELI'08)", options: ["অ্যাক্সোপ্লাজম", "এক্টোপ্লাজম", "এন্ডোপ্লাজম", "নিউরোপ্লাজম"], answer: 3, explanation: "নিউরোনের কোষদেহের সাইটোপ্লাজমকে নিউরোপ্লাজম এবং অ্যাক্সনের সাইটোপ্লাজমকে অ্যাক্সোপ্লাজম বলা হয়।" },
+                { question: "অন্তঃকোশীয় পদার্থ বেশি পরিমাণে থাকে- (RAILWAY GROUP-D-2017)", options: ["আবরণী কলায়", "স্নায়ুকলায়", "যোগকলায়", "পেশিকলায়"], answer: 2, explanation: "যোগকলার প্রধান বৈশিষ্ট্য হল এতে কোষের তুলনায় অন্তঃকোষীয় পদার্থ বা ধাত্রের (matrix) পরিমাণ অনেক বেশি থাকে।" },
+                { question: "যৌগিক বা স্তরীভূত আবরণী কলা দেখা যায়- (WBCS PRELI'08)", options: ["ত্বকে", "লালাগ্রন্থিতে", "পাকস্থলীতে", "ক্ষুদ্রান্ত্রে"], answer: 0, explanation: "ত্বক একাধিক কোষস্তর নিয়ে গঠিত স্তরীভূত আবরণী কলার একটি উৎকৃষ্ট উদাহরণ।" },
+                { question: "ঐচ্ছিক পেশি হল- (WBCS PRELI'07)", options: ["মসৃণ পেশি", "হৃদপেশি", "অস্থি পেশি", "অরেখ পেশি"], answer: 2, explanation: "ঐচ্ছিক পেশি সাধারণত অস্থির সঙ্গে যুক্ত থাকে। তাই এদের অস্থি পেশি বা কঙ্কাল পেশিও বলে।" },
+                { question: "লসিকাতে উপস্থিত শ্বেত রক্তকণিকা হল- (RRB GROUP-D-2022)", options: ["মনোসাইট", "লিম্ফোসাইট", "ইওসিনোফিল", "বেসোফিল"], answer: 1, explanation: "লসিকার প্রধান কোষীয় উপাদান হল লিম্ফোসাইট নামক শ্বেত রক্তকণিকা, যা রোগ প্রতিরোধে গুরুত্বপূর্ণ ভূমিকা পালন করে।" },
+                { question: "অরেখ পেশির নিউক্লিয়াস সংখ্যা হল- (WBCS PRELI'12)", options: ["1টি", "2টি", "অসংখ্য", "শূন্য"], answer: 0, explanation: "অরেখ বা মসৃণ পেশি মাকু আকৃতির এবং প্রতিটি কোষে একটি মাত্র নিউক্লিয়াস থাকে।" }
+            ]
+        };
+    </script>
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - Biology: উদ্ভিদ ও প্রাণী কলা</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container"></div>
+
+        <div class="page-navigation">
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology: উদ্ভিদ ও প্রাণী কলা",
+            setName: "Quiz Set 1",
+            name: "Biology: উদ্ভিদ ও প্রাণী কলা - Set 1 (প্রশ্ন ১-১৫)",
+            questions: [
+                { question: "যে কলার কোশপ্রাচীর পাতলা হয়, তাকে বলে- (ANM/GNM-2021)", options: ["স্ক্লেরাইড", "প্যারেনকাইমা", "স্ক্লেরেনকাইমা", "কোলেনকাইমা"], answer: 1, explanation: "প্যারেনকাইমা কলার কোষপ্রাচীর সেলুলোজ দ্বারা নির্মিত এবং পাতলা হয়।" },
+                { question: "উদ্ভিদদেহে সরল স্থায়ী কলা- (SLST-16)", options: ["দুই প্রকারের", "তিন প্রকারের", "চার প্রকারের", "পাঁচ প্রকারের"], answer: 1, explanation: "উদ্ভিদদেহে সরল স্থায়ী কলা তিন প্রকার—প্যারেনকাইমা, কোলেনকাইমা ও স্ক্লেরেনকাইমা।" },
+                { question: "জাইলেমের একমাত্র সজীব উপাদানটি হল- (SLST-16)", options: ["ট্রাকিড", "ট্রাকিয়া", "জাইলেম প্যারেনকাইমা", "জাইলেম তন্তু"], answer: 2, explanation: "জাইলেমের চারটি উপাদানের মধ্যে শুধুমাত্র জাইলেম প্যারেনকাইমা সজীব।" },
+                { question: "মূল ও কাণ্ডের অগ্রভাগে যে ভাজক কলা থাকে, তাকে বলে- (ANM/GNM-2021)", options: ["অগ্রস্থ ভাজক কলা", "প্রাথমিক ভাজক কলা", "গৌণ ভাজক কলা", "নিবেশিত ভাজক কলা"], answer: 0, explanation: "উদ্ভিদের মূল ও কাণ্ডের অগ্রভাগে অবস্থিত ভাজক কলাকে অগ্রস্থ ভাজক কলা বলে।" },
+                { question: "সঙ্গীকোশ যে কোশের সঙ্গে থাকে, তার নাম হল- (ANM/GNM-2021)", options: ["সিভনল", "ট্রাকিড", "ট্রাকিয়া", "স্ক্লেরেনকাইমা"], answer: 0, explanation: "সঙ্গীকোষ ফ্লোয়েম কলার একটি উপাদান এবং এটি সিভনলের পাশে থেকে তার কার্যকারিতা নিয়ন্ত্রণ করে।" },
+                { question: "কাণ্ডের পরিধির বৃদ্ধির জন্য দায়ী- (ANM/GNM-2021)", options: ["পার্শ্বস্থ ভাজক কলা", "নিবেশিত ভাজক কলা", "মূলজ ভাজক কলা", "অগ্রস্থ ভাজক কলা"], answer: 0, explanation: "পার্শ্বস্থ ভাজক কলা (যেমন- ক্যাম্বিয়াম) উদ্ভিদের গৌণ বৃদ্ধির জন্য দায়ী।" },
+                { question: "নিউক্লিয়াসবিহীন সজীব উদ্ভিদকোশ হল- (CDS-2021)", options: ["ট্রাকিয়া", "ট্রাকিড", "সঙ্গীকোশ", "সিভনল"], answer: 3, explanation: "সিভনল পরিণত অবস্থায় নিউক্লিয়াসবিহীন হলেও এটি একটি সজীব কোষ।" },
+                { question: "উৎপত্তিগত ও কার্যগতভাবে একই প্রকার বা ভিন্নপ্রকার কোশসমষ্টিকে বলে- (WBCS PRELI'12)", options: ["অঙ্গ", "তন্ত্র", "কলা", "যন্ত্র"], answer: 2, explanation: "কলা (Tissue) হল একটি নির্দিষ্ট কাজ সম্পাদনের জন্য সংগঠিত কোষের সমষ্টি।" },
+                { question: "যে কলায় চালনিচ্ছদার উপস্থিতি দেখা যায়, তা হল- (SSC GROUP-C - 2017)", options: ["ফ্লোয়েম", "জাইলেম", "প্যারেনকাইমা", "কোলেনকাইমা"], answer: 0, explanation: "ফ্লোয়েম কলার সিভনলের অনুপ্রস্থ প্রাচীরে চালুনির মতো ছিদ্রযুক্ত সিভপ্লেট থাকে।" },
+                { question: "যে কলায় কোশান্তর রন্ধ্র দেখা যায় তা হল- (SLST-16)", options: ["স্ক্লেরেনকাইমা", "কোলেনকাইমা", "প্যারেনকাইমা", "স্ক্লেরাইড"], answer: 2, explanation: "প্যারেনকাইমা কলার কোষগুলি শিথিলভাবে সজ্জিত থাকায় তাদের মধ্যে আন্তঃকোষীয় স্থান দেখা যায়।" },
+                { question: "প্রস্তর কোশ প্রকৃতপক্ষে যে কলার একটি প্রকারভেদ, তা হল- (WBCS PRELI'15)", options: ["প্যারেনকাইমা", "কোলেনকাইমা", "স্ক্লেরেনকাইমা", "এরেনকাইমা"], answer: 2, explanation: "প্রস্তর কোষ বা স্ক্লেরাইড হল এক ধরনের স্ক্লেরেনকাইমা কোষ, যা লিগনিন জমে পাথরের মতো শক্ত হয়ে যায়।" },
+                { question: "সিভনল যে কলার উপাদান তা হল- (WBCS PRELI'14)", options: ["জাইলেম", "ফ্লোয়েম", "স্ক্লেরেনকাইমা", "কোলেনকাইমা"], answer: 1, explanation: "সিভনল ফ্লোয়েম কলার প্রধান উপাদান, যা খাদ্য পরিবহণে সাহায্য করে।" },
+                { question: "উদ্ভিদের জল সংবহনে সাহায্যকারী কলাটি হল- (WBCS PRELI'10)", options: ["ফ্লোয়েম", "জাইলেম", "কোলেনকাইমা", "ক্লোরেনকাইমা"], answer: 1, explanation: "জাইলেম কলার মাধ্যমে মূল দ্বারা শোষিত জল ও খনিজ লবণ উদ্ভিদের ঊর্ধ্বাঙ্গে পরিবাহিত হয়।" },
+                { question: "প্রকৃতিগত ও কার্যগতভাবে এক বা ভিন্নপ্রকার কলাসমষ্টিকে বলা হয়- (WBCS PRELI'10)", options: ["অঙ্গ", "তন্ত্র", "কলা", "যন্ত্র"], answer: 0, explanation: "বিভিন্ন প্রকার কলা একত্রিত হয়ে যখন একটি নির্দিষ্ট কাজ সম্পন্ন করে, তখন তাকে অঙ্গ (Organ) বলে।" },
+                { question: "কোনটি সরল স্থায়ী কলা নয়- (WBCS PRELI'08)", options: ["জাইলেম", "প্যারেনকাইমা", "কোলেনকাইমা", "স্ক্লেরেনকাইমা"], answer: 0, explanation: "জাইলেম একটি জটিল স্থায়ী কলা। বাকি তিনটি সরল স্থায়ী কলার উদাহরণ।" }
+            ]
+        };
+    </script>
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>
