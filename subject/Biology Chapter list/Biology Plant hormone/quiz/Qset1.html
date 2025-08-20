@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - উদ্ভিদ হরমোন</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology উদ্ভিদ হরমোন",
+            setName: "Quiz Set 1",
+            name: "উদ্ভিদ হরমোন - Set 1 (প্রশ্ন ১-১৩)",
+            questions: [
+                {
+                    question: "নিচের কোনটি প্ল্যান্ট হরমোন?",
+                    options: ["ইস্ট্রোজেন", "ক্লোরোফিল", "থাইরক্সিন", "অক্সিন"],
+                    answer: 3,
+                    explanation: "ইস্ট্রোজেন এবং থাইরক্সিন প্রাণী হরমোন, আর ক্লোরোফিল হল উদ্ভিদের সালোকসংশ্লেষে প্রয়োজনীয় রঞ্জক পদার্থ। অক্সিন উদ্ভিদের বৃদ্ধি নিয়ন্ত্রণকারী একটি প্রধান উদ্ভিদ হরমোন। [RRB NTPC 22.01.2021 (SHIFT-I)]"
+                },
+                {
+                    question: "হরমোন শব্দটি প্রথম ব্যবহার করেন-",
+                    options: ["বেলিস ও স্টারলিং", "ওয়েন্ট", "কুরোসাওয়া", "জগদীশ চন্দ্র বসু"],
+                    answer: 0,
+                    explanation: "১৯০৫ সালে ব্রিটিশ বিজ্ঞানী বেলিস এবং স্টারলিং প্রথম 'হরমোন' শব্দটি ব্যবহার করেন। তাঁরা প্রথম হরমোন হিসেবে 'সিক্রেটিন' আবিষ্কার করেন। [RRB NTPC]"
+                },
+                {
+                    question: "হরমোন হল একটি-",
+                    options: ["উৎসেচক", "ভৌত সমন্বয়কারী", "গ্রাহক", "রাসায়নিক সমন্বয়কারী"],
+                    answer: 3,
+                    explanation: "হরমোন নির্দিষ্ট উৎসস্থল থেকে উৎপন্ন হয়ে রক্ত বা রসের মাধ্যমে বাহিত হয়ে দূরবর্তী কোনো লক্ষ্যকোষে পৌঁছায় এবং সেখানকার শারীরবৃত্তীয় কাজ নিয়ন্ত্রণ করে। তাই একে রাসায়নিক সমন্বয়কারী বা রাসায়নিক দূত (Chemical Messenger) বলা হয়। [SSC GD]"
+                },
+                {
+                    question: "একটি প্রাকৃতিক হরমোনের নাম হল-",
+                    options: ["অক্সিন", "IPA", "NAA", "IBA"],
+                    answer: 0,
+                    explanation: "অক্সিন (বিশেষত ইন্ডোল অ্যাসেটিক অ্যাসিড বা IAA) উদ্ভিদের দেহে স্বাভাবিকভাবে সংশ্লেষিত হয়, তাই এটি একটি প্রাকৃতিক হরমোন। অন্যদিকে, IPA, NAA এবং IBA হল কৃত্রিম অক্সিন যা গবেষণাগারে তৈরি করা হয়। [RRB MTS]"
+                },
+                {
+                    question: "একটি কৃত্রিম হরমোন হল-",
+                    options: ["IAA", "NAA", "GA", "সাইটোকাইনিন"],
+                    answer: 1,
+                    explanation: "NAA (ন্যাপথালিন অ্যাসেটিক অ্যাসিড) একটি কৃত্রিমভাবে তৈরি অক্সিন হরমোন যা উদ্ভিদের শাখা কলম থেকে মূল গজাতে এবং ফলের অকাল পতন রোধ করতে ব্যবহৃত হয়। IAA, GA এবং সাইটোকাইনিন হল প্রাকৃতিক হরমোন। [RRB NTPC SHIFT-II]"
+                },
+                {
+                    question: "একটি গ্যাসীয় হরমোন হল-",
+                    options: ["IPA", "অক্সিন", "ডরমিন", "ইথিলিন"],
+                    answer: 3,
+                    explanation: "ইথিলিন একমাত্র উদ্ভিদ হরমোন যা সাধারণ তাপমাত্রায় গ্যাসীয় অবস্থায় থাকে। এটি ফল পাকাতে, গাছের বার্ধক্য ত্বরান্বিত করতে এবং পাতা ঝরাতে সাহায্য করে। [RRB NTPC SHIFT-III]"
+                },
+                {
+                    question: "অক্সিন সম্বন্ধে প্রথম যে উদ্ভিদে পরীক্ষা হয়, সেটি হল-",
+                    options: ["মটর", "গম", "ধান", "জই (Avena Sativa)"],
+                    answer: 3,
+                    explanation: "বিজ্ঞানী ভেন্ট (Went) জই (Avena Sativa) গাছের ভ্রূণমুকুলাবরণীর উপর পরীক্ষা-নিরীক্ষার মাধ্যমে প্রথম অক্সিন হরমোনের অস্তিত্ব প্রমাণ করেন। [RAILWAY RPF]"
+                },
+                {
+                    question: "বৃদ্ধিরোধক একটি উদ্ভিদ হরমোন হল-",
+                    options: ["ফ্লোরিজেন", "অক্সিন", "সাইটোকাইনিন", "অ্যাবসিসিক অ্যাসিড"],
+                    answer: 3,
+                    explanation: "অ্যাবসিসিক অ্যাসিড (ABA) উদ্ভিদের বৃদ্ধি ব্যাহত করে, বীজের অঙ্কুরোদ্গম রোধ করে এবং পত্ররন্ধ্র বন্ধ করে দেয়। তাই একে 'বৃদ্ধিরোধক হরমোন' বা 'স্ট্রেস হরমোন' বলা হয়। অক্সিন, সাইটোকাইনিন ও ফ্লোরিজেন হল বৃদ্ধি সহায়ক হরমোন। [SSC CGL]"
+                },
+                {
+                    question: "জীবদেহে রাসায়নিক সমন্বয়-সাধনের কাজ করে-",
+                    options: ["ভিটামিন", "উৎসেচক", "হরমোন", "ফেরোমোন"],
+                    answer: 2,
+                    explanation: "হরমোন জীবদেহের বিভিন্ন অঙ্গ ও তন্ত্রের মধ্যে রাসায়নিক বার্তা পাঠিয়ে তাদের কাজের মধ্যে সমন্বয় সাধন করে, তাই একে রাসায়নিক সমন্বয়ক বলা হয়। [SSC MTS]"
+                },
+                {
+                    question: "ফ্লোরিজেন হল একপ্রকার-",
+                    options: ["উদ্ভিদ হরমোন", "উৎসেচক", "প্রাণী হরমোন", "হরমোন উৎসেচক"],
+                    answer: 0,
+                    explanation: "ফ্লোরিজেন একটি প্রকল্পিত উদ্ভিদ হরমোন যা উদ্ভিদের পাতায় উৎপন্ন হয়ে পত্রমুকুলকে পুষ্পমুকুলে রূপান্তরিত করে এবং ফুল ফোটাতে সাহায্য করে। [SSC CGL]"
+                },
+                {
+                    question: "ভ্রূণমুকুলাবরণীতে পাওয়া যায়-",
+                    options: ["জিব্বেরেলিন", "অক্সিন", "সাইটোকাইনিন", "ফ্লোরিজেন"],
+                    answer: 1,
+                    explanation: "উদ্ভিদের বর্ধনশীল অঙ্গের অগ্রভাগে, যেমন কাণ্ডের ডগা এবং ভ্রূণমুকুলাবরণীতে অক্সিন হরমোন সংশ্লেষিত হয়। এটি কোষের বৃদ্ধি ও বিভাজনে সাহায্য করে। [RRB SSC]"
+                },
+                {
+                    question: "নাইট্রোজেনবিহীন উদ্ভিদ হরমোন হল-",
+                    options: ["জিব্বেরেলিন", "অক্সিন", "সাইটোকাইনিন", "ভারনালিন"],
+                    answer: 0,
+                    explanation: "জিব্বেরেলিন টারপিনয়েড (Terpenoid) জাতীয় হরমোন, যার রাসায়নিক গঠনে কার্বন, হাইড্রোজেন ও অক্সিজেন থাকলেও নাইট্রোজেন থাকে না। অন্যদিকে, অক্সিন ও সাইটোকাইনিন উভয়ই নাইট্রোজেনযুক্ত হরমোন। [SSC CHSL]"
+                },
+                {
+                    question: "বীজবিহীন ফল উৎপাদনে সাহায্য করে-",
+                    options: ["ইথিলিন", "অক্সিন", "সাইটোকাইনিন", "ফ্লোরিজেন"],
+                    answer: 1,
+                    explanation: "পরাগযোগ ও নিষেক ছাড়াই ডিম্বাশয়কে ফলে পরিণত করার প্রক্রিয়াকে পার্থেনোকার্পি বলে। অক্সিন হরমোন প্রয়োগ করে কৃত্রিমভাবে পার্থেনোকার্পির মাধ্যমে বীজবিহীন ফল (যেমন- টমেটো, পেঁপে) উৎপাদন করা হয়। [RRB NTPC SHIFT-II]"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

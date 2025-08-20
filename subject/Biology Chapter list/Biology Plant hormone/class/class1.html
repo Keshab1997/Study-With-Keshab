@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>উদ্ভিদ হরমোন (প্রথম পর্ব) - Class 01</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        h4 { border-bottom: 1px dotted #ccc; }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); font-weight: 600; }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-style: italic; font-size: 1.1em; border-radius: 5px; }
+        img { max-width: 100%; height: auto; display: block; margin: 25px auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 10px; padding-left: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: var(--table-header-bg); color: var(--table-header-text); font-weight: 600; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo">
+    <h1>অধ্যায়: উদ্ভিদ হরমোন (Phytohormone)</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 01</h2>
+
+    <h3>ভূমিকা (Introduction)</h3>
+    <p>উদ্ভিদের জীবনে বিভিন্ন শারীরবৃত্তীয় কাজ, যেমন - বৃদ্ধি, বিকাশ, ফুল ফোটা, ফল ধরা, বীজ তৈরি ইত্যাদি সুশৃঙ্খলভাবে নিয়ন্ত্রিত হয়। এই সমস্ত কাজ নিয়ন্ত্রণের জন্য উদ্ভিদের দেহে এক বিশেষ ধরনের জৈব-রাসায়নিক পদার্থ তৈরি হয়, যা খুব অল্প ঘনত্বে কার্যকরী। এই পদার্থগুলোকেই হরমোন বা <strong>ফাইটোহরমোন (Phytohormone)</strong> বলা হয়।</p>
+    
+    <h3>সংজ্ঞা (Definition)</h3>
+    <blockquote>যে জৈব-রাসায়নিক পদার্থ উদ্ভিদ কোষের নির্দিষ্ট স্থান থেকে (যেমন- ভাজক কলা) উৎপন্ন হয়ে ব্যাপন বা সংবহন কলার মাধ্যমে দেহের দূরবর্তী স্থানে বাহিত হয় এবং সেখানকার কোষগুলির কার্যকারিতা নিয়ন্ত্রণ করে, তাকে উদ্ভিদ হরমোন বা ফাইটোহরমোন বলে। এদের <strong>রাসায়নিক সমন্বয়ক (Chemical Coordinator)</strong>-ও বলা হয়।</blockquote>
+    
+    <h3>উদ্ভিদ হরমোনের বৈশিষ্ট্য (Characteristics of Plant Hormones)</h3>
+    <ol>
+        <li><strong>উৎস (Source):</strong> উদ্ভিদ হরমোন প্রধানত বর্ধনশীল অঞ্চলের ভাজক কলা (meristematic tissue), যেমন - কাণ্ড ও মূলের অগ্রভাগ, ভ্রূণমুকুল, কচি পাতা, ফুলের মুকুল এবং ফলের মধ্যে উৎপন্ন হয়।</li>
+        <li><strong>রাসায়নিক প্রকৃতি (Chemical Nature):</strong> এরা সাধারণত জৈব অম্ল (organic acid), ক্ষার (base) বা গ্যাসীয় পদার্থ হয়। যেমন - অক্সিন (ইন্দোল বর্গীয়), জিব্বেরেলিন (টারপিনয়েড), সাইটোকাইনিন (অ্যাডেনিন জাতীয়), ইথিলিন (গ্যাসীয়)।</li>
+        <li><strong>পরিবহণ (Transport):</strong> কিছু হরমোন (যেমন- অক্সিন) উৎপত্তিস্থল থেকে মেরুবর্তী পরিবহণ (Polar transport) পদ্ধতিতে পরিবাহিত হয়, অর্থাৎ কাণ্ডের অগ্রভাগ থেকে নীচের দিকে যায়। অন্য হরমোনগুলি জাইলেম ও ফ্লোয়েম কলার মাধ্যমে উদ্ভিদের সর্বত্র ছড়িয়ে পড়ে।</li>
+        <li><strong>কার্যকারিতা (Function):</strong> এরা খুব কম ঘনত্বে (যেমন- 1 ppm বা পার্টস পার মিলিয়ন) কার্যকরী। ঘনত্বের পরিবর্তন হলে এদের কার্যকারিতাও বদলে যায়। বেশি ঘনত্বে অনেক হরমোন ক্ষতিকর প্রভাব ফেলে।</li>
+        <li><strong>দ্বৈত ভূমিকা (Dual Role):</strong> কিছু হরমোন নির্দিষ্ট ঘনত্বে উদ্ভিদের বৃদ্ধিতে সাহায্য করে, আবার ঘনত্ব বেড়ে গেলে সেই বৃদ্ধি ব্যাহত করে।</li>
+        <li><strong>ধ্বংস (Destruction):</strong> হরমোনগুলি কাজ শেষ হওয়ার পর বিভিন্ন উৎসেচকের প্রভাবে বা আলোর উপস্থিতিতে নষ্ট হয়ে যায়।</li>
+    </ol>
+    
+    <h3>উদ্ভিদ হরমোনের প্রকারভেদ (Classification of Plant Hormones)</h3>
+    <p>উদ্ভিদ হরমোনকে প্রধানত দুটি ভাগে ভাগ করা হয়:</p>
+    <ul>
+        <li><strong>১. প্রাকৃতিক হরমোন (Natural Hormones):</strong> যেগুলি উদ্ভিদ নিজে থেকেই তৈরি করে।
+            <ul>
+                <li><strong>বৃদ্ধি সহায়ক (Growth Promoters):</strong> অক্সিন, জিব্বেরেলিন, সাইটোকাইনিন।</li>
+                <li><strong>বৃদ্ধি প্রতিবন্ধক (Growth Inhibitors):</strong> অ্যাবসিসিক অ্যাসিড (ABA), ইথিলিন।</li>
+            </ul>
+        </li>
+        <li><strong>২. কৃত্রিম হরমোন (Synthetic Hormones):</strong> যেগুলি গবেষণাগারে রাসায়নিকভাবে তৈরি করা হয় এবং প্রাকৃতিক হরমোনের মতো কাজ করে। যেমন - IAA (Indole Acetic Acid), IBA (Indole Butyric Acid), NAA (Naphthalene Acetic Acid), 2,4-D (2,4-Dichlorophenoxyacetic Acid)।</li>
+    </ul>
+
+    <h3>প্রধান হরমোনগুলির বিস্তারিত আলোচনা</h3>
+    
+    <h4>১. অক্সিন (Auxin)</h4>
+    <p><strong>রাসায়নিক নাম:</strong> ইন্ডোল অ্যাসিটিক অ্যাসিড (IAA)।</p>
+    <p><strong>উৎস:</strong> কাণ্ড ও মূলের অগ্রভাগের ভাজক কলা, ভ্রূণমুকুল আবরণী, কচি পাতা।</p>
+    <p><strong>কাজ বা ভূমিকা (Functions):</strong></p>
+    <ul>
+        <li><strong>অগ্রস্থ প্রকটতা (Apical Dominance):</strong> কাণ্ডের অগ্রমুকুলে থাকা অক্সিন পার্শ্বীয় মুকুলের বৃদ্ধিকে বাধা দেয়, ফলে উদ্ভিদ লম্বায় বাড়ে। অগ্রমুকুল কেটে দিলে পার্শ্বীয় মুকুল থেকে শাখা-প্রশাখা গজায়।</li>
+        <li><strong>কোষের আকার বৃদ্ধি (Cell Elongation):</strong> অক্সিন কোষপ্রাচীরকে নমনীয় করে এবং কোষে জলের প্রবেশ ঘটিয়ে কোষের আকার ও আয়তন বাড়ায়, যা উদ্ভিদের বৃদ্ধিতে সাহায্য করে।</li>
+        <li><strong>ট্রপিক চলন নিয়ন্ত্রণ (Control of Tropic Movement):</strong> উদ্ভিদের ফটোট্রপিক (আলোর দিকে) এবং জিওট্রপিক (অভিকর্ষের দিকে) চলন অক্সিনের অসম বণ্টনের ফলেই হয়।</li>
+        <li><strong>মূলের বৃদ্ধি (Root Growth):</strong> কম ঘনত্বে অক্সিন মূলের বৃদ্ধিতে সাহায্য করে।</li>
+        <li><strong>ফল গঠন (Fruit Formation):</strong> পরাগযোগ ও নিষেক ছাড়াই ডিম্বাশয়ে অক্সিন প্রয়োগ করে বীজবিহীন ফল (পার্থেনোকার্পিক ফল) তৈরি করা যায়। যেমন - টমেটো, পেঁপে।</li>
+        <li><strong>পত্রমোচন ও ফলমোচন রোধ (Prevention of Abscission):</strong> অক্সিন কচি পাতা ও ফলের বোঁটায় মোচন স্তর (abscission layer) তৈরি হতে বাধা দেয়, ফলে পাতা ও ফল অকালে ঝরে পড়ে না।</li>
+    </ul>
+    
+    <h4>২. জিব্বেরেলিন (Gibberellin)</h4>
+    <p><strong>রাসায়নিক নাম:</strong> জিব্বেরেলিক অ্যাসিড (GA)।</p>
+    <p><strong>উৎস:</strong> পরিপক্ক বীজ, অঙ্কুরিত চারা, মুকুল, কচি পাতা।</p>
+    <p><strong>কাজ বা ভূমিকা (Functions):</strong></p>
+    <ul>
+        <li><strong>পর্বমধ্যের দৈর্ঘ্য বৃদ্ধি (Internode Elongation):</strong> জিব্বেরেলিন উদ্ভিদের পর্বমধ্যের (internode) কোষগুলির দৈর্ঘ্য বাড়িয়ে কাণ্ডকে লম্বা হতে সাহায্য করে। এর প্রভাবে বেঁটে গাছও লম্বা হয়।</li>
+        <li><strong>বীজ ও মুকুলের সুপ্তাবস্থা ভাঙা (Breaking Dormancy):</strong> এটি বীজ এবং মুকুলের সুপ্তাবস্থা বা ঘুমন্ত দশা ভাঙতে সাহায্য করে এবং অঙ্কুরোদ্গম ঘটায়।</li>
+        <li><strong>ফুল ফোটাতে সাহায্য (Induction of Flowering):</strong> কিছু উদ্ভিদের ক্ষেত্রে এটি ফুল ফোটাতে সাহায্য করে।</li>
+        <li><strong>ফলের আকার বৃদ্ধি (Fruit Enlargement):</strong> আঙুর, আপেল ইত্যাদি ফলের আকার বাড়াতে জিব্বেরেলিন ব্যবহার করা হয়।</li>
+        <li><strong>পার্থেনোকার্পি (Parthenocarpy):</strong> অক্সিনের মতো এটিও বীজবিহীন ফল তৈরিতে সক্ষম।</li>
+    </ul>
+    
+    <h4>৩. সাইটোকাইনিন (Cytokinin)</h4>
+    <p><strong>রাসায়নিক নাম:</strong> কাইনেটিন (একটি কৃত্রিম সাইটোকাইনিন), জিয়েটিন (একটি প্রাকৃতিক সাইটোকাইনিন)।</p>
+    <p><strong>উৎস:</strong> ফল ও শস্য, নারকেলের তরল শস্য (ডাবের জল), অঙ্কুরিত বীজ।</p>
+    <p><strong>কাজ বা ভূমিকা (Functions):</strong></p>
+    <ul>
+        <li><strong>কোষ বিভাজন (Cell Division):</strong> সাইটোকাইনিনের প্রধান কাজ হলো কোষ বিভাজন বা সাইটোকাইনেসিসকে উদ্দীপিত করা। এটি কোষের দ্রুত বিভাজনে সাহায্য করে।</li>
+        <li><strong>পার্শ্বীয় মুকুলের বৃদ্ধি (Lateral Bud Growth):</strong> এটি অগ্রস্থ প্রকটতার বিরুদ্ধে কাজ করে এবং পার্শ্বীয় মুকুলের বৃদ্ধি ঘটিয়ে ঝোপঝাড় পূর্ণ উদ্ভিদ তৈরি করে।</li>
+        <li><strong>বার্ধক্য বিলম্বিত করা (Delaying Senescence):</strong> সাইটোকাইনিন পাতায় ক্লোরোফিল নষ্ট হতে দেয় না, ফলে পাতা ও ফুলের বার্ধক্য বা জরা আসা বিলম্বিত হয়। একে <strong>রিচমন্ড-ল্যাং প্রভাব (Richmond-Lang Effect)</strong> বলে।</li>
+        <li><strong>অঙ্গ সৃষ্টি (Organogenesis):</strong> কলা কর্ষণ (Tissue culture) মাধ্যমে সাইটোকাইনিন ও অক্সিনের অনুপাত নিয়ন্ত্রণ করে মূল ও কাণ্ড তৈরি করা হয়।</li>
+    </ul>
+    
+    <h3>বৃদ্ধি প্রতিবন্ধক হরমোন (Growth Inhibiting Hormones)</h3>
+    <h4>অ্যাবসিসিক অ্যাসিড (Abscisic Acid - ABA)</h4>
+    <p><strong>কাজ বা ভূমিকা:</strong></p>
+    <ul>
+        <li><strong>বৃদ্ধি ব্যাহত করা:</strong> এটি অক্সিন ও জিব্বেরেলিনের কাজের বিরোধিতা করে উদ্ভিদের বৃদ্ধি ব্যাহত করে।</li>
+        <li><strong>পত্রমোচন ও ফলমোচন (Abscission):</strong> এটি পাতা ও ফলের বোঁটায় মোচন স্তর তৈরি করে তাদের ঝরে পড়তে সাহায্য করে।</li>
+        <li><strong>সুপ্তাবস্থা বজায় রাখা:</strong> বীজ ও মুকুলের সুপ্তাবস্থা বজায় রাখে।</li>
+        <li><strong>পত্ররন্ধ্র বন্ধ করা:</strong> জলের অভাব দেখা দিলে এটি পত্ররন্ধ্র বন্ধ করে বাষ্পমোচন কমাতে সাহায্য করে, তাই একে <strong>স্ট্রেস হরমোন (Stress Hormone)</strong> বলা হয়।</li>
+    </ul>
+
+    <h4>ইথিলিন (Ethylene)</h4>
+    <p><strong>প্রকৃতি:</strong> এটি একমাত্র গ্যাসীয় উদ্ভিদ হরমোন।</p>
+    <p><strong>কাজ বা ভূমিকা:</strong></p>
+    <ul>
+        <li><strong>ফল পাকাতে সাহায্য করা (Fruit Ripening):</strong> ইথিলিনের প্রধান কাজ হলো ফল পাকাতে সাহায্য করা। কাঁচা ফলকে কৃত্রিমভাবে পাকাতে এর ব্যবহার ব্যাপক।</li>
+        <li><strong>পত্রমোচন ও বার্ধক্য:</strong> এটি পাতা, ফুল ও ফলের ঝরে পড়া বা বার্ধক্যকে ত্বরান্বিত করে।</li>
+    </ul>
+    
+    <h3>কৃত্রিম হরমোনের ব্যবহারিক প্রয়োগ (Practical Application of Synthetic Hormones)</h3>
+    <p>কৃষি ও উদ্যানবিদ্যায় কৃত্রিম হরমোনের ব্যবহার অত্যন্ত গুরুত্বপূর্ণ।</p>
+    <ol>
+        <li><strong>শাখা কলমে মূল উৎপাদন (Rooting in Cuttings):</strong> IBA ও NAA নামক কৃত্রিম অক্সিন গোলাপ, আম ইত্যাদি গাছের ডাল বা শাখায় প্রয়োগ করলে দ্রুত মূল গজায়।</li>
+        <li><strong>আগাছানাশক হিসেবে (As a Weedicide):</strong> 2,4-D নামক কৃত্রিম অক্সিন বেশি ঘনত্বে প্রয়োগ করলে তা ধান বা গম ক্ষেতের দ্বিবীজপত্রী আগাছাকে মেরে ফেলে, কিন্তু প্রধান ফসলকে ক্ষতিগ্রস্ত করে না।</li>
+        <li><strong>বীজবিহীন ফল তৈরি (Parthenocarpy):</strong> কৃত্রিম অক্সিন ও জিব্বেরেলিন নিষেক ছাড়াই ফল উৎপাদনে ব্যবহৃত হয়।</li>
+        <li><strong>অকাল পতন রোধ (Preventing Premature Drop):</strong> আপেল, লেবু ইত্যাদি ফলের অকালে ঝরে পড়া রোধ করতে NAA ব্যবহার করা হয়।</li>
+        <li><strong>ফল পাকানো (Fruit Ripening):</strong> ইথেফোন নামক রাসায়নিক পদার্থ থেকে নির্গত ইথিলিন কলা, টমেটো ইত্যাদি ফলকে একসঙ্গে ও দ্রুত পাকাতে ব্যবহৃত হয়।</li>
+    </ol>
+</div>
+
+<nav class="navigation">
+    <!-- এটি প্রথম পেজ, তাই পূর্ববর্তী বাটন নিষ্ক্রিয় থাকবে -->
+    <a href="#" class="nav-button disabled">পূর্ববর্তী</a>
+
+    <!-- পেজ নম্বর লিঙ্ক (মোট ৩টি ক্লাস অনুযায়ী) -->
+    <a href="class1.html" class="nav-button active">1</a>
+    <a href="class2.html" class="nav-button">2</a>
+    <a href="class3.html" class="nav-button">3</a>
+    
+    <!-- পরবর্তী পেজ হলো class2.html -->
+    <a href="class2.html" class="nav-button">পরবর্তী</a>
+
+    <!-- হোম পেজে ফিরে যাওয়ার লিঙ্ক -->
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Theme and Mode Setup
+        const themeButtons = document.querySelectorAll('.theme-buttons button');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+        function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+        const savedTheme = localStorage.getItem('selected_theme');
+        const savedMode = localStorage.getItem('selected_mode');
+        if (savedTheme) applyTheme(savedTheme);
+        if (savedMode) applyMode(savedMode);
+        themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+        darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+
+        // Scroll Buttons Setup
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const bodyHeight = document.body.offsetHeight;
+            if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+            if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+        });
+        scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+        // Digital Clock
+        const clockElement = document.getElementById('digital-clock');
+        function updateClock() {
+            if(clockElement) {
+                const now = new Date();
+                const options = {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true,
+                    timeZone: 'Asia/Kolkata'
+                };
+                clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+            }
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // Automatic Copyright Year
+        const yearSpan = document.getElementById('copyright-year');
+        if(yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+    });
+</script>
+</body>
+</html>

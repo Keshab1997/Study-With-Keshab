@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - উদ্ভিদ হরমোন</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="#" class="btn btn-secondary disabled">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology উদ্ভিদ হরমোন",
+            setName: "Quiz Set 3",
+            name: "উদ্ভিদ হরমোন - Set 3 (প্রশ্ন ২৭-৩৮)",
+            questions: [
+                {
+                    question: "বীজের অঙ্কুরোদগমে সাহায্যকারী হরমোন-",
+                    options: ["ইথিলিন", "জিব্বেরেলিন", "অক্সিন", "ABA"],
+                    answer: 1,
+                    explanation: "জিব্বেরেলিন বীজের সুপ্তাবস্থা ভঙ্গ করে এবং বীজের মধ্যে থাকা খাদ্যকে (শ্বেতসার) ভেঙে সরল শর্করায় পরিণত করে, যা ভ্রূণের বৃদ্ধিতে শক্তি যোগায়। ফলে অঙ্কুরোদ্গম সহজ হয়। [SSC GD]"
+                },
+                {
+                    question: "উদ্ভিদের কোনটি স্ট্রেস হরমোন?",
+                    options: ["ইথিলিন", "অক্সিন", "কাইনিন", "অ্যাবসিসিক অ্যাসিড (ABA)"],
+                    answer: 3,
+                    explanation: "খরা, লবণাক্ততা বা অতিরিক্ত ঠান্ডার মতো প্রতিকূল পরিস্থিতিতে উদ্ভিদদেহে অ্যাবসিসিক অ্যাসিডের পরিমাণ বেড়ে যায়। এটি পত্ররন্ধ্র বন্ধ করে জল সংরক্ষণ করে, তাই একে 'স্ট্রেস হরমোন' বলা হয়। [SSC MTS]"
+                },
+                {
+                    question: "পত্র ও ফলমোচনে সাহায্যকারী হরমোন?",
+                    options: ["ABA (অ্যাবসিসিক অ্যাসিড)", "ABC", "CBA", "DCB"],
+                    answer: 0,
+                    explanation: "অ্যাবসিসিক অ্যাসিড (ABA) পাতা ও ফলের বোঁটার সংযোগস্থলে একটি মোচন স্তর (Abscission layer) তৈরি করে, যা ওই অঙ্গগুলিকে দুর্বল করে দেয় এবং ঝরে পড়তে সাহায্য করে। [SSC CGL]"
+                },
+                {
+                    question: "অ্যাসিডধর্মী হরমোন হল-",
+                    options: ["অক্সিন (IAA, IBA, NAA)", "ACTH", "কাইনিন", "থাইমোসিন"],
+                    answer: 0,
+                    explanation: "অক্সিনের রাসায়নিক নাম ইন্ডোল অ্যাসিটিক অ্যাসিড (IAA), ন্যাপথালিন অ্যাসিটিক অ্যাসিড (NAA) ইত্যাদি। নামের শেষে 'অ্যাসিড' থাকায় বোঝা যায় এটি আম্লিক বা অ্যাসিডধর্মী। [RAILWAY GROUP-B]"
+                },
+                {
+                    question: "কোন্ ফাইটো হরমোন সেনেসেন্সের (বার্ধক্য) জন্য দায়ী?",
+                    options: ["অক্সিন", "জিব্বেরেলিন", "সাইটোকাইনিন", "ইথিলিন"],
+                    answer: 3,
+                    explanation: "ইথিলিন একটি গ্যাসীয় হরমোন যা উদ্ভিদের বার্ধক্য (Senescence) প্রক্রিয়াকে ত্বরান্বিত করে। এটি ফুল, ফল ও পাতার ঝরে পড়া এবং পচন প্রক্রিয়ায় গুরুত্বপূর্ণ ভূমিকা পালন করে। [RRB NTPC (SHIFT-III)]"
+                },
+                {
+                    question: "নাইট্রোজেনবিহীন হরমোন কোন্টি?",
+                    options: ["কাইনিন", "অক্সিন", "জিব্বেরেলিন", "IAA"],
+                    answer: 2,
+                    explanation: "জিব্বেরেলিন হল টারপিনয়েড জাতীয় যৌগ, যা কার্বন, হাইড্রোজেন ও অক্সিজেন দিয়ে গঠিত। এর গঠনে নাইট্রোজেন থাকে না। অন্যদিকে অক্সিন (IAA) এবং কাইনিন (সাইটোকাইনিন) নাইট্রোজেনযুক্ত ক্ষারীয় হরমোন। [RRB NTPC (SHIFT-II)]"
+                },
+                {
+                    question: "ইন্ডোল অ্যাসিটিক অ্যাসিড কোন্ উদ্ভিদ হরমোনের রাসায়নিক নাম?",
+                    options: ["কাইনিন", "অক্সিন", "জিব্বেরেলিন", "ইথিলিন"],
+                    answer: 1,
+                    explanation: "ইন্ডোল অ্যাসিটিক অ্যাসিড (Indole Acetic Acid বা IAA) হল প্রাকৃতিকভাবে উদ্ভিদে প্রাপ্ত প্রধান ও সবচেয়ে কার্যকরী অক্সিন হরমোন। [RRB ALP & TEC.]"
+                },
+                {
+                    question: "আগাছা দমনে সাহায্য করে-",
+                    options: ["2, 4-D", "NAA", "IBA", "IAA"],
+                    answer: 0,
+                    explanation: "2, 4-D (2, 4-ডাইক্লোরোফেনক্সি অ্যাসিটিক অ্যাসিড) একটি কৃত্রিম অক্সিন, যা বেশি ঘনত্বে প্রয়োগ করলে দ্বিবীজপত্রী আগাছাদের ধ্বংস করে কিন্তু একবীজপত্রী উদ্ভিদ (যেমন - ধান, গম) এর ক্ষতি করে না। তাই এটি আগাছানাশক হিসেবে ব্যবহৃত হয়। [SSC MTS]"
+                },
+                {
+                    question: "খরাসুবেদী হরমোন কোন্টি?",
+                    options: ["অক্সিন", "NAA", "IAA", "ABA"],
+                    answer: 3,
+                    explanation: "খরা বা জলের অভাব হলে উদ্ভিদদেহে ABA (অ্যাবসিসিক অ্যাসিড) হরমোনের মাত্রা বেড়ে যায়। এটি পত্ররন্ধ্র বন্ধ করে বাষ্পমোচন রোধ করে এবং উদ্ভিদকে জলের অভাবজনিত চাপ থেকে রক্ষা করে। তাই একে খরাসুবেদী বা স্ট্রেস হরমোন বলে। [SSC CGL]"
+                },
+                {
+                    question: "ফ্লোরিজেন নামকরণ করেন-",
+                    options: ["ক্লিল্যান্ড", "বাটলার", "চাইলাখান", "বাটেলস"],
+                    answer: 2,
+                    explanation: "সোভিয়েত বিজ্ঞানী মিখাইল চাইলাখান (Mikhail Chailakhyan) ১৯৩৭ সালে প্রথম এই প্রকল্পিত হরমোনের নামকরণ করেন 'ফ্লোরিজেন', যা উদ্ভিদের ফুল ফোটাতে সাহায্য করে। [SSC ALP & TEC.]"
+                },
+                {
+                    question: "কোন্ হরমোন প্রয়োগে অগ্রস্থ প্রকটতা প্রতিরোধ হয়?",
+                    options: ["অক্সিন", "জিব্বেরেলিন", "সাইটোকাইনিন", "ভারনালিন"],
+                    answer: 2,
+                    explanation: "অগ্রস্থ প্রকটতা (Apical Dominance) অক্সিন হরমোনের প্রভাবে ঘটে, যা পার্শ্বীয় মুকুলের বৃদ্ধিকে বাধা দেয়। সাইটোকাইনিন হরমোন পার্শ্বীয় মুকুলের বৃদ্ধি ঘটিয়ে অগ্রস্থ প্রকটতা প্রতিরোধ করে এবং গাছকে আরও ঝোপঝাড়যুক্ত করে তোলে। [SSC GROUP-B]"
+                },
+                {
+                    question: "কোনটি কৃত্রিম হরমোন?",
+                    options: ["IBA", "IAA", "ফ্লোরিজেন", "ভারনালিন"],
+                    answer: 0,
+                    explanation: "IBA (ইন্ডোল বিউটারিক অ্যাসিড) সাধারণত কৃত্রিমভাবে তৈরি করা হয় এবং এটি শাখা কলমে মূল গজানোর জন্য ব্যাপকভাবে ব্যবহৃত হয়। IAA (ইন্ডোল অ্যাসেটিক অ্যাসিড) হল প্রাকৃতিক অক্সিন। ফ্লোরিজেন ও ভারনালিন প্রকল্পিত হরমোন। [RRB TC]"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

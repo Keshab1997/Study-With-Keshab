@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>উদ্ভিদ হরমোন (PYQ) - Class 3</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        p { font-size: 1.1em; margin-bottom: 5px; }
+        strong { color: var(--accent-color); font-weight: 600; }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 15px 0; padding: 10px 20px; font-size: 1.1em; border-radius: 5px; }
+        blockquote strong { color: var(--heading-color-2); }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 25px; padding-left: 10px; }
+        .options-list { list-style-type: upper-alpha; padding-left: 40px; }
+        .options-list li { margin-bottom: 5px; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>উদ্ভিদ হরমোন (Plant Hormones) - PYQ</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div id="digital-clock" class="digital-clock"></div>
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 3</h2>
+        <ol>
+            <li>
+                <p>নিচের কোনটি প্ল্যান্ট হরমোন?</p>
+                <ol class="options-list">
+                    <li>ইস্ট্রোজেন</li>
+                    <li>ক্লোরোফিল</li>
+                    <li>থাইরক্সিন</li>
+                    <li>অক্সিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [D] অক্সিন</strong><br><small><i>ব্যাখ্যা: ইস্ট্রোজেন এবং থাইরক্সিন প্রাণী হরমোন, আর ক্লোরোফিল হল উদ্ভিদের সালোকসংশ্লেষে প্রয়োজনীয় রঞ্জক পদার্থ। অক্সিন উদ্ভিদের বৃদ্ধি নিয়ন্ত্রণকারী একটি প্রধান উদ্ভিদ হরমোন। [RRB NTPC 22.01.2021 (SHIFT-I)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>হরমোন শব্দটি প্রথম ব্যবহার করেন-</p>
+                <ol class="options-list">
+                    <li>বেলিস ও স্টারলিং</li>
+                    <li>ওয়েন্ট</li>
+                    <li>কুরোসাওয়া</li>
+                    <li>জগদীশ চন্দ্র বসু</li>
+                </ol>
+                <blockquote><strong>উত্তর: [A] বেলিস ও স্টারলিং</strong><br><small><i>ব্যাখ্যা: ১৯০৫ সালে ব্রিটিশ বিজ্ঞানী বেলিস এবং স্টারলিং প্রথম 'হরমোন' শব্দটি ব্যবহার করেন। তাঁরা প্রথম হরমোন হিসেবে 'সিক্রেটিন' আবিষ্কার করেন। [RRB NTPC]</i></small></blockquote>
+            </li>
+             <li>
+                <p>হরমোন হল একটি-</p>
+                <ol class="options-list">
+                    <li>উৎসেচক</li>
+                    <li>ভৌত সমন্বয়কারী</li>
+                    <li>গ্রাহক</li>
+                    <li>রাসায়নিক সমন্বয়কারী</li>
+                </ol>
+                <blockquote><strong>উত্তর: [D] রাসায়নিক সমন্বয়কারী</strong><br><small><i>ব্যাখ্যা: হরমোন নির্দিষ্ট উৎসস্থল থেকে উৎপন্ন হয়ে রক্ত বা রসের মাধ্যমে বাহিত হয়ে দূরবর্তী কোনো লক্ষ্যকোষে পৌঁছায় এবং সেখানকার শারীরবৃত্তীয় কাজ নিয়ন্ত্রণ করে। তাই একে রাসায়নিক সমন্বয়কারী বা রাসায়নিক দূত (Chemical Messenger) বলা হয়। [SSC GD]</i></small></blockquote>
+            </li>
+            <li>
+                <p>একটি প্রাকৃতিক হরমোনের নাম হল-</p>
+                <ol class="options-list">
+                    <li>অক্সিন</li>
+                    <li>IPA</li>
+                    <li>NAA</li>
+                    <li>IBA</li>
+                </ol>
+                <blockquote><strong>উত্তর: [A] অক্সিন</strong><br><small><i>ব্যাখ্যা: অক্সিন (বিশেষত ইন্ডোল অ্যাসেটিক অ্যাসিড বা IAA) উদ্ভিদের দেহে স্বাভাবিকভাবে সংশ্লেষিত হয়, তাই এটি একটি প্রাকৃতিক হরমোন। অন্যদিকে, IPA, NAA এবং IBA হল কৃত্রিম অক্সিন যা গবেষণাগারে তৈরি করা হয়। [RRB MTS]</i></small></blockquote>
+            </li>
+            <li>
+                <p>একটি কৃত্রিম হরমোন হল-</p>
+                <ol class="options-list">
+                    <li>IAA</li>
+                    <li>NAA</li>
+                    <li>GA</li>
+                    <li>সাইটোকাইনিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [B] NAA</strong><br><small><i>ব্যাখ্যা: NAA (ন্যাপথালিন অ্যাসেটিক অ্যাসিড) একটি কৃত্রিমভাবে তৈরি অক্সিন হরমোন যা উদ্ভিদের শাখা কলম থেকে মূল গজাতে এবং ফলের অকাল পতন রোধ করতে ব্যবহৃত হয়। IAA, GA এবং সাইটোকাইনিন হল প্রাকৃতিক হরমোন। [RRB NTPC SHIFT-II]</i></small></blockquote>
+            </li>
+            <li>
+                <p>একটি গ্যাসীয় হরমোন হল-</p>
+                <ol class="options-list">
+                    <li>IPA</li>
+                    <li>অক্সিন</li>
+                    <li>ডরমিন</li>
+                    <li>ইথিলিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [D] ইথিলিন</strong><br><small><i>ব্যাখ্যা: ইথিলিন একমাত্র উদ্ভিদ হরমোন যা সাধারণ তাপমাত্রায় গ্যাসীয় অবস্থায় থাকে। এটি ফল পাকাতে, গাছের বার্ধক্য ত্বরান্বিত করতে এবং পাতা ঝরাতে সাহায্য করে। [RRB NTPC SHIFT-III]</i></small></blockquote>
+            </li>
+            <li>
+                <p>অক্সিন সম্বন্ধে প্রথম যে উদ্ভিদে পরীক্ষা হয়, সেটি হল-</p>
+                <ol class="options-list">
+                    <li>মটর</li>
+                    <li>গম</li>
+                    <li>ধান</li>
+                    <li>জই (Avena Sativa)</li>
+                </ol>
+                <blockquote><strong>উত্তর: [D] জই (Avena Sativa)</strong><br><small><i>ব্যাখ্যা: বিজ্ঞানী ভেন্ট (Went) জই (Avena Sativa) গাছের ভ্রূণমুকুলাবরণীর উপর পরীক্ষা-নিরীক্ষার মাধ্যমে প্রথম অক্সিন হরমোনের অস্তিত্ব প্রমাণ করেন। [RAILWAY RPF]</i></small></blockquote>
+            </li>
+            <li>
+                <p>বৃদ্ধিরোধক একটি উদ্ভিদ হরমোন হল-</p>
+                <ol class="options-list">
+                    <li>ফ্লোরিজেন</li>
+                    <li>অক্সিন</li>
+                    <li>সাইটোকাইনিন</li>
+                    <li>অ্যাবসিসিক অ্যাসিড</li>
+                </ol>
+                <blockquote><strong>উত্তর: [D] অ্যাবসিসিক অ্যাসিড</strong><br><small><i>ব্যাখ্যা: অ্যাবসিসিক অ্যাসিড (ABA) উদ্ভিদের বৃদ্ধি ব্যাহত করে, বীজের অঙ্কুরোদ্গম রোধ করে এবং পত্ররন্ধ্র বন্ধ করে দেয়। তাই একে 'বৃদ্ধিরোধক হরমোন' বা 'স্ট্রেস হরমোন' বলা হয়। অক্সিন, সাইটোকাইনিন ও ফ্লোরিজেন হল বৃদ্ধি সহায়ক হরমোন। [SSC CGL]</i></small></blockquote>
+            </li>
+            <li>
+                <p>জীবদেহে রাসায়নিক সমন্বয়-সাধনের কাজ করে-</p>
+                <ol class="options-list">
+                    <li>ভিটামিন</li>
+                    <li>উৎসেচক</li>
+                    <li>হরমোন</li>
+                    <li>ফেরোমোন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [C] হরমোন</strong><br><small><i>ব্যাখ্যা: হরমোন জীবদেহের বিভিন্ন অঙ্গ ও তন্ত্রের মধ্যে রাসায়নিক বার্তা পাঠিয়ে তাদের কাজের মধ্যে সমন্বয় সাধন করে, তাই একে রাসায়নিক সমন্বয়ক বলা হয়। [SSC MTS]</i></small></blockquote>
+            </li>
+            <li>
+                <p>ফ্লোরিজেন হল একপ্রকার-</p>
+                <ol class="options-list">
+                    <li>উদ্ভিদ হরমোন</li>
+                    <li>উৎসেচক</li>
+                    <li>প্রাণী হরমোন</li>
+                    <li>হরমোন উৎসেচক</li>
+                </ol>
+                <blockquote><strong>উত্তর: [A] উদ্ভিদ হরমোন (এটি ফুল ফোটাতে সাহায্য করে)</strong><br><small><i>ব্যাখ্যা: ফ্লোরিজেন একটি প্রকল্পিত উদ্ভিদ হরমোন যা উদ্ভিদের পাতায় উৎপন্ন হয়ে পত্রমুকুলকে পুষ্পমুকুলে রূপান্তরিত করে এবং ফুল ফোটাতে সাহায্য করে। [SSC CGL]</i></small></blockquote>
+            </li>
+            <li>
+                <p>ভ্রূণমুকুলাবরণীতে পাওয়া যায়-</p>
+                <ol class="options-list">
+                    <li>জিব্বেরেলিন</li>
+                    <li>অক্সিন</li>
+                    <li>সাইটোকাইনিন</li>
+                    <li>ফ্লোরিজেন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [B] অক্সিন</strong><br><small><i>ব্যাখ্যা: উদ্ভিদের বর্ধনশীল অঙ্গের অগ্রভাগে, যেমন কাণ্ডের ডগা এবং ভ্রূণমুকুলাবরণীতে অক্সিন হরমোন সংশ্লেষিত হয়। এটি কোষের বৃদ্ধি ও বিভাজনে সাহায্য করে। [RRB SSC]</i></small></blockquote>
+            </li>
+            <li>
+                <p>নাইট্রোজেনবিহীন উদ্ভিদ হরমোন হল-</p>
+                <ol class="options-list">
+                    <li>জিব্বেরেলিন</li>
+                    <li>অক্সিন</li>
+                    <li>সাইটোকাইনিন</li>
+                    <li>ভারনালিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [A] জিব্বেরেলিন</strong><br><small><i>ব্যাখ্যা: জিব্বেরেলিন টারপিনয়েড (Terpenoid) জাতীয় হরমোন, যার রাসায়নিক গঠনে কার্বন, হাইড্রোজেন ও অক্সিজেন থাকলেও নাইট্রোজেন থাকে না। অন্যদিকে, অক্সিন ও সাইটোকাইনিন উভয়ই নাইট্রোজেনযুক্ত হরমোন। [SSC CHSL]</i></small></blockquote>
+            </li>
+            <li>
+                <p>বীজবিহীন ফল উৎপাদনে সাহায্য করে-</p>
+                <ol class="options-list">
+                    <li>ইথিলিন</li>
+                    <li>অক্সিন</li>
+                    <li>সাইটোকাইনিন</li>
+                    <li>ফ্লোরিজেন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [B] অক্সিন</strong><br><small><i>ব্যাখ্যা: পরাগযোগ ও নিষেক ছাড়াই ডিম্বাশয়কে ফলে পরিণত করার প্রক্রিয়াকে পার্থেনোকার্পি বলে। অক্সিন হরমোন প্রয়োগ করে কৃত্রিমভাবে পার্থেনোকার্পির মাধ্যমে বীজবিহীন ফল (যেমন- টমেটো, পেঁপে) উৎপাদন করা হয়। [RRB NTPC SHIFT-II]</i></small></blockquote>
+            </li>
+            <li>
+                <p>কোনটির সাথে চিকিত্সার মাধ্যমে গাছের বামনতা নিয়ন্ত্রণ করা যায়?</p>
+                <ol class="options-list">
+                    <li>সাইটোকিনিন</li>
+                    <li>ইথিলিন</li>
+                    <li>জিবেরেলিক অ্যাসিড</li>
+                    <li>অক্সিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [C] জিবেরেলিক অ্যাসিড</strong><br><small><i>ব্যাখ্যা: জিবেরেলিক অ্যাসিড উদ্ভিদের পর্বমধ্যের (internode) দৈর্ঘ্য বৃদ্ধিতে সাহায্য করে। তাই বামন বা খর্বাকার উদ্ভিদের উপর এই হরমোন প্রয়োগ করলে সেটির দৈর্ঘ্য বৃদ্ধি পায় এবং বামনতা দূর হয়। [RRB ALP & TEC. 17.08.2018 (SHIFT-III)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>উদ্ভিদের সর্বজনীন প্রাকৃতিক অক্সিন হল-</p>
+                <ol class="options-list">
+                    <li>IBA</li>
+                    <li>সিট্রিক অক্সিন</li>
+                    <li>NAA</li>
+                    <li>IAA</li>
+                </ol>
+                <blockquote><strong>উত্তর: [D] IAA (ইন্ডোল অ্যাসেটিক অ্যাসিড)</strong><br><small><i>ব্যাখ্যা: ইন্ডোল অ্যাসেটিক অ্যাসিড (IAA) হল উদ্ভিদের দেহে প্রাকৃতিকভাবে তৈরি হওয়া প্রধান এবং সবচেয়ে সক্রিয় অক্সিন। প্রায় সমস্ত উদ্ভিদের মধ্যেই এর উপস্থিতি দেখা যায়, তাই একে সর্বজনীন প্রাকৃতিক অক্সিন বলা হয়। [RRB ALP & TEC. 20.08.2018 (SHIFT-III)]</i></small></blockquote>
+            </li>
+             <li>
+                <p>নিচের কোনটি প্রাণীদের মধ্যে পাওয়া যায় না?</p>
+                <ol class="options-list">
+                    <li>ইনসুলিন</li>
+                    <li>অক্সিন</li>
+                    <li>থাইরক্সিন</li>
+                    <li>অ্যাড্রেনালাইন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [B] অক্সিন (এটি উদ্ভিদ হরমোন)</strong><br><small><i>ব্যাখ্যা: ইনসুলিন, থাইরক্সিন এবং অ্যাড্রেনালাইন হল প্রাণীদেহে পাওয়া গুরুত্বপূর্ণ হরমোন। অক্সিন একটি উদ্ভিদ হরমোন যা উদ্ভিদের বৃদ্ধি নিয়ন্ত্রণ করে, এটি প্রাণীদেহে পাওয়া যায় না। [RRB ALP & TEC. 21.08.2018 (SHIFT-III)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>নিচের কোন উদ্ভিদ হরমোন বৃদ্ধিতে বাধা দেয় এবং পাতা ঝরে যাওয়ার জন্য দায়ী?</p>
+                <ol class="options-list">
+                    <li>জিবেরেলিন</li>
+                    <li>সাইটোকিনিন</li>
+                    <li>অ্যাবসিসিক অ্যাসিড</li>
+                    <li>অক্সিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [C] অ্যাবসিসিক অ্যাসিড</strong><br><small><i>ব্যাখ্যা: অ্যাবসিসিক অ্যাসিড (ABA) একটি বৃদ্ধি প্রতিরোধক হরমোন। এটি পত্রমোচন (পাতা ঝরা), মুকুলের সুপ্তাবস্থা এবং বার্ধক্যকে ত্বরান্বিত করে। [RRB NTPC 14.03.2021 (SHIFT-III)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>__________ কোষ বিভাজনের সাথে সম্পর্কিত।</p>
+                <ol class="options-list">
+                    <li>ম্যালিক হাইড্রাইজাইড</li>
+                    <li>জিবেরেলিন</li>
+                    <li>অক্সিন</li>
+                    <li>সাইটোকিনিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [D] সাইটোকিনিন</strong><br><small><i>ব্যাখ্যা: সাইটোকাইনিন হরমোনের প্রধান কাজ হল কোষ বিভাজন বা সাইটোকাইনেসিস প্রক্রিয়াকে উদ্দীপ্ত করা। এটি উদ্ভিদের ফল ও শস্যের বৃদ্ধিতে বিশেষভাবে সাহায্য করে। [RRB ALP & TEC. 30.08.2018 (SHIFT-III)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>ফাইটোহরমোন কি?</p>
+                <ol class="options-list">
+                    <li>খোসা ছাড়ানোর জন্য ব্যবহৃত রাসায়নিক</li>
+                    <li>রোগ নিয়ন্ত্রণকারী পদার্থ</li>
+                    <li>ফটোসিন্থেসিসের জন্য ব্যবহৃত পদার্থ</li>
+                    <li> শারীরবৃত্তীয় প্রক্রিয়াগুলিকে প্রভাবিত করে এমন উদ্ভিদ দ্বারা সংশ্লেষিত নিয়ন্ত্রক</li>
+                </ol>
+                <blockquote><strong>উত্তর: [D] শারীরবৃত্তীয় প্রক্রিয়াগুলিকে প্রভাবিত করে এমন উদ্ভিদ দ্বারা সংশ্লেষিত নিয়ন্ত্রক</strong><br><small><i>ব্যাখ্যা: 'ফাইটো' (Phyto) শব্দের অর্থ উদ্ভিদ। উদ্ভিদের দেহে সংশ্লেষিত যে জৈব রাসায়নিক পদার্থগুলি উদ্ভিদের বৃদ্ধি, বিকাশ ও অন্যান্য শারীরবৃত্তীয় প্রক্রিয়া নিয়ন্ত্রণ করে, তাদের ফাইটোহরমোন বা উদ্ভিদ হরমোন বলে। [RRB ALP & TEC. 20.08.2018 (SHIFT-II)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>__________ উদ্ভিদের কোষের বৃদ্ধি এবং কোষের বিভাজনে প্রচার করে।</p>
+                <ol class="options-list">
+                    <li>সাইটোকিনিন</li>
+                    <li>অ্যাবসিসিক অ্যাসিড</li>
+                    <li>জিবারেলিন</li>
+                    <li>অক্সিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [D] অক্সিন</strong><br><small><i>ব্যাখ্যা: অক্সিন উদ্ভিদের অগ্রস্থ ভাজক কলার কোষগুলির বিভাজন ঘটায় এবং কোষ প্রাচীরকে নমনীয় করে কোষের আকার বৃদ্ধিতে (Cell Elongation) সাহায্য করে। যদিও সাইটোকাইনিনও কোষ বিভাজন করে, কিন্তু কোষের বৃদ্ধি বা প্রসারণ অক্সিনের প্রধান কাজ। [RRB 30.04.2016 (SHIFT-III)]</i></small></blockquote>
+            </li>
+             <li>
+                <p>নিচের কোনটি স্টোমাটা (পত্ররন্ধ্র) বন্ধ করতে এবং পাতার বিলুপ্তিতে সাহায্য করে?</p>
+                <ol class="options-list">
+                    <li>অ্যাবসিসিক অ্যাসিড</li>
+                    <li>জিবেরেলিন</li>
+                    <li>অক্সিন</li>
+                    <li>সাইটোকিনিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [A] অ্যাবসিসিক অ্যাসিড</strong><br><small><i>ব্যাখ্যা: জলের অভাব বা প্রতিকূল পরিস্থিতিতে অ্যাবসিসিক অ্যাসিড পত্ররন্ধ্র বন্ধ করে বাষ্পমোচন প্রক্রিয়াকে নিয়ন্ত্রণ করে এবং উদ্ভিদকে রক্ষা করে। এটি পাতাকে ঝরিয়ে দিতেও সাহায্য করে। [RRB GROUP-D 24.10.2018 (SHIFT-III)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>নিচের কোন উদ্ভিদ হরমোন বৃদ্ধিতে বাধা দেয়?</p>
+                <ol class="options-list">
+                    <li>সাইটোকিনিন</li>
+                    <li>জিবেরেলিন</li>
+                    <li>অ্যাবসিসিক অ্যাসিড</li>
+                    <li>অক্সিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [C] অ্যাবসিসিক অ্যাসিড</strong><br><small><i>ব্যাখ্যা: অ্যাবসিসিক অ্যাসিড (ABA) একটি বৃদ্ধি প্রতিবন্ধক হরমোন যা বীজের অঙ্কুরোদ্গম এবং মুকুলের বৃদ্ধিকে বাধা দেয়। অক্সিন, জিব্বেরেলিন ও সাইটোকাইনিন হল বৃদ্ধি সহায়ক হরমোন। [RRB GROUP-D 16.10.2018 (SHIFT-II)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>কোন উদ্ভিদ হরমোনের ঘনত্ব গাছের শীর্ষে সবচেয়ে বেশি থাকে এবং শিকড়ের কাছাকাছি গেলে হ্রাস পায়?</p>
+                <ol class="options-list">
+                    <li>ইথিলিন</li>
+                    <li>অক্সিন</li>
+                    <li>জিবেরেলিন</li>
+                    <li>সাইটোকিনিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [B] অক্সিন</strong><br><small><i>ব্যাখ্যা: অক্সিন প্রধানত কাণ্ড ও মূলের অগ্রভাগে অবস্থিত ভাজক কলায় উৎপন্ন হয়। তাই উদ্ভিদের শীর্ষে এর ঘনত্ব সর্বাধিক থাকে এবং সেখান থেকে এটি নীচের দিকে বাহিত হয়, ফলে শিকড়ের কাছে এর ঘনত্ব কমে যায়। [RRB NTPC 04.03.2018 (SHIFT-III)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>উদ্ভিদে সাইটোকিনিন __________ করে।</p>
+                <ol class="options-list">
+                    <li>কোষ বিভাজন প্রচার করে</li>
+                    <li>বৃদ্ধিতে বাধা দেয়</li>
+                    <li>কাণ্ডের বৃদ্ধিতে সাহায্য করে</li>
+                    <li>কোষগুলিকে দীর্ঘায়িত করতে উদ্দীপিত করে</li>
+                </ol>
+                <blockquote><strong>উত্তর: [A] কোষ বিভাজন প্রচার করে</strong><br><small><i>ব্যাখ্যা: সাইটোকাইনিনের প্রধান কাজ হল সাইটোকাইনেসিস বা কোষ বিভাজন প্রক্রিয়াকে ত্বরান্বিত করা। এটি বিশেষ করে ফল ও বীজের মধ্যে বেশি পরিমাণে পাওয়া যায়। [RRB GROUP-D 04.12.2018 (SHIFT-II)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>__________ কোষ বিভাজনকে উৎসাহিত করে।</p>
+                <ol class="options-list">
+                    <li>অ্যাবসিসিক অ্যাসিড</li>
+                    <li>সাইটোকিনিন</li>
+                    <li>অক্সিন</li>
+                    <li>জিবেরেলিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [B] সাইটোকিনিন</strong><br><small><i>ব্যাখ্যা: সাইটোকাইনিন কোষ চক্রের বিভিন্ন দশাকে প্রভাবিত করে এবং কোষ বিভাজনকে সক্রিয়ভাবে উৎসাহিত করে। এই কারণে এর নাম সাইটোকাইনিন (সাইটো = কোষ, কাইনেসিস = বিভাজন)। [RRB GROUP-D 24.10.2018 (SHIFT-II)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>বীজহীন ফল উৎপাদনে সাহায্যকারী হরমোন-</p>
+                <ol class="options-list">
+                    <li>অক্সিন</li>
+                    <li>জিব্বেরেলিন</li>
+                    <li>কাইনিন</li>
+                    <li>অ্যাবসাইসিক অ্যাসিড</li>
+                </ol>
+                <blockquote><strong>উত্তর: [A] অক্সিন</strong><br><small><i>ব্যাখ্যা: অক্সিন এবং জিব্বেরেলিন উভয়ই পার্থেনোকার্পিতে (নিষেক ছাড়া ফল উৎপাদন) সাহায্য করে। তবে অক্সিনের ব্যবহার বেশি প্রচলিত এবং এটিই প্রাথমিক উত্তর হিসেবে গণ্য হয়। [RRB NTPC (SHIFT-I)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>বীজের অঙ্কুরোদগমে সাহায্যকারী হরমোন-</p>
+                <ol class="options-list">
+                    <li>ইথিলিন</li>
+                    <li>জিব্বেরেলিন</li>
+                    <li>অক্সিন</li>
+                    <li>ABA</li>
+                </ol>
+                <blockquote><strong>উত্তর: [B] জিব্বেরেলিন</strong><br><small><i>ব্যাখ্যা: জিব্বেরেলিন বীজের সুপ্তাবস্থা ভঙ্গ করে এবং বীজের মধ্যে থাকা খাদ্যকে (শ্বেতসার) ভেঙে সরল শর্করায় পরিণত করে, যা ভ্রূণের বৃদ্ধিতে শক্তি যোগায়। ফলে অঙ্কুরোদ্গম সহজ হয়। [SSC GD]</i></small></blockquote>
+            </li>
+            <li>
+                <p>উদ্ভিদের কোনটি স্ট্রেস হরমোন?</p>
+                <ol class="options-list">
+                    <li>ইথিলিন</li>
+                    <li>অক্সিন</li>
+                    <li>কাইনিন</li>
+                    <li>অ্যাবসিসিক অ্যাসিড (ABA)</li>
+                </ol>
+                <blockquote><strong>উত্তর: [D] অ্যাবসিসিক অ্যাসিড (ABA)</strong><br><small><i>ব্যাখ্যা: খরা, লবণাক্ততা বা অতিরিক্ত ঠান্ডার মতো প্রতিকূল পরিস্থিতিতে উদ্ভিদদেহে অ্যাবসিসিক অ্যাসিডের পরিমাণ বেড়ে যায়। এটি পত্ররন্ধ্র বন্ধ করে জল সংরক্ষণ করে, তাই একে 'স্ট্রেস হরমোন' বলা হয়। [SSC MTS]</i></small></blockquote>
+            </li>
+            <li>
+                <p>পত্র ও ফলমোচনে সাহায্যকারী হরমোন?</p>
+                <ol class="options-list">
+                    <li>ABA (অ্যাবসিসিক অ্যাসিড)</li>
+                    <li>ABC</li>
+                    <li>CBA</li>
+                    <li>DCB</li>
+                </ol>
+                <blockquote><strong>উত্তর: [A] ABA</strong><br><small><i>ব্যাখ্যা: অ্যাবসিসিক অ্যাসিড (ABA) পাতা ও ফলের বোঁটার সংযোগস্থলে একটি মোচন স্তর (Abscission layer) তৈরি করে, যা ওই অঙ্গগুলিকে দুর্বল করে দেয় এবং ঝরে পড়তে সাহায্য করে। [SSC CGL]</i></small></blockquote>
+            </li>
+            <li>
+                <p>অ্যাসিডধর্মী হরমোন হল-</p>
+                <ol class="options-list">
+                    <li>অক্সিন (IAA, IBA, NAA)</li>
+                    <li>ACTH</li>
+                    <li>কাইনিন</li>
+                    <li>থাইমোসিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [A] অক্সিন</strong><br><small><i>ব্যাখ্যা: অক্সিনের রাসায়নিক নাম ইন্ডোল অ্যাসিটিক অ্যাসিড (IAA), ন্যাপথালিন অ্যাসিটিক অ্যাসিড (NAA) ইত্যাদি। নামের শেষে 'অ্যাসিড' থাকায় বোঝা যায় এটি আম্লিক বা অ্যাসিডধর্মী। [RAILWAY GROUP-B]</i></small></blockquote>
+            </li>
+            <li>
+                <p>কোন্ ফাইটো হরমোন সেনেসেন্সের (বার্ধক্য) জন্য দায়ী?</p>
+                <ol class="options-list">
+                    <li>অক্সিন</li>
+                    <li>জিব্বেরেলিন</li>
+                    <li>সাইটোকাইনিন</li>
+                    <li>ইথিলিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [D] ইথিলিন</strong><br><small><i>ব্যাখ্যা: ইথিলিন একটি গ্যাসীয় হরমোন যা উদ্ভিদের বার্ধক্য (Senescence) প্রক্রিয়াকে ত্বরান্বিত করে। এটি ফুল, ফল ও পাতার ঝরে পড়া এবং পচন প্রক্রিয়ায় গুরুত্বপূর্ণ ভূমিকা পালন করে। [RRB NTPC (SHIFT-III)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>নাইট্রোজেনবিহীন হরমোন কোন্টি?</p>
+                <ol class="options-list">
+                    <li>কাইনিন</li>
+                    <li>অক্সিন</li>
+                    <li>জিব্বেরেলিন</li>
+                    <li>IAA</li>
+                </ol>
+                <blockquote><strong>উত্তর: [C] জিব্বেরেলিন</strong><br><small><i>ব্যাখ্যা: জিব্বেরেলিন হল টারপিনয়েড জাতীয় যৌগ, যা কার্বন, হাইড্রোজেন ও অক্সিজেন দিয়ে গঠিত। এর গঠনে নাইট্রোজেন থাকে না। অন্যদিকে অক্সিন (IAA) এবং কাইনিন (সাইটোকাইনিন) নাইট্রোজেনযুক্ত ক্ষারীয় হরমোন। [RRB NTPC (SHIFT-II)]</i></small></blockquote>
+            </li>
+            <li>
+                <p>ইন্ডোল অ্যাসিটিক অ্যাসিড কোন্ উদ্ভিদ হরমোনের রাসায়নিক নাম?</p>
+                <ol class="options-list">
+                    <li>কাইনিন</li>
+                    <li>অক্সিন</li>
+                    <li>জিব্বেরেলিন</li>
+                    <li>ইথিলিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [B] অক্সিন</strong><br><small><i>ব্যাখ্যা: ইন্ডোল অ্যাসিটিক অ্যাসিড (Indole Acetic Acid বা IAA) হল প্রাকৃতিকভাবে উদ্ভিদে প্রাপ্ত প্রধান ও সবচেয়ে কার্যকরী অক্সিন হরমোন। [RRB ALP & TEC.]</i></small></blockquote>
+            </li>
+            <li>
+                <p>আগাছা দমনে সাহায্য করে-</p>
+                <ol class="options-list">
+                    <li>2, 4-D</li>
+                    <li>NAA</li>
+                    <li>IBA</li>
+                    <li>IAA</li>
+                </ol>
+                <blockquote><strong>উত্তর: [A] 2, 4-D (2, 4-ডাইক্লোরোফেনক্সি অ্যাসিটিক অ্যাসিড)</strong><br><small><i>ব্যাখ্যা: 2, 4-D একটি কৃত্রিম অক্সিন, যা বেশি ঘনত্বে প্রয়োগ করলে দ্বিবীজপত্রী আগাছাদের ধ্বংস করে কিন্তু একবীজপত্রী উদ্ভিদ (যেমন - ধান, গম) এর ক্ষতি করে না। তাই এটি আগাছানাশক হিসেবে ব্যবহৃত হয়। [SSC MTS]</i></small></blockquote>
+            </li>
+            <li>
+                <p>খরাসুবেদী হরমোন কোন্টি?</p>
+                <ol class="options-list">
+                    <li>অক্সিন</li>
+                    <li>NAA</li>
+                    <li>IAA</li>
+                    <li>ABA</li>
+                </ol>
+                <blockquote><strong>উত্তর: [D] ABA (অ্যাবসিসিক অ্যাসিড)</strong><br><small><i>ব্যাখ্যা: খরা বা জলের অভাব হলে উদ্ভিদদেহে ABA (অ্যাবসিসিক অ্যাসিড) হরমোনের মাত্রা বেড়ে যায়। এটি পত্ররন্ধ্র বন্ধ করে বাষ্পমোচন রোধ করে এবং উদ্ভিদকে জলের অভাবজনিত চাপ থেকে রক্ষা করে। তাই একে খরাসুবেদী বা স্ট্রেস হরমোন বলে। [SSC CGL]</i></small></blockquote>
+            </li>
+            <li>
+                <p>ফ্লোরিজেন নামকরণ করেন-</p>
+                <ol class="options-list">
+                    <li>ক্লিল্যান্ড</li>
+                    <li>বাটলার</li>
+                    <li>চাইলাখান</li>
+                    <li>বাটেলস</li>
+                </ol>
+                <blockquote><strong>উত্তর: [C] চাইলাখান</strong><br><small><i>ব্যাখ্যা: সোভিয়েত বিজ্ঞানী মিখাইল চাইলাখান (Mikhail Chailakhyan) ১৯৩৭ সালে প্রথম এই প্রকল্পিত হরমোনের নামকরণ করেন 'ফ্লোরিজেন', যা উদ্ভিদের ফুল ফোটাতে সাহায্য করে। [SSC ALP & TEC.]</i></small></blockquote>
+            </li>
+            <li>
+                <p>কোন্ হরমোন প্রয়োগে অগ্রস্থ প্রকটতা প্রতিরোধ হয়?</p>
+                <ol class="options-list">
+                    <li>অক্সিন</li>
+                    <li>জিব্বেরেলিন</li>
+                    <li>সাইটোকাইনিন</li>
+                    <li>ভারনালিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [C] সাইটোকাইনিন</strong><br><small><i>ব্যাখ্যা: অগ্রস্থ প্রকটতা (Apical Dominance) অক্সিন হরমোনের প্রভাবে ঘটে, যা পার্শ্বীয় মুকুলের বৃদ্ধিকে বাধা দেয়। সাইটোকাইনিন হরমোন পার্শ্বীয় মুকুলের বৃদ্ধি ঘটিয়ে অগ্রস্থ প্রকটতা প্রতিরোধ করে এবং গাছকে আরও ঝোপঝাড়যুক্ত করে তোলে। [SSC GROUP-B]</i></small></blockquote>
+            </li>
+            <li>
+                <p>কোনটি কৃত্রিম হরমোন?</p>
+                <ol class="options-list">
+                    <li>IBA</li>
+                    <li>IAA</li>
+                    <li>ফ্লোরিজেন</li>
+                    <li>ভারনালিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [A] IBA (ইন্ডোল বিউটারিক অ্যাসিড)</strong><br><small><i>ব্যাখ্যা: IBA (ইন্ডোল বিউটারিক অ্যাসিড) সাধারণত কৃত্রিমভাবে তৈরি করা হয় এবং এটি শাখা কলমে মূল গজানোর জন্য ব্যাপকভাবে ব্যবহৃত হয়। IAA (ইন্ডোল অ্যাসেটিক অ্যাসিড) হল প্রাকৃতিক অক্সিন। ফ্লোরিজেন ও ভারনালিন প্রকল্পিত হরমোন। [RRB TC]</i></small></blockquote>
+            </li>
+        </ol>
+        <h2>ধন্যবাদ</h2>
+    </div>
+
+    <nav class="navigation">
+        <a href="class2.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button active">3</a>
+        <a href="#" class="nav-button disabled">পরবর্তী</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme and Mode Setup
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+
+            // Scroll Buttons Setup
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            // Digital Clock
+            const clockElement = document.getElementById('digital-clock');
+            function updateClock() {
+                if(clockElement) {
+                    const now = new Date();
+                    const options = {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: true,
+                        timeZone: 'Asia/Kolkata'
+                    };
+                    clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+                }
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            // Automatic Copyright Year
+            const yearSpan = document.getElementById('copyright-year');
+            if(yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+</body>
+</html>
