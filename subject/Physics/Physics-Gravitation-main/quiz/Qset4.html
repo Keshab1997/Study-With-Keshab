@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৪ - অভিকর্ষ ও মহাকর্ষ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset3.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="#" class="btn btn-secondary disabled">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "অভিকর্ষ ও মহাকর্ষ", 
+            setName: "Quiz Set 4",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "মহাকর্ষ (Gravitation) - Set 4 (প্রশ্ন ২২-২৮)",
+            
+            questions: [
+                {
+                    question: "পৃথিবীপৃষ্ঠ থেকে উচ্চতা বাড়ালে বস্তুর ওজনের কী পরিবর্তন হয়?",
+                    options: ["বাড়বে", "একই থাকবে", "কমবে", "প্রথমে বাড়বে, পরে কমবে"],
+                    answer: 2,
+                    explanation: "পৃথিবীপৃষ্ঠ থেকে যত উপরে ওঠা যায়, অভিকর্ষজ ত্বরণ (g)-এর মান তত কমতে থাকে। ফলে বস্তুর ওজনও কমে যায়।"
+                },
+                {
+                    question: "একটি বস্তুর ওজন কোথায় সর্বাধিক হবে?",
+                    options: ["পৃথিবীর কেন্দ্রে", "মহাশূন্যে", "পৃথিবীর পৃষ্ঠে (মেরু অঞ্চলে)", "নিরক্ষীয় অঞ্চলে"],
+                    answer: 2,
+                    explanation: "পৃথিবীর পৃষ্ঠে g-এর মান সর্বাধিক। আরও নির্দিষ্টভাবে বললে, পৃথিবী কিছুটা চ্যাপ্টা হওয়ায় মেরু অঞ্চলে g-এর মান সবচেয়ে বেশি, তাই সেখানে ওজনও সর্বাধিক হবে।"
+                },
+                {
+                    question: "একটি বস্তুর ওজন 9.8 নিউটন হলে তার ভর কত?",
+                    options: ["9.8 কেজি", "981 গ্রাম", "1 কেজি", "1 গ্রাম"],
+                    answer: 2,
+                    explanation: "আমরা জানি, ওজন (W) = ভর (m) × g। সুতরাং, m = W/g = 9.8 N / 9.8 m/s² = 1 কেজি।"
+                },
+                {
+                    question: "বস্তুর ওজন কীসের ওপর ক্রিয়াশীল?",
+                    options: ["বস্তুর উপর ক্রিয়াশীল নিট বল", "ভূমির উপর বস্তুর দ্বারা প্রযুক্ত বল", "বস্তুটির নিজস্ব ধর্ম", "বস্তু ও পৃথিবীর পারস্পরিক আকর্ষণ বল"],
+                    answer: 3,
+                    explanation: "ওজন হলো সেই বল যা দিয়ে পৃথিবী কোনো বস্তুকে তার কেন্দ্রের দিকে টানে। এটি একটি পারস্পরিক আকর্ষণ বল।"
+                },
+                {
+                    question: "আপেক্ষিকতাবাদ তত্ত্বের প্রবক্তা কে?",
+                    options: ["নিলস্ বোর", "হাইজেনবার্গ", "আইনস্টাইন", "মাদাম কুরী"],
+                    answer: 2,
+                    explanation: "বিশেষ এবং সাধারণ আপেক্ষিকতাবাদ—উভয় তত্ত্বেরই প্রবক্তা হলেন বিজ্ঞানী অ্যালবার্ট আইনস্টাইন।"
+                },
+                {
+                    question: "কোন তাপমাত্রায় ১ ঘন সেন্টিমিটার বিশুদ্ধ জলের ভর ১ গ্রাম হয়?",
+                    options: ["0°C", "100°C", "4°C", "10°C"],
+                    answer: 2,
+                    explanation: "4°C (সঠিকভাবে 3.98°C) তাপমাত্রায় জলের ঘনত্ব সর্বাধিক হয়, যা প্রায় 1 গ্রাম/সিসি। তাই এই তাপমাত্রায় ১ ঘন সেমি জলের ভর ১ গ্রাম।"
+                },
+                {
+                    question: "রকেটের জ্বালানী হিসেবে সাধারণত কোনটি ব্যবহৃত হয়?",
+                    options: ["কেরোসিন", "তরল অ্যামোনিয়া", "তরল হাইড্রোজেন ও তরল অক্সিজেন", "ডিজেল"],
+                    answer: 2,
+                    explanation: "আধুনিক রকেটে উচ্চ শক্তি উৎপাদনের জন্য জ্বালানী হিসেবে তরল হাইড্রোজেন এবং জারক (oxidizer) হিসেবে তরল অক্সিজেন ব্যবহার করা হয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

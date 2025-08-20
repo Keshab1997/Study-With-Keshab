@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - অভিকর্ষ ও মহাকর্ষ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset4.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "অভিকর্ষ ও মহাকর্ষ", 
+            setName: "Quiz Set 3",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "মহাকর্ষ (Gravitation) - Set 3 (প্রশ্ন ১৫-২১)",
+            
+            questions: [
+                {
+                    question: "একটি রকেটের সবচেয়ে বেশি শক্তি কখন লাগে?",
+                    options: ["পৃথিবী থেকে উপরে ওঠার সময়", "চাঁদে নামার সময়", "চাঁদ থেকে ওঠার সময়", "পৃথিবীতে ফিরে আসার সময়"],
+                    answer: 0,
+                    explanation: "পৃথিবীর অভিকর্ষ বল চাঁদের চেয়ে প্রায় ৬ গুণ বেশি। তাই এই শক্তিশালী অভিকর্ষকে উপেক্ষা করে উপরে উঠতে রকেটের সবচেয়ে বেশি শক্তি প্রয়োজন হয়।"
+                },
+                {
+                    question: "সরল দোলগতিতে একটি কণার গতিশক্তি কখন শূন্য হয়?",
+                    options: ["কখনোই শূন্য হয় না", "সাম্য অবস্থানে", "চরম অবস্থানে (দুই প্রান্তে)", "সর্বদা সমান থাকে"],
+                    answer: 2,
+                    explanation: "সরল দোলগতিতে কণাটি যখন তার গতিপথের দুই প্রান্তে পৌঁছায়, তখন মুহূর্তের জন্য স্থির হয়ে যায়। তাই সেই চরম অবস্থানগুলিতে গতিশক্তি শূন্য হয়।"
+                },
+                {
+                    question: "নিচের কোনটি ভুল জোড়?",
+                    options: ["পর্যায়বৃত্ত গতি—পৃথিবীর ঘূর্ণন", "সরলরৈখিক গতি—শূন্যে ছোঁড়া পাথর", "ঘূর্ণন গতি—উইন্ডমিলের ব্লেড", "দোল গতি—নদীর ঢেউ"],
+                    answer: 1,
+                    explanation: "শূন্যে ছুঁড়ে দেওয়া পাথরের গতিপথ সরলরৈখিক নয়, বরং অধিবৃত্তাকার বা বক্রপথ। তাই এই জোড়টি ভুল।"
+                },
+                {
+                    question: "কোনো বস্তুর ওজন পৃথিবীতে 9N। যে গ্রহের g পৃথিবীর ৯ গুণ, সেখানে ওজন কত হবে?",
+                    options: ["ওজন একই থাকবে", "1 নিউটন হবে", "পূর্বের 9 গুণ হবে", "81 নিউটন হবে"],
+                    answer: 3,
+                    explanation: "ওজন (W) = ভর (m) × অভিকর্ষজ ত্বরণ (g)। g-এর মান ৯ গুণ বাড়লে ওজনও ৯ গুণ বাড়বে। নতুন ওজন = 9 N × 9 = 81 N।"
+                },
+                {
+                    question: "একটি বলকে 40 m/s বেগে উপরে ছুঁড়লে সর্বোচ্চ উচ্চতায় পৌঁছাতে কত সময় লাগবে? (g = 10 m/s² ধরে)",
+                    options: ["2 s", "3 s", "4 s", "5 s"],
+                    answer: 2,
+                    explanation: "সর্বোচ্চ উচ্চতায় অন্তিম বেগ (v) শূন্য হয়। সূত্র: v = u - gt => 0 = 40 - 10t => 10t = 40 => t = 4 সেকেন্ড।"
+                },
+                {
+                    question: "একটি পেন্ডুলামকে চাঁদে নিয়ে গেলে সেটি কীভাবে চলবে?",
+                    options: ["সঠিক সময় দেবে", "6 গুণ দ্রুত চলবে", "√6 গুণ দ্রুত চলবে", "√6 গুণ ধীরে চলবে"],
+                    answer: 3,
+                    explanation: "দোলনকাল T ∝ 1/√g। চাঁদে g-এর মান পৃথিবীর প্রায় ১/৬ ভাগ। g কমলে দোলনকাল (T) বাড়ে, অর্থাৎ দোলকটি ধীরে চলে। এটি √6 গুণ ধীরে চলবে।"
+                },
+                {
+                    question: "কোনো বস্তুর ওজন পৃথিবীর কেন্দ্রে কত?",
+                    options: ["অসীম", "পৃষ্ঠের সমান", "পৃষ্ঠের অর্ধেক", "শূন্য"],
+                    answer: 3,
+                    explanation: "পৃথিবীর কেন্দ্রে কার্যকর অভিকর্ষজ ত্বরণ (g) এর মান শূন্য। যেহেতু ওজন = ভর × g, তাই পৃথিবীর কেন্দ্রে বস্তুর ওজনও শূন্য হবে।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

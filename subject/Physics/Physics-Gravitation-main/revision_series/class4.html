@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 04 - MCQ Practice (Final Version)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        /* --- Global Styles & Theming Variables --- */
+        :root {
+            --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60;
+            --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b;
+            --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd;
+            --blockquote-border: #2196f3; --nav-button-bg: #fff;
+            --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1);
+            --correct-bg: #2ecc71; --incorrect-bg: #e74c3c;
+        }
+        [data-theme="forest"] {
+            --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; 
+            --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; 
+            --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60;
+        }
+        [data-theme="ocean"] {
+            --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; 
+            --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; 
+            --blockquote-bg: #e4f1fe; --blockquote-border: #3498db;
+        }
+        [data-theme="sunset"] {
+            --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; 
+            --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; 
+            --blockquote-bg: #fff8e1; --blockquote-border: #f57c00;
+        }
+        .dark-mode {
+            --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; 
+            --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; 
+            --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; 
+            --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; 
+            --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f;
+        }
+
+        /* --- Base Layout & Typography --- */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        
+        /* --- Header, Footer, Navigation --- */
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+
+        /* --- Controls (Theme, Dark Mode, Set Selector) --- */
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+        /* --- MCQ Specific Styles --- */
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question {
+            margin-bottom: 40px; padding: 20px; border-radius: 10px;
+            border: 2px solid transparent; /* Prevents layout shift on highlight */
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+        .mcq-question.active-question {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5);
+        }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        
+        /* --- Utility Styles --- */
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://dcassetcdn.com/design_img/3828066/151313/23775964/xb5tdy5af3g15z636zyxbrbm3y_image.jpg" alt="Logo" class="logo">
+        <h1>অভিকর্ষ ও মহাকর্ষ</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন ১-১০)</option>
+                <option value="2">Set 2 (প্রশ্ন ১১-২০)</option>
+                <option value="3">Set 3 (প্রশ্ন ২১-২৮)</option>
+            </select>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 04 - MCQ Practice Session</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="class3.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button active">4</a>
+        <a href="#" class="nav-button disabled">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2024 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- AUDIO SETUP ---
+            // Ensure correct.mp3 and wrong.mp3 files are in the same folder as the HTML file.
+            const correctSound = new Audio('correct.mp3');
+            const wrongSound = new Audio('wrong.mp3');
+
+            // --- THEME, MODE, & SCROLL BUTTON LOGIC (Unchanged) ---
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) {
+                if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+                else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+                localStorage.setItem('selected_mode', mode);
+            }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+                scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+                scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            // --- INTERACTIVE MCQ LOGIC (UPDATED WITH AUDIO) ---
+            const mcqData = [
+                // ... (আপনার mcqData এখানে অপরিবর্তিত থাকবে) ...
+                { q: "‘মাধ্যাকর্ষণ’ আবিষ্কার করেন কে?", o: ["গ্যালিলিও", "নিউটন", "আর্কিমিডিস", "এডিসন"], a: 1, ex: "স্যার আইজ্যাক নিউটন মাধ্যাকর্ষণ বা অভিকর্ষ বলের সার্বজনীন সূত্রটি আবিষ্কার করেন।" },
+                { q: "মহাকর্ষীয় ধ্রুবক (G)-এর CGS একক কী?", o: ["cm⁴ sec⁻¹ gm⁻²", "cm sec⁻³ gm⁻²", "cm³ sec⁻² gm⁻¹", "gm cm⁻³ sec⁻²"], a: 2, ex: "মহাকর্ষ ধ্রুবক (G) এর CGS একক হলো cm³ sec⁻² gm⁻¹ বা dyne·cm²/g²।" },
+                { q: "দুটি বস্তুর মধ্যে একটির ভর ও তাদের ব্যবধান দ্বিগুণ করা হলে মহাকর্ষ বলের কী পরিবর্তন হবে?", o: ["বল একই থাকে", "বল দ্বিগুণ হয়", "বল অর্ধেক হয়", "বল ৪ গুণ হয়"], a: 2, ex: "সূত্রানুযায়ী, F ∝ m/r²। ভর দ্বিগুণ (2m) এবং দূরত্ব দ্বিগুণ (2r) হলে, নতুন বল হবে F' ∝ 2m/(2r)² = 2m/4r² = ½ (m/r²)। সুতরাং বল অর্ধেক হবে।" },
+                { q: "মহাকর্ষীয় ধ্রুবক (G)-এর মাত্রা কী?", o: ["ML³T⁻²", "M⁻¹L³T⁻²", "M²L⁻²T²", "M²L⁻¹T⁻²"], a: 1, ex: "G = Fr²/m₁m₂ সূত্র থেকে মাত্রা নির্ণয় করলে হয় [M⁻¹L³T⁻²]।"},
+                { q: "শূন্যস্থানে একটি পালক, একটি কাঠের বল ও একটি ইস্পাতের বল একসঙ্গে ফেললে কোনটি আগে মাটিতে পড়বে?", o: ["কাঠের বল", "পালক", "ইস্পাতের বল", "সবগুলিই সমান দ্রুততায়"], a: 3, ex: "শূন্যস্থানে বায়ুর বাধা না থাকায়, সকল বস্তু (ভর নির্বিশেষে) একই অভিকর্ষজ ত্বরণ (g) নিয়ে নিচে পড়ে। তাই সবাই একসাথে মাটিতে পৌঁছাবে।" },
+                { q: "প্রকৃতির মৌলিক বলগুলোর মধ্যে সবচেয়ে দুর্বল বা ক্ষীণ শক্তি কোনটি?", o: ["অভিকর্ষজ শক্তি", "বৈদ্যুতিক শক্তি", "চুম্বকীয় শক্তি", "সবল নিউক্লিয় বল"], a: 0, ex: "প্রকৃতির চারটি মৌলিক বলের মধ্যে মহাকর্ষ বা অভিকর্ষ বল সবচেয়ে দুর্বল।" },
+                { q: "সমবৃত্তীয় গতিতে চলমান বস্তুর ত্বরণের অভিমুখ কোন দিকে হয়?", o: ["গতির অভিমুখে", "বৃত্তপথের স্পর্শক বরাবর", "বেগের অভিমুখে", "বেগের লম্ব অভিমুখে"], a: 3, ex: "সমবৃত্তীয় গতিতে কেন্দ্রাভিমুখী ত্বরণ সবসময় বেগের দিকের সাথে লম্বভাবে এবং বৃত্তের কেন্দ্রের দিকে কাজ করে।" },
+                { q: "হেনরি ক্যাভেন্ডিসের পরীক্ষায় G-এর মান কত পাওয়া যায়?", o: ["7.75×10⁻¹³ Nm²/kg²", "6.67×10⁻¹¹ Nm²/kg²", "5.75×10⁻¹⁰ Nm²/kg²", "3.75×10⁻⁹ Nm²/kg²"], a: 1, ex: "হেনরি ক্যাভেন্ডিসের পরীক্ষার মাধ্যমে প্রাপ্ত মহাকর্ষীয় ধ্রুবক (G) এর স্বীকৃত মান হলো 6.67 × 10⁻¹¹ Nm²/kg²।" },
+                { q: "অবাধে পতনশীল বস্তুর ক্ষেত্রে কোনটি সঠিক?", o: ["এটি সমবেগে চলে", "এর ভরবেগ অপরিবর্তিত থাকে", "এর গতি শুধুমাত্র অভিকর্ষ দ্বারা প্রভাবিত হয়", "এর গতি বায়ুর প্রতিরোধ দ্বারাও প্রভাবিত হয়"], a: 2, ex: "পদার্থবিজ্ঞানে 'অবাধে পতনশীল বস্তু'-র আদর্শ সংজ্ঞা হলো, যে বস্তুর গতি শুধুমাত্র অভিকর্ষ বল দ্বারা প্রভাবিত হয় এবং বায়ুর বাধাকে উপেক্ষা করা হয়। বাস্তব ক্ষেত্রে বায়ুর বাধা থাকে, কিন্তু সংজ্ঞানুযায়ী উত্তর এটিই।" },
+                { q: "চলন্ত বিমান থেকে বোমা ফেলা হলে বোমাটি কোন পথে যাবে?", o: ["বক্রপথে চলে পাইলটের পিছনে পড়বে", "বক্রপথে চলে পাইলটের সামনে পড়বে", "উল্লম্বভাবে নীচে পড়বে", "কিছু সময় বায়ুতে স্থির থাকবে"], a: 0, ex: "বোমাটি বিমানের অনুভূমিক গতি লাভ করে, তাই এটি একটি অধিবৃত্তাকার (parabolic) পথে চলে এবং বায়ুর বাধার কারণে পাইলটের কিছুটা পিছনে গিয়ে পড়ে।" },
+                { q: "বৃত্তাকার পথে ঘোরার সময় সুতায় বাঁধা একটি পাথর ছিঁড়ে গেলে কোন দিকে যাবে?", o: ["পাথরটি ওই মুহূর্তের স্পর্শক বরাবর সোজা পথে যাবে", "পাথরটি ব্যাসার্ধ বরাবর বাইরের দিকে যাবে", "পাথরটি ব্যাসার্ধ বরাবর ভেতরের দিকে যাবে", "পাথরটি স্থির হয়ে যাবে"], a: 0, ex: "কেন্দ্রাভিমুখী বলের অনুপস্থিতিতে, বস্তুটি তার জড়তার কারণে ওই মুহূর্তের বেগের দিকে, অর্থাৎ স্পর্শক বরাবর সোজা পথে চলে যায়।" },
+                { q: "বৃত্তাকার পথে বাঁক নেওয়ার সময় গাড়ির কোন বলের প্রয়োজন হয়?", o: ["স্থিতি বল", "কেন্দ্রাভিমুখী বল", "পৃথিবীর মাধ্যাকর্ষণজনিত আকর্ষণ", "কোনটাই নয়"], a: 1, ex: "যেকোনো বস্তুকে বৃত্তাকার পথে ঘোরানোর জন্য একটি কেন্দ্রাভিমুখী বলের প্রয়োজন হয়। গাড়ির ক্ষেত্রে এই বলটি আসে চাকা ও রাস্তার ঘর্ষণ থেকে।" },
+                { q: "বিশ্বের আকর্ষণ তত্ত্বের প্রথম প্রবক্তা কে?", o: ["কেপলার", "গ্যালিলিও", "নিউটন", "কোপারনিকাস"], a: 2, ex: "স্যার আইজ্যাক নিউটন মহাকর্ষের সার্বজনীন তত্ত্বটি প্রথম প্রদান করেন।" },
+                { q: "দুধ মন্থন করলে যে বলের কারণে ননী আলাদা হয়, তা কী?", o: ["ঘর্ষণ বল", "অভিকর্ষ বল", "কেন্দ্রাভিমুখী বল", "কেন্দ্রবিমুখ বল"], a: 3, ex: "দুধ মন্থনের সময় কেন্দ্রবিমুখ বা অপকেন্দ্র বলের (Centrifugal force) প্রভাবে বেশি ঘনত্বের অংশ (দুধ) বাইরের দিকে ছিটকে যায়, ফলে কম ঘনত্বের অংশ (ননী) মাঝখানে এসে জমা হয়।" },
+                { q: "একটি রকেটের সবচেয়ে বেশি শক্তি কখন লাগে?", o: ["পৃথিবী থেকে উপরে ওঠার সময়", "চাঁদে নামার সময়", "চাঁদ থেকে ওঠার সময়", "পৃথিবীতে ফিরে আসার সময়"], a: 0, ex: "পৃথিবীর অভিকর্ষ বল চাঁদের চেয়ে প্রায় ৬ গুণ বেশি। তাই এই শক্তিশালী অভিকর্ষকে উপেক্ষা করে উপরে উঠতে রকেটের সবচেয়ে বেশি শক্তি প্রয়োজন হয়।" },
+                { q: "সরল দোলগতিতে একটি কণার গতিশক্তি কখন শূন্য হয়?", o: ["কখনোই শূন্য হয় না", "সাম্য অবস্থানে", "চরম অবস্থানে (দুই প্রান্তে)", "সর্বদা সমান থাকে"], a: 2, ex: "সরল দোলগতিতে কণাটি যখন তার গতিপথের দুই প্রান্তে পৌঁছায়, তখন মুহূর্তের জন্য স্থির হয়ে যায়। তাই সেই চরম অবস্থানগুলিতে গতিশক্তি শূন্য হয়।" },
+                { q: "নিচের কোনটি ভুল জোড়?", o: ["পর্যায়বৃত্ত গতি—পৃথিবীর ঘূর্ণন", "সরলরৈখিক গতি—শূন্যে ছোঁড়া পাথর", "ঘূর্ণন গতি—উইন্ডমিলের ব্লেড", "দোল গতি—নদীর ঢেউ"], a: 1, ex: "শূন্যে ছুঁড়ে দেওয়া পাথরের গতিপথ সরলরৈখিক নয়, বরং অধিবৃত্তাকার বা বক্রপথ। তাই এই জোড়টি ভুল।" },
+                { q: "কোনো বস্তুর ওজন পৃথিবীতে 9N। যে গ্রহের g পৃথিবীর ৯ গুণ, সেখানে ওজন কত হবে?", o: ["ওজন একই থাকবে", "1 নিউটন হবে", "পূর্বের 9 গুণ হবে", "81 নিউটন হবে"], a: 3, ex: "ওজন (W) = ভর (m) × অভিকর্ষজ ত্বরণ (g)। g-এর মান ৯ গুণ বাড়লে ওজনও ৯ গুণ বাড়বে। নতুন ওজন = 9 N × 9 = 81 N।" },
+                { q: "একটি বলকে 40 m/s বেগে উপরে ছুঁড়লে সর্বোচ্চ উচ্চতায় পৌঁছাতে কত সময় লাগবে? (g = 10 m/s² ধরে)", o: ["2 s", "3 s", "4 s", "5 s"], a: 2, ex: "সর্বোচ্চ উচ্চতায় অন্তিম বেগ (v) শূন্য হয়। সূত্র: v = u - gt => 0 = 40 - 10t => 10t = 40 => t = 4 সেকেন্ড।" },
+                { q: "একটি পেন্ডুলামকে চাঁদে নিয়ে গেলে সেটি কীভাবে চলবে?", o: ["সঠিক সময় দেবে", "6 গুণ দ্রুত চলবে", "√6 গুণ দ্রুত চলবে", "√6 গুণ ধীরে চলবে"], a: 3, ex: "দোলনকাল T ∝ 1/√g। চাঁদে g-এর মান পৃথিবীর প্রায় ১/৬ ভাগ। g কমলে দোলনকাল (T) বাড়ে, অর্থাৎ দোলকটি ধীরে চলে। এটি √6 গুণ ধীরে চলবে।" },
+                { q: "কোনো বস্তুর ওজন পৃথিবীর কেন্দ্রে কত?", o: ["অসীম", "পৃষ্ঠের সমান", "পৃষ্ঠের অর্ধেক", "শূন্য"], a: 3, ex: "পৃথিবীর কেন্দ্রে কার্যকর অভিকর্ষজ ত্বরণ (g) এর মান শূন্য। যেহেতু ওজন = ভর × g, তাই পৃথিবীর কেন্দ্রে বস্তুর ওজনও শূন্য হবে।" },
+                { q: "পৃথিবীপৃষ্ঠ থেকে উচ্চতা বাড়ালে বস্তুর ওজনের কী পরিবর্তন হয়?", o: ["বাড়বে", "একই থাকবে", "কমবে", "প্রথমে বাড়বে, পরে কমবে"], a: 2, ex: "পৃথিবীপৃষ্ঠ থেকে যত উপরে ওঠা যায়, অভিকর্ষজ ত্বরণ (g)-এর মান তত কমতে থাকে। ফলে বস্তুর ওজনও কমে যায়।" },
+                { q: "একটি বস্তুর ওজন কোথায় সর্বাধিক হবে?", o: ["পৃথিবীর কেন্দ্রে", "মহাশূন্যে", "পৃথিবীর পৃষ্ঠে (মেরু অঞ্চলে)", "নিরক্ষীয় অঞ্চলে"], a: 2, ex: "পৃথিবীর পৃষ্ঠে g-এর মান সর্বাধিক। আরও নির্দিষ্টভাবে বললে, পৃথিবী কিছুটা চ্যাপ্টা হওয়ায় মেরু অঞ্চলে g-এর মান সবচেয়ে বেশি, তাই সেখানে ওজনও সর্বাধিক হবে।" },
+                { q: "একটি বস্তুর ওজন 9.8 নিউটন হলে তার ভর কত?", o: ["9.8 কেজি", "981 গ্রাম", "1 কেজি", "1 গ্রাম"], a: 2, ex: "আমরা জানি, ওজন (W) = ভর (m) × g। সুতরাং, m = W/g = 9.8 N / 9.8 m/s² = 1 কেজি।" },
+                { q: "বস্তুর ওজন কীসের ওপর ক্রিয়াশীল?", o: ["বস্তুর উপর ক্রিয়াশীল নিট বল", "ভূমির উপর বস্তুর দ্বারা প্রযুক্ত বল", "বস্তুটির নিজস্ব ধর্ম", "বস্তু ও পৃথিবীর পারস্পরিক আকর্ষণ বল"], a: 3, ex: "ওজন হলো সেই বল যা দিয়ে পৃথিবী কোনো বস্তুকে তার কেন্দ্রের দিকে টানে। এটি একটি পারস্পরিক আকর্ষণ বল।" },
+                { q: "আপেক্ষিকতাবাদ তত্ত্বের প্রবক্তা কে?", o: ["নিলস্ বোর", "হাইজেনবার্গ", "আইনস্টাইন", "মাদাম কুরী"], a: 2, ex: "বিশেষ এবং সাধারণ আপেক্ষিকতাবাদ—উভয় তত্ত্বেরই প্রবক্তা হলেন বিজ্ঞানী অ্যালবার্ট আইনস্টাইন।" },
+                { q: "কোন তাপমাত্রায় ১ ঘন সেন্টিমিটার বিশুদ্ধ জলের ভর ১ গ্রাম হয়?", o: ["0°C", "100°C", "4°C", "10°C"], a: 2, ex: "4°C (সঠিকভাবে 3.98°C) তাপমাত্রায় জলের ঘনত্ব সর্বাধিক হয়, যা প্রায় 1 গ্রাম/সিসি। তাই এই তাপমাত্রায় ১ ঘন সেমি জলের ভর ১ গ্রাম।" },
+                { q: "রকেটের জ্বালানী হিসেবে সাধারণত কোনটি ব্যবহৃত হয়?", o: ["কেরোসিন", "তরল অ্যামোনিয়া", "তরল হাইড্রোজেন ও তরল অক্সিজেন", "ডিজেল"], a: 2, ex: "আধুনিক রকেটে উচ্চ শক্তি উৎপাদনের জন্য জ্বালানী হিসেবে তরল হাইড্রোজেন এবং জারক (oxidizer) হিসেবে তরল অক্সিজেন ব্যবহার করা হয়।" },
+            ];
+
+            const mcqContainer = document.getElementById('mcq-container');
+            const mcqSetSelector = document.getElementById('mcqSetSelector');
+            const scoreTracker = document.getElementById('score-tracker');
+            
+            let currentQuestionIndex = -1;
+            let isEnterLocked = false;
+            let score = 0;
+            let totalQuestionsInSet = 0;
+
+            function generateMCQs(setNumber) {
+                mcqContainer.innerHTML = '';
+                currentQuestionIndex = -1;
+                score = 0;
+                
+                const questionsPerSet = 10;
+                const start = (setNumber - 1) * questionsPerSet;
+                const end = Math.min(start + questionsPerSet, mcqData.length);
+                const questionSet = mcqData.slice(start, end);
+
+                totalQuestionsInSet = questionSet.length;
+                updateScoreDisplay();
+
+                questionSet.forEach((item, index) => {
+                    const globalIndex = start + index;
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'mcq-question';
+                    questionDiv.id = `q-${globalIndex}`;
+                    
+                    let optionsHTML = item.o.map((option, i) => 
+                        `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                    ).join('');
+                    
+                    questionDiv.innerHTML = `
+                        <h4>প্রশ্ন ${globalIndex + 1}: ${item.q}</h4>
+                        <div class="mcq-options">${optionsHTML}</div>
+                        <div class="mcq-explanation"><strong>ব্যাখ্যা:</strong> ${item.ex}</div>
+                    `;
+                    mcqContainer.appendChild(questionDiv);
+                });
+                setupOptionListeners();
+                setupIntersectionObserver();
+            }
+            
+            function updateScoreDisplay() {
+                scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+            }
+
+            function handleOptionClick(e) {
+                const selectedOption = e.target.closest('.mcq-option');
+                if (!selectedOption) return;
+                const questionDiv = selectedOption.closest('.mcq-question');
+                if (questionDiv.classList.contains('answered')) return;
+                questionDiv.classList.add('answered');
+                const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+                const selectedIndex = parseInt(selectedOption.dataset.index);
+                const correctIndex = mcqData[globalIndex].a;
+                if (selectedIndex === correctIndex) {
+                    selectedOption.classList.add('correct');
+                    correctSound.currentTime = 0;
+                    correctSound.play();
+                    score++;
+                    updateScoreDisplay();
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    wrongSound.currentTime = 0;
+                    wrongSound.play();
+                    questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+                }
+                questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+            }
+
+            function setupOptionListeners() {
+                mcqContainer.addEventListener('click', handleOptionClick);
+            }
+            
+            mcqSetSelector.addEventListener('change', (e) => {
+                generateMCQs(parseInt(e.target.value, 10));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                const activeQuestion = document.querySelector('.mcq-question.active-question');
+                if (!activeQuestion) return;
+                
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (isEnterLocked) return;
+                    isEnterLocked = true;
+                    const nextQuestion = activeQuestion.nextElementSibling;
+                    if (nextQuestion) {
+                        nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    setTimeout(() => { isEnterLocked = false; }, 400);
+                } else if (['1', '2', '3', '4'].includes(e.key) && !activeQuestion.classList.contains('answered')) {
+                    e.preventDefault();
+                    const optionIndex = parseInt(e.key) - 1;
+                    const optionToClick = activeQuestion.querySelector(`.mcq-option[data-index="${optionIndex}"]`);
+                    if (optionToClick) {
+                        optionToClick.click();
+                    }
+                }
+            });
+
+            function setupIntersectionObserver() {
+                const questions = document.querySelectorAll('.mcq-question');
+                if (questions.length === 0) return;
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const prevActive = document.querySelector('.mcq-question.active-question');
+                        if (entry.isIntersecting) {
+                            if (prevActive) prevActive.classList.remove('active-question');
+                            entry.target.classList.add('active-question');
+                        }
+                    });
+                }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+                questions.forEach(q => observer.observe(q));
+            }
+            
+            generateMCQs(1);
+        });
+    </script>
+</body>
+</html>

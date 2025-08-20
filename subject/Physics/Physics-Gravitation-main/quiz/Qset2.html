@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ২ - অভিকর্ষ ও মহাকর্ষ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset3.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "অভিকর্ষ ও মহাকর্ষ", 
+            setName: "Quiz Set 2",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "মহাকর্ষ (Gravitation) - Set 2 (প্রশ্ন ৮-১৪)",
+            
+            questions: [
+                {
+                    question: "হেনরি ক্যাভেন্ডিসের পরীক্ষায় G-এর মান কত পাওয়া যায়?",
+                    options: ["7.75×10⁻¹³ Nm²/kg²", "6.67×10⁻¹¹ Nm²/kg²", "5.75×10⁻¹⁰ Nm²/kg²", "3.75×10⁻⁹ Nm²/kg²"],
+                    answer: 1,
+                    explanation: "হেনরি ক্যাভেন্ডিসের পরীক্ষার মাধ্যমে প্রাপ্ত মহাকর্ষীয় ধ্রুবক (G) এর স্বীকৃত মান হলো 6.67 × 10⁻¹¹ Nm²/kg²।"
+                },
+                {
+                    question: "অবাধে পতনশীল বস্তুর ক্ষেত্রে কোনটি সঠিক?",
+                    options: ["এটি সমবেগে চলে", "এর ভরবেগ অপরিবর্তিত থাকে", "এর গতি শুধুমাত্র অভিকর্ষ দ্বারা প্রভাবিত হয়", "এর গতি অভিকর্ষ এবং বায়ুর প্রতিরোধ দ্বারা প্রভাবিত হয়"],
+                    answer: 3,
+                    explanation: "বাস্তবে, অবাধে পতনশীল বস্তু অভিকর্ষ বল এবং বায়ুর বাধা—উভয় দ্বারাই প্রভাবিত হয়। তবে পদার্থবিজ্ঞানের আদর্শ গণনায় বায়ুর বাধা উপেক্ষা করা হয়।"
+                },
+                {
+                    question: "চলন্ত বিমান থেকে বোমা ফেলা হলে বোমাটি কোন পথে যাবে?",
+                    options: ["বক্রপথে চলে পাইলটের পিছনে পড়বে", "বক্রপথে চলে পাইলটের সামনে পড়বে", "উল্লম্বভাবে নীচে পড়বে", "কিছু সময় বায়ুতে স্থির থাকবে"],
+                    answer: 0,
+                    explanation: "বোমাটি বিমানের অনুভূমিক গতি লাভ করে, তাই এটি একটি অধিবৃত্তাকার (parabolic) পথে চলে এবং বায়ুর বাধার কারণে পাইলটের কিছুটা পিছনে গিয়ে পড়ে।"
+                },
+                {
+                    question: "বৃত্তাকার পথে ঘোরার সময় সুতায় বাঁধা একটি পাথর ছিঁড়ে গেলে কোন দিকে যাবে?",
+                    options: ["পাথরটি ওই মুহূর্তের স্পর্শক বরাবর সোজা পথে যাবে", "পাথরটি ব্যাসার্ধ বরাবর বাইরের দিকে যাবে", "পাথরটি ব্যাসার্ধ বরাবর ভেতরের দিকে যাবে", "পাথরটি স্থির হয়ে যাবে"],
+                    answer: 0,
+                    explanation: "কেন্দ্রাভিমুখী বলের অনুপস্থিতিতে, বস্তুটি তার জড়তার কারণে ওই মুহূর্তের বেগের দিকে, অর্থাৎ স্পর্শক বরাবর সোজা পথে চলে যায়।"
+                },
+                {
+                    question: "বৃত্তাকার পথে বাঁক নেওয়ার সময় গাড়ির কোন বলের প্রয়োজন হয়?",
+                    options: ["স্থিতি বল", "কেন্দ্রাভিমুখী বল", "পৃথিবীর মাধ্যাকর্ষণজনিত আকর্ষণ", "কোনটাই নয়"],
+                    answer: 1,
+                    explanation: "যেকোনো বস্তুকে বৃত্তাকার পথে ঘোরানোর জন্য একটি কেন্দ্রাভিমুখী বলের প্রয়োজন হয়। গাড়ির ক্ষেত্রে এই বলটি আসে চাকা ও রাস্তার ঘর্ষণ থেকে।"
+                },
+                {
+                    question: "বিশ্বের আকর্ষণ তত্ত্বের প্রথম প্রবক্তা কে?",
+                    options: ["কেপলার", "গ্যালিলিও", "নিউটন", "কোপারনিকাস"],
+                    answer: 2,
+                    explanation: "স্যার আইজ্যাক নিউটন মহাকর্ষের সার্বজনীন তত্ত্বটি প্রথম প্রদান করেন।"
+                },
+                {
+                    question: "দুধ মন্থন করলে যে বলের কারণে ননী আলাদা হয়, তা কী?",
+                    options: ["ঘর্ষণ বল", "অভিকর্ষ বল", "কেন্দ্রাভিমুখী বল", "কেন্দ্রবিমুখ বল"],
+                    answer: 3,
+                    explanation: "দুধ মন্থনের সময় কেন্দ্রবিমুখ বা অপকেন্দ্র বলের (Centrifugal force) কারণে হালকা ননী পাত্রের কেন্দ্রের দিকে সরে আসে এবং আলাদা হয়ে যায়।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

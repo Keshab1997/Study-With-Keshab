@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 02 - অভিকর্ষ ও মহাকর্ষ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        /* CSS Variables for Theming */
+        :root {
+            --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60;
+            --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd;
+            --blockquote-border: #2196f3; --table-header-bg: #4caf50; --table-header-text: #ffffff; --nav-button-bg: #fff;
+            --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1);
+        }
+        [data-theme="forest"] {
+            --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60;
+            --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9;
+            --blockquote-border: #27ae60; --table-header-bg: #27ae60;
+        }
+        [data-theme="ocean"] {
+            --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9;
+            --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe;
+            --blockquote-border: #3498db; --table-header-bg: #2980b9;
+        }
+        [data-theme="sunset"] {
+            --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100;
+            --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1;
+            --blockquote-border: #f57c00; --table-header-bg: #e65100;
+        }
+        .dark-mode {
+            --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc;
+            --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a;
+            --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0;
+            --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05);
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3 { font-size: 1.6em; color: var(--heading-color-3); }
+        h4 { font-size: 1.2em; color: var(--accent-color); border-bottom: none; margin-top: 25px; }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-style: italic; font-size: 1.1em; border-radius: 5px; }
+        img { max-width: 100%; height: auto; display: block; margin: 25px auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        .math-formula { background-color: var(--blockquote-bg); padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center; font-size: 1.3em; font-family: 'Courier New', Courier, monospace; border: 1px solid var(--blockquote-border); color: var(--heading-color-1); overflow-x: auto; }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 10px; padding-left: 10px; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://dcassetcdn.com/design_img/3828066/151313/23775964/xb5tdy5af3g15z636zyxbrbm3y_image.jpg" alt="Logo" class="logo">
+        <h1>অভিকর্ষ ও মহাকর্ষ</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 02</h2>
+
+        <h3>অভিকর্ষজ ত্বরণ (g) কাকে বলে? এর মান কত?</h3>
+        <p><strong>সংজ্ঞা:</strong> যখন কোনো বস্তু উপর থেকে নিচে পড়ে, তখন পৃথিবীর টানের কারণে তার গতি বাড়তে থাকে। প্রতি সেকেন্ডে এই গতি যতটা বাড়ে, তাকেই <strong>অভিকর্ষজ ত্বরণ (g)</strong> বলে।</p>
+        <p><strong>g-এর গড় মান:</strong> এর মান হলো <strong>9.8 m/s²</strong>। এর মানে হলো, কোনো বস্তু যখন নিচে পড়ে, তখন প্রতি সেকেন্ডে তার গতিবেগ 9.8 m/s করে বেড়ে যায়।</p>
+        
+        <h3>বস্তুর ভর ও ওজন</h3>
+        <p><strong>ভর (Mass):</strong> কোনো বস্তুর মধ্যে মোট যতটা পদার্থ আছে, সেটাই তার <strong>ভর</strong>। ভর সব জায়গায় একই থাকে, তা সে পৃথিবীতে হোক বা চাঁদে। এর একক হলো কিলোগ্রাম (kg)।</p>
+        <p><strong>ওজন (Weight):</strong> পৃথিবী কোনো বস্তুকে যে বল দিয়ে নিজের দিকে টানে, সেই টান বা বলটাই হলো বস্তুর <strong>ওজন</strong>। ওজন জায়গার সাথে বদলে যায়।</p>
+        <div class="math-formula">ওজন = ভর × অভিকর্ষজ ত্বরণ (g)</div>
+        <p><strong>উদাহরণ:</strong> যদি কোনো বস্তুর ভর 1 কেজি হয়, তাহলে পৃথিবীতে তার ওজন হবে 1 × 9.8 = 9.8 নিউটন (N)।</p>
+        <img src="https://bigthink.com/wp-content/uploads/2024/08/earth.jpg" alt="পৃথিবী এবং চাঁদে বস্তুর ভর ও ওজনের পার্থক্য দেখানো হয়েছে।">
+
+        <!-- Other sections are unchanged -->
+
+        <h3>কিছু সহজ অঙ্ক ও তার সমাধান</h3>
+
+        <h4>1. 1 কেজি ও 2 কেজি ভরের দুটি জিনিস 50 সেমি দূরে রাখলে তাদের মধ্যে আকর্ষণ বল কত?</h4>
+        <p>এই সমস্যার সমাধান করতে আমরা নিউটনের মহাকর্ষ সূত্র ব্যবহার করব। সূত্রটি হলো:</p>
+        <div class="math-formula">F = G * (m1 * m2) / r²</div>
+        <blockquote>
+            <strong>এখানে:</strong><br>
+            <strong>F</strong> = আকর্ষণ বল (এটি আমাদের বের করতে হবে)।<br>
+            <strong>G</strong> = মহাকর্ষীয় ধ্রুবক (এর মান নির্দিষ্ট: 6.673 x 10⁻¹¹ N m²/kg²)।<br>
+            <strong>m1</strong> = প্রথম বস্তুর ভর (1 কেজি)।<br>
+            <strong>m2</strong> = দ্বিতীয় বস্তুর ভর (2 কেজি)।<br>
+            <strong>r</strong> = বস্তু দুটির মধ্যে দূরত্ব (50 সেমি)।
+        </blockquote>
+        <p><strong>ধাপে ধাপে সমাধান:</strong></p>
+        <ol>
+            <li><strong>একক ঠিক করা:</strong> সূত্রে দূরত্বকে (r) মিটারে নিতে হবে। আমরা জানি, 100 সেমি = 1 মিটার। সুতরাং, 50 সেমি = 50 / 100 = <strong>0.5 মিটার</strong>।</li>
+            <li><strong>সূত্রে মান বসানো:</strong><br> F = (6.673 x 10⁻¹¹) * (1 * 2) / (0.5)² </li>
+            <li><strong>গণনা করা:</strong><br> F = (6.673 x 10⁻¹¹) * (2 / 0.25)<br> F = (6.673 x 10⁻¹¹) * 8<br> F = 53.384 x 10⁻¹¹ নিউটন </li>
+            <li><strong>ফলাফল:</strong> উত্তরটিকে সুন্দরভাবে লিখলে হয় <strong>5.34 x 10⁻¹⁰ নিউটন</strong>।</li>
+        </ol>
+        <p><strong>সহজ ভাষায়:</strong> এই বলের মান এতটাই কম যে আমরা বাস্তবে তা অনুভব করতে পারি না। এই কারণেই আমাদের চারপাশের ছোট জিনিস একে অপরকে টানলেও আমরা তা বুঝতে পারি না।</p>
+        
+        <h4>2. সূর্য ও পৃথিবীর মধ্যে আকর্ষণ বল কত?</h4>
+        <p>এই বলের মান প্রায় <strong>3.53 x 10²² নিউটন</strong>।</p>
+        <blockquote>
+           <strong>কেন এই বল এত শক্তিশালী?</strong><br>
+           এর কারণও মহাকর্ষ সূত্র: <strong>F = G * (m1 * m2) / r²</strong>। এখানে <strong>m1</strong> (সূর্যের ভর) এবং <strong>m2</strong> (পৃথিবীর ভর) দুটোই  বড় সংখ্যা। এই বিশাল দুটি ভরের গুণফল এতটাই বেশি হয় যে, সূর্য ও পৃথিবীর মধ্যকার বিশাল দূরত্ব দিয়ে ভাগ করার পরেও আকর্ষণ বলের মান অনেক বড় থাকে।
+        </blockquote>
+        <p><strong>সহজ ভাষায়:</strong> এই বিশাল শক্তিশালী টানের কারণেই আমাদের পৃথিবী সূর্যের চারপাশে একটি নির্দিষ্ট কক্ষপথে ঘুরতে থাকে, ছিটকে বাইরে চলে যায় না।</p>
+
+        <h4>3. পৃথিবী 3 কেজি ভরের একটি বস্তুকে কত বল দিয়ে টানে?</h4>
+        <p>এই বলটিই হলো বস্তুটির ওজন। এটি বের করার সূত্র হলো:</p>
+        <div class="math-formula">বল (ওজন) = ভর (m) × অভিকর্ষজ ত্বরণ (g)</div>
+        <p><strong>ধাপে ধাপে সমাধান:</strong></p>
+        <ol>
+            <li><strong>প্রদত্ত তথ্য:</strong><br> বস্তুর ভর (m) = <strong>3 কেজি</strong>।<br> অভিকর্ষজ ত্বরণ (g) = <strong>9.8 m/s²</strong>।</li>
+            <li><strong>সূত্রে মান বসানো:</strong><br> বল = 3 কেজি × 9.8 m/s²</li>
+            <li><strong>ফলাফল:</strong> বল = <strong>29.4 নিউটন</strong>।</li>
+        </ol>
+        <p><strong>সহজ ভাষায়:</strong> পৃথিবী ওই 3 কেজি ভরের বস্তুটিকে 29.4 নিউটন বল দিয়ে নিজের কেন্দ্রের দিকে টানছে। এটাই বস্তুটির ওজন।</p>
+
+        <h4>4. দুটি বস্তুর ভর দ্বিগুণ করলে আকর্ষণ বল কত হবে?</h4>
+        <p><strong>সমাধান:</strong> আকর্ষণ বল <strong>4 গুণ</strong> বেড়ে যাবে।</p>
+        <blockquote>
+            <strong>ব্যাখ্যা:</strong><br>
+            মহাকর্ষ সূত্র অনুযায়ী, বল (F) ভরের গুণফলের সমানুপাতিক: <strong>F ∝ m1 * m2</strong>।<br>
+            যদি প্রথম ভর (m1) দ্বিগুণ হয়ে <strong>2m1</strong> হয় এবং দ্বিতীয় ভর (m2) দ্বিগুণ হয়ে <strong>2m2</strong> হয়, তাহলে নতুন বল হবে:<br>
+            নতুন বল ∝ (2m1) * (2m2) = 4 * (m1 * m2)।<br>
+            সুতরাং, নতুন বল আগের বলের 4 গুণ হবে।
+        </blockquote>
+        <p><strong>সহজ ভাষায়:</strong> আকর্ষণ বল দুটি বস্তুর ভরের ওপর নির্ভর করে। আপনি যদি একটির ভর দ্বিগুণ করেন, বল দ্বিগুণ হবে। যদি দুটিরই ভর দ্বিগুণ করেন, তাহলে বল 2 × 2 = 4 গুণ শক্তিশালী হবে।</p>
+
+        <h4>5. দূরত্ব তিনগুণ করলে আকর্ষণ বল কত হবে?</h4>
+        <p><strong>সমাধান:</strong> আকর্ষণ বল কমে গিয়ে <strong>9 ভাগের 1 ভাগ</strong> হয়ে যাবে।</p>
+        <blockquote>
+            <strong>ব্যাখ্যা:</strong><br>
+            মহাকর্ষ সূত্র অনুযায়ী, বল (F) দূরত্বের বর্গের ব্যস্তানুপাতিক: <strong>F ∝ 1/r²</strong>।<br>
+            যদি দূরত্ব (r) তিনগুণ হয়ে <strong>3r</strong> হয়, তাহলে নতুন বল হবে:<br>
+            নতুন বল ∝ 1 / (3r)² = 1 / (9r²)<br>
+            সুতরাং, নতুন বল আগের বলের 1/9 অংশ হয়ে যাবে।
+        </blockquote>
+        <p><strong>সহজ ভাষায়:</strong> চুম্বকের মতো, মহাকর্ষ বলও দূরত্ব বাড়ার সাথে সাথে দ্রুত কমে যায়। দূরত্ব যদি 3 গুণ বাড়ে, বল তার চেয়ে অনেক বেশি, অর্থাৎ 3² = 9 গুণ কমে যাবে।</p>
+
+        <h4>6. পৃথিবীতে যার ভর 60 কেজি, চাঁদে তার ভর কত?</h4>
+        <p><strong>সমাধান:</strong> চাঁদেও তার ভর <strong>60 কেজি</strong> থাকবে।</p>
+        <blockquote>
+            <strong>ব্যাখ্যা:</strong><br>
+            <strong>ভর</strong> হলো কোনো বস্তুর মধ্যে থাকা মোট পদার্থের পরিমাণ। এটি একটি ধ্রুবক রাশি, যা স্থান পরিবর্তনের সাথে বদলায় না। অন্যদিকে, <strong>ওজন</strong> হলো মহাকর্ষ বলের পরিমাপ, যা স্থানভেদে পরিবর্তিত হয়।
+        </blockquote>
+        <p><strong>সহজ ভাষায়:</strong> আপনার শরীর যে পরিমাণ পদার্থ দিয়ে তৈরি, তা চাঁদে গেলেও একই থাকবে। তাই আপনার ভর কখনো বদলাবে না। কিন্তু চাঁদের টান কম হওয়ায় আপনার ওজন কমে যাবে।</p>
+
+        <h4>7. পৃথিবীতে যার ওজন 60 কেজি ভরের বস্তুর সমান, চাঁদে তার ওজন কত হবে?</h4>
+        <p><strong>ধাপে ধাপে সমাধান:</strong></p>
+        <ol>
+            <li><strong>ধাপ ১: পৃথিবীতে ওজন নির্ণয় করুন।</strong><br>
+                সূত্র: ওজন = ভর × g<br>
+                ওজন = 60 কেজি × 9.8 m/s² = <strong>588 নিউটন</strong>।
+            </li>
+            <li><strong>ধাপ ২: চাঁদের মহাকর্ষ বলের সাথে সম্পর্ক বুঝুন।</strong><br>
+                চাঁদের মহাকর্ষ বল পৃথিবীর প্রায় <strong>6 ভাগের 1 ভাগ</strong>।
+            </li>
+            <li><strong>ধাপ ৩: চাঁদে ওজন নির্ণয় করুন।</strong><br>
+                চাঁদে ওজন = (পৃথিবীতে ওজন) / 6<br>
+                চাঁদে ওজন = 588 / 6 = <strong>98 নিউটন</strong>।
+            </li>
+        </ol>
+        <p><strong>সহজ ভাষায়:</strong> চাঁদের টান পৃথিবীর চেয়ে অনেক কম, তাই চাঁদে গেলে আপনার ওজনও প্রায় ৬ গুণ কমে যাবে। পৃথিবীতে আপনার ওজন যদি 588 নিউটন হয়, চাঁদে তা মাত্র 98 নিউটন অনুভূত হবে।</p>
+
+        <h4>8. একটি বস্তু উপর থেকে নিচে পড়লে 6 সেকেন্ড পর তার গতি ও উচ্চতা কত হবে?</h4>
+        <p><strong>ক) গতিবেগ নির্ণয় (v):</strong></p>
+        <blockquote>
+            <strong>সূত্র:</strong> স্থির অবস্থা থেকে পতনশীল বস্তুর গতিবেগ, v = g × t<br>
+            <strong>প্রদত্ত তথ্য:</strong> g = 9.8 m/s², t = 6 সেকেন্ড।<br>
+            <strong>গণনা:</strong> v = 9.8 × 6 = <strong>58.8 m/s</strong>।
+        </blockquote>
+        <p><strong>সহজ ভাষায়:</strong> বস্তুটি যখন 6 সেকেন্ড ধরে পড়ছে, তখন তার শেষ মুহূর্তের গতি হবে প্রতি সেকেন্ডে 58.8 মিটার।</p>
+        
+        <p><strong>খ) অতিক্রান্ত উচ্চতা নির্ণয় (h):</strong></p>
+        <blockquote>
+            <strong>সূত্র:</strong> পতনশীল বস্তুর অতিক্রান্ত উচ্চতা, h = ½ × g × t²<br>
+            <strong>প্রদত্ত তথ্য:</strong> g = 9.8 m/s², t = 6 সেকেন্ড।<br>
+            <strong>গণনা:</strong> h = 0.5 × 9.8 × (6)² = 0.5 × 9.8 × 36 = <strong>176.4 মিটার</strong>।
+        </blockquote>
+        <p><strong>সহজ ভাষায়:</strong> বস্তুটি এই 6 সেকেন্ডে মোট 176.4 মিটার পথ নিচে নেমে আসবে, যা প্রায় একটি 60 তলা বিল্ডিংয়ের সমান উঁচু।</p>
+
+        <h3>পতনশীল বস্তু কাকে বলে?</h3>
+        <p>যখন কোনো বস্তু শুধুমাত্র পৃথিবীর টানের কারণে (অন্য কোনো বাধা ছাড়া) নিচে পড়তে থাকে, তখন তাকে <strong>পতনশীল বস্তু</strong> বলে।</p>
+        
+        <h3>কৃত্রিম উপগ্রহ কাকে বলে?</h3>
+        <p>মানুষের তৈরি যেসব যন্ত্র পৃথিবীকে বা অন্য কোনো গ্রহকে কেন্দ্র করে একটি নির্দিষ্ট পথে ঘুরতে থাকে, তাদের <strong>কৃত্রিম উপগ্রহ</strong> বলে। যেমন - আবহাওয়ার খবর বা টিভিতে অনুষ্ঠান দেখার জন্য স্যাটেলাইট ব্যবহার হয়।</p>
+        <img src="https://dcx0p3on5z8dw.cloudfront.net/inline-images/aakash_787340600.png" alt="পৃথিবীকে কেন্দ্র করে একটি কৃত্রিম উপগ্রহ ঘুরছে।">
+
+        <h3>বড় হ্রদে জোয়ার-ভাটা দেখা যায় না কেন?</h3>
+        <p>জোয়ার-ভাটা হওয়ার জন্য চাঁদের টানে বিশাল পরিমাণ জল ফুলে উঠতে হয়, যা কেবল সমুদ্রে বা মহাসাগরেই সম্ভব। হ্রদের জল সেই তুলনায় অনেক কম, তাই চাঁদের টানের প্রভাব সেখানে বোঝা যায় না।</p>
+
+        <h2>ধন্যবাদ</h2>
+    </div>
+
+    <nav class="navigation">
+        <a href="class1.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button active">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class3.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2024 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) {
+                if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+                else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+                localStorage.setItem('selected_mode', mode);
+            }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+                scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+                scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+        });
+    </script>
+
+</body>
+</html>

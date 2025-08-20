@@ -1,0 +1,137 @@
+/* --- বেসিক এবং থিম ভেরিয়েবল --- */
+:root {
+    --font-main: 'Hind Siliguri', sans-serif;
+    
+    /* লাইট মোড ডিফল্ট */
+    --bg-color: #f0f4f8;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --secondary-text-color: #555;
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --switch-bg: #ccc;
+}
+
+body.dark-mode {
+    --bg-color: #1a1a2e;
+    --card-bg: #16213e;
+    --text-color: #e0e0e0;
+    --secondary-text-color: #b0b0b0;
+    --border-color: #444;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --switch-bg: #555;
+}
+
+/* কালার থিম */
+body[data-color-theme="default"] { --primary-color: #27ae60; --secondary-color: #2c3e50; }
+body[data-color-theme="forest"] { --primary-color: #16a085; --secondary-color: #4a6a5d; }
+body[data-color-theme="ocean"] { --primary-color: #2980b9; --secondary-color: #34495e; }
+body[data-color-theme="sunset"] { --primary-color: #e67e22; --secondary-color: #c0392b; }
+body[data-color-theme="rose"] { --primary-color: #c0392b; --secondary-color: #884350; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- গেম কন্টেইনার --- */
+.flashcard-game-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px var(--shadow-color);
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s;
+    border: 1px solid var(--border-color);
+}
+.shuffling-animation { transform: rotate(2deg) scale(1.02); }
+
+header h1 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+}
+
+.set-selector-container { margin-bottom: 1.5rem; display: flex; justify-content: center; align-items: center; gap: 0.5rem; }
+.set-selector-container label { font-size: 1rem; font-weight: 500; color: var(--secondary-text-color); }
+#set-selector { padding: 0.5rem; border-radius: 8px; border: 2px solid var(--primary-color); font-family: var(--font-main); font-size: 1rem; background-color: var(--card-bg); color: var(--text-color); cursor: pointer; }
+#set-selector:focus { outline: none; box-shadow: 0 0 5px var(--primary-color); }
+
+/* --- থিম ও মোড কন্ট্রোল --- */
+.controls-panel { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding: 0.5rem; background-color: var(--bg-color); border-radius: 50px; }
+.theme-selector { display: flex; align-items: center; gap: 8px; }
+.theme-selector span { font-weight: 500; margin-left: 0.5rem; font-size: 0.9rem; }
+.theme-btn { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--border-color); cursor: pointer; transition: transform 0.2s; }
+.theme-btn:hover { transform: scale(1.1); }
+.theme-btn.active { border-color: var(--primary-color); transform: scale(1.2); }
+.theme-btn[data-theme="default"] { background-color: #27ae60; }
+.theme-btn[data-theme="forest"] { background-color: #16a085; }
+.theme-btn[data-theme="ocean"] { background-color: #2980b9; }
+.theme-btn[data-theme="sunset"] { background-color: #e67e22; }
+.theme-btn[data-theme="rose"] { background-color: #c0392b; }
+
+.mode-switcher { display: flex; align-items: center; gap: 0.5rem; }
+.mode-switcher span { font-size: 1.2rem; }
+.switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--switch-bg); transition: .4s; border-radius: 34px; }
+.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: var(--primary-color); }
+input:checked + .slider:before { transform: translateX(20px); }
+
+/* --- ফ্ল্যাশ কার্ড --- */
+#flashcard { width: 100%; aspect-ratio: 16 / 10; perspective: 1000px; cursor: pointer; margin-bottom: 1rem; -webkit-tap-highlight-color: transparent; }
+.card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s ease-in-out; transform-style: preserve-3d; border-radius: 15px; box-shadow: 0 5px 20px var(--shadow-color); }
+.is-flipped { transform: rotateY(180deg); }
+.card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 15px; display: flex; justify-content: center; align-items: center; padding: 1.5rem; }
+.card-front { background-color: var(--primary-color); color: white; font-size: 1.5rem; font-weight: 600; }
+.card-back { background-color: var(--secondary-color); color: white; transform: rotateY(180deg); flex-direction: column; }
+.card-back-content { text-align: center; }
+.card-back #card-back-text { color: white; font-weight: 600; font-size: 1.6rem; margin-bottom: 0.75rem; }
+.card-back #card-explanation { font-size: 1rem; font-weight: 400; color: #e0e0e0; max-width: 90%; line-height: 1.5; margin: 0 auto; }
+
+/* --- প্রোগ্রেস বার --- */
+.progress-container { width: 100%; background-color: var(--border-color); border-radius: 50px; height: 10px; margin-bottom: 0.5rem; overflow: hidden; }
+#progress-bar { height: 100%; width: 0%; background-color: var(--primary-color); border-radius: 50px; transition: width 0.4s ease-in-out, background-color 0.3s; }
+
+/* --- কন্ট্রোল বাটন --- */
+#card-counter { font-size: 1rem; color: var(--secondary-text-color); font-weight: 600; margin-bottom: 1.5rem; }
+.controls, .extra-controls { display: flex; justify-content: center; gap: 1rem; align-items: center; margin-bottom: 1rem; }
+.controls button, .extra-controls button { background-color: var(--primary-color); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 50px; font-family: var(--font-main); font-size: 1rem; font-weight: 600; cursor: pointer; transition: background-color 0.3s, transform 0.2s; }
+.controls button:disabled { background-color: #bdc3c7; cursor: not-allowed; transform: none; }
+.controls button:not(:disabled):hover, .extra-controls button:hover { background-color: var(--secondary-color); transform: translateY(-2px); }
+#shuffle-btn { background-color: #f39c12; }
+#shuffle-btn:hover { background-color: #d35400; }
+#mark-learned-btn { background-color: #27ae60; }
+#mark-learned-btn:disabled { background-color: #95a5a6; color: #ecf0f1; }
+#restart-btn { background-color: #e74c3c; }
+
+/* --- ফুটার --- */
+footer { text-align: center; margin-top: 2rem; color: var(--secondary-text-color); font-size: 0.9rem; }
+footer strong { color: var(--text-color); font-weight: 600; }
+
+.hidden { display: none; }
+
+/* --- রেসপন্সিভ ডিজাইন --- */
+@media (max-width: 600px) {
+    body { padding: 0.5rem; }
+    .flashcard-game-container { padding: 1rem; }
+    header h1 { font-size: 1.5rem; }
+    .card-face { font-size: 1.2rem; }
+    .card-back #card-back-text { font-size: 1.4rem; }
+    .card-back #card-explanation { font-size: 0.9rem; }
+    .controls button, .extra-controls button { font-size: 0.9rem; padding: 0.7rem 1rem; }
+}

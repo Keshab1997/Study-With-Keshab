@@ -1,0 +1,406 @@
+/* style.css (রঙিন টেক্সট সহ সংশোধিত) */
+
+/* --- মৌলিক স্টাইল এবং ভেরিয়েবল --- */
+:root {
+    /* Font */
+    --font-family: 'Hind Siliguri', sans-serif;
+
+    /* Light Mode Colors */
+    --bg-color: #f4f7f9;
+    --text-color: #333;
+    --container-bg: #ffffff;
+    --container-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --button-bg: #e9ecef;
+    --button-text: #333;
+    --button-hover-bg: #dee2e6;
+    --border-color: #dee2e6;
+
+    /* Themeable Colors (Default Theme) */
+    --primary-color: #007bff;
+    --primary-text: #ffffff;
+    --card-front-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    --card-back-bg: #ffffff; 
+    --progress-bar-bg: var(--primary-color);
+}
+
+/* --- ডার্ক মোড ভেরিয়েবল --- */
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #f1f1f1;
+    --container-bg: #2c2c2c;
+    --container-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    --button-bg: #444;
+    --button-text: #f1f1f1;
+    --button-hover-bg: #555;
+    --border-color: #555;
+    
+    --card-front-bg: linear-gradient(135deg, #3a3a3a, #2c2c2c);
+    --card-back-bg: var(--container-bg); 
+}
+
+
+/* --- রঙিন থিম ভেরিয়েবল --- */
+body[data-color-theme="forest"] { --primary-color: #28a745; }
+body[data-color-theme="ocean"] { --primary-color: #17a2b8; }
+body[data-color-theme="sunset"] { --primary-color: #fd7e14; }
+body[data-color-theme="rose"] { --primary-color: #e83e8c; }
+
+
+/* --- বেসিক সেটআপ --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- মূল কন্টেইনার এবং হেডার --- */
+.flashcard-game-container {
+    background-color: var(--container-bg);
+    border-radius: 15px;
+    box-shadow: var(--container-shadow);
+    padding: 25px 30px;
+    width: 100%;
+    max-width: 550px;
+    text-align: center;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+header {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    transition: color 0.3s;
+    flex-grow: 1;
+    text-align: left;
+}
+/* style.css ফাইলে এই অংশটুকু যোগ করুন */
+
+/* লোগো এবং টাইটেলকে একসাথে রাখার জন্য */
+.title-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* লোগো এবং লেখার মধ্যে ফাঁকা জায়গা */
+}
+
+/* লোগোর স্টাইল */
+.header-logo {
+    height: 40px; /* লোগোর উচ্চতা ঠিক করুন */
+    width: auto;  /* প্রস্থ নিজে থেকেই ঠিক হয়ে যাবে */
+}
+
+/* ছোট স্ক্রিনের জন্য হেডার এবং লোগোর স্টাইল */
+@media (max-width: 600px) {
+    .title-container {
+        /* ছোট স্ক্রিনেও পাশাপাশি থাকবে */
+        width: 100%; 
+    }
+    
+    .header-logo {
+        height: 35px; /* ছোট স্ক্রিনে লোগো একটু ছোট হবে */
+    }
+
+    /* আগে থেকেই থাকা স্টাইল */
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+#set-selector {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-weight: 500;
+}
+
+/* --- কন্ট্রোল প্যানেল (থিম ও মোড) --- */
+.controls-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.theme-selector, .mode-switcher {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.theme-selector span, .mode-switcher span {
+    font-weight: 500;
+}
+
+.theme-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+}
+.theme-btn:hover {
+    transform: scale(1.1);
+}
+.theme-btn.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+.theme-btn[data-theme="default"] { background-color: #007bff; }
+.theme-btn[data-theme="forest"] { background-color: #28a745; }
+.theme-btn[data-theme="ocean"] { background-color: #17a2b8; }
+.theme-btn[data-theme="sunset"] { background-color: #fd7e14; }
+.theme-btn[data-theme="rose"] { background-color: #e83e8c; }
+
+
+/* ডার্ক মোড টগল সুইচ */
+.switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: var(--primary-color); }
+input:checked + .slider:before { transform: translateX(24px); }
+
+
+/* --- ফ্ল্যাশকার্ডের স্টাইল (3D ফ্লিপ সহ) --- */
+#flashcard {
+    perspective: 1000px; /* 3D effect এর জন্য */
+    width: 100%;
+    height: 250px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card-inner.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.card-front {
+    background: var(--card-front-bg);
+    /* --- পরিবর্তিত: প্রশ্নের রঙ লাল করা হলো --- */
+    color: #dc3545;
+    border: 1px solid var(--border-color);
+}
+
+.card-back {
+    background: var(--card-back-bg);
+    color: var(--text-color); 
+    transform: rotateY(180deg);
+    border: 1px solid var(--border-color);
+}
+
+.card-back-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#card-back-text {
+    font-size: 1.4rem;
+    font-weight: 600;
+    /* --- পরিবর্তিত: উত্তরের রঙ সবুজ করা হলো --- */
+    color: #28a745; 
+}
+
+#card-explanation {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.9;
+    line-height: 1.5;
+    /* --- পরিবর্তিত: ব্যাখ্যার রঙ গোলাপী করা হলো --- */
+    color: #e83e8c; 
+}
+
+
+/* --- প্রোগ্রেস বার এবং কাউন্টার --- */
+.progress-container {
+    width: 100%;
+    background-color: var(--border-color);
+    border-radius: 25px;
+    height: 10px;
+    margin-bottom: 5px;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--progress-bar-bg);
+    border-radius: 25px;
+    transition: width 0.4s ease-in-out, background-color 0.3s;
+}
+
+#card-counter {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 20px;
+}
+
+/* --- কন্ট্রোল বাটন --- */
+.controls, .extra-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.controls button, .extra-controls button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.controls button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+}
+.controls button:hover {
+    background-color: var(--button-hover-bg);
+}
+.controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#next-btn, #prev-btn {
+    min-width: 120px;
+}
+
+#shuffle-btn {
+    background-color: #ffc107;
+    color: #333;
+}
+#shuffle-btn:hover {
+    background-color: #e0a800;
+}
+
+#mark-learned-btn {
+    background-color: #28a745;
+    color: white;
+}
+#mark-learned-btn:hover {
+    background-color: #218838;
+}
+#mark-learned-btn:disabled {
+    background-color: #218838;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+#restart-btn {
+    background-color: var(--primary-color);
+    color: var(--primary-text);
+}
+#restart-btn:hover {
+    background-color: color-mix(in srgb, var(--primary-color) 85%, black);
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- ফুটার --- */
+footer {
+    margin-top: 30px;
+    text-align: center;
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+
+/* --- রেসপন্সিভ ডিজাইন --- */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .flashcard-game-container {
+        padding: 20px;
+    }
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    header h1 {
+        font-size: 1.5rem;
+    }
+    .controls-panel {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #flashcard {
+        height: 220px;
+    }
+    .card-face {
+        font-size: 1.2rem;
+    }
+    #card-back-text {
+        font-size: 1.2rem; 
+    }
+    #card-explanation {
+        font-size: 0.9rem;
+    }
+    .controls {
+        flex-wrap: wrap;
+    }
+    .controls button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}

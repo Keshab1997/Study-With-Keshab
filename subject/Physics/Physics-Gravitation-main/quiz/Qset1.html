@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - অভিকর্ষ ও মহাকর্ষ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "অভিকর্ষ ও মহাকর্ষ", 
+            setName: "Quiz Set 1",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "মহাকর্ষ (Gravitation) - Set 1 (প্রশ্ন ১-৭)",
+            
+            questions: [
+                {
+                    question: "'মাধ্যাকর্ষণ' আবিষ্কার করেন কে?",
+                    options: ["গ্যালিলিও", "নিউটন", "আর্কিমিডিস", "এডিসন"],
+                    answer: 1,
+                    explanation: "স্যার আইজ্যাক নিউটন মাধ্যাকর্ষণ বা অভিকর্ষ বলের সার্বজনীন সূত্রটি আবিষ্কার করেন।"
+                },
+                {
+                    question: "মহাকর্ষীয় ধ্রুবক (G)-এর CGS একক কী?",
+                    options: ["cm⁴ sec⁻¹ gm⁻²", "cm sec⁻³ gm⁻²", "cm³ sec⁻² gm⁻¹", "gm cm⁻³ sec⁻²"],
+                    answer: 2,
+                    explanation: "মহাকর্ষ ধ্রুবক (G) এর CGS একক হলো cm³ sec⁻² gm⁻¹ বা dyne·cm²/g²।"
+                },
+                {
+                    question: "দুটি বস্তুর মধ্যে একটির ভর ও তাদের ব্যবধান দ্বিগুণ করা হলে মহাকর্ষ বলের কী পরিবর্তন হবে?",
+                    options: ["বল একই থাকবে", "বল দ্বিগুণ হবে", "বল অর্ধেক হবে", "বল ৪ গুণ হয়"],
+                    answer: 2,
+                    explanation: "সূত্রানুযায়ী, F ∝ m/r²। ভর দ্বিগুণ (2m) এবং দূরত্ব দ্বিগুণ (2r) হলে, নতুন বল হবে F' ∝ 2m/(2r)² = 2m/4r² = ½ (m/r²)। সুতরাং বল অর্ধেক হবে।"
+                },
+                {
+                    question: "মহাকর্ষীয় ধ্রুবক (G)-এর মাত্রা কী?",
+                    options: ["ML³T⁻²", "M⁻¹L³T⁻²", "M²L⁻²T²", "M²L⁻¹T⁻²"],
+                    answer: 1,
+                    explanation: "G = Fr²/m₁m₂ সূত্র থেকে মাত্রা নির্ণয় করলে হয় [M⁻¹L³T⁻²]।"
+                },
+                {
+                    question: "শূন্যস্থানে একটি পালক, একটি কাঠের বল ও একটি ইস্পাতের বল একসঙ্গে ফেললে কোনটি আগে মাটিতে পড়বে?",
+                    options: ["কাঠের বল", "পালক", "ইস্পাতের বল", "সবগুলিই সমান দ্রুততায়"],
+                    answer: 3,
+                    explanation: "শূন্যস্থানে বায়ুর বাধা না থাকায়, সকল বস্তু (ভর নির্বিশেষে) একই অভিকর্ষজ ত্বরণ (g) নিয়ে নিচে পড়ে। তাই সবাই একসাথে মাটিতে পৌঁছাবে।"
+                },
+                {
+                    question: "প্রকৃতির মৌলিক বলগুলোর মধ্যে সবচেয়ে দুর্বল বা ক্ষীণ শক্তি কোনটি?",
+                    options: ["অভিকর্ষজ শক্তি", "বৈদ্যুতিক শক্তি", "চুম্বকীয় শক্তি", "সবল নিউক্লিয় বল"],
+                    answer: 0,
+                    explanation: "প্রকৃতির চারটি মৌলিক বলের মধ্যে মহাকর্ষ বা অভিকর্ষ বল সবচেয়ে দুর্বল।"
+                },
+                {
+                    question: "সমবৃত্তীয় গতিতে চলমান বস্তুর ত্বরণের অভিমুখ কোন দিকে হয়?",
+                    options: ["গতির অভিমুখে", "বৃত্তপথের স্পর্শক বরাবর", "বেগের অভিমুখে", "বেগের লম্ব অভিমুখে"],
+                    answer: 3,
+                    explanation: "সমবৃত্তীয় গতিতে কেন্দ্রাভিমুখী ত্বরণ সবসময় বেগের দিকের সাথে লম্বভাবে এবং বৃত্তের কেন্দ্রের দিকে কাজ করে।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

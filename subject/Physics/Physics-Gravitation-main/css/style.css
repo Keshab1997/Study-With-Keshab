@@ -1,0 +1,325 @@
+/* ===================================================================
+   Style.css (Reorganized & Enhanced Version)
+   Author: Keshab Sarkar
+   Project: Physics Study App
+   =================================================================== */
+
+/* --- 1. Settings, Fonts & Variables (সেটিংস, ফন্ট ও ভেরিয়েবল) --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Day Mode Colors */
+    --bg-day: #f4f7f9;
+    --card-bg-day: #ffffff;
+    --text-color-day: #34495e;
+    --heading-color-day: #2c3e50;
+    --border-color-day: #e5eaee;
+    --accent-color-day: #3498db;
+    --accent-color-light-day: #eaf4fb;
+    
+    /* Dark Mode Colors */
+    --bg-dark: #121212;
+    --card-bg-dark: #1e1e1e;
+    --text-color-dark: #e0e0e0;
+    --heading-color-dark: #ffffff;
+    --border-color-dark: #333;
+    --accent-color-dark: #5dade2; /* ডার্ক মোডের জন্য হালকা নীল */
+    --accent-color-light-dark: #2c3e50;
+}
+
+/* --- 2. Global & Body Styles (গ্লোবাল ও বডি স্টাইল) --- */
+
+body {
+    font-family: 'Hind Siliguri', sans-serif;
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.4s, color 0.4s;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Day & Dark Mode Theming */
+body.day-mode {
+    background-color: var(--bg-day);
+    color: var(--text-color-day);
+    --card-bg: var(--card-bg-day);
+    --text-color: var(--text-color-day);
+    --heading-color: var(--heading-color-day);
+    --border-color: var(--border-color-day);
+    --accent-color: var(--accent-color-day);
+    --accent-color-light: var(--accent-color-light-day);
+}
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-color-dark);
+    --card-bg: var(--card-bg-dark);
+    --text-color: var(--text-color-dark);
+    --heading-color: var(--heading-color-dark);
+    --border-color: var(--border-color-dark);
+    --accent-color: var(--accent-color-dark);
+    --accent-color-light: var(--accent-color-light-dark);
+}
+
+.homepage {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* --- 3. Utility Components (ইউটিলিটি কম্পোনেন্ট) --- */
+
+/* Preloader */
+#preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-day); z-index: 1001; display: flex; justify-content: center; align-items: center; }
+body.dark-mode #preloader { background: var(--bg-dark); }
+.loader { border: 8px solid rgba(0,0,0,0.1); border-top: 8px solid var(--accent-color); border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Dark Mode Button */
+.dark-mode-button { position: absolute; top: 20px; right: 0; background: var(--card-bg); border: 1px solid var(--border-color); width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 1.2rem; color: var(--text-color); transition: all 0.3s; }
+.dark-mode-button:hover { transform: scale(1.1) rotate(15deg); background-color: var(--accent-color-light); }
+
+/* Back to Top Button */
+#back-to-top { display: none; position: fixed; bottom: 20px; right: 20px; background: var(--accent-color); color: white; width: 50px; height: 50px; border-radius: 50%; text-decoration: none; text-align: center; line-height: 50px; font-size: 1.5rem; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: background-color 0.3s, transform 0.3s; }
+#back-to-top:hover { transform: translateY(-3px); }
+
+/* --- 4. Header & Navigation (হেডার ও নেভিগেশন) --- */
+
+.main-header { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px 0; position: relative; }
+.profile-pic { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.header-text h1 { font-size: 2.5rem; margin: 15px 0 5px; color: var(--heading-color); }
+.header-text p { font-size: 1.1rem; margin: 0; color: var(--text-color); opacity: 0.8; }
+
+.search-container { margin: 20px 0; position: relative; }
+.search-container i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #9ca3af; }
+#search-bar { width: 100%; padding: 12px 12px 12px 45px; font-size: 1rem; border: 1px solid var(--border-color); border-radius: 8px; background-color: var(--card-bg); color: var(--text-color); transition: all 0.3s; }
+#search-bar:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 3px var(--accent-color-light); }
+body.dark-mode #search-bar:focus { box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.3); }
+
+.nav-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin: 30px 0; }
+.nav-button { color: white; text-decoration: none; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease; border: none; font-size: 1rem; }
+.nav-button:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+.nav-button i { font-size: 2rem; margin-bottom: 10px; }
+.nav-button span { font-weight: 600; font-size: 1rem; }
+
+/* Navigation Button Colors */
+.nav-button.color-home { background: linear-gradient(135deg, #ff7e5f, #feb47b); }
+.nav-button.color-dashboard { background: linear-gradient(45deg, #4e54c8, #8f94fb); }
+.nav-button.color-notes { background: linear-gradient(45deg, #16a085, #1abc9c); }
+.nav-button.color-quiz { background: linear-gradient(45deg, #d35400, #e67e22); }
+.nav-button.color-formulas { background: linear-gradient(45deg, #f39c12, #f1c40f); }
+.nav-button.color-leaderboard { background: linear-gradient(45deg, #8e44ad, #9b59b6); }
+
+/* --- 5. Main Content & Cards (মূল কন্টেন্ট ও কার্ড) --- */
+
+main { display: flex; flex-direction: column; gap: 30px; }
+.card { background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.card h2 { font-size: 1.8rem; color: var(--heading-color); margin-top: 0; display: flex; align-items: center; gap: 10px; }
+.icon-title { color: var(--accent-color); }
+.card p { margin: 10px 0 20px; line-height: 1.6; }
+.link-container { display: flex; flex-wrap: wrap; gap: 10px; }
+.link-container a { background: var(--accent-color); color: white; text-decoration: none; padding: 10px 18px; border-radius: 25px; font-weight: 500; transition: background-color 0.2s, transform 0.2s; }
+.link-container a:hover { background: #2980b9; transform: translateY(-2px); }
+
+/* --- 6. Page-Specific Sections (পেজ-ভিত্তিক সেকশন) --- */
+
+/* User Profile */
+#user-profile-card .profile-header { display: flex; align-items: center; gap: 20px; }
+.profile-pic-large { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; }
+#user-profile-card h2 { margin: 0; font-size: 1.5rem; }
+#user-profile-card p { margin: 5px 0 0; color: #7f8c8d; }
+
+/* Dashboard */
+.dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.dashboard-item { text-align: center; padding: 1.5rem; background-color: var(--card-bg-day); border: 1px solid var(--border-color); border-radius: 12px; }
+body.dark-mode .dashboard-item { background-color: #2c2c2c; }
+.dashboard-item h3 { margin-top: 0; font-size: 1.2rem; color: var(--heading-color); }
+.progress-bar-container { width: 100%; background-color: #e0e0e0; border-radius: 30px; margin: 1rem 0; overflow: hidden; }
+body.dark-mode .progress-bar-container { background-color: #444; }
+.progress-bar { height: 20px; width: 0%; background-color: #27ae60; border-radius: 30px; transition: width 1s ease-in-out; }
+#chapter-progress-text { font-weight: 600; color: var(--text-color); }
+.challenge-box { background-color: #fff; border: 2px dashed var(--accent-color); padding: 1rem; border-radius: 8px; margin-top: 1rem; }
+body.dark-mode .challenge-box { background-color: #333; }
+.achievements-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 1rem; }
+.achievement-badge { display: flex; flex-direction: column; align-items: center; width: 80px; text-align: center; opacity: 0.4; filter: grayscale(100%); transition: all 0.4s; }
+.achievement-badge.unlocked { opacity: 1; filter: grayscale(0%); transform: scale(1.1); }
+.achievement-badge i { font-size: 2.5rem; color: #f1c40f; }
+.achievement-badge span { font-size: 0.8rem; font-weight: 600; margin-top: 5px; }
+
+/* Leaderboard Table & NEW Tooltip */
+.leaderboard-container { margin-top: 1.5rem; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; text-align: left; }
+th, td { padding: 12px 15px; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+thead { background-color: var(--accent-color-light); }
+body.dark-mode thead { background-color: #2d3748; }
+td i.fa-trophy, td i.fa-medal { margin-right: 8px; font-size: 1.2em; }
+
+/* === NEW TOOLTIP STYLE (FIXED) === */
+.tooltip-trigger {
+    position: relative;
+    cursor: pointer;
+    border-bottom: 1px dashed var(--text-color);
+    display: inline-block;
+}
+
+.tooltip-content {
+    visibility: hidden;
+    min-width: 180px;
+    max-width: 260px;
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the trigger */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    word-break: break-word;
+    white-space: normal;
+}
+
+body.dark-mode .tooltip-content {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.tooltip-content::after { /* Tooltip arrow */
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+body.dark-mode .tooltip-content::after {
+    border-color: #f0f0f0 transparent transparent transparent;
+}
+
+.tooltip-trigger:hover .tooltip-content,
+.tooltip-trigger:focus .tooltip-content {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-content .score-item {
+    padding: 4px 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #555;
+}
+
+body.dark-mode .tooltip-content .score-item {
+    border-bottom: 1px solid #ccc;
+}
+
+.tooltip-content .score-item:last-child {
+    border-bottom: none;
+}
+
+/* Responsive: Tooltip will not overflow screen */
+@media (max-width: 400px) {
+    .tooltip-content {
+        min-width: 120px;
+        max-width: 90vw;
+        font-size: 0.95rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+/* ======================== */
+
+
+/* --- 7. Modals (মোডাল) --- */
+
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1001; display: none; justify-content: center; align-items: center; backdrop-filter: blur(4px); }
+.modal-overlay.active { display: flex; }
+.modal-content { background-color: var(--card-bg); padding: 2rem; border-radius: 12px; width: 90%; max-width: 500px; position: relative; box-shadow: 0 5px 20px rgba(0,0,0,0.3); text-align: center; }
+.modal-close-btn { position: absolute; top: 10px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-color); }
+.modal-content h2 { margin-top: 0; color: var(--heading-color); }
+.modal-content ul { list-style: none; padding: 0; text-align: left; }
+.modal-content li { padding: 12px 0; font-size: 1.1rem; border-bottom: 1px dashed var(--border-color); }
+.modal-content li:last-child { border-bottom: none; }
+
+
+/* --- 8. Footer (ফুটার) --- */
+
+footer { text-align: center; padding: 30px 0; margin-top: 30px; border-top: 1px solid var(--border-color); }
+.social-links a { margin: 0 10px; color: var(--text-color); font-size: 1.2rem; transition: color 0.3s, transform 0.3s; display: inline-block; }
+.social-links a:hover { color: var(--accent-color); transform: translateY(-3px); }
+
+
+/* --- 9. Responsive Design (রেসপন্সিভ ডিজাইন) --- */
+
+@media (max-width: 768px) {
+    .nav-grid { grid-template-columns: repeat(3, 1fr); }
+    #user-profile-card .profile-header { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 480px) {
+    body { padding: 15px; }
+    .header-text h1 { font-size: 2rem; }
+    .nav-grid { grid-template-columns: repeat(2, 1fr); }
+    .card { padding: 20px; }
+    .dark-mode-button { top: 10px; right: 10px; }
+}
+/* === লিডারবোর্ড ড্রপডাউন স্টাইল === */
+
+/* বিস্তারিত দেখার জন্য বাটন */
+.toggle-details-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color, #3498db); /* থিমের প্রাইমারি কালার ব্যবহার করবে */
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+/* বাটনটি খোলা অবস্থায় আইকন ঘুরে যাবে */
+.toggle-details-btn.open {
+    transform: rotate(180deg);
+}
+
+/* বিস্তারিত স্কোর দেখানোর সারি (ডিফল্টভাবে লুকানো) */
+.details-row {
+    display: none; /* ডিফল্টভাবে এই সারি লুকানো থাকবে */
+}
+
+/* বিস্তারিত সারির কন্টেন্ট স্টাইল */
+.details-content {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-left: 4px solid var(--primary-color, #3498db);
+}
+
+/* ডার্ক মোডে বিস্তারিত সারির স্টাইল */
+body.dark-mode .details-content {
+    background-color: #2c2c2c;
+    border-left-color: var(--primary-color, #3498db);
+}
+
+.details-content ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.details-content li {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.details-content li .label {
+    font-weight: bold;
+    color: #555;
+}
+
+body.dark-mode .details-content li .label {
+    color: #bbb;
+}
