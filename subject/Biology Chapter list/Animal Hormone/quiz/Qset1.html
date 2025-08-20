@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - প্রাণী হরমোন</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology প্রাণী হরমোন",
+            setName: "Quiz Set 1",
+            name: "প্রাণী হরমোন - Set 1 (প্রশ্ন ১-১৫)",
+            questions: [
+                {
+                    question: "মানবদেহে উপস্থিত বিভিন্ন অন্তঃক্ষরা গ্রন্থি। অন্তঃক্ষরা গ্রন্থি হল-",
+                    options: ["লালাগ্রন্থি", "যকৃৎ", "অশ্রুগ্রন্থি", "থাইরয়েড"],
+                    answer: 3,
+                    explanation: "অন্তঃক্ষরা গ্রন্থি (Endocrine gland) হল নালীবিহীন গ্রন্থি যা থেকে নিঃসৃত রস বা হরমোন সরাসরি রক্তে মিশে যায়। থাইরয়েড একটি অন্তঃক্ষরা গ্রন্থি। অন্যদিকে, লালাগ্রন্থি, যকৃৎ এবং অশ্রুগ্রন্থি হল বহিঃক্ষরা (Exocrine) গ্রন্থি।"
+                },
+                {
+                    question: "কোনটি অন্তঃক্ষরা গ্রন্থি নয়?",
+                    options: ["লালাগ্রন্থি", "পিটুইটারি গ্রন্থি", "থাইরয়েড গ্রন্থি", "অ্যাডরিনাল গ্রন্থি"],
+                    answer: 0,
+                    explanation: "লালাগ্রন্থি একটি বহিঃক্ষরা গ্রন্থি, যা থেকে নিঃসৃত লালারস নালীর মাধ্যমে মুখে এসে মেশে। পিটুইটারি, থাইরয়েড এবং অ্যাডরিনাল গ্রন্থি হল অন্তঃক্ষরা গ্রন্থি।"
+                },
+                {
+                    question: "কোনটি মিশ্র প্রকৃতির গ্রন্থি?",
+                    options: ["থাইরয়েড", "পিটুইটারি", "অগ্ন্যাশয়", "অ্যাডরিনাল"],
+                    answer: 2,
+                    explanation: "যে গ্রন্থি অন্তঃক্ষরা ও বহিঃক্ষরা উভয় প্রকার কাজ করে, তাকে মিশ্র গ্রন্থি (Mixed gland) বলে। অগ্ন্যাশয় থেকে হরমোন এবং পাচক রস উভয়ই ক্ষরিত হয়।"
+                },
+                {
+                    question: "সর্বাপেক্ষা ক্ষুদ্র অনাল গ্রন্থি হল-",
+                    options: ["থাইরয়েড", "অ্যাডরিনাল", "পিটুইটারি", "অগ্ন্যাশয়"],
+                    answer: 2,
+                    explanation: "প্রদত্ত বিকল্পগুলির মধ্যে পিটুইটারি গ্রন্থি সবচেয়ে ছোট। তবে, মানবদেহের ক্ষুদ্রতম অন্তঃক্ষরা গ্রন্থি হল পিনিয়াল গ্রন্থি (Pineal Gland)।"
+                },
+                {
+                    question: "TSH (থাইরয়েড স্টিমুলেটিং হরমোন) নিঃসৃত হয়-",
+                    options: ["থাইরয়েড থেকে", "পিটুইটারি থেকে", "অ্যাডরিনাল থেকে", "অগ্ন্যাশয় থেকে"],
+                    answer: 1,
+                    explanation: "TSH বা থাইরোট্রপিন হরমোন পিটুইটারি গ্রন্থির অগ্রভাগ থেকে নিঃসৃত হয় এবং থাইরয়েড গ্রন্থিকে উদ্দীপিত করে।"
+                },
+                {
+                    question: "সোমাটোট্রফিক হরমোন [STH] নির্গত হয় যে গ্রন্থি থেকে তা হল-",
+                    options: ["থাইরয়েড", "প্যারাথাইরয়েড", "অগ্র-পিটুইটারি", "পশ্চাৎ-পিটুইটারি"],
+                    answer: 2,
+                    explanation: "STH (Somatotropic Hormone) বা গ্রোথ হরমোন (GH) পিটুইটারি গ্রন্থির অগ্রভাগ থেকে নির্গত হয় এবং দেহের বৃদ্ধিতে সহায়তা করে।"
+                },
+                {
+                    question: "কোন অন্তঃক্ষরা গ্রন্থি থেকে ACTH নিঃসৃত হয়?",
+                    options: ["অ্যাড্রিনাল গ্রন্থি", "থাইরয়েড গ্রন্থি", "অগ্ন্যাশয়", "পিটুইটারি গ্রন্থি"],
+                    answer: 3,
+                    explanation: "ACTH (Adrenocorticotropic Hormone) পিটুইটারি গ্রন্থির অগ্রভাগ থেকে ক্ষরিত হয় এবং অ্যাড্রিনাল গ্রন্থির কর্টেক্স অঞ্চলকে উদ্দীপিত করে।"
+                },
+                {
+                    question: "পিটুইটারি গ্রন্থির অগ্রভাগ থেকে ক্ষরিত হয়-",
+                    options: ["ACTH", "MSH", "ADH", "অক্সিটোসিন"],
+                    answer: 0,
+                    explanation: "ACTH অগ্র পিটুইটারি থেকে ক্ষরিত হয়। MSH মধ্য পিটুইটারি থেকে এবং ADH ও অক্সিটোসিন পশ্চাৎ পিটুইটারি থেকে নিঃসৃত হয়।"
+                },
+                {
+                    question: "পিটুইটারির পশ্চাৎভাগ থেকে নিঃসৃত হরমোন হল—",
+                    options: ["TSH", "ACTH", "MSH", "ADH"],
+                    answer: 3,
+                    explanation: "ADH (অ্যান্টিডাইইউরেটিক হরমোন) বা ভেসোপ্রেসিন পিটুইটারির পশ্চাৎভাগ থেকে নিঃসৃত হয়।"
+                },
+                {
+                    question: "থাইরক্সিন ক্ষরিত হয়-",
+                    options: ["থাইরয়েড থেকে", "পিটুইটারি থেকে", "অ্যাডরিনাল থেকে", "অগ্ন্যাশয় থেকে"],
+                    answer: 0,
+                    explanation: "থাইরক্সিন হরমোন গলাতে অবস্থিত থাইরয়েড গ্রন্থি থেকে ক্ষরিত হয় এবং দেহের বিপাক ক্রিয়া (BMR) নিয়ন্ত্রণ করে।"
+                },
+                {
+                    question: "কোন্ অন্তঃক্ষরা গ্রন্থির ক্ষরণ পদার্থে আয়োডিন উপস্থিত?",
+                    options: ["অ্যাড্রিনাল", "থাইরয়েড", "অগ্ন্যাশয়", "প্লীহা"],
+                    answer: 1,
+                    explanation: "থাইরয়েড গ্রন্থি থেকে নিঃসৃত থাইরক্সিন হরমোনের অন্যতম প্রধান উপাদান হল আয়োডিন। এর অভাবে গলগণ্ড (Goitre) রোগ দেখা দেয়।"
+                },
+                {
+                    question: "'প্রভু গ্রন্থি' (Master gland) বলা হয়-",
+                    options: ["অগ্ন্যাশয়", "হাইপোথ্যালামাস", "অ্যাড্রিনালিন গ্রন্থি", "পিটুইটারি গ্রন্থি"],
+                    answer: 3,
+                    explanation: "পিটুইটারি গ্রন্থি দেহের অন্যান্য অন্তঃক্ষরা গ্রন্থির কাজ নিয়ন্ত্রণ করে। তাই একে 'প্রভু গ্রন্থি' বলা হয়।"
+                },
+                {
+                    question: "'প্রভুগ্রন্থির প্রভু' (Master of master gland) বলা হয়-",
+                    options: ["অগ্ন্যাশয়", "হাইপোথ্যালামাস", "অ্যাড্রিনালিন গ্রন্থি", "পিটুইটারি গ্রন্থি"],
+                    answer: 1,
+                    explanation: "হাইপোথ্যালামাস 'প্রভু গ্রন্থি' বা পিটুইটারি গ্রন্থির ক্ষরণ নিয়ন্ত্রণ করে। তাই হাইপোথ্যালামাসকে 'প্রভুগ্রন্থির প্রভু' বলা হয়।"
+                },
+                {
+                    question: "গ্লুকাগন নামক হরমোনটি নিম্নলিখিত কোথা থেকে উৎপাদিত হয়?",
+                    options: ["অগ্ন্যাশয় আইলেটস অব ল্যাঙ্গারহ্যান্স", "হাইপোথ্যালামাস", "অ্যাড্রিনালিন গ্রন্থি", "পিটুইটারি গ্রন্থি"],
+                    answer: 0,
+                    explanation: "অগ্ন্যাশয়ের আইলেটস অব ল্যাঙ্গারহ্যান্সের আলফা (α) কোশ থেকে গ্লুকাগন হরমোন নিঃসৃত হয়, যা রক্তে শর্করার পরিমাণ বৃদ্ধি করে।"
+                },
+                {
+                    question: "গ্লুকাগন হরমোন নিঃসৃত হয়-",
+                    options: ["বিটা কোশ থেকে", "আলফা কোশ থেকে", "ডেল্টা কোশ থেকে", "এফ কোশ থেকে"],
+                    answer: 1,
+                    explanation: "আইলেটস অব ল্যাঙ্গারহ্যান্সের আলফা (α) কোশ থেকে গ্লুকাগন এবং বিটা (β) কোশ থেকে ইনসুলিন নিঃসৃত হয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রাণী হরমোন (PYQ) - Class 3</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        p { font-size: 1.1em; margin-bottom: 5px; }
+        strong { color: var(--accent-color); font-weight: 600; }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 15px 0; padding: 10px 20px; font-size: 1.1em; border-radius: 5px; }
+        blockquote strong { color: var(--heading-color-2); }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 25px; padding-left: 10px; }
+        .options-list { list-style-type: upper-alpha; padding-left: 40px; }
+        .options-list li { margin-bottom: 5px; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>প্রাণী হরমোন (Animal Hormones) - PYQ</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div id="digital-clock" class="digital-clock"></div>
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 3</h2>
+        <ol>
+            <li>
+                <p>মানবদেহে উপস্থিত বিভিন্ন অন্তঃক্ষরা গ্রন্থি। অন্তঃক্ষরা গ্রন্থি হল-</p>
+                <ol class="options-list">
+                    <li>লালাগ্রন্থি</li>
+                    <li>যকৃৎ</li>
+                    <li>অশ্রুগ্রন্থি</li>
+                    <li>থাইরয়েড</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) থাইরয়েড।</strong><br><small><i>ব্যাখ্যা: অন্তঃক্ষরা গ্রন্থি (Endocrine gland) হল নালীবিহীন গ্রন্থি যা থেকে নিঃসৃত রস বা হরমোন সরাসরি রক্তে মিশে যায়। থাইরয়েড একটি অন্তঃক্ষরা গ্রন্থি। অন্যদিকে, লালাগ্রন্থি, যকৃৎ এবং অশ্রুগ্রন্থি হল বহিঃক্ষরা (Exocrine) গ্রন্থি।</i></small></blockquote>
+            </li>
+            <li>
+                <p>কোনটি অন্তঃক্ষরা গ্রন্থি নয়?</p>
+                <ol class="options-list">
+                    <li>লালাগ্রন্থি</li>
+                    <li>পিটুইটারি গ্রন্থি</li>
+                    <li>থাইরয়েড গ্রন্থি</li>
+                    <li>অ্যাডরিনাল গ্রন্থি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) লালাগ্রন্থি।</strong><br><small><i>ব্যাখ্যা: লালাগ্রন্থি একটি বহিঃক্ষরা গ্রন্থি, যা থেকে নিঃসৃত লালারস নালীর মাধ্যমে মুখে এসে মেশে। পিটুইটারি, থাইরয়েড এবং অ্যাডরিনাল গ্রন্থি হল অন্তঃক্ষরা গ্রন্থি।</i></small></blockquote>
+            </li>
+            <li>
+                <p>কোনটি মিশ্র প্রকৃতির গ্রন্থি?</p>
+                <ol class="options-list">
+                    <li>থাইরয়েড</li>
+                    <li>পিটুইটারি</li>
+                    <li>অগ্ন্যাশয়</li>
+                    <li>অ্যাডরিনাল</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) অগ্ন্যাশয়।</strong><br><small><i>ব্যাখ্যা: যে গ্রন্থি অন্তঃক্ষরা ও বহিঃক্ষরা উভয় প্রকার কাজ করে, তাকে মিশ্র গ্রন্থি (Mixed gland) বলে। অগ্ন্যাশয় থেকে হরমোন (অন্তঃক্ষরা) এবং পাচক রস (বহিঃক্ষরা) উভয়ই ক্ষরিত হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>সর্বাপেক্ষা ক্ষুদ্র অনাল গ্রন্থি হল-</p>
+                <ol class="options-list">
+                    <li>থাইরয়েড</li>
+                    <li>অ্যাডরিনাল</li>
+                    <li>পিটুইটারি</li>
+                    <li>অগ্ন্যাশয়</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) পিটুইটারি।</strong><br><small><i>ব্যাখ্যা: প্রদত্ত বিকল্পগুলির মধ্যে পিটুইটারি গ্রন্থি সবচেয়ে ছোট। তবে, মানবদেহের ক্ষুদ্রতম অন্তঃক্ষরা গ্রন্থি হল পিনিয়াল গ্রন্থি।</i></small></blockquote>
+            </li>
+             <li>
+                <p>TSH (থাইরয়েড স্টিমুলেটিং হরমোন) নিঃসৃত হয়-</p>
+                <ol class="options-list">
+                    <li>থাইরয়েড থেকে</li>
+                    <li>পিটুইটারি থেকে</li>
+                    <li>অ্যাডরিনাল থেকে</li>
+                    <li>অগ্ন্যাশয় থেকে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) পিটুইটারি থেকে।</strong><br><small><i>ব্যাখ্যা: TSH বা থাইরোট্রপিন হরমোন পিটুইটারি গ্রন্থির অগ্রভাগ থেকে নিঃসৃত হয়ে থাইরয়েড গ্রন্থিকে উদ্দীপিত করে।</i></small></blockquote>
+            </li>
+             <li>
+                <p>সোমাটোট্রফিক হরমোন [STH] নির্গত হয় যে গ্রন্থি থেকে তা হল-</p>
+                <ol class="options-list">
+                    <li>থাইরয়েড</li>
+                    <li>প্যারাথাইরয়েড</li>
+                    <li>অগ্র-পিটুইটারি</li>
+                    <li>পশ্চাৎ-পিটুইটারি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) অগ্র-পিটুইটারি।</strong><br><small><i>ব্যাখ্যা: STH (Somatotropic Hormone) বা গ্রোথ হরমোন (GH) পিটুইটারি গ্রন্থির অগ্রভাগ থেকে নির্গত হয় এবং দেহের বৃদ্ধিতে সহায়তা করে।</i></small></blockquote>
+            </li>
+             <li>
+                <p>কোন অন্তঃক্ষরা গ্রন্থি থেকে ACTH নিঃসৃত হয়?</p>
+                <ol class="options-list">
+                    <li>অ্যাড্রিনাল গ্রন্থি</li>
+                    <li>থাইরয়েড গ্রন্থি</li>
+                    <li>অগ্ন্যাশয়</li>
+                    <li>পিটুইটারি গ্রন্থি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) পিটুইটারি গ্রন্থি।</strong><br><small><i>ব্যাখ্যা: ACTH (Adrenocorticotropic Hormone) পিটুইটারি গ্রন্থির অগ্রভাগ থেকে ক্ষরিত হয়ে অ্যাড্রিনাল গ্রন্থির কর্টেক্স অঞ্চলকে উদ্দীপিত করে।</i></small></blockquote>
+            </li>
+             <li>
+                <p>পিটুইটারি গ্রন্থির অগ্রভাগ থেকে ক্ষরিত হয়-</p>
+                <ol class="options-list">
+                    <li>ACTH</li>
+                    <li>MSH</li>
+                    <li>ADH</li>
+                    <li>অক্সিটোসিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) ACTH।</strong><br><small><i>ব্যাখ্যা: ACTH অগ্র পিটুইটারি থেকে, MSH মধ্য পিটুইটারি থেকে এবং ADH ও অক্সিটোসিন পশ্চাৎ পিটুইটারি থেকে নিঃসৃত হয়।</i></small></blockquote>
+            </li>
+             <li>
+                <p>পিটুইটারির পশ্চাৎভাগ থেকে নিঃসৃত হরমোন হল—</p>
+                <ol class="options-list">
+                    <li>TSH</li>
+                    <li>ACTH</li>
+                    <li>MSH</li>
+                    <li>ADH</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) ADH।</strong><br><small><i>ব্যাখ্যা: ADH (অ্যান্টিডাইইউরেটিক হরমোন) বা ভেসোপ্রেসিন পিটুইটারির পশ্চাৎভাগ থেকে নিঃসৃত হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>থাইরক্সিন ক্ষরিত হয়-</p>
+                <ol class="options-list">
+                    <li>থাইরয়েড থেকে</li>
+                    <li>পিটুইটারি থেকে</li>
+                    <li>অ্যাডরিনাল থেকে</li>
+                    <li>অগ্ন্যাশয় থেকে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) থাইরয়েড থেকে।</strong><br><small><i>ব্যাখ্যা: থাইরক্সিন হরমোন গলাতে অবস্থিত থাইরয়েড গ্রন্থি থেকে ক্ষরিত হয় এবং দেহের বিপাক ক্রিয়া (BMR) নিয়ন্ত্রণ করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>কোন্ অন্তঃক্ষরা গ্রন্থির ক্ষরণ পদার্থে আয়োডিন উপস্থিত?</p>
+                <ol class="options-list">
+                    <li>অ্যাড্রিনাল</li>
+                    <li>থাইরয়েড</li>
+                    <li>অগ্ন্যাশয়</li>
+                    <li>প্লীহা</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) থাইরয়েড।</strong><br><small><i>ব্যাখ্যা: থাইরয়েড গ্রন্থি থেকে নিঃসৃত থাইরক্সিন হরমোনের অন্যতম প্রধান উপাদান হল আয়োডিন।</i></small></blockquote>
+            </li>
+            <li>
+                <p>'প্রভু গ্রন্থি' (Master gland) বলা হয়-</p>
+                <ol class="options-list">
+                    <li>অগ্ন্যাশয়</li>
+                    <li>হাইপোথ্যালামাস</li>
+                    <li>অ্যাড্রিনালিন গ্রন্থি</li>
+                    <li>পিটুইটারি গ্রন্থি</li>
+                </ol>
+                <blockquote><strong>উত্তর: [D] পিটুইটারি গ্রন্থি।</strong><br><small><i>ব্যাখ্যা: পিটুইটারি গ্রন্থি দেহের অন্যান্য অন্তঃক্ষরা গ্রন্থির কাজ নিয়ন্ত্রণ করে বলে একে 'প্রভু গ্রন্থি' বলা হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>'প্রভুগ্রন্থির প্রভু' (Master of master gland) বলা হয়-</p>
+                <ol class="options-list">
+                    <li>অগ্ন্যাশয়</li>
+                    <li>হাইপোথ্যালামাস</li>
+                    <li>অ্যাড্রিনালিন গ্রন্থি</li>
+                    <li>পিটুইটারি গ্রন্থি</li>
+                </ol>
+                <blockquote><strong>উত্তর: [B] হাইপোথ্যালামাস।</strong><br><small><i>ব্যাখ্যা: হাইপোথ্যালামাস 'প্রভু গ্রন্থি' বা পিটুইটারি গ্রন্থির ক্ষরণ নিয়ন্ত্রণ করে, তাই একে 'প্রভুগ্রন্থির প্রভু' বলা হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>গ্লুকাগন নামক হরমোনটি নিম্নলিখিত কোথা থেকে উৎপাদিত হয়?</p>
+                <ol class="options-list">
+                    <li>অগ্ন্যাশয় আইলেটস অব ল্যাঙ্গারহ্যান্স</li>
+                    <li>হাইপোথ্যালামাস</li>
+                    <li>অ্যাড্রিনালিন গ্রন্থি</li>
+                    <li>পিটুইটারি গ্রন্থি</li>
+                </ol>
+                <blockquote><strong>উত্তর: [A] অগ্ন্যাশয় আইলেটস অব ল্যাঙ্গারহ্যান্স।</strong><br><small><i>ব্যাখ্যা: অগ্ন্যাশয়ের আইলেটস অব ল্যাঙ্গারহ্যান্সের আলফা (α) কোশ থেকে গ্লুকাগন হরমোন নিঃসৃত হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>গ্লুকাগন হরমোন নিঃসৃত হয়-</p>
+                <ol class="options-list">
+                    <li>বিটা কোশ থেকে</li>
+                    <li>আলফা কোশ থেকে</li>
+                    <li>ডেল্টা কোশ থেকে</li>
+                    <li>এফ কোশ থেকে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (2) আলফা কোশ থেকে।</strong><br><small><i>ব্যাখ্যা: আইলেটস অব ল্যাঙ্গারহ্যান্সের আলফা (α) কোশ থেকে গ্লুকাগন এবং বিটা (β) কোশ থেকে ইনসুলিন নিঃসৃত হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>নীচের কোনটি থেকে ইনসুলিন নিঃসৃত হয়?</p>
+                <ol class="options-list">
+                    <li>পিটুইটারী</li>
+                    <li>যকৃৎ</li>
+                    <li>অগ্ন্যাশয়</li>
+                    <li>প্যারাথাইরয়েড</li>
+                </ol>
+                <blockquote><strong>উত্তর: [C] অগ্ন্যাশয়।</strong><br><small><i>ব্যাখ্যা: অগ্ন্যাশয়ের আইলেটস অব ল্যাঙ্গারহ্যান্সের বিটা (β) কোশ থেকে ইনসুলিন হরমোন নিঃসৃত হয়।</i></small></blockquote>
+            </li>
+             <li>
+                <p>আইলেটস অব ল্যাঙ্গারহ্যান্স দেখা যায়-</p>
+                <ol class="options-list">
+                    <li>যকৃতে</li>
+                    <li>পিটুইটারিতে</li>
+                    <li>অগ্ন্যাশয়ে</li>
+                    <li>প্লীহায়</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) অগ্ন্যাশয়ে।</strong><br><small><i>ব্যাখ্যা: আইলেটস অব ল্যাঙ্গারহ্যান্স হল অগ্ন্যাশয়ে অবস্থিত অন্তঃক্ষরা কোশপুঞ্জ, যা থেকে হরমোন ক্ষরিত হয়।</i></small></blockquote>
+            </li>
+             <li>
+                <p>অ্যাড্রিনাল গ্রন্থি থাকে—</p>
+                <ol class="options-list">
+                    <li>মস্তিষ্কে</li>
+                    <li>বৃক্কের ওপরে</li>
+                    <li>হৃৎপিণ্ডের ওপরে</li>
+                    <li>অগ্ন্যাশয়ে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) বৃক্কের ওপরে।</strong><br><small><i>ব্যাখ্যা: প্রতিটি বৃক্কের (Kidney) ওপরের দিকে টুপির মতো অ্যাড্রিনাল গ্রন্থি অবস্থিত।</i></small></blockquote>
+            </li>
+             <li>
+                <p>অ্যাড্রিনাল গ্রন্থিটি কার সঙ্গে যুক্ত?</p>
+                <ol class="options-list">
+                    <li>প্লিহা</li>
+                    <li>পাকস্থলী</li>
+                    <li>বৃক্ক</li>
+                    <li>অগ্ন্যাশয়</li>
+                </ol>
+                <blockquote><strong>উত্তর: (3) বৃক্ক।</strong><br><small><i>ব্যাখ্যা: অ্যাড্রিনাল গ্রন্থি বৃক্কের ঠিক উপরে অবস্থান করে এবং এর সাথে যুক্ত থাকে।</i></small></blockquote>
+            </li>
+             <li>
+                <p>কেউ ভয় পেলে কোন হরমোন ক্ষরিত হয়?</p>
+                <ol class="options-list">
+                    <li>পিটুইটারিন</li>
+                    <li>থাইরক্সিন</li>
+                    <li>অ্যাড্রিনালিন</li>
+                    <li>প্যারাথরমোন</li>
+                </ol>
+                <blockquote><strong>উত্তর: [C] অ্যাড্রিনালিন।</strong><br><small><i>ব্যাখ্যা: ভয়, রাগ বা উত্তেজনার সময় অ্যাড্রিনালিন হরমোন ক্ষরিত হয়। এটি দেহকে জরুরিকালীন পরিস্থিতির জন্য প্রস্তুত করে, তাই একে 'আপৎকালীন হরমোন' বলা হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>জরুরিকালীন গ্রন্থি কোনটি?</p>
+                <ol class="options-list">
+                    <li>পিটুইটারি</li>
+                    <li>অ্যাড্রিনাল</li>
+                    <li>শুক্রাশয়</li>
+                    <li>থাইমাস</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) অ্যাড্রিনাল।</strong><br><small><i>ব্যাখ্যা: অ্যাড্রিনাল গ্রন্থি থেকে জরুরিকালীন বা আপৎকালীন হরমোন (অ্যাড্রিনালিন) ক্ষরিত হয়, তাই এই গ্রন্থিকে 'জরুরিকালীন গ্রন্থি' বলা হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>শুক্রাশয়ের থেকে কোন্ হরমোন ক্ষরিত হয়?</p>
+                <ol class="options-list">
+                    <li>টেস্টোস্টেরন</li>
+                    <li>ইস্ট্রোজেন</li>
+                    <li>প্রজেস্টেরন</li>
+                    <li>LH</li>
+                </ol>
+                <blockquote><strong>উত্তর: [A] টেস্টোস্টেরন।</strong><br><small><i>ব্যাখ্যা: শুক্রাশয় (Testis) পুরুষদের প্রধান জনন গ্রন্থি, যা থেকে পুরুষ যৌন হরমোন টেস্টোস্টেরন ক্ষরিত হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>ডিম্বাশয় নিঃসৃত একটি হরমোনের নাম—</p>
+                <ol class="options-list">
+                    <li>ইস্ট্রোজেন</li>
+                    <li>টেস্টোস্টেরন</li>
+                    <li>GH</li>
+                    <li>ACTH</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) ইস্ট্রোজেন।</strong><br><small><i>ব্যাখ্যা: ডিম্বাশয় (Ovary) থেকে স্ত্রী যৌন হরমোন ইস্ট্রোজেন এবং প্রোজেস্টেরন নিঃসৃত হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>ডিম্বাশয় নিঃসৃত হরমোন নয়-</p>
+                <ol class="options-list">
+                    <li>ইস্ট্রোজেন</li>
+                    <li>প্রোজেস্টেরন</li>
+                    <li>টেস্টোস্টেরন</li>
+                    <li>কোনোটিই নয়</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) টেস্টোস্টেরন।</strong><br><small><i>ব্যাখ্যা: টেস্টোস্টেরন হল পুরুষ যৌন হরমোন, যা শুক্রাশয় থেকে ক্ষরিত হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>টেস্টোস্টেরন হরমোন ক্ষরিত হয়—</p>
+                <ol class="options-list">
+                    <li>শুক্রাশয় থেকে</li>
+                    <li>ডিম্বাশয় থেকে</li>
+                    <li>অ্যাড্রনালিন গ্রন্থি থেকে</li>
+                    <li>থাইরয়েড গ্রন্থি থেকে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) শুক্রাশয় থেকে।</strong><br><small><i>ব্যাখ্যা: টেস্টোস্টেরন প্রধানত পুরুষদের শুক্রাশয় থেকে ক্ষরিত হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>ডিম্বাণু নিঃসরণ প্রক্রিয়া উদ্দীপিত হয় কোন হরমোনের দ্বারা?</p>
+                <ol class="options-list">
+                    <li>LH</li>
+                    <li>FSH</li>
+                    <li>ইস্ট্রোজেন</li>
+                    <li>প্রোজেস্টেরন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) LH।</strong><br><small><i>ব্যাখ্যা: LH (লিউটিনাইজিং হরমোন) পিটুইটারি গ্রন্থি থেকে ক্ষরিত হয়ে ডিম্বাণু নিঃসরণে (Ovulation) সাহায্য করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>যে হরমোন ইস্ট্রোজেন ক্ষরণে সাহায্য করে, তা হল-</p>
+                <ol class="options-list">
+                    <li>TSH</li>
+                    <li>MSH</li>
+                    <li>ADH</li>
+                    <li>FSH</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) FSH।</strong><br><small><i>ব্যাখ্যা: FSH (ফলিকল স্টিমুলেটিং হরমোন) ডিম্বাশয়ের ডিম্বথলির বৃদ্ধি ঘটায় এবং ইস্ট্রোজেন হরমোন ক্ষরণে উদ্দীপনা যোগায়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>কুশিং রোগ দেখা যায়—</p>
+                <ol class="options-list">
+                    <li>ইনসুলিনের বেশি ক্ষরণে</li>
+                    <li>STH -এর বেশি ক্ষরণে</li>
+                    <li>অ্যাড্রিনাল হরমোনের বেশি ক্ষরণে</li>
+                    <li>TSH -এর বেশি ক্ষরণের ফলে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) অ্যাড্রিনাল হরমোনের বেশি ক্ষরণে।</strong><br><small><i>ব্যাখ্যা: অ্যাড্রিনাল কর্টেক্স থেকে কর্টিসোল হরমোনের অধিক ক্ষরণের ফলে কুশিং সিনড্রোম (Cushing's Syndrome) রোগ হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>বামনত্ব বা ডোয়ারফিজম (Dwarfism) কোন হরমোনের কম ক্ষরণের ফলে হয়?</p>
+                <ol class="options-list">
+                    <li>TSH</li>
+                    <li>STH</li>
+                    <li>ADH</li>
+                    <li>FSH</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) STH।</strong><br><small><i>ব্যাখ্যা: শৈশবে STH বা গ্রোথ হরমোনের কম ক্ষরণের ফলে দেহের স্বাভাবিক বৃদ্ধি ব্যাহত হয়, যাকে বামনত্ব বলে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>অ্যাক্রোমেগালি হয় কোন হরমোনের বেশি ক্ষরণের ফলে?</p>
+                <ol class="options-list">
+                    <li>ইনসুলিন</li>
+                    <li>STH</li>
+                    <li>অ্যাড্রিনালিন</li>
+                    <li>TSH</li>
+                </ol>
+                <blockquote><strong>উত্তর: (2) STH।</strong><br><small><i>ব্যাখ্যা: প্রাপ্তবয়স্কদের ক্ষেত্রে STH বা গ্রোথ হরমোনের অধিক ক্ষরণের ফলে অ্যাক্রোমেগালি রোগ হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>মিক্সিডিমা রোগ হয় কোন হরমোনের কম ক্ষরণের ফলে?</p>
+                <ol class="options-list">
+                    <li>ইনসুলিন</li>
+                    <li>থাইরক্সিন</li>
+                    <li>অ্যাড্রিনালিন</li>
+                    <li>টেস্টোস্টেরন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) থাইরক্সিন।</strong><br><small><i>ব্যাখ্যা: প্রাপ্তবয়স্কদের ক্ষেত্রে থাইরক্সিন হরমোনের কম ক্ষরণের ফলে মিক্সিডিমা রোগ হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>যে হরমোনের কম ক্ষরণের ফলে ক্রেটিনিজম রোগ হয়, সেটি হল—</p>
+                <ol class="options-list">
+                    <li>থাইরক্সিন</li>
+                    <li>অ্যাড্রিনালিন</li>
+                    <li>ইনসুলিন</li>
+                    <li>টেস্টোস্টেরন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) থাইরক্সিন।</strong><br><small><i>ব্যাখ্যা: শিশুদের ক্ষেত্রে থাইরক্সিন হরমোনের কম ক্ষরণের ফলে ক্রেটিনিজম রোগ হয়, যাতে শারীরিক ও মানসিক বৃদ্ধি ব্যাহত হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>ব্যাঙাচির রূপান্তরে সাহায্য করে-</p>
+                <ol class="options-list">
+                    <li>STH</li>
+                    <li>থাইরক্সিন</li>
+                    <li>ইনসুলিন</li>
+                    <li>অ্যাড্রিনালিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) থাইরক্সিন।</strong><br><small><i>ব্যাখ্যা: থাইরক্সিন হরমোন ব্যাঙাচির রূপান্তরে (Metamorphosis) এবং পূর্ণাঙ্গ ব্যাঙে পরিণত হতে সাহায্য করে।</i></small></blockquote>
+            </li>
+             <li>
+                <p>বেসাল মেটাবলিক রেট (BMR) বৃদ্ধি করা প্রধান কাজ কোন হরমোনের?</p>
+                <ol class="options-list">
+                    <li>থাইরক্সিন</li>
+                    <li>ইনসুলিন</li>
+                    <li>অ্যাড্রিনালিন</li>
+                    <li>গ্লুকাগন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (1) থাইরক্সিন।</strong><br><small><i>ব্যাখ্যা: থাইরক্সিন হরমোন দেহের মৌল বিপাকীয় হার (Basal Metabolic Rate বা BMR) নিয়ন্ত্রণ করে।</i></small></blockquote>
+            </li>
+             <li>
+                <p>ডায়াবেটিস মেলিটাস (মধুমেহ) রোগ হয়—</p>
+                <ol class="options-list">
+                    <li>ইনসুলিনের কম ক্ষরণে</li>
+                    <li>থাইরক্সিনের কম ক্ষরণে</li>
+                    <li>অ্যাড্রিনালিনের কম ক্ষরণে</li>
+                    <li>TSH -এর কম ক্ষরণের ফলে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) ইনসুলিনের কম ক্ষরণে।</strong><br><small><i>ব্যাখ্যা: ইনসুলিন হরমোনের কম ক্ষরণের ফলে রক্তে শর্করার মাত্রা বেড়ে যায়, যাকে ডায়াবেটিস মেলিটাস বা মধুমেহ রোগ বলে।</i></small></blockquote>
+            </li>
+             <li>
+                <p>অগ্ন্যাশয় থেকে ইনসুলিন হরমোনের অপর্যাপ্ত ক্ষরণের কারণে যে রোগ হয় তা হল-</p>
+                <ol class="options-list">
+                    <li>টিউবার কিউলসিস</li>
+                    <li>ডায়াবেটিস মেলিটাস</li>
+                    <li>ব্লাড ক্যান্সার</li>
+                    <li>পিত্তথলিতে পাথর</li>
+                </ol>
+                <blockquote><strong>উত্তর: [B] ডায়াবেটিস মেলিটাস।</strong><br><small><i>ব্যাখ্যা: ইনসুলিনের অপর্যাপ্ত ক্ষরণের ফলে রক্তে গ্লুকোজের মাত্রা নিয়ন্ত্রিত হতে পারে না, ফলে ডায়াবেটিস মেলিটাস হয়।</i></small></blockquote>
+            </li>
+             <li>
+                <p>রক্তে শর্করার মাত্রা বজায় রাখতে বা কমাতে যে হরমোনটি কার্যকরী তা হল-</p>
+                <ol class="options-list">
+                    <li>ইনসুলিন</li>
+                    <li>TSH</li>
+                    <li>কর্টিকোট্রফিন</li>
+                    <li>অ্যাড্রিনালিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: A. ইনসুলিন।</strong><br><small><i>ব্যাখ্যা: ইনসুলিন রক্ত থেকে অতিরিক্ত গ্লুকোজকে কোষে প্রবেশ করতে সাহায্য করে, ফলে রক্তে শর্করার মাত্রা কমে।</i></small></blockquote>
+            </li>
+             <li>
+                <p>অ্যান্টিডায়াবেটিক হরমোন বলা হয়-</p>
+                <ol class="options-list">
+                    <li>থাইরক্সিন</li>
+                    <li>ইনসুলিন</li>
+                    <li>অ্যাড্রিনালিন</li>
+                    <li>গ্লুকাগন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (2) ইনসুলিন।</strong><br><small><i>ব্যাখ্যা: ইনসুলিন ডায়াবেটিস বা মধুমেহ রোগ প্রতিরোধ করে, তাই একে অ্যান্টিডায়াবেটিক হরমোন বলা হয়।</i></small></blockquote>
+            </li>
+             <li>
+                <p>অ্যান্টিকিটোজেনিক হরমোন বলা হয়-</p>
+                <ol class="options-list">
+                    <li>থাইরক্সিন</li>
+                    <li>ইনসুলিন</li>
+                    <li>অ্যাড্রিনালিন</li>
+                    <li>গ্লুকাগন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (2) ইনসুলিন।</strong><br><small><i>ব্যাখ্যা: ইনসুলিন দেহে কিটোন বডি (ketone bodies) উৎপাদনে বাধা দেয়। তাই একে অ্যান্টিকিটোজেনিক হরমোনও বলা হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>বহুমূত্র রোগ (Diabetes Insipidus) কার নিয়ন্ত্রণাধীন?</p>
+                <ol class="options-list">
+                    <li>TSH</li>
+                    <li>ADH</li>
+                    <li>অ্যালডোস্টেরন</li>
+                    <li>ACTH</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) ADH।</strong><br><small><i>ব্যাখ্যা: ADH বা অ্যান্টিডাইইউরেটিক হরমোনের কম ক্ষরণের ফলে বৃক্ক জল পুনঃশোষণ করতে পারে না, ফলে বহুমূত্র বা ডায়াবেটিস ইনসিপিডাস রোগ হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>স্থানীয় হরমোন কোনটি?</p>
+                <ol class="options-list">
+                    <li>থাইরক্সিন</li>
+                    <li>ইনসুলিন</li>
+                    <li>অ্যাড্রিনালিন</li>
+                    <li>গ্যাসট্রিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (4) গ্যাসট্রিন।</strong><br><small><i>ব্যাখ্যা: যে হরমোন উৎসস্থলের কাছাকাছি স্থানেই কাজ করে, তাকে স্থানীয় হরমোন বলে। গ্যাসট্রিন পাকস্থলী থেকে ক্ষরিত হয়ে পাকস্থলীর উপরই কাজ করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>গ্যাসট্রিন হরমোন ক্ষরিত হয়-</p>
+                <ol class="options-list">
+                    <li>যকৃৎ থেকে</li>
+                    <li>অস্ত্র থেকে</li>
+                    <li>পাকস্থলী থেকে</li>
+                    <li>অ্যাড্রিনাল গ্রন্থি থেকে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) পাকস্থলী থেকে।</strong><br><small><i>ব্যাখ্যা: গ্যাসট্রিন পাকস্থলীর মিউকাস স্তর থেকে ক্ষরিত হয় এবং হাইড্রোক্লোরিক অ্যাসিড (HCl) ক্ষরণে উদ্দীপনা যোগায়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>বৃক্ক থেকে নিঃসৃত প্রধান হরমোন-</p>
+                <ol class="options-list">
+                    <li>রেনিন</li>
+                    <li>গ্যাসট্রিন</li>
+                    <li>সিক্রেটিন</li>
+                    <li>ভিলিকাইনিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) রেনিন।</strong><br><small><i>ব্যাখ্যা: বৃক্ক থেকে রেনিন এবং এরিথ্রোপোয়েটিন নামক দুটি গুরুত্বপূর্ণ হরমোন নিঃসৃত হয়। রেনিন রক্তচাপ নিয়ন্ত্রণে সাহায্য করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>হরমোন নামকরণ করেন-</p>
+                <ol class="options-list">
+                    <li>কোগল</li>
+                    <li>বেলিস</li>
+                    <li>স্টারলিং</li>
+                    <li>বেলিস ও স্টারলিং</li>
+                </ol>
+                <blockquote><strong>উত্তর: (4) বেলিস ও স্টারলিং।</strong><br><small><i>ব্যাখ্যা: ১৯০৫ সালে বিজ্ঞানী বেলিস ও স্টারলিং সর্বপ্রথম 'হরমোন' শব্দটি প্রবর্তন করেন।</i></small></blockquote>
+            </li>
+            <li>
+                <p>হরমোনের রাসায়নিক প্রকৃতি হল-</p>
+                <ol class="options-list">
+                    <li>অ্যামাইনো অ্যাসিড জাতীয়</li>
+                    <li>স্টেরয়েড জাতীয়</li>
+                    <li>পেপটাইড জাতীয়</li>
+                    <li>সব কটিই</li>
+                </ol>
+                <blockquote><strong>উত্তর: (4) সব কটিই।</strong><br><small><i>ব্যাখ্যা: হরমোন রাসায়নিকভাবে বিভিন্ন প্রকৃতির হতে পারে, যেমন—প্রোটিন বা পেপটাইড (ইনসুলিন), স্টেরয়েড (টেস্টোস্টেরন) এবং অ্যামাইনো অ্যাসিড ডেরিভেটিভ (থাইরক্সিন)।</i></small></blockquote>
+            </li>
+            <li>
+                <p>পরস্পর বিরোধী হরমোন জোড়া-</p>
+                <ol class="options-list">
+                    <li>ইনসুলিন—গ্লুকাগন</li>
+                    <li>FSH — LH</li>
+                    <li>ইস্ট্রোজেন-প্রোজেস্টেরন</li>
+                    <li>ইনসুলিন-সিক্রেটিন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (1) ইনসুলিন—গ্লুকাগন।</strong><br><small><i>ব্যাখ্যা: ইনসুলিন রক্তে শর্করার মাত্রা কমায়, অন্যদিকে গ্লুকাগন রক্তে শর্করার মাত্রা বাড়ায়। এদের কাজ পরস্পর বিপরীত।</i></small></blockquote>
+            </li>
+            <li>
+                <p>রক্তচাপ বৃদ্ধি করে কোন হরমোন?</p>
+                <ol class="options-list">
+                    <li>থাইরক্সিন</li>
+                    <li>ইনসুলিন</li>
+                    <li>অ্যাড্রিনালিন</li>
+                    <li>গ্লুকাগন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (3) অ্যাড্রিনালিন।</strong><br><small><i>ব্যাখ্যা: অ্যাড্রিনালিন হৃৎস্পন্দন ও রক্তনালীর সংকোচন বাড়িয়ে রক্তচাপ বৃদ্ধি করে।</i></small></blockquote>
+            </li>
+        </ol>
+        <h2>ধন্যবাদ</h2>
+    </div>
+
+    <nav class="navigation">
+        <a href="class2.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button active">3</a>
+        <a href="#" class="nav-button disabled">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            const clockElement = document.getElementById('digital-clock');
+            function updateClock() {
+                if(clockElement) {
+                    const now = new Date();
+                    const options = {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: true,
+                        timeZone: 'Asia/Kolkata'
+                    };
+                    clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+                }
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            const yearSpan = document.getElementById('copyright-year');
+            if(yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+</body>
+</html>

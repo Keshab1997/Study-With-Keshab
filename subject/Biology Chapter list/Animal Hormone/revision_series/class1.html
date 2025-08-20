@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 01 - MCQ Practice (প্রাণী হরমোন)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        /* --- Global Styles & Theming Variables --- */
+        :root {
+            --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60;
+            --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b;
+            --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd;
+            --blockquote-border: #2196f3; --nav-button-bg: #fff;
+            --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1);
+            --correct-bg: #2ecc71; --incorrect-bg: #e74c3c;
+        }
+        [data-theme="forest"] {
+            --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; 
+            --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; 
+            --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60;
+        }
+        [data-theme="ocean"] {
+            --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; 
+            --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; 
+            --blockquote-bg: #e4f1fe; --blockquote-border: #3498db;
+        }
+        [data-theme="sunset"] {
+            --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; 
+            --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; 
+            --blockquote-bg: #fff8e1; --blockquote-border: #f57c00;
+        }
+        .dark-mode {
+            --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; 
+            --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; 
+            --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; 
+            --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; 
+            --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f;
+        }
+
+        /* --- Base Layout & Typography --- */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        
+        /* --- Header, Footer, Navigation --- */
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+
+        /* --- Controls (Theme, Dark Mode, Clock, Set Selector) --- */
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+
+        /* --- MCQ Specific Styles --- */
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question { margin-bottom: 40px; padding: 20px; border-radius: 10px; border: 2px solid transparent; transition: box-shadow 0.3s, border-color 0.3s; }
+        .mcq-question.active-question { border-color: var(--accent-color); box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5); }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        
+        /* --- Utility Styles --- */
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>প্রাণী হরমোন (Animal Hormones)</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন ১-১০)</option>
+                <option value="2">Set 2 (প্রশ্ন ১১-২০)</option>
+                <option value="3">Set 3 (প্রশ্ন ২১-৩০)</option>
+                <option value="4">Set 4 (প্রশ্ন ৩১-৩৮)</option>
+            </select>
+        </div>
+        <div id="digital-clock" class="digital-clock"></div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 01 - বিগত বছরের পরীক্ষার প্রশ্নাবলী</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- AUDIO SETUP ---
+        const correctSound = new Audio('../sounds/correct.mp3');
+        const wrongSound = new Audio('../sounds/wrong.mp3');
+
+        // --- THEME, MODE, CLOCK & SCROLL BUTTON LOGIC ---
+        const themeButtons = document.querySelectorAll('.theme-buttons button');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+        const clockElement = document.getElementById('digital-clock');
+        const yearSpan = document.getElementById('copyright-year');
+        
+        function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+        function applyMode(mode) {
+            if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+            else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+            localStorage.setItem('selected_mode', mode);
+        }
+        function updateClock() {
+            if(clockElement) {
+                const now = new Date();
+                const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' };
+                clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+            }
+        }
+
+        const savedTheme = localStorage.getItem('selected_theme');
+        const savedMode = localStorage.getItem('selected_mode');
+        if (savedTheme) applyTheme(savedTheme);
+        if (savedMode) applyMode(savedMode);
+        
+        themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+        darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+        
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+            scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+            scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+        });
+        scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+        
+        updateClock();
+        setInterval(updateClock, 1000);
+        if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+
+        // --- INTERACTIVE MCQ LOGIC ---
+        const mcqData = [
+            // Set 1: Basics & The Master Glands (Questions 1-10)
+            { q: "কোনটি মিশ্র গ্রন্থি (Mixed Gland) হিসেবে পরিচিত?", o: ["পিটুইটারি", "যকৃৎ", "অগ্ন্যাশয়", "থাইরয়েড"], a: 2, ex: "ব্যাখ্যা: অগ্ন্যাশয় একটি মিশ্র গ্রন্থি কারণ এটি অন্তঃক্ষরা (ইনসুলিন, গ্লুকাগন হরমোন ক্ষরণ) এবং বহিঃক্ষরা (পাচক রস ক্ষরণ) উভয় কাজই করে।" },
+            { q: "নিম্নলিখিত কোনটি অন্তঃক্ষরা গ্রন্থি নয়?", o: ["অ্যাড্রিনাল", "লালাগ্রন্থি", "পিটুইটারি", "থাইরয়েড"], a: 1, ex: "ব্যাখ্যা: লালাগ্রন্থি একটি বহিঃক্ষরা গ্রন্থি কারণ এর ক্ষরিত পদার্থ (লালা) নালীর মাধ্যমে বাইরে আসে। বাকিগুলো অন্তঃক্ষরা বা নালীবিহীন গ্রন্থি।" },
+            { q: "কোন গ্রন্থিকে 'প্রভু গ্রন্থি' বা 'Master Gland' বলা হয়?", o: ["হাইপোথ্যালামাস", "অগ্ন্যাশয়", "পিটুইটারি", "থাইরয়েড"], a: 2, ex: "ব্যাখ্যা: পিটুইটারি গ্রন্থি অন্যান্য অন্তঃক্ষরা গ্রন্থিগুলোর ক্ষরণ নিয়ন্ত্রণ করে, তাই একে 'প্রভু গ্রন্থি' বলা হয়।" },
+            { q: "কোন অংশটিকে 'প্রভুগ্রন্থির প্রভু' বা 'Master of Master Gland' বলা হয়?", o: ["গুরুমস্তিষ্ক", "হাইপোথ্যালামাস", "লঘুমস্তিষ্ক", "থ্যালামাস"], a: 1, ex: "ব্যাখ্যা: হাইপোথ্যালামাস পিটুইটারি গ্রন্থির ক্ষরণ নিয়ন্ত্রণ করে, তাই একে 'প্রভুগ্রন্থির প্রভু' বলা হয়।" },
+            { q: "TSH হরমোনটি কোন গ্রন্থিকে উদ্দীপিত করে?", o: ["অ্যাড্রিনাল", "অগ্ন্যাশয়", "শুক্রাশয়", "থাইরয়েড"], a: 3, ex: "ব্যাখ্যা: TSH (থাইরয়েড স্টিমুলেটিং হরমোন) পিটুইটারি থেকে নিঃসৃত হয়ে থাইরয়েড গ্রন্থিকে থাইরক্সিন ক্ষরণে উদ্দীপিত করে।" },
+            { q: "প্রাপ্তবয়স্কদের ক্ষেত্রে কোন হরমোনের অধিক ক্ষরণে অ্যাক্রোমেগালি (Acromegaly) রোগ হয়?", o: ["থাইরক্সিন", "গ্রোথ হরমোন (GH/STH)", "ইনসুলিন", "অ্যাড্রিনালিন"], a: 1, ex: "ব্যাখ্যা: প্রাপ্তবয়স্কদের ক্ষেত্রে গ্রোথ হরমোনের (GH) অধিক ক্ষরণে হাত, পা ও মুখের চোয়ালের অস্বাভাবিক বৃদ্ধি ঘটে, যাকে অ্যাক্রোমেগালি বলে।" },
+            { q: "কোন হরমোনের অভাবে ডায়াবেটিস ইনসিপিডাস (বহুমূত্র) রোগ হয়?", o: ["ইনসুলিন", "গ্লুকাগন", "ADH", "অ্যালডোস্টেরন"], a: 2, ex: "ব্যাখ্যা: ADH (অ্যান্টিডাইইউরেটিক হরমোন) বৃক্কে জলের পুনঃশোষণ নিয়ন্ত্রণ করে। এর অভাবে অতিরিক্ত মূত্র নির্গত হয়, যা ডায়াবেটিস ইনসিপিডাস নামে পরিচিত।" },
+            { q: "কোন হরমোনটি প্রসবকালে জরায়ুর সংকোচনে সহায়তা করে?", o: ["প্রোজেস্টেরন", "ইস্ট্রোজেন", "রিলাক্সিন", "অক্সিটোসিন"], a: 3, ex: "ব্যাখ্যা: অক্সিটোসিন হরমোন প্রসবের সময় জরায়ুর প্রাচীরের পেশী সংকোচন ঘটিয়ে শিশুকে বাইরের দিকে ঠেলে দিতে সাহায্য করে। তাই একে 'Birth Hormone'ও বলা হয়।" },
+            { q: "রাসায়নিকভাবে হরমোন কী প্রকৃতির হতে পারে?", o: ["প্রোটিনধর্মী", "স্টেরয়েডধর্মী", "অ্যামাইনোধর্মী", "সবকটি সঠিক"], a: 3, ex: "ব্যাখ্যা: হরমোন রাসায়নিকভাবে বিভিন্ন প্রকৃতির হতে পারে, যেমন - প্রোটিন (ইনসুলিন), স্টেরয়েড (যৌন হরমোন) এবং অ্যামাইনো অ্যাসিড ডেরিভেটিভ (থাইরক্সিন)।" },
+            { q: "হরমোনকে 'রাসায়নিক দূত' বা 'Chemical Messenger' বলা হয় কেন?", o: ["এটি দ্রুত কাজ করে", "এটি উৎসে কাজ করে", "এটি রক্ত দ্বারা বাহিত হয়ে দূরবর্তী লক্ষ্য অঙ্গে কাজ করে", "এটি দেহে সঞ্চিত থাকে"], a: 2, ex: "ব্যাখ্যা: হরমোন অন্তঃক্ষরা গ্রন্থি থেকে নিঃসৃত হয়ে রক্তের মাধ্যমে বাহিত হয়ে দূরবর্তী কোনো নির্দিষ্ট অঙ্গ বা কোষের (লক্ষ্য অঙ্গ) কাজ নিয়ন্ত্রণ করে, ঠিক যেমন একজন দূত বার্তা বহন করে নিয়ে যায়।" },
+
+            // Set 2: Thyroid, Parathyroid & Adrenal Glands (Questions 11-20)
+            { q: "মানবদেহের বৃহত্তম অন্তঃক্ষরা গ্রন্থি কোনটি?", o: ["যকৃৎ", "অগ্ন্যাশয়", "পিটুইটারি", "থাইরয়েড"], a: 3, ex: "ব্যাখ্যা: থাইরয়েড হলো মানবদেহের বৃহত্তম অন্তঃক্ষরা গ্রন্থি। মনে রাখবেন, যকৃৎ বৃহত্তম গ্রন্থি কিন্তু এটি একটি মিশ্র গ্রন্থি, অন্তঃক্ষরা নয়।" },
+            { q: "থাইরক্সিন হরমোন তৈরির জন্য কোন খনিজ মৌলটি অপরিহার্য?", o: ["ক্যালসিয়াম", "আয়রন", "আয়োডিন", "সোডিয়াম"], a: 2, ex: "ব্যাখ্যা: থাইরক্সিন হরমোনের অণুর অন্যতম প্রধান উপাদান হলো আয়োডিন। খাদ্যে আয়োডিনের অভাবে থাইরক্সিন উৎপাদন ব্যাহত হয়।" },
+            { q: "খাদ্যে আয়োডিনের অভাবে কোন রোগটি হয়?", o: ["ক্রেটিনিজম", "গলগণ্ড (Goitre)", "মিক্সিডিমা", "ডায়াবেটিস"], a: 1, ex: "ব্যাখ্যা: আয়োডিনের অভাবে থাইরয়েড গ্রন্থি ফুলে ওঠে, যাকে সাধারণ গলগণ্ড বা Goitre বলা হয়।" },
+            { q: "শিশুদের ক্ষেত্রে থাইরক্সিন হরমোনের কম ক্ষরণে কোন রোগ হয়?", o: ["বামনত্ব (Dwarfism)", "মিক্সিডিমা", "ক্রেটিনিজম", "অতিকায়ত্ব (Gigantism)"], a: 2, ex: "ব্যাখ্যা: শৈশবে থাইরক্সিনের কম ক্ষরণে শিশুর শারীরিক ও মানসিক বৃদ্ধি ব্যাহত হয়, এই অবস্থাকে ক্রেটিনিজম বলে।" },
+            { q: "দেহের মৌল বিপাকীয় হার (BMR) নিয়ন্ত্রণ করে কোন হরমোন?", o: ["ইনসুলিন", "অ্যাড্রিনালিন", "থাইরক্সিন", "গ্রোথ হরমোন"], a: 2, ex: "ব্যাখ্যা: থাইরক্সিন হরমোনের প্রধান কাজ হলো দেহের মৌল বিপাকীয় হার বা BMR নিয়ন্ত্রণ করা, যা দেহের শক্তি উৎপাদন ও তাপ নিয়ন্ত্রণে গুরুত্বপূর্ণ।" },
+            { q: "কোন গ্রন্থিকে 'আপৎকালীন গ্রন্থি' বা 'Emergency Gland' বলা হয়?", o: ["পিটুইটারি", "অ্যাড্রিনাল", "থাইরয়েড", "অগ্ন্যাশয়"], a: 1, ex: "ব্যাখ্যা: অ্যাড্রিনাল গ্রন্থি থেকে আপৎকালীন বা জরুরিকালীন হরমোন (অ্যাড্রিনালিন) ক্ষরিত হয়, তাই এই গ্রন্থিকে আপৎকালীন গ্রন্থি বলে।" },
+            { q: "'Fight or Flight' হরমোন নামে পরিচিত কোনটি?", o: ["নর-অ্যাড্রিনালিন", "কর্টিসল", "অ্যালডোস্টেরন", "অ্যাড্রিনালিন"], a: 3, ex: "ব্যাখ্যা: রাগ, ভয় বা উত্তেজনার মতো জরুরিকালীন পরিস্থিতিতে অ্যাড্রিনালিন দেহকে 'যুদ্ধ (fight)' অথবা 'পಲায়ন (flight)'-এর জন্য প্রস্তুত করে। তাই একে 'Fight or Flight' হরমোন বলে।" },
+            { q: "অ্যাড্রিনাল গ্রন্থি কোথায় অবস্থিত?", o: ["মস্তিষ্কের নিচে", "গলার দুপাশে", "বৃক্কের উপরে", "পাকস্থলীর পিছনে"], a: 2, ex: "ব্যাখ্যা: প্রতিটি বৃক্কের (kidney) উপরে টুপির মতো অ্যাড্রিনাল গ্রন্থি অবস্থিত। তাই একে সুপ্রারেনাল গ্রন্থিও বলা হয়।" },
+            { q: "কোন হরমোন রক্তে ক্যালসিয়ামের মাত্রা বৃদ্ধি করে?", o: ["ক্যালসিটোনিন", "থাইরক্সিন", "প্যারাথরমোন", "ইনসুলিন"], a: 2, ex: "ব্যাখ্যা: প্যারাথাইরয়েড গ্রন্থি থেকে নিঃসৃত প্যারাথরমোন অস্থি থেকে ক্যালসিয়ামকে রক্তে মুক্ত করে এবং বৃক্কে ক্যালসিয়ামের পুনঃশোষণ বাড়িয়ে রক্তে ক্যালসিয়ামের মাত্রা বৃদ্ধি করে।" },
+            { q: "বিস্ফারিত চক্ষুসহ গলগণ্ড (Exophthalmic Goitre) রোগটি হয়—", o: ["থাইরক্সিনের কম ক্ষরণে", "থাইরক্সিনের অধিক ক্ষরণে", "ADH-এর অধিক ক্ষরণে", "GH-এর কম ক্ষরণে"], a: 1, ex: "ব্যাখ্যা: থাইরক্সিন হরমোনের অধিক ক্ষরণের ফলে BMR বেড়ে যায়, হৃৎস্পন্দন বৃদ্ধি পায় এবং অক্ষিগোলক বাইরে ঠেলে বেরিয়ে আসে। এই অবস্থাকে বিস্ফারিত চক্ষুসহ গলগণ্ড বা গ্রেভস ডিজিজ বলে।" },
+
+            // Set 3: Pancreas & Blood Sugar Regulation (Questions 21-30)
+            { q: "ইনসুলিন হরমোন অগ্ন্যাশয়ের কোন কোষ থেকে নিঃসৃত হয়?", o: ["আলফা (α) কোষ", "বিটা (β) কোষ", "ডেল্টা (δ) কোষ", "PP কোষ"], a: 1, ex: "ব্যাখ্যা: অগ্ন্যাশয়ের আইলেটস অফ ল্যাঙ্গারহ্যান্সের বিটা (β) কোষ থেকে ইনসুলিন হরমোন নিঃসৃত হয়।" },
+            { q: "রক্তে শর্করার পরিমাণ কমাতে সাহায্য করে কোন হরমোন?", o: ["গ্লুকাগন", "ইনসুলিন", "সোমাটোস্ট্যাটিন", "অ্যাড্রিনালিন"], a: 1, ex: "ব্যাখ্যা: ইনসুলিন রক্ত থেকে অতিরিক্ত গ্লুকোজকে কোষে প্রবেশ করতে এবং যকৃতে গ্লাইকোজেন রূপে সঞ্চিত হতে সাহায্য করে, ফলে রক্তে শর্করার পরিমাণ কমে যায়।" },
+            { q: "কোন হরমোনের কম ক্ষরণে ডায়াবেটিস মেলিটাস (মধুমেহ) রোগ হয়?", o: ["ADH", "থাইরক্সিন", "গ্লুকাগন", "ইনসুলিন"], a: 3, ex: "ব্যাখ্যা: ইনসুলিনের কম ক্ষরণ বা কার্যকারিতা হ্রাসের ফলে রক্তে শর্করার মাত্রা অস্বাভাবিকভাবে বেড়ে যায়, যা ডায়াবেটিস মেলিটাস বা মধুমেহ রোগ নামে পরিচিত।" },
+            { q: "রক্তে শর্করার পরিমাণ বৃদ্ধি করে কোন হরমোন?", o: ["ইনসুলিন", "সোমাটোস্ট্যাটিন", "গ্লুকাগন", "অক্সিটোসিন"], a: 2, ex: "ব্যাখ্যা: গ্লুকাগন যকৃতে সঞ্চিত গ্লাইকোজেনকে ভেঙে গ্লুকোজে পরিণত করে রক্তে ফিরিয়ে দেয়, ফলে রক্তে শর্করার পরিমাণ বৃদ্ধি পায়।" },
+            { q: "গ্লুকাগন হরমোন অগ্ন্যাশয়ের কোন কোষ থেকে নিঃসৃত হয়?", o: ["আলফা (α) কোষ", "বিটা (β) কোষ", "ডেল্টা (δ) কোষ", "এফ কোষ"], a: 0, ex: "ব্যাখ্যা: অগ্ন্যাশয়ের আইলেটস অফ ল্যাঙ্গারহ্যান্সের আলফা (α) কোষ থেকে গ্লুকাগন হরমোন নিঃসৃত হয়।" },
+            { q: "নিম্নলিখিত কোন হরমোন জোড়াটি পরস্পর বিপরীতধর্মী (Antagonistic) কাজ করে?", o: ["ইস্ট্রোজেন-প্রোজেস্টেরন", "FSH-LH", "অ্যাড্রিনালিন-নরঅ্যাড্রিনালিন", "ইনসুলিন-গ্লুকাগন"], a: 3, ex: "ব্যাখ্যা: ইনসুলিন রক্তে শর্করার মাত্রা কমায় এবং গ্লুকাগন বাড়ায়। তাদের কাজ পরস্পর বিপরীত হওয়ায় এরা একটি অ্যান্টাগনিস্টিক জোড়া।" },
+            { q: "ডায়াবেটিস মেলিটাস এবং ডায়াবেটিস ইনসিপিডাস-এর মধ্যে সাধারণ লক্ষণ কোনটি?", o: ["রক্তে উচ্চ শর্করা", "অতিরিক্ত তৃষ্ণা ও মূত্রত্যাগ", "মূত্রে শর্করার উপস্থিতি", "ওজন হ্রাস"], a: 1, ex: "ব্যাখ্যা: দুটি রোগের ক্ষেত্রেই শরীর থেকে প্রচুর পরিমাণে জল মূত্রের মাধ্যমে বেরিয়ে যায়, ফলে রোগীর ঘন ঘন তৃষ্ণা পায়। এটিই তাদের মধ্যে একমাত্র সাধারণ লক্ষণ।" },
+            { q: "কোন হরমোনকে অ্যান্টিডায়াবেটিক হরমোন বলা হয়?", o: ["গ্লুকাগন", "ADH", "ইনসুলিন", "কর্টিসল"], a: 2, ex: "ব্যাখ্যা: ইনসুলিন ডায়াবেটিস মেলিটাস রোগ প্রতিরোধ করে বা নিয়ন্ত্রণ করে, তাই একে অ্যান্টিডায়াবেটিক হরমোন বলা হয়।" },
+            { q: "আইলেটস অফ ল্যাঙ্গারহ্যান্স কোথায় অবস্থিত?", o: ["যকৃতে", "বৃক্কে", "প্লীহায়", "অগ্ন্যাশয়ে"], a: 3, ex: "ব্যাখ্যা: আইলেটস অফ ল্যাঙ্গারহ্যান্স হলো অগ্ন্যাশয়ের মধ্যে ছড়িয়ে থাকা অন্তঃক্ষরা কোষপুঞ্জ।" },
+            { q: "রক্তে গ্লুকোজের মাত্রা স্বাভাবিকের চেয়ে বেড়ে গেলে তাকে কী বলে?", o: ["হাইপোগ্লাইসেমিয়া", "হাইপারগ্লাইসেমিয়া", "গ্লাইকোসুরিয়া", "কিটোসিস"], a: 1, ex: "ব্যাখ্যা: রক্তে শর্করার মাত্রা বেড়ে যাওয়াকে হাইপারগ্লাইসেমিয়া (Hyperglycemia) এবং কমে যাওয়াকে হাইপোগ্লাইসেমিয়া (Hypoglycemia) বলে।" },
+
+            // Set 4: Reproductive & Other Hormones (Questions 31-38)
+            { q: "পুরুষদের প্রধান যৌন হরমোন কোনটি?", o: ["ইস্ট্রোজেন", "প্রোজেস্টেরন", "টেস্টোস্টেরন", "LH"], a: 2, ex: "ব্যাখ্যা: টেস্টোস্টেরন হলো প্রধান অ্যান্ড্রোজেন বা পুরুষ যৌন হরমোন, যা শুক্রাশয় থেকে ক্ষরিত হয় এবং পুরুষদের গৌণ যৌন লক্ষণ প্রকাশে সাহায্য করে।" },
+            { q: "কোন হরমোনটি 'প্রেগনেন্সি হরমোন' নামে পরিচিত কারণ এটি গর্ভাবস্থা বজায় রাখতে সাহায্য করে?", o: ["ইস্ট্রোজেন", "প্রোল্যাকটিন", "অক্সিটোসিন", "প্রোজেস্টেরন"], a: 3, ex: "ব্যাখ্যা: প্রোজেস্টেরন জরায়ুর অন্তঃপ্রাচীরকে ভ্রূণ রোপণের জন্য প্রস্তুত করে এবং গর্ভাবস্থা বজায় রাখতে অপরিহার্য ভূমিকা পালন করে।" },
+            { q: "স্ত্রীদেহে ডিম্বাণু নিঃসরণ বা Ovulation ঘটায় কোন হরমোন?", o: ["FSH", "LH", "ইস্ট্রোজেন", "প্রোজেস্টেরন"], a: 1, ex: "ব্যাখ্যা: পিটুইটারি থেকে নিঃসৃত লিউটিনাইজিং হরমোন (LH) ডিম্বাশয়ের পরিণত গ্রাফিয়ান ফলিকলকে বিদীর্ণ করে ডিম্বাণু নিঃসরণে সাহায্য করে।" },
+            { q: "কোন গ্রন্থি থেকে নিঃসৃত মেলাটোনিন হরমোন দেহের 'জৈবিক ছন্দ' বা 'Biological Clock' নিয়ন্ত্রণ করে?", o: ["পিটুইটারি", "থাইমাস", "পিনিয়াল", "হাইপোথ্যালামাস"], a: 2, ex: "ব্যাখ্যা: মস্তিষ্কে অবস্থিত পিনিয়াল গ্রন্থি থেকে নিঃসৃত মেলাটোনিন হরমোন ঘুম-জাগরণের চক্র এবং অন্যান্য দৈনিক ছন্দ নিয়ন্ত্রণ করে।" },
+            { q: "নিম্নলিখিত কোনটি একটি স্থানীয় হরমোন (Local Hormone)?", o: ["থাইরক্সিন", "ইনসুলিন", "গ্যাসট্রিন", "টেস্টোস্টেরন"], a: 2, ex: "ব্যাখ্যা: গ্যাসট্রিন পাকস্থলী থেকে নিঃসৃত হয়ে পাকস্থলীরই কোষের উপর কাজ করে, অর্থাৎ উৎসস্থলের কাছেই কাজ করে। তাই এটি একটি স্থানীয় হরমোন।" },
+            { q: "লোহিত রক্তকণিকা (RBC) উৎপাদনে সাহায্য করে কোন হরমোন?", o: ["রেনিন", "থাইমোপয়েটিন", "এরিথ্রোপোয়েটিন", "অ্যালডোস্টেরন"], a: 2, ex: "ব্যাখ্যা: এরিথ্রোপোয়েটিন প্রধানত বৃক্ক থেকে নিঃসৃত হয় এবং এটি অস্থিমজ্জাকে লোহিত রক্তকণিকা তৈরিতে উদ্দীপিত করে।" },
+            { q: "বয়ঃসন্ধিকালে T-লিম্ফোসাইটের পরিণতি ও বিভেদনে সাহায্য করে কোন গ্রন্থি?", o: ["থাইরয়েড", "থাইমাস", "পিনিয়াল", "অ্যাড্রিনাল"], a: 1, ex: "বুকগহ্বরে অবস্থিত থাইমাস গ্রন্থি থাইমোসিন হরমোন ক্ষরণ করে যা দেহের রোগ প্রতিরোধ ব্যবস্থার জন্য অপরিহার্য T-লিম্ফোসাইটের বিকাশে সাহায্য করে।" },
+            { q: "নারীদের গৌণ যৌন লক্ষণ প্রকাশের জন্য দায়ী প্রধান হরমোন কোনটি?", o: ["প্রোজেস্টেরন", "প্রোল্যাকটিন", "ইস্ট্রোজেন", "LH"], a: 2, ex: "ব্যাখ্যা: ইস্ট্রোজেন হরমোন নারীদের মধ্যে বয়ঃসন্ধিকালে বিভিন্ন শারীরিক পরিবর্তন, যেমন স্তনগ্রন্থির বিকাশ, মসৃণ ত্বক, এবং নির্দিষ্ট স্থানে মেদ সঞ্চয় ইত্যাদি গৌণ যৌন লক্ষণ প্রকাশে সহায়তা করে।" }
+        ];
+
+        const mcqContainer = document.getElementById('mcq-container');
+        const mcqSetSelector = document.getElementById('mcqSetSelector');
+        const scoreTracker = document.getElementById('score-tracker');
+        
+        let score = 0;
+        let totalQuestionsInSet = 0;
+
+        function generateMCQs(setNumber) {
+            mcqContainer.innerHTML = '';
+            score = 0;
+            
+            const questionsPerSet = 10;
+            const start = (setNumber - 1) * questionsPerSet;
+            const end = Math.min(start + questionsPerSet, mcqData.length);
+            const questionSet = mcqData.slice(start, end);
+
+            totalQuestionsInSet = questionSet.length;
+            updateScoreDisplay();
+
+            questionSet.forEach((item, index) => {
+                const globalIndex = start + index;
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'mcq-question';
+                questionDiv.id = `q-${globalIndex}`;
+                
+                let optionsHTML = item.o.map((option, i) => 
+                    `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                ).join('');
+                
+                questionDiv.innerHTML = `
+                    <h4>প্রশ্ন ${globalIndex + 1}: ${item.q}</h4>
+                    <div class="mcq-options">${optionsHTML}</div>
+                    <div class="mcq-explanation">${item.ex}</div>
+                `;
+                mcqContainer.appendChild(questionDiv);
+            });
+            setupOptionListeners();
+            setupIntersectionObserver();
+        }
+        
+        function updateScoreDisplay() {
+            scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+        }
+
+        function handleOptionClick(e) {
+            const selectedOption = e.target.closest('.mcq-option');
+            if (!selectedOption) return;
+            const questionDiv = selectedOption.closest('.mcq-question');
+            if (questionDiv.classList.contains('answered')) return;
+            questionDiv.classList.add('answered');
+            const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+            const selectedIndex = parseInt(selectedOption.dataset.index);
+            const correctIndex = mcqData[globalIndex].a;
+            if (selectedIndex === correctIndex) {
+                selectedOption.classList.add('correct');
+                correctSound.play().catch(e => console.log("Audio play failed: " + e));
+                score++;
+                updateScoreDisplay();
+            } else {
+                selectedOption.classList.add('incorrect');
+                wrongSound.play().catch(e => console.log("Audio play failed: " + e));
+                questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+            }
+            questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+        }
+
+        function setupOptionListeners() {
+            mcqContainer.addEventListener('click', handleOptionClick);
+        }
+        
+        mcqSetSelector.addEventListener('change', (e) => {
+            generateMCQs(parseInt(e.target.value, 10));
+        });
+
+        document.addEventListener('keydown', (e) => {
+            const activeQuestion = document.querySelector('.mcq-question.active-question');
+            if (!activeQuestion) return;
+            
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const nextQuestion = activeQuestion.nextElementSibling;
+                if (nextQuestion) {
+                    nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            } else if (['1', '2', '3', '4'].includes(e.key) && !activeQuestion.classList.contains('answered')) {
+                e.preventDefault();
+                const optionIndex = parseInt(e.key) - 1;
+                const optionToClick = activeQuestion.querySelector(`.mcq-option[data-index="${optionIndex}"]`);
+                if (optionToClick) {
+                    optionToClick.click();
+                }
+            }
+        });
+
+        function setupIntersectionObserver() {
+            const questions = document.querySelectorAll('.mcq-question');
+            if (questions.length === 0) return;
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const prevActive = document.querySelector('.mcq-question.active-question');
+                        if (prevActive) prevActive.classList.remove('active-question');
+                        entry.target.classList.add('active-question');
+                    }
+                });
+            }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+            questions.forEach(q => observer.observe(q));
+        }
+        
+        generateMCQs(1);
+    });
+    </script>
+</body>
+
+</html>

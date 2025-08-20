@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ২ - প্রাণী হরমোন</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset3.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology প্রাণী হরমোন",
+            setName: "Quiz Set 2",
+            name: "প্রাণী হরমোন - Set 2 (প্রশ্ন ১৬-৩০)",
+            questions: [
+                {
+                    question: "নীচের কোনটি থেকে ইনসুলিন নিঃসৃত হয়?",
+                    options: ["পিটুইটারী", "যকৃৎ", "অগ্ন্যাশয়", "প্যারাথাইরয়েড"],
+                    answer: 2,
+                    explanation: "অগ্ন্যাশয়ের আইলেটস অব ল্যাঙ্গারহ্যান্সের বিটা (β) কোশ থেকে ইনসুলিন হরমোন নিঃসৃত হয়, যা রক্তে শর্করার পরিমাণ কমাতে সাহায্য করে।"
+                },
+                {
+                    question: "আইলেটস অব ল্যাঙ্গারহ্যান্স দেখা যায়-",
+                    options: ["যকৃতে", "পিটুইটারিতে", "অগ্ন্যাশয়ে", "প্লীহায়"],
+                    answer: 2,
+                    explanation: "আইলেটস অব ল্যাঙ্গারহ্যান্স হল অগ্ন্যাশয়ে অবস্থিত অন্তঃক্ষরা কোশপুঞ্জ, যা থেকে বিভিন্ন হরমোন ক্ষরিত হয়।"
+                },
+                {
+                    question: "অ্যাড্রিনাল গ্রন্থি থাকে—",
+                    options: ["মস্তিষ্কে", "বৃক্কের ওপরে", "হৃৎপিণ্ডের ওপরে", "অগ্ন্যাশয়ে"],
+                    answer: 1,
+                    explanation: "প্রতিটি বৃক্কের (Kidney) ওপরের দিকে টুপির মতো অ্যাড্রিনাল গ্রন্থি অবস্থিত। তাই একে 'সুপ্রারেনাল গ্রন্থি'ও বলা হয়।"
+                },
+                {
+                    question: "অ্যাড্রিনাল গ্রন্থিটি কার সঙ্গে যুক্ত?",
+                    options: ["প্লিহা", "পাকস্থলী", "বৃক্ক", "অগ্ন্যাশয়"],
+                    answer: 2,
+                    explanation: "অ্যাড্রিনাল গ্রন্থি বৃক্কের ঠিক উপরে অবস্থান করে এবং এর সাথে যুক্ত থাকে।"
+                },
+                {
+                    question: "কেউ ভয় পেলে কোন হরমোন ক্ষরিত হয়?",
+                    options: ["পিটুইটারিন", "থাইরক্সিন", "অ্যাড্রিনালিন", "প্যারাথরমোন"],
+                    answer: 2,
+                    explanation: "ভয়, রাগ বা উত্তেজনার সময় অ্যাড্রিনালিন হরমোন ক্ষরিত হয়। এটি দেহকে জরুরিকালীন পরিস্থিতির জন্য প্রস্তুত করে, তাই একে 'আপৎকালীন হরমোন' (Emergency hormone) বলা হয়।"
+                },
+                {
+                    question: "জরুরিকালীন গ্রন্থি কোনটি?",
+                    options: ["পিটুইটারি", "অ্যাড্রিনাল", "শুক্রাশয়", "থাইমাস"],
+                    answer: 1,
+                    explanation: "অ্যাড্রিনال গ্রন্থি থেকে জরুরিকালীন হরমোন (অ্যাড্রিনালিন) ক্ষরিত হয়, তাই এই গ্রন্থিকে 'জরুরিকালীন গ্রন্থি' বলা হয়।"
+                },
+                {
+                    question: "শুক্রাশয়ের থেকে কোন্ হরমোন ক্ষরিত হয়?",
+                    options: ["টেস্টোস্টেরন", "ইস্ট্রোজেন", "প্রজেস্টেরন", "LH"],
+                    answer: 0,
+                    explanation: "শুক্রাশয় (Testis) পুরুষদের প্রধান জনন গ্রন্থি, যা থেকে পুরুষ যৌন হরমোন টেস্টোস্টেরন ক্ষরিত হয়।"
+                },
+                {
+                    question: "ডিম্বাশয় নিঃসৃত একটি হরমোনের নাম—",
+                    options: ["ইস্ট্রোজেন", "টেস্টোস্টেরন", "GH", "ACTH"],
+                    answer: 0,
+                    explanation: "ডিম্বাশয় (Ovary) থেকে স্ত্রী যৌন হরমোন ইস্ট্রোজেন এবং প্রোজেস্টেরন নিঃসৃত হয়।"
+                },
+                {
+                    question: "ডিম্বাশয় নিঃসৃত হরমোন নয়-",
+                    options: ["ইস্ট্রোজেন", "প্রোজেস্টেরন", "টেস্টোস্টেরন", "কোনোটিই নয়"],
+                    answer: 2,
+                    explanation: "টেস্টোস্টেরন হল পুরুষ যৌন হরমোন, যা শুক্রাশয় থেকে ক্ষরিত হয়। ইস্ট্রোজেন ও প্রোজেস্টেরন ডিম্বাশয় থেকে নিঃসৃত হয়।"
+                },
+                {
+                    question: "টেস্টোস্টেরন হরমোন ক্ষরিত হয়—",
+                    options: ["শুক্রাশয় থেকে", "ডিম্বাশয় থেকে", "অ্যাড্রনালিন গ্রন্থি থেকে", "থাইরয়েড গ্রন্থি থেকে"],
+                    answer: 0,
+                    explanation: "টেস্টোস্টেরন প্রধানত পুরুষদের শুক্রাশয় থেকে ক্ষরিত হয়।"
+                },
+                {
+                    question: "ডিম্বাণু নিঃসরণ প্রক্রিয়া উদ্দীপিত হয় কোন হরমোনের দ্বারা?",
+                    options: ["LH", "FSH", "ইস্ট্রোজেন", "প্রোজেস্টেরন"],
+                    answer: 0,
+                    explanation: "LH (লিউটিনাইজিং হরমোন) পিটুইটারি গ্রন্থি থেকে ক্ষরিত হয়ে ডিম্বাণু নিঃসরণে (Ovulation) সাহায্য করে।"
+                },
+                {
+                    question: "যে হরমোন ইস্ট্রোজেন ক্ষরণে সাহায্য করে, তা হল-",
+                    options: ["TSH", "MSH", "ADH", "FSH"],
+                    answer: 3,
+                    explanation: "FSH (ফলিকল স্টিমুলেটিং হরমোন) ডিম্বাশয়ের ডিম্বথলিগুলির বৃদ্ধি ঘটায় এবং ইস্ট্রোজেন হরমোন ক্ষরণে উদ্দীপনা যোগায়।"
+                },
+                {
+                    question: "কুশিং রোগ দেখা যায়—",
+                    options: ["ইনসুলিনের বেশি ক্ষরণে", "STH এর বেশি ক্ষরণে", "অ্যাড্রিনাল হরমোনের বেশি ক্ষরণে", "TSH এর বেশি ক্ষরণে"],
+                    answer: 2,
+                    explanation: "অ্যাড্রিনাল কর্টেক্স থেকে কর্টিসোল হরমোনের অধিক ক্ষরণের ফলে কুশিং সিনড্রোম (Cushing's Syndrome) রোগ হয়।"
+                },
+                {
+                    question: "বামনত্ব বা ডোয়ারফিজম (Dwarfism) কোন হরমোনের কম ক্ষরণের ফলে হয়?",
+                    options: ["TSH", "STH", "ADH", "FSH"],
+                    answer: 1,
+                    explanation: "শৈশবে STH বা গ্রোথ হরমোনের কম ক্ষরণের ফলে দেহের স্বাভাবিক বৃদ্ধি ব্যাহত হয়, যাকে বামনত্ব বা ডোয়ারফিজম বলে।"
+                },
+                {
+                    question: "অ্যাক্রোমেগালি হয় কোন হরমোনের বেশি ক্ষরণের ফলে?",
+                    options: ["ইনসুলিন", "STH", "অ্যাডরিনালিন", "TSH"],
+                    answer: 1,
+                    explanation: "প্রাপ্তবয়স্কদের ক্ষেত্রে STH বা গ্রোথ হরমোনের অধিক ক্ষরণের ফলে অ্যাক্রোমেগালি রোগ হয়। এতে চোয়াল, নাক, হাত ও পায়ের পাতার অস্বাভাবিক বৃদ্ধি ঘটে।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>
