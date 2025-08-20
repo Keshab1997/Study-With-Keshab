@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ২ - বল এবং গতি</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset3.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "বল এবং গতি",
+            setName: "Quiz Set 2",
+            name: "বল এবং গতি - Set 2 (প্রশ্ন ১১-২০)",
+            questions: [
+                {
+                    question: "সঠিক উত্তরটি নির্বাচন কর— বিশেষ পরিস্থিতিতে কোন বস্তুর",
+                    options: ["ভর ও ওজন দুই-ই শূন্য হতে পারে", "ভর শূন্য হতে পারে কিন্তু ওজন শূন্য হতে পারে না", "ভর শূন্য হতে পারে না কিন্তু ওজন শূন্য হতে পারে", "ভর বা ওজন কোনোটিই শূন্য হতে পারে না"],
+                    answer: 2,
+                    explanation: "বস্তুর ভর একটি ধ্রুবক রাশি, এটি কখনও শূন্য হতে পারে না। কিন্তু ওজন (W=mg) অভিকর্ষজ ত্বরণ (g) এর উপর নির্ভরশীল। মহাকাশের মতো স্থানে যেখানে g=0, সেখানে বস্তুর ওজন শূন্য হয়।"
+                },
+                {
+                    question: "সমবৃত্তীয় গতিতে ত্বরণের অভিমুখ হয় -",
+                    options: ["গতির অভিমুখে", "পর্যবেক্ষণ বিন্দুতে বৃত্তপথের স্পর্শক বরাবর", "বেগের অভিমুখে", "বেগের লম্ব অভিমুখে"],
+                    answer: 3,
+                    explanation: "সমবৃত্তীয় গতিতে ত্বরণ (অভিকেন্দ্র ত্বরণ) সর্বদা বৃত্তের কেন্দ্রাভিমুখী হয় এবং বেগের অভিমুখ (স্পর্শক বরাবর) এর সাথে লম্বভাবে ক্রিয়া করে।"
+                },
+                {
+                    question: "নিম্নলিখিত রাশিগুলির মধ্যে ভেক্টর রাশিটি হল-",
+                    options: ["তাপ", "কৌণিক ভরবেগ", "সময়", "কাজ"],
+                    answer: 1,
+                    explanation: "কৌণিক ভরবেগের মান এবং দিক উভয়ই আছে, তাই এটি একটি ভেক্টর রাশি। তাপ, সময় এবং কাজ হল স্কেলার রাশি।"
+                },
+                {
+                    question: "একটি সুতায় বাঁধা পাথর বৃত্তাকার পথে ঘুরতে ঘুরতে হঠাৎ ছিঁড়ে গেলে—",
+                    options: ["পাথরটি স্পর্শক বরাবর যাবে", "পাথরটি ব্যাসার্ধ বরাবর বাইরের দিকে যাবে", "পাথরটি ব্যাসার্ধ বরাবর ভেতরের দিকে যাবে", "উপরের কোনোটিই নয়"],
+                    answer: 0,
+                    explanation: "সুতা ছিঁড়ে গেলে অভিকেন্দ্র বলের যোগান বন্ধ হয়ে যায়। গতিজাড্যের কারণে পাথরটি ওই মুহূর্তে তার যে গতিবেগ ছিল (অর্থাৎ বৃত্তপথের স্পর্শক বরাবর) সেই দিকে সরলরেখায় চলে যায়।"
+                },
+                {
+                    question: "সমরেখায় গতিশীল দুটি বস্তুর স্থিতিস্থাপক সংঘর্ষের ফলে—",
+                    options: ["তাদের মধ্যে কোন শক্তির হস্তান্তর হয় না", "তাদের মধ্যে কোন গতিশক্তির হস্তান্তর হয় না", "তাদের মধ্যে কোন ভরবেগ হস্তান্তর হয় না", "তাদের মোট গতিশক্তির পরিবর্তন হয় না"],
+                    answer: 3,
+                    explanation: "স্থিতিস্থাপক সংঘর্ষের প্রধান শর্ত হলো, সংঘর্ষের আগে ও পরে সংস্থার মোট রৈখিক ভরবেগ এবং মোট গতিশক্তি উভয়ই সংরক্ষিত থাকে, অর্থাৎ অপরিবর্তিত থাকে।"
+                },
+                {
+                    question: "'প্রত্যেক ক্রিয়ার সমান ও বিপরীত প্রতিক্রিয়া আছে' সূত্রটি-",
+                    options: ["নিউটনের প্রথম সূত্র", "নিউটনের দ্বিতীয় সূত্র", "নিউটনের তৃতীয় সূত্র", "নিউটনের চতুর্থ সূত্র"],
+                    answer: 2,
+                    explanation: "এটি নিউটনের গতি বিষয়ক তৃতীয় সূত্রের বিবৃতি।"
+                },
+                {
+                    question: "কোন রাশির একক ডাইন-সেকেন্ড?",
+                    options: ["বল", "ভরবেগ", "শক্তি", "ক্ষমতা"],
+                    answer: 1,
+                    explanation: "বলের ঘাত = বল × সময়। CGS পদ্ধতিতে এর একক ডাইন-সেকেন্ড। আবার, বলের ঘাত বস্তুর ভরবেগের পরিবর্তনের সমান। তাই ভরবেগের এককও ডাইন-সেকেন্ড (CGS) বা নিউটন-সেকেন্ড (SI) হতে পারে।"
+                },
+                {
+                    question: "একটি বস্তু অনুভূমিক তলে সমদ্রুতিতে গমন করে। তবে বস্তুটির চলার সময় নীচের কোন্ রাশিটি থাকবে না?",
+                    options: ["বেগ", "ভরবেগ", "গতিশক্তি", "ত্বরণ"],
+                    answer: 3,
+                    explanation: "যদি বস্তুটি সমদ্রুতিতে *সরলরেখায়* চলে, তবে তার বেগ অপরিবর্তিত থাকে এবং ত্বরণ শূন্য হয়। বৃত্তাকার পথে সমদ্রুতিতে চললে ত্বরণ থাকে। প্রশ্নটি সরলরৈখিক গতির ক্ষেত্রে প্রযোজ্য ধরে উত্তর ত্বরণ হবে।"
+                },
+                {
+                    question: "5N বল 0.2 sec ধরে একটি বস্তুকণার ওপর ক্রিয়া করলে, কণাটির ভরবেগের পরিবর্তন হবে-",
+                    options: ["1 kg ms⁻¹", "0.1 kg ms⁻¹", "10 kg ms⁻¹", "প্রদত্ত ডাটা থেকে বলা সম্ভব না"],
+                    answer: 0,
+                    explanation: "নিউটনের দ্বিতীয় সূত্র থেকে আমরা জানি, বলের ঘাত (বল × সময়) বস্তুর ভরবেগের পরিবর্তনের সমান। ভরবেগের পরিবর্তন = F × t = 5N × 0.2s = 1.0 Ns = 1 kg ms⁻¹।"
+                },
+                {
+                    question: "1 নিউটন বল একটি 500 গ্রাম ভরের উপর ক্রিয়া করলে ত্বরণ হবে-",
+                    options: ["2 সেমি/সেকেন্ড²", "5 মি/সেকেন্ড²", ".002 সেমি/সেকেন্ড²", "2 মি/সেকেন্ড²"],
+                    answer: 3,
+                    explanation: "প্রথমে ভরকে SI এককে নিতে হবে: m = 500 g = 0.5 kg। সূত্র F = ma থেকে, a = F/m = 1N / 0.5kg = 2 m/s²।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

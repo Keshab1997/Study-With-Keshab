@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - বল এবং গতি</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "বল এবং গতি",
+            setName: "Quiz Set 1",
+            name: "বল এবং গতি - Set 1 (প্রশ্ন ১-১০)",
+            questions: [
+                {
+                    question: "নিম্নের কে সর্বপ্রথম গতিতে জড়তার ভূমিকা নিয়ে আলোচনা করেন?",
+                    options: ["গ্যালিলিও গ্যালিলি", "আইজাক নিউটন", "আলবার্ট আইনস্টাইন", "নিকোলাস কোপারনিকাস"],
+                    answer: 0,
+                    explanation: "নিউটনের প্রথম সূত্র জাড্যের ধারণা দেয়, কিন্তু গ্যালিলিও প্রথম এই বিষয়ে আলোচনা করেন এবং जड़তার ধারণা দেন।"
+                },
+                {
+                    question: "R ব্যাসার্ধবিশিষ্ট বৃত্তীয় পথে কোনো কণা v (ধ্রুবক) গতিবেগ নিয়ে ঘুরলে এই কণার ত্বরণের মান হবে—",
+                    options: ["শূন্য", "v/r", "v/2r", "v²/r"],
+                    answer: 3,
+                    explanation: "এটি অভিকেন্দ্র ত্বরণের সূত্র। সমবৃত্তীয় গতিতে কণার বেগের মান ধ্রুবক থাকলেও অভিমুখ প্রতিনিয়ত পরিবর্তিত হওয়ায় একটি ত্বরণ সৃষ্টি হয়, যার মান v²/r।"
+                },
+                {
+                    question: "একটি বলকে 40 m/s বেগে উলম্বভাবে উপরের দিকে ছুড়ে দিলে বলটির সর্বোচ্চ উচ্চতায় পৌঁছাতে সময় লাগবে (প্রায়)— (g = 10 m/s²)",
+                    options: ["2s", "3 s", "4s", "5 s"],
+                    answer: 2,
+                    explanation: " সর্বোচ্চ উচ্চতায় অন্তিম বেগ (v) শূন্য হয়। সূত্র: v = u - gt ⇒ 0 = 40 - 10t ⇒ 10t = 40 ⇒ t = 4s."
+                },
+                {
+                    question: "একটি 5N বল 10 kg ভরের বস্তুকে যে ত্বরণে ত্বরিত করে, তা হল-",
+                    options: ["5.0 cm/s²", "0.5 m/s²", "0.5 cm/s²", "5.0 m/s²"],
+                    answer: 1,
+                    explanation: "নিউটনের দ্বিতীয় সূত্র অনুযায়ী, F = ma। সুতরাং, ত্বরণ a = F/m = 5N / 10kg = 0.5 m/s²।"
+                },
+                {
+                    question: "রকেট কোন নীতির উপর কাজ করে?",
+                    options: ["নিউটনের প্রথম সূত্র", "নিউটনের দ্বিতীয় সূত্র", "নিউটনের তৃতীয় সূত্র", "আর্কিমিডিসের সূত্র"],
+                    answer: 2,
+                    explanation: "রকেট নিউটনের তৃতীয় সূত্র (প্রত্যেক ক্রিয়ার সমান ও বিপরীত প্রতিক্রিয়া আছে) এবং রৈখিক ভরবেগের সংরক্ষণ সূত্রের উপর ভিত্তি করে কাজ করে।"
+                },
+                {
+                    question: "বলের সংজ্ঞা কোন সূত্র থেকে জানা যায়?",
+                    options: ["নিউটনের প্রথম সূত্র", "নিউটনের দ্বিতীয় সূত্র", "উভয়ই", "আর্কিমিডিসের সূত্র"],
+                    answer: 2,
+                    explanation: "নিউটনের প্রথম সূত্র থেকে বলের গুণগত সংজ্ঞা (যা বস্তুর অবস্থার পরিবর্তন করে বা করতে চায়) এবং দ্বিতীয় সূত্র থেকে বলের পরিমাণগত সংজ্ঞা (F=ma) পাওয়া যায়। তাই উভয়ই সঠিক।"
+                },
+                {
+                    question: "একটি ভারী বস্তু ও একটি হালকা বস্তুর একই গতিশক্তি আছে। তাহলে-",
+                    options: ["ভারী বস্তুটির অধিক ভরবেগ থাকবে।", "হালকা বস্তুটির অধিক ভরবেগ থাকবে।", "দুটির ভরবেগ সমান হবে।", "দুটির একই কৌণিক ভরবেগ থাকবে।"],
+                    answer: 0,
+                    explanation: "গতিশক্তি (K) এবং ভরবেগের (p) সম্পর্ক হলো K = p²/2m। K ধ্রুবক হলে, p² ∝ m, অর্থাৎ p ∝ √m। যার ভর (m) বেশি, তার ভরবেগ (p) বেশি হবে।"
+                },
+                {
+                    question: "একজন ছাত্রী 10 m/sec সমগতিতে সাইকেল চালিয়ে স্কুলে যাচ্ছিল। স্কুলের গেটের সামনে এসে সে ব্রেক চাপে ও 5 সেকেণ্ডের মধ্যে থেমে যায়। ছাত্রীটি ব্রেকের সাহায্যে কত বল প্রয়োগ করেছিল? (ছাত্রী ও সাইকেলের মোট ভর 50 kg)",
+                    options: ["50 নিউটন", "200 নিউটন", "100 নিউটন", "10 নিউটন"],
+                    answer: 2,
+                    explanation: "প্রাথমিক বেগ (u) = 10 m/s, অন্তিম বেগ (v) = 0 m/s, সময় (t) = 5s। মন্দন (a) = (u-v)/t = (10-0)/5 = 2 m/s²। প্রযুক্ত বল (F) = ma = 50 kg × 2 m/s² = 100 N।"
+                },
+                {
+                    question: "এক ব্যক্তি একটি 10 m বাহু বিশিষ্ট বর্গাকার মাঠের চারদিকে 16 সেকেন্ডে একবার ঘুরে এলে তার গড় দ্রুতি ও মোট সরণ হবে—",
+                    options: ["1.6 m/s, 10m", "2.5 m/s, 40m", "3.2 m/s, 10m", "2.5 m/s, 0m"],
+                    answer: 3,
+                    explanation: "মোট অতিক্রান্ত দূরত্ব = 4 × বাহু = 4 × 10 = 40 m। গড় দ্রুতি = মোট দূরত্ব / সময় = 40m / 16s = 2.5 m/s। যেহেতু ব্যক্তি শুরুর স্থানে ফিরে আসে, তার সরণ শূন্য।"
+                },
+                {
+                    question: "'ঘর্ষণ বল' হলো 'স্পর্শজনিত বল', যেখানে ‘চৌম্বক বল' হল ‘স্পর্শহীন বল'— উক্তিটি",
+                    options: ["সবসময় ঠিক", "0°C উয়তায় সঠিক", "ভুল/মিথ্যা উক্তি", "পারিপার্শ্বিক উয়তার উপর নির্ভর করে ঠিক বা ভুল হয়।"],
+                    answer: 0,
+                    explanation: "ঘর্ষণ বল দুটি তলের সংস্পর্শে এসে ক্রিয়া করে, তাই এটি স্পর্শজনিত বল। চৌম্বক বল কোনো স্পর্শ ছাড়াই দূর থেকে ক্রিয়া করতে পারে, তাই এটি স্পর্শহীন বল। উক্তিটি সর্বদা সঠিক।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

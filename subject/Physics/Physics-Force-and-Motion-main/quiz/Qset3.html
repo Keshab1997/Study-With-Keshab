@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - বল এবং গতি</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="#" class="btn btn-secondary disabled">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "বল এবং গতি",
+            setName: "Quiz Set 3",
+            name: "বল এবং গতি - Set 3 (প্রশ্ন ২১-৩০)",
+            questions: [
+                {
+                    question: "কোন্ উষ্ণতায়, 1 ঘন সেন্টিমিটার আয়তনের বিশুদ্ধ জলের ভরকে 1 গ্রাম বলে?",
+                    options: ["0° C", "100° C", "4°C", "10° C"],
+                    answer: 2,
+                    explanation: "4°C উষ্ণতায় জলের ঘনত্ব সর্বাধিক হয় (1 g/cm³)। তাই এই উষ্ণতায় 1 ঘন সেন্টিমিটার বিশুদ্ধ জলের ভরকে 1 গ্রাম হিসেবে ধরা হয়।"
+                },
+                {
+                    question: "জল জমে বরফ হওয়ার ফলে আয়তন 10% বাড়ে। সেক্ষেত্রে বরফ জলে পরিণত হলে আয়তন কমবে-",
+                    options: ["10%", "9%", "9 ⁹/₁₁ %", "9 ¹/₁₁ %"],
+                    answer: 3,
+                    explanation: "ধরি, জলের আয়তন 100 একক। বরফ হলে আয়তন হবে 110 একক। এবার 110 একক আয়তনের বরফ গলে 100 একক আয়তনের জল হলে আয়তন কমে 10 একক। শতাংশ হ্রাস = (কমে যাওয়া আয়তন / প্রাথমিক আয়তন) × 100 = (10 / 110) × 100 = 100/11 = 9 ¹/₁₁ %।"
+                },
+                {
+                    question: "পৃথিবী পৃষ্ঠে একটি বস্তুর ওজন 10kg-wt হলে পৃথিবীর কেন্দ্রে ওজন হবে-",
+                    options: ["0 kg-wt", "5 kg-wt", "10 kg-wt", "অসীম"],
+                    answer: 0,
+                    explanation: "পৃথিবীর কেন্দ্রে অভিকর্ষজ ত্বরণের (g) মান শূন্য। যেহেতু বস্তুর ওজন (W) = ভর (m) × অভিকর্ষজ ত্বরণ (g), তাই কেন্দ্রে ওজন শূন্য হবে।"
+                },
+                {
+                    question: "কোনও বস্তুকে ভূ-পৃষ্ঠ থেকে যত উপরের দিকে ওঠানো হবে, তার ওজন-",
+                    options: ["বাড়বে", "একই থাকবে", "কমবে", "হ্রাস বৃদ্ধি হবে"],
+                    answer: 2,
+                    explanation: "ভূ-পৃষ্ঠ থেকে উচ্চতা বাড়লে অভিকর্ষজ ত্বরণ (g) এর মান কমে যায়। তাই বস্তুর ওজনও (W=mg) কমতে থাকে।"
+                },
+                {
+                    question: "একটি বস্তুর পৃথিবীপৃষ্ঠে ওজন 9.8 N হলে তার ভর হবে— (g = 9.8 m/s²)",
+                    options: ["9.8 কিগ্রা", "981 গ্রাম", "1 কিগ্রা", "1 গ্রাম"],
+                    answer: 2,
+                    explanation: "আমরা জানি, ওজন (W) = ভর (m) × অভিকর্ষজ ত্বরণ (g)। সুতরাং, m = W/g = 9.8 N / 9.8 m/s² = 1 kg।"
+                },
+                {
+                    question: "পৃথিবীপৃষ্ঠে একটি বস্তুর ওজন 9N। পৃথিবীর 9 গুণ অভিকর্ষজ ত্বরণ সম্পন্ন কোনো গ্রহের পৃষ্ঠে ঐ বস্তুর ওজন কত হবে?",
+                    options: ["ওজন একই থাকবে", "1 N হবে", "81 N হবে", "ওজন 9N কমে যাবে"],
+                    answer: 2,
+                    explanation: "বস্তুর ভর (m) ধ্রুবক। পৃথিবীতে ওজন, W_e = m × g = 9N। নতুন গ্রহে ওজন, W_p = m × (9g) = 9 × (mg) = 9 × 9N = 81N।"
+                },
+                {
+                    question: "পৃথিবীপৃষ্ঠে কোনো বস্তুর ওজন 60N, চাঁদে তার ওজন কত হবে?",
+                    options: ["60 N", "30 N", "10 N", "0 N"],
+                    answer: 2,
+                    explanation: "চাঁদের অভিকর্ষজ ত্বরণ পৃথিবীর অভিকর্ষজ ত্বরণের প্রায় 1/6 গুণ। সুতরাং, চাঁদে বস্তুর ওজন হবে = (পৃথিবীতে ওজন) × (1/6) = 60N × (1/6) = 10N।"
+                },
+                {
+                    question: "কোন যানবাহন বৃত্তাকার পথে ঘুরলে নীচের কোনটি প্রাপ্ত হয়?",
+                    options: ["স্থিতি জাড্য", "অভিকেন্দ্র বল", "মহাকর্ষ বল", "অপকেন্দ্র বল"],
+                    answer: 1,
+                    explanation: "কোনো বস্তু বৃত্তাকার পথে ঘুরলে তার গতির অভিমুখ পরিবর্তনের জন্য একটি বলের প্রয়োজন হয় যা সর্বদা বৃত্তের কেন্দ্রের দিকে ক্রিয়া করে। এই বলটি হলো অভিকেন্দ্র বল।"
+                },
+                {
+                    question: "দুধকে মন্থন করলে ননী দুধ থেকে আলাদা হয়ে যায়। কোন্ কারণে এটি ঘটে?",
+                    options: ["ঘর্ষণ বল", "সংযোগ বল", "মাধ্যাকর্ষণ বল", "অপকেন্দ্র বল"],
+                    answer: 3,
+                    explanation: "দুধ মন্থন করার সময় এটি একটি ঘূর্ণায়মান নির্দেশতন্ত্রে থাকে। এর ফলে একটি কেন্দ্রবিমুখী বা অপকেন্দ্র বলের (Centrifugal force) উদ্ভব হয়, যা হালকা ননীকে বাইরের দিকে ঠেলে দিয়ে আলাদা করে দেয়।"
+                },
+                {
+                    question: "যদি কোনো বালক নির্দিষ্ট বেগে চলমান রেলগাড়িতে বসে সোজা ওপরের দিকে বল ছোড়ে, তাহলে বলটি-",
+                    options: ["তার সামনে এসে পড়বে", "তার পেছনে এসে পড়বে", "তার হাতে এসে পড়বে", "নীচের দিকে ফিরে আসবে না"],
+                    answer: 2,
+                    explanation: "গতিজাড্যের কারণে, ওপরের দিকে ছোড়া বলটিরও রেলগাড়ির সমান অনুভূমিক গতিবেগ থাকে। তাই বলটি ওঠার এবং নামার সময় বালকের সাথে সাথেই এগোতে থাকে এবং অবশেষে তার হাতেই ফিরে আসে।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

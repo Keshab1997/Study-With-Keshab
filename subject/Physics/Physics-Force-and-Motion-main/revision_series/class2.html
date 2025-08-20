@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 02 - MCQ Practice (বল এবং গতি)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        /* --- Global Styles & Theming Variables --- */
+        :root {
+            --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60;
+            --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b;
+            --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd;
+            --blockquote-border: #2196f3; --nav-button-bg: #fff;
+            --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1);
+            --correct-bg: #2ecc71; --incorrect-bg: #e74c3c;
+        }
+        [data-theme="forest"] {
+            --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; 
+            --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; 
+            --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60;
+        }
+        [data-theme="ocean"] {
+            --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; 
+            --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; 
+            --blockquote-bg: #e4f1fe; --blockquote-border: #3498db;
+        }
+        [data-theme="sunset"] {
+            --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; 
+            --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; 
+            --blockquote-bg: #fff8e1; --blockquote-border: #f57c00;
+        }
+        .dark-mode {
+            --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; 
+            --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; 
+            --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; 
+            --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; 
+            --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f;
+        }
+
+        /* --- Base Layout & Typography --- */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        
+        /* --- Header, Footer, Navigation --- */
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+
+        /* --- Controls (Theme, Dark Mode, Clock, Set Selector) --- */
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+
+        /* --- MCQ Specific Styles --- */
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question { margin-bottom: 40px; padding: 20px; border-radius: 10px; border: 2px solid transparent; transition: box-shadow 0.3s, border-color 0.3s; }
+        .mcq-question.active-question { border-color: var(--accent-color); box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5); }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        
+        /* --- Utility Styles --- */
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>বল এবং গতি</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন ১-১০)</option>
+                <option value="2">Set 2 (প্রশ্ন ১১-২০)</option>
+                <option value="3">Set 3 (প্রশ্ন ২১-৩০)</option>
+            </select>
+        </div>
+        <div id="digital-clock" class="digital-clock"></div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 03 - বিগত বছরের পরীক্ষার প্রশ্নাবলী</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="class1.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">PYQ</a>
+        <a href="class2.html" class="nav-button active ">PRACTICE SET</a>
+        <a href="class3.html" class="nav-button disabled">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- AUDIO SETUP ---
+        const correctSound = new Audio('../sounds/correct.mp3');
+        const wrongSound = new Audio('../sounds/wrong.mp3');
+
+        // --- THEME, MODE, CLOCK & SCROLL BUTTON LOGIC ---
+        // (This part is identical to the previous script and remains unchanged)
+        const themeButtons = document.querySelectorAll('.theme-buttons button');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+        const clockElement = document.getElementById('digital-clock');
+        const yearSpan = document.getElementById('copyright-year');
+        
+        function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+        function applyMode(mode) {
+            if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+            else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+            localStorage.setItem('selected_mode', mode);
+        }
+        function updateClock() {
+            if(clockElement) {
+                const now = new Date();
+                const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' };
+                clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+            }
+        }
+        const savedTheme = localStorage.getItem('selected_theme');
+        const savedMode = localStorage.getItem('selected_mode');
+        if (savedTheme) applyTheme(savedTheme);
+        if (savedMode) applyMode(savedMode);
+        themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+        darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+            scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+            scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+        });
+        scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+        updateClock();
+        setInterval(updateClock, 1000);
+        if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+
+        // --- INTERACTIVE MCQ LOGIC (NEW DATA FOR CLASS 3) ---
+        const mcqData = [
+            // Set 1: Questions 1-10
+            { q: "কোনটি একটি শরীরের স্থিরাবস্থা বা সোজা রেখায় সমরূপ গতির অবস্থা পরিবর্তন করতে পারে?", o: ["বল", "ভর", "গতিপ্রত্যয়", "অনিচ্ছা"], a: 0, ex: "নিউটনের প্রথম গতিসূত্র অনুযায়ী, বল হলো সেই বাহ্যিক কারণ যা কোনো বস্তুর স্থিরাবস্থা বা সমবেগের গতিশীল অবস্থার পরিবর্তন ঘটায়।" },
+            { q: "একজন অ্যাথলিটের গতিবেগ বৃদ্ধি কোন ধরনের পথে দৌড়ানোর সময় সর্বাধিক হবে?", o: ["অষ্টভুজ পথে", "ষড়ভুজ পথে", "আয়তক্ষেত্রাকার পথে", "বৃত্তাকার পথে"], a: 3, ex: "বৃত্তাকার পথে দৌড়ানোর সময় কেন্দ্রমুখী বলের প্রয়োজন হয় যা গতিবেগ বৃদ্ধিতে সাহায্য করে এবং বাঁক নেওয়ার সময় গতি বজায় রাখে।" },
+            { q: "গতির দ্বিতীয় সমীকরণ কোন দুটি মাত্রার মধ্যে সম্পর্ক দেখায়?", o: ["গতিবেগ এবং সময়", "অবস্থান এবং গতিবেগ", "অবস্থান এবং সময়", "গতিবেগ এবং ত্বরণ"], a: 2, ex: "গতির দ্বিতীয় সমীকরণ (s = ut + ½at²) বস্তুর অবস্থান বা সরণ (s) এবং সময়ের (t) মধ্যে সম্পর্ক স্থাপন করে।" },
+            { q: "যখন একটি বল দুটি পৃষ্ঠের মধ্যে আপেক্ষিক গতিকে প্রতিরোধ করে, তখন এটি কী বলে?", o: ["প্রতিরোধ", "সংবহন", "ঘর্ষণ", "প্রবাহ"], a: 2, ex: "ঘর্ষণ হলো সেই বল যা দুটি তলের আপেক্ষিক গতিকে বাধা দেয়।" },
+            { q: "একটি শরীরে একটি স্থির বল প্রয়োগ করলে শরীরটি কোনটির সাথে সমরূপভাবে চলতে থাকে?", o: ["গতিপ্রত্যয়", "গতি", "গতিবেগ", "ত্বরণ"], a: 3, ex: "নিউটনের দ্বিতীয় সূত্র (F=ma) অনুযায়ী, স্থির বল (F) প্রয়োগ করলে বস্তুটি সমত্বরণে (a) চলে।" },
+            { q: "নিউটনের দ্বিতীয় গতির আইন কী বলে?", o: ["গতিপ্রত্যয়ের সংরক্ষণের আইন", "অনিচ্ছার আইন", "দুটি সংঘর্ষকারী বস্তুর বলের সম্পর্ক", "ভরবেগের পরিবর্তনের হার প্রযুক্ত বলের সমানুপাতিক"], a: 3, ex: "নিউটনের দ্বিতীয় সূত্র অনুযায়ী, বস্তুর ভরবেগের পরিবর্তনের হার তার ওপর প্রযুক্ত বলের সমানুপাতিক।" },
+            { q: "একটি শরীরের বৃত্তাকার গতির সময় কেন্দ্রের দিকে কার্যকরী বলের নাম কী?", o: ["কেন্দ্রাতিগ বল", "অভিকেন্দ্র বল", "মহাকর্ষ বল", "জাড্য বল"], a: 1, ex: "বৃত্তাকার পথে ঘোরার জন্য যে বল কেন্দ্রের দিকে ক্রিয়া করে তাকে অভিকেন্দ্র বল বা কেন্দ্রমুখী বল (Centripetal force) বলে।" },
+            { q: "গতি দ্বারা একটি শরীর যে শক্তি ধারণ করে, তার নাম কী?", o: ["কাইনেস্থেটিক শক্তি", "বিভব শক্তি", "গতিশক্তি", "স্থিতিশক্তি"], a: 2, ex: "কোনো বস্তু তার গতির জন্য যে কার্য করার সামর্থ্য লাভ করে, তাকে গতিশক্তি (Kinetic Energy) বলে।" },
+            { q: "যদি একটি শরীরের উপর বলটি গতির বিপরীত দিকে প্রয়োগ করা হয়, তাহলে গতিবেগ কী হবে?", o: ["বৃদ্ধি পাবে", "থেমে যাবে", "হ্রাস পাবে", "কোন প্রভাব নেই"], a: 2, ex: "গতির বিপরীতে বল প্রয়োগ করলে মন্দন সৃষ্টি হয়, ফলে বস্তুর গতিবেগ হ্রাস পায়।" },
+            { q: "যদি একটি শরীর একটি পৃষ্ঠের উপর স্লাইড করে, তাহলে গতিকে প্রতিরোধকারী বল কী?", o: ["কেন্দ্রাতিগ বল", "ঘর্ষণ", "অভিকেন্দ্র বল", "জাড্য"], a: 1, ex: "ঘর্ষণ বল সর্বদা দুটি তলের আপেক্ষিক গতিকে বাধা দেয়।" },
+
+            // Set 2: Questions 11-20
+            { q: "একটি ট্রেনের গতি কোন ধরনের গতির উদাহরণ?", o: ["ঘূর্ণায়মান গতি", "স্পিন গতি", "প্রক্ষেপ্য গতি", "রৈখিক গতি"], a: 3, ex: "ট্রেন সরলরেখায় চলে, তাই এর গতি রৈখিক বা চলন গতির (Translational motion) উদাহরণ।" },
+            { q: "একটি কামান থেকে গোলা ছোড়া হলে, গোলার গতি কী ধরনের?", o: ["সোজা রেখায় গতি", "প্রক্ষেপ্য গতি", "হাইপারবোলিক গতি", "অনুভূমিক গতি"], a: 1, ex: "অভিকর্ষের অধীনে নিক্ষিপ্ত বস্তুর গতিকে প্রক্ষেপ্য গতি (Projectile motion) বলে।" },
+            { q: "সাঁতারু যে বলের সাহায্যে জলে ভাসে, তার নাম কী?", o: ["পেশী বল", "চুম্বকীয় বল", "প্লবতা বল", "ঘর্ষণ বল"], a: 2, ex: "কোনো বস্তুকে তরলে নিমজ্জিত করলে তরল ঊর্ধ্বমুখে যে বল প্রয়োগ করে, তাকে প্লবতা বল (Buoyant force) বলে।" },
+            { q: "চাপ হলো বলের পরিমাণ এবং এটি যে ক্ষেত্রফলের উপর কাজ করে তার অনুপাত - এটি কোন সূত্র?", o: ["হুকের সূত্র", "নিউটনের সূত্র", "পাস্কালের সূত্র", "চাপের সংজ্ঞা"], a: 3, ex: "এটি চাপের মূল সংজ্ঞা। পাস্কালের সূত্র আবদ্ধ তরলের উপর চাপের সঞ্চালন নিয়ে আলোচনা করে।" },
+            { q: "পৃথিবীর চারিদিকে 40,000 কিমি ব্যাসার্ধের একটি কক্ষপথে উপগ্রহ চলার সময় মহাকর্ষ বল দ্বারা কৃত কার্য কত?", o: ["8,000 J", "4,00,000 J", "0 J", "4,000 J"], a: 2, ex: "বৃত্তাকার পথে ঘোরার সময় মহাকর্ষ বল এবং সরণের অভিমুখ পরস্পর লম্ব (90°) হওয়ায় কৃত কার্যের পরিমাণ শূন্য হয় (W = Fd cos(90°) = 0)।" },
+            { q: "একজন স্প্রিন্টার ফিনিশিং লাইন পার করার পরেও কেন দৌড়াতে থাকে?", o: ["তিনি নিশ্চিত করতে চান যে তিনি লাইন পার করেছেন", "স্থিতিজাড্য তাকে থামাতে সময় নেয়", "গতিজাড্য তাকে চলতে সাহায্য করে", "তার জুতো এবং মাটির মধ্যে ঘর্ষণ তাকে থামতে দেয় না"], a: 2, ex: "গতিজাড্যের কারণে দৌড়বিদের শরীর তার গতি বজায় রাখতে চায়, তাই হঠাৎ করে থামা সম্ভব হয় না।" },
+            { q: "কার্য শূন্য হবে যদি বস্তুর সরণ কী হয়?", o: ["ঋণাত্মক", "ধনাত্মক", "নিরপেক্ষ", "শূন্য"], a: 3, ex: "যেহেতু কার্য = বল × সরণ, তাই সরণ শূন্য হলে কৃত কার্যও শূন্য হবে।" },
+            { q: "সরণের হারকে কী বলে?", o: ["ত্বরণ", "গতি", "দূরত্ব", "বেগ"], a: 3, ex: "সময়ের সাপেক্ষে সরণের হারকে বেগ (Velocity) বলা হয়।" },
+            { q: "যখন একটি স্থির বাস চলতে শুরু করে, তখন যাত্রীরা পিছনে হেলে যায়। এই পরিস্থিতি ব্যাখ্যা করে কোন আইন?", o: ["নিউটনের দ্বিতীয় গতি সূত্র", "ভরবেগের সংরক্ষণ সূত্র", "নিউটনের প্রথম গতি সূত্র", "নিউটনের তৃতীয় গতি সূত্র"], a: 2, ex: "এটি স্থিতিজাড্যের উদাহরণ, যা নিউটনের প্রথম গতি সূত্রের মাধ্যমে ব্যাখ্যা করা হয়।" },
+            { q: "একজন হাই জাম্পার লাফানোর আগে কিছুক্ষণ দৌড়ায় যাতে তার _____ তাকে দীর্ঘ লাফাতে সাহায্য করে।", o: ["স্থিতিজাড্য", "আকৃতি", "গতিজাড্য", "দিক"], a: 2, ex: "দৌড়ানোর ফলে অর্জিত গতিজাড্য তাকে লাফানোর সময় অতিরিক্ত উচ্চতা ও দূরত্ব পেতে সাহায্য করে।" },
+
+            // Set 3: Questions 21-30
+            { q: "যখন একটি নৌকা থেকে একজন নাবিক লাফিয়ে তীরে নামে, তখন নৌকাটি পিছনে চলে যায়। এটি নিউটনের কোন আইন প্রদর্শন করে?", o: ["দ্বিতীয় গতি সূত্র", "প্রথম এবং দ্বিতীয় গতি সূত্র", "তৃতীয় গতি সূত্র", "প্রথম গতি সূত্র"], a: 2, ex: "নাবিকের লাফ (ক্রিয়া) এবং নৌকার পিছনে যাওয়া (প্রতিক্রিয়া) নিউটনের তৃতীয় গতি সূত্রের একটি আদর্শ উদাহরণ।" },
+            { q: "বেগ পরিবর্তনের হারকে কী বলে?", o: ["ভরবেগ", "গতি", "ত্বরণ", "বল"], a: 2, ex: "সময়ের সাপেক্ষে বেগ পরিবর্তনের হারকে ত্বরণ (Acceleration) বলে।" },
+            { q: "অপরিবর্তিত বস্তুগুলির স্থির থাকার বা একই গতিতে চলতে থাকার প্রবণতাকে কী বলে?", o: ["বেগ", "বল", "ভরবেগ", "জাড্য"], a: 3, ex: "বস্তুর স্থিতি বা গতি অবস্থা বজায় রাখার এই প্রবণতাকে জাড্য (Inertia) বলে।" },
+            { q: "একটি চলমান বস্তুর গতিশক্তি (KE) কিসের উপর নির্ভর করে?", o: ["ভর এবং অবস্থান", "ওজন এবং অবস্থান", "ভর এবং ত্বরণ", "ভর এবং বেগ"], a: 3, ex: "গতিশক্তির সূত্র হলো KE = ½mv²। সুতরাং এটি বস্তুর ভর (m) এবং বেগের (v) উপর নির্ভর করে।" },
+            { q: "গতির দ্বিতীয় আইনটি কী বলে?", o: ["প্রতিটি বস্তু একটি নেট বল প্রয়োগ হলে সমরূপ গতিতে চলতে থাকবে", "একটি বস্তুর ভরবেগের পরিবর্তনের হার প্রযুক্ত বলের সমানুপাতিক", "প্রতিটি বস্তু স্থির থাকবে বা সমরূপ গতিতে চলতে থাকবে", "একটি শরীরের গতিবেগের হার বলের সাথে পরিবর্তিত হবে"], a: 1, ex: "নিউটনের দ্বিতীয় সূত্র বলে যে কোনো বস্তুর ভরবেগের পরিবর্তনের হার বস্তুর ওপর প্রযুক্ত কার্যকর বলের সমানুপাতিক।" },
+            { q: "ত্বরণ সর্বদা কোন দিকে কার্যকর হয়?", o: ["প্রযুক্ত মোট বলের দিকে", "বেগের দিকে", "সরণের দিকে", "কোনটিই নয়"], a: 0, ex: "নিউটনের দ্বিতীয় সূত্র (F=ma) অনুযায়ী, ত্বরণের (a) দিক সর্বদা বস্তুর ওপর প্রযুক্ত মোট বা লব্ধি বলের (F) দিকে হয়।" },
+            { q: "একটি বস্তু প্রাথমিকভাবে 10 m/s বেগে চলছিল। এটি 2 m/s² ত্বরণে 5 সেকেন্ড চলে। এই সময়ে বস্তুটির সরণ কত হবে?", o: ["25 মি", "37.5 মি", "50 মি", "75 মি"], a: 3, ex: "সমাধান: s = ut + ½at² = (10 × 5) + ½ × 2 × (5)² = 50 + 25 = 75 মি।" },
+            { q: "একটি বস্তু প্রাথমিকভাবে 15 m/s বেগে চলছিল। এটি 4 m/s² ত্বরণে 6 সেকেন্ড চলে। এই সময়ে বস্তুটির সরণ কত হবে?", o: ["18 মি", "162 মি", "81 মি", "36 মি"], a: 1, ex: "সমাধান: s = ut + ½at² = (15 × 6) + ½ × 4 × (6)² = 90 + 72 = 162 মি।" },
+            { q: "পৃথিবীর মুক্তিবেগ (Escape Velocity) কত?", o: ["21.7 কিমি/স", "10.35 কিমি/স", "11.2 কিমি/স", "5.5 কিমি/স"], a: 2, ex: "পৃথিবীপৃষ্ঠ থেকে কোনো বস্তুকে সর্বনিম্ন যে বেগে ঊর্ধ্বে নিক্ষেপ করলে তা আর পৃথিবীতে ফিরে আসে না, তাকে মুক্তিবেগ বলে। এর মান প্রায় 11.2 কিমি/সেকেন্ড।" },
+            { q: "যখন মহাকর্ষ এবং বায়ুর বাধা সমান হয়, তখন একটি পতনশীল বস্তু যে স্থির বেগ অর্জন করে, তাকে কী বলে?", o: ["স্থির বেগ", "প্রান্তীয় বেগ", "সংকট বেগ", "সান্দ্র বল"], a: 1, ex: "এই স্থির বেগকে প্রান্তীয় বেগ বা টার্মিনাল ভেলোসিটি (Terminal Velocity) বলা হয়।" }
+        ];
+
+        const mcqContainer = document.getElementById('mcq-container');
+        const mcqSetSelector = document.getElementById('mcqSetSelector');
+        const scoreTracker = document.getElementById('score-tracker');
+        
+        let score = 0;
+        let totalQuestionsInSet = 0;
+
+        function generateMCQs(setNumber) {
+            mcqContainer.innerHTML = '';
+            score = 0;
+            
+            const questionsPerSet = 10;
+            const start = (setNumber - 1) * questionsPerSet;
+            const end = Math.min(start + questionsPerSet, mcqData.length);
+            const questionSet = mcqData.slice(start, end);
+
+            totalQuestionsInSet = questionSet.length;
+            updateScoreDisplay();
+
+            questionSet.forEach((item, index) => {
+                const globalIndex = start + index;
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'mcq-question';
+                questionDiv.id = `q-${globalIndex}`;
+                
+                let optionsHTML = item.o.map((option, i) => 
+                    `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                ).join('');
+                
+                questionDiv.innerHTML = `
+                    <h4>প্রশ্ন ${globalIndex + 1}: ${item.q}</h4>
+                    <div class="mcq-options">${optionsHTML}</div>
+                    <div class="mcq-explanation"><strong>ব্যাখ্যা:</strong> ${item.ex}</div>
+                `;
+                mcqContainer.appendChild(questionDiv);
+            });
+            setupOptionListeners();
+            setupIntersectionObserver();
+        }
+        
+        function updateScoreDisplay() {
+            scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+        }
+
+        function handleOptionClick(e) {
+            const selectedOption = e.target.closest('.mcq-option');
+            if (!selectedOption) return;
+            const questionDiv = selectedOption.closest('.mcq-question');
+            if (questionDiv.classList.contains('answered')) return;
+            questionDiv.classList.add('answered');
+            const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+            const selectedIndex = parseInt(selectedOption.dataset.index);
+            const correctIndex = mcqData[globalIndex].a;
+            if (selectedIndex === correctIndex) {
+                selectedOption.classList.add('correct');
+                correctSound.play().catch(e => console.log("Audio play failed: " + e));
+                score++;
+                updateScoreDisplay();
+            } else {
+                selectedOption.classList.add('incorrect');
+                wrongSound.play().catch(e => console.log("Audio play failed: " + e));
+                questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+            }
+            questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+        }
+
+        function setupOptionListeners() {
+            mcqContainer.addEventListener('click', handleOptionClick);
+        }
+        
+        mcqSetSelector.addEventListener('change', (e) => {
+            generateMCQs(parseInt(e.target.value, 10));
+        });
+
+        document.addEventListener('keydown', (e) => {
+            const activeQuestion = document.querySelector('.mcq-question.active-question');
+            if (!activeQuestion) return;
+            
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const nextQuestion = activeQuestion.nextElementSibling;
+                if (nextQuestion) {
+                    nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            } else if (['1', '2', '3', '4'].includes(e.key) && !activeQuestion.classList.contains('answered')) {
+                e.preventDefault();
+                const optionIndex = parseInt(e.key) - 1;
+                const optionToClick = activeQuestion.querySelector(`.mcq-option[data-index="${optionIndex}"]`);
+                if (optionToClick) {
+                    optionToClick.click();
+                }
+            }
+        });
+
+        function setupIntersectionObserver() {
+            const questions = document.querySelectorAll('.mcq-question');
+            if (questions.length === 0) return;
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const prevActive = document.querySelector('.mcq-question.active-question');
+                        if (prevActive) prevActive.classList.remove('active-question');
+                        entry.target.classList.add('active-question');
+                    }
+                });
+            }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+            questions.forEach(q => observer.observe(q));
+        }
+        
+        generateMCQs(1);
+    });
+    </script>
+</body>
+</html>

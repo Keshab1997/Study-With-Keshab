@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৪ - একক ও পরিমাপ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset3.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="#" class="btn btn-secondary disabled">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+    chapterName: "একক ও পরিমাপ",  // <-- ঠিক করা হয়েছে
+    setName: "Quiz Set 4",       // <-- ঠিক করা হয়েছে
+    name: "একক ও পরিমাপ - Set 4 (প্রশ্ন ৩১-৪০)", // <-- ঐচ্ছিক, ঠিক করা ভালো
+            
+            questions: [
+                {
+                    question: "কাজ পরিমাপ করা হয় বল এবং বস্তুর ______ এর গুণফল দ্বারা, যা বলের দিকে সরে যায়।",
+                    options: ["গতি", "সরণ", "বেগ", "ত্বরণ"],
+                    answer: 1,
+                    explanation: "পদার্থবিজ্ঞানে, কাজ (Work) হলো বল (Force) এবং বলের দিকে বস্তুর সরণের (Displacement) গুণফল। W = F × d।"
+                },
+                {
+                    question: "[ML⁻¹T⁻²] কোন রাশির মাত্রিক সূত্র?",
+                    options: ["বল", "ঘর্ষণ সহগ", "চাপ বা পীড়ন", "শক্তি"],
+                    answer: 2,
+                    explanation: "চাপ = বল/ক্ষেত্রফল = [MLT⁻²]/[L²] = [ML⁻¹T⁻²]। পীড়নের মাত্রাও একই।"
+                },
+                {
+                    question: "সান্দ্রতা (Viscosity) এর মাত্রিক সূত্র কি?",
+                    options: ["[MLT⁻¹]", "[M⁻¹L²T⁻²]", "[ML⁻¹T⁻¹]", "কোনটিই নয়"],
+                    answer: 2,
+                    explanation: "সান্দ্রতার (Viscosity) মাত্রিক সূত্র হলো [ML⁻¹T⁻¹]।"
+                },
+                {
+                    question: "দৈর্ঘ্যের এই এককগুলিকে ঊর্ধ্বক্রমে সাজান: অ্যাংস্ট্রম, মাইক্রন, ন্যানোমিটার।",
+                    options: ["অ্যাংস্ট্রম, মাইক্রন, ন্যানোমিটার", "ন্যানোমিটার, অ্যাংস্ট্রম, মাইক্রন", "অ্যাংস্ট্রম, ন্যানোমিটার, মাইক্রন", "মাইক্রন, ন্যানোমিটার, অ্যাংস্ট্রম"],
+                    answer: 2,
+                    explanation: "সঠিক ক্রম: অ্যাংস্ট্রম (10⁻¹⁰m) < ন্যানোমিটার (10⁻⁹m) < মাইক্রন (10⁻⁶m)।"
+                },
+                {
+                    question: "কাপল (Couple) এর মাত্রিক সূত্র কি?",
+                    options: ["[ML²T⁻²]", "[MLT⁻¹]", "[ML⁻¹T⁻¹]", "[MLT⁻²]"],
+                    answer: 0,
+                    explanation: "কাপল হলো এক প্রকার টর্ক, এবং টর্কের মাত্রা কার্যের মাত্রার সমান, যা [ML²T⁻²]।"
+                },
+                {
+                    question: "নিম্নলিখিত রাশিগুলির (দূরত্ব, শক্তি, শব্দের তীব্রতা, ফ্রিকোয়েন্সি) সাথে তাদের এককের (হার্জ, আলোকবর্ষ, জুল, ডেসিবেল) সঠিক ক্রম কোনটি?",
+                    options: ["আলোকবর্ষ, জুল, ডেসিবেল, হার্জ", "হার্জ, আলোকবর্ষ, জুল, ডেসিবেল", "জুল, ডেসিবেল, হার্জ, আলোকবর্ষ", "ডেসিবেল, হার্জ, আলোকবর্ষ, জুল"],
+                    answer: 0,
+                    explanation: "সঠিক মিল: দূরত্ব-আলোকবর্ষ, শক্তি-জুল, শব্দের তীব্রতা-ডেসিবেল, ফ্রিকোয়েন্সি-হার্জ।"
+                },
+                {
+                    question: "নিম্নলিখিত রাশিগুলির (তাপমাত্রা, ক্ষমতা, চাপ, বল) সাথে তাদের এককের (কেলভিন, ওয়াট, প্যাসকেল, নিউটন) সঠিক ক্রম কোনটি?",
+                    options: ["ওয়াট, কেলভিন, প্যাসকেল, নিউটন", "কেলভিন, ওয়াট, নিউটন, প্যাসকেল", "কেলভিন, ওয়াট, প্যাসকেল, নিউটন", "নিউটন, প্যাসকেল, ওয়াট, কেলভিন"],
+                    answer: 2,
+                    explanation: "সঠিক মিল: তাপমাত্রা-কেলভিন, ক্ষমতা-ওয়াট, চাপ-প্যাসকেল, বল-নিউটন।"
+                },
+                {
+                    question: "নিম্নলিখিত রাশিগুলির (ত্বরণ, বিদ্যুৎ প্রবাহ, কাজ, ইমপালস) সাথে তাদের এককের (জুল, নিউটন-সেকেন্ড, অ্যাম্পিয়ার, মিটার/সেকেন্ড²) সঠিক ক্রম কোনটি?",
+                    options: ["মিটার/সেকেন্ড², অ্যাম্পিয়ার, জুল, নিউটন-সেকেন্ড", "অ্যাম্পিয়ার, মিটার/সেকেন্ড², জুল, নিউটন-সেকেন্ড", "জুল, নিউটন-সেকেন্ড, অ্যাম্পিয়ার, মিটার/সেকেন্ড²", "নিউটন-সেকেন্ড, জুল, অ্যাম্পিয়ার, মিটার/সেকেন্ড²"],
+                    answer: 0,
+                    explanation: "সঠিক মিল: ত্বরণ - মিটার/সেকেন্ড², বিদ্যুৎ প্রবাহ - অ্যাম্পিয়ার, কাজ - জুল, ইমপালস - নিউটন-সেকেন্ড।"
+                },
+                {
+                    question: "তাপ পরিবাহিতা (Thermal Conductivity) এর মাত্রিক সূত্র কি?",
+                    options: ["[ML²T⁻³θ⁻¹]", "[ML²T⁻²θ⁻⁴]", "[ML²T⁻²θ⁻¹]", "[MLT⁻³θ⁻¹]"],
+                    answer: 3,
+                    explanation: "তাপ পরিবাহিতার মাত্রিক সূত্র হলো [MLT⁻³θ⁻¹], যেখানে θ হলো তাপমাত্রার মাত্রা।"
+                },
+                {
+                    question: "নীচের কোনটি মাত্রাহীন রাশি হতে পারে?",
+                    options: ["আপেক্ষিক গুরুত্ব", "ভর", "ত্বরণ", "বল"],
+                    answer: 0,
+                    explanation: "আপেক্ষিক গুরুত্ব দুটি একই জাতীয় রাশির (ঘনত্ব) অনুপাত হওয়ায় এটি একটি মাত্রাহীন রাশি।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>
