@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 08 - একক পদ্ধতি ও পরিমাপ (সারাংশ)</title>
+    
+    <!-- গুগল ফন্ট লিঙ্ক -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- === সমস্ত CSS কোড এখানে যোগ করা হয়েছে === -->
+    <style>
+        /* CSS ভেরিয়েবলস (দিন ও রাত মোডের জন্য) */
+        :root {
+            --bg-color: #f4f7f9; --card-bg: #ffffff; --text-color: #333;
+            --heading-color: #0d47a1; --sub-heading-color: #00796b; --strong-color: #c2185b;
+            --border-color: #e0e0e0; --hr-color: #e0e0e0; --nav-button-bg: #fff;
+            --nav-button-text: #333; --nav-button-border: #ccc;
+            --summary-bg: #e3f2fd; --summary-border: #2196f3;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212; --card-bg: #1e1e1e; --text-color: #e0e0e0;
+            --heading-color: #90caf9; --sub-heading-color: #4db6ac; --strong-color: #f48fb1;
+            --border-color: #424242; --hr-color: #424242; --nav-button-bg: #333;
+            --nav-button-text: #e0e0e0; --nav-button-border: #555;
+            --summary-bg: #263238; --summary-border: #90caf9;
+        }
+
+        /* বেসিক রিসেট এবং ফন্ট */
+        body {
+            font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color);
+            color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* কন্টেইনার স্টাইল */
+        .container {
+            max-width: 850px; margin: 20px auto; background-color: var(--card-bg);
+            padding: 25px 35px; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color); transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        /* হেডার ও শিরোনাম */
+        .page-header { position: relative; text-align: center; margin-bottom: 30px; border-bottom: 2px solid var(--sub-heading-color); padding-bottom: 15px; }
+        h1 { font-size: 2.2em; color: var(--sub-heading-color); margin: 0; }
+        h2 { font-size: 1.5em; color: var(--text-color); font-weight: 500; margin: 5px 0 0 0; }
+        .topic h3 { font-size: 1.6em; color: var(--heading-color); border-left: 4px solid var(--heading-color); padding-left: 10px; margin-top: 30px; }
+        p { font-size: 1.1em; } strong { color: var(--strong-color); }
+        hr { border: 0; height: 1px; background-color: var(--hr-color); margin: 40px 0; }
+        ul { list-style: none; padding-left: 0; }
+        ul li { position: relative; padding-left: 25px; margin-bottom: 10px; }
+        ul li::before { content: '✔'; position: absolute; left: 0; color: var(--sub-heading-color); }
+
+        /* দিন/রাত মোড বাটন */
+        .theme-toggle-button {
+            position: absolute; top: 10px; right: 10px; background: none; border: 1px solid var(--border-color);
+            border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2em;
+            display: flex; align-items: center; justify-content: center; transition: background-color 0.3s, border-color 0.3s;
+        }
+        .theme-toggle-button:hover { background-color: rgba(128, 128, 128, 0.1); }
+        
+        /* সারসংক্ষেপ বক্স */
+        .summary-box {
+            background-color: var(--summary-bg); border-left: 5px solid var(--summary-border);
+            padding: 20px; margin-top: 30px; border-radius: 8px;
+        }
+        .summary-box h4 {
+             border-left: none; padding-left: 0; font-size: 1.6em; color: var(--heading-color);
+        }
+
+        /* নেভিগেশন ও ফুটার */
+        .navigation, footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .navigation { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .nav-button {
+            display: inline-block; padding: 8px 15px; border: 1px solid var(--nav-button-border); border-radius: 20px;
+            text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg);
+            transition: all 0.3s ease; font-weight: 500; font-size: 0.95em;
+        }
+        .nav-button:hover { background-color: rgba(128, 128, 128, 0.2); transform: translateY(-2px); }
+        .nav-button.active { background-color: #d81b60; color: white; border-color: #d81b60; font-weight: 700; }
+        .nav-button.disabled { background-color: transparent; color: #aaa; pointer-events: none; border-color: var(--border-color); }
+        footer p { font-size: 0.9em; color: #888; }
+
+        /* মোবাইল রেসপন্সিভ */
+        @media (max-width: 600px) {
+            body { padding: 15px 5px; } .container { padding: 20px 15px; }
+            h1 { font-size: 1.8em; } h2 { font-size: 1.3em; } .topic h3 { font-size: 1.4em; }
+            p { font-size: 1em; }
+            .theme-toggle-button { top: 5px; right: 5px; width: 35px; height: 35px; }
+            .nav-button { padding: 6px 12px; font-size: 0.9em; gap: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- প্রধান শিরোনাম এবং থিম টগল বাটন -->
+        <header class="page-header">
+            <button id="theme-toggle-button" class="theme-toggle-button" title="দিন/রাত মোড পরিবর্তন করুন">🌙</button>
+            <h1>CLASS 08</h1>
+            <h2>বিষয়: একক পদ্ধতি ও পরিমাপ (সারাংশ)</h2>
+        </header>
+
+        <!-- মূল কন্টেন্ট -->
+        <main>
+            <section class="topic">
+                <p>সুপ্রভাত ছাত্রছাত্রীরা!</p>
+                <p>কেমন আছো সবাই? আজ আমরা বিজ্ঞানের একটা খুব মজার আর জরুরি বিষয় নিয়ে জানব। বিষয়টার নাম হলো <strong>"পরিমাপ"</strong>। আচ্ছা, ভাবো তো, তোমরা যখন ক্রিকেট খেলো, তখন বাউন্ডারি লাইন কত দূরে হবে, সেটা মাপো না? বা দোকানে গিয়ে যখন চাল কেনো, তখন বলো না যে "কাকু, ২ কেজি চাল দিন"? এই যে মাপা বা পরিমাপ করা, এটাই আমাদের আজকের আলোচনার মূল ভিত্তি।</p>
+            </section>
+            
+            <hr>
+
+            <section class="topic">
+                <h3>প্রথম ধাপ: পরিমাপ কী এবং আমরা কী পরিমাপ করি?</h3>
+                <p>আমরা আমাদের চারপাশে যা কিছু দেখি, তার অনেক কিছুই মাপতে পারি। বিজ্ঞানের ভাষায়, যা কিছু পরিমাপ করা যায়, তাকেই আমরা বলি <strong>ভৌতরাশি (Physical Quantity)</strong>।</p>
+                <p>আর পরিমাপ হলো একটা পদ্ধতি, যার মাধ্যমে আমরা কোনো ভৌতরাশিকে একটা সংখ্যা আর একটা নির্দিষ্ট নামের সাহায্যে প্রকাশ করি। যেমন, একটা টেবিলের দৈর্ঘ্য মাপলে আমরা বলি <strong>৫ ফুট</strong>। এখানে <strong>‘৫’</strong> হলো সংখ্যা বা মান আর <strong>‘ফুট’</strong> হলো সেই নির্দিষ্ট নাম, যাকে আমরা বলি <strong>একক (Unit)</strong>। একক ছাড়া শুধু ‘৫’ বললে কিন্তু কিছুই বোঝা যেত না!</p>
+            </section>
+            
+            <hr>
+
+            <section class="topic">
+                <h3>দ্বিতীয় ধাপ: ভৌতরাশিদের পরিবার - স্কেলার ও ভেক্টর</h3>
+                <p>এই ভৌতরাশিদের পরিবারে দু'রকমের সদস্য আছে। চলো, তাদের সাথে পরিচয় করে নিই।</p>
+                <h4>১. স্কেলার রাশি (Scalar Quantity):</h4>
+                <p>এরা হলো পরিবারের সেইসব সদস্য, যাদের পরিচয় দেওয়ার জন্য শুধু <strong>মান (Magnitude)</strong> বললেই চলে। এদের কোনো নির্দিষ্ট দিক নেই।</p>
+                <ul>
+                    <li><strong>উদাহরণ:</strong> ভর, সময়, তাপমাত্রা, শক্তি, কার্য, দ্রুতি - এরা সবাই স্কেলার রাশি।</li>
+                </ul>
+                <h4>২. ভেক্টর রাশি (Vector Quantity):</h4>
+                <p>এরা হলো পরিবারের বিশেষ সদস্য, যাদের পরিচয় দিতে গেলে <strong>মান (Magnitude)</strong> এবং <strong>দিক (Direction)</strong> দুটোই বলতে হয়।</p>
+                <ul>
+                    <li><strong>উদাহরণ:</strong> বল, সরণ, বেগ, ত্বরণ, ওজন - এরা সবাই ভেক্টর রাশি।</li>
+                </ul>
+                <p>তাহলে মনে থাকবে তো? <strong>স্কেলার মানে শুধু মান, আর ভেক্টর মানে মান ও দিক দুটোই!</strong></p>
+            </section>
+            
+            <hr>
+
+            <section class="topic">
+                <h3>তৃতীয় ধাপ: পরিমাপের ভাষা - একক (Units)</h3>
+                <h4>১. মৌলিক একক (Fundamental Units):</h4>
+                <p>এরা হলো এককের পরিবারের স্তম্ভ। এরা স্বাধীন এবং অন্য কারও ওপর নির্ভর করে না। SI পদ্ধতিতে ৭টি মৌলিক একক আছে: <strong>মিটার (m), কিলোগ্রাম (kg), সেকেন্ড (s), কেলভিন (K), অ্যাম্পিয়ার (A), ক্যান্ডেলা (cd), মোল (mol)</strong>।</p>
+                <h4>২. লব্ধ একক (Derived Units):</h4>
+                <p>এই এককগুলো মৌলিক একক থেকে তৈরি হয়।</p>
+                <ul>
+                    <li><strong>ক্ষেত্রফল</strong> = দৈর্ঘ্য × দৈর্ঘ্য = <strong>বর্গমিটার (m²)</strong></li>
+                    <li><strong>বেগ</strong> = দূরত্ব / সময় = <strong>মিটার/সেকেন্ড (m/s)</strong></li>
+                    <li><strong>বল</strong> = ভর × ত্বরণ = <strong>নিউটন (N)</strong></li>
+                </ul>
+            </section>
+
+            <hr>
+            
+            <section class="topic">
+                <h3>চতুর্থ ধাপ: এককের বিশ্ব সম্মেলন - SI পদ্ধতি</h3>
+                <p>আগের দিনে বিভিন্ন দেশে বিভিন্ন রকম একক পদ্ধতি (CGS, FPS) ব্যবহার হতো। তাই সব দেশের বিজ্ঞানীরা মিলে একটি বিশ্বজনীন পদ্ধতি চালু করেন, যার নাম <strong>SI পদ্ধতি (International System of Units)</strong>। এটিই এখন পরিমাপের আন্তর্জাতিক ভাষা।</p>
+                 <p>SI পদ্ধতিতে আরও দুটি <strong>সম্পূরক একক (Supplementary Unit)</strong> আছে:</p>
+                 <ul>
+                    <li><strong>রেডিয়ান (rad):</strong> কোণ মাপার জন্য।</li>
+                    <li><strong>স্টেরেডিয়ান (sr):</strong> ঘনকোণ মাপার জন্য।</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h3>পঞ্চম ধাপ: রাশির আসল পরিচয় - মাত্রা (Dimension)</h3>
+                <p>মাত্রা হলো একটা রাশির ভেতরের গঠন বা তার আসল পরিচয়। মাত্রা দেখে আমরা বুঝতে পারি, একটা রাশি কোন কোন মৌলিক রাশি দিয়ে এবং কীভাবে তৈরি হয়েছে। আমরা মৌলিক রাশিদের কিছু চিহ্ন দিয়ে প্রকাশ করি: <strong>দৈর্ঘ্য [L], ভর [M], সময় [T]</strong>।</p>
+                <ul>
+                    <li><strong>ক্ষেত্রফল</strong> = [L²]</li>
+                    <li><strong>বেগ</strong> = [LT⁻¹]</li>
+                    <li><strong>বল</strong> = [MLT⁻²]</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                 <h3>ষষ্ঠ ধাপ: কিছু বিশেষ একক</h3>
+                 <p>যখন আমরা খুব ছোটো বা খুব বড় জিনিস মাপি, তখন সাধারণ এককের বদলে কিছু বিশেষ একক ব্যবহার করি।</p>
+                 <ul>
+                     <li><strong>খুব ছোটো জিনিস মাপতে:</strong> অ্যাংস্ট্রম (Å), ফার্মি (fm)।</li>
+                     <li><strong>বিশাল দূরত্ব মাপতে:</strong> আলোকবর্ষ (Light-year), পারসেক (Parsec)।</li>
+                 </ul>
+            </section>
+            
+            <section class="topic summary-box">
+                <h4>আজকের পাঠের সারসংক্ষেপ:</h4>
+                <p>তাহলে ছাত্রছাত্রীরা, আজ আমরা শিখলাম:</p>
+                <ul>
+                    <li><strong>পরিমাপ</strong> কী এবং <strong>ভৌতরাশি</strong> কাকে বলে।</li>
+                    <li><strong>স্কেলার (শুধু মান)</strong> ও <strong>ভেক্টর (মান ও দিক)</strong> রাশির মধ্যে পার্থক্য।</li>
+                    <li><strong>মৌলিক ও লব্ধ একক</strong> কী এবং <strong>SI পদ্ধতি</strong> কেন গুরুত্বপূর্ণ।</li>
+                    <li><strong>মাত্রা</strong> হলো রাশির আসল পরিচয়।</li>
+                </ul>
+                <p>আশা করি, তোমরা সবাই আজকের ক্লাসটা উপভোগ করেছ এবং সবকিছু ভালোভাবে বুঝতে পেরেছ। সবাই ভালো থেকো!</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- নেভিগেশন বার -->
+    <nav class="navigation">
+        <a href="class7.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button active">8</a>
+        <a href="#" class="nav-button disabled" aria-disabled="true">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">হোমপেজ</a>
+    </nav>
+    
+    <!-- ফুটার -->
+    <footer>
+        <p>&copy; <span id="current-year"></span> কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <!-- === সমস্ত JavaScript কোড এখানে যোগ করা হয়েছে === -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const body = document.body;
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleButton.textContent = '☀️';
+            } else {
+                themeToggleButton.textContent = '🌙';
+            }
+            themeToggleButton.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeToggleButton.textContent = '☀️';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeToggleButton.textContent = '🌙';
+                }
+            });
+
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+
+</body>
+</html>

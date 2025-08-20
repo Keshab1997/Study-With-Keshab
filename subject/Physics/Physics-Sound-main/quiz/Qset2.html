@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ২ - শব্দ (Sound)</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset3.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "শব্দ (Sound)", 
+            setName: "Quiz Set 2",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "শব্দ (Sound) - PYQ Set 2",
+            
+            questions: [
+                {
+                    question: "শব্দের কম্পাঙ্ক 50 হার্টজ হলে পর্যায়কাল কত?",
+                    options: ["0.05 সেকেন্ড", "0.5 সেকেন্ড", "0.02 সেকেন্ড", "0.2 সেকেন্ড"],
+                    answer: 2, 
+                    explanation: "পর্যায়কাল (T) = 1 / কম্পাঙ্ক (f) = 1 / 50 = 0.02 সেকেন্ড।"
+                },
+                {
+                    question: "শব্দের কম্পাঙ্ক 40 হার্টজ হলে পর্যায়কাল কত?",
+                    options: ["0.05 সেকেন্ড", "0.25 সেকেন্ড", "0.025 সেকেন্ড", "0.002 সেকেন্ড"],
+                    answer: 2, 
+                    explanation: "পর্যায়কাল (T) = 1 / কম্পাঙ্ক (f) = 1 / 40 = 0.025 সেকেন্ড।"
+                },
+                {
+                    question: "কম্পাঙ্ক মাপার একক কী?",
+                    options: ["ডেসিবেল", "অ্যাম্পিয়ার", "ভোল্ট", "হার্টজ"],
+                    answer: 3, 
+                    explanation: "কম্পাঙ্কের SI একক হলো হার্টজ (Hz)।"
+                },
+                {
+                    question: "শব্দ কেমন তরঙ্গ?",
+                    options: ["তির্যক তরঙ্গ", "অনুদৈর্ঘ্য তরঙ্গ", "স্থিতিস্থাপক তরঙ্গ", "তড়িৎ চুম্বকীয় তরঙ্গ"],
+                    answer: 1, 
+                    explanation: "শব্দ একটি যান্ত্রিক ও অনুদৈর্ঘ্য তরঙ্গ, যা মাধ্যমের কণার সংকোচনের ও প্রসারণের মাধ্যমে সঞ্চালিত হয়।"
+                },
+                {
+                    question: "মানুষের শ্রুতিগোচর শব্দের কম্পাঙ্কের পাল্লা কত?",
+                    options: ["20 হার্টজের কম", "20 থেকে 20,000 হার্টজ", "কোনোটিই নয়", "20,000 হার্টজের বেশি"],
+                    answer: 1, 
+                    explanation: "মানুষের কান সাধারণত 20 Hz থেকে 20,000 Hz (বা 20 kHz) কম্পাঙ্কের শব্দ শুনতে পায়।"
+                },
+                {
+                    question: "শব্দেতর শব্দের কম্পাঙ্ক কত?",
+                    options: ["20 হার্টজের কম", "20,000 হার্টজের বেশি", "কোনোটিই নয়", "20 থেকে 20,000 হার্টজ"],
+                    answer: 0, 
+                    explanation: "20 Hz-এর কম কম্পাঙ্কের শব্দকে ইনফ্রাসোনিক বা শব্দেতর শব্দ বলা হয়, যা মানুষ শুনতে পায় না।"
+                },
+                {
+                    question: "শব্দোত্তর শব্দের কম্পাঙ্ক কত?",
+                    options: ["20 হার্টজের কম", "20,000 হার্টজের বেশি", "কোনোটিই নয়", "20 থেকে 20,000 হার্টজ"],
+                    answer: 1, 
+                    explanation: "20,000 Hz (বা 20 kHz)-এর বেশি কম্পাঙ্কের শব্দকে আলট্রাসোনিক বা শব্দোত্তর শব্দ বলা হয়।"
+                },
+                {
+                    question: "শব্দের তীব্রতা কত ডেসিবেল বা তার বেশি হলে শব্দদূষণ ঘটে?",
+                    options: ["65", "75", "55", "85"],
+                    answer: 0, 
+                    explanation: "বিশ্ব স্বাস্থ্য সংস্থার মতে, 65 ডেসিবেল (dB)-এর বেশি মাত্রার শব্দ স্বাস্থ্যের জন্য ক্ষতিকর এবং একে শব্দ দূষণ হিসেবে গণ্য করা হয়।"
+                },
+                {
+                    question: "শব্দের তীব্রতা পরিমাপের একক কী?",
+                    options: ["বেল", "জুল", "নিউটন", "হার্টজ"],
+                    answer: 0, 
+                    explanation: "শব্দের তীব্রতা বা লেভেল পরিমাপের একক হলো বেল (Bel) এবং এর ব্যবহারিক একক হলো ডেসিবেল (dB)।"
+                },
+                {
+                    question: "শিশুর গলার স্বর সাধারণত বয়স্কদের চেয়ে সুরেলা, কারণ—",
+                    options: ["তীক্ষ্ণতা বেশি", "তীক্ষ্ণতা কম", "শিশুর প্রাণশক্তি বেশি", "কোনোটিই নয়"],
+                    answer: 0, 
+                    explanation: "শব্দের তীক্ষ্ণতা বা পিচ (Pitch) তার কম্পাঙ্কের উপর নির্ভর করে। শিশুর গলার স্বরের কম্পাঙ্ক বেশি, তাই তীক্ষ্ণতাও বেশি হয়।"
+                },
+                {
+                    question: "স্টেথোস্কোপে শব্দের যে ধর্ম ব্যবহৃত হয় তা হল—",
+                    options: ["প্রতিসরণ", "বিক্ষেপণ", "প্রতিফলন", "ব্যতিচার"],
+                    answer: 2, 
+                    explanation: "স্টেথোস্কোপ যন্ত্রে রোগীর শরীরের ক্ষীণ শব্দ বারবার প্রতিফলিত হয়ে বিবর্ধিত হয় এবং ডাক্তারের কানে পৌঁছায়।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

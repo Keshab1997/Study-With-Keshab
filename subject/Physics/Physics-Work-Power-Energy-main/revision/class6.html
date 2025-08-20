@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কার্য, ক্ষমতা ও শক্তি (MCQ অনুশীলন) - Class 06</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-size: 1.1em; border-radius: 5px; }
+        .mcq-item { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed #ddd; }
+        .mcq-item:last-child { border-bottom: none; }
+        .mcq-item ul { list-style-type: none; padding-left: 0; }
+        .mcq-item li { margin-bottom: 8px; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://static.vecteezy.com/system/resources/previews/013/813/190/original/work-power-energy-icon-logo-vector-illustration-template-vector.jpg" alt="Logo" class="logo">
+        <h1>কার্য, ক্ষমতা ও শক্তি</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 06 (MCQ অনুশীলন সেট)</h2>
+
+        <h3>কার্য সম্পর্কিত MCQ (1-10)</h3>
+        <div class="mcq-item"><h4>1. প্রশ্ন: কার্যের SI একক কী?</h4><p><em>[SSC CGL 2017]</em></p><ul><li>(a) জুল</li><li>(b) নিউটন</li><li>(c) ওয়াট</li><li>(d) পাস্কাল</li></ul><blockquote><strong>উত্তর: (a) জুল</strong><br><strong>ব্যাখ্যা:</strong> SI পদ্ধতিতে কার্যের একক হলো জুল।</blockquote></div>
+        <div class="mcq-item"><h4>2. প্রশ্ন: বল ও সরণের মধ্যবর্তী কোণ কত হলে কৃতকার্য শূন্য হয়?</h4><p><em>[UPSC Prelims 2018]</em></p><ul><li>(a) 0°</li><li>(b) 90°</li><li>(c) 180°</li><li>(d) 45°</li></ul><blockquote><strong>উত্তর: (b) 90°</strong><br><strong>ব্যাখ্যা:</strong> W = F.S.cosθ সূত্রানুযায়ী, θ = 90° হলে cos 90° = 0, তাই কার্য শূন্য হয়।</blockquote></div>
+        <div class="mcq-item"><h4>3. প্রশ্ন: যদি 10 N বল কোনো বস্তুর উপর ক্রিয়া করে এবং বলের দিকে বস্তুটির 2 m সরণ হয়, তবে কৃতকার্য কত?</h4><p><em>[Railway RRB NTPC 2019]</em></p><ul><li>(a) 5 J</li><li>(b) 20 J</li><li>(c) 10 J</li><li>(d) 0 J</li></ul><blockquote><strong>উত্তর: (b) 20 J</strong><br><strong>ব্যাখ্যা:</strong> কার্য = বল × সরণ = 10 N × 2 m = 20 জুল।</blockquote></div>
+        <div class="mcq-item"><h4>4. প্রশ্ন: ঋণাত্মক কার্য কখন সম্পন্ন হয়?</h4><p><em>[SSC CHSL 2020]</em></p><ul><li>(a) বল ও সরণ একই দিকে হলে</li><li>(b) বল ও সরণ বিপরীত দিকে হলে</li><li>(c) বল শূন্য হলে</li><li>(d) সরণ শূন্য হলে</li></ul><blockquote><strong>উত্তর: (b) বল ও সরণ বিপরীত দিকে হলে</strong><br><strong>ব্যাখ্যা:</strong> বল ও সরণ বিপরীত দিকে (কোণ 180°) হলে কৃতকার্য ঋণাত্মক হয়।</blockquote></div>
+        <div class="mcq-item"><h4>5. প্রশ্ন: অবাধে পতনশীল বস্তুর উপর অভিকর্ষ বল দ্বারা কৃতকার্য কী হয়?</h4><p><em>[SBI PO 2016]</em></p><ul><li>(a) ধনাত্মক</li><li>(b) ঋণাত্মক</li><li>(c) শূন্য</li><li>(d) অসীম</li></ul><blockquote><strong>উত্তর: (a) ধনাত্মক</strong><br><strong>ব্যাখ্যা:</strong> বস্তুর সরণ এবং অভিকর্ষ বল উভয়ই নিচের দিকে কাজ করে, তাই কৃতকার্য ধনাত্মক।</blockquote></div>
+        <div class="mcq-item"><h4>6. প্রশ্ন: কার্য একটি স্কেলার রাশি কারণ—</h4><p><em>[SSC MTS 2018]</em></p><ul><li>(a) এর মান ও দিক দুই-ই আছে</li><li>(b) এর কেবল মান আছে</li><li>(c) এটি সময়ের উপর নির্ভরশীল</li><li>(d) এটি ভেক্টর গুণফল</li></ul><blockquote><strong>উত্তর: (b) এর কেবল মান আছে</strong><br><strong>ব্যাখ্যা:</strong> যে রাশির কেবল মান আছে কিন্তু দিক নেই, তাকে স্কেলার রাশি বলে।</blockquote></div>
+        <div class="mcq-item"><h4>7. প্রশ্ন: যদি কোনো সরণ না ঘটে, তাহলে কৃতকার্য কত?</h4><p><em>[UPSC CDS 2019]</em></p><ul><li>(a) সর্বোচ্চ</li><li>(b) সর্বনিম্ন</li><li>(c) শূন্য</li><li>(d) অসীম</li></ul><blockquote><strong>উত্তর: (c) শূন্য</strong><br><strong>ব্যাখ্যা:</strong> সরণ (S) শূন্য হলে, কার্য (W = F × 0) শূন্য হয়।</blockquote></div>
+        <div class="mcq-item"><h4>8. প্রশ্ন: কার্যের সূত্রটি হলো—</h4><p><em>[Railway Group D 2021]</em></p><ul><li>(a) বল × সময়</li><li>(b) বল × সরণ</li><li>(c) ভর × ত্বরণ</li><li>(d) ক্ষমতা × সময়</li></ul><blockquote><strong>উত্তর: (b) বল × সরণ</strong><br><strong>ব্যাখ্যা:</strong> এটি কার্যের মৌলিক সংজ্ঞা।</blockquote></div>
+        <div class="mcq-item"><h4>9. প্রশ্ন: কোনো বস্তুকে উপরে তুলতে কৃতকার্য কিসের সমান?</h4><p><em>[SSC CGL 2019]</em></p><ul><li>(a) mgh</li><li>(b) ½ mv²</li><li>(c) F × s</li><li>(d) P × t</li></ul><blockquote><strong>উত্তর: (a) mgh</strong><br><strong>ব্যাখ্যা:</strong> কোনো বস্তুকে উপরে তুলতে কৃতকার্য তার অর্জিত স্থিতিশক্তির (mgh) সমান হয়।</blockquote></div>
+        <div class="mcq-item"><h4>10. প্রশ্ন: যখন একটি স্প্রিংকে সংকুচিত করা হয়, তখন প্রযুক্ত বল দ্বারা কৃতকার্য কী হয়?</h4><p><em>[IBPS Clerk 2017]</em></p><ul><li>(a) ধনাত্মক</li><li>(b) ঋণাত্মক</li><li>(c) শূন্য</li><li>(d) অসংজ্ঞাত</li></ul><blockquote><strong>উত্তর: (a) ধনাত্মক</strong><br><strong>ব্যাখ্যা:</strong> প্রযুক্ত বল এবং স্প্রিং-এর সংকোচন একই দিকে হওয়ায় কার্য ধনাত্মক হয়।</blockquote></div>
+
+        <h3>ক্ষমতা সম্পর্কিত MCQ (11-20)</h3>
+        <div class="mcq-item"><h4>11. প্রশ্ন: ক্ষমতার SI একক কী?</h4><p><em>[SSC JE 2018]</em></p><ul><li>(a) জুল</li><li>(b) ওয়াট</li><li>(c) নিউটন</li><li>(d) আর্গ</li></ul><blockquote><strong>উত্তর: (b) ওয়াট</strong><br><strong>ব্যাখ্যা:</strong> ক্ষমতার SI একক ওয়াট (Watt)।</blockquote></div>
+        <div class="mcq-item"><h4>12. প্রশ্ন: ক্ষমতার সংজ্ঞা হলো—</h4><p><em>[UPSC Prelims 2020]</em></p><ul><li>(a) একক সময়ে কৃত কার্য</li><li>(b) একক দূরত্বে প্রযুক্ত বল</li><li>(c) একক ভরে সঞ্চিত শক্তি</li><li>(d) একক সময়ে বেগের পরিবর্তন</li></ul><blockquote><strong>উত্তর: (a) একক সময়ে কৃত কার্য</strong><br><strong>ব্যাখ্যা:</strong> ক্ষমতা হলো কাজ করার হার, অর্থাৎ কার্য/সময়।</blockquote></div>
+        <div class="mcq-item"><h4>13. প্রশ্ন: যদি 5 সেকেন্ডে 100 জুল কার্য করা হয়, তবে ক্ষমতা কত?</h4><p><em>[Railway RRB ALP 2019]</em></p><ul><li>(a) 20 W</li><li>(b) 500 W</li><li>(c) 5 W</li><li>(d) 100 W</li></ul><blockquote><strong>উত্তর: (a) 20 W</strong><br><strong>ব্যাখ্যা:</strong> ক্ষমতা = কার্য / সময় = 100 জুল / 5 সেকেন্ড = 20 ওয়াট।</blockquote></div>
+        <div class="mcq-item"><h4>14. প্রশ্ন: তাৎক্ষণিক ক্ষমতা (Instantaneous power) নির্ণয় করা হয় কোন সূত্র দিয়ে?</h4><p><em>[SSC CHSL 2017]</em></p><ul><li>(a) F × v</li><li>(b) W / t</li><li>(c) mgh</li><li>(d) ½ mv²</li></ul><blockquote><strong>উত্তর: (a) F × v</strong><br><strong>ব্যাখ্যা:</strong> তাৎক্ষণিক ক্ষমতা হলো বল এবং ওই মুহূর্তের বেগের গুণফল।</blockquote></div>
+        <div class="mcq-item"><h4>15. প্রশ্ন: একটি পাম্প 10 সেকেন্ডে 100 কেজি জল 10 মিটার উপরে তুললে তার ক্ষমতা কত? (g=10 m/s²)</h4><p><em>[SBI Clerk 2018]</em></p><ul><li>(a) 100 W</li><li>(b) 1000 W</li><li>(c) 10 W</li><li>(d) 500 W</li></ul><blockquote><strong>উত্তর: (b) 1000 W</strong><br><strong>ব্যাখ্যা:</strong> কার্য (W) = mgh = 100×10×10 = 10000 J। ক্ষমতা (P) = W/t = 10000/10 = 1000 W।</blockquote></div>
+        <div class="mcq-item"><h4>16. প্রশ্ন: ক্ষমতা একটি স্কেলার রাশি।</h4><p><em>[SSC CGL 2021]</em></p><ul><li>(a) সত্য</li><li>(b) মিথ্যা (এটি ভেক্টর)</li><li>(c) দিকের উপর নির্ভরশীল</li><li>(d) কোনোটিই নয়</li></ul><blockquote><strong>উত্তর: (a) সত্য</strong><br><strong>ব্যাখ্যা:</strong> ক্ষমতার কেবল মান আছে, দিক নেই, তাই এটি স্কেলার রাশি।</blockquote></div>
+        <div class="mcq-item"><h4>17. প্রশ্ন: 1 অশ্ব ক্ষমতা (Horsepower) সমান কত?</h4><p><em>[UPSC CDS 2016]</em></p><ul><li>(a) 746 W</li><li>(b) 1000 W</li><li>(c) 500 W</li><li>(d) 1 J/s</li></ul><blockquote><strong>উত্তর: (a) 746 W</strong><br><strong>ব্যাখ্যা:</strong> 1 HP = 746 Watt, এটি একটি নির্দিষ্ট মান।</blockquote></div>
+        <div class="mcq-item"><h4>18. প্রশ্ন: গড় ক্ষমতা (Average power) হলো—</h4><p><em>[Railway NTPC 2020]</em></p><ul><li>(a) মোট কার্য / মোট সময়</li><li>(b) বল × বেগ</li><li>(c) গতিশক্তি / সময়</li><li>(d) স্থিতিশক্তি / ভর</li></ul><blockquote><strong>উত্তর: (a) মোট কার্য / মোট সময়</strong><br><strong>ব্যাখ্যা:</strong> এটি গড় ক্ষমতার সংজ্ঞা।</blockquote></div>
+        <div class="mcq-item"><h4>19. প্রশ্ন: ক্ষমতা স্থির থাকলে, কৃতকার্য কিসের সমানুপাতিক?</h4><p><em>[SSC MTS 2019]</em></p><ul><li>(a) সময়</li><li>(b) দূরত্ব</li><li>(c) বল</li><li>(d) ভর</li></ul><blockquote><strong>উত্তর: (a) সময়</strong><br><strong>ব্যাখ্যা:</strong> যেহেতু ক্ষমতা (P) = কার্য (W) / সময় (t), তাই W = P × t। P স্থির থাকলে, W ∝ t।</blockquote></div>
+        <div class="mcq-item"><h4>20. প্রশ্ন: ওয়াট এককটি কিসের সমতুল্য?</h4><p><em>[IBPS PO 2019]</em></p><ul><li>(a) J/s</li><li>(b) N/m</li><li>(c) kg m/s²</li><li>(d) m/s</li></ul><blockquote><strong>উত্তর: (a) J/s</strong><br><strong>ব্যাখ্যা:</strong> যেহেতু ক্ষমতা = কার্য/সময়, তাই এর একক ওয়াট = জুল/সেকেন্ড (Joule/second)।</blockquote></div>
+
+        <h3>শক্তি সম্পর্কিত MCQ (21-30)</h3>
+        <div class="mcq-item"><h4>21. প্রশ্ন: কোনো বস্তুর গতিশক্তির রাশিমালা হলো—</h4><p><em>[SSC CGL 2016]</em></p><ul><li>(a) ½ mv²</li><li>(b) mgh</li><li>(c) F × s</li><li>(d) P × t</li></ul><blockquote><strong>উত্তর: (a) ½ mv²</strong><br><strong>ব্যাখ্যা:</strong> এটি গতিশক্তির সূত্র।</blockquote></div>
+        <div class="mcq-item"><h4>22. প্রশ্ন: স্থিতিশক্তি সঞ্চিত থাকে কিসের কারণে?</h4><p><em>[UPSC Prelims 2017]</em></p><ul><li>(a) গতি</li><li>(b) অবস্থান</li><li>(c) বেগ</li><li>(d) ত্বরণ</li></ul><blockquote><strong>উত্তর: (b) অবস্থান</strong><br><strong>ব্যাখ্যা:</strong> কোনো বস্তুর অবস্থান বা আকৃতির পরিবর্তনের জন্য স্থিতিশক্তি সঞ্চিত হয়।</blockquote></div>
+        <div class="mcq-item"><h4>23. প্রশ্ন: শক্তির সংরক্ষণ সূত্র অনুযায়ী, শক্তিকে—</h4><p><em>[Railway RRB 2018]</em></p><ul><li>(a) সৃষ্টি করা যায়</li><li>(b) ধ্বংস করা যায়</li><li>(c) কেবল রূপান্তরিত করা যায়</li><li>(d) উপরের সবকটি</li></ul><blockquote><strong>উত্তর: (c) কেবল রূপান্তরিত করা যায়</strong><br><strong>ব্যাখ্যা:</strong> শক্তিকে সৃষ্টি বা ধ্বংস করা যায় না, কেবল এক রূপ থেকে অন্য রূপে পরিবর্তন করা যায়।</blockquote></div>
+        <div class="mcq-item"><h4>24. প্রশ্ন: স্থির অবস্থায় থাকা কোনো বস্তুর মধ্যে যে শক্তি থাকে তা হলো—</h4><p><em>[SSC CHSL 2019]</em></p><ul><li>(a) গতিশক্তি</li><li>(b) স্থিতিশক্তি</li><li>(c) শূন্য</li><li>(d) অসীম</li></ul><blockquote><strong>উত্তর: (b) স্থিতিশক্তি</strong><br><strong>ব্যাখ্যা:</strong> কোনো বস্তুর অবস্থানের জন্য তার মধ্যে স্থিতিশক্তি থাকতে পারে (যেমন, উঁচুতে থাকা বস্তু)।</blockquote></div>
+        <div class="mcq-item"><h4>25. প্রশ্ন: শক্তির SI একক কী?</h4><p><em>[SBI PO 2020]</em></p><ul><li>(a) জুল</li><li>(b) ওয়াট</li><li>(c) নিউটন</li><li>(d) পাস্কাল</li></ul><blockquote><strong>উত্তর: (a) জুল</strong><br><strong>ব্যাখ্যা:</strong> শক্তি ও কার্যের একক একই, যা হলো জুল।</blockquote></div>
+        <div class="mcq-item"><h4>26. প্রশ্ন: একটি সরল দোলকের ক্ষেত্রে মোট যান্ত্রিক শক্তি—</h4><p><em>[SSC JE 2017]</em></p><ul><li>(a) ধ্রুবক থাকে</li><li>(b) বাড়ে</li><li>(c) কমে</li><li>(d) শূন্য থাকে</li></ul><blockquote><strong>উত্তর: (a) ধ্রুবক থাকে</strong><br><strong>ব্যাখ্যা:</strong> শক্তির সংরক্ষণ সূত্র অনুযায়ী, বাহ্যিক বলের অনুপস্থিতিতে মোট যান্ত্রিক শক্তি ধ্রুবক থাকে।</blockquote></div>
+        <div class="mcq-item"><h4>27. প্রশ্ন: স্থিতিস্থাপক স্থিতিশক্তির (Elastic potential energy) রাশিমালা হলো—</h4><p><em>[UPSC CDS 2021]</em></p><ul><li>(a) ½ kx²</li><li>(b) mgh</li><li>(c) ½ mv²</li><li>(d) F × t</li></ul><blockquote><strong>উত্তর: (a) ½ kx²</strong><br><strong>ব্যাখ্যা:</strong> এটি কোনো স্প্রিং বা স্থিতিস্থাপক বস্তুর স্থিতিশক্তির সূত্র।</blockquote></div>
+        <div class="mcq-item"><h4>28. প্রশ্ন: একটি বলকে উপরের দিকে ছুড়লে, গতিশক্তি কোন শক্তিতে রূপান্তরিত হয়?</h4><p><em>[Railway Group D 2019]</em></p><ul><li>(a) স্থিতিশক্তি</li><li>(b) তাপশক্তি</li><li>(c) শব্দশক্তি</li><li>(d) কোনোটিই নয়</li></ul><blockquote><strong>উত্তর: (a) স্থিতিশক্তি</strong><br><strong>ব্যাখ্যা:</strong> উচ্চতা বাড়ার সাথে সাথে গতিশক্তি কমে এবং স্থিতিশক্তি বাড়ে।</blockquote></div>
+        <div class="mcq-item"><h4>29. প্রশ্ন: তড়িৎ শক্তির বাণিজ্যিক একক কী?</h4><p><em>[SSC MTS 2020]</em></p><ul><li>(a) জুল</li><li>(b) kWh (কিলোওয়াট-ঘণ্টা)</li><li>(c) ওয়াট</li><li>(d) আর্গ</li></ul><blockquote><strong>উত্তর: (b) kWh (কিলোওয়াট-ঘণ্টা)</strong><br><strong>ব্যাখ্যা:</strong> বিদ্যুৎ বিল গণনার জন্য এই এককটি ব্যবহৃত হয়, যা 'বোর্ড অফ ট্রেড ইউনিট' (B.O.T.) নামেও পরিচিত।</blockquote></div>
+        <div class="mcq-item"><h4>30. প্রশ্ন: শক্তি একটি স্কেলার রাশি।</h4><p><em>[IBPS Clerk 2018]</em></p><ul><li>(a) সত্য</li><li>(b) মিথ্যা</li><li>(c) ভেক্টর</li><li>(d) কোনোটিই নয়</li></ul><blockquote><strong>উত্তর: (a) সত্য</strong><br><strong>ব্যাখ্যা:</strong> শক্তির কেবল মান আছে, দিক নেই।</blockquote></div>
+
+        <h3>মিশ্র (কার্য, ক্ষমতা, শক্তি) MCQ (31-40)</h3>
+        <div class="mcq-item"><h4>31. প্রশ্ন: কার্য-শক্তি উপপাদ্য অনুযায়ী, কৃতকার্য কিসের পরিবর্তনের সমান?</h4><p><em>[SSC CGL 2020]</em></p><ul><li>(a) গতিশক্তি</li><li>(b) স্থিতিশক্তি</li><li>(c) ক্ষমতা</li><li>(d) বেগ</li></ul><blockquote><strong>উত্তর: (a) গতিশক্তি</strong><br><strong>ব্যাখ্যা:</strong> কোনো বল দ্বারা কৃতকার্য বস্তুর গতিশক্তির পরিবর্তনের সমান।</blockquote></div>
+        <div class="mcq-item"><h4>32. প্রশ্ন: ক্ষমতা হলো কী করার হার?</h4><p><em>[UPSC Prelims 2019]</em></p><ul><li>(a) কার্য</li><li>(b) বল</li><li>(c) সরণ</li><li>(d) ত্বরণ</li></ul><blockquote><strong>উত্তর: (a) কার্য</strong><br><strong>ব্যাখ্যা:</strong> ক্ষমতা হলো কার্য করার হার।</blockquote></div>
+        <div class="mcq-item"><h4>33. প্রশ্ন: গতিশক্তি দ্বিগুণ হলে, বেগ কত গুণ হবে?</h4><p><em>[Railway RRB NTPC 2017]</em></p><ul><li>(a) দ্বিগুণ</li><li>(b) √2 গুণ</li><li>(c) অর্ধেক</li><li>(d) চারগুণ</li></ul><blockquote><strong>উত্তর: (b) √2 গুণ</strong><br><strong>ব্যাখ্যা:</strong> গতিশক্তি বেগের বর্গের সমানুপাতিক (Ek ∝ v²), তাই গতিশক্তি দ্বিগুণ হলে বেগ √2 গুণ হবে।</blockquote></div>
+        <div class="mcq-item"><h4>34. প্রশ্ন: ভূমিতে (ground level) অভিকর্ষীয় স্থিতিশক্তি কত ধরা হয়?</h4><p><em>[SSC CHSL 2016]</em></p><ul><li>(a) সর্বোচ্চ</li><li>(b) সর্বনিম্ন (শূন্য)</li><li>(c) অসীম</li><li>(d) ঋণাত্মক</li></ul><blockquote><strong>উত্তর: (b) সর্বনিম্ন (শূন্য)</strong><br><strong>ব্যাখ্যা:</strong> সাধারণত ভূপৃষ্ঠকে নির্দেশতল ধরা হয়, যেখানে উচ্চতা (h) শূন্য, তাই স্থিতিশক্তিও শূন্য।</blockquote></div>
+        <div class="mcq-item"><h4>35. প্রশ্ন: 1 kWh (কিলোওয়াট-ঘণ্টা) সমান কত?</h4><p><em>[SBI Clerk 2019]</em></p><ul><li>(a) 3.6 × 10⁶ J</li><li>(b) 1000 J</li><li>(c) 3600 J</li><li>(d) 1 J</li></ul><blockquote><strong>উত্তর: (a) 3.6 × 10⁶ J</strong><br><strong>ব্যাখ্যা:</strong> 1 kWh = 1000 ওয়াট × 3600 সেকেন্ড = 36,00,000 জুল।</blockquote></div>
+        <div class="mcq-item"><h4>36. প্রশ্ন: ঘর্ষণের বিরুদ্ধে কৃতকার্য কোন শক্তিতে রূপান্তরিত হয়?</h4><p><em>[SSC JE 2020]</em></p><ul><li>(a) তাপ</li><li>(b) আলো</li><li>(c) শব্দ</li><li>(d) গতিশক্তি</li></ul><blockquote><strong>উত্তর: (a) তাপ</strong><br><strong>ব্যাখ্যা:</strong> ঘর্ষণের ফলে সাধারণত তাপ উৎপন্ন হয়।</blockquote></div>
+        <div class="mcq-item"><h4>37. প্রশ্ন: একটি যন্ত্রের কর্মদক্ষতা (efficiency) হলো—</h4><p><em>[UPSC CDS 2018]</em></p><ul><li>(a) লভ্য কার্যকর ক্ষমতা / প্রদত্ত ক্ষমতা</li><li>(b) প্রদত্ত কার্য / লভ্য কার্যকর কার্য</li><li>(c) সর্বদা 100%</li><li>(d) কোনোটিই নয়</li></ul><blockquote><strong>উত্তর: (a) লভ্য কার্যকর ক্ষমতা / প্রদত্ত ক্ষমতা</strong><br><strong>ব্যাখ্যা:</strong> কর্মদক্ষতা হলো আউটপুট ও ইনপুটের অনুপাত।</blockquote></div>
+        <div class="mcq-item"><h4>38. প্রশ্ন: সংরক্ষী বলের (conservative force) অধীনে একটি বদ্ধ পথে কৃতকার্য কত?</h4><p><em>[Railway ALP 2021]</em></p><ul><li>(a) শূন্য</li><li>(b) ধনাত্মক</li><li>(c) ঋণাত্মক</li><li>(d) অসীম</li></ul><blockquote><strong>উত্তর: (a) শূন্য</strong><br><strong>ব্যাখ্যা:</strong> সংরক্ষী বল দ্বারা কৃতকার্য পথের উপর নির্ভর করে না, কেবল начальная ও অন্তিম অবস্থানের উপর নির্ভর করে। বদ্ধ পথে সরণ শূন্য হওয়ায় কার্যও শূন্য।</blockquote></div>
+        <div class="mcq-item"><h4>39. প্রশ্ন: কার্য করার সামর্থ্যকে বলা হয়—</h4><p><em>[SSC MTS 2017]</em></p><ul><li>(a) শক্তি</li><li>(b) ক্ষমতা</li><li>(c) বল</li><li>(d) ভরবেগ</li></ul><blockquote><strong>উত্তর: (a) শক্তি</strong><br><strong>ব্যাখ্যা:</strong> এটি শক্তির সংজ্ঞা।</blockquote></div>
+        <div class="mcq-item"><h4>40. প্রশ্ন: যদি ভর দ্বিগুণ এবং বেগ অর্ধেক করা হয়, গতিশক্তি—</h4><p><em>[IBPS PO 2020]</em></p><ul><li>(a) অর্ধেক হবে</li><li>(b) দ্বিগুণ হবে</li><li>(c) একই থাকবে</li><li>(d) চারগুণ হবে</li></ul><blockquote><strong>উত্তর: (a) অর্ধেক হবে</strong><br><strong>ব্যাখ্যা:</strong> নতুন গতিশক্তি = ½(2m)(v/2)² = ½(2m)(v²/4) = ½ (½mv²) = মূল গতিশক্তির অর্ধেক।</blockquote></div>
+
+        <h3>উন্নত/মিশ্র MCQ (41-50)</h3>
+        <div class="mcq-item"><h4>41. প্রশ্ন: ক্ষমতার মাত্রীয় সংকেত হলো—</h4><p><em>[SSC CGL 2018]</em></p><ul><li>(a) ML²T⁻³</li><li>(b) MLT⁻²</li><li>(c) ML²T⁻²</li><li>(d) MT⁻³</li></ul><blockquote><strong>উত্তর: (a) ML²T⁻³</strong><br><strong>ব্যাখ্যা:</strong> ক্ষমতা = কার্য/সময় = [ML²T⁻²] / [T] = [ML²T⁻³]।</blockquote></div>
+        <div class="mcq-item"><h4>42. প্রশ্ন: অস্থিতিস্থাপক সংঘর্ষে (inelastic collision) গতিশক্তি—</h4><p><em>[UPSC Prelims 2021]</em></p><ul><li>(a) সংরক্ষিত থাকে</li><li>(b) সংরক্ষিত থাকে না</li><li>(c) শূন্য হয়</li><li>(d) অসীম হয়</li></ul><blockquote><strong>উত্তর: (b) সংরক্ষিত থাকে না</strong><br><strong>ব্যাখ্যা:</strong> অস্থিতিস্থাপক সংঘর্ষে গতিশক্তির কিছু অংশ তাপ, শব্দ বা অন্য শক্তিতে রূপান্তরিত হয়।</blockquote></div>
+        <div class="mcq-item"><h4>43. প্রশ্ন: কেন্দ্রমুখী বল (centripetal force) দ্বারা কৃতকার্য কত?</h4><p><em>[Railway NTPC 2016]</em></p><ul><li>(a) ধনাত্মক</li><li>(b) ঋণাত্মক</li><li>(c) শূন্য</li><li>(d) পরিবর্তনশীল</li></ul><blockquote><strong>উত্তর: (c) শূন্য</strong><br><strong>ব্যাখ্যা:</strong> বৃত্তাকার পথে কেন্দ্রমুখী বল এবং সরণের দিক পরস্পর লম্ব (90°) হওয়ায় কৃতকার্য শূন্য হয়।</blockquote></div>
+        <div class="mcq-item"><h4>44. প্রশ্ন: একটি স্প্রিং-এর স্থিতিশক্তি সর্বোচ্চ হয় যখন—</h4><p><em>[SSC CHSL 2021]</em></p><ul><li>(a) এটিকে সর্বোচ্চ প্রসারিত করা হয়</li><li>(b) এটিকে সর্বনিম্ন সংকুচিত করা হয়</li><li>(c) এটি সাম্যাবস্থায় থাকে</li><li>(d) কোনোটিই নয়</li></ul><blockquote><strong>উত্তর: (a) এটিকে সর্বোচ্চ প্রসারিত করা হয়</strong><br><strong>ব্যাখ্যা:</strong> স্থিতিশক্তি (½kx²) সরণের (x) বর্গের সমানুপাতিক, তাই সরণ সর্বোচ্চ হলে শক্তিও সর্বোচ্চ হয়।</blockquote></div>
+        <div class="mcq-item"><h4>45. প্রশ্ন: AC সার্কিটে পাওয়ার ফ্যাক্টর (power factor) কিসের সাথে সম্পর্কিত?</h4><p><em>[SBI PO 2017]</em></p><ul><li>(a) কার্য ও শক্তি</li><li>(b) প্রকৃত ক্ষমতা (Real power)</li><li>(c) আপাত ক্ষমতা (Apparent power)</li><li>(d) (b) এবং (c) উভয়ই</li></ul><blockquote><strong>উত্তর: (d) (b) এবং (c) উভয়ই</strong><br><strong>ব্যাখ্যা:</strong> পাওয়ার ফ্যাক্টর হলো প্রকৃত ক্ষমতা ও আপাত ক্ষমতার অনুপাত।</blockquote></div>
+        <div class="mcq-item"><h4>46. প্রশ্ন: মুক্তিবেগ (Escape velocity) কিসের সাথে সম্পর্কিত?</h4><p><em>[SSC JE 2019]</em></p><ul><li>(a) গতিশক্তি</li><li>(b) স্থিতিশক্তি</li><li>(c) উভয়ই</li><li>(d) কোনোটিই নয়</li></ul><blockquote><strong>উত্তর: (c) উভয়ই</strong><br><strong>ব্যাখ্যা:</strong> মুক্তিবেগ হলো সেই ন্যূনতম বেগ যা অর্জন করলে কোনো বস্তুর গতিশক্তি তার ঋণাত্মক স্থিতিশক্তিকে অতিক্রম করে মহাকর্ষীয় ক্ষেত্র থেকে বেরিয়ে যেতে পারে।</blockquote></div>
+        <div class="mcq-item"><h4>47. প্রশ্ন: পারমাণবিক বিভাজনে (nuclear fission) ভর ত্রুটি (mass defect) কোন শক্তিতে রূপান্তরিত হয়?</h4><p><em>[UPSC CDS 2020]</em></p><ul><li>(a) শক্তি (E=mc²)</li><li>(b) কার্য</li><li>(c) ক্ষমতা</li><li>(d) বল</li></ul><blockquote><strong>উত্তর: (a) শক্তি (E=mc²)</strong><br><strong>ব্যাখ্যা:</strong> আইনস্টাইনের ভর-শক্তি তুল্যতা সূত্র অনুযায়ী, ভর শক্তিতে রূপান্তরিত হয়।</blockquote></div>
+        <div class="mcq-item"><h4>48. প্রশ্ন: গতিশক্তি পরিবর্তনের হার کিসের সমান?</h4><p><em>[Railway Group D 2018]</em></p><ul><li>(a) ক্ষমতা</li><li>(b) কার্য</li><li>(c) বল</li><li>(d) ভরবেগ</li></ul><blockquote><strong>উত্তর: (a) ক্ষমতা</strong><br><strong>ব্যাখ্যা:</strong> ক্ষমতা হলো শক্তি ব্যয়ের হার। তাই গতিশক্তি পরিবর্তনের হারও ক্ষমতা নির্দেশ করে (P = d(Ek)/dt)।</blockquote></div>
+        <div class="mcq-item"><h4>49. প্রশ্ন: উচ্চতা দ্বিগুণ হলে স্থিতিশক্তি—</h4><p><em>[SSC MTS 2021]</em></p><ul><li>(a) দ্বিগুণ হয়</li><li>(b) অর্ধেক হয়</li><li>(c) চারগুণ হয়</li><li>(d) একই থাকে</li></ul><blockquote><strong>উত্তর: (a) দ্বিগুণ হয়</strong><br><strong>ব্যাখ্যা:</strong> স্থিতিশক্তি (Ep = mgh) উচ্চতার (h) সমানুপাতিক, তাই উচ্চতা দ্বিগুণ হলে স্থিতিশক্তিও দ্বিগুণ হয়।</blockquote></div>
+        <div class="mcq-item"><h4>50. প্রশ্ন: অবাধ পতনের সময় মোট যান্ত্রিক শক্তি—</h4><p><em>[IBPS Clerk 2020]</em></p><ul><li>(a) ধ্রুবক থাকে</li><li>(b) বৃদ্ধি পায়</li><li>(c) হ্রাস পায়</li><li>(d) শূন্য হয়</li></ul><blockquote><strong>উত্তর: (a) ধ্রুবক থাকে</strong><br><strong>ব্যাখ্যা:</strong> শক্তির সংরক্ষণ সূত্র অনুযায়ী, অবাধে পতনশীল বস্তুর মোট যান্ত্রিক শক্তি (গতিশক্তি + স্থিতিশক্তি) সর্বদা ধ্রুবক থাকে।</blockquote></div>
+    </div>
+
+    <nav class="navigation">
+        <a href="class5.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button active">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class7.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2025 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme and Dark Mode functionality
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+
+            // Scroll buttons functionality
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+        });
+    </script>
+</body>
+</html>

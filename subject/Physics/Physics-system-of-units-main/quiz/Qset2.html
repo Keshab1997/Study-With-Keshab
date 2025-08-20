@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ২ - একক  ও পরিমাপ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset3.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+    chapterName: "একক ও পরিমাপ",  // <-- ঠিক করা হয়েছে
+    setName: "Quiz Set 2",       // <-- ঠিক করা হয়েছে
+    name: "একক ও পরিমাপ - Set 2 (প্রশ্ন ১১-২০)", // <-- ঐচ্ছিক, ঠিক করা ভালো
+            
+            questions: [
+                {
+                    question: "A ও B দুটি সমান ভেক্টর হলে, ওদের-",
+                    options: ["মান সমান", "দিক সমান", "একই মান এবং দিক উভয়েই", "মান সমান এবং একটি সাধারণ উৎস বিন্দু থাকবে"],
+                    answer: 2,
+                    explanation: "দুটি ভেক্টরকে সমান বলা হয় যদি এবং কেবল যদি তাদের মান এবং দিক উভয়ই একই হয়।"
+                },
+                {
+                    question: "নীচের কোনটি স্কেলার রাশি নয়?",
+                    options: ["কার্য", "ক্ষমতা", "ভরবেগ", "তাপমাত্রা"],
+                    answer: 2,
+                    explanation: "ভরবেগ (ভর × বেগ) একটি ভেক্টর রাশি কারণ এর দিক বেগের দিকের উপর নির্ভরশীল।"
+                },
+                {
+                    question: "1 আলোকবর্ষ নীচের কোনটির সমান?",
+                    options: ["9.46 x 10¹⁰ m", "9.46 x 10¹³ m", "9.46 x 10¹⁵ m", "9.46 x 10⁸ m"],
+                    answer: 2,
+                    explanation: "এক আলোকবর্ষ প্রায় 9.46 × 10¹⁵ মিটার বা 9.46 × 10¹² কিলোমিটারের সমান।"
+                },
+                {
+                    question: "বস্তুর ভর নিম্নোক্ত কোন রাশির দ্বারা সূচিত হয়?",
+                    options: ["প্রযুক্ত বল / বেগ", "বেগ / ত্বরণ", "প্রযুক্ত বল / ত্বরণ", "প্রযুক্ত বল / ভরবেগের বৃদ্ধি"],
+                    answer: 2,
+                    explanation: "নিউটনের দ্বিতীয় গতিসূত্র অনুযায়ী, F = ma। সুতরাং, ভর (m) = প্রযুক্ত বল (F) / ত্বরণ (a)।"
+                },
+                {
+                    question: "একটি স্কেলার রাশির উদাহরণ-",
+                    options: ["বেগ", "বল", "ভরবেগ", "শক্তি"],
+                    answer: 3,
+                    explanation: "শক্তি একটি স্কেলার রাশি। বেগ, বল এবং ভরবেগ হলো ভেক্টর রাশি।"
+                },
+                {
+                    question: "এদের কোনটি দৈর্ঘ্যের একক নয়?",
+                    options: ["আলোকবর্ষ", "মাইক্রন", "AU", "রেডিয়ান"],
+                    answer: 3,
+                    explanation: "আলোকবর্ষ, মাইক্রন এবং অ্যাস্ট্রোনমিক্যাল ইউনিট (AU) হলো দৈর্ঘ্যের একক। রেডিয়ান হলো কোণের একক।"
+                },
+                {
+                    question: "কোন রাশির একক ডাইন-সেকেন্ড?",
+                    options: ["বল", "ভরবেগ", "শক্তি", "ক্ষমতা"],
+                    answer: 1,
+                    explanation: "ডাইন-সেকেন্ড হলো বলের ঘাতের CGS একক। বলের ঘাত এবং ভরবেগের পরিবর্তন সমান, তাই তাদের এককও একই। ভরবেগের CGS একক হলো গ্রাম-সেমি/সেকেন্ড, যা ডাইন-সেকেন্ডের সমতুল্য।"
+                },
+                {
+                    question: "আলোকবর্ষ কীসের একক?",
+                    options: ["সময়", "দূরত্ব", "আলো", "আলোর প্রাবল্য"],
+                    answer: 1,
+                    explanation: "এটি জ্যোতির্বিজ্ঞানে ব্যবহৃত একটি বিশাল দূরত্বের একক।"
+                },
+                {
+                    question: "কিলো-ওয়াট আওয়ার কীসের একক?",
+                    options: ["ভরবেগ", "ক্ষমতা", "বল", "শক্তি"],
+                    answer: 3,
+                    explanation: "কিলো-ওয়াট (kW) হলো ক্ষমতার একক এবং আওয়ার (hour) হলো সময়ের একক। ক্ষমতা × সময় = শক্তি বা কার্য। তাই kWh হলো শক্তির বাণিজ্যিক একক।"
+                },
+                {
+                    question: "নীচের কোনটি স্কেলার রাশি?",
+                    options: ["ভরবেগ", "ভর", "ওজন", "বল"],
+                    answer: 1,
+                    explanation: "ভর একটি মৌলিক স্কেলার রাশি। ভরবেগ, ওজন (এক প্রকার বল) এবং বল হলো ভেক্টর রাশি।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শব্দ (Sound) - সহজ পাঠ ০২</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- বেসিক স্টাইল --- */
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- মূল কন্টেইনার --- */
+        .container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            padding: 25px 35px;
+            border-top: 5px solid #007bff;
+        }
+
+        /* --- প্রোগ্রেস বার --- */
+        .progress-container {
+            background-color: #e0e0e0;
+            border-radius: 25px;
+            height: 10px;
+            width: 100%;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background-color: #28a745;
+            height: 100%;
+            width: 28.6%; /* ৭টি ক্লাসের মধ্যে ২য় ক্লাস (2/7) */
+            border-radius: 25px;
+            transition: width 0.4s ease;
+        }
+
+        /* --- কন্টেন্ট স্টাইল --- */
+        .content h1 {
+            color: #0056b3;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .content .sub-heading {
+            text-align: center;
+            color: #555;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .content h4 {
+            color: #007bff;
+            font-size: 1.4em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+
+        .content p, .content li {
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #333;
+        }
+
+        .content strong {
+            color: #d9534f;
+        }
+
+        .content ul {
+            list-style-type: '✔ ';
+            padding-left: 20px;
+        }
+        
+        .content hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 40px 0;
+        }
+        
+        .thank-you {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #28a745;
+            margin-top: 30px;
+        }
+
+        /* --- টেবিল স্টাইল --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            font-size: 1em;
+        }
+        th {
+            background-color: #f8f9fa;
+            color: #333;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+
+        /* --- বাটন সেকশন (ছোট সাইজ) --- */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .nav-btn {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .page-btn {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .page-btn.active {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .page-btn:not(.active):hover {
+            background-color: #e2e6ea;
+            border-color: #c7ced3;
+        }
+        
+        .btn.disabled {
+            background-color: #cdd2d6;
+            color: #888;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* --- হোম বাটন --- */
+        .home-button-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .home-btn {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 25px;
+        }
+        .home-btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- প্রোগ্রেস বার -->
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+
+        <div class="content">
+            <h1>বিষয়: শব্দ ও তরঙ্গ (Sound & Wave)</h1>
+            <p class="sub-heading">সহজ পাঠ: ০২</p>
+
+            <h4>তরঙ্গ কয় রকমের হয়? (Types of Waves)</h4>
+            <p>তরঙ্গ বা ঢেউ মূলত দুই ধরনের হয়:</p>
+            <ol>
+                <li>
+                    <strong>তির্যক তরঙ্গ (Transverse Wave):</strong>
+                    <p>
+                        এখানে ঢেউ যেদিকে যায়, কণাগুলো তার সাথে <strong>আড়াআড়িভাবে (উপরে-নিচে)</strong> কাঁপে। যেমন: জলের ঢেউ, আলোর তরঙ্গ।
+                    </p>
+                </li>
+                <li>
+                    <strong>অনুদৈর্ঘ্য তরঙ্গ (Longitudinal Wave):</strong>
+                    <p>
+                        এখানে কণাগুলো যেদিকে কাঁপে (সামনে-পিছনে), ঢেউটাও <strong>সেই দিকেই</strong> যায়। যেমন: <strong>শব্দ তরঙ্গ</strong>।
+                    </p>
+                </li>
+            </ol>
+
+            <h4>তড়িৎ-চুম্বকীয় তরঙ্গ কী? (Electromagnetic Wave)</h4>
+            <p>
+                এটা এক বিশেষ ধরনের তরঙ্গ, যার চলার জন্য <strong>কোনো বন্ধুর (মাধ্যম) দরকার হয় না</strong>। এরা শূন্যস্থানেও চলতে পারে। যেমন: আলো, মোবাইল নেটওয়ার্ক, এক্স-রে।
+            </p>
+
+            <h4>শব্দ আর আলোর মধ্যে মিল-অমিল</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>বিষয়</th>
+                        <th>শব্দ তরঙ্গ (Sound Wave)</th>
+                        <th>আলোক তরঙ্গ (Light Wave)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>প্রকৃতি</strong></td>
+                        <td>এ একা চলতে পারে না, এর <strong>বন্ধু (মাধ্যম)</strong> লাগে।</td>
+                        <td>এ একাই একশো! এর কোনো <strong>বন্ধু (মাধ্যম) লাগে না</strong>।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ধরণ</strong></td>
+                        <td>এটি একটি <strong>অনুদৈর্ঘ্য তরঙ্গ</strong>।</td>
+                        <td>এটি একটি <strong>তির্যক তরঙ্গ</strong>।</td>
+                    </tr>
+                    <tr>
+                        <td><strong>গতি (Speed)</strong></td>
+                        <td>এর গতি অনেক <strong>কম</strong>।</td>
+                        <td>এর গতি <strong> (বিশাল) বেশি</strong>।</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4>তরঙ্গের কিছু জরুরি বিষয়</h4>
+            <ul>
+                <li><strong>বিস্তার (Amplitude):</strong> ঢেউটা কতটা উঁচু হচ্ছে। বিস্তার বেশি হলে শব্দ জোরে হয়।</li>
+                <li><strong>কম্পাঙ্ক (Frequency):</strong> এক সেকেন্ডে কতগুলো ঢেউ তৈরি হচ্ছে। কম্পাঙ্ক বেশি হলে শব্দ চিকন হয়।</li>
+                <li><strong>পর্যায়কাল (Time Period):</strong> একটা পূর্ণ ঢেউ তৈরি হতে কত সময় লাগে।</li>
+            </ul>
+            
+            <hr>
+            
+            <p class="thank-you">THANK YOU</p>
+        </div>
+
+        <!-- নেভিগেশন বাটন -->
+        
+<div class="navigation">
+    <a href="class1shoj-bhabe.html" class="btn nav-btn">⟵ পূর্ববর্তী</a>
+    
+    <a href="class1shoj-bhabe.html" class="btn page-btn">১</a>
+    <a href="class2shoj-bhabe.html" class="btn page-btn active">২</a>
+    <a href="class3shoj-bhabe.html" class="btn page-btn">৩</a>
+    <a href="class4shoj-bhabe.html" class="btn page-btn">৪</a>
+    <a href="class5shoj-bhabe.html" class="btn page-btn">৫</a>
+    <a href="class6shoj-bhabe.html" class="btn page-btn">৬</a>
+    <a href="class7shoj-bhabe.html" class="btn page-btn">৭</a>
+    
+    <a href="class3shoj-bhabe.html" class="btn nav-btn">পরবর্তী ⟶</a>
+</div>
+
+<!-- হোম বাটন -->
+<div class="home-button-container">
+    <a href="../index.html" class="btn home-btn">🏠 হোম পেজ</a>
+</div>
+
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৫ - কার্য, ক্ষমতা ও শক্তি</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        <div id="quiz-container"></div>
+        <div class="page-navigation">
+            <a href="Qset4.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset6.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    <script>
+        const quizSet = {
+            chapterName: "কার্য, ক্ষমতা ও শক্তি",
+            setName: "Set 5",
+            name: "কার্য, ক্ষমতা ও শক্তি - Set 5 (প্রশ্ন ৪১-৫০)",
+            questions: [
+                { question: "কার্যের সূত্রটি হলো— *(Railway Group D 2021)*", options: ["বল × সময়", "বল × সরণ", "ভর × ত্বরণ", "ক্ষমতা × সময়"], answer: 1, explanation: "এটি কার্যের মৌলিক সংজ্ঞা।" },
+                { question: "কোনো বস্তুকে উপরে তুলতে কৃতকার্য কিসের সমান? *(SSC CGL 2019)*", options: ["mgh", "½ mv²", "F × s", "P × t"], answer: 0, explanation: "কোনো বস্তুকে উপরে তুলতে কৃতকার্য তার অর্জিত স্থিতিশক্তির (mgh) সমান হয়।" },
+                { question: "যখন একটি স্প্রিংকে সংকুচিত করা হয়, তখন প্রযুক্ত বল দ্বারা কৃতকার্য কী হয়? *(IBPS Clerk 2017)*", options: ["ধনাত্মক", "ঋণাত্মক", "শূন্য", "অসংজ্ঞাত"], answer: 0, explanation: "প্রযুক্ত বল এবং স্প্রিং-এর সংকোচন একই দিকে হওয়ায় কার্য ধনাত্মক হয়।" },
+                { question: "ক্ষমতার SI একক কী? *(SSC JE 2018)*", options: ["জুল", "ওয়াট", "নিউটন", "আর্গ"], answer: 1, explanation: "ক্ষমতার SI একক ওয়াট (Watt)।" },
+                { question: "ক্ষমতার সংজ্ঞা হলো— *(UPSC Prelims 2020)*", options: ["একক সময়ে কৃত কার্য", "একক দূরত্বে প্রযুক্ত বল", "একক ভরে সঞ্চিত শক্তি", "একক সময়ে বেগের পরিবর্তন"], answer: 0, explanation: "ক্ষমতা হলো কাজ করার হার, অর্থাৎ কার্য/সময়।" },
+                { question: "যদি 5 সেকেন্ডে 100 জুল কার্য করা হয়, তবে ক্ষমতা কত? *(Railway RRB ALP 2019)*", options: ["20 W", "500 W", "5 W", "100 W"], answer: 0, explanation: "ক্ষমতা = কার্য / সময় = 100 জুল / 5 সেকেন্ড = 20 ওয়াট।" },
+                { question: "তাৎক্ষণিক ক্ষমতা (Instantaneous power) নির্ণয় করা হয় কোন সূত্র দিয়ে? *(SSC CHSL 2017)*", options: ["F × v", "W / t", "mgh", "½ mv²"], answer: 0, explanation: "তাৎক্ষণিক ক্ষমতা হলো বল এবং ওই মুহূর্তের বেগের গুণফল।" },
+                { question: "একটি পাম্প 10 সেকেন্ডে 100 কেজি জল 10 মিটার উপরে তুললে তার ক্ষমতা কত? (g=10 m/s²) *(SBI Clerk 2018)*", options: ["100 W", "1000 W", "10 W", "500 W"], answer: 1, explanation: "কার্য (W) = mgh = 100×10×10 = 10000 J। ক্ষমতা (P) = W/t = 10000/10 = 1000 W।" },
+                { question: "ক্ষমতা একটি স্কেলার রাশি। *(SSC CGL 2021)*", options: ["সত্য", "মিথ্যা (এটি ভেক্টর)", "দিকের উপর নির্ভরশীল", "কোনোটিই নয়"], answer: 0, explanation: "ক্ষমতার কেবল মান আছে, দিক নেই, তাই এটি স্কেলার রাশি।" },
+                { question: "1 অশ্ব ক্ষমতা (Horsepower) সমান কত? *(UPSC CDS 2016)*", options: ["746 W", "1000 W", "500 W", "1 J/s"], answer: 0, explanation: "1 HP = 746 Watt, এটি একটি নির্দিষ্ট মান।" }
+            ]
+        };
+    </script>
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

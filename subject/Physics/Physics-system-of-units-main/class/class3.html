@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 03 - একক পদ্ধতি (অনুশীলনী)</title>
+    
+    <!-- গুগল ফন্ট লিঙ্ক -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- === সমস্ত CSS কোড এখানে যোগ করা হয়েছে === -->
+    <style>
+        /* CSS ভেরিয়েবলস (দিন ও রাত মোডের জন্য) */
+        :root {
+            --bg-color: #f4f7f9; --card-bg: #ffffff; --text-color: #333;
+            --heading-color: #0d47a1; --sub-heading-color: #00796b; --strong-color: #c2185b;
+            --border-color: #e0e0e0; --hr-color: #e0e0e0; --table-header-bg: #00796b;
+            --table-even-row-bg: #f7f9fa; --nav-button-bg: #fff; --nav-button-text: #333;
+            --nav-button-border: #ccc; --mcq-answer-bg: #e8f5e9; --mcq-answer-border: #4caf50;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212; --card-bg: #1e1e1e; --text-color: #e0e0e0;
+            --heading-color: #90caf9; --sub-heading-color: #4db6ac; --strong-color: #f48fb1;
+            --border-color: #424242; --hr-color: #424242; --table-header-bg: #004d40;
+            --table-even-row-bg: #2c2c2c; --nav-button-bg: #333; --nav-button-text: #e0e0e0;
+            --nav-button-border: #555; --mcq-answer-bg: #2e4430; --mcq-answer-border: #66bb6a;
+        }
+
+        /* বেসিক রিসেট এবং ফন্ট */
+        body {
+            font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color);
+            color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* কন্টেইনার স্টাইল */
+        .container {
+            max-width: 850px; margin: 20px auto; background-color: var(--card-bg);
+            padding: 25px 35px; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color); transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        /* হেডার ও শিরোনাম */
+        .page-header { position: relative; text-align: center; margin-bottom: 30px; border-bottom: 2px solid var(--sub-heading-color); padding-bottom: 15px; }
+        h1 { font-size: 2.2em; color: var(--sub-heading-color); margin: 0; }
+        h2 { font-size: 1.5em; color: var(--text-color); font-weight: 500; margin: 5px 0 0 0; }
+        .topic h4 { font-size: 1.6em; color: var(--heading-color); border-left: 4px solid var(--heading-color); padding-left: 10px; margin-top: 30px; }
+        p { font-size: 1.1em; } strong { color: var(--strong-color); }
+        hr { border: 0; height: 1px; background-color: var(--hr-color); margin: 40px 0; }
+        ul, ol { padding-left: 25px; } li { margin-bottom: 10px; }
+
+        /* দিন/রাত মোড বাটন */
+        .theme-toggle-button {
+            position: absolute; top: 10px; right: 10px; background: none; border: 1px solid var(--border-color);
+            border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2em;
+            display: flex; align-items: center; justify-content: center; transition: background-color 0.3s, border-color 0.3s;
+        }
+        .theme-toggle-button:hover { background-color: rgba(128, 128, 128, 0.1); }
+
+        /* MCQ হাইলাইটার */
+        .mcq-highlight::before { content: '⭐ '; color: #ffc107; margin-right: 5px; }
+
+        /* টেবিল স্টাইল */
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 1em; }
+        th, td { border: 1px solid var(--border-color); text-align: left; padding: 12px 15px; }
+        th { background-color: var(--table-header-bg); color: white; font-weight: 600; }
+        tr:nth-child(even) { background-color: var(--table-even-row-bg); }
+
+        /* অনুশীলনী (MCQ) স্টাইল */
+        .mcq-item { border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .mcq-item p { margin: 0 0 10px 0; }
+        .mcq-options p { padding-left: 15px; }
+        .show-answer-btn {
+            background-color: var(--sub-heading-color); color: white; border: none; padding: 8px 15px;
+            border-radius: 5px; cursor: pointer; margin-top: 10px; transition: background-color 0.2s;
+        }
+        .show-answer-btn:hover { background-color: #004d40; }
+        .mcq-answer {
+            background-color: var(--mcq-answer-bg); border-left: 4px solid var(--mcq-answer-border);
+            padding: 15px; margin-top: 15px; border-radius: 5px; display: none;
+        }
+        .mcq-answer.visible { display: block; }
+        .mcq-answer strong { color: var(--strong-color); }
+        .mcq-answer i { color: #555; }
+
+        /* নেভিগেশন ও ফুটার */
+        .navigation, footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .navigation { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .nav-button {
+            display: inline-block; padding: 8px 15px; border: 1px solid var(--nav-button-border); border-radius: 20px;
+            text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg);
+            transition: all 0.3s ease; font-weight: 500; font-size: 0.95em;
+        }
+        .nav-button:hover { background-color: rgba(128, 128, 128, 0.2); transform: translateY(-2px); }
+        .nav-button.active { background-color: #d81b60; color: white; border-color: #d81b60; font-weight: 700; }
+        footer p { font-size: 0.9em; color: #888; }
+
+        /* মোবাইল রেসপন্সিভ */
+        @media (max-width: 600px) {
+            body { padding: 15px 5px; } .container { padding: 20px 15px; }
+            h1 { font-size: 1.8em; } h2 { font-size: 1.3em; } h4 { font-size: 1.4em; }
+            p { font-size: 1em; }
+            .theme-toggle-button { top: 5px; right: 5px; width: 35px; height: 35px; }
+            .nav-button { padding: 6px 12px; font-size: 0.9em; gap: 5px; }
+            .mcq-item { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- প্রধান শিরোনাম এবং থিম টগল বাটন -->
+        <header class="page-header">
+            <button id="theme-toggle-button" class="theme-toggle-button" title="দিন/রাত মোড পরিবর্তন করুন">🌙</button>
+            <h1>CLASS 03</h1>
+            <h2>বিষয়: একক পদ্ধতি (অনুশীলনী ও লব্ধ একক)</h2>
+        </header>
+
+        <!-- মূল কন্টেন্ট -->
+        <main>
+            <section class="topic">
+                <h4>অনুশীলনী (MCQ)</h4>
+                
+                <div class="mcq-item">
+                    <p><strong>১. একটি স্কেলার রাশির উদাহরণ হলো —</strong></p>
+                    <div class="mcq-options">
+                        <p>[A] বেগ</p>
+                        <p>[B] বল</p>
+                        <p>[C] ভরবেগ</p>
+                        <p>[D] শক্তি</p>
+                    </div>
+                    <button class="show-answer-btn">উত্তর ও ব্যাখ্যা দেখুন</button>
+                    <div class="mcq-answer">
+                        <p><strong>উত্তর: [D] শক্তি</strong></p>
+                        <p><i>(ব্যাখ্যা: শক্তি একটি স্কেলার রাশি কারণ এর কেবল মান আছে, কোনো নির্দিষ্ট দিক নেই। বেগ, বল ও ভরবেগ ভেক্টর রাশি কারণ এদের মান ও দিক উভয়ই আছে।)</i></p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <p><strong>২. SI পদ্ধতিতে তাপমাত্রার একক কী?</strong></p>
+                    <div class="mcq-options">
+                        <p>[A] কেলভিন</p>
+                        <p>[B] নিউটন</p>
+                        <p>[C] পাস্কাল</p>
+                        <p>[D] ডাইন</p>
+                    </div>
+                    <button class="show-answer-btn">উত্তর ও ব্যাখ্যা দেখুন</button>
+                    <div class="mcq-answer">
+                        <p><strong>উত্তর: [A] কেলভিন (K)</strong></p>
+                        <p><i>(ব্যাখ্যা: SI পদ্ধতিতে তাপমাত্রার মূল একক হলো কেলভিন।)</i></p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <p><strong>৩. নিচের কোনটি SI পদ্ধতিতে কোনো বস্তুর পরিমাণের একক?</strong></p>
+                    <div class="mcq-options">
+                        <p>[A] কেলভিন (K)</p>
+                        <p>[B] ক্যান্ডেলা (Cd)</p>
+                        <p>[C] মিটার (m)</p>
+                        <p>[D] মোল (mol)</p>
+                    </div>
+                    <button class="show-answer-btn">উত্তর ও ব্যাখ্যা দেখুন</button>
+                    <div class="mcq-answer">
+                        <p><strong>উত্তর: [D] মোল (mol)</strong></p>
+                        <p><i>(ব্যাখ্যা: SI পদ্ধতিতে পদার্থের পরিমাণের একক হলো মোল।)</i></p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <p><strong>৪. তাপের CGS একক কী?</strong></p>
+                    <div class="mcq-options">
+                        <p>[A] ক্যালরি</p>
+                        <p>[B] সেন্টিগ্রেড</p>
+                        <p>[C] অ্যামপিয়ার</p>
+                        <p>[D] জুল</p>
+                    </div>
+                    <button class="show-answer-btn">উত্তর ও ব্যাখ্যা দেখুন</button>
+                    <div class="mcq-answer">
+                        <p><strong>উত্তর: [A] ক্যালরি</strong></p>
+                        <p><i>(ব্যাখ্যা: CGS পদ্ধতিতে তাপ বা শক্তির একক হলো ক্যালরি। SI পদ্ধতিতে এর একক জুল।)</i></p>
+                    </div>
+                </div>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>লব্ধ একক গঠন (Formation of Derived Units)</h4>
+                <p>SI পদ্ধতিতে ৭টি মূল একক ব্যবহার করে অন্যান্য ভৌতরাশির একক (লব্ধ একক) গঠন করা হয়। নিচে কয়েকটি উদাহরণ দেওয়া হলো:</p>
+                <ul>
+                    <li><strong>ক্ষেত্রফল</strong> = (দৈর্ঘ্যের একক)²</li>
+                    <li><strong>আয়তন</strong> = (দৈর্ঘ্যের একক)³</li>
+                    <li><strong>ঘনত্ব</strong> = ভরের একক / (দৈর্ঘ্যের একক)³</li>
+                    <li><strong>বেগ</strong> = দৈর্ঘ্যের একক / সময়ের একক</li>
+                    <li><strong>ত্বরণ</strong> = দৈর্ঘ্যের একক / (সময়ের একক)²</li>
+                    <li><strong>বল</strong> = ভরের একক × (দৈর্ঘ্যের একক / (সময়ের একক)²)</li>
+                    <li><strong>কার্য</strong> = (ভরের একক × দৈর্ঘ্যের একক²) / (সময়ের একক)²</li>
+                    <li><strong>ক্ষমতা</strong> = (ভরের একক × দৈর্ঘ্যের একক²) / (সময়ের একক)³</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>কিছু গুরুত্বপূর্ণ লব্ধ এককের CGS ও SI একক</h4>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>রাশি (Quantity)</th><th>CGS একক</th><th>SI একক</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>আয়তন</strong></td><td>ঘনসেন্টিমিটার (cm³)</td><td>ঘনমিটার (m³)</td></tr>
+                            <tr><td><strong>ঘনত্ব</strong></td><td>গ্রাম/সেমি³ (g/cm³)</td><td>কিলোগ্রাম/মি³ (kg/m³)</td></tr>
+                            <tr><td><strong>বল</strong></td><td>ডাইন (dyne)</td><td>নিউটন (N)</td></tr>
+                            <tr><td><strong>কার্য ও শক্তি</strong></td><td>আর্গ (erg)</td><td>জুল (J)</td></tr>
+                            <tr><td><strong>ক্ষমতা</strong></td><td>আর্গ/সেকেন্ড (erg/s)</td><td>জুল/সেকেন্ড (J/s) বা ওয়াট (W)</td></tr>
+                            <tr><td><strong>চাপ</strong></td><td>ডাইন/সেমি² (dyne/cm²)</td><td>নিউটন/মি² (N/m²) বা পাস্কাল (Pa)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mcq-highlight"><strong>বলের এককের সম্পর্ক:</strong> 1 নিউটন (N) = 10⁵ ডাইন (dyne)</p>
+            </section>
+            
+            <hr>
+
+            <section class="topic">
+                <h4>অন্যান্য গুরুত্বপূর্ণ ভৌতরাশি ও তাদের SI একক</h4>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>রাশি (Quantity)</th><th>SI একক (Unit)</th><th>চিহ্ন (Symbol)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>তড়িৎ আধান</td><td>কুলম্ব</td><td>C</td></tr>
+                            <tr><td>বিভব পার্থক্য</td><td>ভোল্ট</td><td>V</td></tr>
+                            <tr><td>রোধ</td><td>ওহম</td><td>Ω</td></tr>
+                            <tr><td>চৌম্বক ক্ষেত্র</td><td>টেসলা</td><td>T</td></tr>
+                            <tr><td>কম্পাঙ্ক</td><td>হার্জ</td><td>Hz</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>এককবিহীন রাশি (Unitless Quantity)</h4>
+                <p><strong>প্রশ্ন: এককবিহীন রাশি কাকে বলে? উদাহরণ দাও।</strong><br>
+                <strong>উত্তর:</strong> যখন কোনো ভৌতরাশি দুটি সমজাতীয় রাশির অনুপাত হিসেবে প্রকাশ করা হয়, তখন তার কোনো একক থাকে না। এই ধরনের রাশিকে এককবিহীন রাশি বলে।<br>
+                <span class="mcq-highlight"><strong>উদাহরণ:</strong> পারমাণবিক গুরুত্ব, আপেক্ষিক গুরুত্ব, বিকৃতি, দ্রাব্যতা ইত্যাদি।</span></p>
+            </section>
+            
+            <hr>
+            
+            <section class="topic">
+                <h4>দৈর্ঘ্যের ছোট একক (Smaller Units of Length)</h4>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>এককের নাম</th><th>পরিচয়</th><th>ব্যবহার</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr class="mcq-highlight"><td><strong>মাইক্রন (μm)</strong></td><td>1 μm = 10⁻⁶ m</td><td>অণুবীক্ষণিক বস্তুর আকার</td></tr>
+                            <tr class="mcq-highlight"><td><strong>ন্যানোমিটার (nm)</strong></td><td>1 nm = 10⁻⁹ m</td><td>আলোর তরঙ্গদৈর্ঘ্য, পরমাণুর ব্যাস</td></tr>
+                            <tr class="mcq-highlight"><td><strong>অ্যাংস্ট্রম (Å)</strong></td><td>1 Å = 10⁻¹⁰ m</td><td>পরমাণুর অভ্যন্তরীণ দূরত্ব</td></tr>
+                            <tr class="mcq-highlight"><td><strong>ফার্মি (fm)</strong></td><td>1 fm = 10⁻¹⁵ m</td><td>নিউক্লিয়াসের ব্যাস</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- নেভিগেশন বার -->
+    <nav class="navigation">
+        <a href="class2.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button active">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class4.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">হোমপেজ</a>
+    </nav>
+    
+    <!-- ফুটার -->
+    <footer>
+        <p>&copy; <span id="current-year"></span> কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <!-- === সমস্ত JavaScript কোড এখানে যোগ করা হয়েছে === -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- দিন/রাত মোড ফাংশন ---
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const body = document.body;
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleButton.textContent = '☀️';
+            } else {
+                themeToggleButton.textContent = '🌙';
+            }
+            themeToggleButton.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeToggleButton.textContent = '☀️';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeToggleButton.textContent = '🌙';
+                }
+            });
+
+            // --- MCQ উত্তর দেখানোর ফাংশন ---
+            const answerButtons = document.querySelectorAll('.show-answer-btn');
+            answerButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const answerDiv = this.nextElementSibling;
+                    answerDiv.classList.toggle('visible');
+                    if(answerDiv.classList.contains('visible')){
+                        this.textContent = 'উত্তর লুকান';
+                    } else {
+                        this.textContent = 'উত্তর ও ব্যাখ্যা দেখুন';
+                    }
+                });
+            });
+
+            // --- ফুটারের তারিখ স্বয়ংক্রিয়ভাবে পরিবর্তন ---
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+
+</body>
+</html>

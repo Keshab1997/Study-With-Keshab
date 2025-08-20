@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 01 - MCQ Practice (একক পদ্ধতি ও পরিমাপ)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        /* --- Global Styles & Theming Variables --- */
+        :root {
+            --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60;
+            --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b;
+            --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd;
+            --blockquote-border: #2196f3; --nav-button-bg: #fff;
+            --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1);
+            --correct-bg: #2ecc71; --incorrect-bg: #e74c3c;
+        }
+        [data-theme="forest"] {
+            --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; 
+            --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; 
+            --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60;
+        }
+        [data-theme="ocean"] {
+            --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; 
+            --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; 
+            --blockquote-bg: #e4f1fe; --blockquote-border: #3498db;
+        }
+        [data-theme="sunset"] {
+            --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; 
+            --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; 
+            --blockquote-bg: #fff8e1; --blockquote-border: #f57c00;
+        }
+        .dark-mode {
+            --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; 
+            --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; 
+            --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; 
+            --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; 
+            --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f;
+        }
+
+        /* --- Base Layout & Typography --- */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        
+        /* --- Header, Footer, Navigation --- */
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+
+        /* --- Controls (Theme, Dark Mode, Set Selector) --- */
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+        /* --- MCQ Specific Styles --- */
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question {
+            margin-bottom: 40px; padding: 20px; border-radius: 10px;
+            border: 2px solid transparent; /* Prevents layout shift on highlight */
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+        .mcq-question.active-question {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5);
+        }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        
+        /* --- Utility Styles --- */
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="..\images\logo.jpg" alt="Logo" class="logo">
+        <h1>একক পদ্ধতি ও পরিমাপ</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন ১-১০)</option>
+                <option value="2">Set 2 (প্রশ্ন ১১-২০)</option>
+                <option value="3">Set 3 (প্রশ্ন ২১-৩০)</option>
+                <option value="4">Set 4 (প্রশ্ন ৩১-৪০)</option>
+            </select>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 01 - বিগত বছরের পরীক্ষার প্রশ্নাবলী</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="#" class="nav-button disabled">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button active">1</a>
+        <a href="class2.html" class="nav-button disabled">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2024 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- AUDIO SETUP (Corrected Path) ---
+            const correctSound = new Audio('../sounds/correct.mp3');
+            const wrongSound = new Audio('../sounds/wrong.mp3');
+
+            // --- THEME, MODE, & SCROLL BUTTON LOGIC (Unchanged) ---
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) {
+                if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+                else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+                localStorage.setItem('selected_mode', mode);
+            }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+                scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+                scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            // --- INTERACTIVE MCQ LOGIC (UPDATED WITH NEW DATA) ---
+            const mcqData = [
+                // Set 1: Questions 1-10
+                { q: "নীচের কোন রাশির একক Volt?", o: ["তড়িৎ প্রবাহমাত্রা", "তড়িৎ ক্ষেত্রের প্রাবল্য", "তড়িৎ বিভব", "তড়িৎ আধান"], a: 2, ex: "SI পদ্ধতিতে তড়িৎ বিভব বা বিভব পার্থক্যের একক হলো ভোল্ট (V)। তড়িৎ প্রবাহমাত্রার একক অ্যাম্পিয়ার (A) এবং তড়িৎ আধানের একক কুলম্ব (C)।" },
+                { q: "আলোকবর্ষ হল-", o: ["দূরত্বের একক", "ক্ষুদ্র দূরত্বের একক", "সময়ের একক", "আলোর গতিবেগ"], a: 0, ex: "আলোকবর্ষ হলো শূন্যস্থানে আলো এক বছরে যে দূরত্ব অতিক্রম করে। এটি সময়ের একক নয়, বরং জ্যোতির্বিজ্ঞানে ব্যবহৃত একটি বিশাল দূরত্বের একক।" },
+                { q: "পার-সেক (par-sec) হল-", o: ["3.26 আলোকবর্ষ", "1.96 আলোকবর্ষ", "10.26 বছর", "14.56 দিন"], a: 0, ex: "পারসেক দূরত্বের একটি একক, যা প্রায় 3.26 আলোকবর্ষের সমান। এটি জ্যোতির্বিজ্ঞানে ব্যবহৃত দূরত্বের বৃহত্তম এককগুলির মধ্যে একটি।" },
+                { q: "নীচের কোন এককটির সাহায্যে তরঙ্গদৈর্ঘ্য মাপা হয়?", o: ["মিটার (m)", "অ্যাংস্ট্রম (Å)", "পার-সেক", "ফার্মি (F)"], a: 1, ex: "আলোর তরঙ্গদৈর্ঘ্য অত্যন্ত ক্ষুদ্র হওয়ায় এটি সাধারণত অ্যাংস্ট্রম (1 Å = 10⁻¹⁰ m) বা ন্যানোমিটার (nm) এককে প্রকাশ করা হয়।" },
+                { q: "ফার্মি (F) এককের সাহায্যে মাপা হয়-", o: ["রাস্তার দূরত্ব", "সমুদ্রের গভীরতা", "পরমাণুর নিউক্লিয়াসের ব্যাসার্ধ", "দুটি নক্ষত্রের মধ্যবর্তী দূরত্ব"], a: 2, ex: "ফার্মি বা ফেমটোমিটার (1 fm = 10⁻¹⁵ m) দৈর্ঘ্যের একটি অত্যন্ত ক্ষুদ্র একক, যা পরমাণুর নিউক্লিয়াসের আকার পরিমাপ করতে ব্যবহৃত হয়।" },
+                { q: "নীচের কোন রাশিটির কোনো একক নেই?", o: ["আপেক্ষিক তাপ", "আপেক্ষিক গুরুত্ব", "রোধ", "আপেক্ষিক রোধ"], a: 1, ex: "আপেক্ষিক গুরুত্ব হলো কোনো বস্তুর ঘনত্ব ও প্রমাণ বস্তুর (সাধারণত জল) ঘনত্বের অনুপাত। দুটি সমজাতীয় রাশির অনুপাত হওয়ায় এর কোনো একক থাকে না।" },
+                { q: "নীচের কোন রাশিটি স্কেলার রাশি?", o: ["বল", "টর্ক", "কার্য", "ত্বরণ"], a: 2, ex: "কার্য একটি স্কেলার রাশি কারণ এর কেবল মান আছে, কোনো নির্দিষ্ট দিক নেই। বল, টর্ক এবং ত্বরণ হলো ভেক্টর রাশি।" },
+                { q: "নীচের কোনটি স্কেলার রাশি নয়?", o: ["কার্য", "তড়িৎক্ষেত্রের প্রাবল্য", "দ্রুতি", "শক্তি"], a: 1, ex: "তড়িৎক্ষেত্রের প্রাবল্য একটি ভেক্টর রাশি কারণ এর মান ও দিক উভয়ই আছে। কার্য, দ্রুতি ও শক্তি হলো স্কেলার রাশি।" },
+                { q: "নীচের কোন রাশি দুটির মাত্রা সমান হয়?", o: ["বলের ঘাত ও ভরবেগ", "ঘাত ও বল", "তাপ ও স্থিতিস্থাপক গুণাঙ্ক", "কার্য ও পীড়ন"], a: 0, ex: "বলের ঘাত (বল × সময়) এবং ভরবেগ (ভর × বেগ) উভয়েরই মাত্রা হলো [MLT⁻¹]।" },
+                { q: "এক ব্যক্তি একটি বৃত্তাকার পথ পরিক্রমণ করলে তার সরণ এবং অতিক্রান্ত দূরত্বের অনুপাত হবে-", o: ["π / 2", "π", "শূন্য", "2 / π"], a: 2, ex: "একটি পূর্ণ বৃত্তাকার পথ পরিক্রমা করলে বস্তুটি শুরুর স্থানেই ফিরে আসে, তাই তার সরণ (শুরু ও শেষের মধ্যে ন্যূনতম দূরত্ব) শূন্য হয়। অতিক্রান্ত দূরত্ব 2πr হলেও, সরণ শূন্য হওয়ায় অনুপাতটি শূন্য হবে।" },
+
+                // Set 2: Questions 11-20
+                { q: "A ও B দুটি সমান ভেক্টর হলে, ওদের-", o: ["মান সমান", "দিক সমান", "একই মান এবং দিক উভয়েই", "মান সমান এবং একটি সাধারণ উৎস বিন্দু থাকবে"], a: 2, ex: "দুটি ভেক্টরকে সমান বলা হয় যদি এবং কেবল যদি তাদের মান এবং দিক উভয়ই একই হয়।" },
+                { q: "নীচের কোনটি স্কেলার রাশি নয়?", o: ["কার্য", "ক্ষমতা", "ভরবেগ", "তাপমাত্রা"], a: 2, ex: "ভরবেগ (ভর × বেগ) একটি ভেক্টর রাশি কারণ এর দিক বেগের দিকের উপর নির্ভরশীল।" },
+                { q: "1 আলোকবর্ষ নীচের কোনটির সমান?", o: ["9.46 x 10¹⁰ m", "9.46 x 10¹³ m", "9.46 x 10¹⁵ m", "9.46 x 10⁸ m"], a: 2, ex: "এক আলোকবর্ষ প্রায় 9.46 × 10¹⁵ মিটার বা 9.46 × 10¹² কিলোমিটারের সমান।" },
+                { q: "বস্তুর ভর নিম্নোক্ত কোন রাশির দ্বারা সূচিত হয়?", o: ["প্রযুক্ত বল / বেগ", "বেগ / ত্বরণ", "প্রযুক্ত বল / ত্বরণ", "প্রযুক্ত বল / ভরবেগের বৃদ্ধি"], a: 2, ex: "নিউটনের দ্বিতীয় গতিসূত্র অনুযায়ী, F = ma। সুতরাং, ভর (m) = প্রযুক্ত বল (F) / ত্বরণ (a)।" },
+                { q: "একটি স্কেলার রাশির উদাহরণ-", o: ["বেগ", "বল", "ভরবেগ", "শক্তি"], a: 3, ex: "শক্তি একটি স্কেলার রাশি। বেগ, বল এবং ভরবেগ হলো ভেক্টর রাশি।" },
+                { q: "এদের কোনটি দৈর্ঘ্যের একক নয়?", o: ["আলোকবর্ষ", "মাইক্রন", "AU", "রেডিয়ান"], a: 3, ex: "আলোকবর্ষ, মাইক্রন এবং অ্যাস্ট্রোনমিক্যাল ইউনিট (AU) হলো দৈর্ঘ্যের একক। রেডিয়ান হলো কোণের একক।" },
+                { q: "কোন রাশির একক ডাইন-সেকেন্ড?", o: ["বল", "ভরবেগ", "শক্তি", "ক্ষমতা"], a: 1, ex: "ডাইন-সেকেন্ড হলো বলের ঘাতের CGS একক। বলের ঘাত এবং ভরবেগের পরিবর্তন সমান, তাই তাদের এককও একই। ভরবেগের CGS একক হলো গ্রাম-সেমি/সেকেন্ড, যা ডাইন-সেকেন্ডের সমতুল্য।" },
+                { q: "আলোকবর্ষ কীসের একক?", o: ["সময়", "দূরত্ব", "আলো", "আলোর প্রাবল্য"], a: 1, ex: "এটি জ্যোতির্বিজ্ঞানে ব্যবহৃত একটি বিশাল দূরত্বের একক।" },
+                { q: "কিলো-ওয়াট আওয়ার কীসের একক?", o: ["ভরবেগ", "ক্ষমতা", "বল", "শক্তি"], a: 3, ex: "কিলো-ওয়াট (kW) হলো ক্ষমতার একক এবং আওয়ার (hour) হলো সময়ের একক। ক্ষমতা × সময় = শক্তি বা কার্য। তাই kWh হলো শক্তির বাণিজ্যিক একক।" },
+                { q: "নীচের কোনটি স্কেলার রাশি?", o: ["ভরবেগ", "ভর", "ওজন", "বল"], a: 1, ex: "ভর একটি মৌলিক স্কেলার রাশি। ভরবেগ, ওজন (এক প্রকার বল) এবং বল হলো ভেক্টর রাশি।" },
+
+                // Set 3: Questions 21-30
+                { q: "কম্পাঙ্কের একক হল-", o: ["কেজি-মিটার", "সেকেন্ড", "হার্জ", "সেমি/সেকেন্ড"], a: 2, ex: "কম্পাঙ্কের SI একক হলো হার্জ (Hz), যা প্রতি সেকেন্ডে কম্পন সংখ্যা বোঝায় (1 Hz = 1 s⁻¹)।" },
+                { q: "ক্ষমতার একক কী?", o: ["হাফ লাইফ", "ওয়াট", "ভোল্ট", "জুল"], a: 1, ex: "ক্ষমতার SI একক হলো ওয়াট (W), যা প্রতি সেকেন্ডে কৃতকার্যের হার বোঝায় (1 W = 1 J/s)।" },
+                { q: "নিম্নলিখিত রাশিগুলির মধ্যে ভেক্টর রাশিটি হল-", o: ["তাপ", "কৌণিক ভরবেগ", "সময়", "কার্য"], a: 1, ex: "কৌণিক ভরবেগ একটি ভেক্টর রাশি যার মান ও দিক উভয়ই আছে। তাপ, সময় এবং কার্য হলো স্কেলার রাশি।" },
+                { q: "C.G.S পদ্ধতিতে আয়তনের একক কী?", o: ["cm²", "cm³", "km", "m"], a: 1, ex: "CGS পদ্ধতিতে দৈর্ঘ্যের একক সেন্টিমিটার (cm), তাই আয়তনের একক ঘনসেন্টিমিটার (cm³)।" },
+                { q: "S.I পদ্ধতিতে মোট একক হল-", o: ["তিনটি মূল একক এবং একটি সহায়ক একক", "সাতটি মূল একক এবং দুটি সহায়ক একক", "পাঁচটি মূল একক এবং একটি সহায়ক একক", "সাতটি মূল একক এবং সাতটি সহায়ক একক"], a: 1, ex: "SI পদ্ধতিতে সাতটি মৌলিক একক (মিটার, কিলোগ্রাম, সেকেন্ড, অ্যাম্পিয়ার, কেলভিন, মোল, ক্যান্ডেলা) এবং দুটি সম্পূরক একক (রেডিয়ান, স্টেরেডিয়ান) রয়েছে।" },
+                { q: "নীচের কোনটি স্কেলার রাশি-", o: ["ভর (Mass)", "ভরবেগ (Momentum)", "অভিকর্ষ (Gravity)", "ওজন (Weight)"], a: 0, ex: "ভর হলো পদার্থের পরিমাণ এবং এটি একটি স্কেলার রাশি। ভরবেগ, অভিকর্ষ এবং ওজন (যা এক প্রকার বল) হলো ভেক্টর রাশি।" },
+                { q: "1 পাউন্ড = ____ কিলোগ্রাম?", o: ["0.4537", "0.6537", "0.8537", "0.9537"], a: 0, ex: "1 পাউন্ড প্রায় 0.4537 কিলোগ্রামের সমান।" },
+                { q: "Watt Second, Watt Hour ও Kilowatt Hour হলো ____ এর একক?", o: ["শক্তি", "ক্ষমতা", "বল", "চাপ"], a: 0, ex: "ওয়াট (ক্ষমতা) × সময় (সেকেন্ড/ঘন্টা) = শক্তি। তাই এই তিনটিই শক্তির একক।" },
+                { q: "শরীরের ওজন (W) কোন সূত্র থেকে নির্ণয় করা হয়?", o: ["W = m/g", "W = g/m", "W = mg²", "W = mg"], a: 3, ex: "ওজন (W) হলো বস্তুর ভর (m) এবং অভিকর্ষজ ত্বরণের (g) গুণফল। সূত্রটি হলো W = mg।" },
+                { q: "ইমপালসের (বলের ঘাত) মাত্রা কোন রাশির মাত্রার সাথে সমান?", o: ["ভরবেগ", "বল", "শক্তি", "ক্ষমতা"], a: 0, ex: "ইমপালস (বলের ঘাত) এবং ভরবেগের মাত্রা একই, যা হলো [MLT⁻¹]।" },
+                
+                // Set 4: Questions 31-40
+                { q: "কাজ পরিমাপ করা হয় বল এবং বস্তুর ______ এর গুণফল দ্বারা, যা বলের দিকে সরে যায়।", o: ["গতি", "সরণ", "বেগ", "ত্বরণ"], a: 1, ex: "পদার্থবিজ্ঞানে, কাজ (Work) হলো বল (Force) এবং বলের দিকে বস্তুর সরণের (Displacement) গুণফল। W = F × d।" },
+                { q: "[ML⁻¹T⁻²] কোন রাশির মাত্রিক সূত্র?", o: ["বল", "ঘর্ষণ সহগ", "চাপ বা পীড়ন", "শক্তি"], a: 2, ex: "চাপ = বল/ক্ষেত্রফল = [MLT⁻²]/[L²] = [ML⁻¹T⁻²]। পীড়নের মাত্রাও একই।" },
+                { q: "সান্দ্রতা (Viscosity) এর মাত্রিক সূত্র কি?", o: ["[MLT⁻¹]", "[M⁻¹L²T⁻²]", "[ML⁻¹T⁻¹]", "কোনটিই নয়"], a: 2, ex: "সান্দ্রতার (Viscosity) মাত্রিক সূত্র হলো [ML⁻¹T⁻¹]।" },
+                { q: "দৈর্ঘ্যের এই এককগুলিকে ঊর্ধ্বক্রমে সাজান: অ্যাংস্ট্রম, মাইক্রন, ন্যানোমিটার।", o: ["অ্যাংস্ট্রম, মাইক্রন, ন্যানোমিটার", "ন্যানোমিটার, অ্যাংস্ট্রম, মাইক্রন", "অ্যাংস্ট্রম, ন্যানোমিটার, মাইক্রন", "মাইক্রন, ন্যানোমিটার, অ্যাংস্ট্রম"], a: 2, ex: "সঠিক ক্রম: অ্যাংস্ট্রম (10⁻¹⁰m) < ন্যানোমিটার (10⁻⁹m) < মাইক্রন (10⁻⁶m)।" },
+                { q: "কাপল (Couple) এর মাত্রিক সূত্র কি?", o: ["[ML²T⁻²]", "[MLT⁻¹]", "[ML⁻¹T⁻¹]", "[MLT⁻²]"], a: 0, ex: "কাপল হলো এক প্রকার টর্ক, এবং টর্কের মাত্রা কার্যের মাত্রার সমান, যা [ML²T⁻²]।" },
+                { q: "নিম্নলিখিত রাশিগুলির (দূরত্ব, শক্তি, শব্দের তীব্রতা, ফ্রিকোয়েন্সি) সাথে তাদের এককের (হার্জ, আলোকবর্ষ, জুল, ডেসিবেল) সঠিক ক্রম কোনটি?", o: ["আলোকবর্ষ, জুল, ডেসিবেল, হার্জ", "হার্জ, আলোকবর্ষ, জুল, ডেসিবেল", "জুল, ডেসিবেল, হার্জ, আলোকবর্ষ", "ডেসিবেল, হার্জ, আলোকবর্ষ, জুল"], a: 0, ex: "সঠিক মিল: দূরত্ব-আলোকবর্ষ, শক্তি-জুল, শব্দের তীব্রতা-ডেসিবেল, ফ্রিকোয়েন্সি-হার্জ।" },
+                { q: "নিম্নলিখিত রাশিগুলির (তাপমাত্রা, ক্ষমতা, চাপ, বল) সাথে তাদের এককের (কেলভিন, ওয়াট, প্যাসকেল, নিউটন) সঠিক ক্রম কোনটি?", o: ["ওয়াট, কেলভিন, প্যাসকেল, নিউটন", "কেলভিন, ওয়াট, নিউটন, প্যাসকেল", "কেলভিন, ওয়াট, প্যাসকেল, নিউটন", "নিউটন, প্যাসকেল, ওয়াট, কেলভিন"], a: 2, ex: "সঠিক মিল: তাপমাত্রা-কেলভিন, ক্ষমতা-ওয়াট, চাপ-প্যাসকেল, বল-নিউটন।" },
+                { q: "নিম্নলিখিত রাশিগুলির (ত্বরণ, বিদ্যুৎ প্রবাহ, কাজ, ইমপালস) সাথে তাদের এককের (জুল, নিউটন-সেকেন্ড, অ্যাম্পিয়ার, মিটার/সেকেন্ড²) সঠিক ক্রম কোনটি?", o: ["মিটার/সেকেন্ড², অ্যাম্পিয়ার, জুল, নিউটন-সেকেন্ড", "অ্যাম্পিয়ার, মিটার/সেকেন্ড², জুল, নিউটন-সেকেন্ড", "জুল, নিউটন-সেকেন্ড, অ্যাম্পিয়ার, মিটার/সেকেন্ড²", "নিউটন-সেকেন্ড, জুল, অ্যাম্পিয়ার, মিটার/সেকেন্ড²"], a: 0, ex: "সঠিক মিল: ত্বরণ - মিটার/সেকেন্ড², বিদ্যুৎ প্রবাহ - অ্যাম্পিয়ার, কাজ - জুল, ইমপালস - নিউটন-সেকেন্ড।" },
+                { q: "তাপ পরিবাহিতা (Thermal Conductivity) এর মাত্রিক সূত্র কি?", o: ["[ML²T⁻³θ⁻¹]", "[ML²T⁻²θ⁻⁴]", "[ML²T⁻²θ⁻¹]", "[MLT⁻³θ⁻¹]"], a: 3, ex: "তাপ পরিবাহিতার মাত্রিক সূত্র হলো [MLT⁻³θ⁻¹], যেখানে θ হলো তাপমাত্রার মাত্রা।" },
+                { q: "নীচের কোনটি মাত্রাহীন রাশি হতে পারে?", o: ["আপেক্ষিক গুরুত্ব", "ভর", "ত্বরণ", "বল"], a: 0, ex: "আপেক্ষিক গুরুত্ব দুটি একই জাতীয় রাশির (ঘনত্ব) অনুপাত হওয়ায় এটি একটি মাত্রাহীন রাশি।" }
+            ];
+
+            const mcqContainer = document.getElementById('mcq-container');
+            const mcqSetSelector = document.getElementById('mcqSetSelector');
+            const scoreTracker = document.getElementById('score-tracker');
+            
+            let score = 0;
+            let totalQuestionsInSet = 0;
+
+            function generateMCQs(setNumber) {
+                mcqContainer.innerHTML = '';
+                score = 0;
+                
+                const questionsPerSet = 10;
+                const start = (setNumber - 1) * questionsPerSet;
+                const end = Math.min(start + questionsPerSet, mcqData.length);
+                const questionSet = mcqData.slice(start, end);
+
+                totalQuestionsInSet = questionSet.length;
+                updateScoreDisplay();
+
+                questionSet.forEach((item, index) => {
+                    const globalIndex = start + index;
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'mcq-question';
+                    questionDiv.id = `q-${globalIndex}`;
+                    
+                    let optionsHTML = item.o.map((option, i) => 
+                        `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                    ).join('');
+                    
+                    questionDiv.innerHTML = `
+                        <h4>প্রশ্ন ${globalIndex + 1}: ${item.q}</h4>
+                        <div class="mcq-options">${optionsHTML}</div>
+                        <div class="mcq-explanation"><strong>ব্যাখ্যা:</strong> ${item.ex}</div>
+                    `;
+                    mcqContainer.appendChild(questionDiv);
+                });
+                setupOptionListeners();
+                setupIntersectionObserver();
+            }
+            
+            function updateScoreDisplay() {
+                scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+            }
+
+            function handleOptionClick(e) {
+                const selectedOption = e.target.closest('.mcq-option');
+                if (!selectedOption) return;
+                const questionDiv = selectedOption.closest('.mcq-question');
+                if (questionDiv.classList.contains('answered')) return;
+                questionDiv.classList.add('answered');
+                const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+                const selectedIndex = parseInt(selectedOption.dataset.index);
+                const correctIndex = mcqData[globalIndex].a;
+                if (selectedIndex === correctIndex) {
+                    selectedOption.classList.add('correct');
+                    correctSound.play().catch(e => console.log("Audio play failed: " + e));
+                    score++;
+                    updateScoreDisplay();
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    wrongSound.play().catch(e => console.log("Audio play failed: " + e));
+                    questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+                }
+                questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+            }
+
+            function setupOptionListeners() {
+                mcqContainer.addEventListener('click', handleOptionClick);
+            }
+            
+            mcqSetSelector.addEventListener('change', (e) => {
+                generateMCQs(parseInt(e.target.value, 10));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                const activeQuestion = document.querySelector('.mcq-question.active-question');
+                if (!activeQuestion) return;
+                
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const nextQuestion = activeQuestion.nextElementSibling;
+                    if (nextQuestion) {
+                        nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                } else if (['1', '2', '3', '4'].includes(e.key) && !activeQuestion.classList.contains('answered')) {
+                    e.preventDefault();
+                    const optionIndex = parseInt(e.key) - 1;
+                    const optionToClick = activeQuestion.querySelector(`.mcq-option[data-index="${optionIndex}"]`);
+                    if (optionToClick) {
+                        optionToClick.click();
+                    }
+                }
+            });
+
+            function setupIntersectionObserver() {
+                const questions = document.querySelectorAll('.mcq-question');
+                if (questions.length === 0) return;
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const prevActive = document.querySelector('.mcq-question.active-question');
+                            if (prevActive) prevActive.classList.remove('active-question');
+                            entry.target.classList.add('active-question');
+                        }
+                    });
+                }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+                questions.forEach(q => observer.observe(q));
+            }
+            
+            generateMCQs(1);
+        });
+    </script>
+</body>
+</html>

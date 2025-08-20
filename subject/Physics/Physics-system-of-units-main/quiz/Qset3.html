@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - একক  ও পরিমাপ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset4.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+    chapterName: "একক ও পরিমাপ",  // <-- ঠিক করা হয়েছে
+    setName: "Quiz Set 3",       // <-- ঠিক করা হয়েছে
+    name: "একক ও পরিমাপ - Set 3 (প্রশ্ন ২১-৩০)", // <-- ঐচ্ছিক, ঠিক করা ভালো
+            
+            questions: [
+                {
+                    question: "কম্পাঙ্কের একক হল-",
+                    options: ["কেজি-মিটার", "সেকেন্ড", "হার্জ", "সেমি/সেকেন্ড"],
+                    answer: 2,
+                    explanation: "কম্পাঙ্কের SI একক হলো হার্জ (Hz), যা প্রতি সেকেন্ডে কম্পন সংখ্যা বোঝায় (1 Hz = 1 s⁻¹)।"
+                },
+                {
+                    question: "ক্ষমতার একক কী?",
+                    options: ["হাফ লাইফ", "ওয়াট", "ভোল্ট", "জুল"],
+                    answer: 1,
+                    explanation: "ক্ষমতার SI একক হলো ওয়াট (W), যা প্রতি সেকেন্ডে কৃতকার্যের হার বোঝায় (1 W = 1 J/s)।"
+                },
+                {
+                    question: "নিম্নলিখিত রাশিগুলির মধ্যে ভেক্টর রাশিটি হল-",
+                    options: ["তাপ", "কৌণিক ভরবেগ", "সময়", "কার্য"],
+                    answer: 1,
+                    explanation: "কৌণিক ভরবেগ একটি ভেক্টর রাশি যার মান ও দিক উভয়ই আছে। তাপ, সময় এবং কার্য হলো স্কেলার রাশি।"
+                },
+                {
+                    question: "C.G.S পদ্ধতিতে আয়তনের একক কী?",
+                    options: ["cm²", "cm³", "km", "m"],
+                    answer: 1,
+                    explanation: "CGS পদ্ধতিতে দৈর্ঘ্যের একক সেন্টিমিটার (cm), তাই আয়তনের একক ঘনসেন্টিমিটার (cm³)।"
+                },
+                {
+                    question: "S.I পদ্ধতিতে মোট একক হল-",
+                    options: ["তিনটি মূল একক এবং একটি সহায়ক একক", "সাতটি মূল একক এবং দুটি সহায়ক একক", "পাঁচটি মূল একক এবং একটি সহায়ক একক", "সাতটি মূল একক এবং সাতটি সহায়ক একক"],
+                    answer: 1,
+                    explanation: "SI পদ্ধতিতে সাতটি মৌলিক একক (মিটার, কিলোগ্রাম, সেকেন্ড, অ্যাম্পিয়ার, কেলভিন, মোল, ক্যান্ডেলা) এবং দুটি সম্পূরক একক (রেডিয়ান, স্টেরেডিয়ান) রয়েছে।"
+                },
+                {
+                    question: "নীচের কোনটি স্কেলার রাশি-",
+                    options: ["ভর (Mass)", "ভরবেগ (Momentum)", "অভিকর্ষ (Gravity)", "ওজন (Weight)"],
+                    answer: 0,
+                    explanation: "ভর হলো পদার্থের পরিমাণ এবং এটি একটি স্কেলার রাশি। ভরবেগ, অভিকর্ষ এবং ওজন (যা এক প্রকার বল) হলো ভেক্টর রাশি।"
+                },
+                {
+                    question: "1 পাউন্ড = ____ কিলোগ্রাম?",
+                    options: ["0.4537", "0.6537", "0.8537", "0.9537"],
+                    answer: 0,
+                    explanation: "1 পাউন্ড প্রায় 0.4537 কিলোগ্রামের সমান।"
+                },
+                {
+                    question: "Watt Second, Watt Hour ও Kilowatt Hour হলো ____ এর একক?",
+                    options: ["শক্তি", "ক্ষমতা", "বল", "চাপ"],
+                    answer: 0,
+                    explanation: "ওয়াট (ক্ষমতা) × সময় (সেকেন্ড/ঘন্টা) = শক্তি। তাই এই তিনটিই শক্তির একক।"
+                },
+                {
+                    question: "শরীরের ওজন (W) কোন সূত্র থেকে নির্ণয় করা হয়?",
+                    options: ["W = m/g", "W = g/m", "W = mg²", "W = mg"],
+                    answer: 3,
+                    explanation: "ওজন (W) হলো বস্তুর ভর (m) এবং অভিকর্ষজ ত্বরণের (g) গুণফল। সূত্রটি হলো W = mg।"
+                },
+                {
+                    question: "ইমপালসের (বলের ঘাত) মাত্রা কোন রাশির মাত্রার সাথে সমান?",
+                    options: ["বল", "ভরবেগ", "শক্তি", "ক্ষমতা"],
+                    answer: 1,
+                    explanation: "ইমপালস (বলের ঘাত) এবং ভরবেগের মাত্রা একই, যা হলো [MLT⁻¹]।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

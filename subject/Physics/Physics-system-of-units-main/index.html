@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>একক ও পরিমাপ | Study With Keshab</title>
+    
+    <!-- প্রধান CSS ফাইল -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- আইকন ব্যবহারের জন্য Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- চার্ট ব্যবহারের জন্য Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    
+    <!-- পেজ লোডিং এর সময় হাইড করার জন্য স্টাইল -->
+    <style>
+      body.auth-loading { visibility: hidden; opacity: 0; }
+    </style>
+</head>
+<body class="day-mode homepage theme-blue auth-loading">
+
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <header class="main-header">
+        <img src="images/logo.jpg" alt="লোগো" class="profile-pic" id="logo-easter-egg">
+        <div class="header-text">
+            <h1>অধ্যায়: একক ও পরিমাপ</h1>
+            <p>আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী</p>
+        </div>
+        <button id="dark-mode-toggle" class="dark-mode-button" title="দিন/রাত মোড পরিবর্তন করুন">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </header>
+    
+    <div class="search-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="search-bar" placeholder="যেকোনো সেকশন খুঁজুন...">
+    </div>
+
+    <nav class="nav-grid">
+        <a href="https://keshab1997.github.io/Study-With-Keshab/" class="nav-button color-home"><i class="fa-solid fa-house"></i><span>হোম</span></a>
+        <a href="#dashboard" class="nav-button color-dashboard"><i class="fa-solid fa-chart-line"></i><span>ড্যাশবোর্ড</span></a>
+        <a href="#class-notes" class="nav-button color-notes"><i class="fa-solid fa-book-open"></i><span>ক্লাস নোট</span></a>
+        <a href="#quiz-sets" class="nav-button color-quiz"><i class="fa-solid fa-file-circle-question"></i><span>কুইজ সেট</span></a>
+        <button id="formula-sheet-btn" class="nav-button color-formulas"><i class="fa-solid fa-square-root-variable"></i><span>সূত্র তালিকা</span></button>
+        <a href="#leaderboard" class="nav-button color-leaderboard"><i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span></a>
+    </nav>
+
+    <main>
+        <!-- === এই লাইনটি নতুন যোগ করা হয়েছে === -->
+        <script>
+            const CURRENT_CHAPTER_NAME = "একক ও পরিমাপ";
+        </script>
+        
+        <!-- ইউজার প্রোফাইল কার্ড -->
+        <section class="card" id="user-profile-card">
+            <div class="profile-header">
+                <img id="user-profile-pic" src="images/default-avatar.png" alt="Profile Picture" class="profile-pic-large">
+                <div class="profile-info">
+                    <h2 id="user-display-name">লোড হচ্ছে...</h2>
+                    <p id="user-email">লোড হচ্ছে...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ড্যাশবোর্ড সেকশন -->
+        <section class="card" id="dashboard">
+             <h2><i class="fa-solid fa-chart-line icon-title"></i> আমার ড্যাশবোর্ড</h2>
+             <div class="dashboard-grid">
+                <div class="dashboard-item"><h3>অধ্যায়ের অগ্রগতি (কুইজ)</h3><div class="progress-bar-container"><div class="progress-bar" id="chapter-progress-bar" style="width: 0%;"></div></div><p id="chapter-progress-text">0% সম্পন্ন</p></div>
+                <div class="dashboard-item"><h3>সামগ্রিক পারফরম্যান্স</h3><canvas id="quiz-pie-chart"></canvas></div>
+                <div class="dashboard-item"><h3>দৈনিক চ্যালেঞ্জ</h3><div id="daily-challenge" class="challenge-box"><p id="challenge-text">আজকের চ্যালেঞ্জ লোড হচ্ছে...</p></div></div>
+                <div class="dashboard-item"><h3>আমার অ্যাচিভমেন্টস</h3><div class="achievements-container" id="achievements-container"></div></div>
+             </div>
+        </section>
+
+        <!-- ক্লাস নোট সেকশন -->
+<section class="card" id="class-notes">
+    <h2><i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট</h2>
+    <p>লেকচারের সাথে মিলিয়ে পড়ার জন্য ক্লাস নোটগুলো পড়ুন।</p>
+    <div class="link-container">
+        <a href="class/class1.html">নোট ১</a>
+        <a href="class/class2.html">নোট ২</a>
+        <a href="class/class3.html">নোট ৩</a>
+        <a href="class/class4.html">নোট ৪</a>
+        <a href="class/class5.html">নোট ৫</a>
+        <a href="class/class6.html">নোট ৬</a>
+        <a href="class/class7.html">নোট ৭</a>
+        <a href="class/class8.html">নোট ৮</a>
+    </div>
+</section>
+        
+        <!-- কুইজ সেট সেকশন -->
+        <section class="card" id="quiz-sets">
+             <h2><i class="fa-solid fa-file-circle-question icon-title"></i> কুইজ সেট</h2>
+             <p>নিজের প্রস্তুতি যাচাই করার জন্য ইন্টারেক্টিভ কুইজগুলোতে অংশ নিন।</p>
+             <div class="link-container">
+                 <a href="quiz/Qset1.html">📝 Quiz Set 1</a>
+                 <a href="quiz/Qset2.html">📝 Quiz Set 2</a>
+                 <a href="quiz/Qset3.html">📝 Quiz Set 3</a>
+                 <a href="quiz/Qset4.html">📝 Quiz Set 4</a>
+             </div>
+        </section>
+
+        <!-- রিভিশন লেকচার সেকশন -->
+        <section class="card" id="revision-lectures">
+            <h2><i class="fa-solid fa-star icon-title"></i> রিভিশন লেকচার</h2>
+            <p>গুরুত্বপূর্ণ বিষয়গুলো দ্রুত ঝালিয়ে নেওয়ার জন্য বিশেষ রিভিশন পেজগুলো দেখুন।</p>
+            <div class="link-container">
+                <a href="revision_series/class1.html">📘 Class 1</a>
+                
+            </div>
+        </section>
+
+        <!-- লিডারবোর্ড সেকশন -->
+        <section class="card" id="leaderboard">
+            <h2><i class="fa-solid fa-trophy icon-title"></i> লিডারবোর্ড</h2>
+            <p>এই অধ্যায়ের সর্বোচ্চ স্কোরারদের তালিকা।</p>
+            <div class="leaderboard-container">
+                <table>
+                    <thead><tr><th>#</th><th>নাম</th><th>মোট স্কোর</th><th>বিস্তারিত</th></tr></thead>
+                    <tbody id="leaderboard-body"><!-- JavaScript দ্বারা ডেটা লোড হবে --></tbody>
+                </table>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Modal -->
+    <div id="formula-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h2>🌟 গুরুত্বপূর্ণ সূত্র ও ধারণা (একক ও পরিমাপ)</h2>
+            <ul>
+                <li>📏 **SI মৌলিক একক:** মিটার (m), কিলোগ্রাম (kg), সেকেন্ড (s), অ্যাম্পিয়ার (A), কেলভিন (K), মোল (mol), ক্যান্ডেলা (cd)।</li>
+                <li>⚙️ **মাত্রীয় সংকেত (Dimensional Formula):** 
+                    <ul>
+                        <li>বেগ (Velocity): [LT⁻¹]</li>
+                        <li>ত্বরণ (Acceleration): [LT⁻²]</li>
+                        <li>বল (Force): [MLT⁻²]</li>
+                        <li>কাজ (Work): [ML²T⁻²]</li>
+                    </ul>
+                </li>
+                <li>🧮 **পরিমাপের ত্রুটি (Measurement Error):**
+                    <ul>
+                        <li>শতাংশ ত্রুটি = (চূড়ান্ত ত্রুটি / গড় মান) × ১০০%</li>
+                    </ul>
+                </li>
+                <li>📐 **ভার্নিয়ার ধ্রুবক (Vernier Constant):** VC = 1 MSD - 1 VSD</li>
+                <li>🔩 **স্ক্রু গেজের লঘিষ্ঠ অঙ্ক (Least Count):** LC = পিচ / বৃত্তাকার স্কেলের মোট ভাগ সংখ্যা</li>
+            </ul>
+        </div>
+    </div>
+    
+    <a id="back-to-top" href="#"><i class="fas fa-arrow-up"></i></a>
+    
+    <footer>
+        <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <!-- Firebase এবং পেজ প্রটেকশন স্ক্রিপ্ট -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script>
+        (function() {
+            firebase.auth().onAuthStateChanged(user => {
+                if (!user) {
+                    window.location.href = 'https://keshab1997.github.io/Study-With-Keshab/login.html'; 
+                } else {
+                    document.body.classList.remove('auth-loading');
+                }
+            });
+        })();
+    </script>
+    
+    <!-- প্রধান জাভাস্ক্রিপ্ট ফাইল -->
+    <script src="js/script.js"></script>
+    
+</body>
+</html>

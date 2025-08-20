@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - একক  ও পরিমাপ</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+    chapterName: "একক ও পরিমাপ",  // <-- ঠিক করা হয়েছে
+    setName: "Quiz Set 1",       // <-- ঠিক করা হয়েছে
+    name: "একক ও পরিমাপ - Set 1 (প্রশ্ন ১-১০)", // <-- ঐচ্ছিক, ঠিক করা ভালো
+            
+            questions: [
+                {
+                    question: "নীচের কোন রাশির একক Volt?",
+                    options: ["তড়িৎ প্রবাহমাত্রা", "তড়িৎ ক্ষেত্রের প্রাবল্য", "তড়িৎ বিভব", "তড়িৎ আধান"],
+                    answer: 2,
+                    explanation: "SI পদ্ধতিতে তড়িৎ বিভব বা বিভব পার্থক্যের একক হলো ভোল্ট (V)। তড়িৎ প্রবাহমাত্রার একক অ্যাম্পিয়ার (A) এবং তড়িৎ আধানের একক কুলম্ব (C)।"
+                },
+                {
+                    question: "আলোকবর্ষ হল-",
+                    options: ["দূরত্বের একক", "ক্ষুদ্র দূরত্বের একক", "সময়ের একক", "আলোর গতিবেগ"],
+                    answer: 0,
+                    explanation: "আলোকবর্ষ হলো শূন্যস্থানে আলো এক বছরে যে দূরত্ব অতিক্রম করে। এটি সময়ের একক নয়, বরং জ্যোতির্বিজ্ঞানে ব্যবহৃত একটি বিশাল দূরত্বের একক।"
+                },
+                {
+                    question: "পার-সেক (par-sec) হল-",
+                    options: ["3.26 আলোকবর্ষ", "1.96 আলোকবর্ষ", "10.26 বছর", "14.56 দিন"],
+                    answer: 0,
+                    explanation: "পারসেক দূরত্বের একটি একক, যা প্রায় 3.26 আলোকবর্ষের সমান। এটি জ্যোতির্বিজ্ঞানে ব্যবহৃত দূরত্বের বৃহত্তম এককগুলির মধ্যে একটি।"
+                },
+                {
+                    question: "নীচের কোন এককটির সাহায্যে তরঙ্গদৈর্ঘ্য মাপা হয়?",
+                    options: ["মিটার (m)", "অ্যাংস্ট্রম (Å)", "পার-সেক", "ফার্মি (F)"],
+                    answer: 1,
+                    explanation: "আলোর তরঙ্গদৈর্ঘ্য অত্যন্ত ক্ষুদ্র হওয়ায় এটি সাধারণত অ্যাংস্ট্রম (1 Å = 10⁻¹⁰ m) বা ন্যানোমিটার (nm) এককে প্রকাশ করা হয়।"
+                },
+                {
+                    question: "ফার্মি (F) এককের সাহায্যে মাপা হয়-",
+                    options: ["রাস্তার দূরত্ব", "সমুদ্রের গভীরতা", "পরমাণুর নিউক্লিয়াসের ব্যাসার্ধ", "দুটি নক্ষত্রের মধ্যবর্তী দূরত্ব"],
+                    answer: 2,
+                    explanation: "ফার্মি বা ফেমটোমিটার (1 fm = 10⁻¹⁵ m) দৈর্ঘ্যের একটি অত্যন্ত ক্ষুদ্র একক, যা পরমাণুর নিউক্লিয়াসের আকার পরিমাপ করতে ব্যবহৃত হয়।"
+                },
+                {
+                    question: "নীচের কোন রাশিটির কোনো একক নেই?",
+                    options: ["আপেক্ষিক তাপ", "আপেক্ষিক গুরুত্ব", "রোধ", "আপেক্ষিক রোধ"],
+                    answer: 1,
+                    explanation: "আপেক্ষিক গুরুত্ব হলো কোনো বস্তুর ঘনত্ব ও প্রমাণ বস্তুর (সাধারণত জল) ঘনত্বের অনুপাত। দুটি সমজাতীয় রাশির অনুপাত হওয়ায় এর কোনো একক থাকে না।"
+                },
+                {
+                    question: "নীচের কোন রাশিটি স্কেলার রাশি?",
+                    options: ["বল", "টর্ক", "কার্য", "ত্বরণ"],
+                    answer: 2,
+                    explanation: "কার্য একটি স্কেলার রাশি কারণ এর কেবল মান আছে, কোনো নির্দিষ্ট দিক নেই। বল, টর্ক এবং ত্বরণ হলো ভেক্টর রাশি।"
+                },
+                {
+                    question: "নীচের কোনটি স্কেলার রাশি নয়?",
+                    options: ["কার্য", "তড়িৎক্ষেত্রের প্রাবল্য", "দ্রুতি", "শক্তি"],
+                    answer: 1,
+                    explanation: "তড়িৎক্ষেত্রের প্রাবল্য একটি ভেক্টর রাশি কারণ এর মান ও দিক উভয়ই আছে। কার্য, দ্রুতি ও শক্তি হলো স্কেলার রাশি।"
+                },
+                {
+                    question: "নীচের কোন রাশি দুটির মাত্রা সমান হয়?",
+                    options: ["বলের ঘাত ও ভরবেগ", "ঘাত ও বল", "তাপ ও স্থিতিস্থাপক গুণাঙ্ক", "কার্য ও পীড়ন"],
+                    answer: 0,
+                    explanation: "বলের ঘাত (বল × সময়) এবং ভরবেগ (ভর × বেগ) উভয়েরই মাত্রা হলো [MLT⁻¹]।"
+                },
+                {
+                    question: "এক ব্যক্তি একটি বৃত্তাকার পথ পরিক্রমণ করলে তার সরণ এবং অতিক্রান্ত দূরত্বের অনুপাত হবে-",
+                    options: ["π / 2", "π", "শূন্য", "2 / π"],
+                    answer: 2,
+                    explanation: "একটি পূর্ণ বৃত্তাকার পথ পরিক্রমা করলে বস্তুটি শুরুর স্থানেই ফিরে আসে, তাই তার সরণ (শুরু ও শেষের মধ্যে ন্যূনতম দূরত্ব) শূন্য হয়। অতিক্রান্ত দূরত্ব 2πr হলেও, সরণ শূন্য হওয়ায় অনুপাতটি শূন্য হবে।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

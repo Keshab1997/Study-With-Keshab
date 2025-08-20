@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কার্য, ক্ষমতা ও শক্তি (MCQ অনুশীলন) - Class 05</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-size: 1.1em; border-radius: 5px; }
+        .mcq-item { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed #ddd; }
+        .mcq-item:last-child { border-bottom: none; }
+        .mcq-item ul { list-style-type: none; padding-left: 0; }
+        .mcq-item li { margin-bottom: 8px; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://static.vecteezy.com/system/resources/previews/013/813/190/original/work-power-energy-icon-logo-vector-illustration-template-vector.jpg" alt="Logo" class="logo">
+        <h1>কার্য, ক্ষমতা ও শক্তি</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 05 (MCQ অনুশীলন)</h2>
+
+        <div class="mcq-item">
+            <h4>প্রশ্ন ১: যদি বল (Force) শূন্য হয়, তাহলে কৃত কার্য (work) কত হবে?</h4>
+            <p><em>[RRB GROUP-D 31.10.2018]</em></p>
+            <ul><li>(a) 20</li><li>(b) 1</li><li>(c) 0</li><li>(d) 100</li></ul>
+            <blockquote><strong>উত্তর: (c) 0</strong><br><strong>ব্যাখ্যা:</strong> কার্যের সূত্র হলো, কার্য (W) = বল (F) × সরণ (S)। যদি বলের মান শূন্য (F=0) হয়, তাহলে কৃত কার্যও শূন্য হবে।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>প্রশ্ন ২: 25 N-এর একটি বল কোনো বস্তুর উপর কাজ করছে এবং বস্তুটি বলের দিকে 5 m সরে গেল। বলের দ্বারা কৃত কার্য কত?</h4>
+            <p><em>[SSC CGL (Tier-1)]</em></p>
+            <ul><li>(a) 125 W</li><li>(b) 125 N</li><li>(c) 125 J</li><li>(d) 125 Pa</li></ul>
+            <blockquote><strong>উত্তর: (c) 125 J</strong><br><strong>ব্যাখ্যা:</strong> কার্য (W) = বল (F) × সরণ (S) = 25 N × 5 m = 125 জুল (J)।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ৩: যখন একজন মানুষ একটি দেয়ালকে ধাক্কা দেয় কিন্তু সেটিকে সরাতে ব্যর্থ হয়, তখন—</h4>
+            <p><em>[SSC CHSL]</em></p>
+            <ul><li>(a) ধনাত্মক কার্য হয়</li><li>(b) ঋণাত্মক কার্য হয়</li><li>(c) সর্বোচ্চ ধনাত্মক কার্য হয়</li><li>(d) কোনো কার্য হয় না</li></ul>
+            <blockquote><strong>উত্তর: (d) কোনো কার্য হয় না</strong><br><strong>ব্যাখ্যা:</strong> বল প্রয়োগ করা সত্ত্বেও যদি বস্তুর সরণ (S=0) না ঘটে, তাহলে কৃত কার্যের পরিমাণ শূন্য হয়।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ৪: যখন কোনো ব্যক্তি 12 N বল প্রয়োগ করে 4 মিটার পথ যান, তখন কৃত কার্য কত?</h4>
+            <p><em>[RRB GROUP-D 12.12.2018]</em></p>
+            <ul><li>(a) 6 J</li><li>(b) 2 J</li><li>(c) 48 J</li><li>(d) 3 J</li></ul>
+            <blockquote><strong>উত্তর: (c) 48 J</strong><br><strong>ব্যাখ্যা:</strong> কার্য (W) = বল (F) × সরণ (S) = 12 N × 4 m = 48 জুল।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ৫: বল ও সরণের গুণফলকে কী বলা হয়?</h4>
+            <p><em>[RRB group-d 19.09.2018]</em></p>
+            <ul><li>(a) গতিবেগ</li><li>(b) কার্য</li><li>(c) ত্বরণ</li><li>(d) ভার</li></ul>
+            <blockquote><strong>উত্তর: (b) কার্য</strong><br><strong>ব্যাখ্যা:</strong> কার্যের সংজ্ঞা অনুযায়ী, কার্য হলো বল এবং বলের দিকে সরণের গুণফল।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ৬: প্রযুক্ত বল এবং সরণের দিকের মধ্যে কোণ 90° হলে কৃত কার্য কত হবে?</h4>
+            <p><em>[RRB GROUP-D 10.12.2018 ]</em></p>
+            <ul><li>(a) অসংজ্ঞাত</li><li>(b) ঋণাত্মক</li><li>(c) শূন্য</li><li>(d) ধনাত্মক</li></ul>
+            <blockquote><strong>উত্তর: (c) শূন্য</strong><br><strong>ব্যাখ্যা:</strong> কার্যের সূত্র W = F × S × cosθ। এখানে θ = 90° হলে, cos 90° = 0 হয়। তাই কৃত কার্যও শূন্য হবে।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ৭: একটি চলন্ত গাড়ি বিপরীত দিক থেকে আসা বাতাসের সম্মুখীন হয়। গাড়ির উপর বাতাস দ্বারা কৃত কার্য কী হবে?</h4>
+            <p><em>[RRB GROUP-D 01.10.2018]</em></p>
+            <ul><li>(a) ঋণাত্মক</li><li>(b) শূন্য</li><li>(c) অসীম</li><li>(d) ধনাত্মক</li></ul>
+            <blockquote><strong>উত্তর: (a) ঋণাত্মক</strong><br><strong>ব্যাখ্যা:</strong> গাড়ির সরণ সামনের দিকে কিন্তু বাতাসের বল তার বিপরীত দিকে। বল ও সরণ পরস্পর বিপরীতমুখী (θ = 180°) হলে কৃত কার্য ঋণাত্মক হয়।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>প্রশ্ন ৮: যদি কেউ 500 N-এর একটি স্থির বল প্রয়োগ করে 15 কিলোমিটার দূরত্ব অতিক্রম করে, তাহলে কৃত কার্য গণনা করুন।</h4>
+            <p><em>[RRB GROUP-D 13.12.2018]</em></p>
+            <ul><li>(a) 75,00,000 J</li><li>(b) 75,000 J</li><li>(c) 7,50,000 J</li><li>(d) 7,500 J</li></ul>
+            <blockquote><strong>উত্তর: (a) 75,00,000 J</strong><br><strong>ব্যাখ্যা:</strong> সরণ (S) = 15 km = 15000 m। কার্য (W) = F × S = 500 N × 15000 m = 75,00,000 জুল।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ৯: 10 N-এর একটি অনুভূমিক বল একটি বস্তুকে 5 মিটার দূরত্বে সরালে বল দ্বারা কৃত কার্য কত হবে?</h4>
+            <p><em>[RRB GROUP-D 20.09.2018]</em></p>
+            <ul><li>(a) 20 J</li><li>(b) 5 J</li><li>(c) 50 J</li><li>(d) 100 J</li></ul>
+            <blockquote><strong>উত্তর: (c) 50 J</strong><br><strong>ব্যাখ্যা:</strong> কার্য (W) = বল (F) × সরণ (S) = 10 N × 5 m = 50 জুল।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>প্রশ্ন ১০: একটি বস্তু যখন 10 N বলের দিকে 10 মিটার সরে যায়, তখন কত কার্য করা হয়?</h4>
+            <p><em>[RRB GROUP-D 31.10.2018]</em></p>
+            <ul><li>(a) 1 J</li><li>(b) 10 J</li><li>(c) 100 J</li><li>(d) 0.01 J</li></ul>
+            <blockquote><strong>উত্তর: (c) 100 J</strong><br><strong>ব্যাখ্যা:</strong> কার্য (W) = বল (F) × সরণ (S) = 10 N × 10 m = 100 জুল।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ১১: বল প্রয়োগ করার পরেও যদি কোনো বস্তু না নড়ে, তাহলে বলা যায়—</h4>
+            <p><em>[RRB GROUP-D 16.11.2018 ]</em></p>
+            <ul><li>(a) সর্বাধিক শক্তি ব্যবহার করা হয়েছে</li><li>(b) কাজ হয়েছে</li><li>(c) ন্যূনতম শক্তি ব্যবহার করা হয়েছে</li><li>(d) কোনো কাজ করা হয়নি</li></ul>
+            <blockquote><strong>উত্তর: (d) কোনো কাজ করা হয়নি</strong><br><strong>ব্যাখ্যা:</strong> বস্তুর সরণ শূন্য (S=0) হলে কৃত কার্যও শূন্য হয়।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ১২: একটি বাস 4000 N বল নিয়ে চলে। বাসটির দ্বারা কৃত কার্য 2000 J হলে, বাসটি কত দূরত্ব অতিক্রম করেছে?</h4>
+            <p><em>[RRB GROUP-D 06.12.2018 ]</em></p>
+            <ul><li>(a) 1 মিটার</li><li>(b) 2 মিটার</li><li>(c) 1.5 মিটার</li><li>(d) 0.5 মিটার</li></ul>
+            <blockquote><strong>উত্তর: (d) 0.5 মিটার</strong><br><strong>ব্যাখ্যা:</strong> সরণ (S) = কার্য (W) / বল (F) = 2000 J / 4000 N = 0.5 মিটার।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ১৩: কোনো বস্তুকে বৃত্তাকার পথে ঘোরানো হলে, এক পূর্ণ ঘূর্ণনে তার উপর কৃত কার্য কত হবে?</h4>
+            <p><em>[RRB ALP & TEC. 20.08.2018]</em></p>
+            <ul><li>(a) শূন্য</li><li>(b) নির্ধারণ করা যাবে না</li><li>(c) ধনাত্মক</li><li>(d) ঋণাত্মক</li></ul>
+            <blockquote><strong>উত্তর: (a) শূন্য</strong><br><strong>ব্যাখ্যা:</strong> বৃত্তাকার পথে এক পূর্ণ ঘূর্ণনের পর বস্তুর সরণ শূন্য হয়। তাই কৃত কার্যও শূন্য।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ১৪: একজন কুলি মাটি থেকে 12 কেজি ভরের বস্তু তুলে তার মাথার উপর 1.5 মিটার উঁচুতে রাখল। বস্তুটির উপর কৃত কার্য গণনা করুন। (g = 10 m/s²)</h4>
+            <p><em>[RRB GROUP-D 04.10.2018 ]</em></p>
+            <ul><li>(a) 140 J</li><li>(b) 150 J</li><li>(c) 180 J</li><li>(d) 155 J</li></ul>
+            <blockquote><strong>উত্তর: (c) 180 J</strong><br><strong>ব্যাখ্যা:</strong> কার্য (W) = mgh = 12 কেজি × 10 m/s² × 1.5 m = 180 জুল।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ১৫: যদি একটি বিমান 4000 m দূরত্ব অতিক্রম করে এবং কৃত কার্য 20000 J হয়, তাহলে প্রযুক্ত বল কত?</h4>
+            <p><em>[RRB GROUP-D 10.12.2018]</em></p>
+            <ul><li>(a) 50 N</li><li>(b) 5 N</li><li>(c) 0.20 N</li><li>(d) 10 N</li></ul>
+            <blockquote><strong>উত্তর: (b) 5 N</strong><br><strong>ব্যাখ্যা:</strong> বল (F) = কার্য (W) / সরণ (S) = 20000 J / 4000 m = 5 নিউটন।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ১৬: 400 কেজি ভরের একটি গাড়ির গতি 5 m/s থেকে 10 m/s করতে কৃত কার্য কত হবে?</h4>
+            <p><em>[RRB GROUP-D 22.09.2018]</em></p>
+            <ul><li>(a) 15,000 J</li><li>(b) 20,000 J</li><li>(c) 30,000 J</li><li>(d) 40,000 J</li></ul>
+            <blockquote><strong>উত্তর: (a) 15,000 J</strong><br><strong>ব্যাখ্যা:</strong> কৃত কার্য = গতিশক্তির পরিবর্তন = ½m(v₂² - v₁²) = ½ × 400 × (10² - 5²) = 200 × (100 - 25) = 15,000 জুল।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ১৭: 1 কেজি ভরের একটি বস্তু 30 মিটার উচ্চতা থেকে মাটিতে ফেলে দেওয়া হলে অভিকর্ষ বল দ্বারা কৃত কার্য কত? (g = 10 m/s²)</h4>
+            <p><em>[RRB GROUP-D 19.09.2018 ]</em></p>
+            <ul><li>(a) 10 J</li><li>(b) 300 J</li><li>(c) 0.33 J</li><li>(d) 30 J</li></ul>
+            <blockquote><strong>উত্তর: (b) 300 J</strong><br><strong>ব্যাখ্যা:</strong> অভিকর্ষ বল দ্বারা কৃত কার্য (W) = mgh = 1 কেজি × 10 m/s² × 30 m = 300 জুল।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ১৮: একজন ব্যক্তি মাটি থেকে 2 মিটার উপরে 20 কেজি মাল তুলে তার মাথায় রাখলে কৃত কার্য কত? (g = 10 m/s²)</h4>
+            <p><em>[RRB GROUP-D 17.09.2018 ]</em></p>
+            <ul><li>(a) 200 J</li><li>(b) 40 J</li><li>(c) 400 J</li><li>(d) 20 J</li></ul>
+            <blockquote><strong>উত্তর: (c) 400 J</strong><br><strong>ব্যাখ্যা:</strong> কার্য (W) = mgh = 20 কেজি × 10 m/s² × 2 m = 400 জুল।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ১৯: 20 N বল একটি বস্তুকে 2 m সরায় এবং 20 J কার্য করে। বল এবং সরণের মধ্যে কোণটি কত?</h4>
+            <p><em>[RRB ALP&TEC. 20.08.2018]</em></p>
+            <ul><li>(a) 60°</li><li>(b) 30°</li><li>(c) 90°</li><li>(d) 0°</li></ul>
+            <blockquote><strong>উত্তর: (a) 60°</strong><br><strong>ব্যাখ্যা:</strong> W = F × S × cosθ ⇒ 20 = 20 × 2 × cosθ ⇒ cosθ = 0.5। আমরা জানি, cos 60° = 0.5, সুতরাং কোণ (θ) = 60°।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ২০: 1 কেজির একটি বস্তু পৃথিবীর পৃষ্ঠ থেকে 10 মিটার উপরে তোলা হলে মহাকর্ষ বল দ্বারা কৃত কার্য কত হবে? (g = 9.8 m/s²)</h4>
+            <p><em>[RRB GROUP-D 20.09.2018 ]</em></p>
+            <ul><li>(a) -98 J</li><li>(b) -9.8 J</li><li>(c) 9.8 J</li><li>(d) 98 J</li></ul>
+            <blockquote><strong>উত্তর: (a) -98 J</strong><br><strong>ব্যাখ্যা:</strong> বস্তুটি উপরে তোলা হচ্ছে কিন্তু মহাকর্ষ বল কাজ করছে নিচের দিকে। বল ও সরণ বিপরীতমুখী হওয়ায় কৃত কার্য ঋণাত্মক হবে। W = -mgh = -1 × 9.8 × 10 = -98 জুল।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>প্রশ্ন ২১: একজন মানুষ 20 কেজি ওজনের বস্তু মাটি থেকে তুলে তার মাথার উপর 2 মিটার উঁচুতে রাখলেন। লোকটির দ্বারা কৃত কার্য কত? (g=10 m/s²)</h4>
+            <p><em>[RRB GROUP-D 24.09.2018 ]</em></p>
+            <ul><li>(a) 350 J</li><li>(b) 200 J</li><li>(c) 400 J</li><li>(d) 150 J</li></ul>
+            <blockquote><strong>উত্তর: (c) 400 J</strong><br><strong>ব্যাখ্যা:</strong> কার্য (W) = mgh = 20 কেজি × 10 m/s² × 2 m = 400 জুল।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>প্রশ্ন ২২: যখন কোনো বস্তু 1 N বল দ্বারা বলের দিকে 1 m সরে যায়, তখন কৃত কার্য কত হবে?</h4>
+            <p><em>[RRB ALP&TEC. 20.08.2018 ]</em></p>
+            <ul><li>(a) 10 J</li><li>(b) 100 J</li><li>(c) 0.01 J</li><li>(d) 1 J</li></ul>
+            <blockquote><strong>উত্তর: (d) 1 J</strong><br><strong>ব্যাখ্যা:</strong> কার্য (W) = বল (F) × সরণ (S) = 1 N × 1 m = 1 জুল।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ২৩: 10 কেজি স্যুটকেস ধরে একটি প্ল্যাটফর্মে দাঁড়িয়ে থাকা একজন ব্যক্তির দ্বারা কৃত কার্য কত?</h4>
+            <p><em>[RRB ALP & TEC. 21.08.2018]</em></p>
+            <ul><li>(a) 100 J</li><li>(b) 98 J</li><li>(c) 0 J</li><li>(d) 980 J</li></ul>
+            <blockquote><strong>উত্তর: (c) 0 J</strong><br><strong>ব্যাখ্যা:</strong> ব্যক্তিটি দাঁড়িয়ে আছে, তার কোনো সরণ হচ্ছে না (S=0)। তাই কৃত কার্য শূন্য।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>প্রশ্ন ২৪: একটি 4.0 কেজি বস্তু 5.0 m/s গতিতে অনুভূমিকভাবে চলছে। এর গতি 10 m/s-এ বাড়ানোর জন্য, এই বস্তুটির উপর যে পরিমাণ কার্য করতে হবে তা হল:</h4>
+            <p><em>[RRB ALP & TEC. 09.08.2018]</em></p>
+            <ul><li>(a) 150 J</li><li>(b) 100 J</li><li>(c) 75 J</li><li>(d) 50 J</li></ul>
+            <blockquote><strong>উত্তর: (a) 150 J</strong><br><strong>ব্যাখ্যা:</strong> কৃত কার্য = গতিশক্তির পরিবর্তন = ½m(v₂² - v₁²) = ½ × 4 × (10² - 5²) = 2 × 75 = 150 জুল।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>প্রশ্ন ২৫: 0.1 কিলোগ্রাম ওজনের একটি বল স্থির অবস্থান থেকে 2 মিটার দূরত্ব পড়লে মাধ্যাকর্ষণ বল দ্বারা কৃত কার্য কত? (g = 9.8 m/s²)</h4>
+            <p><em>[RRB ALP& TEC 10.08.2018 ]</em></p>
+            <ul><li>(a) 1.96 J</li><li>(b) -1.96 J</li><li>(c) -0.98 J</li><li>(d) 0.98 J</li></ul>
+            <blockquote><strong>উত্তর: (a) 1.96 J</strong><br><strong>ব্যাখ্যা:</strong> বস্তুটি নিচের দিকে পড়ছে এবং মাধ্যাকর্ষণ বলও নিচের দিকে। তাই কার্য ধনাত্মক। W = mgh = 0.1 × 9.8 × 2 = 1.96 জুল।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ২৬: যখন কোনো বস্তুর উপর বল প্রয়োগ করা হয় কিন্তু তার সরণ শূন্য থাকে, তখন কৃত কার্য হবে—</h4>
+            <p><em>[RRB ALP & TEC. 21.08.2018]</em></p>
+            <ul><li>(a) ঋণাত্মক</li><li>(b) ধনাত্মক</li><li>(c) শূন্য</li><li>(d) নিরপেক্ষ</li></ul>
+            <blockquote><strong>উত্তর: (c) শূন্য</strong><br><strong>ব্যাখ্যা:</strong> সরণ (S=0) শূন্য হলে, কৃত কার্যও (W = F × 0) শূন্য হয়।</blockquote>
+        </div>
+
+        <div class="mcq-item">
+            <h4>প্রশ্ন ২৭: একটি ছেলে 120 N ওজনের একটি বাক্স 2 মিটার উচ্চতায় তুলল। ছেলেটির দ্বারা কৃত কার্য কত?</h4>
+            <p><em>[RRB ALP& TEC. 20.09.2018]</em></p>
+            <ul><li>(a) 60 J</li><li>(b) 120 J</li><li>(c) 240 J</li><li>(d) 180 J</li></ul>
+            <blockquote><strong>উত্তর: (c) 240 J</strong><br><strong>ব্যাখ্যা:</strong> এখানে বস্তুর ওজন (বল) = 120 N। কার্য (W) = বল × উচ্চতা = 120 N × 2 m = 240 জুল।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ২৮: কাজ করার সামর্থ্যকে কী বলা হয়?</h4>
+            <p><em>[RRB ALP& TEC 31.08.2018]</em></p>
+            <ul><li>(a) ক্ষমতা</li><li>(b) চাপ</li><li>(c) শক্তি</li><li>(d) বল</li></ul>
+            <blockquote><strong>উত্তর: (c) শক্তি</strong><br><strong>ব্যাখ্যা:</strong> সংজ্ঞা অনুযায়ী, কাজ করার সামর্থ্যকে শক্তি (Energy) বলে।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ২৯: নিচের কোন ক্ষেত্রে কোনো কার্য করা হয়নি?</h4>
+            <p><em>[RRB GROUP-D 19.09.2018 ]</em></p>
+            <ul><li>(a) কপিল তার কাঁধে 10 কেজি ওজন নিয়ে দাঁড়িয়ে আছে</li><li>(b) শচীন ৪ কিমি হাঁটে</li><li>(c) একজন কুলি বাস থেকে গাড়িতে ওজন বহন করে</li><li>(d) অরুণ মাঠে ক্রিকেট খেলে</li></ul>
+            <blockquote><strong>উত্তর: (a) কপিল তার কাঁধে 10 কেজি ওজন নিয়ে দাঁড়িয়ে আছে</strong><br><strong>ব্যাখ্যা:</strong> দাঁড়িয়ে থাকার অর্থ হলো সরণ শূন্য। তাই কোনো কার্য করা হয়নি।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ৩০: নিচের কোনটিতে কাজ করা হয় না?</h4>
+            <p><em>[CDS]</em></p>
+            <ul><li>(a) একটি উইন্ডমিল কূপ থেকে জল তুলছে</li><li>(b) একটি গাধা তার পিঠে ভার নিয়ে দাঁড়িয়ে আছে</li><li>(c) সুমন একটি পুলে সাঁতার কাটছে</li><li>(d) একটি ইঞ্জিন একটি ট্রেনকে টানছে</li></ul>
+            <blockquote><strong>উত্তর: (b) একটি গাধা তার পিঠে ভার নিয়ে দাঁড়িয়ে আছে</strong><br><strong>ব্যাখ্যা:</strong> গাধাটি ভার নিয়ে দাঁড়িয়ে আছে, কিন্তু তার কোনো সরণ হচ্ছে না, তাই কৃত কার্য শূন্য।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ৩১: কাজ করার হারকে কী বলা হয়?</h4>
+            <p><em>[RRB NTPC]</em></p>
+            <ul><li>(a) ক্ষমতা</li><li>(b) বল</li><li>(c) গতি</li><li>(d) বেগ</li></ul>
+            <blockquote><strong>উত্তর: (a) ক্ষমতা</strong><br><strong>ব্যাখ্যা:</strong> সংজ্ঞা অনুযায়ী, একক সময়ে কৃত কার্য বা কাজ করার হারকে ক্ষমতা (Power) বলে।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ৩২: যদি কৃত কার্য শূন্য হয়, তাহলে বল এবং সরণের মধ্যে কোণ কত?</h4>
+            <p><em>[RRB GROUP-D 08.10.2018]</em></p>
+            <ul><li>(a) 0°</li><li>(b) 90°</li><li>(c) 45°</li><li>(d) 30°</li></ul>
+            <blockquote><strong>উত্তর: (b) 90°</strong><br><strong>ব্যাখ্যা:</strong> W = F × S × cosθ। কাজ (W) শূন্য হওয়ার একটি শর্ত হলো বল ও সরণের মধ্যবর্তী কোণ 90° হওয়া, কারণ cos 90° = 0।</blockquote>
+        </div>
+        
+        <div class="mcq-item">
+            <h4>প্রশ্ন ৩৩: 20 N বল একটি বস্তুর উপর কাজ করছে। বস্তুটি প্রযুক্ত বলের দিকে 4 মিটার সরে গেলে, কৃত কার্য কত?</h4>
+            <p><em>[RRB GROUP-D 05.10.2018 ]</em></p>
+            <ul><li>(a) 80 W</li><li>(b) 80 Pa</li><li>(c) 80 N</li><li>(d) 80 J</li></ul>
+            <blockquote><strong>উত্তর: (d) 80 J</strong><br><strong>ব্যাখ্যা:</strong> কার্য (W) = বল (F) × সরণ (S) = 20 N × 4 m = 80 জুল (J)।</blockquote>
+        </div>
+        
+    </div>
+
+    <nav class="navigation">
+        <a href="class4.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button active">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class6.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2025 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme and Dark Mode functionality
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+
+            // Scroll buttons functionality
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+            
+            // Auto-scroll functionality with Spacebar
+            let isAutoScrolling = false;
+            let scrollInterval;
+            const scrollSpeed = 1; // Pixels to scroll per step
+            const scrollDelay = 15; // Milliseconds between steps
+
+            window.addEventListener('keydown', (event) => {
+                if (event.key === ' ') {
+                    event.preventDefault(); // Prevent default spacebar action (like page jump)
+
+                    if (isAutoScrolling) {
+                        clearInterval(scrollInterval);
+                        isAutoScrolling = false;
+                    } else {
+                        isAutoScrolling = true;
+                        scrollInterval = setInterval(() => {
+                            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                                clearInterval(scrollInterval);
+                                isAutoScrolling = false;
+                            } else {
+                                window.scrollBy(0, scrollSpeed);
+                            }
+                        }, scrollDelay);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

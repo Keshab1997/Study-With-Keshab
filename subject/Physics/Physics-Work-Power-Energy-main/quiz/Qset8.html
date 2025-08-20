@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৮ - কার্য, ক্ষমতা ও শক্তি</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        <div id="quiz-container"></div>
+        <div class="page-navigation">
+            <a href="Qset7.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset9.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    <script>
+        const quizSet = {
+            chapterName: "কার্য, ক্ষমতা ও শক্তি",
+            setName: "Set 8",
+            name: "কার্য, ক্ষমতা ও শক্তি - Set 8 (প্রশ্ন ৭১-৮০)",
+            questions: [
+                { question: "সংরক্ষী বলের (conservative force) অধীনে একটি বদ্ধ পথে কৃতকার্য কত? *(Railway ALP 2021)*", options: ["শূন্য", "ধনাত্মক", "ঋণাত্মক", "অসীম"], answer: 0, explanation: "সংরক্ষী বল দ্বারা কৃতকার্য পথের উপর নির্ভর করে না, তাই বদ্ধ পথে কার্য শূন্য।" },
+                { question: "কার্য করার সামর্থ্যকে বলা হয়— *(SSC MTS 2017)*", options: ["শক্তি", "ক্ষমতা", "বল", "ভরবেগ"], answer: 0, explanation: "এটি শক্তির সংজ্ঞা।" },
+                { question: "যদি ভর দ্বিগুণ এবং বেগ অর্ধেক করা হয়, গতিশক্তি— *(IBPS PO 2020)*", options: ["অর্ধেক হবে", "দ্বিগুণ হবে", "একই থাকবে", "চারগুণ হবে"], answer: 0, explanation: "নতুন গতিশক্তি = ½(2m)(v/2)² = ½ (½mv²) = মূল গতিশক্তির অর্ধেক।" },
+                { question: "ক্ষমতার মাত্রীয় সংকেত হলো— *(SSC CGL 2018)*", options: ["ML²T⁻³", "MLT⁻²", "ML²T⁻²", "MT⁻³"], answer: 0, explanation: "ক্ষমতা = কার্য/সময় = [ML²T⁻²] / [T] = [ML²T⁻³]।" },
+                { question: "অস্থিতিস্থাপক সংঘর্ষে (inelastic collision) গতিশক্তি— *(UPSC Prelims 2021)*", options: ["সংরক্ষিত থাকে", "সংরক্ষিত থাকে না", "শূন্য হয়", "অসীম হয়"], answer: 1, explanation: "অস্থিতিস্থাপক সংঘর্ষে গতিশক্তির কিছু অংশ অন্য শক্তিতে রূপান্তরিত হয়।" },
+                { question: "কেন্দ্রমুখী বল (centripetal force) দ্বারা কৃতকার্য কত? *(Railway NTPC 2016)*", options: ["ধনাত্মক", "ঋণাত্মক", "শূন্য", "পরিবর্তনশীল"], answer: 2, explanation: "কেন্দ্রমুখী বল এবং সরণের দিক পরস্পর লম্ব (90°) হওয়ায় কৃতকার্য শূন্য হয়।" },
+                { question: "একটি স্প্রিং-এর স্থিতিশক্তি সর্বোচ্চ হয় যখন— *(SSC CHSL 2021)*", options: ["এটিকে সর্বোচ্চ প্রসারিত করা হয়", "এটিকে সর্বনিম্ন সংকুচিত করা হয়", "এটি সাম্যাবস্থায় থাকে", "কোনোটিই নয়"], answer: 0, explanation: "স্থিতিশক্তি (½kx²) সরণের (x) বর্গের সমানুপাতিক।" },
+                { question: "AC সার্কিটে পাওয়ার ফ্যাক্টর (power factor) কিসের সাথে সম্পর্কিত? *(SBI PO 2017)*", options: ["কার্য ও শক্তি", "প্রকৃত ক্ষমতা", "আপাত ক্ষমতা", "(b) এবং (c) উভয়ই"], answer: 3, explanation: "পাওয়ার ফ্যাক্টর হলো প্রকৃত ক্ষমতা ও আপাত ক্ষমতার অনুপাত।" },
+                { question: "মুক্তিবেগ (Escape velocity) কিসের সাথে সম্পর্কিত? *(SSC JE 2019)*", options: ["গতিশক্তি", "স্থিতিশক্তি", "উভয়ই", "কোনোটিই নয়"], answer: 2, explanation: "মুক্তিবেগ বস্তুর গতিশক্তি ও স্থিতিশক্তি উভয়ের সাথে সম্পর্কিত।" },
+                { question: "পারমাণবিক বিভাজনে ভর ত্রুটি কোন শক্তিতে রূপান্তরিত হয়? *(UPSC CDS 2020)*", options: ["শক্তি (E=mc²)", "কার্য", "ক্ষমতা", "বল"], answer: 0, explanation: "আইনস্টাইনের ভর-শক্তি তুল্যতা সূত্র (E=mc²) অনুযায়ী।" }
+            ]
+        };
+    </script>
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - শব্দ (Sound)</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="#" class="btn btn-secondary disabled">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "শব্দ (Sound)", 
+            setName: "Quiz Set 3",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "শব্দ (Sound) - PYQ Set 3",
+            
+            questions: [
+                {
+                    question: "শব্দোত্তর শব্দ শুনতে পারে—",
+                    options: ["পায়রা", "কুকুর", "বাদুড়", "মানুষ"],
+                    answer: 2, // বাদুড় সবচেয়ে পরিচিত উদাহরণ
+                    explanation: "বাদুড়, কুকুর এবং ডলফিনের মতো প্রাণীরা শব্দোত্তর (ultrasonic) শব্দ শুনতে এবং তৈরি করতে পারে।"
+                },
+                {
+                    question: "SONAR-এ কোন তরঙ্গ ব্যবহৃত হয়?",
+                    options: ["শব্দেতর শব্দ", "শব্দোত্তর শব্দ", "শ্রুতিগোচর শব্দ", "বেতার তরঙ্গ"],
+                    answer: 1, 
+                    explanation: "SONAR (Sound Navigation and Ranging) যন্ত্রে জলের নিচে বস্তুর অবস্থান ও দূরত্ব নির্ণয়ের জন্য শব্দোত্তর তরঙ্গ ব্যবহার করা হয়।"
+                },
+                {
+                    question: "শব্দের বেগ সর্বাধিক কোথায়?",
+                    options: ["বায়ুতে", "ধাতুতে", "শূন্য মাধ্যমে", "জলে"],
+                    answer: 1, 
+                    explanation: "শব্দের বেগ মাধ্যমের ঘনত্বের উপর নির্ভর করে। তাই কঠিন মাধ্যমে (যেমন ধাতু) শব্দের বেগ সর্বাধিক, তারপর তরল এবং গ্যাসীয় মাধ্যমে সবচেয়ে কম।"
+                },
+                {
+                    question: "শূন্য মাধ্যমে শব্দের বেগ (m/s এককে)—",
+                    options: ["332", "1450", "5000", "0"],
+                    answer: 3, 
+                    explanation: "শব্দ একটি যান্ত্রিক তরঙ্গ, যার সঞ্চালনের জন্য মাধ্যম প্রয়োজন। শূন্যস্থানে কোনো মাধ্যম না থাকায় শব্দ চলাচল করতে পারে না, তাই এর বেগ শূন্য।"
+                },
+                {
+                    question: "কোন তরঙ্গ অগ্রসর হতে বাস্তব মাধ্যম প্রয়োজন?",
+                    options: ["শব্দ তরঙ্গ", "তড়িৎচুম্বকীয় তরঙ্গ", "আলোক তরঙ্গ", "বেতার তরঙ্গ"],
+                    answer: 0, 
+                    explanation: "শব্দ তরঙ্গ একটি যান্ত্রিক তরঙ্গ, যার বিস্তার লাভের জন্য একটি স্থিতিস্থাপক মাধ্যমের প্রয়োজন। অন্যগুলো তড়িৎচুম্বকীয় তরঙ্গ, যাদের মাধ্যম প্রয়োজন হয় না।"
+                },
+                {
+                    question: "রাত্রিবেলায় শব্দপ্রাবল্য বাড়ে কারণ—",
+                    options: ["বায়ুর ঘনত্ব বাড়ে", "তাপমাত্রা কমে যাওয়ায় বায়ুর ঘনত্ব বাড়ে", "বায়ুর ঘনত্ব কমে", "পরিবেশ শান্ত থাকে"],
+                    answer: 1, 
+                    explanation: "রাতে ভূপৃষ্ঠ ঠান্ডা হয় এবং উপরের বাতাস তুলনামূলকভাবে উষ্ণ থাকে। শব্দ শীতল ও ঘন বায়ু থেকে উষ্ণ ও হালকা বায়ুর দিকে প্রতিসরিত হয়ে বেঁকে যায়, ফলে অনেক দূরের শব্দও স্পষ্ট শোনা যায়।"
+                },
+                {
+                    question: "আলট্রাসনোগ্রাফিতে কোন তরঙ্গ ব্যবহৃত হয়?",
+                    options: ["মাইক্রোতরঙ্গ", "অবলোহিত তরঙ্গ", "শব্দোত্তর তরঙ্গ", "শব্দ তরঙ্গ"],
+                    answer: 2, 
+                    explanation: "চিকিৎসাক্ষেত্রে আলট্রাসনোগ্রাফিতে উচ্চ কম্পাঙ্কের শব্দোত্তর তরঙ্গ ব্যবহার করে শরীরের ভেতরের অঙ্গ-প্রত্যঙ্গের ছবি তৈরি করা হয়।"
+                },
+                {
+                    question: "ম্যাক সংখ্যা হল—",
+                    options: ["শব্দের বেগ ও কোনো বস্তুর বেগের অনুপাত", "কোনো বস্তুর বেগ ও শব্দের বেগের অনুপাত", "আলোর বেগ ও কোনো বস্তুর বেগের অনুপাত", "আলোর বেগ ও শব্দের বেগের অনুপাত"],
+                    answer: 1, 
+                    explanation: "ম্যাক সংখ্যা হলো কোনো মাধ্যমে একটি বস্তুর বেগের সাথে ওই মাধ্যমে শব্দের বেগের অনুপাত। এটি সাধারণত বিমান বা রকেটের গতি পরিমাপে ব্যবহৃত হয়।"
+                },
+                {
+                    question: "সাধারণ ঘরে শব্দের প্রতিধ্বনি শোনা যায় না কারণ—",
+                    options: ["দেয়াল শব্দকে প্রতিফলিত করে না", "দেয়াল শব্দকে শোষণ করে", "উৎস ও প্রতিফলকের দূরত্ব 17 মিটারের কম", "ঘরের তাপমাত্রা নির্দিষ্ট নয়"],
+                    answer: 2, 
+                    explanation: "স্পষ্ট প্রতিধ্বনি শোনার জন্য উৎস ও প্রতিফলকের মধ্যে ন্যূনতম দূরত্ব প্রায় 17 মিটার হতে হয়। সাধারণ ঘরের দেয়ালের দূরত্ব এর থেকে অনেক কম হওয়ায় প্রতিধ্বনি শোনা যায় না।"
+                },
+                {
+                    question: "মানুষের কানে দুটি শব্দের পৃথক অনুভূতির জন্য প্রয়োজনীয় সময়ের ব্যবধান—",
+                    options: ["0.001 সেকেন্ড", "1 সেকেন্ড", "0.1 সেকেন্ড", "0.01 সেকেন্ড"],
+                    answer: 2, 
+                    explanation: "মানুষের মস্তিষ্কে শব্দের রেশ প্রায় 1/10 বা 0.1 সেকেন্ড পর্যন্ত থেকে যায়। তাই দুটি শব্দকে পৃথকভাবে শুনতে হলে তাদের মধ্যে ন্যূনতম 0.1 সেকেন্ডের ব্যবধান প্রয়োজন।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

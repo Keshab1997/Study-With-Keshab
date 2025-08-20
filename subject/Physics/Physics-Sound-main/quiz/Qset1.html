@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ১ - শব্দ (Sound)</title>
+    
+    <!-- প্রয়োজনীয় CDN এবং ফাইল লিঙ্ক -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- আপনার প্রজেক্টের কুইজ CSS ফাইল -->
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <!-- === Firebase Script Section === -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
+    <!-- আপনার প্রজেক্টের Firebase কনফিগারেশন ফাইল -->
+    <script src="../js/firebase-config.js"></script>
+    <!-- === End of Firebase Script Section === -->
+
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="#" class="btn btn-secondary disabled"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset2.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        // === কুইজ সেটের ডেটা (Firebase ইন্টিগ্রেশন সহ) ===
+        const quizSet = {
+            // Firebase সিস্টেমের জন্য এই দুটি প্রপার্টি জরুরি
+            chapterName: "শব্দ (Sound)", 
+            setName: "Quiz Set 1",             
+
+            // কুইজের শিরোনাম যা পেজে দেখাবে
+            name: "শব্দ (Sound) - PYQ Set 1",
+            
+            questions: [
+                {
+                    question: "যার দ্বারা একটি শব্দ কমপক্ষে 17m (প্রায়) দূর থেকে প্রতিফলিত হয়—",
+                    options: ["প্রতিধ্বনি স্থান", "প্রতিসরণ", "প্রতিধ্বনি", "প্রতিফলন"],
+                    answer: 3, 
+                    explanation: "প্রতিধ্বনি হলো শব্দের প্রতিফলনেরই একটি রূপ, যেখানে শব্দ কোনো বাধা থেকে প্রতিফলিত হয়ে শ্রোতার কানে ফিরে আসে।"
+                },
+                {
+                    question: "শব্দের সংবেদন মানুষের মধ্যে থাকে প্রায় কত সেকেন্ডের জন্য?",
+                    options: ["1 সেকেন্ড", "0.2 সেকেন্ড", "0.1 সেকেন্ড", "0.5 সেকেন্ড"],
+                    answer: 2, 
+                    explanation: "মানুষের কান দুটি শব্দকে পৃথকভাবে চিনতে বা অনুভব করতে কমপক্ষে 0.1 সেকেন্ডের ব্যবধান প্রয়োজন।"
+                },
+                {
+                    question: "শব্দ তরঙ্গের প্রতিফলন দ্বারা উৎপাদিত শব্দের পুনরাবৃত্তি কি?",
+                    options: ["ডবল", "প্রতিধ্বনি", "নোট", "শব্দ"],
+                    answer: 1, 
+                    explanation: "শব্দ তরঙ্গের প্রতিফলন দ্বারা একই শব্দের পুনরাবৃত্তি হওয়াকে প্রতিধ্বনি বলে।"
+                },
+                {
+                    question: "মূল শব্দ এবং প্রতিফলিত শব্দের মধ্যে সময়ের ব্যবধান স্বতন্ত্র প্রতিধ্বনি শুনতে হলে কত হতে হবে?",
+                    options: ["1 সেকেন্ড", "0.1 সেকেন্ড", "0.02 সেকেন্ড", "2 সেকেন্ড"],
+                    answer: 1, 
+                    explanation: "স্বতন্ত্র প্রতিধ্বনি শুনতে হলে মূল শব্দ এবং প্রতিফলিত শব্দের মধ্যে ন্যূনতম 0.1 সেকেন্ডের সময়ের ব্যবধান থাকতে হবে।"
+                },
+                {
+                    question: "প্রতিধ্বনির জন্য উৎস এবং প্রতিফলকের মধ্যে আনুমানিক সর্বনিম্ন দূরত্ব কত?",
+                    options: ["36 মি", "34 মি", "17 মি", "10 মি"],
+                    answer: 2, 
+                    explanation: "বায়ুতে শব্দের বেগ 340 m/s হলে, 0.1 সেকেন্ডে শব্দ 34 মিটার পথ (যাওয়া-আসা) অতিক্রম করে। তাই উৎস থেকে প্রতিফলকের ন্যূনতম দূরত্ব হবে 34/2 = 17 মিটার।"
+                },
+                {
+                    question: "বিভিন্ন প্রতিধ্বনি শুনতে, উৎস থেকে বাধা দূরত্ব হওয়া উচিত—",
+                    options: ["17.2 মি", "17.2 ফিট", "34.4 ফিট", "34.4 মি"],
+                    answer: 0, 
+                    explanation: "প্রতিধ্বনি শোনার জন্য উৎস ও প্রতিফলকের মধ্যে দূরত্ব প্রায় 17 মিটার হতে হয়। (বায়ুর তাপমাত্রা ও আর্দ্রতার ওপর নির্ভর করে এই মান সামান্য পরিবর্তিত হতে পারে, যেমন 17.2 মিটার)।"
+                },
+                {
+                    question: "প্রতিধ্বনি কমাতে অডিটোরিয়ামের ছাদ এবং দেয়ালগুলি কী দিয়ে আবৃত থাকে?",
+                    options: ["ধাতু", "ফাইবারবোর্ড", "প্লাস্টিক", "কাঠ"],
+                    answer: 1, 
+                    explanation: "ফাইবারবোর্ড, মোটা পর্দা বা কার্পেটের মতো নরম ও ছিদ্রযুক্ত উপাদান শব্দ শোষণ করে প্রতিধ্বনি কমায়।"
+                },
+                {
+                    question: "একটি প্রতিধ্বনি 1 সেকেন্ডের মধ্যে ফিরে আসে। শব্দের গতি 342 m/s হলে উৎস থেকে প্রতিফলিত পৃষ্ঠের দূরত্ব কত?",
+                    options: ["513 মিটার", "644 মিটার", "342 মিটার", "171 মিটার"],
+                    answer: 3, 
+                    explanation: "মোট অতিক্রান্ত দূরত্ব = গতি × সময় = 342 মি। যেহেতু শব্দটি গিয়ে আবার ফিরে আসে, উৎস থেকে দূরত্ব হবে মোট দূরত্বের অর্ধেক। দূরত্ব = 342 / 2 = 171 মিটার।"
+                },
+                {
+                    question: "তরঙ্গের পর্যায়কাল 0.04 সেকেন্ড হলে কম্পাঙ্ক কত?",
+                    options: ["25 হার্টজ", "20 হার্টজ", "200 হার্টজ", "250 হার্টজ"],
+                    answer: 0, 
+                    explanation: "কম্পাঙ্ক (f) এবং পর্যায়কাল (T) এর সম্পর্ক হলো f = 1/T। সুতরাং, f = 1 / 0.04 = 25 Hz।"
+                },
+                {
+                    question: "তরঙ্গের পর্যায়কাল 0.025 সেকেন্ড হলে কম্পাঙ্ক কত?",
+                    options: ["25 হার্টজ", "20 হার্টজ", "50 হার্টজ", "40 হার্টজ"],
+                    answer: 3, 
+                    explanation: "কম্পাঙ্ক (f) = 1 / পর্যায়কাল (T) = 1 / 0.025 = 40 Hz।"
+                },
+                {
+                    question: "কম্পাঙ্ক এবং পর্যায়কালের মধ্যে সম্পর্ক কী?",
+                    options: ["T = f", "T = 1 + f", "T = 1/f", "T = 1 - f"],
+                    answer: 2, 
+                    explanation: "পর্যায়কাল (T) হলো কম্পাঙ্কের (f) অন্যোন্যক, অর্থাৎ T = 1/f।"
+                }
+            ]
+        };
+    </script>
+    
+    <!-- আপনার প্রজেক্টের মূল কুইজ স্ক্রিপ্ট ফাইল -->
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

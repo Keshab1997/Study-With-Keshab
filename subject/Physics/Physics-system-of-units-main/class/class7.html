@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 07 - পুনরালোচনা ও অনুশীলনী</title>
+    
+    <!-- গুগল ফন্ট লিঙ্ক -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- === সমস্ত CSS কোড এখানে যোগ করা হয়েছে === -->
+    <style>
+        /* CSS ভেরিয়েবলস (দিন ও রাত মোডের জন্য) */
+        :root {
+            --bg-color: #f4f7f9; --card-bg: #ffffff; --text-color: #333;
+            --heading-color: #0d47a1; --sub-heading-color: #00796b; --strong-color: #c2185b;
+            --border-color: #e0e0e0; --hr-color: #e0e0e0; --table-header-bg: #00796b;
+            --table-even-row-bg: #f7f9fa; --nav-button-bg: #fff; --nav-button-text: #333;
+            --nav-button-border: #ccc; --mcq-answer-bg: #e8f5e9; --mcq-explanation-color: #555;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212; --card-bg: #1e1e1e; --text-color: #e0e0e0;
+            --heading-color: #90caf9; --sub-heading-color: #4db6ac; --strong-color: #f48fb1;
+            --border-color: #424242; --hr-color: #424242; --table-header-bg: #004d40;
+            --table-even-row-bg: #2c2c2c; --nav-button-bg: #333; --nav-button-text: #e0e0e0;
+            --nav-button-border: #555; --mcq-answer-bg: #2e4430; --mcq-explanation-color: #bbb;
+        }
+
+        /* বেসিক রিসেট এবং ফন্ট */
+        body {
+            font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color);
+            color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* কন্টেইনার স্টাইল */
+        .container {
+            max-width: 850px; margin: 20px auto; background-color: var(--card-bg);
+            padding: 25px 35px; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color); transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        /* হেডার ও শিরোনাম */
+        .page-header { position: relative; text-align: center; margin-bottom: 30px; border-bottom: 2px solid var(--sub-heading-color); padding-bottom: 15px; }
+        h1 { font-size: 2.2em; color: var(--sub-heading-color); margin: 0; }
+        h2 { font-size: 1.5em; color: var(--text-color); font-weight: 500; margin: 5px 0 0 0; }
+        .topic h4 { font-size: 1.6em; color: var(--heading-color); border-left: 4px solid var(--heading-color); padding-left: 10px; margin-top: 30px; }
+        p { font-size: 1.1em; } strong { color: var(--strong-color); }
+        hr { border: 0; height: 1px; background-color: var(--hr-color); margin: 40px 0; }
+        ul { list-style: none; padding-left: 0; }
+        ul li { position: relative; padding-left: 25px; margin-bottom: 10px; }
+        ul li::before { content: '✔'; position: absolute; left: 0; color: var(--sub-heading-color); }
+
+        /* দিন/রাত মোড বাটন */
+        .theme-toggle-button {
+            position: absolute; top: 10px; right: 10px; background: none; border: 1px solid var(--border-color);
+            border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2em;
+            display: flex; align-items: center; justify-content: center; transition: background-color 0.3s, border-color 0.3s;
+        }
+        .theme-toggle-button:hover { background-color: rgba(128, 128, 128, 0.1); }
+
+        /* টেবিল স্টাইল */
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 1em; }
+        th, td { border: 1px solid var(--border-color); text-align: left; padding: 12px 15px; }
+        th { background-color: var(--table-header-bg); color: white; font-weight: 600; }
+        tr:nth-child(even) { background-color: var(--table-even-row-bg); }
+
+        /* MCQ অনুশীলনী স্টাইল */
+        .mcq-list { padding-left: 0; list-style: none; }
+        .mcq-list li {
+            padding: 15px; margin-bottom: 15px; border-radius: 8px;
+            border: 1px solid var(--border-color); counter-increment: mcq-counter;
+        }
+        .mcq-list li::before { content: counter(mcq-counter) ". "; font-weight: bold; color: var(--heading-color); padding-right: 5px; }
+        .mcq-question { font-weight: 600; margin-bottom: 10px; }
+        .mcq-options { margin-left: 20px; }
+        .mcq-explanation {
+            font-style: italic; font-size: 0.95em; color: var(--mcq-explanation-color);
+            padding: 10px; margin-top: 10px; background-color: var(--mcq-answer-bg);
+            border-left: 3px solid var(--strong-color); border-radius: 4px;
+        }
+
+        /* নেভিগেশন ও ফুটার */
+        .navigation, footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .navigation { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .nav-button {
+            display: inline-block; padding: 8px 15px; border: 1px solid var(--nav-button-border); border-radius: 20px;
+            text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg);
+            transition: all 0.3s ease; font-weight: 500; font-size: 0.95em;
+        }
+        .nav-button:hover { background-color: rgba(128, 128, 128, 0.2); transform: translateY(-2px); }
+        .nav-button.active { background-color: #d81b60; color: white; border-color: #d81b60; font-weight: 700; }
+        footer p { font-size: 0.9em; color: #888; }
+
+        /* মোবাইল রেসপন্সিভ */
+        @media (max-width: 600px) {
+            body { padding: 15px 5px; } .container { padding: 20px 15px; }
+            h1 { font-size: 1.8em; } h2 { font-size: 1.3em; } h4 { font-size: 1.4em; }
+            p { font-size: 1em; }
+            .theme-toggle-button { top: 5px; right: 5px; width: 35px; height: 35px; }
+            .nav-button { padding: 6px 12px; font-size: 0.9em; gap: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- প্রধান শিরোনাম এবং থিম টগল বাটন -->
+        <header class="page-header">
+            <button id="theme-toggle-button" class="theme-toggle-button" title="দিন/রাত মোড পরিবর্তন করুন">🌙</button>
+            <h1>CLASS 07</h1>
+            <h2>বিষয়: একক পদ্ধতি ও পরিমাপ - পুনরালোচনা ও অনুশীলনী</h2>
+        </header>
+
+        <!-- মূল কন্টেন্ট -->
+        <main>
+            <section class="topic">
+                <h4>১. গুরুত্বপূর্ণ ভৌতরাশি, মাত্রা ও এককের তালিকা (পুনরালোচনা)</h4>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>রাশির নাম</th><th>মাত্রীয় সংকেত</th><th>SI একক</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>ক্ষেত্রফল</strong></td><td>[L²]</td><td>m²</td></tr>
+                            <tr><td><strong>আয়তন</strong></td><td>[L³]</td><td>m³</td></tr>
+                            <tr><td><strong>ঘনত্ব</strong></td><td>[ML⁻³]</td><td>kg/m³</td></tr>
+                            <tr><td><strong>বেগ/দ্রুতি</strong></td><td>[LT⁻¹]</td><td>m/s</td></tr>
+                            <tr><td><strong>ত্বরণ/মন্দন</strong></td><td>[LT⁻²]</td><td>m/s²</td></tr>
+                            <tr><td><strong>ভরবেগ</strong></td><td>[MLT⁻¹]</td><td>kg·m/s</td></tr>
+                            <tr><td><strong>বল/ওজন</strong></td><td>[MLT⁻²]</td><td>নিউটন (N)</td></tr>
+                            <tr><td><strong>চাপ</strong></td><td>[ML⁻¹T⁻²]</td><td>পাস্কাল (Pa)</td></tr>
+                            <tr><td><strong>কার্য/শক্তি</strong></td><td>[ML²T⁻²]</td><td>জুল (J)</td></tr>
+                            <tr><td><strong>ক্ষমতা</strong></td><td>[ML²T⁻³]</td><td>ওয়াট (W)</td></tr>
+                            <tr><td><strong>রোধ</strong></td><td>[ML²T⁻³A⁻²]</td><td>ওহম (Ω)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>২. পরিমাপ সংক্রান্ত ধারণা (পুনরালোচনা)</h4>
+                <ul>
+                    <li><strong>লঘিষ্ঠ ধ্রুবক:</strong> কোনো যন্ত্রের সাহায্যে সর্বনিম্ন যে পরিমাণ নির্ভুলভাবে মাপা যায়।</li>
+                    <li><strong>ওজন বাক্সে বাটখারার অনুপাত (5:2:2:1):</strong> সহজে যেকোনো মানের ভর মাপার জন্য ব্যবহৃত হয়।</li>
+                    <li><strong>ঘনত্ব:</strong> ঘনত্ব = ভর / আয়তন। 1 g/cm³ = 1000 kg/m³।</li>
+                    <li><strong>সাধারণ তুলাযন্ত্রের ত্রুটি সমাধান:</strong>
+                        <ul>
+                            <li>পাত্রের ভর আলাদা হলে: সঠিক ভর, <strong>M = (M₁ + M₂)/2</strong></li>
+                            <li>বাহুর দৈর্ঘ্য অসমান হলে: সঠিক ভর, <strong>M = √(M₁ × M₂)</strong></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            
+            <hr>
+
+            <section class="topic">
+                <h4>৩. বিগত বছরের পরীক্ষার প্রশ্নাবলী (MCQ Practice)</h4>
+                <ol class="mcq-list">
+                    <li><p class="mcq-question">নীচের কোন রাশির একক Volt? [RRB NTPC]</p><div class="mcq-options">(a) তড়িৎ প্রবাহমাত্রা (b) তড়িৎ ক্ষেত্রের প্রাবল্য <strong>(c) তড়িৎ বিভব</strong> (d) তড়িৎ আধান</div></li>
+                    <li><p class="mcq-question">আলোকবর্ষ হল- [RRB NTPC]</p><div class="mcq-options"><strong>(a) দূরত্বের একক</strong> (b) ক্ষুদ্র দূরত্বের একক (c) সময়ের একক (d) আলোর গতিবেগ</div></li>
+                    <li><p class="mcq-question">পার-সেক (par-sec) হল- [RRB NTPC]</p><div class="mcq-options"><strong>(a) 3.26 আলোকবর্ষ</strong> (b) 1.96 আলোকবর্ষ (c) 10.26 বছর (d) 14.56 দিন</div></li>
+                    <li><p class="mcq-question">নীচের কোন এককটির সাহায্যে তরঙ্গদৈর্ঘ্য মাপা হয়? [RRB GROUP-D]</p><div class="mcq-options">(a) মিটার (m) <strong>(b) অ্যাংস্ট্রম (Å)</strong> (c) পার-সেক (d) ফার্মি (F)</div></li>
+                    <li><p class="mcq-question">ফার্মি (F) এককের সাহায্যে মাপা হয়- [RRB NTPC]</p><div class="mcq-options">(a) রাস্তার দূরত্ব (b) সমুদ্রের গভীরতা <strong>(c) পরমাণুর নিউক্লিয়াসের ব্যাসার্ধ</strong> (d) দুটি নক্ষত্রের মধ্যবর্তী দূরত্ব</div></li>
+                    <li><p class="mcq-question">নীচের কোন রাশিটির কোনো একক নেই? [RRB NTPC]</p><div class="mcq-options">(a) আপেক্ষিক তাপ <strong>(b) আপেক্ষিক গুরুত্ব</strong> (c) রোধ (d) আপেক্ষিক রোধ</div></li>
+                    <li><p class="mcq-question">নীচের কোন রাশিটি স্কেলার রাশি? [RRB JE]</p><div class="mcq-options">(a) বল (b) টর্ক <strong>(c) কার্য</strong> (d) ত্বরণ</div></li>
+                    <li><p class="mcq-question">নীচের কোনটি স্কেলার রাশি নয়? [RRB GROUP-D]</p><div class="mcq-options">(a) কার্য <strong>(b) তড়িৎক্ষেত্রের প্রাবল্য</strong> (c) দ্রুতি (d) শক্তি</div></li>
+                    <li><p class="mcq-question">নীচের কোন রাশি দুটির মাত্রা সমান হয়? [RRB ALP & TEC]</p><div class="mcq-options"><strong>(a) বলের ঘাত ও ভরবেগ</strong> (b) ঘাত ও বল (c) তাপ ও স্থিতিস্থাপক গুণাঙ্ক (d) কার্য ও পীড়ন</div><div class="mcq-explanation">ব্যাখ্যা: বলের ঘাত = বল × সময় = [MLT⁻²] × [T] = [MLT⁻¹]। ভরবেগ = ভর × বেগ = [M] × [LT⁻¹] = [MLT⁻¹]।</div></li>
+                    <li><p class="mcq-question">এক ব্যক্তি একটি বৃত্তাকার পথ পরিক্রমণ করলে তার সরণ এবং অতিক্রান্ত দূরত্বের অনুপাত হবে- [RRB ALP]</p><div class="mcq-options">(a) π / 2 (b) π <strong>(c) শূন্য</strong> (d) 2 / π</div><div class="mcq-explanation">ব্যাখ্যা: পূর্ণ পরিক্রমায় সরণ শূন্য হয়, তাই অনুপাতও শূন্য হয়।</div></li>
+                    <li><p class="mcq-question">A ও B দুটি সমান ভেক্টর হলে, ওদের- [RRB NTPC]</p><div class="mcq-options">(a) মান সমান (b) দিক সমান <strong>(c) একই মান এবং দিক উভয়েই</strong> (d) মান সমান এবং একটি সাধারণ উৎস বিন্দু থাকবে</div></li>
+                    <li><p class="mcq-question">নীচের কোনটি স্কেলার রাশি নয়? [RRB NTPC]</p><div class="mcq-options">(a) কার্য (b) ক্ষমতা <strong>(c) ভরবেগ</strong> (d) তাপমাত্রা</div></li>
+                    <li><p class="mcq-question">1 আলোকবর্ষ নীচের কোনটির সমান? [RRB NTPC]</p><div class="mcq-options"><strong>(d) 9.46 x 10¹⁵ m</strong> (সঠিক মান 9.46 x 10¹⁵ m বা 9.46 x 10¹² km)</div></li>
+                    <li><p class="mcq-question">বস্তুর ভর নিম্নোক্ত কোন রাশির দ্বারা সূচিত হয়? [RRB JE]</p><div class="mcq-options">(a) প্রযুক্ত বল/বেগ (b) বেগ/ত্বরণ <strong>(c) প্রযুক্ত বল/ত্বরণ</strong> (d) প্রযুক্ত বল/ভরবেগের বৃদ্ধি</div><div class="mcq-explanation">ব্যাখ্যা: নিউটনের দ্বিতীয় সূত্র অনুযায়ী F = ma, সুতরাং m = F/a।</div></li>
+                    <li><p class="mcq-question">একটি স্কেলার রাশির উদাহরণ- [RRB NTPC]</p><div class="mcq-options">(a) বেগ (b) বল (c) ভরবেগ <strong>(d) শক্তি</strong></div></li>
+                    <li><p class="mcq-question">এদের কোনটি দৈর্ঘ্যের একক নয়? [RRB ALP & TEC]</p><div class="mcq-options">(a) আলোকবর্ষ (b) মাইক্রন (c) AU <strong>(d) রেডিয়ান</strong></div><div class="mcq-explanation">ব্যাখ্যা: রেডিয়ান কোণের একক।</div></li>
+                    <li><p class="mcq-question">কোন রাশির একক ডাইন-সেকেন্ড- [RRB ALP & TEC]</p><div class="mcq-options">(a) বল <strong>(b) ভরবেগ</strong> (c) শক্তি (d) ক্ষমতা</div><div class="mcq-explanation">ব্যাখ্যা: ডাইন-সেকেন্ড হলো বলের ঘাতের CGS একক, যা ভরবেগের এককের সমান।</div></li>
+                    <li><p class="mcq-question">আলোকবর্ষ কীসের একক? [RRB JE]</p><div class="mcq-options">(a) সময় <strong>(b) দূরত্ব</strong> (c) আলো (d) আলোর প্রাবল্য</div></li>
+                    <li><p class="mcq-question">কিলো-ওয়াট আওয়ার কীসের একক? [RRB JE]</p><div class="mcq-options">(a) ভরবেগ (b) ক্ষমতা (c) বল <strong>(d) শক্তি</strong></div><div class="mcq-explanation">ব্যাখ্যা: ক্ষমতা (kW) × সময় (hour) = শক্তি (kWh)।</div></li>
+                    <li><p class="mcq-question">নীচের কোনটি স্কেলার রাশি? [RRB GROUP-D]</p><div class="mcq-options">(a) ভরবেগ <strong>(b) ভর</strong> (c) ওজন (d) বল</div></li>
+                    <li><p class="mcq-question">কম্পাঙ্কের একক হল- [RRB ALP & TEC]</p><div class="mcq-options">(a) কেজি-মিটার (b) সেকেন্ড <strong>(c) হার্জ</strong> (d) সেমি/সেকেন্ড</div></li>
+                    <li><p class="mcq-question">ক্ষমতার একক কী? [RRB GROUP-D]</p><div class="mcq-options">(a) হাফ লাইফ <strong>(b) ওয়াট</strong> (c) ভোল্ট (d) জুল</div></li>
+                    <li><p class="mcq-question">নিম্নলিখিত রাশিগুলির মধ্যে ভেক্টর রাশিটি হল- [RRB GROUP-D]</p><div class="mcq-options">(a) তাপ <strong>(b) কৌণিক ভরবেগ</strong> (c) সময় (d) কার্য</div></li>
+                    <li><p class="mcq-question">C.G.S পদ্ধতিতে আয়তনের একক কী? [RRB CPO]</p><div class="mcq-options">(a) cm² <strong>(b) cm³</strong> (c) km (d) m</div></li>
+                    <li><p class="mcq-question">S. I পদ্ধতিতে মোট একক হল- [RRB NTPC]</p><div class="mcq-options">(a) তিনটি মূল একক এবং একটি সহায়ক একক <strong>(b) সাতটি মূল একক এবং দুটি সহায়ক একক</strong> (c) পাঁচটি মূল একক এবং একটি সহায়ক একক (d) সাতটি মূল একক এবং সাতটি সহায়ক একক</div></li>
+                </ol>
+            </section>
+        </main>
+    </div>
+
+    <!-- নেভিগেশন বার -->
+    <nav class="navigation">
+        <a href="class6.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button active">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class8.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">হোমপেজ</a>
+    </nav>
+    
+    <!-- ফুটার -->
+    <footer>
+        <p>&copy; <span id="current-year"></span> কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <!-- === সমস্ত JavaScript কোড এখানে যোগ করা হয়েছে === -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const body = document.body;
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleButton.textContent = '☀️';
+            } else {
+                themeToggleButton.textContent = '🌙';
+            }
+            themeToggleButton.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeToggleButton.textContent = '☀️';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeToggleButton.textContent = '🌙';
+                }
+            });
+
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+
+</body>
+</html>

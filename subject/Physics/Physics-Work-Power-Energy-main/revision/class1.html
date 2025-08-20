@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কার্য, ক্ষমতা ও শক্তি - Class 01</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-style: normal; font-size: 1.1em; border-radius: 5px; }
+        img { max-width: 100%; height: auto; display: block; margin: 25px auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        .math-formula { background-color: var(--blockquote-bg); padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center; font-size: 1.3em; font-family: 'Courier New', Courier, monospace; border: 1px solid var(--blockquote-border); color: var(--heading-color-1); overflow-x: auto; }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 10px; padding-left: 10px; }
+        .mcq-item { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed #ddd; }
+        .mcq-item:last-child { border-bottom: none; }
+        .mcq-item ul { list-style-type: none; padding-left: 0; }
+        .mcq-item li { margin-bottom: 8px; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.png" alt="Logo" class="logo">
+        <h1>কার্য, ক্ষমতা ও শক্তি</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>ক্লাস: 1</h2>
+
+        <h3>কার্য (Work) কী?</h3>
+        <p>সহজ কথায় বললে, যখন আমরা কোনো জিনিসের ওপর বল প্রয়োগ করে জিনিসটাকে এক জায়গা থেকে আরেক জায়গায় সরাতে পারি, তখনই পদার্থবিজ্ঞানের ভাষায় ‘কার্য’ করা হয়। যদি ধাক্কা দেওয়ার পরেও জিনিসটা একচুলও না নড়ে, তাহলে কোনো কার্য হবে না।</p>
+        <h4>ফর্মুলা:</h4>
+        <p>কার্যের পরিমাণ মাপা হয় এই সূত্র দিয়ে:</p>
+        <div class="math-formula">W = F × S × cosθ</div>
+        <p>এখানে,</p>
+        <ul>
+            <li><strong>W</strong> = কার্য (Work)</li>
+            <li><strong>F</strong> = বল (Force)</li>
+            <li><strong>S</strong> = সরণ (Displacement)</li>
+            <li><strong>θ (থিটা)</strong> = বল যেদিকে প্রয়োগ করা হচ্ছে এবং বস্তু যেদিকে সরছে, তাদের মধ্যবর্তী কোণ।</li>
+        </ul>
+
+        <h3>কার্যের মাত্রা ও রাশি</h3>
+        <h4>কার্যের মাত্রা:</h4>
+        <p>মাত্রা বের করার জন্য আমরা ফর্মুলা ব্যবহার করি:<br>কার্য = বল × সরণ<br>= [M L T⁻²] × [L]</p>
+        <div class="math-formula">[M L² T⁻²]</div>
+
+        <h4>কার্য কি স্কেলার না ভেক্টর রাশি?</h4>
+        <p>কার্য একটি <strong>স্কেলার রাশি</strong>। কারণ এর কেবল মান আছে, কিন্তু কোনো নির্দিষ্ট দিক নেই। কার্য 5 জুল বা 10 জুল হতে পারে, কিন্তু উত্তর বা দক্ষিণ দিকে কার্য হয় না।</p>
+
+        <h3>কার্যের একক (Unit)</h3>
+        <ul>
+            <li><strong>SI পদ্ধতিতে একক:</strong> <strong>জুল (Joule বা J)</strong></li>
+            <li><strong>CGS পদ্ধতিতে একক:</strong> <strong>আর্গ (erg)</strong></li>
+        </ul>
+        <p><strong>মনে রাখার সহজ উপায়:</strong></p>
+        <ul>
+            <li><strong>1 জুল = 1 নিউটন বল × 1 মিটার সরণ</strong></li>
+            <li><strong>1 আর্গ = 1 ডাইন বল × 1 সেন্টিমিটার সরণ</strong></li>
+        </ul>
+
+        <h3>এক জুল ও এক আর্গ কাকে বলে?</h3>
+        <blockquote><strong>এক জুল:</strong> কোনো বস্তুর ওপর 1 নিউটন বল প্রয়োগ করলে যদি বস্তুটির বলের দিকে 1 মিটার সরণ হয়, তাহলে যে পরিমাণ কার্য করা হয়, তাকে <strong>1 জুল</strong> বলে।</blockquote>
+        <blockquote><strong>এক আর্গ:</strong> কোনো বস্তুর ওপর 1 ডাইন বল প্রয়োগ করলে যদি বস্তুটির বলের দিকে 1 সেন্টিমিটার সরণ হয়, তাহলে যে পরিমাণ কার্য করা হয়, তাকে <strong>1 আর্গ</strong> বলে।</blockquote>
+        
+        <h3>জুল ও আর্গের মধ্যে সম্পর্ক (খুবই গুরুত্বপূর্ণ)</h3>
+        <blockquote>1 জুল = 1 নিউটন × 1 মিটার<br>= (10⁵ ডাইন) × (10² সেন্টিমিটার)<br>= 10⁷ (ডাইন × সেমি)<br>= 10⁷ আর্গ<br><strong>অর্থাৎ, 1 জুল = 10⁷ আর্গ</strong></blockquote>
+        
+        <h3>কার্যের অভিকর্ষীয় একক</h3>
+        <ul>
+            <li><strong>1 কিলোগ্রাম-মিটার (kg-m):</strong> 1 কেজি ভরের কোনো বস্তুকে অভিকর্ষ বলের বিরুদ্ধে সোজা উপরের দিকে 1 মিটার তুলতে যে পরিমাণ কার্য করতে হয়, তাকে 1 কিলোগ্রাম-মিটার বলে।<br><strong>সম্পর্ক: 1 কিলোগ্রাম-মিটার = 9.8 জুল</strong></li>
+            <li><strong>1 গ্রাম-সেন্টিমিটার (gm-cm):</strong> 1 গ্রাম ভরের কোনো বস্তুকে অভিকর্ষ বলের বিরুদ্ধে সোজা উপরের দিকে 1 সেন্টিমিটার তুলতে যে কার্য করতে হয়, তাকে 1 গ্রাম-সেন্টিমিটার বলে।<br><strong>সম্পর্ক: 1 গ্রাম-সেন্টিমিটার = 980 আর্গ</strong></li>
+        </ul>
+
+        <h3>বলের দ্বারা কার্য (Positive Work)</h3>
+        <p>যখন বল এবং সরণ একই দিকে হয়, তখন তাকে বলের দ্বারা কার্য বা ধনাত্মক কার্য বলে।</p>
+        <p><strong>উদাহরণ:</strong></p>
+        <ul>
+            <li><strong>সিঁড়ি দিয়ে নামা:</strong> এক্ষেত্রে অভিকর্ষ বল নিচের দিকে টানে এবং আমরাও নিচের দিকেই নামি।</li>
+            <li><strong>স্রোতের দিকে সাঁতার কাটা:</strong> স্রোত যেদিকে বইছে, সেদিকেই সাঁতার কাটলে কম শক্তি লাগে, কারণ স্রোতের বল আমাদের সাহায্য করে।</li>
+        </ul>
+
+        <h3>বলের বিরুদ্ধে কার্য (Negative Work)</h3>
+        <p>যখন বলের ঠিক উল্টো দিকে সরণ হয়, তখন তাকে বলের বিরুদ্ধে কার্য বা ঋণাত্মক কার্য বলে।</p>
+        <p><strong>উদাহরণ:</strong></p>
+        <ul>
+            <li><strong>সিঁড়ি দিয়ে ওঠা:</strong> এক্ষেত্রে অভিকর্ষ বল নিচের দিকে টানে, কিন্তু আমরা উপরের দিকে উঠি।</li>
+            <li><strong>স্রোতের বিপরীতে সাঁতার কাটা:</strong> স্রোত একদিকে টানে, আর আমরা তার উল্টো দিকে যাওয়ার চেষ্টা করি।</li>
+        </ul>
+
+        <h3>কার্যহীন বল (Zero Work)</h3>
+        <p>কখনো কখনো বল প্রয়োগ করা সত্ত্বেও মোট কার্যের পরিমাণ শূন্য (0) হয়। একেই কার্যহীন বলের পরিস্থিতি বলে।</p>
+        <h4>শর্ত (কখন কার্য শূন্য হয়?):</h4>
+        <ol>
+            <li>যখন বল ও সরণের মধ্যবর্তী কোণ 90° হয় (অর্থাৎ তারা পরস্পর লম্ব)।</li>
+            <li>যখন বল প্রয়োগ করলেও বস্তুর কোনো সরণ হয় না (S = 0)।</li>
+        </ol>
+        <p><strong>উদাহরণ:</strong></p>
+        <ul>
+            <li>একজন কুলি মাথায় বোঝা নিয়ে সমতল রাস্তায় হেঁটে গেলে অভিকর্ষ বলের দ্বারা কার্য শূন্য হয়, কারণ অভিকর্ষ বল নিচের দিকে কাজ করে আর তার সরণ হয় সামনের দিকে (কোণ = 90°)।</li>
+            <li>কোনো দেয়ালকে সারাদিন ধরে ধাক্কা দিলেও যদি দেয়ালটি না সরে, তাহলে কার্যের পরিমাণ শূন্য।</li>
+        </ul>
+        
+        <h2>গুরুত্বপূর্ণ MCQ প্রশ্ন ও উত্তর</h2>
+        <div class="mcq-item">
+            <h4>প্রশ্ন 1: কার্যের SI একক কী?</h4>
+            <ul><li>(ক) নিউটন</li><li>(খ) আর্গ</li><li>(গ) জুল</li><li>(ঘ) ডাইন</li></ul>
+            <blockquote><strong>উত্তর: (গ) জুল</strong><br><strong>ব্যাখ্যা:</strong> SI পদ্ধতিতে কার্যের একক হলো জুল, আর CGS পদ্ধতিতে একক হলো আর্গ। নিউটন ও ডাইন হলো বলের একক।</blockquote>
+        </div>
+        <div class="mcq-item">
+            <h4>প্রশ্ন 2: কোনো বস্তুর ওপর বল প্রয়োগ করা সত্ত্বেও কখন কার্য শূন্য হবে?</h4>
+            <ul><li>(ক) বল ও সরণের মধ্যবর্তী কোণ 0° হলে</li><li>(খ) বল ও সরণের মধ্যবর্তী কোণ 45° হলে</li><li>(গ) বল ও সরণের মধ্যবর্তী কোণ 90° হলে</li><li>(ঘ) বল ও সরণের মধ্যবর্তী কোণ 180° হলে</li></ul>
+            <blockquote><strong>উত্তর: (গ) বল ও সরণের মধ্যবর্তী কোণ 90° হলে</strong><br><strong>ব্যাখ্যা:</strong> কার্যের সূত্র হলো W = F.S.cosθ। আমরা জানি, cos(90°) = 0, তাই কোণ 90° হলে কার্যের পরিমাণ শূন্য হয়।</blockquote>
+        </div>
+        <div class="mcq-item">
+            <h4>প্রশ্ন 3: 1 জুল সমান কত আর্গ?</h4>
+            <ul><li>(ক) 10³ আর্গ</li><li>(খ) 10⁵ আর্গ</li><li>(গ) 10⁷ আর্গ</li><li>(ঘ) 10⁹ আর্গ</li></ul>
+            <blockquote><strong>উত্তর: (গ) 10⁷ আর্গ</strong><br><strong>ব্যাখ্যা:</strong> এটি জুল ও আর্গের মধ্যে একটি মৌলিক সম্পর্ক যা সরাসরি মনে রাখতে হয়।</blockquote>
+        </div>
+        <div class="mcq-item">
+            <h4>প্রশ্ন 4: নিচের কোন ক্ষেত্রে বলের বিরুদ্ধে কার্য করা হয়?</h4>
+            <ul><li>(ক) ওপর থেকে নিচে পড়া বস্তু</li><li>(খ) স্রোতের দিকে সাঁতার কাটা</li><li>(গ) সিঁড়ি দিয়ে ওপরে ওঠা</li><li>(ঘ) কোনো সমতল রাস্তায় হাঁটা</li></ul>
+            <blockquote><strong>উত্তর: (গ) সিঁড়ি দিয়ে ওপরে ওঠা</strong><br><strong>ব্যাখ্যা:</strong> সিঁড়ি দিয়ে ওপরে ওঠার সময় অভিকর্ষ বল নিচের দিকে টানে, কিন্তু আমাদের সরণ হয় ওপরের দিকে। অর্থাৎ, বলের বিরুদ্ধে কার্য করা হয়।</blockquote>
+        </div>
+        <div class="mcq-item">
+            <h4>প্রশ্ন 5: কার্য কী ধরনের রাশি?</h4>
+            <ul><li>(ক) স্কেলার রাশি</li><li>(খ) ভেক্টর রাশি</li><li>(গ) উভয়ই</li><li>(ঘ) কোনোটিই নয়</li></ul>
+            <blockquote><strong>উত্তর: (ক) স্কেলার রাশি</strong><br><strong>ব্যাখ্যা:</strong> কার্যের শুধুমাত্র মান আছে (যেমন: 10 জুল), কিন্তু কোনো নির্দিষ্ট দিক নেই। তাই এটি একটি স্কেলার রাশি।</blockquote>
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="#" class="nav-button disabled">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button active">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class2.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2025 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+        });
+    </script>
+</body>
+</html>

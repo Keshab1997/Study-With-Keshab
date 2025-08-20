@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 02 - একক পদ্ধতি</title>
+    
+    <!-- গুগল ফন্ট লিঙ্ক -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- === সমস্ত CSS কোড এখানে যোগ করা হয়েছে === -->
+    <style>
+        /* CSS ভেরিয়েবলস (দিন ও রাত মোডের জন্য) */
+        :root {
+            --bg-color: #f4f7f9;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --heading-color: #0d47a1;
+            --sub-heading-color: #00796b;
+            --strong-color: #c2185b;
+            --border-color: #e0e0e0;
+            --key-point-bg: #e3f2fd;
+            --key-point-border: #2196f3;
+            --hr-color: #e0e0e0;
+            --table-header-bg: #00796b;
+            --table-even-row-bg: #f7f9fa;
+            --nav-button-bg: #fff;
+            --nav-button-text: #333;
+            --nav-button-border: #ccc;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --heading-color: #90caf9;
+            --sub-heading-color: #4db6ac;
+            --strong-color: #f48fb1;
+            --border-color: #424242;
+            --key-point-bg: #263238;
+            --key-point-border: #90caf9;
+            --hr-color: #424242;
+            --table-header-bg: #004d40;
+            --table-even-row-bg: #2c2c2c;
+            --nav-button-bg: #333;
+            --nav-button-text: #e0e0e0;
+            --nav-button-border: #555;
+        }
+
+        /* বেসিক রিসেট এবং ফন্ট */
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* কন্টেইনার স্টাইল */
+        .container {
+            max-width: 850px;
+            margin: 20px auto;
+            background-color: var(--card-bg);
+            padding: 25px 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        /* হেডার স্টাইল */
+        .page-header {
+            position: relative;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--sub-heading-color);
+            padding-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            color: var(--sub-heading-color);
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            color: var(--text-color);
+            font-weight: 500;
+            margin: 5px 0 0 0;
+        }
+        
+        /* দিন/রাত মোড বাটন */
+        .theme-toggle-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .theme-toggle-button:hover {
+            background-color: rgba(128, 128, 128, 0.1);
+        }
+
+        /* টপিক সেকশন এবং হেডিং */
+        .topic { margin-bottom: 25px; }
+
+        h4 {
+            font-size: 1.6em;
+            color: var(--heading-color);
+            border-left: 4px solid var(--heading-color);
+            padding-left: 10px;
+            margin-top: 30px;
+        }
+
+        p { font-size: 1.1em; }
+        strong { color: var(--strong-color); }
+        hr { border: 0; height: 1px; background-color: var(--hr-color); margin: 40px 0; }
+        
+        ul, ol { padding-left: 25px; }
+        li { margin-bottom: 10px; }
+        
+        /* MCQ হাইলাইটার */
+        .mcq-highlight::before { content: '⭐ '; color: #ffc107; margin-right: 5px; }
+
+        /* টেবিল স্টাইল */
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 1em; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid var(--border-color); text-align: left; padding: 12px 15px; }
+        th { background-color: var(--table-header-bg); color: white; font-weight: 600; }
+        tr:nth-child(even) { background-color: var(--table-even-row-bg); }
+
+        /* নেভিগেশন ও ফুটার */
+        .navigation, footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .navigation { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .nav-button {
+            display: inline-block; padding: 8px 15px; border: 1px solid var(--nav-button-border); border-radius: 20px;
+            text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg);
+            transition: all 0.3s ease; font-weight: 500; font-size: 0.95em;
+        }
+        .nav-button:hover { background-color: rgba(128, 128, 128, 0.2); transform: translateY(-2px); }
+        .nav-button.active { background-color: #d81b60; color: white; border-color: #d81b60; font-weight: 700; }
+        .nav-button.disabled { background-color: transparent; color: #aaa; pointer-events: none; border-color: var(--border-color); }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; border-color: #1565c0; }
+        
+        footer p { font-size: 0.9em; color: #888; }
+
+        /* মোবাইল রেসপন্সিভ */
+        @media (max-width: 600px) {
+            body { padding: 15px 5px; }
+            .container { padding: 20px 15px; }
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.3em; }
+            h4 { font-size: 1.4em; }
+            p { font-size: 1em; }
+            .theme-toggle-button { top: 5px; right: 5px; width: 35px; height: 35px; }
+            .nav-button { padding: 6px 12px; font-size: 0.9em; gap: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- প্রধান শিরোনাম এবং থিম টগল বাটন -->
+        <header class="page-header">
+            <button id="theme-toggle-button" class="theme-toggle-button" title="দিন/রাত মোড পরিবর্তন করুন">🌙</button>
+            <h1>CLASS 02</h1>
+            <h2>বিষয়: একক পদ্ধতি (System of Units)</h2>
+        </header>
+
+        <!-- মূল কন্টেন্ট -->
+        <main>
+            <section class="topic">
+                <h4>একক (Unit)</h4>
+                <p><strong>প্রশ্ন: ভৌতরাশির একক কাকে বলে?</strong><br>
+                <strong>উত্তর:</strong> কোনো ভৌতরাশি পরিমাপ করার সময় ওই রাশিটির একটি নির্দিষ্ট ও সুবিধাজনক পরিমাণকে প্রমাণ (Standard) হিসেবে ধরা হয়। এই নির্দিষ্ট প্রমাণ মানকেই ওই ভৌতরাশিটির একক বলে।</p>
+
+                <p><strong>প্রশ্ন: এককের প্রয়োজনীয়তা কী?</strong><br>
+                <strong>উত্তর:</strong>
+                <ol>
+                    <li><strong>সঠিক পরিমাপ:</strong> প্রতিটি ভৌতরাশি পরিমাপের জন্য একক অপরিহার্য। একক ছাড়া পরিমাপ অর্থহীন। যেমন, কোনো ছাত্রের উচ্চতা শুধু ২ বলা অর্থহীন, কিন্তু ২ মিটার বললে তার উচ্চতা সম্পর্কে সঠিক ধারণা পাওয়া যায়।</li>
+                    <li><strong>সম্পর্ক স্থাপন:</strong> বিভিন্ন ভৌতরাশির মধ্যে সম্পর্ক স্থাপন এবং এক একক থেকে অন্য এককে রূপান্তরের জন্য এককের প্রয়োজন। যেমন: ১ কেজি = ১০০০ গ্রাম, ১ মিটার = ১০০ সেমি।</li>
+                </ol>
+                </p>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>এককের প্রকারভেদ (Types of Units)</h4>
+                <p><strong>প্রশ্ন: একক কয় প্রকার ও কী কী? প্রতিটির উদাহরণসহ সংজ্ঞা দাও।</strong><br>
+                <strong>উত্তর:</strong> একক প্রধানত দুই প্রকার: <strong>১. প্রাথমিক বা মূল একক</strong> এবং <strong>২. লব্ধ একক</strong>।</p>
+                <ul>
+                    <li><strong>প্রাথমিক বা মূল একক (Fundamental Unit):</strong>
+                        <p><strong>সংজ্ঞা:</strong> যে ভৌত রাশিগুলির একক পরস্পরের ওপর নির্ভরশীল নয় এবং যাদের এককের সাহায্যে অন্যান্য সমস্ত ভৌতরাশির একক গঠন করা যায়, তাদের প্রাথমিক বা মূল একক বলে।<br>
+                        <span class="mcq-highlight"><strong>উদাহরণ:</strong> দৈর্ঘ্য, ভর ও সময়ের একক হলো মূল একক।</span></p>
+                    </li>
+                    <li><strong>লব্ধ একক (Derived Unit):</strong>
+                        <p><strong>সংজ্ঞা:</strong> এক বা একাধিক মূল এককের সাহায্যে যে সমস্ত ভৌতরাশির একক গঠন করা হয়, সেই এককগুলিকে লব্ধ একক বলে।<br>
+                        <span class="mcq-highlight"><strong>উদাহরণ:</strong> ক্ষেত্রফলের একক (মিটার²) একটি লব্ধ একক, কারণ এটি দুটি দৈর্ঘ্যের এককের গুণফল।</span></p>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>একক পদ্ধতি (System of Units)</h4>
+                <p><strong>প্রশ্ন: একক পদ্ধতি কাকে বলে? এটি কয় প্রকার ও কী কী?</strong><br>
+                <strong>উত্তর:</strong> মূল এককগুলির ওপর ভিত্তি করে ভৌতরাশি পরিমাপের জন্য যে সম্পূর্ণ ব্যবস্থা বা পদ্ধতি অনুসরণ করা হয়, তাকে একক পদ্ধতি বলে।</p>
+                <p>এটি মূলত চার প্রকার:</p>
+                <ol>
+                    <li class="mcq-highlight"><strong>CGS পদ্ধতি</strong> (সেন্টিমিটার-গ্রাম-সেকেন্ড)</li>
+                    <li class="mcq-highlight"><strong>FPS পদ্ধতি</strong> (ফুট-পাউন্ড-সেকেন্ড)</li>
+                    <li class="mcq-highlight"><strong>MKS পদ্ধতি</strong> (মিটার-কিলোগ্রাম-সেকেন্ড)</li>
+                    <li class="mcq-highlight"><strong>SI বা আন্তর্জাতিক পদ্ধতি</strong> (Système Internationale)</li>
+                </ol>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>বিভিন্ন পদ্ধতিতে মৌলিক একক</h4>
+                <p class="mcq-highlight">SI পদ্ধতিতে ৭টি মূল একক আছে।</p>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>পদ্ধতি</th>
+                                <th>রাশি</th>
+                                <th>একক</th>
+                                <th>চিহ্ন</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>CGS</strong></td><td>দৈর্ঘ্য</td><td>সেন্টিমিটার</td><td>cm</td></tr>
+                            <tr><td></td><td>ভর</td><td>গ্রাম</td><td>g</td></tr>
+                            <tr><td></td><td>সময়</td><td>সেকেন্ড</td><td>s</td></tr>
+                            <tr><td><strong>FPS</strong></td><td>দৈর্ঘ্য</td><td>ফুট</td><td>ft</td></tr>
+                            <tr><td></td><td>ভর</td><td>পাউন্ড</td><td>lb</td></tr>
+                            <tr><td></td><td>সময়</td><td>সেকেন্ড</td><td>s</td></tr>
+                            <tr><td><strong>MKS</strong></td><td>দৈর্ঘ্য</td><td>মিটার</td><td>m</td></tr>
+                            <tr><td></td><td>ভর</td><td>কিলোগ্রাম</td><td>kg</td></tr>
+                            <tr><td></td><td>সময়</td><td>সেকেন্ড</td><td>s</td></tr>
+                            <tr><td rowspan="7"><strong>SI</strong></td><td>দৈর্ঘ্য</td><td>মিটার</td><td>m</td></tr>
+                            <tr><td>ভর</td><td>কিলোগ্রাম</td><td>kg</td></tr>
+                            <tr><td>সময়</td><td>সেকেন্ড</td><td>s</td></tr>
+                            <tr><td>তড়িৎপ্রবাহমাত্রা</td><td>অ্যাম্পিয়ার</td><td>A</td></tr>
+                            <tr><td>তাপমাত্রা</td><td>কেলভিন</td><td>K</td></tr>
+                            <tr><td>দীপন প্রাবল্য</td><td>ক্যান্ডেলা</td><td>cd</td></tr>
+                            <tr><td>পদার্থের পরিমাণ</td><td>মোল</td><td>mol</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4 class="mcq-highlight">SI পদ্ধতির দুটি সম্পূরক একক</h4>
+                <div class="table-container">
+                     <table>
+                        <thead>
+                            <tr>
+                                <th>রাশি</th>
+                                <th>একক</th>
+                                <th>চিহ্ন</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>কোণ (Plane Angle)</td>
+                                <td>রেডিয়ান (Radian)</td>
+                                <td>rad</td>
+                            </tr>
+                             <tr>
+                                <td>ঘনকোণ (Solid Angle)</td>
+                                <td>স্টেরেডিয়ান (Steradian)</td>
+                                <td>sr</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <hr>
+            
+            <section class="topic">
+                 <h4>কিছু লব্ধ এককের উদাহরণ</h4>
+                 <div class="table-container">
+                     <table>
+                        <thead>
+                            <tr>
+                                <th>রাশি</th>
+                                <th>CGS একক</th>
+                                <th>SI একক</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>দ্রুতি (Speed)</strong></td><td>সেমি/সেকেন্ড (cm/s)</td><td>মিটার/সেকেন্ড (m/s)</td></tr>
+                            <tr><td><strong>বেগ (Velocity)</strong></td><td>সেমি/সেকেন্ড (cm/s)</td><td>মিটার/সেকেন্ড (m/s)</td></tr>
+                            <tr><td><strong>ত্বরণ (Acceleration)</strong></td><td>সেমি/সেকেন্ড² (cm/s²)</td><td>মিটার/সেকেন্ড² (m/s²)</td></tr>
+                            <tr><td><strong>মন্দন (Retardation)</strong></td><td>সেমি/সেকেন্ড² (cm/s²)</td><td>মিটার/সেকেন্ড² (m/s²)</td></tr>
+                        </tbody>
+                    </table>
+                 </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- নেভিগেশন বার -->
+    <nav class="navigation">
+        <a href="class1.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button active">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class3.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">হোমপেজ</a>
+    </nav>
+    
+    <!-- ফুটার -->
+    <footer>
+        <p>&copy; <span id="current-year"></span> কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <!-- === সমস্ত JavaScript কোড এখানে যোগ করা হয়েছে === -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- দিন/রাত মোড ফাংশন ---
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const body = document.body;
+
+            // পেজ লোড হওয়ার সময় সংরক্ষিত থিম চেক করা
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleButton.textContent = '☀️'; // সূর্য আইকন
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggleButton.textContent = '🌙'; // চাঁদ আইকন
+            }
+
+            // বাটনে ক্লিক করলে থিম পরিবর্তন
+            themeToggleButton.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                
+                // পরিবর্তনটি localStorage এ সেভ করা
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeToggleButton.textContent = '☀️';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeToggleButton.textContent = '🌙';
+                }
+            });
+
+            // --- ফুটারের তারিখ স্বয়ংক্রিয়ভাবে পরিবর্তন ---
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+
+</body>
+</html>

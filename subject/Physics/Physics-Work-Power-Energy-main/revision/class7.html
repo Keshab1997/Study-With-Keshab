@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 07 - MCQ Practice (কার্য, ক্ষমতা ও শক্তি)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        /* --- Global Styles & Theming Variables --- */
+        :root {
+            --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60;
+            --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b;
+            --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd;
+            --blockquote-border: #2196f3; --nav-button-bg: #fff;
+            --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1);
+            --correct-bg: #2ecc71; --incorrect-bg: #e74c3c;
+        }
+        [data-theme="forest"] {
+            --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; 
+            --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; 
+            --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60;
+        }
+        [data-theme="ocean"] {
+            --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; 
+            --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; 
+            --blockquote-bg: #e4f1fe; --blockquote-border: #3498db;
+        }
+        [data-theme="sunset"] {
+            --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; 
+            --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; 
+            --blockquote-bg: #fff8e1; --blockquote-border: #f57c00;
+        }
+        .dark-mode {
+            --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; 
+            --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; 
+            --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; 
+            --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; 
+            --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f;
+        }
+
+        /* --- Base Layout & Typography --- */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        
+        /* --- Header, Footer, Navigation --- */
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+
+        /* --- Controls (Theme, Dark Mode, Set Selector) --- */
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+        /* --- MCQ Specific Styles --- */
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question {
+            margin-bottom: 40px; padding: 20px; border-radius: 10px;
+            border: 2px solid transparent; /* Prevents layout shift on highlight */
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+        .mcq-question.active-question {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5);
+        }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        
+        /* --- Utility Styles --- */
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="https://i.pinimg.com/736x/c3/88/44/c3884422ba3117173b8449520844738e.jpg" alt="Logo" class="logo">
+        <h1>কার্য, ক্ষমতা ও শক্তি</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন ১-১০)</option>
+                <option value="2">Set 2 (প্রশ্ন ১১-২০)</option>
+                <option value="3">Set 3 (প্রশ্ন ২১-৩০)</option>
+                <option value="4">Set 4 (প্রশ্ন ৩১-৪০)</option>
+                <option value="5">Set 5 (প্রশ্ন ৪১-৫০)</option>
+                <option value="6">Set 6 (প্রশ্ন ৫১-৬০)</option>
+                <option value="7">Set 7 (প্রশ্ন ৬১-৭০)</option>
+                <option value="8">Set 8 (প্রশ্ন ৭১-৮০)</option>
+                <option value="9">Set 9 (প্রশ্ন ৮১-৮৩)</option>
+            </select>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 07 - বিগত বছরের পরীক্ষার প্রশ্নাবলী</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="class6.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button active">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class9.html" class="nav-button">9</a>
+        <a href="class10.html" class="nav-button">10</a>
+        <a href="class11.html" class="nav-button">11</a>
+        <a href="class12.html" class="nav-button">12</a>
+        <a href="class13.html" class="nav-button disabled">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2024 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- AUDIO SETUP ---
+            const correctSound = new Audio('correct.mp3');
+            const wrongSound = new Audio('wrong.mp3');
+
+            // --- THEME, MODE, & SCROLL BUTTON LOGIC (Unchanged) ---
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) {
+                if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+                else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+                localStorage.setItem('selected_mode', mode);
+            }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+                scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+                scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            // --- INTERACTIVE MCQ LOGIC ---
+            const mcqData = [
+                // Set 1 from User
+                { q: "যদি বল (Force) শূন্য হয়, তাহলে কৃত কার্য (work) কত হবে? *(RRB GROUP-D 31.10.2018)*", o: ["20", "1", "0", "100"], a: 2, ex: "কার্যের সূত্র হলো, কার্য (W) = বল (F) × সরণ (S)। যদি বলের মান শূন্য (F=0) হয়, তাহলে কৃত কার্যও শূন্য হবে। (W = 0 × S = 0)।" },
+                { q: "25 N-এর একটি বল কোনো বস্তুর উপর কাজ করছে এবং বস্তুটি বলের দিকে 5 m সরে গেল। বলের দ্বারা কৃত কার্য কত? *(SSC CGL (Tier-1))*", o: ["125 W", "125 N", "125 J", "125 Pa"], a: 2, ex: "কার্য (W) = বল (F) × সরণ (S) = 25 N × 5 m = 125 জুল (J)। ওয়াট (W) ক্ষমতার একক, নিউটন (N) বলের একক এবং পাস্কাল (Pa) চাপের একক।" },
+                { q: "যখন একজন মানুষ একটি দেয়ালকে ধাক্কা দেয় কিন্তু সেটিকে সরাতে ব্যর্থ হয়, তখন— *(SSC CHSL)*", o: ["ধনাত্মক কার্য হয়", "ঋণাত্মক কার্য হয়", "সর্বোচ্চ ধনাত্মক কার্য হয়", "কোনো কার্য হয় না"], a: 3, ex: "পদার্থবিজ্ঞানের ভাষায়, বল প্রয়োগ করা সত্ত্বেও যদি বস্তুর সরণ (displacement) না ঘটে (S=0), তাহলে কৃত কার্যের পরিমাণ শূন্য হয়।" },
+                { q: "যখন কোনো ব্যক্তি 12 N বল প্রয়োগ করে 4 মিটার পথ যান, তখন কৃত কার্য কত? *(RRB GROUP-D 12.12.2018)*", o: ["6 J", "2 J", "48 J", "3 J"], a: 2, ex: "কার্য (W) = বল (F) × সরণ (S) = 12 N × 4 m = 48 জুল।" },
+                { q: "বল ও সরণের গুণফলকে কী বলা হয়? *(RRB group-d 19.09.2018)*", o: ["গতিবেগ", "কার্য", "ত্বরণ", "ভার"], a: 1, ex: "কার্যের সংজ্ঞা অনুযায়ী, কার্য হলো বল এবং বলের দিকে সরণের গুণফল।" },
+                { q: "প্রযুক্ত বল এবং সরণের দিকের মধ্যে কোণ 90° হলে কৃত কার্য কত হবে? *(RRB GROUP-D 10.12.2018)*", o: ["অসংজ্ঞাত", "ঋণাত্মক", "শূন্য", "ধনাত্মক"], a: 2, ex: "কার্যের সূত্র W = F × S × cosθ। এখানে θ = 90° হলে, cos 90° = 0 হয়। তাই কৃত কার্যও শূন্য হবে।" },
+                { q: "একটি চলন্ত গাড়ি বিপরীত দিক থেকে আসা বাতাসের সম্মুখীন হয়। গাড়ির উপর বাতাস দ্বারা কৃত কার্য কী হবে? *(RRB GROUP-D 01.10.2018)*", o: ["ঋণাত্মক", "শূন্য", "অসীম", "ধনাত্মক"], a: 0, ex: "গাড়ির সরণ সামনের দিকে কিন্তু বাতাসের বল তার বিপরীত দিকে। বল ও সরণ পরস্পর বিপরীতমুখী (θ = 180°) হলে কৃত কার্য ঋণাত্মক হয়।" },
+                { q: "যদি কেউ 500 N-এর একটি স্থির বল প্রয়োগ করে 15 কিলোমিটার দূরত্ব অতিক্রম করে, তাহলে কৃত কার্য গণনা করুন। *(RRB GROUP-D 13.12.2018)*", o: ["75,00,000 J", "75,000 J", "7,50,000 J", "7,500 J"], a: 0, ex: "এখানে, সরণ (S) = 15 কিমি = 15 × 1000 = 15,000 মিটার। কার্য (W) = F × S = 500 N × 15,000 m = 75,00,000 জুল।" },
+                { q: "10 N-এর একটি অনুভূমিক বল একটি বস্তুকে 5 মিটার দূরত্বে সরালে বল দ্বারা কৃত কার্য কত হবে? *(RRB GROUP-D 20.09.2018)*", o: ["20 J", "5 J", "50 J", "100 J"], a: 2, ex: "কার্য (W) = বল (F) × সরণ (S) = 10 N × 5 m = 50 জুল।" },
+                { q: "একটি বস্তু যখন 10 N বলের দিকে 10 মিটার সরে যায়, তখন কত কার্য করা হয়? *(RRB GROUP-D 31.10.2018)*", o: ["1 J", "10 J", "100 J", "0.01 J"], a: 2, ex: "কার্য (W) = বল (F) × সরণ (S) = 10 N × 10 m = 100 জুল।" },
+                { q: "বল প্রয়োগ করার পরেও যদি কোনো বস্তু না নড়ে, তাহলে বলা যায়— *(RRB GROUP-D 16.11.2018)*", o: ["সর্বাধিক শক্তি ব্যবহার করা হয়েছে", "কাজ হয়েছে", "ন্যূনতম শক্তি ব্যবহার করা হয়েছে", "কোনো কাজ করা হয়নি"], a: 3, ex: "বস্তুর সরণ শূন্য (S=0) হলে কৃত কার্যও শূন্য হয়।" },
+                { q: "একটি বাস 4000 N বল নিয়ে চলে। বাসটির দ্বারা কৃত কার্য 2000 J হলে, বাসটি কত দূরত্ব অতিক্রম করেছে? *(RRB GROUP-D 06.12.2018)*", o: ["1 মিটার", "2 মিটার", "1.5 মিটার", "0.5 মিটার"], a: 3, ex: "আমরা জানি, W = F × S। সুতরাং, সরণ (S) = কার্য (W) / বল (F) = 2000 J / 4000 N = 0.5 মিটার।" },
+                { q: "কোনো বস্তুকে বৃত্তাকার পথে ঘোরানো হলে, এক পূর্ণ ঘূর্ণনে তার উপর কৃত কার্য কত হবে? *(RRB ALP & TEC. 20.08.2018)*", o: ["শূন্য", "নির্ধারণ করা যাবে না", "ধনাত্মক", "ঋণাত্মক"], a: 0, ex: "বৃত্তাকার পথে এক পূর্ণ ঘূর্ণনের পর বস্তুর সরণ শূন্য হয়। তাই কৃত কার্যও শূন্য। (অন্যভাবে, কেন্দ্রমুখী বল এবং সরণের দিক সর্বদা লম্ব (90°) হওয়ায় কার্য শূন্য হয়)।" },
+                { q: "একজন কুলি মাটি থেকে 12 কেজি ভরের বস্তু তুলে তার মাথার উপর 1.5 মিটার উঁচুতে রাখল। বস্তুটির উপর কৃত কার্য গণনা করুন। (g = 10 m/s²) *(RRB GROUP-D 04.10.2018)*", o: ["140 J", "150 J", "180 J", "155 J"], a: 2, ex: "এখানে কৃত কার্য বস্তুর স্থিতিশক্তির পরিবর্তনের সমান। কার্য (W) = mgh = 12 কেজি × 10 m/s² × 1.5 m = 180 জুল।" },
+                { q: "যদি একটি বিমান 4000 m দূরত্ব অতিক্রম করে এবং কৃত কার্য 20000 J হয়, তাহলে প্রযুক্ত বল কত? *(RRB GROUP-D 10.12.2018)*", o: ["50 N", "5 N", "0.20 N", "10 N"], a: 1, ex: "বল (F) = কার্য (W) / সরণ (S) = 20000 J / 4000 m = 5 নিউটন।" },
+                { q: "400 কেজি ভরের একটি গাড়ির গতি 5 m/s থেকে 10 m/s করতে কৃত কার্য কত হবে? *(RRB GROUP-D 22.09.2018)*", o: ["15,000 J", "20,000 J", "30,000 J", "40,000 J"], a: 0, ex: "কার্য-শক্তি উপপাদ্য অনুযায়ী, কৃত কার্য = গতিশক্তির পরিবর্তন (ΔEk)। ΔEk = ½m(v₂² - v₁²) = ½ × 400 × (10² - 5²) = 200 × (100 - 25) = 200 × 75 = 15,000 জুল।" },
+                { q: "1 কেজি ভরের একটি বস্তু 30 মিটার উচ্চতা থেকে মাটিতে ফেলে দেওয়া হলে অভিকর্ষ বল দ্বারা কৃত কার্য কত? (g = 10 m/s²) *(RRB GROUP-D 19.09.2018)*", o: ["10 J", "300 J", "0.33 J", "30 J"], a: 1, ex: "অভিকর্ষ বল দ্বারা কৃত কার্য (W) = mgh = 1 কেজি × 10 m/s² × 30 m = 300 জুল।" },
+                { q: "একজন ব্যক্তি মাটি থেকে 2 মিটার উপরে 20 কেজি মাল তুলে তার মাথায় রাখলে কৃত কার্য কত? (g = 10 m/s²) *(RRB GROUP-D 17.09.2018)*", o: ["200 J", "40 J", "400 J", "20 J"], a: 2, ex: "কার্য (W) = mgh = 20 কেজি × 10 m/s² × 2 m = 400 জুল।" },
+                { q: "20 N বল একটি বস্তুকে 2 m সরায় এবং 20 J কার্য করে। বল এবং সরণের মধ্যে কোণটি কত? *(RRB ALP&TEC. 20.08.2018)*", o: ["60°", "30°", "90°", "0°"], a: 0, ex: "W = F × S × cosθ ⇒ 20 = 20 × 2 × cosθ ⇒ 20 = 40 × cosθ ⇒ cosθ = 20/40 = 0.5। আমরা জানি, cos 60° = 0.5, সুতরাং কোণ (θ) = 60°।" },
+                { q: "1 কেজির একটি বস্তু পৃথিবীর পৃষ্ঠ থেকে 10 মিটার উপরে তোলা হলে মহাকর্ষ বল দ্বারা কৃত কার্য কত হবে? (g = 9.8 m/s²) *(RRB GROUP-D 20.09.2018)*", o: ["-98 J", "-9.8 J", "9.8 J", "98 J"], a: 0, ex: "বস্তুটি উপরে তোলা হচ্ছে (সরণ উপরের দিকে), কিন্তু মহাকর্ষ বল কাজ করছে নিচের দিকে। বল ও সরণ বিপরীতমুখী হওয়ায় কৃত কার্য ঋণাত্মক হবে। কার্য (W) = -mgh = -1 কেজি × 9.8 m/s² × 10 m = -98 জুল।" },
+                { q: "একজন মানুষ 20 কেজি ওজনের বস্তু মাটি থেকে তুলে তার মাথার উপর 2 মিটার উঁচুতে রাখলেন। লোকটির দ্বারা কৃত কার্য কত? (g=10 m/s²) *(RRB GROUP-D 24.09.2018)*", o: ["350 J", "200 J", "400 J", "150 J"], a: 2, ex: "কার্য (W) = mgh = 20 কেজি × 10 m/s² × 2 m = 400 জুল।" },
+                { q: "যখন কোনো বস্তু 1 N বল দ্বারা বলের দিকে 1 m সরে যায়, তখন কৃত কার্য কত হবে? *(RRB ALP&TEC. 20.08.2018)*", o: ["10 J", "100 J", "0.01 J", "1 J"], a: 3, ex: "কার্য (W) = বল (F) × সরণ (S) = 1 N × 1 m = 1 জুল।" },
+                { q: "10 কেজি স্যুটকেস ধরে একটি প্ল্যাটফর্মে দাঁড়িয়ে থাকা একজন ব্যক্তির দ্বারা কৃত কার্য কত? *(RRB ALP & TEC. 21.08.2018)*", o: ["100 J", "98 J", "0 J", "980 J"], a: 2, ex: "ব্যক্তিটি দাঁড়িয়ে আছে, তার কোনো সরণ হচ্ছে না (S=0)। তাই কৃত কার্য শূন্য।" },
+                { q: "একটি 4.0 কেজি বস্তু 5.0 m/s গতিতে অনুভূমিকভাবে চলছে। এর গতি 10 m/s-এ বাড়ানোর জন্য, এই বস্তুটির উপর যে পরিমাণ কার্য করতে হবে তা হল: *(RRB ALP & TEC. 09.08.2018)*", o: ["150 J", "100 J", "75 J", "50 J"], a: 0, ex: "কৃত কার্য = গতিশক্তির পরিবর্তন = ½m(v₂² - v₁²) = ½ × 4 × (10² - 5²) = 2 × (100 - 25) = 2 × 75 = 150 জুল।" },
+                { q: "0.1 কিলোগ্রাম ওজনের একটি বল স্থির অবস্থান থেকে 2 মিটার দূরত্ব পড়লে মাধ্যাকর্ষণ বল দ্বারা কৃত কার্য কত? (g = 9.8 m/s²) *(RRB ALP& TEC 10.08.2018)*", o: ["1.96 J", "-1.96 J", "-0.98 J", "0.98 J"], a: 0, ex: "বস্তুটি নিচের দিকে পড়ছে এবং মাধ্যাকর্ষণ বলও নিচের দিকে। তাই কার্য ধনাত্মক। কার্য (W) = mgh = 0.1 কেজি × 9.8 m/s² × 2 m = 1.96 জুল।" },
+                { q: "যখন কোনো বস্তুর উপর বল প্রয়োগ করা হয় কিন্তু তার সরণ শূন্য থাকে, তখন কৃত কার্য হবে— *(RRB ALP & TEC. 21.08.2018)*", o: ["ঋণাত্মক", "ধনাত্মক", "শূন্য", "নিরপেক্ষ"], a: 2, ex: "সরণ (S=0) শূন্য হলে, কৃত কার্যও (W = F × 0) শূন্য হয়।" },
+                { q: "একটি ছেলে 120 N ওজনের একটি বাক্স 2 মিটার উচ্চতায় তুলল। ছেলেটির দ্বারা কৃত কার্য কত? *(RRB ALP& TEC. 20.09.2018)*", o: ["60 J", "120 J", "240 J", "180 J"], a: 2, ex: "এখানে বস্তুর ওজন (বল) = 120 N। কার্য (W) = বল × উচ্চতা = 120 N × 2 m = 240 জুল।" },
+                { q: "কাজ করার সামর্থ্যকে কী বলা হয়? *(RRB ALP& TEC 31.08.2018)*", o: ["ক্ষমতা", "চাপ", "শক্তি", "বল"], a: 2, ex: "সংজ্ঞা অনুযায়ী, কাজ করার সামর্থ্যকে শক্তি (Energy) বলে।" },
+                { q: "নিচের কোন ক্ষেত্রে কোনো কার্য করা হয়নি? *(RRB GROUP-D 19.09.2018)*", o: ["কপিল তার কাঁধে 10 কেজি ওজন নিয়ে দাঁড়িয়ে আছে", "শচীন ৪ কিমি হাঁটে", "একজন কুলি বাস থেকে গাড়িতে ওজন বহন করে", "অরুণ মাঠে ক্রিকেট খেলে"], a: 0, ex: "দাঁড়িয়ে থাকার অর্থ হলো সরণ শূন্য। তাই কোনো কার্য করা হয়নি। বাকি সব ক্ষেত্রে সরণ ঘটছে।" },
+                { q: "নিচের কোনটিতে কাজ করা হয় না? *(CDS)*", o: ["একটি উইন্ডমিল কূপ থেকে জল তুলছে", "একটি গাধা তার পিঠে ভার নিয়ে দাঁড়িয়ে আছে", "সুমন একটি পুলে সাঁতার কাটছে", "একটি ইঞ্জিন একটি ট্রেনকে টানছে"], a: 1, ex: "গাধাটি ভার নিয়ে দাঁড়িয়ে আছে, কিন্তু তার কোনো সরণ হচ্ছে না, তাই কৃত কার্য শূন্য।" },
+                { q: "কাজ করার হারকে কী বলা হয়? *(RRB NTPC)*", o: ["ক্ষমতা", "বল", "গতি", "বেগ"], a: 0, ex: "সংজ্ঞা অনুযায়ী, একক সময়ে কৃত কার্য বা কাজ করার হারকে ক্ষমতা (Power) বলে।" },
+                { q: "যদি কৃত কার্য শূন্য হয়, তাহলে বল এবং সরণের মধ্যে কোণ কত? *(RRB GROUP-D 08.10.2018)*", o: ["0°", "90°", "45°", "30°"], a: 1, ex: "W = F × S × cosθ। কাজ (W) শূন্য হওয়ার একটি শর্ত হলো বল ও সরণের মধ্যবর্তী কোণ 90° হওয়া, কারণ cos 90° = 0।" },
+                { q: "20 N বল একটি বস্তুর উপর কাজ করছে। বস্তুটি প্রযুক্ত বলের দিকে 4 মিটার সরে গেলে, কৃত কার্য কত? *(RRB GROUP-D 05.10.2018)*", o: ["80 W", "80 Pa", "80 N", "80 J"], a: 3, ex: "কার্য (W) = বল (F) × সরণ (S) = 20 N × 4 m = 80 জুল (J)।" },
+
+                // Set 2 from User
+                { q: "কার্যের SI একক কী? *(SSC CGL 2017)*", o: ["জুল", "নিউটন", "ওয়াট", "পাস্কাল"], a: 0, ex: "SI পদ্ধতিতে কার্যের একক হলো জুল।" },
+                { q: "বল ও সরণের মধ্যবর্তী কোণ কত হলে কৃতকার্য শূন্য হয়? *(UPSC Prelims 2018)*", o: ["0°", "90°", "180°", "45°"], a: 1, ex: "W = F.S.cosθ সূত্রানুযায়ী, θ = 90° হলে cos 90° = 0, তাই কার্য শূন্য হয়।" },
+                { q: "যদি 10 N বল কোনো বস্তুর উপর ক্রিয়া করে এবং বলের দিকে বস্তুটির 2 m সরণ হয়, তবে কৃতকার্য কত? *(Railway RRB NTPC 2019)*", o: ["5 J", "20 J", "10 J", "0 J"], a: 1, ex: "কার্য = বল × সরণ = 10 N × 2 m = 20 জুল।" },
+                { q: "ঋণাত্মক কার্য কখন সম্পন্ন হয়? *(SSC CHSL 2020)*", o: ["বল ও সরণ একই দিকে হলে", "বল ও সরণ বিপরীত দিকে হলে", "বল শূন্য হলে", "সরণ শূন্য হলে"], a: 1, ex: "বল ও সরণ বিপরীত দিকে (কোণ 180°) হলে কৃতকার্য ঋণাত্মক হয়।" },
+                { q: "অবাদে পতনশীল বস্তুর উপর অভিকর্ষ বল দ্বারা কৃতকার্য কী হয়? *(SBI PO 2016)*", o: ["ধনাত্মক", "ঋণাত্মক", "শূন্য", "অসীম"], a: 0, ex: "বস্তুর সরণ এবং অভিকর্ষ বল উভয়ই নিচের দিকে কাজ করে, তাই কৃতকার্য ধনাত্মক।" },
+                { q: "কার্য একটি স্কেলার রাশি কারণ— *(SSC MTS 2018)*", o: ["এর মান ও দিক দুই-ই আছে", "এর কেবল মান আছে", "এটি সময়ের উপর নির্ভরশীল", "এটি ভেক্টর গুণফল"], a: 1, ex: "যে রাশির কেবল মান আছে কিন্তু দিক নেই, তাকে স্কেলার রাশি বলে।" },
+                { q: "যদি কোনো সরণ না ঘটে, তাহলে কৃতকার্য কত? *(UPSC CDS 2019)*", o: ["সর্বোচ্চ", "সর্বনিম্ন", "শূন্য", "অসীম"], a: 2, ex: "সরণ (S) শূন্য হলে, কার্য (W = F × 0) শূন্য হয়।" },
+                { q: "কার্যের সূত্রটি হলো— *(Railway Group D 2021)*", o: ["বল × সময়", "বল × সরণ", "ভর × ত্বরণ", "ক্ষমতা × সময়"], a: 1, ex: "এটি কার্যের মৌলিক সংজ্ঞা।" },
+                { q: "কোনো বস্তুকে উপরে তুলতে কৃতকার্য কিসের সমান? *(SSC CGL 2019)*", o: ["mgh", "½ mv²", "F × s", "P × t"], a: 0, ex: "কোনো বস্তুকে উপরে তুলতে কৃতকার্য তার অর্জিত স্থিতিশক্তির (mgh) সমান হয়।" },
+                { q: "যখন একটি স্প্রিংকে সংকুচিত করা হয়, তখন প্রযুক্ত বল দ্বারা কৃতকার্য কী হয়? *(IBPS Clerk 2017)*", o: ["ধনাত্মক", "ঋণাত্মক", "শূন্য", "অসংজ্ঞাত"], a: 0, ex: "প্রযুক্ত বল এবং স্প্রিং-এর সংকোচন একই দিকে হওয়ায় কার্য ধনাত্মক হয়।" },
+                { q: "ক্ষমতার SI একক কী? *(SSC JE 2018)*", o: ["জুল", "ওয়াট", "নিউটন", "আর্গ"], a: 1, ex: "ক্ষমতার SI একক ওয়াট (Watt)।" },
+                { q: "ক্ষমতার সংজ্ঞা হলো— *(UPSC Prelims 2020)*", o: ["একক সময়ে কৃত কার্য", "একক দূরত্বে প্রযুক্ত বল", "একক ভরে সঞ্চিত শক্তি", "একক সময়ে বেগের পরিবর্তন"], a: 0, ex: "ক্ষমতা হলো কাজ করার হার, অর্থাৎ কার্য/সময়।" },
+                { q: "যদি 5 সেকেন্ডে 100 জুল কার্য করা হয়, তবে ক্ষমতা কত? *(Railway RRB ALP 2019)*", o: ["20 W", "500 W", "5 W", "100 W"], a: 0, ex: "ক্ষমতা = কার্য / সময় = 100 জুল / 5 সেকেন্ড = 20 ওয়াট।" },
+                { q: "তাৎক্ষণিক ক্ষমতা (Instantaneous power) নির্ণয় করা হয় কোন সূত্র দিয়ে? *(SSC CHSL 2017)*", o: ["F × v", "W / t", "mgh", "½ mv²"], a: 0, ex: "তাৎক্ষণিক ক্ষমতা হলো বল এবং ওই মুহূর্তের বেগের গুণফল।" },
+                { q: "একটি পাম্প 10 সেকেন্ডে 100 কেজি জল 10 মিটার উপরে তুললে তার ক্ষমতা কত? (g=10 m/s²) *(SBI Clerk 2018)*", o: ["100 W", "1000 W", "10 W", "500 W"], a: 1, ex: "কার্য (W) = mgh = 100×10×10 = 10000 J। ক্ষমতা (P) = W/t = 10000/10 = 1000 W।" },
+                { q: "ক্ষমতা একটি স্কেলার রাশি। *(SSC CGL 2021)*", o: ["সত্য", "মিথ্যা (এটি ভেক্টর)", "দিকের উপর নির্ভরশীল", "কোনোটিই নয়"], a: 0, ex: "ক্ষমতার কেবল মান আছে, দিক নেই, তাই এটি স্কেলার রাশি।" },
+                { q: "1 অশ্ব ক্ষমতা (Horsepower) সমান কত? *(UPSC CDS 2016)*", o: ["746 W", "1000 W", "500 W", "1 J/s"], a: 0, ex: "1 HP = 746 Watt, এটি একটি নির্দিষ্ট মান।" },
+                { q: "গড় ক্ষমতা (Average power) হলো— *(Railway NTPC 2020)*", o: ["মোট কার্য / মোট সময়", "বল × বেগ", "গতিশক্তি / সময়", "স্থিতিশক্তি / ভর"], a: 0, ex: "এটি গড় ক্ষমতার সংজ্ঞা।" },
+                { q: "ক্ষমতা স্থির থাকলে, কৃতকার্য কিসের সমানুপাতিক? *(SSC MTS 2019)*", o: ["সময়", "দূরত্ব", "বল", "ভর"], a: 0, ex: "যেহেতু ক্ষমতা (P) = কার্য (W) / সময় (t), তাই W = P × t। P স্থির থাকলে, W ∝ t।" },
+                { q: "ওয়াট এককটি কিসের সমতুল্য? *(IBPS PO 2019)*", o: ["J/s", "N/m", "kg m/s²", "m/s"], a: 0, ex: "যেহেতু ক্ষমতা = কার্য/সময়, তাই এর একক ওয়াট = জুল/সেকেন্ড (Joule/second)।" },
+                { q: "কোনো বস্তুর গতিশক্তির রাশিমালা হলো— *(SSC CGL 2016)*", o: ["½ mv²", "mgh", "F × s", "P × t"], a: 0, ex: "এটি গতিশক্তির সূত্র।" },
+                { q: "স্থিতিশক্তি সঞ্চিত থাকে কিসের কারণে? *(UPSC Prelims 2017)*", o: ["গতি", "অবস্থান", "বেগ", "ত্বরণ"], a: 1, ex: "কোনো বস্তুর অবস্থান বা আকৃতির পরিবর্তনের জন্য স্থিতিশক্তি সঞ্চিত হয়।" },
+                { q: "শক্তির সংরক্ষণ সূত্র অনুযায়ী, শক্তিকে— *(Railway RRB 2018)*", o: ["সৃষ্টি করা যায়", "ধ্বংস করা যায়", "কেবল রূপান্তরিত করা যায়", "উপরের সবকটি"], a: 2, ex: "শক্তিকে সৃষ্টি বা ধ্বংস করা যায় না, কেবল এক রূপ থেকে অন্য রূপে পরিবর্তন করা যায়।" },
+                { q: "স্থির অবস্থায় থাকা কোনো বস্তুর মধ্যে যে শক্তি থাকে তা হলো— *(SSC CHSL 2019)*", o: ["গতিশক্তি", "স্থিতিশক্তি", "শূন্য", "অসীম"], a: 1, ex: "কোনো বস্তুর অবস্থানের জন্য তার মধ্যে স্থিতিশক্তি থাকতে পারে (যেমন, উঁচুতে থাকা বস্তু)।" },
+                { q: "শক্তির SI একক কী? *(SBI PO 2020)*", o: ["জুল", "ওয়াট", "নিউটন", "পাস্কাল"], a: 0, ex: "শক্তি ও কার্যের একক একই, যা হলো জুল।" },
+                { q: "একটি সরল দোলকের ক্ষেত্রে মোট যান্ত্রিক শক্তি— *(SSC JE 2017)*", o: ["ধ্রুবক থাকে", "বাড়ে", "কমে", "শূন্য থাকে"], a: 0, ex: "শক্তির সংরক্ষণ সূত্র অনুযায়ী, বাহ্যিক বলের অনুপস্থিতিতে মোট যান্ত্রিক শক্তি ধ্রুবক থাকে।" },
+                { q: "স্থিতিস্থাপক স্থিতিশক্তির (Elastic potential energy) রাশিমালা হলো— *(UPSC CDS 2021)*", o: ["½ kx²", "mgh", "½ mv²", "F × t"], a: 0, ex: "এটি কোনো স্প্রিং বা স্থিতিস্থাপক বস্তুর স্থিতিশক্তির সূত্র।" },
+                { q: "একটি বলকে উপরের দিকে ছুড়লে, গতিশক্তি কোন শক্তিতে রূপান্তরিত হয়? *(Railway Group D 2019)*", o: ["স্থিতিশক্তি", "তাপশক্তি", "শব্দশক্তি", "কোনোটিই নয়"], a: 0, ex: "উচ্চতা বাড়ার সাথে সাথে গতিশক্তি কমে এবং স্থিতিশক্তি বাড়ে।" },
+                { q: "তড়িৎ শক্তির বাণিজ্যিক একক কী? *(SSC MTS 2020)*", o: ["জুল", "kWh (কিলোওয়াট-ঘণ্টা)", "ওয়াট", "আর্গ"], a: 1, ex: "বিদ্যুৎ বিল গণনার জন্য এই এককটি ব্যবহৃত হয়, যা 'বোর্ড অফ ট্রেড ইউনিট' (B.O.T.) নামেও পরিচিত।" },
+                { q: "শক্তি একটি স্কেলার রাশি। *(IBPS Clerk 2018)*", o: ["সত্য", "মিথ্যা", "ভেক্টর", "কোনোটিই নয়"], a: 0, ex: "শক্তির কেবল মান আছে, দিক নেই।" },
+                { q: "কার্য-শক্তি উপপাদ্য অনুযায়ী, কৃতকার্য কিসের পরিবর্তনের সমান? *(SSC CGL 2020)*", o: ["গতিশক্তি", "স্থিতিশক্তি", "ক্ষমতা", "বেগ"], a: 0, ex: "কোনো বল দ্বারা কৃতকার্য বস্তুর গতিশক্তির পরিবর্তনের সমান।" },
+                { q: "ক্ষমতা হলো কী করার হার? *(UPSC Prelims 2019)*", o: ["কার্য", "বল", "সরণ", "ত্বরণ"], a: 0, ex: "ক্ষমতা হলো কার্য করার হার।" },
+                { q: "গতিশক্তি দ্বিগুণ হলে, বেগ কত গুণ হবে? *(Railway RRB NTPC 2017)*", o: ["দ্বিগুণ", "√2 গুণ", "অর্ধেক", "চারগুণ"], a: 1, ex: "গতিশক্তি বেগের বর্গের সমানুপাতিক (Ek ∝ v²), তাই গতিশক্তি দ্বিগুণ হলে বেগ √2 গুণ হবে।" },
+                { q: "ভূমিতে (ground level) অভিকর্ষীয় স্থিতিশক্তি কত ধরা হয়? *(SSC CHSL 2016)*", o: ["সর্বোচ্চ", "সর্বনিম্ন (শূন্য)", "অসীম", "ঋণাত্মক"], a: 1, ex: "সাধারণত ভূপৃষ্ঠকে নির্দেশতল ধরা হয়, যেখানে উচ্চতা (h) শূন্য, তাই স্থিতিশক্তিও শূন্য।" },
+                { q: "1 kWh (কিলোওয়াট-ঘণ্টা) সমান কত? *(SBI Clerk 2019)*", o: ["3.6 × 10⁶ J", "1000 J", "3600 J", "1 J"], a: 0, ex: "1 kWh = 1000 ওয়াট × 3600 সেকেন্ড = 36,00,000 জুল।" },
+                { q: "ঘর্ষণের বিরুদ্ধে কৃতকার্য কোন শক্তিতে রূপান্তরিত হয়? *(SSC JE 2020)*", o: ["তাপ", "আলো", "শব্দ", "গতিশক্তি"], a: 0, ex: "ঘর্ষণের ফলে সাধারণত তাপ উৎপন্ন হয়।" },
+                { q: "একটি যন্ত্রের কর্মদক্ষতা (efficiency) হলো— *(UPSC CDS 2018)*", o: ["লভ্য কার্যকর ক্ষমতা / প্রদত্ত ক্ষমতা", "প্রদত্ত কার্য / লভ্য কার্যকর কার্য", "সর্বদা 100%", "কোনোটিই নয়"], a: 0, ex: "কর্মদক্ষতা হলো আউটপুট ও ইনপুটের অনুপাত।" },
+                { q: "সংরক্ষী বলের (conservative force) অধীনে একটি বদ্ধ পথে কৃতকার্য কত? *(Railway ALP 2021)*", o: ["শূন্য", "ধনাত্মক", "ঋণাত্মক", "অসীম"], a: 0, ex: "সংরক্ষী বল দ্বারা কৃতকার্য পথের উপর নির্ভর করে না, কেবল начальная ও অন্তিম অবস্থানের উপর নির্ভর করে। বদ্ধ পথে সরণ শূন্য হওয়ায় কার্যও শূন্য।" },
+                { q: "কার্য করার সামর্থ্যকে বলা হয়— *(SSC MTS 2017)*", o: ["শক্তি", "ক্ষমতা", "বল", "ভরবেগ"], a: 0, ex: "এটি শক্তির সংজ্ঞা।" },
+                { q: "যদি ভর দ্বিগুণ এবং বেগ অর্ধেক করা হয়, গতিশক্তি— *(IBPS PO 2020)*", o: ["অর্ধেক হবে", "দ্বিগুণ হবে", "একই থাকবে", "চারগুণ হবে"], a: 0, ex: "নতুন গতিশক্তি = ½(2m)(v/2)² = ½(2m)(v²/4) = ½ (½mv²) = মূল গতিশক্তির অর্ধেক।" },
+                { q: "ক্ষমতার মাত্রীয় সংকেত হলো— *(SSC CGL 2018)*", o: ["ML²T⁻³", "MLT⁻²", "ML²T⁻²", "MT⁻³"], a: 0, ex: "ক্ষমতা = কার্য/সময় = [ML²T⁻²] / [T] = [ML²T⁻³]।" },
+                { q: "অস্থিতিস্থাপক সংঘর্ষে (inelastic collision) গতিশক্তি— *(UPSC Prelims 2021)*", o: ["সংরক্ষিত থাকে", "সংরক্ষিত থাকে না", "শূন্য হয়", "অসীম হয়"], a: 1, ex: "অস্থিতিস্থাপক সংঘর্ষে গতিশক্তির কিছু অংশ তাপ, শব্দ বা অন্য শক্তিতে রূপান্তরিত হয়।" },
+                { q: "কেন্দ্রমুখী বল (centripetal force) দ্বারা কৃতকার্য কত? *(Railway NTPC 2016)*", o: ["ধনাত্মক", "ঋণাত্মক", "শূন্য", "পরিবর্তনশীল"], a: 2, ex: "বৃত্তাকার পথে কেন্দ্রমুখী বল এবং সরণের দিক পরস্পর লম্ব (90°) হওয়ায় কৃতকার্য শূন্য হয়।" },
+                { q: "একটি স্প্রিং-এর স্থিতিশক্তি সর্বোচ্চ হয় যখন— *(SSC CHSL 2021)*", o: ["এটিকে সর্বোচ্চ প্রসারিত করা হয়", "এটিকে সর্বনিম্ন সংকুচিত করা হয়", "এটি সাম্যাবস্থায় থাকে", "কোনোটিই নয়"], a: 0, ex: "স্থিতিশক্তি (½kx²) সরণের (x) বর্গের সমানুপাতিক, তাই সরণ সর্বোচ্চ হলে শক্তিও সর্বোচ্চ হয়।" },
+                { q: "AC সার্কিটে পাওয়ার ফ্যাক্টর (power factor) কিসের সাথে সম্পর্কিত? *(SBI PO 2017)*", o: ["কার্য ও শক্তি", "প্রকৃত ক্ষমতা (Real power)", "আপাত ক্ষমতা (Apparent power)", "(b) এবং (c) উভয়ই"], a: 3, ex: "পাওয়ার ফ্যাক্টর হলো প্রকৃত ক্ষমতা ও আপাত ক্ষমতার অনুপাত।" },
+                { q: "মুক্তিবেগ (Escape velocity) কিসের সাথে সম্পর্কিত? *(SSC JE 2019)*", o: ["গতিশক্তি", "স্থিতিশক্তি", "উভয়ই", "কোনোটিই নয়"], a: 2, ex: "মুক্তিবেগ হলো সেই ন্যূনতম বেগ যা অর্জন করলে কোনো বস্তুর গতিশক্তি তার ঋণাত্মক স্থিতিশক্তিকে অতিক্রম করে মহাকর্ষীয় ক্ষেত্র থেকে বেরিয়ে যেতে পারে।" },
+                { q: "পারমাণবিক বিভাজনে (nuclear fission) ভর ত্রুটি (mass defect) কোন শক্তিতে রূপান্তরিত হয়? *(UPSC CDS 2020)*", o: ["শক্তি (E=mc²)", "কার্য", "ক্ষমতা", "বল"], a: 0, ex: "আইনস্টাইনের ভর-শক্তি তুল্যতা সূত্র অনুযায়ী, ভর শক্তিতে রূপান্তরিত হয়।" },
+                { q: "গতিশক্তি পরিবর্তনের হার কিসের সমান? *(Railway Group D 2018)*", o: ["ক্ষমতা", "কার্য", "বল", "ভরবেগ"], a: 0, ex: "ক্ষমতা হলো শক্তি ব্যয়ের হার। তাই গতিশক্তি পরিবর্তনের হারও ক্ষমতা নির্দেশ করে (P = d(Ek)/dt)।" },
+                { q: "উচ্চতা দ্বিগুণ হলে স্থিতিশক্তি— *(SSC MTS 2021)*", o: ["দ্বিগুণ হয়", "অর্ধেক হয়", "চারগুণ হয়", "একই থাকে"], a: 0, ex: "স্থিতিশক্তি (Ep = mgh) উচ্চতার (h) সমানুপাতিক, তাই উচ্চতা দ্বিগুণ হলে স্থিতিশক্তিও দ্বিগুণ হয়।" },
+                { q: "অবাধ পতনের সময় মোট যান্ত্রিক শক্তি— *(IBPS Clerk 2020)*", o: ["ধ্রুবক থাকে", "বৃদ্ধি পায়", "হ্রাস পায়", "শূন্য হয়"], a: 0, ex: "শক্তির সংরক্ষণ সূত্র অনুযায়ী, অবাধে পতনশীল বস্তুর মোট যান্ত্রিক শক্তি (গতিশক্তি + স্থিতিশক্তি) সর্বদা ধ্রুবক থাকে।" }
+            ];
+
+            const mcqContainer = document.getElementById('mcq-container');
+            const mcqSetSelector = document.getElementById('mcqSetSelector');
+            const scoreTracker = document.getElementById('score-tracker');
+            
+            let score = 0;
+            let totalQuestionsInSet = 0;
+
+            function generateMCQs(setNumber) {
+                mcqContainer.innerHTML = '';
+                score = 0;
+                
+                const questionsPerSet = 10;
+                const start = (setNumber - 1) * questionsPerSet;
+                const end = Math.min(start + questionsPerSet, mcqData.length);
+                const questionSet = mcqData.slice(start, end);
+
+                totalQuestionsInSet = questionSet.length;
+                updateScoreDisplay();
+
+                questionSet.forEach((item, index) => {
+                    const globalIndex = start + index;
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'mcq-question';
+                    questionDiv.id = `q-${globalIndex}`;
+                    
+                    let optionsHTML = item.o.map((option, i) => 
+                        `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                    ).join('');
+                    
+                    questionDiv.innerHTML = `
+                        <h4>প্রশ্ন ${globalIndex + 1}: ${item.q}</h4>
+                        <div class="mcq-options">${optionsHTML}</div>
+                        <div class="mcq-explanation"><strong>ব্যাখ্যা:</strong> ${item.ex}</div>
+                    `;
+                    mcqContainer.appendChild(questionDiv);
+                });
+                setupOptionListeners();
+                setupIntersectionObserver();
+            }
+            
+            function updateScoreDisplay() {
+                scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+            }
+
+            function handleOptionClick(e) {
+                const selectedOption = e.target.closest('.mcq-option');
+                if (!selectedOption) return;
+                const questionDiv = selectedOption.closest('.mcq-question');
+                if (questionDiv.classList.contains('answered')) return;
+                questionDiv.classList.add('answered');
+                const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+                const selectedIndex = parseInt(selectedOption.dataset.index);
+                const correctIndex = mcqData[globalIndex].a;
+                if (selectedIndex === correctIndex) {
+                    selectedOption.classList.add('correct');
+                    correctSound.play().catch(e => console.log("Audio play failed"));
+                    score++;
+                    updateScoreDisplay();
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    wrongSound.play().catch(e => console.log("Audio play failed"));
+                    questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+                }
+                questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+            }
+
+            function setupOptionListeners() {
+                mcqContainer.addEventListener('click', handleOptionClick);
+            }
+            
+            mcqSetSelector.addEventListener('change', (e) => {
+                generateMCQs(parseInt(e.target.value, 10));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                const activeQuestion = document.querySelector('.mcq-question.active-question');
+                if (!activeQuestion) return;
+                
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const nextQuestion = activeQuestion.nextElementSibling;
+                    if (nextQuestion) {
+                        nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                } else if (['1', '2', '3', '4'].includes(e.key) && !activeQuestion.classList.contains('answered')) {
+                    e.preventDefault();
+                    const optionIndex = parseInt(e.key) - 1;
+                    const optionToClick = activeQuestion.querySelector(`.mcq-option[data-index="${optionIndex}"]`);
+                    if (optionToClick) {
+                        optionToClick.click();
+                    }
+                }
+            });
+
+            function setupIntersectionObserver() {
+                const questions = document.querySelectorAll('.mcq-question');
+                if (questions.length === 0) return;
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const prevActive = document.querySelector('.mcq-question.active-question');
+                            if (prevActive) prevActive.classList.remove('active-question');
+                            entry.target.classList.add('active-question');
+                        }
+                    });
+                }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+                questions.forEach(q => observer.observe(q));
+            }
+            
+            generateMCQs(1);
+        });
+    </script>
+</body>
+</html>

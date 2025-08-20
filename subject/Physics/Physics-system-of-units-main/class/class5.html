@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 05 - একক পদ্ধতি ও মাত্রা</title>
+    
+    <!-- গুগল ফন্ট লিঙ্ক -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- === সমস্ত CSS কোড এখানে যোগ করা হয়েছে === -->
+    <style>
+        /* CSS ভেরিয়েবলস (দিন ও রাত মোডের জন্য) */
+        :root {
+            --bg-color: #f4f7f9; --card-bg: #ffffff; --text-color: #333;
+            --heading-color: #0d47a1; --sub-heading-color: #00796b; --strong-color: #c2185b;
+            --border-color: #e0e0e0; --hr-color: #e0e0e0; --table-header-bg: #00796b;
+            --table-even-row-bg: #f7f9fa; --nav-button-bg: #fff; --nav-button-text: #333;
+            --nav-button-border: #ccc; --mcq-answer-bg: #e8f5e9; --mcq-answer-border: #4caf50;
+            --list-bullet-color: var(--sub-heading-color);
+        }
+
+        body.dark-mode {
+            --bg-color: #121212; --card-bg: #1e1e1e; --text-color: #e0e0e0;
+            --heading-color: #90caf9; --sub-heading-color: #4db6ac; --strong-color: #f48fb1;
+            --border-color: #424242; --hr-color: #424242; --table-header-bg: #004d40;
+            --table-even-row-bg: #2c2c2c; --nav-button-bg: #333; --nav-button-text: #e0e0e0;
+            --nav-button-border: #555; --mcq-answer-bg: #2e4430; --mcq-answer-border: #66bb6a;
+            --list-bullet-color: var(--sub-heading-color);
+        }
+
+        /* বেসিক রিসেট এবং ফন্ট */
+        body {
+            font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color);
+            color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* কন্টেইনার স্টাইল */
+        .container {
+            max-width: 850px; margin: 20px auto; background-color: var(--card-bg);
+            padding: 25px 35px; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color); transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        /* হেডার ও শিরোনাম */
+        .page-header { position: relative; text-align: center; margin-bottom: 30px; border-bottom: 2px solid var(--sub-heading-color); padding-bottom: 15px; }
+        h1 { font-size: 2.2em; color: var(--sub-heading-color); margin: 0; }
+        h2 { font-size: 1.5em; color: var(--text-color); font-weight: 500; margin: 5px 0 0 0; }
+        .topic h4 { font-size: 1.6em; color: var(--heading-color); border-left: 4px solid var(--heading-color); padding-left: 10px; margin-top: 30px; }
+        h5 { font-size: 1.3em; color: var(--sub-heading-color); }
+        p { font-size: 1.1em; } strong { color: var(--strong-color); }
+        hr { border: 0; height: 1px; background-color: var(--hr-color); margin: 40px 0; }
+        ul { list-style: none; padding-left: 0; }
+        ul li { position: relative; padding-left: 25px; margin-bottom: 10px; }
+        ul li::before { content: '✔'; position: absolute; left: 0; color: var(--list-bullet-color); }
+        
+        /* দিন/রাত মোড বাটন */
+        .theme-toggle-button {
+            position: absolute; top: 10px; right: 10px; background: none; border: 1px solid var(--border-color);
+            border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2em;
+            display: flex; align-items: center; justify-content: center; transition: background-color 0.3s, border-color 0.3s;
+        }
+        .theme-toggle-button:hover { background-color: rgba(128, 128, 128, 0.1); }
+
+        /* অনুশীলনী (MCQ) স্টাইল */
+        .mcq-item { border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .mcq-item p { margin: 0 0 10px 0; }
+        .show-answer-btn {
+            background-color: var(--sub-heading-color); color: white; border: none; padding: 8px 15px;
+            border-radius: 5px; cursor: pointer; margin-top: 10px; transition: background-color 0.2s;
+        }
+        .show-answer-btn:hover { background-color: #004d40; }
+        .mcq-answer {
+            background-color: var(--mcq-answer-bg); border-left: 4px solid var(--mcq-answer-border);
+            padding: 15px; margin-top: 15px; border-radius: 5px; display: none;
+        }
+        .mcq-answer.visible { display: block; }
+        .mcq-answer p { margin: 0; }
+        .mcq-answer i { color: #555; }
+
+        /* নেভিগেশন ও ফুটার */
+        .navigation, footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .navigation { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .nav-button {
+            display: inline-block; padding: 8px 15px; border: 1px solid var(--nav-button-border); border-radius: 20px;
+            text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg);
+            transition: all 0.3s ease; font-weight: 500; font-size: 0.95em;
+        }
+        .nav-button:hover { background-color: rgba(128, 128, 128, 0.2); transform: translateY(-2px); }
+        .nav-button.active { background-color: #d81b60; color: white; border-color: #d81b60; font-weight: 700; }
+        footer p { font-size: 0.9em; color: #888; }
+
+        /* মোবাইল রেসপন্সিভ */
+        @media (max-width: 600px) {
+            body { padding: 15px 5px; } .container { padding: 20px 15px; }
+            h1 { font-size: 1.8em; } h2 { font-size: 1.3em; } h4 { font-size: 1.4em; }
+            p { font-size: 1em; }
+            .theme-toggle-button { top: 5px; right: 5px; width: 35px; height: 35px; }
+            .nav-button { padding: 6px 12px; font-size: 0.9em; gap: 5px; }
+            .mcq-item { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- প্রধান শিরোনাম এবং থিম টগল বাটন -->
+        <header class="page-header">
+            <button id="theme-toggle-button" class="theme-toggle-button" title="দিন/রাত মোড পরিবর্তন করুন">🌙</button>
+            <h1>CLASS 05</h1>
+            <h2>বিষয়: একক পদ্ধতি ও মাত্রা (System of Units & Dimension)</h2>
+        </header>
+
+        <!-- মূল কন্টেন্ট -->
+        <main>
+            <section class="topic">
+                <h4>অনুশীলনী (MCQ) - পুনরালোচনা</h4>
+                
+                <div class="mcq-item">
+                    <p><strong>1. ফার্মি (F) এককের সাহায্যে মাপা হয়-</strong></p>
+                    <button class="show-answer-btn">উত্তর ও ব্যাখ্যা দেখুন</button>
+                    <div class="mcq-answer"><p><strong>উত্তর: (c) পরমাণুর নিউক্লিয়াসের ব্যাসার্ধ</strong></p><p><i>(ব্যাখ্যা: ফার্মি (10⁻¹⁵ m) অত্যন্ত ক্ষুদ্র দৈর্ঘ্যের একক এবং এটি নিউক্লিয়াসের আকার মাপতে ব্যবহৃত হয়।)</i></p></div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>2. পারমাণবিক আকার যে ইউনিটে প্রকাশ করা হয়—</strong></p>
+                    <button class="show-answer-btn">উত্তর ও ব্যাখ্যা দেখুন</button>
+                    <div class="mcq-answer"><p><strong>উত্তর: [B] অ্যাংস্ট্রম</strong></p><p><i>(ব্যাখ্যা: পরমাণুর আকার (ব্যাসার্ধ) সাধারণত অ্যাংস্ট্রম (10⁻¹⁰ m) এককে প্রকাশ করা হয়।)</i></p></div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>3. 1 nm এর সমান হলো-</strong></p>
+                    <button class="show-answer-btn">উত্তর ও ব্যাখ্যা দেখুন</button>
+                    <div class="mcq-answer"><p><strong>উত্তর: [A] 10 Å</strong></p><p><i>(ব্যাখ্যা: 1 nm = 10⁻⁹ m এবং 1 Å = 10⁻¹⁰ m। সুতরাং, 1 nm = 10 × 10⁻¹⁰ m = 10 Å।)</i></p></div>
+                </div>
+                 <div class="mcq-item">
+                    <p><strong>4. নীচের কোন এককটির সাহায্যে তরঙ্গদৈর্ঘ্য মাপা হয়?</strong></p>
+                    <button class="show-answer-btn">উত্তর ও ব্যাখ্যা দেখুন</button>
+                    <div class="mcq-answer"><p><strong>উত্তর: (b) অ্যাংস্ট্রম (Å)</strong></p><p><i>(ব্যাখ্যা: আলোর তরঙ্গদৈর্ঘ্য প্রায়শই অ্যাংস্ট্রম বা ন্যানোমিটার এককে প্রকাশ করা হয়।)</i></p></div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>5. 'আলোকবর্ষ' হলো-</strong></p>
+                    <button class="show-answer-btn">উত্তর ও ব্যাখ্যা দেখুন</button>
+                    <div class="mcq-answer"><p><strong>উত্তর: [C] শূন্যস্থানে আলো এক বছরে যে দূরত্ব অতিক্রম করে।</strong></p><p><i>(ব্যাখ্যা: আলোকবর্ষ সময়ের একক নয়, এটি একটি বিশাল দূরত্বের একক।)</i></p></div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>6. পারসেক কিসের পরিমাপক একক?</strong></p>
+                    <button class="show-answer-btn">উত্তর ও ব্যাখ্যা দেখুন</button>
+                    <div class="mcq-answer"><p><strong>উত্তর: [C] দৈর্ঘ্য</strong></p><p><i>(ব্যাখ্যা: পারসেক (Parsec) জ্যোতির্বিজ্ঞানে ব্যবহৃত দূরত্বের বৃহত্তম এককগুলির মধ্যে একটি।)</i></p></div>
+                </div>
+                <div class="mcq-item">
+                    <p><strong>7. পার-সেক (par-sec) হলো-</strong></p>
+                    <button class="show-answer-btn">উত্তর ও ব্যাখ্যা দেখুন</button>
+                    <div class="mcq-answer"><p><strong>উত্তর: (a) 3.26 আলোকবর্ষ</strong></p></div>
+                </div>
+            </section>
+
+            <hr>
+            
+            <section class="topic">
+                <h4>মাত্রা (Dimension)</h4>
+                <p><strong>সংজ্ঞা:</strong> কোনো ভৌতরাশিকে মূল রাশিগুলির (যেমন: ভর, দৈর্ঘ্য, সময়) মাধ্যমে প্রকাশ করার জন্য মূল রাশিগুলির ওপর যে ঘাত বা সূচক (power) ব্যবহার করা হয়, সেই ঘাতকেই ওই ভৌতরাশির <strong>মাত্রা</strong> বলে।</p>
+                <h5>মূল রাশিগুলির মাত্রা:</h5>
+                <ul>
+                    <li><strong>দৈর্ঘ্য (Length):</strong> [L]</li>
+                    <li><strong>ভর (Mass):</strong> [M]</li>
+                    <li><strong>সময় (Time):</strong> [T]</li>
+                    <li><strong>তড়িৎপ্রবাহ (Current):</strong> [A] বা [I]</li>
+                    <li><strong>তাপমাত্রা (Temperature):</strong> [K] বা [θ]</li>
+                </ul>
+            </section>
+
+            <section class="topic">
+                <h4>মাত্রীয় সংকেত (Dimensional Formula)</h4>
+                <p><strong>সংজ্ঞা:</strong> কোনো লব্ধ রাশিকে এক বা একাধিক মূল রাশির উপযুক্ত ঘাতসহ যে গাণিতিক রাশিমালার সাহায্যে প্রকাশ করা হয়, তাকে ওই রাশির <strong>মাত্রীয় সংকেত</strong> বলে। এটি সাধারণত তৃতীয় বন্ধনীর ([ ]) মধ্যে লেখা হয়।</p>
+                <ul>
+                    <li><strong>উদাহরণ ১ (ক্ষেত্রফল):</strong> ক্ষেত্রফল = দৈর্ঘ্য × দৈর্ঘ্য = [L] × [L] = <strong>[L²]</strong></li>
+                    <li><strong>উদাহরণ ২ (বেগ):</strong> বেগ = সরণ / সময় = [L] / [T] = <strong>[LT⁻¹]</strong></li>
+                </ul>
+            </section>
+
+            <section class="topic">
+                <h4>মাত্রীয় সমীকরণ (Dimensional Equation)</h4>
+                <p><strong>সংজ্ঞা:</strong> যে সমীকরণের মাধ্যমে কোনো ভৌতরাশিকে তার মাত্রীয় সংকেতের সঙ্গে সমান দেখানো হয়, তাকে <strong>মাত্রীয় সমীকরণ</strong> বলে।</p>
+                <ul>
+                    <li><strong>বেগ (V)-এর সমীকরণ:</strong> [V] = [LT⁻¹]</li>
+                    <li><strong>বল (F)-এর সমীকরণ:</strong> [F] = [MLT⁻²] (কারণ বল = ভর × ত্বরণ)</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>দৈর্ঘ্য ও ভরের বিভিন্ন এককের সারাংশ</h4>
+                <h5>দৈর্ঘ্যের একক (ছোট থেকে বড়):</h5>
+                <ul>
+                    <li>ফার্মি (fm) = 10⁻¹⁵ m</li>
+                    <li>অ্যাংস্ট্রম (Å) = 10⁻¹⁰ m</li>
+                    <li>ন্যানোমিটার (nm) = 10⁻⁹ m</li>
+                    <li>মাইক্রোমিটার (μm) = 10⁻⁶ m</li>
+                    <li>মিটার (m) → কিলোমিটার (km) = 10³ m</li>
+                    <li>অ্যাস্ট্রোনমিক্যাল একক (AU) ≈ 1.496 × 10¹¹ m</li>
+                    <li>আলোকবর্ষ (ly) ≈ 9.46 × 10¹⁵ m</li>
+                    <li>পারসেক (pc) ≈ 3.08 × 10¹⁶ m</li>
+                </ul>
+
+                <h5>ভরের বিশেষ একক:</h5>
+                 <ul>
+                    <li>ক্যারাট = 200 mg = 0.2 g</li>
+                    <li>একীভূত পারমাণবিক ভর একক (u) ≈ 1.66 × 10⁻²⁷ kg</li>
+                    <li>কুইন্টাল = 100 kg</li>
+                    <li>মেট্রিক টন = 1000 kg</li>
+                    <li>চন্দ্রশেখর সীমা (CSL) = 1.4 × সূর্যের ভর</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <!-- নেভিগেশন বার -->
+    <nav class="navigation">
+        <a href="class4.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button active">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class6.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">হোমপেজ</a>
+    </nav>
+    
+    <!-- ফুটার -->
+    <footer>
+        <p>&copy; <span id="current-year"></span> কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <!-- === সমস্ত JavaScript কোড এখানে যোগ করা হয়েছে === -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const body = document.body;
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleButton.textContent = '☀️';
+            } else {
+                themeToggleButton.textContent = '🌙';
+            }
+            themeToggleButton.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeToggleButton.textContent = '☀️';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeToggleButton.textContent = '🌙';
+                }
+            });
+
+            const answerButtons = document.querySelectorAll('.show-answer-btn');
+            answerButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const answerDiv = this.nextElementSibling;
+                    answerDiv.classList.toggle('visible');
+                    if(answerDiv.classList.contains('visible')){
+                        this.textContent = 'উত্তর লুকান';
+                    } else {
+                        this.textContent = 'উত্তর ও ব্যাখ্যা দেখুন';
+                    }
+                });
+            });
+
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+
+</body>
+</html>

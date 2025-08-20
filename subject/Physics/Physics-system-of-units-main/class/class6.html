@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 06 - একক, মাত্রা ও পরিমাপ</title>
+    
+    <!-- গুগল ফন্ট লিঙ্ক -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- === সমস্ত CSS কোড এখানে যোগ করা হয়েছে === -->
+    <style>
+        /* CSS ভেরিয়েবলস (দিন ও রাত মোডের জন্য) */
+        :root {
+            --bg-color: #f4f7f9; --card-bg: #ffffff; --text-color: #333;
+            --heading-color: #0d47a1; --sub-heading-color: #00796b; --strong-color: #c2185b;
+            --border-color: #e0e0e0; --hr-color: #e0e0e0; --table-header-bg: #00796b;
+            --table-even-row-bg: #f7f9fa; --nav-button-bg: #fff; --nav-button-text: #333;
+            --nav-button-border: #ccc; --solution-bg: #e8f5e9; --solution-border: #4caf50;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212; --card-bg: #1e1e1e; --text-color: #e0e0e0;
+            --heading-color: #90caf9; --sub-heading-color: #4db6ac; --strong-color: #f48fb1;
+            --border-color: #424242; --hr-color: #424242; --table-header-bg: #004d40;
+            --table-even-row-bg: #2c2c2c; --nav-button-bg: #333; --nav-button-text: #e0e0e0;
+            --nav-button-border: #555; --solution-bg: #2e4430; --solution-border: #66bb6a;
+        }
+
+        /* বেসিক রিসেট এবং ফন্ট */
+        body {
+            font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color);
+            color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* কন্টেইনার স্টাইল */
+        .container {
+            max-width: 850px; margin: 20px auto; background-color: var(--card-bg);
+            padding: 25px 35px; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color); transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        /* হেডার ও শিরোনাম */
+        .page-header { position: relative; text-align: center; margin-bottom: 30px; border-bottom: 2px solid var(--sub-heading-color); padding-bottom: 15px; }
+        h1 { font-size: 2.2em; color: var(--sub-heading-color); margin: 0; }
+        h2 { font-size: 1.5em; color: var(--text-color); font-weight: 500; margin: 5px 0 0 0; }
+        .topic h4 { font-size: 1.6em; color: var(--heading-color); border-left: 4px solid var(--heading-color); padding-left: 10px; margin-top: 30px; }
+        p { font-size: 1.1em; } strong { color: var(--strong-color); }
+        hr { border: 0; height: 1px; background-color: var(--hr-color); margin: 40px 0; }
+        ul { list-style: none; padding-left: 0; }
+        ul li { position: relative; padding-left: 25px; margin-bottom: 10px; }
+        ul li::before { content: '✔'; position: absolute; left: 0; color: var(--sub-heading-color); }
+
+        /* দিন/রাত মোড বাটন */
+        .theme-toggle-button {
+            position: absolute; top: 10px; right: 10px; background: none; border: 1px solid var(--border-color);
+            border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2em;
+            display: flex; align-items: center; justify-content: center; transition: background-color 0.3s, border-color 0.3s;
+        }
+        .theme-toggle-button:hover { background-color: rgba(128, 128, 128, 0.1); }
+
+        /* টেবিল স্টাইল */
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 1em; }
+        th, td { border: 1px solid var(--border-color); text-align: left; padding: 12px 15px; }
+        th { background-color: var(--table-header-bg); color: white; font-weight: 600; }
+        tr:nth-child(even) { background-color: var(--table-even-row-bg); }
+
+        /* গাণিতিক সমস্যা ও সমাধান স্টাইল */
+        .problem-item { border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .solution { background-color: var(--solution-bg); border-left: 4px solid var(--solution-border); padding: 15px; margin-top: 15px; border-radius: 5px; }
+        .solution p { margin: 0; }
+
+        /* নেভিগেশন ও ফুটার */
+        .navigation, footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .navigation { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .nav-button {
+            display: inline-block; padding: 8px 15px; border: 1px solid var(--nav-button-border); border-radius: 20px;
+            text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg);
+            transition: all 0.3s ease; font-weight: 500; font-size: 0.95em;
+        }
+        .nav-button:hover { background-color: rgba(128, 128, 128, 0.2); transform: translateY(-2px); }
+        .nav-button.active { background-color: #d81b60; color: white; border-color: #d81b60; font-weight: 700; }
+        footer p { font-size: 0.9em; color: #888; }
+
+        /* মোবাইল রেসপন্সিভ */
+        @media (max-width: 600px) {
+            body { padding: 15px 5px; } .container { padding: 20px 15px; }
+            h1 { font-size: 1.8em; } h2 { font-size: 1.3em; } h4 { font-size: 1.4em; }
+            p { font-size: 1em; }
+            .theme-toggle-button { top: 5px; right: 5px; width: 35px; height: 35px; }
+            .nav-button { padding: 6px 12px; font-size: 0.9em; gap: 5px; }
+            .problem-item { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- প্রধান শিরোনাম এবং থিম টগল বাটন -->
+        <header class="page-header">
+            <button id="theme-toggle-button" class="theme-toggle-button" title="দিন/রাত মোড পরিবর্তন করুন">🌙</button>
+            <h1>CLASS 06</h1>
+            <h2>বিষয়: একক, মাত্রা ও পরিমাপ</h2>
+        </header>
+
+        <!-- মূল কন্টেন্ট -->
+        <main>
+            <section class="topic">
+                <h4>মাত্রা ও মাত্রীয় সংকেত</h4>
+                <ul>
+                    <li><strong>মাত্রা:</strong> কোনো ভৌতরাশিকে মূল রাশিগুলির (ভর [M], দৈর্ঘ্য [L], সময় [T]) ওপর যে ঘাত আরোপ করা হয়, তাকে মাত্রা বলে।</li>
+                    <li><strong>মাত্রীয় সংকেত:</strong> কোনো লব্ধ রাশিকে মূল রাশির উপযুক্ত ঘাতসহ যে গাণিতিক রূপে প্রকাশ করা হয়, তাকে মাত্রীয় সংকেত বলে।</li>
+                    <li><strong>মাত্রীয় সমীকরণ:</strong> কোনো ভৌতরাশিকে তার মাত্রীয় সংকেতের সঙ্গে সমান করে লিখলে যে সমীকরণ পাওয়া যায়, তাকে মাত্রীয় সমীকরণ বলে। যেমন: [F] = [MLT⁻²]।</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>কিছু গুরুত্বপূর্ণ ভৌতরাশির মাত্রীয় সংকেত ও একক</h4>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>রাশির নাম</th><th>পরিচয়</th><th>মাত্রীয় সংকেত</th><th>SI একক</th></tr></thead>
+                        <tbody>
+                            <tr><td>ক্ষেত্রফল</td><td>দৈর্ঘ্য × প্রস্থ</td><td>[L²]</td><td>m²</td></tr>
+                            <tr><td>আয়তন</td><td>দৈর্ঘ্য × প্রস্থ × উচ্চতা</td><td>[L³]</td><td>m³</td></tr>
+                            <tr><td>ঘনত্ব</td><td>ভর / আয়তন</td><td>[ML⁻³]</td><td>kg/m³</td></tr>
+                            <tr><td>বেগ/দ্রুতি</td><td>সরণ / সময়</td><td>[LT⁻¹]</td><td>m/s</td></tr>
+                            <tr><td>ত্বরণ/মন্দন</td><td>বেগ পরিবর্তন / সময়</td><td>[LT⁻²]</td><td>m/s²</td></tr>
+                            <tr><td>ভরবেগ</td><td>ভর × বেগ</td><td>[MLT⁻¹]</td><td>kg·m/s</td></tr>
+                            <tr><td>বল/ওজন</td><td>ভর × ত্বরণ</td><td>[MLT⁻²]</td><td>নিউটন (N)</td></tr>
+                            <tr><td>চাপ</td><td>বল / ক্ষেত্রফল</td><td>[ML⁻¹T⁻²]</td><td>পাস্কাল (Pa)</td></tr>
+                            <tr><td>কার্য/শক্তি</td><td>বল × সরণ</td><td>[ML²T⁻²]</td><td>জুল (J)</td></tr>
+                            <tr><td>ক্ষমতা</td><td>কার্য / সময়</td><td>[ML²T⁻³]</td><td>ওয়াট (W)</td></tr>
+                            <tr><td>লীনতাপ</td><td>তাপ / ভর</td><td>[L²T⁻²]</td><td>J/kg</td></tr>
+                            <tr><td>আপেক্ষিক তাপ</td><td>তাপ / (ভর×উষ্ণতা)</td><td>[L²T⁻²K⁻¹]</td><td>J/(kg·K)</td></tr>
+                            <tr><td>তড়িৎ আধান</td><td>প্রবাহমাত্রা × সময়</td><td>[AT]</td><td>কুলম্ব (C)</td></tr>
+                            <tr><td>তড়িৎ বিভব</td><td>কার্য / আধান</td><td>[ML²T⁻³A⁻¹]</td><td>ভোল্ট (V)</td></tr>
+                            <tr><td>রোধ</td><td>বিভব / প্রবাহমাত্রা</td><td>[ML²T⁻³A⁻²]</td><td>ওহম (Ω)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <hr>
+
+            <section class="topic">
+                <h4>এককের উপসর্গ (Prefixes for Units)</h4>
+                <div class="table-container">
+                    <table>
+                         <thead><tr><th>উপসর্গ</th><th>চিহ্ন</th><th>গুণিতক</th><th></th><th>উপসর্গ</th><th>চিহ্ন</th><th>গুণিতক</th></tr></thead>
+                         <tbody>
+                            <tr><td>ডেকা</td><td>da</td><td>10¹</td><td></td><td>ডেসি</td><td>d</td><td>10⁻¹</td></tr>
+                            <tr><td>হেক্টো</td><td>h</td><td>10²</td><td></td><td>সেন্টি</td><td>c</td><td>10⁻²</td></tr>
+                            <tr><td>কিলো</td><td>k</td><td>10³</td><td></td><td>মিলি</td><td>m</td><td>10⁻³</td></tr>
+                            <tr><td>মেগা</td><td>M</td><td>10⁶</td><td></td><td>মাইক্রো</td><td>μ</td><td>10⁻⁶</td></tr>
+                            <tr><td>গিগা</td><td>G</td><td>10⁹</td><td></td><td>ন্যানো</td><td>n</td><td>10⁻⁹</td></tr>
+                            <tr><td>টেরা</td><td>T</td><td>10¹²</td><td></td><td>পিকো</td><td>p</td><td>10⁻¹²</td></tr>
+                         </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>পরিমাপ সংক্রান্ত ধারণা</h4>
+                <ul>
+                    <li><strong>লঘিষ্ঠ ধ্রুবক (Least Count):</strong> কোনো পরিমাপক যন্ত্রের সাহায্যে সর্বনিম্ন যে পরিমাণ নির্ভুলভাবে মাপা যায়, তাকে ওই যন্ত্রের লঘিষ্ঠ ধ্রুবক বলে।</li>
+                    <li><strong>ওজন বাক্সে বাটখারার অনুপাত (5:2:2:1):</strong> সাধারণ তুলাযন্ত্রে বাটখারাগুলি এই অনুপাতে রাখা হয় যাতে 10 mg থেকে 211.10 g পর্যন্ত যেকোনো মানের ভর মাপা যায়।</li>
+                </ul>
+                 <h4>ঘনত্ব (Density)</h4>
+                 <ul>
+                    <li><strong>সংজ্ঞা:</strong> কোনো পদার্থের একক আয়তনের ভরকে তার ঘনত্ব বলে।</li>
+                    <li><strong>গাণিতিক রূপ:</strong> ঘনত্ব (D) = ভর (M) / আয়তন (V)</li>
+                    <li><strong>একক:</strong> CGS-এ g/cm³, SI-তে kg/m³। (সম্পর্ক: 1 g/cm³ = 1000 kg/m³)</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>গাণিতিক সমস্যা ও অন্যান্য প্রশ্ন</h4>
+
+                <div class="problem-item">
+                    <p><strong>1. কোনো তরলের ঘনত্ব 0.8 g/cm³ হলে, 200 cm³ তরলের ভর কত?</strong></p>
+                    <div class="solution">
+                        <p><strong>সমাধান:</strong> আমরা জানি, ভর = আয়তন × ঘনত্ব<br>
+                        ভর = 200 cm³ × 0.8 g/cm³ = <strong>160 গ্রাম</strong>।</p>
+                    </div>
+                </div>
+
+                <div class="problem-item">
+                    <p><strong>2. একটি তরলের ঘনত্ব 8.4 গ্রাম/সেমি³ হলে, 100 cc তরলের ভর কত?</strong></p>
+                    <div class="solution">
+                         <p><strong>সমাধান:</strong> ভর = 100 cm³ × 8.4 g/cm³ = <strong>840 গ্রাম</strong>। (যেহেতু 1 cc = 1 cm³)</p>
+                    </div>
+                </div>
+
+                <div class="problem-item">
+                     <p><strong>3. সাধারণ তুলাযন্ত্রের দুই বাহুর দৈর্ঘ্য সমান, কিন্তু পাত্র দুটির ভর আলাদা হলে সঠিক ভর কীভাবে নির্ণয় করবে?</strong></p>
+                     <div class="solution">
+                        <p><strong>উত্তর (বোর্ডার পদ্ধতি):</strong> প্রথমে বস্তুটি বাম পাত্রে রেখে ডান পাত্রে বাটখারা চাপিয়ে পাঠ (M₁) নিতে হবে। এরপর বস্তুটি ডান পাত্রে ও বাটখারা বাম পাত্রে রেখে পাঠ (M₂) নিতে হবে। বস্তুটির প্রকৃত ভর হবে এই দুটি পাঠের গড়, অর্থাৎ <strong>(M₁ + M₂)/2</strong>।</p>
+                     </div>
+                </div>
+                
+                <div class="problem-item">
+                     <p><strong>4. সাধারণ তুলাযন্ত্রের দুই বাহু অসমান, কিন্তু পাত্র দুটির ভর সমান হলে সঠিক ভর কীভাবে নির্ণয় করবে?</strong></p>
+                     <div class="solution">
+                        <p><strong>উত্তর (গাউসের দ্বৈত ওজন পদ্ধতি):</strong> প্রথমে বস্তুটি বাম পাত্রে রেখে ডান পাত্রে বাটখারা চাপিয়ে পাঠ (W₁) নিতে হবে। এরপর বস্তুটি ডান পাত্রে ও বাটখারা বাম পাত্রে রেখে পাঠ (W₂) নিতে হবে। বস্তুটির প্রকৃত ভর (W) হবে <strong>W = √(W₁ × W₂)</strong>।</p>
+                     </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- নেভিগেশন বার -->
+    <nav class="navigation">
+        <a href="class5.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button active">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class7.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">হোমপেজ</a>
+    </nav>
+    
+    <!-- ফুটার -->
+    <footer>
+        <p>&copy; <span id="current-year"></span> কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <!-- === সমস্ত JavaScript কোড এখানে যোগ করা হয়েছে === -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const body = document.body;
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleButton.textContent = '☀️';
+            } else {
+                themeToggleButton.textContent = '🌙';
+            }
+            themeToggleButton.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeToggleButton.textContent = '☀️';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeToggleButton.textContent = '🌙';
+                }
+            });
+
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+
+</body>
+</html>

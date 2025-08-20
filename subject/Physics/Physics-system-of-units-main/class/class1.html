@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 01 - একক পদ্ধতি (দিন/রাত মোড সহ)</title>
+    
+    <!-- গুগল ফন্ট লিঙ্ক -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- === সমস্ত CSS কোড এখানে যোগ করা হয়েছে === -->
+    <style>
+        /* CSS ভেরিয়েবলস (দিন ও রাত মোডের জন্য) */
+        :root {
+            --bg-color: #f4f7f9;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --heading-color: #0d47a1;
+            --sub-heading-color: #00796b;
+            --strong-color: #c2185b;
+            --border-color: #e0e0e0;
+            --key-point-bg: #e3f2fd;
+            --key-point-border: #2196f3;
+            --hr-color: #e0e0e0;
+            --table-header-bg: #00796b;
+            --table-even-row-bg: #f7f9fa;
+            --nav-button-bg: #fff;
+            --nav-button-text: #333;
+            --nav-button-border: #ccc;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --heading-color: #90caf9;
+            --sub-heading-color: #4db6ac;
+            --strong-color: #f48fb1;
+            --border-color: #424242;
+            --key-point-bg: #263238;
+            --key-point-border: #90caf9;
+            --hr-color: #424242;
+            --table-header-bg: #004d40;
+            --table-even-row-bg: #2c2c2c;
+            --nav-button-bg: #333;
+            --nav-button-text: #e0e0e0;
+            --nav-button-border: #555;
+        }
+
+        /* বেসিক রিসেট এবং ফন্ট */
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* কন্টেইনার স্টাইল */
+        .container {
+            max-width: 850px;
+            margin: 20px auto;
+            background-color: var(--card-bg);
+            padding: 25px 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        /* হেডার স্টাইল */
+        .page-header {
+            position: relative;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--sub-heading-color);
+            padding-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            color: var(--sub-heading-color);
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            color: var(--text-color);
+            font-weight: 500;
+            margin: 5px 0 0 0;
+        }
+        
+        /* দিন/রাত মোড বাটন */
+        .theme-toggle-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .theme-toggle-button:hover {
+            background-color: rgba(128, 128, 128, 0.1);
+        }
+
+        /* টপিক সেকশন এবং হেডিং */
+        .topic { margin-bottom: 25px; }
+
+        h4 {
+            font-size: 1.6em;
+            color: var(--heading-color);
+            border-left: 4px solid var(--heading-color);
+            padding-left: 10px;
+            margin-top: 30px;
+        }
+
+        h5 {
+            font-size: 1.3em;
+            color: var(--sub-heading-color);
+            margin-top: 20px;
+        }
+
+        p { font-size: 1.1em; }
+        strong { color: var(--strong-color); }
+        hr { border: 0; height: 1px; background-color: var(--hr-color); margin: 40px 0; }
+        
+        ul, ol { padding-left: 25px; }
+        li { margin-bottom: 10px; }
+
+        /* গুরুত্বপূর্ণ পয়েন্ট বক্স */
+        .key-point {
+            background-color: var(--key-point-bg);
+            border: 1px solid var(--key-point-border);
+            border-left: 5px solid var(--key-point-border);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+
+        /* MCQ হাইলাইটার */
+        .mcq-highlight::before { content: '⭐ '; color: #ffc107; margin-right: 5px; }
+
+        /* টেবিল স্টাইল */
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 1em; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid var(--border-color); text-align: left; padding: 12px 15px; }
+        th { background-color: var(--table-header-bg); color: white; font-weight: 600; }
+        tr:nth-child(even) { background-color: var(--table-even-row-bg); }
+
+        /* নেভিগেশন ও ফুটার */
+        .navigation, footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .navigation { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .nav-button {
+            display: inline-block; padding: 8px 15px; border: 1px solid var(--nav-button-border); border-radius: 20px;
+            text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg);
+            transition: all 0.3s ease; font-weight: 500; font-size: 0.95em;
+        }
+        .nav-button:hover { background-color: rgba(128, 128, 128, 0.2); transform: translateY(-2px); }
+        .nav-button.active { background-color: #d81b60; color: white; border-color: #d81b60; font-weight: 700; }
+        .nav-button.disabled { background-color: transparent; color: #aaa; pointer-events: none; border-color: var(--border-color); }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; border-color: #1565c0; }
+        
+        footer p { font-size: 0.9em; color: #888; }
+
+        /* মোবাইল রেসপন্সিভ */
+        @media (max-width: 600px) {
+            body { padding: 15px 5px; }
+            .container { padding: 20px 15px; }
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.3em; }
+            h4 { font-size: 1.4em; }
+            p { font-size: 1em; }
+            .theme-toggle-button { top: 5px; right: 5px; width: 35px; height: 35px; }
+            .nav-button { padding: 6px 12px; font-size: 0.9em; gap: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- প্রধান শিরোনাম এবং থিম টগল বাটন -->
+        <header class="page-header">
+            <button id="theme-toggle-button" class="theme-toggle-button" title="দিন/রাত মোড পরিবর্তন করুন">🌙</button>
+            <h1>CLASS 01</h1>
+            <h2>বিষয়: একক পদ্ধতি (System of Units)</h2>
+        </header>
+
+        <!-- মূল কন্টেন্ট -->
+        <main>
+            <section class="topic">
+                <h4>পরিমাপ (Measurement)</h4>
+                <p><strong>প্রশ্ন: পরিমাপ কাকে বলে?</strong><br>
+                <strong>উত্তর:</strong> পূর্বনির্দিষ্ট বা স্বীকৃত নিয়মের ভিত্তিতে কোনো প্রাকৃতিক বিষয়ের প্রতি সংখ্যা আরোপ করার পদ্ধতিকেই পরিমাপ বলা হয়।</p>
+                <div class="key-point">
+                    <span class="mcq-highlight">পরিমাপের ফলাফল = সাংখ্যমান × একক</span><br>
+                    <strong>উদাহরণ:</strong> ৫ কিগ্রা (এখানে ৫ হল সাংখ্যমান এবং কিগ্রা হল একক)।
+                </div>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>ভৌতরাশি (Physical Quantity)</h4>
+                <p><strong>প্রশ্ন: ভৌতরাশি কাকে বলে? উদাহরণ দাও।</strong><br>
+                <strong>উত্তর:</strong> পরিমাপযোগ্য যে-কোনো প্রাকৃতিক বিষয়কেই সাধারণভাবে ভৌতরাশি বা প্রাকৃতিক রাশি বলা হয়।<br>
+                <strong>উদাহরণ:</strong> একটি পাত্রে রাখা জলের ভর, আয়তন, ঘনত্ব, উষ্ণতা ইত্যাদি প্রতিটিই ভৌতরাশি, কারণ এগুলিকে পরিমাপ করা সম্ভব।</p>
+                
+                <p><strong>প্রশ্ন: ভৌতরাশির শ্রেণিবিভাগ করো।</strong><br>
+                <strong>উত্তর:</strong> মান ও অভিমুখের ওপর নির্ভর করে ভৌতরাশিকে দুটি প্রধান ভাগে ভাগ করা হয়:</p>
+                <ul>
+                    <li>স্কেলার রাশি (Scalar Quantity)</li>
+                    <li>ভেক্টর রাশি (Vector Quantity)</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>স্কেলার ও ভেক্টর রাশির সংজ্ঞা ও উদাহরণ</h4>
+                <h5>১. স্কেলার রাশি (Scalar Quantity):</h5>
+                <p><strong>সংজ্ঞা:</strong> যেসব ভৌতরাশিকে প্রকাশ করার জন্য শুধুমাত্র মানের প্রয়োজন হয়, কোনো অভিমুখের প্রয়োজন হয় না, তাদের স্কেলার রাশি বলে।</p>
+                <ul>
+                    <li><strong class="mcq-highlight">উদাহরণ:</strong> ভর, দৈর্ঘ্য, সময়, কার্য, শক্তি, উষ্ণতা, দ্রুতি, চাপ, আয়তন, তড়িৎপ্রবাহমাত্রা ইত্যাদি।</li>
+                </ul>
+
+                <h5>২. ভেক্টর রাশি (Vector Quantity):</h5>
+                <p><strong>সংজ্ঞা:</strong> যেসব ভৌতরাশিকে সম্পূর্ণরূপে প্রকাশ করার জন্য মান ও অভিমুখ উভয়েরই প্রয়োজন হয় এবং যাদের যোগ বা বিয়োগ সাধারণ বীজগাণিতিক নিয়মে করা যায় না, ভেক্টর বীজগণিতের সূত্র মেনে চলে, তাদের ভেক্টর রাশি বলে।</p>
+                <ul>
+                    <li><strong class="mcq-highlight">উদাহরণ:</strong> সরণ, বেগ, ত্বরণ, মন্দন, বল, ওজন, ভরবেগ, তড়িৎক্ষেত্র প্রাবল্য, চৌম্বক আবেশ ইত্যাদি।</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>স্কেলার ও ভেক্টর রাশির মধ্যে পার্থক্য</h4>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>বৈশিষ্ট্য</th>
+                                <th>স্কেলার রাশি</th>
+                                <th>ভেক্টর রাশি</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>সংজ্ঞা</strong></td>
+                                <td>শুধুমাত্র মান আছে, অভিমুখ নেই।</td>
+                                <td>মান ও অভিমুখ দুই-ই আছে।</td>
+                            </tr>
+                            <tr>
+                                <td><strong>পরিবর্তন</strong></td>
+                                <td>শুধুমাত্র মানের পরিবর্তনে এই রাশির পরিবর্তন ঘটে।</td>
+                                <td>মান বা অভিমুখ অথবা উভয়ের পরিবর্তনে এই রাশি পরিবর্তিত হয়।</td>
+                            </tr>
+                            <tr>
+                                <td><strong>যোগ/বিয়োগ</strong></td>
+                                <td>সাধারণ বীজগাণিতিক নিয়মে যোগ বা বিয়োগ করা হয়।</td>
+                                <td>ভেক্টর বীজগণিতের নির্দিষ্ট সূত্র (যেমন: ত্রিভুজ সূত্র, সামান্তরিক সূত্র) অনুযায়ী যোগ বা বিয়োগ করতে হয়।</td>
+                            </tr>
+                            <tr>
+                                <td><strong>গুণফল</strong></td>
+                                <td>দুটি স্কেলার রাশির গুণফল সর্বদা একটি স্কেলার রাশি হয়।</td>
+                                <td class="mcq-highlight">দুটি ভেক্টর রাশির গুণফল একটি স্কেলার রাশি (স্কেলার গুণন) অথবা একটি ভেক্টর রাশি (ভেক্টর গুণন) হতে পারে। যেমন: <strong>কার্য (স্কেলার) = বল (ভেক্টর) × সরণ (ভেক্টর)</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <hr>
+
+            <section class="topic">
+                <h4>একক (Unit)</h4>
+                <p><strong>প্রশ্ন: ভৌতরাশির একক কাকে বলে?</strong><br>
+                <strong>উত্তর:</strong> কোনো ভৌতরাশি পরিমাপ করার সময় ওই রাশিটির একটি নির্দিষ্ট ও সুবিধাজনক পরিমাণকে প্রমাণ (Standard) হিসেবে ধরা হয়। এই নির্দিষ্ট প্রমাণ মানকেই ওই ভৌতরাশিটির একক বলে।</p>
+
+                <p><strong>প্রশ্ন: এককের প্রয়োজনীয়তা কী?</strong><br>
+                <strong>উত্তর:</strong>
+                <ol>
+                    <li>প্রতিটি ভৌতরাশি সঠিকভাবে পরিমাপের জন্য একক অপরিহার্য। একক ছাড়া পরিমাপ অর্থহীন।</li>
+                    <li>বিভিন্ন ভৌতরাশির মধ্যে সম্পর্ক স্থাপন করার জন্য এককের প্রয়োজন।</li>
+                </ol>
+                </p>
+
+                <p><strong>প্রশ্ন: একক কয় প্রকার ও কী কী?</strong><br>
+                <strong>উত্তর:</strong> একক প্রধানত দুই প্রকার:</p>
+                <ul>
+                    <li><strong>প্রাথমিক বা মূল একক:</strong>
+                        <ul>
+                            <li><span class="mcq-highlight">উদাহরণ:</span> দৈর্ঘ্য (মিটার), ভর (কিলোগ্রাম) ও সময় (সেকেন্ড)-এর একক।</li>
+                        </ul>
+                    </li>
+                    <li><strong>লব্ধ একক:</strong>
+                        <ul>
+                            <li><span class="mcq-highlight">উদাহরণ:</span> ক্ষেত্রফলের একক (মিটার²), বেগের একক (মিটার/সেকেন্ড)।</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            
+            <hr>
+
+            <section class="topic">
+                <h4>একক পদ্ধতি (System of Units)</h4>
+                <p><strong>প্রশ্ন: একক পদ্ধতি কাকে বলে? এটি কয় প্রকার ও কী কী?</strong><br>
+                <strong>উত্তর:</strong> মূল এককগুলির ওপর ভিত্তি করে ভৌতরাশি পরিমাপের জন্য যে সম্পূর্ণ ব্যবস্থা বা পদ্ধতি অনুসরণ করা হয়, তাকে একক পদ্ধতি বলে।</p>
+                <p class="mcq-highlight">এটি মূলত চার প্রকার:</p>
+                <ol>
+                    <li><strong>CGS পদ্ধতি</strong> (সেন্টিমিটার-গ্রাম-সেকেন্ড)</li>
+                    <li><strong>FPS পদ্ধতি</strong> (ফুট-পাউন্ড-সেকেন্ড)</li>
+                    <li><strong>MKS পদ্ধতি</strong> (মিটার-কিলোগ্রাম-সেকেন্ড)</li>
+                    <li><strong>SI বা আন্তর্জাতিক পদ্ধতি</strong> (MKS পদ্ধতির উন্নত রূপ)।</li>
+                </ol>
+            </section>
+        </main>
+    </div>
+
+    <!-- নেভিগেশন বার -->
+    <nav class="navigation">
+        <a href="#" class="nav-button disabled" aria-disabled="true">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button active">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class6.html" class="nav-button">6</a>
+        <a href="class7.html" class="nav-button">7</a>
+        <a href="class8.html" class="nav-button">8</a>
+        <a href="class2.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">হোমপেজ</a>
+    </nav>
+    
+    <!-- ফুটার -->
+    <footer>
+        <p>&copy; <span id="current-year"></span> কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <!-- === সমস্ত JavaScript কোড এখানে যোগ করা হয়েছে === -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- দিন/রাত মোড ফাংশন ---
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const body = document.body;
+
+            // পেজ লোড হওয়ার সময় সংরক্ষিত থিম চেক করা
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleButton.textContent = '☀️'; // সূর্য আইকন
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggleButton.textContent = '🌙'; // চাঁদ আইকন
+            }
+
+            // বাটনে ক্লিক করলে থিম পরিবর্তন
+            themeToggleButton.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                
+                // পরিবর্তনটি localStorage এ সেভ করা
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeToggleButton.textContent = '☀️';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeToggleButton.textContent = '🌙';
+                }
+            });
+
+            // --- ফুটারের তারিখ স্বয়ংক্রিয়ভাবে পরিবর্তন ---
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+
+</body>
+</html>
