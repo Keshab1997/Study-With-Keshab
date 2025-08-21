@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রাণীদের গমন (PYQ) - Class 03</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        body.desktop-view .container, body.desktop-view .controls-wrapper, body.desktop-view header { max-width: 1200px; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; transition: max-width 0.4s ease-in-out; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s, max-width 0.4s ease-in-out; }
+        h1, h2, h3 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3 { font-size: 1.6em; color: var(--heading-color-3); }
+        p { font-size: 1.1em; margin-bottom: 5px; font-weight: 600; }
+        strong { color: var(--accent-color); font-weight: 700; }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 15px 0; padding: 10px 20px; font-size: 1.1em; border-radius: 5px; }
+        blockquote strong { color: var(--heading-color-2); }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 30px; padding-left: 10px; list-style-type: decimal; }
+        .options-list { list-style-type: lower-alpha; padding-left: 40px; }
+        .options-list li { margin-bottom: 8px; list-style-type: lower-alpha; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; transition: max-width 0.4s ease-in-out; }
+        .theme-buttons button, #desktopModeToggle { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover, #desktopModeToggle:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <!-- লোগো আপনার নিজস্ব ইমেজ পাথ অনুযায়ী পরিবর্তন করুন -->
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>প্রাণীদের গমন (PYQ)</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div id="digital-clock" class="digital-clock"></div>
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 03</h2>
+        <ol>
+            <li>
+                <p>সিউডোপোডিয়ার সাহায্যে গমন করে-</p>
+                <ol class="options-list">
+                    <li>অ্যামিবা</li>
+                    <li>আরশোলা</li>
+                    <li>প্যারামেসিয়াম</li>
+                    <li>প্রজাপতি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) অ্যামিবা।</strong><br><small><i>ব্যাখ্যা: সিউডোপোডিয়া বা ক্ষণপদ হলো অ্যামিবার সাইটোপ্লাজমের অস্থায়ী প্রবর্ধক। অ্যামিবা এই ক্ষণপদ তৈরি করে এবং এর সাহায্যে স্থান পরিবর্তন করে, যাকে অ্যামিবয়েড গমন বলে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>প্যারামেসিয়াম গমন করে-</p>
+                <ol class="options-list">
+                    <li>ফ্ল্যাজেলার সাহায্যে</li>
+                    <li>ক্ষণপদের সাহায্যে</li>
+                    <li>সিলিয়ার সাহায্যে</li>
+                    <li>মাংসল পদের সাহায্যে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) সিলিয়ার সাহায্যে।</strong><br><small><i>ব্যাখ্যা: প্যারামেসিয়ামের সারা দেহ ছোটো ছোটো চুলের মতো সিলিয়া দ্বারা আবৃত থাকে। এই সিলিয়াগুলির ছন্দোবদ্ধ আন্দোলনের মাধ্যমে প্যারামেসিয়াম জলে সাঁতার কাটে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>ফ্ল্যাজেলার সাহায্যে গমন করে-</p>
+                <ol class="options-list">
+                    <li>আরশোলা</li>
+                    <li>ইউগ্লিনা</li>
+                    <li>প্যারামেসিয়াম</li>
+                    <li>অ্যামিবা</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) ইউগ্লিনা।</strong><br><small><i>ব্যাখ্যা: ইউগ্লিনার দেহের অগ্রভাগে একটি লম্বা, চাবুকের মতো অঙ্গ থাকে, যাকে ফ্ল্যাজেলা বলে। এই ফ্ল্যাজেলার সাহায্যে ইউগ্লিনা গমন করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>অস্থিযুক্ত মাছের দেহে পাখনার সংখ্যা-</p>
+                <ol class="options-list">
+                    <li>একটি</li>
+                    <li>5টি</li>
+                    <li>7টি</li>
+                    <li>9টি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) 7টি।</strong><br><small><i>ব্যাখ্যা: একটি আদর্শ অস্থিযুক্ত মাছে ৭টি পাখনা থাকে: ১টি পৃষ্ঠ, ১টি পুচ্ছ, ১টি পায়ু, একজোড়া বক্ষ এবং একজোড়া শ্রোণি পাখনা।</i></small></blockquote>
+            </li>
+            <li>
+                <p>মায়োটম পেশি দেখা যায়-</p>
+                <ol class="options-list">
+                    <li>মাছে</li>
+                    <li>বাদুড়ে</li>
+                    <li>ফড়িং-এ</li>
+                    <li>পায়রা</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) মাছে।</strong><br><small><i>ব্যাখ্যা: মাছের মেরুদণ্ডের দু'পাশে 'V' আকৃতির যে খণ্ডকাকার পেশি দেখা যায়, তাকে মায়োটম পেশি বলে, যা সাঁতারে সাহায্য করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>তরুণাস্থিযুক্ত মাছ হাঙরের দেহে পাখনা সংখ্যা-</p>
+                <ol class="options-list">
+                    <li>একটি</li>
+                    <li>5টি</li>
+                    <li>7টি</li>
+                    <li>9টি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) 5টি।</strong><br><small><i>ব্যাখ্যা: তরুণাস্থিযুক্ত মাছ যেমন হাঙরের দেহে প্রধানত ৫ ধরনের পাখনা দেখা যায়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>মাছের দিক পরিবর্তনে সাহায্য করে-</p>
+                <ol class="options-list">
+                    <li>পুচ্ছপাখনা</li>
+                    <li>পৃষ্ঠপাখনা</li>
+                    <li>পায়ুপাখনা</li>
+                    <li>শ্রোণিপাখনা</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) পুচ্ছপাখনা।</strong><br><small><i>ব্যাখ্যা: মাছের লেজে অবস্থিত পুচ্ছপাখনাটি নৌকার দাঁড়ের মতো কাজ করে দিক পরিবর্তনে সাহায্য করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>মানুষের গমনাঙ্গ হল-</p>
+                <ol class="options-list">
+                    <li>হাত</li>
+                    <li>পা</li>
+                    <li>অগ্রপদ</li>
+                    <li>ক্ষণপদ</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) পা।</strong><br><small><i>ব্যাখ্যা: মানুষ দ্বিপদ প্রাণী এবং গমনের জন্য পা ব্যবহার করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>নিম্নলিখিত কোন প্রাণী গমনে অক্ষম?</p>
+                <ol class="options-list">
+                    <li>প্রবাল, সাগর কুসুম</li>
+                    <li>আরশোলা</li>
+                    <li>মাকড়সা</li>
+                    <li>কোনোটিই নয়</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) প্রবাল, সাগর কুসুম।</strong><br><small><i>ব্যাখ্যা: প্রবাল এবং সাগর কুসুম পূর্ণাঙ্গ অবস্থায় কোনো অবলম্বনের সাথে আটকে থাকে এবং গমনে অক্ষম।</i></small></blockquote>
+            </li>
+            <li>
+                <p>মাছকে জলে ভাসতে সাহায্য করে-</p>
+                <ol class="options-list">
+                    <li>পাখনা</li>
+                    <li>পার্শ্বরেখা</li>
+                    <li>পটকা</li>
+                    <li>কানকো</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) পটকা।</strong><br><small><i>ব্যাখ্যা: মাছের পটকা একটি গ্যাসপূর্ণ থলি, যা আপেক্ষিক গুরুত্ব নিয়ন্ত্রণ করে মাছকে জলের বিভিন্ন গভীরতায় ভেসে থাকতে সাহায্য করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>একজন প্রাপ্তবয়স্ক মানুষের দেহে কতগুলি অস্থি থাকে?</p>
+                <ol class="options-list">
+                    <li>100টি</li>
+                    <li>350টি</li>
+                    <li>206টি</li>
+                    <li>260টি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) 206টি।</strong><br><small><i>ব্যাখ্যা: একজন প্রাপ্তবয়স্ক মানুষের কঙ্কালতন্ত্রে মোট ২০৬টি অস্থি থাকে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>অ্যামিবা-র গমনাঙ্গের নাম কী?</p>
+                <ol class="options-list">
+                    <li>সিটা</li>
+                    <li>নালিকা পদ</li>
+                    <li>সন্ধিল পদ</li>
+                    <li>ক্ষণপদ</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) ক্ষণপদ।</strong><br><small><i>ব্যাখ্যা: অ্যামিবার গমনাঙ্গের নাম ক্ষণপদ বা সিউডোপোডিয়া।</i></small></blockquote>
+            </li>
+            <li>
+                <p>ইউগ্লিনা-র গমনাঙ্গ হল-</p>
+                <ol class="options-list">
+                    <li>সিলিয়া</li>
+                    <li>কর্ষিকা</li>
+                    <li>ফ্ল্যাজেলা</li>
+                    <li>মাংসল পদ</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) ফ্ল্যাজেলা।</strong><br><small><i>ব্যাখ্যা: ইউগ্লিনার গমনাঙ্গ হল চাবুকের মতো ফ্ল্যাজেলা।</i></small></blockquote>
+            </li>
+            <li>
+                <p>গমন করতে পারে এমন একটি উদ্ভিদের নাম হল-</p>
+                <ol class="options-list">
+                    <li>ফার্ন</li>
+                    <li>ক্ল্যামাইডোমোনাস, ভলভক্স</li>
+                    <li>স্বর্ণলতা</li>
+                    <li>মিউকর</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) ক্ল্যামাইডোমোনাস, ভলভক্স।</strong><br><small><i>ব্যাখ্যা: ক্ল্যামাইডোমোনাস এবং ভলভক্স শৈবালের ফ্ল্যাজেলা থাকে, যার সাহায্যে তারা গমন করতে পারে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>গমন করতে পারে না এমন একটি প্রাণীর নাম-</p>
+                <ol class="options-list">
+                    <li>অ্যামিবা</li>
+                    <li>কেঁচো</li>
+                    <li>আরশোলা</li>
+                    <li>স্পঞ্জ</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) স্পঞ্জ।</strong><br><small><i>ব্যাখ্যা: স্পঞ্জ পূর্ণাঙ্গ অবস্থায় নিশ্চল জীবনযাপন করে এবং গমনে অক্ষম।</i></small></blockquote>
+            </li>
+            <li>
+                <p>যে অস্থিসন্ধিতে একটি অস্থিকে অক্ষ করে অপর অস্থিটি ঘুরতে পারে-</p>
+                <ol class="options-list">
+                    <li>পিভট সন্ধি</li>
+                    <li>হিঞ্জ সন্ধি</li>
+                    <li>স্যাডল সন্ধি</li>
+                    <li>অচল সন্ধি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) পিভট সন্ধি।</strong><br><small><i>ব্যাখ্যা: পিভট সন্ধিতে একটি অস্থি অন্য একটি অস্থির চারপাশে ঘুরতে পারে, যেমন ঘাড়ের সন্ধি।</i></small></blockquote>
+            </li>
+            <li>
+                <p>বল ও সকেট সন্ধি দেখা যায়-</p>
+                <ol class="options-list">
+                    <li>কাঁধে</li>
+                    <li>হাঁটুতে</li>
+                    <li>বুড়ো আঙুলে</li>
+                    <li>কনুইতে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) কাঁধে।</strong><br><small><i>ব্যাখ্যা: মানুষের কাঁধের সন্ধি এবং ঊরুসন্ধি বল ও সকেট সন্ধির উদাহরণ।</i></small></blockquote>
+            </li>
+            <li>
+                <p>ক্ষুদ্র অস্থি বা শর্ট বোন হল-</p>
+                <ol class="options-list">
+                    <li>স্টেপিস</li>
+                    <li>স্ক্যাপুলা</li>
+                    <li>ম্যাক্সিলা</li>
+                    <li>ফিমার</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) স্টেপিস।</strong><br><small><i>ব্যাখ্যা: স্টেপিস মানবদেহের ক্ষুদ্রতম অস্থি, যা মধ্যকর্ণে অবস্থিত।</i></small></blockquote>
+            </li>
+            <li>
+                <p>চ্যাপটা অস্থি বা ফ্ল্যাট বোন হল-</p>
+                <ol class="options-list">
+                    <li>টারসাল</li>
+                    <li>স্ক্যাপুলা</li>
+                    <li>হিউমেরাস</li>
+                    <li>ম্যাক্সিলা</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) স্ক্যাপুলা।</strong><br><small><i>ব্যাখ্যা: স্ক্যাপুলা বা কাঁধের অস্থি একটি চ্যাপটা ও ত্রিকোণাকার অস্থি।</i></small></blockquote>
+            </li>
+            <li>
+                <p>হিঞ্জ সন্ধি দেখা যায় -</p>
+                <ol class="options-list">
+                    <li>কোমরে</li>
+                    <li>কাঁধে</li>
+                    <li>কনুইতে</li>
+                    <li>করোটিতে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) কনুইতে।</strong><br><small><i>ব্যাখ্যা: হিঞ্জ সন্ধি বা কব্জা সন্ধি কেবল একটি তলে চলাচল করতে পারে, যেমন কনুই এবং হাঁটুর সন্ধি।</i></small></blockquote>
+            </li>
+            <li>
+                <p>অচল সন্ধি দেখা যায়-</p>
+                <ol class="options-list">
+                    <li>কোমরে</li>
+                    <li>কাঁধে</li>
+                    <li>করোটিতে</li>
+                    <li>কনুইতে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) করোটিতে।</strong><br><small><i>ব্যাখ্যা: মানুষের মাথার খুলির অস্থিগুলির মধ্যে অচল সন্ধি দেখা যায়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>দীর্ঘ অস্থি বা লং বোন হল-</p>
+                <ol class="options-list">
+                    <li>ম্যাক্সিলা</li>
+                    <li>ফিমার</li>
+                    <li>স্ক্যাপুলা</li>
+                    <li>স্টেপিস</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) ফিমার।</strong><br><small><i>ব্যাখ্যা: ফিমার বা ঊরুর অস্থি মানবদেহের দীর্ঘতম এবং শক্তিশালী অস্থি।</i></small></blockquote>
+            </li>
+            <li>
+                <p>অ্যামিবয়েড গমন যে প্রাণীতে দেখা যায়, তা হল-</p>
+                <ol class="options-list">
+                    <li>প্যারামেসিয়াম</li>
+                    <li>ইউগ্লিনা</li>
+                    <li>অ্যামিবা</li>
+                    <li>সবকটি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) অ্যামিবা।</strong><br><small><i>ব্যাখ্যা: ক্ষণপদের সাহায্যে গমনকে অ্যামিবয়েড গমন বলে, যা অ্যামিবার বৈশিষ্ট্য।</i></small></blockquote>
+            </li>
+            <li>
+                <p>মানুষের গমন পদ্ধতি হল-</p>
+                <ol class="options-list">
+                    <li>দ্বিপদ গমন</li>
+                    <li>অ্যামিবয়েড গমন</li>
+                    <li>সিলিয়ারি গমন</li>
+                    <li>ফ্ল্যাজেলারি গমন</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) দ্বিপদ গমন।</strong><br><small><i>ব্যাখ্যা: মানুষ দুই পায়ের সাহায্যে হেঁটে চলাচল করে, যাকে দ্বিপদ গমন বা Bipedal Locomotion বলা হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>সন্তরণ পদ্ধতিতে গমন সম্পন্ন করে-</p>
+                <ol class="options-list">
+                    <li>হাইড্রা</li>
+                    <li>ইউগ্লিনা</li>
+                    <li>মাছ</li>
+                    <li>অ্যামিবা</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) মাছ।</strong><br><small><i>ব্যাখ্যা: সন্তরণ হলো জলে সাঁতার কেটে গমন। মাছ পাখনা এবং মায়োটোম পেশির সাহায্যে জলে সন্তরণ সম্পন্ন করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>উড্ডয়ন পদ্ধতিতে গমন সম্পন্ন করে-</p>
+                <ol class="options-list">
+                    <li>কেঁচো</li>
+                    <li>শামুক</li>
+                    <li>পাখি</li>
+                    <li>টিকটিকি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) পাখি।</strong><br><small><i>ব্যাখ্যা: উড্ডয়ন হলো ডানার সাহায্যে আকাশে ওড়া, যা পাখির গমন পদ্ধতি।</i></small></blockquote>
+            </li>
+            <li>
+                <p>মাছের গমনাঙ্গ কোনটি?</p>
+                <ol class="options-list">
+                    <li>পাখনা</li>
+                    <li>মাংসল পদ</li>
+                    <li>ক্ষণপদ</li>
+                    <li>পালক</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) পাখনা।</strong><br><small><i>ব্যাখ্যা: মাছের প্রধান গমনাঙ্গ হলো পাখনা।</i></small></blockquote>
+            </li>
+            <li>
+                <p>মানুষের মেরুদন্ডের অস্থি সংখ্যা-</p>
+                <ol class="options-list">
+                    <li>23টি</li>
+                    <li>31টি</li>
+                    <li>33টি</li>
+                    <li>43টি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) 33টি।</strong><br><small><i>ব্যাখ্যা: মানুষের মেরুদণ্ডে মোট ৩৩টি কশেরুকা থাকে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>মানুষের করোটির অস্থির সংখ্যা-</p>
+                <ol class="options-list">
+                    <li>12টি</li>
+                    <li>22টি</li>
+                    <li>32টি</li>
+                    <li>42টি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) 22টি।</strong><br><small><i>ব্যাখ্যা: মানুষের করোটি বা মাথার খুলিতে মোট ২২টি অস্থি থাকে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>নীচের অস্থিগুলির মধ্যে যেটির অবস্থান হাতে নয়, সেটি হল-</p>
+                <ol class="options-list">
+                    <li>রেডিয়াস</li>
+                    <li>আলনা</li>
+                    <li>হিউমেরাস</li>
+                    <li>ফিমার</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) ফিমার।</strong><br><small><i>ব্যাখ্যা: রেডিয়াস, আলনা ও হিউমেরাস হাতের অংশ। ফিমার হলো ঊরুর অস্থি, যা পায়ের অংশ।</i></small></blockquote>
+            </li>
+            <li>
+                <p>বক্ষপিঞ্জরে অস্থিসমূহের মোট সংখ্যা-</p>
+                <ol class="options-list">
+                    <li>22টি</li>
+                    <li>25টি</li>
+                    <li>33টি</li>
+                    <li>44টি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) 25টি।</strong><br><small><i>ব্যাখ্যা: মানুষের বক্ষপিঞ্জর ১২ জোড়া পঞ্জরাস্থি (২৪টি) এবং একটি উরঃফলক (১টি) নিয়ে গঠিত, মোট ২৫টি।</i></small></blockquote>
+            </li>
+            <li>
+                <p>ফিমার, টিবিয়া ও প্যাটেলার সম্মিলিত অস্থিসন্ধি হল -</p>
+                <ol class="options-list">
+                    <li>হাঁটু</li>
+                    <li>কনুই</li>
+                    <li>শ্রোণিচক্র</li>
+                    <li>গোড়ালি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) হাঁটু।</strong><br><small><i>ব্যাখ্যা: হাঁটুর সন্ধিটি ফিমার, টিবিয়া এবং প্যাটেলা দ্বারা গঠিত হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>উরুসন্ধি বলা হয়-</p>
+                <ol class="options-list">
+                    <li>ফিমার ও শ্রোণিচক্রের সন্ধিকে</li>
+                    <li>স্ক্যাপুলা ও হিউমেরাসের সন্ধিকে</li>
+                    <li>ফিমার ও স্ক্যাপুলার সন্ধিকে</li>
+                    <li>কোনোটিই নয়</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) ফিমার ও শ্রোণিচক্রের সন্ধিকে।</strong><br><small><i>ব্যাখ্যা: উরুসন্ধি বা হিপ জয়েন্ট ফিমারের মস্তক এবং শ্রোণিচক্রের অ্যাসিটাবুলাম গহ্বরের মধ্যে গঠিত হয়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>কাঁধের সন্ধিতে অবস্থিত দুটি অস্থি হল-</p>
+                <ol class="options-list">
+                    <li>স্ক্যাপুলা ও হিউমেরাস</li>
+                    <li>ফিমার ও টিবিয়া</li>
+                    <li>হিউমেরাস ও আলনা</li>
+                    <li>কোনোটিই নয়</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) স্ক্যাপুলা ও হিউমেরাস।</strong><br><small><i>ব্যাখ্যা: কাঁধের সন্ধিটি স্ক্যাপুলার গ্লেনয়েড গহ্বর এবং হিউমেরাস অস্থির মস্তক দ্বারা গঠিত।</i></small></blockquote>
+            </li>
+            <li>
+                <p>বল ও সকেট সন্ধির উদাহরণ হল-</p>
+                <ol class="options-list">
+                    <li>কনুই</li>
+                    <li>হাঁটু</li>
+                    <li>খুলি</li>
+                    <li>কাঁধ</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) কাঁধ।</strong><br><small><i>ব্যাখ্যা: কাঁধের সন্ধি হলো বল ও সকেট সন্ধির একটি প্রধান উদাহরণ।</i></small></blockquote>
+            </li>
+            <li>
+                <p>লিগামেন্ট, টেনডন ও অস্থিসন্ধি হল-</p>
+                <ol class="options-list">
+                    <li>শ্বাসতন্ত্রের অংশ</li>
+                    <li>কঙ্কাল তন্ত্রের অংশ</li>
+                    <li>পেশিতন্ত্রের অংশ</li>
+                    <li>রক্তসংবহন তন্ত্রের অংশ</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) কঙ্কাল তন্ত্রের অংশ।</strong><br><small><i>ব্যাখ্যা: এগুলি কঙ্কাল তন্ত্রের গুরুত্বপূর্ণ অংশ যা দেহের কাঠামো গঠন ও চলনে সাহায্য করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>পায়রার ডানায় রেমিজেস পালকের সংখ্যা-</p>
+                <ol class="options-list">
+                    <li>11টি</li>
+                    <li>13টি</li>
+                    <li>19টি</li>
+                    <li>23টি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) 23টি।</strong><br><small><i>ব্যাখ্যা: পায়রার প্রতিটি ডানায় ২৩টি বড় উড্ডয়ন পালক বা রেমিজেস থাকে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>পায়রার পুচ্ছে রেকট্রিসেস (পালকের) সংখ্যা-</p>
+                <ol class="options-list">
+                    <li>6টি</li>
+                    <li>8টি</li>
+                    <li>12টি</li>
+                    <li>16টি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) 12টি।</strong><br><small><i>ব্যাখ্যা: পায়রার লেজে ১২টি বড় পালক বা রেকট্রিসেস থাকে যা দিক পরিবর্তনে সাহায্য করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>নীচের যেটি পায়রার উড্ডয়ন পেশি নয়, সেটি হল-</p>
+                <ol class="options-list">
+                    <li>পেক্টোরালিস মেজর</li>
+                    <li>মায়োটম</li>
+                    <li>পেক্টোরালিস মাইনর</li>
+                    <li>কোরাকো ব্রাকিয়ালিস</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) মায়োটম।</strong><br><small><i>ব্যাখ্যা: পেক্টোরালিস মেজর, মাইনর এবং কোরাকো ব্রাকিয়ালিস পায়রার উড্ডয়ন পেশি। মায়োটম পেশি মাছে দেখা যায়।</i></small></blockquote>
+            </li>
+            <li>
+                <p>মায়োটম পেশি থাকে-</p>
+                <ol class="options-list">
+                    <li>মানুষে</li>
+                    <li>রুই মাছে</li>
+                    <li>তিমিতে</li>
+                    <li>ব্যাঙে</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) রুই মাছে।</strong><br><small><i>ব্যাখ্যা: মায়োটম পেশি মাছের সাঁতারে সাহায্যকারী প্রধান পেশি।</i></small></blockquote>
+            </li>
+            <li>
+                <p>দেহের সংশ্লিষ্ট দুটি অংশকে ভাঁজ হতে সাহায্য করে যে কঙ্কাল পেশি-</p>
+                <ol class="options-list">
+                    <li>ফ্লেক্সর</li>
+                    <li>রোটেটর</li>
+                    <li>অ্যাবডাক্টর</li>
+                    <li>এক্সটেনসর</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) ফ্লেক্সর।</strong><br><small><i>ব্যাখ্যা: ফ্লেক্সর পেশির সংকোচনে অস্থিসন্ধি ভাঁজ হয়, যেমন বাইসেপস।</i></small></blockquote>
+            </li>
+            <li>
+                <p>ভাঁজ হওয়া অবস্থা থেকে দেহের সংশ্লিষ্ট অংশদুটিকে প্রসারিত হতে সাহায্য করে, যে কঙ্কাল পেশি, তা হল-</p>
+                <ol class="options-list">
+                    <li>ফ্লেক্সর</li>
+                    <li>রোটেটর</li>
+                    <li>অ্যাবডাক্টর</li>
+                    <li>এক্সটেনসর</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) এক্সটেনসর।</strong><br><small><i>ব্যাখ্যা: এক্সটেনসর পেশির সংকোচনে ভাঁজ হওয়া অঙ্গ প্রসারিত হয়, যেমন ট্রাইসেপস।</i></small></blockquote>
+            </li>
+            <li>
+                <p>দেহের মধ্যরেখা থেকে কোনো অংশকে দূরে সরিয়ে নিতে সহায়তা করে, এমন কঙ্কাল পেশি হল-</p>
+                <ol class="options-list">
+                    <li>ফ্লেক্সর</li>
+                    <li>রোটেটর</li>
+                    <li>অ্যাবডাক্টর</li>
+                    <li>এক্সটেনসর</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) অ্যাবডাক্টর।</strong><br><small><i>ব্যাখ্যা: অ্যাবডাক্টর পেশি অঙ্গকে দেহের মধ্যরেখা থেকে দূরে সরাতে সাহায্য করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>কোনো অংশকে দেহের মধ্যরেখার কাছাকাছি আনতে সহায়ত করে যে পেশি, সেটি হল-</p>
+                <ol class="options-list">
+                    <li>ফ্লেক্সর</li>
+                    <li>রোটেটর</li>
+                    <li>অ্যাডাক্টর</li>
+                    <li>এক্সটেনসর</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) অ্যাডাক্টর।</strong><br><small><i>ব্যাখ্যা: অ্যাডাক্টর পেশি কোনো অঙ্গকে দেহের মধ্যরেখার দিকে ফিরিয়ে আনতে সাহায্য করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>দেহের কোনো অংশকে ঘোরাতে সাহায্য করে, এমন কঙ্কাল পেশি হল-</p>
+                <ol class="options-list">
+                    <li>ফ্লেক্সর</li>
+                    <li>রোটেটর</li>
+                    <li>অ্যাবডাক্টর</li>
+                    <li>এক্সটেনসর</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) রোটেটর।</strong><br><small><i>ব্যাখ্যা: রোটেটর পেশি কোনো অস্থিকে তার অক্ষ বরাবর ঘোরাতে সাহায্য করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>মানবদেহের দীর্ঘতম পেশি হল-</p>
+                <ol class="options-list">
+                    <li>স্টেপিডিয়াস</li>
+                    <li>বাইসেপস</li>
+                    <li>সারটোরিয়াস</li>
+                    <li>ডেলটয়েড</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) সারটোরিয়াস।</strong><br><small><i>ব্যাখ্যা: সারটোরিয়াস মানবদেহের দীর্ঘতম (Longest) পেশি। (দ্রষ্টব্য: বৃহত্তম পেশি হল গ্লুটিয়াস ম্যাক্সিমাস)।</i></small></blockquote>
+            </li>
+            <li>
+                <p>ফ্লেক্সনে সাহায্যকারী পেশি হল-</p>
+                <ol class="options-list">
+                    <li>ট্রাইসেপস্</li>
+                    <li>বাইসেপস</li>
+                    <li>ডেলটয়েড</li>
+                    <li>রোটেটর</li>
+                </ol>
+                <blockquote><strong>উত্তর: (b) বাইসেপস।</strong><br><small><i>ব্যাখ্যা: বাইসেপস ব্র্যাকাই একটি ফ্লেক্সর পেশি, যা কনুই সন্ধিকে ভাঁজ করতে সাহায্য করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>অ্যাডাকশনে সাহায্য করে-</p>
+                <ol class="options-list">
+                    <li>ট্রাইসেপস্</li>
+                    <li>বাইসেপস</li>
+                    <li>ডেলটয়েড</li>
+                    <li>ল্যাটিসিমাস ডরসি</li>
+                </ol>
+                <blockquote><strong>উত্তর: (d) ল্যাটিসিমাস ডরসি।</strong><br><small><i>ব্যাখ্যা: ল্যাটিসিমাস ডরসি একটি অ্যাডাক্টর পেশি, যা হাতকে দেহের মধ্যরেখার দিকে টেনে আনতে সাহায্য করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>একটি অ্যাবডাক্টর পেশির উদাহরণ হল-</p>
+                <ol class="options-list">
+                    <li>ডেলটয়েড</li>
+                    <li>বাইসেপস</li>
+                    <li>ট্রাইসেপস</li>
+                    <li>স্টেপিডিয়াস</li>
+                </ol>
+                <blockquote><strong>উত্তর: (a) ডেলটয়েড।</strong><br><small><i>ব্যাখ্যা: ডেলটয়েড পেশি কাঁধে অবস্থিত এবং এটি অ্যাবডাকশনে অর্থাৎ হাতকে দেহ থেকে দূরে সরাতে সাহায্য করে।</i></small></blockquote>
+            </li>
+            <li>
+                <p>গমনের সময় দেহের ভারসাম্য রক্ষায় সাহায্য করে-</p>
+                <ol class="options-list">
+                    <li>গুরুমস্তিষ্ক</li>
+                    <li>বহিঃকর্ণ</li>
+                    <li>লঘুমস্তিষ্ক</li>
+                    <li>মধ্যকর্ণ</li>
+                </ol>
+                <blockquote><strong>উত্তর: (c) লঘুমস্তিষ্ক।</strong><br><small><i>ব্যাখ্যা: লঘুমস্তিষ্ক বা সেরিবেলাম দেহের ভারসাম্য রক্ষা এবং ঐচ্ছিক পেশির কাজ সমন্বয় করার প্রধান কেন্দ্র।</i></small></blockquote>
+            </li>
+        </ol>
+        <h2>ধন্যবাদ</h2>
+    </div>
+
+    <nav class="navigation">
+        <a href="class2.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button active">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class4.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const desktopModeToggle = document.getElementById('desktopModeToggle');
+            const body = document.body;
+            const viewportMeta = document.querySelector('meta[name="viewport"]');
+            
+            // দুটি ভিন্ন ভিউপোর্টের জন্য কনটেন্ট
+            const mobileViewport = 'width=device-width, initial-scale=1.0';
+            const desktopViewport = 'width=1200, initial-scale=1.0';
+
+            // থিম পরিবর্তনের ফাংশন
+            function applyTheme(theme) {
+                body.dataset.theme = theme;
+                localStorage.setItem('selected_theme', theme);
+            }
+
+            // ডার্ক/লাইট মোড পরিবর্তনের ফাংশন
+            function applyMode(mode) {
+                if (mode === 'dark') {
+                    body.classList.add('dark-mode');
+                    darkModeToggle.checked = true;
+                } else {
+                    body.classList.remove('dark-mode');
+                    darkModeToggle.checked = false;
+                }
+                localStorage.setItem('selected_mode', mode);
+            }
+            
+            // *** নতুন এবং উন্নত ডেস্কটপ মোড ফাংশন ***
+            function applyDesktopMode(isDesktop) {
+                if (isDesktop) {
+                    body.classList.add('desktop-view');
+                    viewportMeta.setAttribute('content', desktopViewport); // ভিউপোর্ট পরিবর্তন
+                    desktopModeToggle.textContent = 'মোবাইল মোড'; // বাটনের লেখা পরিবর্তন
+                } else {
+                    body.classList.remove('desktop-view');
+                    viewportMeta.setAttribute('content', mobileViewport); // ভিউপোর্ট আগের অবস্থায় ফেরানো
+                    desktopModeToggle.textContent = 'ডেস্কটপ মোড'; // বাটনের লেখা আগের অবস্থায় ফেরানো
+                }
+                // ব্যবহারকারীর পছন্দ মনে রাখা
+                localStorage.setItem('desktop_mode_enabled', isDesktop);
+            }
+
+            // পেজ লোড হওয়ার সময় সেভ করা সেটিংস লোড করা
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            const savedDesktopMode = localStorage.getItem('desktop_mode_enabled') === 'true'; 
+            
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            // পেজ লোড হওয়ার সাথে সাথেই সেভ করা ডেস্কটপ মোড চালু করা
+            applyDesktopMode(savedDesktopMode); 
+            
+            // বাটনগুলোর জন্য ইভেন্ট লিসেনার যোগ করা
+            themeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    applyTheme(button.dataset.themeName);
+                });
+            });
+
+            darkModeToggle.addEventListener('change', () => {
+                applyMode(darkModeToggle.checked ? 'dark' : 'light');
+            });
+            
+            desktopModeToggle.addEventListener('click', () => {
+                // বর্তমান অবস্থার বিপরীত অবস্থা সেট করা (টগল)
+                const isCurrentlyDesktop = body.classList.contains('desktop-view');
+                applyDesktopMode(!isCurrentlyDesktop);
+            });
+
+            // স্ক্রল বাটন
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            // ডিজিটাল ঘড়ি
+            const clockElement = document.getElementById('digital-clock');
+            function updateClock() {
+                if(clockElement) {
+                    const now = new Date();
+                    const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' };
+                    clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+                }
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            // কপিরাইট বছর
+            const yearSpan = document.getElementById('copyright-year');
+            if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+        });
+    </script>
+</body>
+</html>

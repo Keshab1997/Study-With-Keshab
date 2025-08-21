@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>চলন ও গমন (জীবনের গতি) - Class 02</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        /* আপডেট করা ডেস্কটপ মোড স্টাইল */
+        body.desktop-view .container,
+        body.desktop-view header,
+        body.desktop-view .controls-wrapper {
+            max-width: 1200px;
+        }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; transition: max-width 0.4s ease-in-out; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s, max-width 0.4s ease-in-out; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        h4 { border-bottom: 1px dotted #ccc; }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); font-weight: 600; }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-style: italic; font-size: 1.1em; border-radius: 5px; }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 10px; padding-left: 10px; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; transition: max-width 0.4s ease-in-out; }
+        .theme-buttons button, #desktopModeToggle { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover, #desktopModeToggle:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+<header>
+    <!-- লোগো আপনার নিজস্ব ইমেজ পাথ অনুযায়ী পরিবর্তন করুন -->
+    <img src="../images/logo.jpg" alt="Logo" class="logo">
+    <h1>অধ্যায়: চলন ও গমন (জীবনের গতি)</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 02</h2>
+
+    <h3>প্রথম পর্ব: গল্পের শুরু (চলন বনাম গমন)</h3>
+    <ol>
+        <li><strong>চলন (Movement):</strong> ধরুন, আপনি এক জায়গায় বসে হাত নাড়ছেন বা মাথা দোলাচ্ছেন। আপনার শরীরের অংশ নড়ছে, কিন্তু আপনি জায়গা বদল করছেন না। এটাই হলো <strong>চলন</strong>।</li>
+        <li><strong>গমন (Locomotion):</strong> এবার আপনি চেয়ার ছেড়ে হেঁটে অন্য ঘরে গেলেন। অঙ্গ-প্রত্যঙ্গ ব্যবহার করে আপনার স্থান পরিবর্তন হলো। এটাই হলো <strong>গমন</strong>।</li>
+    </ol>
+    <blockquote><strong>মনে রাখার সূত্র:</strong> সব গমনই চলন, কিন্তু সব চলন গমন নয়। (হেঁটে যাওয়াটা এক ধরনের চলন, কিন্তু শুধু হাত নাড়ানোটা গমন নয়)।</blockquote>
+
+    <h3>দ্বিতীয় পর্ব: আণুবীক্ষণিক জগতের নায়কেরা (এককোষী প্রাণীর গমন)</h3>
+    
+    <h4>১. অ্যামিবা: জাদুর জেলি</h4>
+    <ul>
+        <li><strong>চরিত্র:</strong> অ্যামিবা, যার কোনো নির্দিষ্ট আকার নেই, অনেকটা জেলির মতো।</li>
+        <li><strong>বিশেষ ক্ষমতা (গমনাঙ্গ):</strong> <strong>ক্ষণপদ</strong> বা <strong>সিউডোপোডিয়া</strong> (যার অর্থ "মিথ্যা পা")।</li>
+        <li><strong>গমন পদ্ধতি (গল্প):</strong> অ্যামিবা যখন এগোতে চায়, তখন সে তার শরীরের জেলির মতো সাইটোপ্লাজমকে একদিকে ঠেলে দেয়। এতে আঙুলের মতো একটি অংশ তৈরি হয়, এটাই ক্ষণপদ। তারপর বাকি শরীরটাকেও সেদিকে টেনে নিয়ে যায়। এই পদ্ধতিকে বলে <strong>অ্যামিবয়েড গমন</strong>।</li>
+        <li><strong>(MCQ Related):</strong> সিউডোপোডিয়ার সাহায্যে গমন করে কে? <strong>অ্যামিবা</strong>। অ্যামিবার গমনাঙ্গ কী? <strong>ক্ষণপদ</strong>।</li>
+    </ul>
+
+    <h4>২. প্যারামেসিয়াম: হাজার দাঁড়ের নৌকা</h4>
+    <ul>
+        <li><strong>চরিত্র:</strong> চপ্পলের মতো দেখতে প্যারামেসিয়াম।</li>
+        <li><strong>বিশেষ ক্ষমতা (গমনাঙ্গ):</strong> <strong>সিলিয়া</strong> (সারা গায়ে থাকা হাজার হাজার ছোট চুলের মতো অংশ)।</li>
+        <li><strong>গমন পদ্ধতি (গল্প):</strong> প্যারামেসিয়াম ঠিক এভাবেই তার সিলিয়াগুলোকে একসাথে আন্দোলিত করে জলে সাঁতার কাটে। এই পদ্ধতিকে বলে <strong>সিলিয়ারি গমন</strong>।</li>
+        <li><strong>(MCQ Related):</strong> প্যারামেসিয়াম কিসের সাহায্যে গমন করে? <strong>সিলিয়া</strong>।</li>
+    </ul>
+
+    <h4>৩. ইউগ্লিনা: চাবুক-চালক</h4>
+    <ul>
+        <li><strong>চরিত্র:</strong> সবুজ রঙের ইউগ্লিনা।</li>
+        <li><strong>বিশেষ ক্ষমতা (গমনাঙ্গ):</strong> <strong>ফ্ল্যাজেলা</strong> (শরীরের সামনে থাকা লম্বা, চাবুকের মতো একটি সুতো)।</li>
+        <li><strong>গমন পদ্ধতি (গল্প):</strong> ইউগ্লিনা তার ফ্ল্যাজেলাকে চাবুকের মতো ঘুরিয়ে জলে আঘাত করে, আর তার ধাক্কায় সে সামনের দিকে এগিয়ে যায়। এই পদ্ধতিকে বলে <strong>ফ্ল্যাজেলারি গমন</strong>।</li>
+        <li><strong>(MCQ Related):</strong> ফ্ল্যাজেলার সাহায্যে গমন করে কে? <strong>ইউগ্লিনা</strong>।</li>
+    </ul>
+
+    <h3>তৃতীয় পর্ব: জলের রাজ্যের শাসকেরা (মাছের গমন)</h3>
+    <ul>
+        <li><strong>গমন পদ্ধতি:</strong> সাঁতার বা <strong>সন্তরণ</strong>।</li>
+        <li><strong>প্রধান অস্ত্র (গমনাঙ্গ):</strong>
+            <ol>
+                <li><strong>পাখনা (Fins):</strong> মাছের বিভিন্ন ধরনের পাখনা হলো তার স্টিয়ারিং, ব্রেক আর অ্যাক্সেলারেটর।</li>
+                <li><strong>মায়োটম পেশি (Myotome Muscle):</strong> মাছের আসল ইঞ্জিন। এগুলো মেরুদণ্ডের দু'পাশে 'V' আকৃতির পেশি।</li>
+            </ol>
+        </li>
+        <li><strong>পাখনাদের টিমওয়ার্ক (গল্প):</strong>
+            <ul>
+                <li><strong>পুচ্ছ পাখনা (লেজ):</strong> এটি জলে ধাক্কা দিয়ে মাছকে সামনে এগোতে এবং দিক পরিবর্তন করতে সাহায্য করে।</li>
+                <li><strong>পৃষ্ঠ ও পায়ু পাখনা:</strong> এরা ভারসাম্য রক্ষা করে।</li>
+                <li><strong>বক্ষ ও শ্রোণি পাখনা:</strong> এরা মাছকে থামাতে, ঘুরতে বা ওপরে-নিচে যেতে সাহায্য করে।</li>
+                <li><strong>(MCQ Related):</strong> মাছের গমনাঙ্গ কোনটি? <strong>পাখনা</strong>। দিক পরিবর্তনে সাহায্য করে? <strong>পুচ্ছ পাখনা</strong>। অস্থিযুক্ত মাছের পাখনার সংখ্যা? <strong>৭টি</strong>।</li>
+            </ul>
+        </li>
+        <li><strong>ইঞ্জিনের কাজ:</strong> <strong>মায়োটম পেশি</strong> পর্যায়ক্রমে সংকুচিত ও প্রসারিত হয়।</li>
+        <li><strong>(MCQ Related):</strong> মায়োটম পেশি কোথায় দেখা যায়? <strong>মাছে</strong>।</li>
+        <li><strong>সহায়ক প্রযুক্তি:</strong>
+            <ul>
+                <li><strong>পটকা (Swim Bladder):</strong> এটা মাছের শরীরের ভেতরের একটা বেলুন। এতে গ্যাস ভরে বা কমিয়ে মাছ সাবমেরিনের মতো জলের যেকোনো গভীরতায় ভেসে থাকতে পারে।</li>
+                <li><strong>(MCQ Related):</strong> মাছকে জলে ভাসতে সাহায্য করে কে? <strong>পটকা</strong>।</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>চতুর্থ পর্ব: আকাশের অধিপতিরা (পাখির গমন)</h3>
+    <ul>
+        <li><strong>গমন পদ্ধতি:</strong> <strong>উড্ডয়ন</strong> বা ওড়া।</li>
+        <li><strong>প্রধান অস্ত্র (গমনাঙ্গ):</strong> একজোড়া <strong>ডানা</strong>।</li>
+        <li><strong>উড্ডয়নের রহস্য (গল্প):</strong>
+            <ul>
+                <li><strong>ইঞ্জিন:</strong> পাখির বুকের বিশাল দুটি পেশি—<strong>পেক্টোরালিস মেজর</strong> (ডানা নামানোর জন্য) এবং <strong>পেক্টোরালিস মাইনর</strong> (ডানা তোলার জন্য)।</li>
+                <li><strong>পালক:</strong>
+                    <ul>
+                        <li><strong>রেমিজেস (ডানার বড় পালক):</strong> বাতাসে চাপ দিয়ে শরীরকে উপরে তোলে। সংখ্যা: <strong>২৩টি</strong>।</li>
+                        <li><strong>রেকট্রিসেস (লেজের পালক):</strong> দিক পরিবর্তনে সাহায্য করে। সংখ্যা: <strong>১২টি</strong>।</li>
+                    </ul>
+                </li>
+                <li><strong>(MCQ Related):</strong> পায়রার ডানায় রেমিজেস পালকের সংখ্যা? <strong>২৩টি</strong>। পুচ্ছে রেকট্রিসেস পালকের সংখ্যা? <strong>১২টি</strong>। পায়রার উড্ডয়ন পেশি কোনটি? <strong>পেক্টোরালিস মেজর/মাইনর</strong>।</li>
+            </ul>
+        </li>
+        <li><strong>আকাশে ওড়ার জন্য বিশেষ অভিযোজন:</strong>
+            <ol>
+                <li><strong>হালকা হাড়:</strong> পাখির হাড়গুলো ভেতর থেকে <strong>ফাঁপা</strong>।</li>
+                <li><strong>মাকু আকৃতির দেহ:</strong> বাতাসের বাধা কাটিয়ে এগিয়ে যেতে পারে।</li>
+                <li><strong>বায়ুথলি (Air Sacs):</strong> শরীরকে হালকা করে এবং প্রচুর অক্সিজেন সরবরাহ করে।</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3>পঞ্চম পর্ব: পৃথিবীর শ্রেষ্ঠ অভিযাত্রী (মানুষের গমন)</h3>
+    <p>আমাদের গমন পদ্ধতি হলো <strong>দ্বিপদ গমন</strong>। এর জন্য দুটি সিস্টেম একসাথে কাজ করে—কঙ্কালতন্ত্র ও পেশিতন্ত্র।</p>
+
+    <h4>অংশ ১: দেহের কাঠামো (কঙ্কালতন্ত্র - The Skeleton)</h4>
+    <ul>
+        <li><strong>অস্থি সম্পর্কিত তথ্য:</strong>
+            <ul>
+                <li><strong>প্রাপ্তবয়স্ক দেহে অস্থি:</strong> <strong>২০৬টি</strong>। (জন্মের সময় থাকে প্রায় ৩০০টি)।</li>
+                <li><strong>সবচেয়ে বড় ও শক্তিশালী অস্থি:</strong> <strong>ফিমার</strong> (উরুর অস্থি)।</li>
+                <li><strong>সবচেয়ে ছোট অস্থি:</strong> <strong>স্টেপিস</strong> (মধ্যকর্ণের অস্থি)।</li>
+                <li><strong>(MCQ Related):</strong> উপরের সমস্ত তথ্যই MCQ-এর জন্য গুরুত্বপূর্ণ।</li>
+            </ul>
+        </li>
+        <li><strong>অস্থিসন্ধি (Joints):</strong>
+            <ul>
+                <li><strong>সাইনোভিয়াল তরল (Synovial Fluid):</strong> সচল অস্থিসন্ধির মধ্যে এক প্রকার পিচ্ছিল তেল থাকে, যা ঘর্ষণ কমায়।</li>
+                <li><strong>গুরুত্বপূর্ণ অস্থিসন্ধি:</strong>
+                    <ol>
+                        <li><strong>বল ও সকেট সন্ধি:</strong> <strong>কাঁধের সন্ধি</strong> ও <strong>ঊরুসন্ধি</strong>।</li>
+                        <li><strong>কব্জা সন্ধি:</strong> <strong>কনুই</strong> ও <strong>হাঁটু</strong>।</li>
+                        <li><strong>পিভট সন্ধি:</strong> <strong>ঘাড়ের সন্ধি</strong>।</li>
+                        <li><strong>অচল সন্ধি:</strong> <strong>মাথার খুলির</strong> সংযোগ।</li>
+                    </ol>
+                </li>
+                <li><strong>(MCQ Related):</strong> উপরের প্রতিটি সন্ধির উদাহরণ এবং কার্যকারিতা থেকে প্রশ্ন আসে।</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h4>অংশ ২: দেহের ইঞ্জিন (পেশিতন্ত্র - The Muscular System)</h4>
+    <ul>
+        <li><strong>গুরুত্বপূর্ণ সংযোগকারী কলা:</strong>
+            <ul>
+                <li><strong>টেন্ডন (Tendon):</strong> **পেশিকে হাড়ের** সাথে যুক্ত করে।</li>
+                <li><strong>লিগামেন্ট (Ligament):** **হাড়কে হাড়ের** সাথে যুক্ত করে।</li>
+                <li><strong>(MCQ Related):** হাড়কে হাড়ের সাথে কে যুক্ত করে? <strong>লিগামেন্ট</strong>। পেশিকে হাড়ের সাথে কে যুক্ত করে? <strong>টেন্ডন</strong>।</li>
+            </ul>
+        </li>
+        <li><strong>পেশিদের টিমওয়ার্ক (Antagonistic Muscles):</strong>
+            <ul>
+                <li><strong>সেরা উদাহরণ (বাইসেপস ও ট্রাইসেপস):</strong>
+                    <ul>
+                        <li>কনুই ভাঁজ করতে: <strong>বাইসেপস (ফ্লেক্সর)</strong> সংকুচিত হয়, ট্রাইসেপস প্রসারিত হয়।</li>
+                        <li>কনুই সোজা করতে: <strong>ট্রাইসেপস (এক্সটেনসর)</strong> সংকুচিত হয়, বাইসেপস প্রসারিত হয়।</li>
+                    </ul>
+                </li>
+                <li><strong>বিভিন্ন ধরনের পেশীর কাজ:</strong>
+                    <ul>
+                        <li><strong>ফ্লেক্সর:</strong> অঙ্গকে ভাঁজ করে।</li>
+                        <li><strong>এক্সটেনসর:</strong> অঙ্গকে সোজা করে।</li>
+                        <li><strong>অ্যাবডাক্টর:</strong> অঙ্গকে দেহ থেকে দূরে সরায়।</li>
+                        <li><strong>অ্যাডাক্টর:</strong> অঙ্গকে দেহের কাছে ফিরিয়ে আনে।</li>
+                        <li><strong>রোটেটর:</strong> অঙ্গকে ঘোরাতে সাহায্য করে।</li>
+                    </ul>
+                </li>
+                <li><strong>(MCQ Related):</strong> উপরের প্রতিটি পেশির কাজ এবং উদাহরণ থেকে প্রশ্ন আসে।</li>
+            </ul>
+        </li>
+        <li><strong>পেশীর ক্লান্তি (Muscle Fatigue):</strong>
+            <ul>
+                <li>যখন আমরা খুব বেশি পরিশ্রম করি, তখন পেশিতে অবাত শ্বসন করে এবং <strong>ল্যাকটিক অ্যাসিড</strong> তৈরি হয়। এই অ্যাসিড জমা হওয়ার ফলেই পেশিতে ব্যথা ও ক্লান্তি অনুভূত হয়।</li>
+                <li><strong>(MCQ Related):</strong> পেশীর ব্যথার জন্য দায়ী কোন অ্যাসিড? <strong>ল্যাকটিক অ্যাসিড</strong>।</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h4>শেষ পর্ব: প্রধান পরিচালক (মস্তিষ্কের ভূমিকা)</h4>
+    <p>আমাদের <strong>মস্তিষ্কের লঘুমস্তিষ্ক (Cerebellum)</strong> হাঁটা, দৌঁড়ানো বা যেকোনো কাজের সময় শরীরের <strong>ভারসাম্য রক্ষা করে</strong> এবং সমস্ত পেশির কাজের মধ্যে সমন্বয় ঘটায়।</p>
+    <ul>
+        <li><strong>(MCQ Related):</strong> দেহের ভারসাম্য রক্ষা করে কে? <strong>লঘুমস্তিষ্ক</strong>।</li>
+    </ul>
+</div>
+
+<nav class="navigation">
+    <a href="class1.html" class="nav-button">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button">1</a>
+    <a href="class2.html" class="nav-button active">2</a>
+    <a href="class3.html" class="nav-button">3</a>
+    <a href="class4.html" class="nav-button">4</a>
+    <a href="class3.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeButtons = document.querySelectorAll('.theme-buttons button');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const desktopModeToggle = document.getElementById('desktopModeToggle');
+        const body = document.body;
+        const viewportMeta = document.querySelector('meta[name="viewport"]');
+        
+        // দুটি ভিন্ন ভিউপোর্টের জন্য কনটেন্ট
+        const mobileViewport = 'width=device-width, initial-scale=1.0';
+        const desktopViewport = 'width=1200, initial-scale=1.0';
+
+        // থিম পরিবর্তনের ফাংশন
+        function applyTheme(theme) {
+            body.dataset.theme = theme;
+            localStorage.setItem('selected_theme', theme);
+        }
+
+        // ডার্ক/লাইট মোড পরিবর্তনের ফাংশন
+        function applyMode(mode) {
+            if (mode === 'dark') {
+                body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            } else {
+                body.classList.remove('dark-mode');
+                darkModeToggle.checked = false;
+            }
+            localStorage.setItem('selected_mode', mode);
+        }
+        
+        // *** নতুন এবং উন্নত ডেস্কটপ মোড ফাংশন ***
+        function applyDesktopMode(isDesktop) {
+            if (isDesktop) {
+                body.classList.add('desktop-view');
+                viewportMeta.setAttribute('content', desktopViewport); // ভিউপোর্ট পরিবর্তন
+                desktopModeToggle.textContent = 'মোবাইল মোড'; // বাটনের লেখা পরিবর্তন
+            } else {
+                body.classList.remove('desktop-view');
+                viewportMeta.setAttribute('content', mobileViewport); // ভিউপোর্ট আগের অবস্থায় ফেরানো
+                desktopModeToggle.textContent = 'ডেস্কটপ মোড'; // বাটনের লেখা আগের অবস্থায় ফেরানো
+            }
+            // ব্যবহারকারীর পছন্দ মনে রাখা
+            localStorage.setItem('desktop_mode_enabled', isDesktop);
+        }
+
+        // পেজ লোড হওয়ার সময় সেভ করা সেটিংস লোড করা
+        const savedTheme = localStorage.getItem('selected_theme');
+        const savedMode = localStorage.getItem('selected_mode');
+        // 'true' স্ট্রিংটিকে বুলিয়ানে পরিণত করা
+        const savedDesktopMode = localStorage.getItem('desktop_mode_enabled') === 'true'; 
+        
+        if (savedTheme) applyTheme(savedTheme);
+        if (savedMode) applyMode(savedMode);
+        // পেজ লোড হওয়ার সাথে সাথেই সেভ করা ডেস্কটপ মোড চালু করা
+        applyDesktopMode(savedDesktopMode); 
+        
+        // বাটনগুলোর জন্য ইভেন্ট লিসেনার যোগ করা
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                applyTheme(button.dataset.themeName);
+            });
+        });
+
+        darkModeToggle.addEventListener('change', () => {
+            applyMode(darkModeToggle.checked ? 'dark' : 'light');
+        });
+        
+        desktopModeToggle.addEventListener('click', () => {
+            // বর্তমান অবস্থার বিপরীত অবস্থা সেট করা (টগল)
+            const isCurrentlyDesktop = body.classList.contains('desktop-view');
+            applyDesktopMode(!isCurrentlyDesktop);
+        });
+
+        // স্ক্রল বাটন
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const bodyHeight = document.body.offsetHeight;
+            if (scrollPosition > 200) {
+                scrollToTopBtn.style.display = 'flex';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+            if (scrollPosition + windowHeight < bodyHeight - 100) {
+                scrollToBottomBtn.style.display = 'flex';
+            } else {
+                scrollToBottomBtn.style.display = 'none';
+            }
+        });
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        scrollToBottomBtn.addEventListener('click', () => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        });
+
+        // ডিজিটাল ঘড়ি
+        const clockElement = document.getElementById('digital-clock');
+        function updateClock() {
+            if(clockElement) {
+                const now = new Date();
+                const options = {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true,
+                    timeZone: 'Asia/Kolkata'
+                };
+                clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+            }
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // কপিরাইট বছর
+        const yearSpan = document.getElementById('copyright-year');
+        if(yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+    });
+</script>
+</body>
+</html>
