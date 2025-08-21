@@ -110,7 +110,7 @@
                     <li>পেশী</li>
                     <li>লিগামেন্ট</li>
                 </ol>
-                <blockquote><strong>উত্তর: (d) লিগامেন্ট।</strong><br><small><i>ব্যাখ্যা: লিগামেন্ট হলো সেই যোজক কলা যা হাড়কে হাড়ের সাথে যুক্ত করে। অন্যদিকে, টেন্ডন পেশীকে হাড়ের সাথে যুক্ত করে।</i></small></blockquote>
+                <blockquote><strong>উত্তর: (d) লিগামেন্ট।</strong><br><small><i>ব্যাখ্যা: লিগামেন্ট হলো সেই যোজক কলা যা হাড়কে হাড়ের সাথে যুক্ত করে। অন্যদিকে, টেন্ডন পেশীকে হাড়ের সাথে যুক্ত করে।</i></small></blockquote>
             </li>
             <li class="question-item">
                 <p>মানুষের মধ্যে পেশীগুলিকে হাড়ের সাথে সংযোগকারী টিস্যু বলা হয়:</p>
@@ -558,25 +558,75 @@
         document.addEventListener('DOMContentLoaded', function() {
             const themeButtons = document.querySelectorAll('.theme-buttons button');
             const darkModeToggle = document.getElementById('darkModeToggle');
-            const desktopModeToggle = document.getElementById('desktopModeToggle'); // বাটনটি যোগ করা হলো
+            const desktopModeToggle = document.getElementById('desktopModeToggle');
             const body = document.body;
+            const viewportMeta = document.querySelector('meta[name="viewport"]');
+            
+            // দুটি ভিন্ন ভিউপোর্টের জন্য কনটেন্ট
+            const mobileViewport = 'width=device-width, initial-scale=1.0';
+            const desktopViewport = 'width=1200, initial-scale=1.0';
 
-            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
-            function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
-            function applyDesktopMode(isDesktop) { if (isDesktop) { body.classList.add('desktop-view'); } else { body.classList.remove('desktop-view'); } localStorage.setItem('desktop_mode_enabled', isDesktop); }
+            // থিম পরিবর্তনের ফাংশন
+            function applyTheme(theme) {
+                body.dataset.theme = theme;
+                localStorage.setItem('selected_theme', theme);
+            }
 
+            // ডার্ক/লাইট মোড পরিবর্তনের ফাংশন
+            function applyMode(mode) {
+                if (mode === 'dark') {
+                    body.classList.add('dark-mode');
+                    darkModeToggle.checked = true;
+                } else {
+                    body.classList.remove('dark-mode');
+                    darkModeToggle.checked = false;
+                }
+                localStorage.setItem('selected_mode', mode);
+            }
+            
+            // *** নতুন এবং উন্নত ডেস্কটপ মোড ফাংশন ***
+            function applyDesktopMode(isDesktop) {
+                if (isDesktop) {
+                    body.classList.add('desktop-view');
+                    viewportMeta.setAttribute('content', desktopViewport); // ভিউপোর্ট পরিবর্তন
+                    desktopModeToggle.textContent = 'মোবাইল মোড'; // বাটনের লেখা পরিবর্তন
+                } else {
+                    body.classList.remove('desktop-view');
+                    viewportMeta.setAttribute('content', mobileViewport); // ভিউপোর্ট আগের অবস্থায় ফেরানো
+                    desktopModeToggle.textContent = 'ডেস্কটপ মোড'; // বাটনের লেখা আগের অবস্থায় ফেরানো
+                }
+                // ব্যবহারকারীর পছন্দ মনে রাখা
+                localStorage.setItem('desktop_mode_enabled', isDesktop);
+            }
+
+            // পেজ লোড হওয়ার সময় সেভ করা সেটিংস লোড করা
             const savedTheme = localStorage.getItem('selected_theme');
             const savedMode = localStorage.getItem('selected_mode');
-            const savedDesktopMode = localStorage.getItem('desktop_mode_enabled') === 'true';
-
+            const savedDesktopMode = localStorage.getItem('desktop_mode_enabled') === 'true'; 
+            
             if (savedTheme) applyTheme(savedTheme);
             if (savedMode) applyMode(savedMode);
-            if (savedDesktopMode) applyDesktopMode(true);
+            // পেজ লোড হওয়ার সাথে সাথেই সেভ করা ডেস্কটপ মোড চালু করা
+            applyDesktopMode(savedDesktopMode); 
             
-            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
-            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
-            desktopModeToggle.addEventListener('click', () => { applyDesktopMode(!body.classList.contains('desktop-view')); }); // ইভেন্ট লিসেনার যোগ করা হলো
+            // বাটনগুলোর জন্য ইভেন্ট লিসেনার যোগ করা
+            themeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    applyTheme(button.dataset.themeName);
+                });
+            });
 
+            darkModeToggle.addEventListener('change', () => {
+                applyMode(darkModeToggle.checked ? 'dark' : 'light');
+            });
+            
+            desktopModeToggle.addEventListener('click', () => {
+                // বর্তমান অবস্থার বিপরীত অবস্থা সেট করা (টগল)
+                const isCurrentlyDesktop = body.classList.contains('desktop-view');
+                applyDesktopMode(!isCurrentlyDesktop);
+            });
+
+            // স্ক্রল বাটন
             const scrollToTopBtn = document.getElementById('scrollToTopBtn');
             const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
             window.addEventListener('scroll', () => {
@@ -589,6 +639,7 @@
             scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
             scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
 
+            // ডিজিটাল ঘড়ি
             const clockElement = document.getElementById('digital-clock');
             function updateClock() {
                 if(clockElement) {
@@ -600,6 +651,7 @@
             updateClock();
             setInterval(updateClock, 1000);
 
+            // কপিরাইট বছর
             const yearSpan = document.getElementById('copyright-year');
             if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
         });

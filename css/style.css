@@ -270,13 +270,12 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
 .notification-feed-container {
     max-width: 900px;
     margin: 0 auto;
-    /* নিচের কোডগুলো ডিলিট করা হয়েছে কারণ আইটেমগুলোই এখন কার্ড হবে */
 }
 
 /* প্রতিটি নোটিফিকেশন আইটেম (কার্ড) */
 .notification-feed-item {
     display: flex;
-    align-items: flex-start; /* আইকন এবং টেক্সটকে উপরে অ্যালাইন করার জন্য */
+    align-items: flex-start; 
     background-color: #ffffff;
     border-radius: 12px;
     padding: 20px;
@@ -285,7 +284,7 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
     color: #333;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
     transition: transform 0.3s, box-shadow 0.3s;
-    border-left: 5px solid #007bff; /* বাম দিকে একটি রঙিন বর্ডার */
+    border-left: 5px solid #007bff; 
 }
 
 .notification-feed-item:hover {
@@ -295,9 +294,9 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
 
 /* আইকনের জন্য একটি নতুন অংশ */
 .notification-icon-wrapper {
-    flex-shrink: 0; /* আইকন যেন ছোট না হয়ে যায় */
+    flex-shrink: 0; 
     margin-right: 20px;
-    background-color: #e6f2ff; /* আইকনের الخلفية রঙ */
+    background-color: #e6f2ff; 
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -307,7 +306,7 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
 }
 .notification-icon-wrapper i {
     font-size: 22px;
-    color: #007bff; /* আইকনের রঙ */
+    color: #007bff; 
 }
 
 /* লেখার অংশ */
@@ -317,27 +316,117 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
 
 .notification-feed-title {
     font-weight: 700;
-    font-size: 1.1rem; /* 18px */
+    font-size: 1.1rem; 
     margin-bottom: 5px;
     color: #1a253c;
 }
 
 .notification-feed-body {
-    font-size: 0.95rem; /* 15px */
+    font-size: 0.95rem; 
     color: #555;
     margin-bottom: 12px;
     line-height: 1.5;
 }
 
 .notification-feed-time {
-    font-size: 0.8rem; /* 13px */
+    font-size: 0.8rem; 
     color: #888;
     display: flex;
     align-items: center;
 }
 .notification-feed-time::before {
-    content: '\f017'; /* Font Awesome ঘড়ির আইকন */
+    content: '\f017'; 
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     margin-right: 6px;
+}
+
+/* =================================== */
+/*      🔥 নতুন মোডাল স্টাইল 🔥         */
+/* =================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--white-color);
+    padding: 25px 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 650px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+
+    /* ===== 👇 স্ক্রল সমস্যার সমাধান এখানে 👇 ===== */
+    max-height: 85vh; /* স্ক্রিনের ৮৫% এর বেশি উঁচু হবে না */
+    overflow-y: auto; /* কনটেন্ট বেশি হলে ভার্টিক্যাল স্ক্রলবার দেখাবে */
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-content h2 {
+    font-family: var(--heading-font);
+    color: var(--primary-blue);
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.modal-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.modal-content li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-content li:last-child {
+    border-bottom: none;
+}
+
+.modal-content strong {
+    color: var(--secondary-dark);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.modal-close-btn:hover {
+    color: #333;
+    transform: rotate(90deg);
 }

@@ -13,8 +13,13 @@
         .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
         html { scroll-behavior: smooth; }
         body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
-        body.desktop-view .container { max-width: 1200px; }
-        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; }
+        /* আপডেট করা ডেস্কটপ মোড স্টাইল */
+        body.desktop-view .container,
+        body.desktop-view header,
+        body.desktop-view .controls-wrapper {
+            max-width: 1200px;
+        }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; transition: max-width 0.4s ease-in-out; }
         .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
         .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s, max-width 0.4s ease-in-out; }
         h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
@@ -27,7 +32,7 @@
         blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-style: italic; font-size: 1.1em; border-radius: 5px; }
         ol, ul { padding-left: 20px; }
         li { margin-bottom: 10px; padding-left: 10px; }
-        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; transition: max-width 0.4s ease-in-out; }
         .theme-buttons button, #desktopModeToggle { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
         .theme-buttons button:hover, #desktopModeToggle:hover { opacity: 0.8; }
         .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
@@ -258,41 +263,75 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // বিদ্যমান সব স্ক্রিপ্ট...
         const themeButtons = document.querySelectorAll('.theme-buttons button');
         const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
-
-        // নতুন ডেস্কটপ মোড টগল বাটন
         const desktopModeToggle = document.getElementById('desktopModeToggle');
-
-        function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
-        function applyMode(mode) { if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; } localStorage.setItem('selected_mode', mode); }
+        const body = document.body;
+        const viewportMeta = document.querySelector('meta[name="viewport"]');
         
-        // ডেস্কটপ মোড ফাংশন
+        // দুটি ভিন্ন ভিউপোর্টের জন্য কনটেন্ট
+        const mobileViewport = 'width=device-width, initial-scale=1.0';
+        const desktopViewport = 'width=1200, initial-scale=1.0';
+
+        // থিম পরিবর্তনের ফাংশন
+        function applyTheme(theme) {
+            body.dataset.theme = theme;
+            localStorage.setItem('selected_theme', theme);
+        }
+
+        // ডার্ক/লাইট মোড পরিবর্তনের ফাংশন
+        function applyMode(mode) {
+            if (mode === 'dark') {
+                body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            } else {
+                body.classList.remove('dark-mode');
+                darkModeToggle.checked = false;
+            }
+            localStorage.setItem('selected_mode', mode);
+        }
+        
+        // *** নতুন এবং উন্নত ডেস্কটপ মোড ফাংশন ***
         function applyDesktopMode(isDesktop) {
             if (isDesktop) {
                 body.classList.add('desktop-view');
+                viewportMeta.setAttribute('content', desktopViewport); // ভিউপোর্ট পরিবর্তন
+                desktopModeToggle.textContent = 'মোবাইল মোড'; // বাটনের লেখা পরিবর্তন
             } else {
                 body.classList.remove('desktop-view');
+                viewportMeta.setAttribute('content', mobileViewport); // ভিউপোর্ট আগের অবস্থায় ফেরানো
+                desktopModeToggle.textContent = 'ডেস্কটপ মোড'; // বাটনের লেখা আগের অবস্থায় ফেরানো
             }
+            // ব্যবহারকারীর পছন্দ মনে রাখা
             localStorage.setItem('desktop_mode_enabled', isDesktop);
         }
 
+        // পেজ লোড হওয়ার সময় সেভ করা সেটিংস লোড করা
         const savedTheme = localStorage.getItem('selected_theme');
         const savedMode = localStorage.getItem('selected_mode');
-        const savedDesktopMode = localStorage.getItem('desktop_mode_enabled') === 'true';
+        // 'true' স্ট্রিংটিকে বুলিয়ানে পরিণত করা
+        const savedDesktopMode = localStorage.getItem('desktop_mode_enabled') === 'true'; 
         
         if (savedTheme) applyTheme(savedTheme);
         if (savedMode) applyMode(savedMode);
-        if (savedDesktopMode) applyDesktopMode(true);
+        // পেজ লোড হওয়ার সাথে সাথেই সেভ করা ডেস্কটপ মোড চালু করা
+        applyDesktopMode(savedDesktopMode); 
         
-        themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
-        darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+        // বাটনগুলোর জন্য ইভেন্ট লিসেনার যোগ করা
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                applyTheme(button.dataset.themeName);
+            });
+        });
+
+        darkModeToggle.addEventListener('change', () => {
+            applyMode(darkModeToggle.checked ? 'dark' : 'light');
+        });
         
-        // ডেস্কটপ মোড বাটনের ইভেন্ট লিসেনার
         desktopModeToggle.addEventListener('click', () => {
-            applyDesktopMode(!body.classList.contains('desktop-view'));
+            // বর্তমান অবস্থার বিপরীত অবস্থা সেট করা (টগল)
+            const isCurrentlyDesktop = body.classList.contains('desktop-view');
+            applyDesktopMode(!isCurrentlyDesktop);
         });
 
         // স্ক্রল বাটন
@@ -302,11 +341,23 @@
             const scrollPosition = window.scrollY;
             const windowHeight = window.innerHeight;
             const bodyHeight = document.body.offsetHeight;
-            if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
-            if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            if (scrollPosition > 200) {
+                scrollToTopBtn.style.display = 'flex';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+            if (scrollPosition + windowHeight < bodyHeight - 100) {
+                scrollToBottomBtn.style.display = 'flex';
+            } else {
+                scrollToBottomBtn.style.display = 'none';
+            }
         });
-        scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-        scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        scrollToBottomBtn.addEventListener('click', () => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        });
 
         // ডিজিটাল ঘড়ি
         const clockElement = document.getElementById('digital-clock');
