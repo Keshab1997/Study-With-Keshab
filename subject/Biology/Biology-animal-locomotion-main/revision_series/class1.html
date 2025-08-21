@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> MCQ Practice (রক্ত সংবহন তন্ত্র)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        /* --- Global Styles & Theming Variables --- */
+        :root {
+            --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60;
+            --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b;
+            --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd;
+            --blockquote-border: #2196f3; --nav-button-bg: #fff;
+            --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1);
+            --correct-bg: #2ecc71; --incorrect-bg: #e74c3c;
+        }
+        [data-theme="forest"] {
+            --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; 
+            --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; 
+            --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60;
+        }
+        [data-theme="ocean"] {
+            --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; 
+            --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; 
+            --blockquote-bg: #e4f1fe; --blockquote-border: #3498db;
+        }
+        [data-theme="sunset"] {
+            --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; 
+            --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; 
+            --blockquote-bg: #fff8e1; --blockquote-border: #f57c00;
+        }
+        .dark-mode {
+            --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; 
+            --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; 
+            --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; 
+            --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; 
+            --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f;
+        }
+
+        /* --- Base Layout & Typography --- */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        
+        /* --- Header, Footer, Navigation --- */
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+
+        /* --- Controls (Theme, Dark Mode, Set Selector) --- */
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .theme-buttons button { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+        /* --- MCQ Specific Styles --- */
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question {
+            margin-bottom: 40px; padding: 20px; border-radius: 10px;
+            border: 2px solid transparent; /* Prevents layout shift on highlight */
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+        .mcq-question.active-question {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5);
+        }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        
+        /* --- Utility Styles --- */
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+		/* === সমস্ত নেভিগেশন বাটনের জন্য বেস স্টাইল === */
+.nav-button {
+    /* ফ্লেক্সবক্স ব্যবহার করে আইকন ও লেখা পাশাপাশি আনা হয়েছে */
+    display: flex;
+    align-items: center; /* আইকন ও লেখা উল্লম্বভাবে মাঝখানে থাকবে */
+    justify-content: center; /* আইকন ও লেখা অনুভূমিকভাবে মাঝখানে থাকবে */
+    gap: 10px; /* আইকন এবং লেখার মধ্যে ১০ পিক্সেল ফাঁকা জায়গা */
+
+    /* বাটনের আকার ও প্যাডিং */
+    padding: 12px 20px;
+    border-radius: 8px; /* কোণগুলো সামান্য বাঁকানো */
+    border: 1px solid transparent; /* একটি স্বচ্ছ বর্ডার */
+
+    /* টেক্সট এবং লিঙ্কের স্টাইল */
+    text-decoration: none; /* লিঙ্কের নিচের দাগ সরানো হয়েছে */
+    font-size: 1rem; /* ফন্টের সাইজ */
+    font-weight: 600; /* ফন্টকে বোল্ড করা হয়েছে */
+    
+    /* হোভার ইফেক্টের জন্য মসৃণ ট্রানজিশন */
+    transition: all 0.3s ease;
+    cursor: pointer; /* মাউস পয়েন্টার পরিবর্তন */
+}
+
+/* === আইকনের জন্য বিশেষ স্টাইল === */
+.nav-button i {
+    font-size: 1.2em; /* আইকনকে টেক্সটের থেকে সামান্য বড় দেখানো হয়েছে */
+}
+
+
+/* === "হোম" বাটনের জন্য নির্দিষ্ট রঙের স্টাইল === */
+.nav-button.color-home {
+    background-color: #3498db; /* একটি সুন্দর নীল ব্যাকগ্রাউন্ড */
+    color: #ffffff; /* সাদা রঙের টেক্সট ও আইকন */
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); /* একটি হালকা নীল আভা */
+}
+
+/* === মাউস হোভার করলে বাটনের স্টাইল পরিবর্তন হবে === */
+.nav-button.color-home:hover {
+    background-color: #2980b9; /* হোভারের সময় রঙটি সামান্য গাঢ় হবে */
+    transform: translateY(-3px); /* বাটনটি সামান্য উপরে উঠবে */
+    box-shadow: 0 6px 15px rgba(41, 128, 185, 0.4); /* শ্যাডো আরও স্পষ্ট হবে */
+}
+
+/* === বাটনে ক্লিক করার সময় স্টাইল === */
+.nav-button.color-home:active {
+    transform: translateY(0); /* বাটনটি আগের জায়গায় ফিরে আসবে */
+    box-shadow: 0 2px 5px rgba(41, 128, 185, 0.3); /* শ্যাডো কমে যাবে */
+}
+    </style>
+	<!-- আইকন ব্যবহারের জন্য Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="..\images\logo.jpg" alt="Logo" class="logo">
+        <h1>রক্ত এবং সংবহন তন্ত্র</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন 1-15)</option>
+                <option value="2">Set 2 (প্রশ্ন 16-30)</option>
+                <option value="3">Set 3 (প্রশ্ন 31-45)</option>
+                <option value="4">Set 4 (প্রশ্ন 46-59)</option>
+            </select>
+        </div>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>বিগত বছরের পরীক্ষার প্রশ্নাবলী</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+    <a href="../index.html" class="nav-button color-home">
+    <i class="fa-solid fa-house"></i>
+    <span>হোম</span>
+</a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © 2024 - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- AUDIO SETUP ---
+            const correctSound = new Audio('../sounds/correct.mp3');
+            const wrongSound = new Audio('../sounds/wrong.mp3');
+
+            // --- THEME, MODE, & SCROLL BUTTON LOGIC ---
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) {
+                if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+                else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+                localStorage.setItem('selected_mode', mode);
+            }
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            themeButtons.forEach(button => { button.addEventListener('click', () => { applyTheme(button.dataset.themeName); }); });
+            darkModeToggle.addEventListener('change', () => { applyMode(darkModeToggle.checked ? 'dark' : 'light'); });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+                scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+                scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            // --- INTERACTIVE MCQ LOGIC ---
+            const mcqData = [
+                // Set 1: Questions 1-15
+                { q: "হৃৎপিণ্ডের অবস্থান কোথায়?", o: ["বক্ষগহ্বরে বা দিতে", "উভয় ফুসফুসের মাঝে", "উদর গহবরে", "মিডিয়াস্টিনাম"], a: 1, ex: "হৃৎপিণ্ড বক্ষগহ্বরের মাঝখানে, দুটি ফুসফুসের মধ্যবর্তী স্থানে অবস্থিত। এই স্থানটিকে শারীরবৃত্তীয়ভাবে 'মিডিয়াস্টিনাম' (Mediastinum) বলা হয়।" },
+                { q: "নিচের কোনটির দুটি কক্ষবিশিষ্ট হৃৎপিণ্ড রয়েছে?", o: ["মানুষ", "চড়ুই", "বানর", "মাছ"], a: 3, ex: "মাছের হৃৎপিণ্ড দুটি প্রকোষ্ঠবিশিষ্ট—একটি অলিন্দ এবং একটি নিলয়। মানুষ, বানর এবং চড়ুইদের চারটি প্রকোষ্ঠবিশিষ্ট হৃৎপিণ্ড থাকে।" },
+                { q: "একজন প্রাপ্তবয়স্ক মানুষের হার্টের গড় ওজন হয় -", o: ["300 গ্রাম", "240 গ্রাম", "255 গ্রাম", "390 গ্রাম"], a: 0, ex: "একজন প্রাপ্তবয়স্ক মানুষের হৃৎপিণ্ডের গড় ওজন প্রায় 300 গ্রাম।" },
+                { q: "কুমিরের হৃৎপিণ্ডে কয়টি প্রকোষ্ঠ রয়েছে?", o: ["তিন", "চার", "পাঁচ", "দুই"], a: 1, ex: "কুমির সরীসৃপ শ্রেণীর প্রাণী হলেও এদের হৃৎপিণ্ড ব্যতিক্রমীভাবে চারটি প্রকোষ্ঠবিশিষ্ট।" },
+                { q: "______ চার ভাগে বিভক্ত।", o: ["ফুসফুস", "কিডনি", "পেট", "হৃদয়"], a: 3, ex: "মানব হৃৎপিণ্ড বা হৃদয় চারটি প্রধান প্রকোষ্ঠে বিভক্ত।" },
+                { q: "বাম অলিন্দ-নিলয় সংযোগস্থলে কোন কপাটিকা হল?", o: ["পালমোনারি", "বাইকাসপিড বা দ্বিপত্রক", "ট্রাইকাসপিড", "অ্যাওটিক"], a: 1, ex: "বাম অলিন্দ এবং বাম নিলয়ের সংযোগস্থলে বাইকাসপিড (Bicuspid) বা মাইট্রাল (Mitral) কপাটিকা অবস্থিত।" },
+                { q: "মানবদেহের নিচের কোন অঙ্গে সাইনোট্রিয়াল নোড (SA node) আছে?", o: ["মস্তিষ্ক", "হৃৎপিণ্ড", "কিডনি", "যকৃত"], a: 1, ex: "সাইনোট্রিয়াল নোড (SA node) হৃৎপিণ্ডের ডান অলিন্দের প্রাচীরে অবস্থিত এবং একে হৃৎপিণ্ডের 'প্রাকৃতিক পেসমেকার' বলা হয়।" },
+                { q: "একজন সাধারন মানুষের প্রতি মিনিটে হার্টবিট কত হয়?", o: ["50-100", "100-120", "60-100", "90-100"], a: 2, ex: "একজন প্রাপ্তবয়স্ক সুস্থ মানুষের বিশ্রামের সময় স্বাভাবিক হার্ট রেট প্রতি মিনিটে 60 থেকে 100 বিটসের মধ্যে থাকে।" },
+                { q: "প্রাণীদেহে রক্তসংবহন আবিষ্কার করেন?", o: ["ডারউইন", "ম্যালপিজি", "হার্ভে (William Harvey)", "শেরিংটন"], a: 2, ex: "ইংরেজ চিকিৎসক উইলিয়াম হার্ভে (William Harvey) 1628 সালে প্রথম প্রাণীদেহে রক্ত সংবহন প্রক্রিয়া আবিষ্কার করেন।" },
+                { q: "যে রক্তনালীগুলি হৃৎপিণ্ড থেকে শরীরের বিভিন্ন অংশে রক্ত বহন করে তাকে বলা হয়:", o: ["ধমনী", "শিরা", "সেপ্টাম", "কৈশিক"], a: 0, ex: "যেসব রক্তনালী হৃৎপিণ্ড থেকে শরীরের বিভিন্ন অংশে রক্ত বহন করে নিয়ে যায়, তাদের ধমনী (Artery) বলে।" },
+                { q: "ধমনী রক্ত বহন করে, এতে পূর্ণ হয়:", o: ["অক্সিজেন", "টক্সিন", "কার্বন ডাই অক্সাইড", "লিপিড"], a: 0, ex: "সাধারণত, ধমনী অক্সিজেন-সমৃদ্ধ বিশুদ্ধ রক্ত বহন করে। ব্যতিক্রম হলো ফুসফুসীয় ধমনী।" },
+                { q: "নিচের কোনটি হৃৎপিণ্ড থেকে উৎপন্ন হয়ে শরীরের বিভিন্ন অঙ্গে রক্ত পরিবহন করে?", o: ["শিরা", "ফুসফুসের দিকে পরিচালিত রক্তকণিকা", "ধমনী", "পালমোনারি ধমনী"], a: 2, ex: "ধমনী হলো সেইসব রক্তনালী যা হৃৎপিণ্ড থেকে রক্তকে পাম্প করে শরীরের সমস্ত কলা ও কোষে পৌঁছে দেয়।" },
+                { q: "নিচের কোনটি সংবহনতন্ত্রের অংশ নয়?", o: ["বড় অন্ত্র (বৃহদন্ত্র)", "হৃদয় (হৃৎপিণ্ড)", "রক্ত", "ধমনী"], a: 0, ex: "বড় অন্ত্র বা বৃহদন্ত্র হলো পরিপাকতন্ত্রের একটি অংশ, সংবহনতন্ত্রের নয়।" },
+                { q: "নিচের কোনটি হৃৎপিণ্ড থেকে ফুসফুসে রক্ত বহন করে?", o: ["ফুসফুসীয় শিরা", "করোনারি ধমনী", "ফুসফুসীয় ধমনী", "ভেনা কাভা"], a: 2, ex: "ফুসফুসীয় ধমনী (Pulmonary Artery) হৃৎপিণ্ডের ডান নিলয় থেকে কার্বন ডাই অক্সাইড সমৃদ্ধ রক্তকে ফুসফুসে নিয়ে যায়।" },
+                { q: "মানব দেহের সারাদেহে রক্ত প্রবাহের সময় লাগে-", o: ["23 সেকেন্ড", "12 সেকেন্ড", "32 সেকেন্ড", "42 সেকেন্ড"], a: 0, ex: "একজন প্রাপ্তবয়স্ক মানুষের দেহে সম্পূর্ণ একবার রক্ত সংবহন হতে গড়ে প্রায় 23 সেকেন্ড সময় লাগে।" },
+                
+                // Set 2: Questions 16-30
+                { q: "নিচের কোন প্লাজমা প্রোটিন রক্ত জমাট বাঁধার সাথে জড়িত?", o: ["সিরাম অ্যামাইলেজ", "ফাইব্রিনোজেন", "একটি গ্লোবুলিন", "একটি অ্যালবুমিন"], a: 1, ex: "ফাইব্রিনোজেন হলো রক্তরসে দ্রবণীয় একটি প্রোটিন যা রক্ত জমাট বাঁধতে সাহায্য করে।" },
+                { q: "মানুষের রক্তের প্লেটলেট (অনুচক্রিকা) কি নিঃসরণ করে রক্ত জমাট বাঁধতে সাহায্য করে?", o: ["প্রোথ্রোমবিন", "ফ্রুক্টোজ", "ফাইব্রিন", "সুক্রোজ"], a: 0, ex: "রক্ত জমাট বাঁধার প্রক্রিয়ায় প্রোথ্রোমবিন অপরিহার্য, যা থ্রমবিনে রূপান্তরিত হয়।" },
+                { q: "মানুষের স্বাভাবিক রক্তপাতের সময় এবং জমাট বাঁধার সময় যথাক্রমে ...... এবং........।", o: ["2-3 এবং 4-6 মিনিট", "2-10 এবং 5-15 সেকেন্ড", "2-7 এবং 3-10 মিনিট", "5-15 এবং 10-20 সেকেন্ড"], a: 2, ex: "স্বাভাবিক রক্তপাতের সময় (Bleeding Time) 2 থেকে 7 মিনিট এবং জমাট বাঁধার সময় (Clotting Time) 3 থেকে 10 মিনিট।" },
+                { q: "রক্তনালীর ভিতরে রক্ত তঞ্চিত (জমাট) হয় না কেন?", o: ["ক্যালসিয়াম আয়ন থাকার জন্য", "পটাশিয়াম থাকার জন্য", "হেপারিন থাকার জন্য", "অনুচক্রিকা থাকার জন্য"], a: 2, ex: "হেপারিন একটি প্রাকৃতিক অ্যান্টিকোঅ্যাগুল্যান্ট যা রক্তনালীর ভেতরে রক্তকে জমাট বাঁধতে দেয় না।" },
+                { q: "একটি প্রচলিত রক্তচাপ মাপার যন্ত্র যেখানে চিকিৎসক পারদ কলামের ওঠানামা পর্যবেক্ষণ করেন, তার নাম কি?", o: ["আইসোবার", "ট্রান্সডিউসার", "স্ফিগমোম্যানোমিটার", "বুধ স্তম্ভ"], a: 2, ex: "রক্তচাপ মাপার যন্ত্রের নাম স্ফিগমোম্যানোমিটার (Sphygmomanometer)।" },
+                { q: "মানুষের রক্তের স্বাভাবিক সিস্টোলিক চাপ হল:", o: ["110mm Hg", "130mm Hg", "80mm Hg", "120 mm Hg"], a: 3, ex: "একজন সুস্থ প্রাপ্তবয়স্ক মানুষের স্বাভাবিক সিস্টোলিক চাপ প্রায় 120 মিলিমিটার পারদস্তম্ভের চাপের সমান (120 mm Hg)।" },
+                { q: "একজন সুস্থ মানুষের রক্তচাপ হল:", o: ["90/60", "120/80 mm Hg", "200/110", "140/60"], a: 1, ex: "একজন সুস্থ প্রাপ্তবয়স্ক মানুষের আদর্শ রক্তচাপ হলো 120/80 mm Hg।" },
+                { q: "মানুষের রক্তের স্বাদ কি? (প্রকৃতপক্ষে প্রশ্নটি রক্তের প্রকৃতি নিয়ে)", o: ["সামান্য আম্লিক", "সামান্য ক্ষারীয়", "প্রসম", "কোনোটিই নয়"], a: 1, ex: "মানুষের রক্তের pH মান সাধারণত 7.35 থেকে 7.45 এর মধ্যে থাকে, তাই এটি সামান্য ক্ষারীয় প্রকৃতির।" },
+                { q: "রক্ত কি?", o: ["একটি আবরণী কলা", "পেশি কলা", "স্নায়ুকলা", "একটি বিশিষ্ট সংযোজক কলা"], a: 3, ex: "রক্তকে তরল যোগকলা বা একটি বিশিষ্ট সংযোজক কলা (Specialized Connective Tissue) বলা হয়।" },
+                { q: "মানবদেহে মোট রক্তের পরিমাণ কত?", o: ["5.6 লিটার", "4.5 লিটার", "6.5 লিটার", "7.6 লিটার"], a: 0, ex: "একজন 70 কেজি ওজনের মানুষের শরীরে প্রায় 5 থেকে 6 লিটার রক্ত থাকে। প্রদত্ত বিকল্পগুলির মধ্যে 5.6 লিটার সবচেয়ে উপযুক্ত।" },
+                { q: "রক্তের গ্রুপ এর শ্রেণীবিন্যাস কে করেন?", o: ["কার্ল কুলার", "কার্ল ল্যান্ডস্টেইনার", "এডওয়ার্ড জেনার", "(বিকল্প নেই)"], a: 1, ex: "অস্ট্রিয়ান বিজ্ঞানী কার্ল ল্যান্ডস্টেইনার 1900 সালে প্রথম মানুষের রক্তের প্রধান গ্রুপগুলো (A, B, এবং O) আবিষ্কার করেন।" },
+                { q: "A, B এবং O রক্তের গ্রুপ পদ্ধতি কে আবিষ্কার করেন?", o: ["কার্ল কোলার", "কার্ল ল্যান্ডস্টেইনার", "মরিস হিলেম্যান", "এডওয়ার্ড জেনার"], a: 1, ex: "বিজ্ঞানী কার্ল ল্যান্ডস্টেইনার ABO ব্লাড গ্রুপ সিস্টেম আবিষ্কার করেন।" },
+                { q: "নিচের কোনটি রক্তের গ্রুপ নয়?", o: ["A", "AB", "C", "O"], a: 2, ex: "ABO ব্লাড গ্রুপ সিস্টেম অনুযায়ী প্রধান রক্তের গ্রুপগুলি হলো A, B, AB, এবং O। 'C' নামে কোনো রক্তের গ্রুপ নেই।" },
+                { q: "কার্ল ল্যান্ডস্টেইনার এর জন্য পরিচিত:", o: ["ডিএনএ বিচ্ছিন্ন", "রক্তের গ্রুপের শ্রেণীবিভাগ আবিষ্কার", "জিকা ভাইরাস শনাক্ত করা", "স্নায়ুতন্ত্র অধ্যয়ন করেছেন"], a: 1, ex: "কার্ল ল্যান্ডস্টেইনারের সবচেয়ে বড় অবদান হলো রক্তের গ্রুপের শ্রেণীবিন্যাস আবিষ্কার।" },
+                { q: "AB রক্তের গ্রুপের একজন ব্যক্তি-", o: ["A, B এবং O ব্লাড গ্রুপের রক্ত দিতে পারেন", "সর্বজনীন রক্তদাতা বলা হয়", "যেকোনো রক্তের গ্রুপ থেকে রক্ত নেওয়া যেতে পারে", "সার্বজনীন প্রাপক বা সর্বজনীন দাতা নন"], a: 2, ex: "AB গ্রুপকে সর্বজনীন গ্রহীতা (Universal Recipient) বলা হয় কারণ তারা যেকোনো গ্রুপের রক্ত গ্রহণ করতে পারে।" },
+
+                // Set 3: Questions 31-45
+                { q: "A গ্রুপের রক্ত কোন গ্রুপের রক্তকে দেয়া যাবে?", o: ["A", "B", "A, AB", "A, O"], a: 2, ex: "A গ্রুপের রক্ত A এবং AB উভয় গ্রুপকেই দেওয়া যায়।" },
+                { q: "A গ্রুপের রক্তের প্রয়োজন হলে তাকে কোন কোন গ্রুপের ব্যক্তিরা রক্ত দিতে পারবে?", o: ["A", "B", "A, AB", "A, O"], a: 3, ex: "A গ্রুপের ব্যক্তি A এবং O গ্রুপ থেকে রক্ত নিতে পারে কারণ তাদের রক্তে অ্যান্টি-B অ্যান্টিবডি থাকে।" },
+                { q: "কোন শ্রেণীর রক্তকে সর্বজনীন গ্রহীতা বলা হয়?", o: ["AB", "A", "B", "O"], a: 0, ex: "AB গ্রুপকে 'সর্বজনীন গ্রহীতা' বা Universal Recipient বলা হয়।" },
+                { q: "রক্তের কোন গ্রুপকে সর্বজনীন দাতা বলা হয়?", o: ["O", "AB", "A", "B"], a: 0, ex: "O গ্রুপের লোহিত রক্তকণিকায় কোনো অ্যান্টিজেন না থাকায় একে 'সর্বজনীন দাতা' বা Universal Donor বলা হয়।" },
+                { q: "আরএইচ (Rh) ফ্যাক্টর কোন প্রাণীর রক্তে পাওয়া যায়?", o: ["গরু", "কুকুর", "বানর (রেসাস বানর)", "হাতি"], a: 2, ex: "রেসাস (Rhesus) প্রজাতির বানরের রক্তে প্রথম Rh ফ্যাক্টর আবিষ্কার করা হয়।" },
+                { q: "নিচের কোনটি সার্বজনীন প্রাপক (Universal Receiver) রক্তের গ্রুপ?", o: ["AB+", "O+", "A+", "AB-"], a: 0, ex: "AB+ গ্রুপকে প্রকৃত অর্থে 'সার্বজনীন প্রাপক' বলা হয় কারণ তারা Rh পজিটিভ এবং নেগেটিভ উভয় রক্তই নিতে পারে।" },
+                { q: "নিচের ব্লাড গ্রুপের মধ্যে কোনটিকে সার্বজনীন দাতা (Universal Donor) হিসেবে বিবেচনা করা হয়?", o: ["AB+", "O+", "O-", "AB-"], a: 2, ex: "O- গ্রুপের রক্তে কোনো A, B বা Rh অ্যান্টিজেন না থাকায় একে 'সার্বজনীন দাতা' বলা হয়।" },
+                { q: "রক্তচাপ মাপার যন্ত্রের নাম কি?", o: ["হাইগ্রোমিটার", "হাইড্রোমিটার", "ব্যারোমিটার", "স্ফিগমোম্যানোমিটার"], a: 3, ex: "রক্তচাপ মাপার যন্ত্রের নাম হলো স্ফিগমোম্যানোমিটার (Sphygmomanometer)।" },
+                { q: "সাধারণ মানুষের রক্ত হল:", o: ["নিরপেক্ষ", "সামান্য অম্লীয়", "অ্যাসিড বা বেসে পরিবর্তনশীল", "সামান্য ক্ষারীয়"], a: 3, ex: "মানুষের রক্তের স্বাভাবিক pH মান 7.35 থেকে 7.45, তাই এটি সামান্য ক্ষারীয়।" },
+                { q: "মানবদেহের পিএইচ (pH) স্তর হল:", o: ["6.0 থেকে 6.8", "7.0 থেকে 7.8", "7.0 থেকে 8.6", "6.0 থেকে 7.0"], a: 1, ex: "রক্তের স্বাভাবিক pH স্তর হলো 7.35 থেকে 7.45। প্রদত্ত বিকল্পগুলির মধ্যে, (খ) 7.0 থেকে 7.8 এই পরিসরটি সবচেয়ে উপযুক্ত।" },
+                { q: "রক্তে পাওয়া যায়, অক্সিজেন পরিবহনের জন্য দায়ী।", o: ["শ্বেত রক্তকণিকা", "প্লেটলেট", "লোহিত রক্তকণিকা", "প্লাজমা"], a: 2, ex: "লোহিত রক্তকণিকায় থাকা হিমোগ্লোবিন ফুসফুস থেকে অক্সিজেন গ্রহণ করে এবং তা শরীরের প্রতিটি কোষে পৌঁছে দেয়।" },
+                { q: "রক্তের কোন উপাদান খাদ্য, CO2 এবং নাইট্রোজেন বর্জ্য পরিবহন করে?", o: ["শ্বেত রক্তকণিকা", "রক্তের প্লেটলেট", "লোহিত রক্তকণিকা", "প্লাজমা (রক্তরস)"], a: 3, ex: "রক্তরস বা প্লাজমা হলো রক্তের তরল অংশ যা খাদ্য, CO2, হরমোন এবং বর্জ্য পদার্থ পরিবহন করে।" },
+                { q: "মানবদেহে RBC এর কাজ কি?", o: ["শরীরের কোষে অক্সিজেন সরবরাহ করা", "শরীরের কোষ থেকে কার্বন ডাই অক্সাইড নিষ্কাশন করা", "দ্রবীভূত আকারে নাইট্রোজেন বর্জ্য অপসারণ করা", "শরীরের কোষে পরিপাক খাদ্য সরবরাহ করা"], a: 0, ex: "লোহিত রক্তকণিকার (RBC) প্রধান কাজ হলো হিমোগ্লোবিনের সাহায্যে অক্সিজেন সরবরাহ করা।" },
+                { q: "মানবদেহে লোহিত রক্তকণিকার সংখ্যা কত?", o: ["50,00,000 / cu mm (পুরুষ), 45,00,000 / cu mm (স্ত্রী)", "অন্যান্য বিকল্প"], a: 0, ex: "প্রাপ্তবয়স্ক পুরুষের প্রতি ঘন মিলিমিটার রক্তে প্রায় 50 লক্ষ এবং মহিলার ক্ষেত্রে প্রায় 45 লক্ষ লোহিত রক্তকণিকা থাকে।" },
+                { q: "মানবদেহে নিচের কোন কোষে মাইটোকন্ড্রিয়া পাওয়া যায় না?", o: ["লোহিত রক্তকণিকা", "যকৃতের কোষ", "পেশী কোষ", "শ্বেত রক্তকণিকা"], a: 0, ex: "পরিণত লোহিত রক্তকণিকায় (RBC) নিউক্লিয়াস এবং মাইটোকন্ড্রিয়া থাকে না।" },
+                
+                // Set 4: Questions 46-59
+                { q: "হিমোগ্লোবিনে নিচের কোন ধাতু বিদ্যমান?", o: ["পয়সা", "তামা", "লোহা (Iron)", "দস্তা"], a: 2, ex: "হিমোগ্লোবিনের প্রধান ধাতব উপাদান হলো লোহা (Iron)।" },
+                { q: "হিমোগ্লোবিন পাওয়া যায়-", o: ["অস্থি", "ঘাম", "রক্ত", "পিত্ত তরল"], a: 2, ex: "হিমোগ্লোবিন হলো একটি রঞ্জক পদার্থ যা রক্তের লোহিত রক্তকণিকায় পাওয়া যায়।" },
+                { q: "হিমোগ্লোবিনে _____ প্রোটিন থাকে।", o: ["অ্যালবামিন", "গ্লোবুলিন", "গ্লোবিন", "হিম"], a: 2, ex: "হিমোগ্লোবিন 'হিম' (লৌহযুক্ত রঞ্জক) এবং 'গ্লোবিন' (প্রোটিন) অংশ নিয়ে গঠিত।" },
+                { q: "স্বাভাবিক রক্তে হিমোগ্লোবিনের পরিমাণ (প্রতি 100 মিলি রক্তে) কত?", o: ["11.5 গ্রাম", "12.5 গ্রাম", "14.5 গ্রাম", "13.5 গ্রাম"], a: 2, ex: "একজন সুস্থ প্রাপ্তবয়স্ক মানুষের রক্তে হিমোগ্লোবিনের গড় মান প্রায় 14.5 গ্রাম/ডেসিলিটার।" },
+                { q: "রক্তে শ্বেত রক্তকণিকার কাজ কি?", o: ["হিমোগ্লোবিন প্রোটিন বহন করা।", "পুষ্টি বহন করা।", "সংক্রমণ থেকে শরীরকে রক্ষা করা।", "রক্ত জমাট বাঁধতে সাহায্য করা।"], a: 2, ex: "শ্বেত রক্তকণিকা (WBC) রোগজীবাণু ধ্বংস করে এবং বিভিন্ন সংক্রমণের বিরুদ্ধে লড়াই করে শরীরকে সুস্থ রাখে।" },
+                { q: "মানুষের রক্তে সবচেয়ে বড় কণিকা কোনটি?", o: ["লসিকা কোষ (Lymphocyte)", "ক্ষার রঙের কোষ (Basophil)", "লোহিত কণিকা", "শ্বেতকণিকা (মনোসাইট)"], a: 3, ex: "রক্তের বিভিন্ন কণিকার মধ্যে মনোসাইট (Monocyte) হলো আকারে বৃহত্তম।" },
+                { q: "মানবদেহে শ্বেত রক্তকণিকার সংখ্যা কত?", o: ["9,000-10,000/cu mm", "অন্যান্য বিকল্প", "অন্যান্য বিকল্প", "অন্যান্য বিকল্প"], a: 0, ex: "স্বাভাবিক সংখ্যা 4,000 থেকে 11,000 এর মধ্যে থাকে। প্রদত্ত বিকল্পগুলির মধ্যে 9,000-10,000 উপযুক্ত।" },
+                { q: "নিচের কোনটিকে সৈন্যের সাথে তুলনা করা যায়?", o: ["লোহিত রক্তকণিকা", "প্লাজমা", "রক্তের প্লেটলেট", "শ্বেত রক্তকণিকা"], a: 3, ex: "শ্বেত রক্তকণিকাকে 'দেহের সৈনিক' বলা হয় কারণ এরা রোগজীবাণু থেকে দেহকে রক্ষা করে।" },
+                { q: "নিচের কোনটি WBC সম্পর্কে সত্য নয়?", o: ["আকার - 18-24 µm", "অ্যামিবিক বা বৃত্তাকার আকৃতি", "তারা 'সৈনিক' হিসেবে কাজ করে", "নিউক্লিয়াসযুক্ত"], a: 0, ex: "শ্বেত রক্তকণিকার (WBC) আকার সাধারণত 7 থেকে 20 µm হয়। শুধুমাত্র মনোসাইটের আকার এই পরিসরের কাছাকাছি হতে পারে।" },
+                { q: "ক্ষতস্থান থেকে রক্ত বেরোনো বন্ধ করতে সাহায্য করে কোন রক্ত কণিকা?", o: ["লোহিত রক্তকণিকা", "শ্বেত রক্তকণিকা", "অনুচক্রিকা (Platelets)", "প্লাজমা"], a: 2, ex: "অনুচক্রিকা বা প্লেটলেট রক্ত তঞ্চন বা রক্ত জমাট বাঁধার প্রক্রিয়ায় প্রধান ভূমিকা পালন করে।" },
+                { q: "মানবদেহে অনুচক্রিকার সংখ্যা কত?", o: ["2,50,000-4,00,000/cu mm", "অন্যান্য বিকল্প", "অন্যান্য বিকল্প", "অন্যান্য বিকল্প"], a: 0, ex: "স্বাভাবিক সংখ্যা প্রায় 1,50,000 থেকে 4,50,000। প্রদত্ত বিকল্পটি এই পরিসরের মধ্যে।" },
+                { q: "নিচের কোন অপশনটি সংবহনতন্ত্র সম্পর্কে সঠিক নয়?", o: ["সংবহনতন্ত্র মোটের 7-8% মানুষের ওজন।", "লোহিত রক্ত কণিকার জীবনকাল 115-120 দিন।", "একজন পূর্ণবয়স্ক মানুষের শরীরে রক্তের পরিমাণ 6.8 লিটার।", "শুধুমাত্র রক্ত সাদা তরল যোজক টিস্যু।"], a: 3, ex: "এই উক্তিটি ভুল। কারণ রক্ত হিমোগ্লোবিনের জন্য লাল বর্ণের তরল যোজক কলা, সাদা নয়।" },
+                { q: "পালস বীট দ্বারা কি পরিমাপ করা হয়?", o: ["স্নায়ু", "শিরা", "কৈশিক", "ধমনী"], a: 3, ex: "হৃৎপিণ্ডের প্রতিটি স্পন্দনের ফলে সৃষ্ট চাপ যখন ধমনীর প্রাচীরে ঢেউয়ের মতো সঞ্চালিত হয়, তখন তাকে পালস বলে।" },
+                { q: "নিচের কোনটি মানুষের রক্তে পাওয়া যায় না?", o: ["লিউকোসাইট", "লিম্ফোসাইট", "কনড্রোসাইট", "মনোসাইট"], a: 2, ex: "কনড্রোসাইট (Chondrocyte) হলো তরুণাস্থি বা কার্টিলেজ-এর কোষ, এটি রক্তে পাওয়া যায় না।" }
+            ];
+
+            const mcqContainer = document.getElementById('mcq-container');
+            const mcqSetSelector = document.getElementById('mcqSetSelector');
+            const scoreTracker = document.getElementById('score-tracker');
+            
+            let score = 0;
+            let totalQuestionsInSet = 0;
+
+            function generateMCQs(setNumber) {
+                mcqContainer.innerHTML = '';
+                score = 0;
+                
+                const questionsPerSet = 15;
+                const start = (setNumber - 1) * questionsPerSet;
+                const end = Math.min(start + questionsPerSet, mcqData.length);
+                const questionSet = mcqData.slice(start, end);
+
+                totalQuestionsInSet = questionSet.length;
+                updateScoreDisplay();
+
+                questionSet.forEach((item, index) => {
+                    const globalIndex = start + index;
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'mcq-question';
+                    questionDiv.id = `q-${globalIndex}`;
+                    
+                    let optionsHTML = item.o.map((option, i) => 
+                        `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                    ).join('');
+                    
+                    questionDiv.innerHTML = `
+                        <h4>প্রশ্ন ${globalIndex + 1}: ${item.q}</h4>
+                        <div class="mcq-options">${optionsHTML}</div>
+                        <div class="mcq-explanation"><strong>ব্যাখ্যা:</strong> ${item.ex}</div>
+                    `;
+                    mcqContainer.appendChild(questionDiv);
+                });
+                setupOptionListeners();
+                setupIntersectionObserver();
+            }
+            
+            function updateScoreDisplay() {
+                scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+            }
+
+            function handleOptionClick(e) {
+                const selectedOption = e.target.closest('.mcq-option');
+                if (!selectedOption) return;
+                const questionDiv = selectedOption.closest('.mcq-question');
+                if (questionDiv.classList.contains('answered')) return;
+                questionDiv.classList.add('answered');
+                const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+                const selectedIndex = parseInt(selectedOption.dataset.index);
+                const correctIndex = mcqData[globalIndex].a;
+                if (selectedIndex === correctIndex) {
+                    selectedOption.classList.add('correct');
+                    correctSound.play().catch(e => console.log("Audio play failed: " + e));
+                    score++;
+                    updateScoreDisplay();
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    wrongSound.play().catch(e => console.log("Audio play failed: " + e));
+                    questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+                }
+                questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+            }
+
+            function setupOptionListeners() {
+                mcqContainer.addEventListener('click', handleOptionClick);
+            }
+            
+            mcqSetSelector.addEventListener('change', (e) => {
+                generateMCQs(parseInt(e.target.value, 10));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                const activeQuestion = document.querySelector('.mcq-question.active-question');
+                if (!activeQuestion) return;
+                
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const nextQuestion = activeQuestion.nextElementSibling;
+                    if (nextQuestion) {
+                        nextQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                } else if (['1', '2', '3', '4'].includes(e.key) && !activeQuestion.classList.contains('answered')) {
+                    e.preventDefault();
+                    const optionIndex = parseInt(e.key) - 1;
+                    const optionToClick = activeQuestion.querySelector(`.mcq-option[data-index="${optionIndex}"]`);
+                    if (optionToClick) {
+                        optionToClick.click();
+                    }
+                }
+            });
+
+            function setupIntersectionObserver() {
+                const questions = document.querySelectorAll('.mcq-question');
+                if (questions.length === 0) return;
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const prevActive = document.querySelector('.mcq-question.active-question');
+                            if (prevActive) prevActive.classList.remove('active-question');
+                            entry.target.classList.add('active-question');
+                        }
+                    });
+                }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+                questions.forEach(q => observer.observe(q));
+            }
+            
+            generateMCQs(1);
+        });
+    </script>
+</body>
+</html>
