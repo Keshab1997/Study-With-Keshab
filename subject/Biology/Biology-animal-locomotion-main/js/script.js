@@ -250,7 +250,6 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                 const chapterData = doc.data().chapters[chapterKey];
                 const score = chapterData.totalScore || 0;
                 const userName = user.displayName || 'Unknown User';
-                // === পরিবর্তন করা হয়েছে: ডিফল্ট ছবির পাথ ঠিক করা হয়েছে ===
                 const userPhoto = user.photoURL || '/Study-With-Keshab/images/default-avatar.png';
                 
                 const totalCorrect = chapterData.totalCorrect || 0;
@@ -263,12 +262,37 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                 if (rank <= 3) rankClass = 'rank-gold';
                 else if (rank <= 10) rankClass = 'rank-silver';
                 
+                // === ব্যাজ সিস্টেম আপগ্রেড করা হয়েছে ===
                 const badges = [];
-                if (rank === 1) badges.push({ text: '🏆 অধ্যায়ের সেরা', class: 'topper' });
-                if (accuracy >= 95) badges.push({ text: '🎯 নির্ভুলতার রাজা', class: 'accuracy' });
+                const totalQuizzes = document.querySelectorAll('#quiz-sets .link-container a').length;
+                const completedQuizzesCount = chapterData.completedQuizzesCount || 0;
+
+                // Rank-based Badges (prioritized and mutually exclusive for rank)
+                if (rank === 1) {
+                    badges.push({ text: '🏆 অধ্যায়ের সেরা', class: 'topper' });
+                } else if (rank <= 3) {
+                    badges.push({ text: '🥈 শীর্ষ তিনে', class: 'top-three' });
+                } else if (rank <= 10) {
+                    badges.push({ text: '🥉 শীর্ষ দশে', class: 'top-ten' });
+                } else if (totalParticipants > 10 && rank <= Math.ceil(totalParticipants * 0.25)) {
+                    badges.push({ text: '🌟 উঠতি তারকা', class: 'rising-star' });
+                }
+
+                // Accuracy-based Badges (can be combined with other badges)
+                if (accuracy >= 95) {
+                    badges.push({ text: '🎯 নির্ভুলতার রাজা', class: 'accuracy' });
+                } else if (accuracy >= 85) {
+                    badges.push({ text: '✅ দারুণ নির্ভুলতা', class: 'high-accuracy' });
+                }
+
+                // Completion-based Badge (can be combined with other badges)
+                if (totalQuizzes > 0 && completedQuizzesCount >= totalQuizzes) {
+                    badges.push({ text: '💯 সম্পূর্ণকারী', class: 'completionist' });
+                }
+                // === ব্যাজ সিস্টেম আপগ্রেড শেষ ===
 
                 let motivationalMessage = '';
-                if (accuracy >= 90) motivationalMessage = "অসাধারণ! তোমার প্রস্তুতি शिखरে। চালিয়ে যাও!";
+                if (accuracy >= 90) motivationalMessage = "অসাধারণ! তোমার প্রস্তুতি শিখরে। চালিয়ে যাও!";
                 else if (accuracy >= 70) motivationalMessage = "দারুণ চেষ্টা! ভুলগুলো আরেকবার দেখে নিলেই তুমি সেরা হবে।";
                 else motivationalMessage = "চিন্তার কিছু নেই, প্রতিটি ভুলই নতুন কিছু শেখার সুযোগ। আবার চেষ্টা করো!";
                 
@@ -295,8 +319,10 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                             </div>
                             <div class="result-details">
                                 <div class="result-item">
-                                    <h4>মোট স্কোর</h4>
-                                    <p id="user-score">${score}</p>
+                                    <h4>প্রাপ্ত নম্বর</h4>
+                                    <p class="score-display">
+                                        <span id="user-score">${score}</span> / <span id="total-questions-display">${totalQuestions}</span>
+                                    </p>
                                 </div>
                                 <div class="result-item">
                                     <h4>র‍্যাঙ্ক</h4>
@@ -321,6 +347,7 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                 `;
 
                 new CountUp('user-score', score, { duration: 1.5 }).start();
+                new CountUp('total-questions-display', totalQuestions, { duration: 1.5 }).start(); 
                 new CountUp('user-rank', rank, { prefix: '#', duration: 1.5 }).start();
                 
                 createAccuracyChart(accuracy);
@@ -367,12 +394,10 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
     });
 }
 
-// === পরিবর্তন করা হয়েছে: Chart.js এর পুরোনো ভার্সনের সাথে সামঞ্জস্যপূর্ণ করা হয়েছে ===
 function createAccuracyChart(accuracy) {
     const ctx = document.getElementById('accuracy-chart')?.getContext('2d');
     if (!ctx) return;
 
-    // প্লাগইনটি শুধু একবার রেজিস্টার করা হচ্ছে
     if (!isChartPluginRegistered) {
         Chart.plugins.register({
             beforeDraw: function(chart) {
@@ -398,7 +423,7 @@ function createAccuracyChart(accuracy) {
                 }
             }
         });
-        isChartPluginRegistered = true; // ফ্ল্যাগ সেট করা হলো যাতে আর রেজিস্টার না হয়
+        isChartPluginRegistered = true; 
     }
 
     const chartData = {
@@ -429,7 +454,7 @@ function createAccuracyChart(accuracy) {
                 center: {
                     text: `${accuracy}%`,
                     color: document.body.classList.contains('dark-mode') ? '#ffffff' : '#2c3e50',
-                    fontStyle: "'Hind Siliguri', sans-serif",
+                    fontStyle: "'Hind Silguri', sans-serif",
                 }
             }
         }
@@ -473,7 +498,6 @@ function updateChapterProgress(completed, total) {
     progressText.textContent = `${percentage}% সম্পন্ন (${completed}/${total}টি কুইজ)`;
 }
 
-// myPieChart কে গ্লোবাল স্কোপে রাখা হয়েছে যাতে এটি আপডেট করা যায়
 window.myPieChart = null; 
 function updatePieChart(correct, wrong) {
     const ctx = document.getElementById('quiz-pie-chart')?.getContext('2d');
