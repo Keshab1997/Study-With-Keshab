@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৬ - খাদ্য ও পুষ্টি</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset5.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset7.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology খাদ্য ও পুষ্টি",
+            setName: "Quiz Set 6",
+            name: "খাদ্য ও পুষ্টি - Set 6 (প্রশ্ন ১০০-১১৮)",
+            questions: [
+                {
+                    question: "দুধে কোন খাদ্য উপাদানের অভাব থাকে?",
+                    options: ["Fe এবং ভিটামিন C", "Ca এবং ভিটামিন C", "ভিটামিন A এবং Ca", "ভিটামিন A এবং Fe"],
+                    answer: 0,
+                    explanation: "দুধে লোহা (Fe) এবং ভিটামিন C-এর পরিমাণ তুলনামূলকভাবে কম থাকে।"
+                },
+                {
+                    question: "মানব ত্বকে ভিটামিন D সংশ্লেষিত হয় কোন যৌগ থেকে?",
+                    options: ["বিটা ক্যারোটিন", "বিটা সায়ানিন", "7-ডিহাইড্রোকোলেস্টেরল", "ক্যালসিফেরল"],
+                    answer: 2,
+                    explanation: "সূর্যের অতিবেগুনি রশ্মির প্রভাবে ত্বকের নিচে থাকা 7-ডিহাইড্রোকোলেস্টেরল থেকে ভিটামিন D সংশ্লেষিত হয়।"
+                },
+                {
+                    question: "জলে দ্রাব্য ভিটামিন কোনটি?",
+                    options: ["ভিটামিন K", "ভিটামিন D", "ভিটামিন E", "ভিটামিন C"],
+                    answer: 3,
+                    explanation: "ভিটামিন C এবং B কমপ্লেক্স জলে দ্রবণীয়।"
+                },
+                {
+                    question: "ভিটামিন A এর প্রিভিটামিন হল-",
+                    options: ["বিটা ক্যারোটিন", "রেটিনল", "ক্যালসিফেরল", "পাইরিথিয়ামিন"],
+                    answer: 0,
+                    explanation: "বিটা ক্যারোটিন হলো ভিটামিন A-এর একটি প্রোভিটামিন বা প্রিভিটামিন। এটি উদ্ভিদ থেকে পাওয়া যায় এবং শরীরে ভিটামিন A-তে রূপান্তরিত হয়।"
+                },
+                {
+                    question: "কোন ভিটামিনের রাসায়নিক নাম 'টোকোফেরল'?",
+                    options: ["B12", "K", "E", "C"],
+                    answer: 2,
+                    explanation: "ভিটামিন E-এর রাসায়নিক নাম হলো টোকোফেরল (Tocopherol)।"
+                },
+                {
+                    question: "কোন ভিটামিনের রাসায়নিক নাম ক্যালসিফেরল?",
+                    options: ["ভিটামিন A", "ভিটামিন E", "ভিটামিন K", "ভিটামিন D"],
+                    answer: 3,
+                    explanation: "ভিটামিন D-এর রাসায়নিক নাম হলো ক্যালসিফেরল (Calciferol)।"
+                },
+                {
+                    question: "কোন ভিটামিনের রাসায়নিক নাম প্যান্টোথেনিক অ্যাসিড?",
+                    options: ["ভিটামিন B3 এর", "ভিটামিন B2-এর", "ভিটামিন B12-এর", "ভিটামিন B5 এর"],
+                    answer: 3,
+                    explanation: "ভিটামিন B5-এর রাসায়নিক নাম হলো প্যান্টোথেনিক অ্যাসিড (Pantothenic Acid)।"
+                },
+                {
+                    question: "Vitamin B-এর অভাবজনিত রোগটি হল-",
+                    options: ["বেরিবেরি", "রাতকানা রোগ", "রিকেট", "স্কার্ভি"],
+                    answer: 0,
+                    explanation: "ভিটামিন B1 (থায়ামিন)-এর অভাবে বেরিবেরি রোগ হয়। প্রশ্নটি সাধারণভাবে 'Vitamin B' বললেও, বেরিবেরি নির্দিষ্টভাবে B1-এর অভাবে হয়।"
+                },
+                {
+                    question: "Vitamin-K এর প্রধান কাজ-",
+                    options: ["রক্তে ফসফরাসের মাত্রা নিয়ন্ত্রণ", "শর্করা পরিপাক", "রক্ততঞ্চন", "রোগ প্রতিরোধ"],
+                    answer: 2,
+                    explanation: "ভিটামিন K-এর প্রধান কাজ হলো রক্ত জমাট বাঁধতে (blood clotting বা রক্ততঞ্চন) সাহায্য করা।"
+                },
+                {
+                    question: "কোন ভিটামিন জরায়ুর মধ্যে ভ্রূণের বৃদ্ধিতে সাহায্য করে?",
+                    options: ["ভিটামিন A", "ভিটামিন E", "ভিটামিন K", "ভিটামিন C"],
+                    answer: 1,
+                    explanation: "ভিটামিন E প্রজনন স্বাস্থ্যের জন্য গুরুত্বপূর্ণ এবং গর্ভাবস্থায় ভ্রূণের সঠিক বৃদ্ধিতে সহায়তা করে।"
+                },
+                {
+                    question: "বায়োটিন নামক ভিটামিনটি আগে যে নামে পরিচিত ছিল, তা হল-",
+                    options: ["ভিটামিন G", "ভিটামিন H", "ভিটামিন M", "ভিটামিন K"],
+                    answer: 1,
+                    explanation: "বায়োটিন (ভিটামিন B7)-কে আগে ভিটামিন H বলা হতো।"
+                },
+                {
+                    question: "অ্যাভিডিন হল একটি-",
+                    options: ["অ্যান্টিভিটামিন", "প্রোভিটামিন", "সিউডোভিটামিন", "ভিটামিন"],
+                    answer: 0,
+                    explanation: "অ্যাভিডিন কাঁচা ডিমের সাদা অংশে পাওয়া একটি প্রোটিন যা বায়োটিনের (ভিটামিন H) শোষণকে বাধা দেয়, তাই এটি একটি অ্যান্টিভিটামিন।"
+                },
+                {
+                    question: "অ্যান্টিহিমারেজিক ফ্যাক্টর হল-",
+                    options: ["ভিটামিন C", "ভিটামিন B", "ভিটামিন K", "ভিটামিন A"],
+                    answer: 2,
+                    explanation: "ভিটামিন K রক্তক্ষরণ প্রতিরোধ করে বলে একে অ্যান্টিহিমারেজিক ফ্যাক্টর (Antihemorrhagic factor) বলা হয়।"
+                },
+                {
+                    question: "কোন ভিটামিনের অভাবে পেলাগ্রা রোগ হয়?",
+                    options: ["ভিটামিন B1", "ভিটামিন B3", "ভিটামিন B5", "ভিটামিন B12"],
+                    answer: 1,
+                    explanation: "পেলাগ্রা রোগটি ভিটামিন B3 (নিয়াসিন)-এর অভাবে হয়।"
+                },
+                {
+                    question: "যে খনিজের অভাবে রক্তাল্পতা দেখা যায়, সেটি হল-",
+                    options: ["ম্যাগনেসিয়াম", "লোহ", "ক্যালসিয়াম", "ফসফরাস"],
+                    answer: 1,
+                    explanation: "লোহা (Iron) হিমোগ্লোবিন তৈরির জন্য অপরিহার্য। এর অভাবে রক্তাল্পতা (Anemia) দেখা যায়।"
+                },
+                {
+                    question: "যে খনিজের অভাবে রক্তক্ষরণ ব্যাহত হয়, সেটি হল-",
+                    options: ["Ca", "K", "Mg", "Na"],
+                    answer: 0,
+                    explanation: "ক্যালসিয়াম (Ca) রক্ত জমাট বাঁধার প্রক্রিয়ায় একটি অপরিহার্য ফ্যাক্টর হিসেবে কাজ করে।"
+                },
+                {
+                    question: "ভিটামিন D তৈরি হয়-",
+                    options: ["অ্যামিনো অ্যাসিড", "আর্গোস্টেরল", "ফ্যাটি অ্যাসিড", "কোলেস্টেরল"],
+                    answer: 1,
+                    explanation: "উদ্ভিদে আর্গোস্টেরল থেকে ভিটামিন D2 এবং প্রাণীদেহে 7-ডিহাইড্রোকোলেস্টেরল থেকে ভিটামিন D3 তৈরি হয়।"
+                },
+                {
+                    question: "দুধে কোন ভিটামিন বর্তমান?",
+                    options: ["ভিটামিন A, C এবং D", "ভিটামিন C, D এবং E", "ভিটামিন C, K এবং D", "ভিটামিন A, B এবং D"],
+                    answer: 3,
+                    explanation: "দুধে ভিটামিন A, D এবং B কমপ্লেক্স ভালো পরিমাণে থাকে। তবে এতে ভিটামিন C খুব কম থাকে।"
+                },
+                {
+                    question: "অস্টিওম্যালেশিয়া রোগ কোন ভিটামিনের অভাবে হয়?",
+                    options: ["ভিটামিন-C", "ভিটামিন-D", "ভিটামিন-K", "ভিটামিন-A"],
+                    answer: 1,
+                    explanation: "অস্টিওম্যালেশিয়া হলো প্রাপ্তবয়স্কদের রিকেট রোগ, যা ভিটামিন D-এর অভাবে হাড় নরম হয়ে যাওয়ার কারণে হয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

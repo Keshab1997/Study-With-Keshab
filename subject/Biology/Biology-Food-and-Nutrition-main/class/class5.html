@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA, RNA এবং ভিটামিন (PYQ) - Class 05</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        body.desktop-view .container, body.desktop-view .controls-wrapper, body.desktop-view header { max-width: 1200px; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; transition: max-width 0.4s ease-in-out; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s, max-width 0.4s ease-in-out; }
+        h1, h2, h3 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3 { font-size: 1.6em; color: var(--heading-color-3); }
+        p { font-size: 1.1em; margin-bottom: 5px; font-weight: 600; }
+        p small { font-weight: 400; font-size: 0.9em; color: var(--heading-color-3); }
+        strong { color: var(--accent-color); font-weight: 700; }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 15px 0; padding: 10px 20px; font-size: 1.1em; border-radius: 5px; }
+        blockquote strong { color: var(--heading-color-2); }
+        ol { padding-left: 20px; list-style-type: decimal; }
+        li { margin-bottom: 30px; padding-left: 10px; }
+        .options-list { list-style-type: lower-alpha; padding-left: 40px; }
+        .options-list li { margin-bottom: 8px; list-style-type: lower-alpha; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; transition: max-width 0.4s ease-in-out; }
+        .theme-buttons button, #desktopModeToggle { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover, #desktopModeToggle:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>DNA, RNA এবং ভিটামিন (PYQ)</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div id="digital-clock" class="digital-clock"></div>
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 05</h2>
+        <ol start="66">
+            <li><p>ডিএনএ - এর সম্পূর্ণ নাম লেখ-</p><ol class="options-list"><li>ডি অক্সিরাইবো নিউক্লিক অ্যাসিড</li><li>ডি অক্সিডাস নিউক্লিক অ্যাসিড</li><li>ডি অক্সিড নিউক্লিক অ্যাসিড</li><li>ডি অক্সিন নিউরো অ্যাসিড</li></ol><blockquote><strong>উত্তর: (A) ডি অক্সিরাইবো নিউক্লিক অ্যাসিড।</strong><br><small><i>ব্যাখ্যা: DNA এর পূর্ণরূপ হলো Deoxyribonucleic Acid। এটি জীবনের জেনেটিক নির্দেশাবলী বহনকারী একটি গুরুত্বপূর্ণ অণু।</i></small></blockquote></li>
+            <li><p>আর এন এ (RNA) এর সম্পূর্ণরূপ টি হল-</p><ol class="options-list"><li>রাইবোজোম নিউরো অ্যাসিড</li><li>রাইবো নিউক্লিক অ্যাসিড</li><li>রাইবো নিউরো অ্যাসিড</li><li>রাইবো নিউক্লিয়াস অ্যাসিড</li></ol><blockquote><strong>উত্তর: (B) রাইবো নিউক্লিক অ্যাসিড।</strong><br><small><i>ব্যাখ্যা: RNA এর পূর্ণরূপ হলো Ribonucleic Acid। এটি প্রোটিন সংশ্লেষণ এবং জিন এক্সপ্রেশনে গুরুত্বপূর্ণ ভূমিকা পালন করে।</i></small></blockquote></li>
+            <li><p>DNA ও RNA -এর গঠনগত একক হল-</p><ol class="options-list"><li>নিউক্লিওজোম</li><li>নিউক্লিওটাইড</li><li>নিউক্লিওলাস</li><li>নিউক্লিওসাইড</li></ol><blockquote><strong>উত্তর: (B) নিউক্লিওটাইড।</strong><br><small><i>ব্যাখ্যা: DNA এবং RNA উভয়ই নিউক্লিওটাইড নামক একক অণু দিয়ে গঠিত।</i></small></blockquote></li>
+            <li><p>RNA-তে শর্করা থাকে -</p><ol class="options-list"><li>রাইবোজ</li><li>কিটোনবডি</li><li>থাইরয়েড</li><li>আয়োডিন</li></ol><blockquote><strong>উত্তর: (A) রাইবোজ।</strong><br><small><i>ব্যাখ্যা: RNA অণুতে যে শর্করাটি থাকে তার নাম রাইবোজ (Ribose)।</i></small></blockquote></li>
+            <li><p>প্রতিটি রাইবোনিউক্লিক ও ডিঅক্সিরাইবোনিউক্লিক অ্যাসিড (RNA) অণু যে উপাদানটি দ্বারা তৈরি, তা হল-</p><ol class="options-list"><li>ফসফেট</li><li>N₂ ক্ষারক</li><li>নিউক্লিওসাইড</li><li>নিউক্লিওটাইড</li></ol><blockquote><strong>উত্তর: (D) নিউক্লিওটাইড।</strong><br><small><i>ব্যাখ্যা: প্রতিটি RNA এবং DNA অণু অসংখ্য নিউক্লিওটাইড দিয়ে গঠিত।</i></small></blockquote></li>
+            <li><p>বংশগতির ধারক ও বাহক হল-</p><ol class="options-list"><li>মেসোজোম</li><li>পলিজোম</li><li>নিউক্লিয়াস → ক্রোমোজোম → DNA → জিন</li><li>রাইবোজোম</li></ol><blockquote><strong>উত্তর: (C) নিউক্লিয়াস → ক্রোমোজোম → DNA → জিন।</strong><br><small><i>ব্যাখ্যা: বংশগতির ধারক ও বাহক হলো DNA, যা জিনের সমন্বয়ে গঠিত এবং ক্রোমোজোমের উপর থাকে। ক্রোমোজোম নিউক্লিয়াসের মধ্যে অবস্থিত।</i></small></blockquote></li>
+            <li><p>ক্রোমোজোমে DNA-এর মাত্রা হল-</p><ol class="options-list"><li>40%</li><li>90%</li><li>33.3%</li><li>100%</li></ol><blockquote><strong>উত্তর: (A) 40%।</strong><br><small><i>ব্যাখ্যা: একটি ক্রোমোজোমে প্রায় 40% DNA এবং 60% প্রোটিন থাকে।</i></small></blockquote></li>
+            <li><p>প্রতিটি ক্রোমোজোমে DNA অণু থাকে-</p><ol class="options-list"><li>একটি</li><li>চারটি</li><li>দুটি</li><li>পাঁচটি</li></ol><blockquote><strong>উত্তর: (A) একটি।</strong><br><small><i>ব্যাখ্যা: সাধারণভাবে একটি ক্রোমোজোমকে একটি দীর্ঘ DNA অণু দ্বারা গঠিত ধরা হয়।</i></small></blockquote></li>
+            <li><p>DNA-এর যে নির্দিষ্ট অংশ নির্দিষ্ট প্রোটিন সংশ্লেষের সংকেত বহন করে সেটি হল-</p><ol class="options-list"><li>জিন</li><li>কোষচক্র</li><li>পিউরিণ</li><li>গোঁফ খাজ</li></ol><blockquote><strong>উত্তর: (A) জিন।</strong><br><small><i>ব্যাখ্যা: জিন হলো DNA-এর একটি নির্দিষ্ট অংশ যা একটি নির্দিষ্ট প্রোটিন বা RNA অণু সংশ্লেষণের জন্য প্রয়োজনীয় তথ্য বহন করে।</i></small></blockquote></li>
+            <li><p>DNA সংশ্লেষিত হয়-</p><ol class="options-list"><li>প্রোফেজ</li><li>মেটাফেজ</li><li>ইন্টারফেজের 'S' দশা</li><li>টেলোফেজ দশায়</li></ol><blockquote><strong>উত্তর: (C) ইন্টারফেজের 'S' দশা।</strong><br><small><i>ব্যাখ্যা: কোষচক্রের ইন্টারফেজ দশার 'S' (Synthesis) পর্যায়ে DNA প্রতিলিপিকরণ বা সংশ্লেষণ ঘটে।</i></small></blockquote></li>
+            <li><p>DNA-এর যে নির্দিষ্ট অংশ নির্দিষ্ট প্রোটিন সংশ্লেষে সাহায্য করে, তাকে কী বলে?</p><ol class="options-list"><li>মেটাফেজ</li><li>ইন্টারফেজের 'S' দশা</li><li>টেলোফেজ দশা</li><li>জিন</li></ol><blockquote><strong>উত্তর: (D) জিন।</strong><br><small><i>ব্যাখ্যা: জিন হলো DNA-এর সেই অংশ যা নির্দিষ্ট প্রোটিন সংশ্লেষণের জন্য প্রয়োজনীয় নির্দেশাবলী বা সংকেত ধারণ করে।</i></small></blockquote></li>
+            <li><p>DNA-তে যে নাইট্রোজেন বেস অনুপস্থিত তা হল-</p><ol class="options-list"><li>ইউরাসিল</li><li>অ্যাডিনাইন</li><li>থাইমিন</li><li>সাইটোসিন</li></ol><blockquote><strong>উত্তর: (A) ইউরাসিল।</strong><br><small><i>ব্যাখ্যা: ইউরাসিল (U) শুধুমাত্র RNA-তে থাইমিনের পরিবর্তে পাওয়া যায়।</i></small></blockquote></li>
+            <li><p>DNA-র পিরামিডিন বেসগুলি হল-</p><ol class="options-list"><li>অ্যাডেনিন ও গুয়ানিন</li><li>থাইমিন ও অ্যাডেনিন</li><li>সাইটোসিন ও গুয়ানিন</li><li>থাইমিন ও সাইটোসিন</li></ol><blockquote><strong>উত্তর: (D) থাইমিন ও সাইটোসিন।</strong><br><small><i>ব্যাখ্যা: DNA-এর পিরামিডিন ক্ষারকগুলি হলো থাইমিন (T) এবং সাইটোসিন (C)।</i></small></blockquote></li>
+            <li><p>DNA পর্যবেক্ষণ প্রক্রিয়া (গঠন) আবিষ্কার করেন-</p><ol class="options-list"><li>এ. এইচ. জি. খোরানা</li><li>ওয়াটসন এবং ক্রিক</li><li>ফ্রেডরিক স্যাঙ্গার</li><li>ই. এম. সাউদার্ন</li></ol><blockquote><strong>উত্তর: (B) ওয়াটসন এবং ক্রিক।</strong><br><small><i>ব্যাখ্যা: জেমস ওয়াটসন এবং ফ্রান্সিস ক্রিক ১৯৫৩ সালে DNA-এর দ্বি-হেলিক্স (Double Helix) কাঠামো আবিষ্কার করেন।</i></small></blockquote></li>
+            <li><p>অ্যাডেনিন ও থাইমিন _______ হাইড্রোজেন বন্ড দিয়ে এবং গুয়ানিন ও সাইটোসিন _______ হাইড্রোজেন বন্ড দিয়ে সংযুক্ত থাকে।</p><ol class="options-list"><li>২ টি ও ৩ টি</li><li>৪ টি ও ২ টি</li><li>৫ টি ও ১ টি</li><li>৩ টি ও ৪ টি</li></ol><blockquote><strong>উত্তর: (A) ২ টি ও ৩ টি।</strong><br><small><i>ব্যাখ্যা: DNA অণুতে, অ্যাডেনিন (A) এবং থাইমিন (T) দুটি হাইড্রোজেন বন্ধন দ্বারা এবং গুয়ানিন (G) এবং সাইটোসিন (C) তিনটি হাইড্রোজেন বন্ধন দ্বারা সংযুক্ত থাকে।</i></small></blockquote></li>
+            <li><p>DNA-এর একটি প্যাঁচের মাপ-</p><ol class="options-list"><li>34Å</li><li>3.4Å</li><li>24Å</li><li>44Å</li></ol><blockquote><strong>উত্তর: (A) 34Å।</strong><br><small><i>ব্যাখ্যা: DNA-এর দ্বি-হেলিক্স কাঠামোর একটি সম্পূর্ণ প্যাঁচের দৈর্ঘ্য হলো 34 অ্যাংস্ট্রম (Å)।</i></small></blockquote></li>
+            <li><p>DNA অণুর গুয়ানিনের পরিপূরক ক্ষার মূলকটি হল-</p><ol class="options-list"><li>অ্যাডেনিন (A)</li><li>সাইটোসিন (C)</li><li>থাইমিন (T)</li><li>ইউরাসিল (U)</li></ol><blockquote><strong>উত্তর: (B) সাইটোসিন (C)।</strong><br><small><i>ব্যাখ্যা: DNA অণুতে ক্ষারক-জোড় নীতি অনুযায়ী, গুয়ানিন (G) সবসময় সাইটোসিন (C) এর সাথে যুক্ত থাকে।</i></small></blockquote></li>
+            <li><p>পিউরিণ-জাতীয় নাইট্রোজেনযুক্ত ক্ষারটি হল-</p><ol class="options-list"><li>অ্যাডেনিন</li><li>সাইটোসিন</li><li>থাইমিন</li><li>ইউরাসিল</li></ol><blockquote><strong>উত্তর: (A) অ্যাডেনিন।</strong><br><small><i>ব্যাখ্যা: পিউরিণ-জাতীয় নাইট্রোজেনযুক্ত ক্ষারকগুলি হলো অ্যাডেনিন (A) এবং গুয়ানিন (G)।</i></small></blockquote></li>
+            <li><p>পিরামিডিন-জাতীয় নাইট্রোজেনযুক্ত ক্ষার নয়-</p><ol class="options-list"><li>থাইমিন</li><li>সাইটোসিন</li><li>ইউরাসিল</li><li>গুয়ানিন</li></ol><blockquote><strong>উত্তর: (D) গুয়ানিন।</strong><br><small><i>ব্যাখ্যা: গুয়ানিন একটি পিউরিণ-জাতীয় ক্ষারক।</i></small></blockquote></li>
+            <li><p>RNA-তে থাইমিনের বদলে যে ক্ষারটি থাকে তা হল-</p><ol class="options-list"><li>সাইটোসিন</li><li>গুয়ানিন</li><li>অ্যাডেনিন</li><li>ইউরাসিল</li></ol><blockquote><strong>উত্তর: (D) ইউরাসিল।</strong><br><small><i>ব্যাখ্যা: RNA-তে থাইমিনের (T) পরিবর্তে ইউরাসিল (U) নামক পিরামিডিন ক্ষারক থাকে।</i></small></blockquote></li>
+            <li><p>নীচের কোনটি DNA-তে থাকে, কিন্তু RNA-তে পাওয়া যায় না?</p><ol class="options-list"><li>অ্যাডেনিন</li><li>গুয়ানিন</li><li>থাইমিন</li><li>ইউরাসিল</li></ol><blockquote><strong>উত্তর: (C) থাইমিন।</strong><br><small><i>ব্যাখ্যা: থাইমিন (T) শুধুমাত্র DNA-তে পাওয়া যায়।</i></small></blockquote></li>
+            <li><p>কোনটি পিউরিণ নয়?</p><ol class="options-list"><li>অ্যাডেনিন</li><li>গুয়ানিন</li><li>থাইমিন</li><li>সবগুলিই</li></ol><blockquote><strong>উত্তর: (C) থাইমিন।</strong><br><small><i>ব্যাখ্যা: থাইমিন একটি পিরামিডিন ক্ষারক।</i></small></blockquote></li>
+            <li><p>একজন অপরাধীকে চিহ্নিত করতে, ফরেনসিক বিভাগ এই কৌশলটি ব্যবহার করে যার নাম:</p><ol class="options-list"><li>ডিএনএ সম্পাদনা</li><li>ডিএনএ স্প্লাইসিং</li><li>DNA ফিঙ্গারপ্রিন্টিং</li><li>DNA প্রশিক্ষণ</li></ol><blockquote><strong>উত্তর: (C) DNA ফিঙ্গারপ্রিন্টিং।</strong><br><small><i>ব্যাখ্যা: DNA ফিঙ্গারপ্রিন্টিং হলো একটি কৌশল যা দ্বারা ব্যক্তির অনন্য DNA প্রোফাইল তৈরি করে তাকে শনাক্ত করা হয়।</i></small></blockquote></li>
+            <li><p>জেনেটিক ইঞ্জিনিয়ারিং এর অপর নাম কি?</p><ol class="options-list"><li>DNA ফিঙ্গারপ্রিন্টিং</li><li>ডিএনএ সম্পাদনা</li><li>রিকম্বিন্যান্ট ডিএনএ প্রযুক্তি</li><li>জেনেটিক চিকিৎসা</li></ol><blockquote><strong>উত্তর: (C) রিকম্বিন্যান্ট ডিএনএ প্রযুক্তি।</strong><br><small><i>ব্যাখ্যা: জেনেটিক ইঞ্জিনিয়ারিং সাধারণত রিকম্বিন্যান্ট ডিএনএ প্রযুক্তি (Recombinant DNA Technology) নামে পরিচিত।</i></small></blockquote></li>
+            <li><p>DNA-এর অ্যাডেনিন (A) ও গুয়ানিন (G) বেসকে একত্রে বলে-</p><ol class="options-list"><li>পিউরিণ</li><li>ক্রোমোজোম</li><li>টিউমার</li><li>পিরামিডিন</li></ol><blockquote><strong>উত্তর: (A) পিউরিণ।</strong><br><small><i>ব্যাখ্যা: DNA-এর নাইট্রোজেনঘটিত ক্ষারকগুলির মধ্যে অ্যাডেনিন (A) এবং গুয়ানিন (G) হলো পিউরিণ।</i></small></blockquote></li>
+            <li><p>শ্যাম বেরিবেরি রোগে ভুগছে। এর কারণ তার _____ এর অভাব রয়েছে।</p><ol class="options-list"><li>ভিটামিন A</li><li>ভিটামিন K</li><li>ভিটামিন B1</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (C) ভিটামিন B1।</strong><br><small><i>ব্যাখ্যা: বেরিবেরি রোগ ভিটামিন B1 (থায়ামিন)-এর অভাবে হয়।</i></small></blockquote></li>
+            <li><p>লেবুতে কোন ভিটামিন থাকে?</p><ol class="options-list"><li>ভিটামিন-D</li><li>ভিটামিন-C</li><li>ভিটামিন-K</li><li>ভিটামিন-E</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন-C।</strong><br><small><i>ব্যাখ্যা: লেবু ভিটামিন-C (অ্যাসকরবিক অ্যাসিড)-এর একটি চমৎকার উৎস।</i></small></blockquote></li>
+            <li><p>রাতকানা হয়?</p><ol class="options-list"><li>ভিটামিন-A-র অভাবে</li><li>ভিটামিন-K-র অভাবে</li><li>ভিটামিন-C-র অভাবে</li><li>ভিটামিন-D-র অভাবে</li></ol><blockquote><strong>উত্তর: (A) ভিটামিন-A-র অভাবে।</strong><br><small><i>ব্যাখ্যা: ভিটামিন-A (রেটিনল)-এর অভাবে রাতকানা (Night Blindness) রোগ হয়।</i></small></blockquote></li>
+            <li><p>যকৃতে সঞ্চয়িত হয় কোন ভিটামিন?</p><ol class="options-list"><li>ভিটামিন-A</li><li>ভিটামিন-D</li><li>ভিটামিন-B12</li><li>ভিটামিন-E</li></ol><blockquote><strong>উত্তর: (A) ভিটামিন-A।</strong><br><small><i>ব্যাখ্যা: যকৃত হলো ফ্যাট-দ্রবণীয় ভিটামিন (A, D, E, K)-এর প্রধান সঞ্চয়স্থল।</i></small></blockquote></li>
+            <li><p>ভিটামিন যা সাধারণত মানুষের প্রস্রাবের দ্বারা নির্গত হয়-</p><ol class="options-list"><li>ভিটামিন A</li><li>ভিটামিন D</li><li>ভিটামিন C</li><li>ভিটামিন A ও D</li></ol><blockquote><strong>উত্তর: (C) ভিটামিন C।</strong><br><small><i>ব্যাখ্যা: জল-দ্রবণীয় ভিটামিন (ভিটামিন C এবং B কমপ্লেক্স) শরীরে প্রয়োজনের অতিরিক্ত হলে মূত্রের মাধ্যমে নির্গত হয়ে যায়।</i></small></blockquote></li>
+            <li><p>কড লিভার তেল যে খাদ্যগুণে সমৃদ্ধ-</p><ol class="options-list"><li>ভিটামিন A এবং D</li><li>ভিটামিন A এবং C</li><li>ভিটামিন A এবং B</li><li>ভিটামিন A এবং E</li></ol><blockquote><strong>উত্তর: (A) ভিটামিন A এবং D।</strong><br><small><i>ব্যাখ্যা: কড লিভার তেল ভিটামিন A এবং ভিটামিন D উভয়েরই উৎকৃষ্ট উৎস।</i></small></blockquote></li>
+            <li><p>ভিটামিন সি হল -</p><ol class="options-list"><li>টোকোফেরল</li><li>সায়ানোকোবালঅ্যামিন</li><li>অ্যাসকরবিক অ্যাসিড</li><li>থায়ামিন</li></ol><blockquote><strong>উত্তর: (C) অ্যাসকরবিক অ্যাসিড।</strong><br><small><i>ব্যাখ্যা: ভিটামিন C-এর রাসায়নিক নাম হলো অ্যাসকরবিক অ্যাসিড (Ascorbic Acid)।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিন টি ফ্যাটে দ্রবীভূত হয়?</p><ol class="options-list"><li>Vit B</li><li>Vit D</li><li>Vit P</li><li>Vit C</li></ol><blockquote><strong>উত্তর: (B) Vit D।</strong><br><small><i>ব্যাখ্যা: ভিটামিন A, D, E, এবং K হলো ফ্যাট-দ্রবণীয় ভিটামিন।</i></small></blockquote></li>
+            <li><p>দুধে কোন খাদ্য উপাদানের অভাব থাকে?</p><ol class="options-list"><li>Fe এবং ভিটামিন C</li><li>Ca এবং ভিটামিন C</li><li>ভিটামিন A এবং Ca</li><li>ভিটামিন A এবং Fe</li></ol><blockquote><strong>উত্তর: (A) Fe এবং ভিটামিন C।</strong><br><small><i>ব্যাখ্যা: দুধে লোহা (Fe) এবং ভিটামিন C-এর পরিমাণ তুলনামূলকভাবে কম থাকে।</i></small></blockquote></li>
+            <li><p>মানব ত্বকে ভিটামিন D সংশ্লেষিত হয় কোন যৌগ থেকে?</p><ol class="options-list"><li>বিটা ক্যারোটিন</li><li>বিটা সায়ানিন</li><li>7-ডিহাইড্রোকোলেস্টেরল</li><li>ক্যালসিফেরল</li></ol><blockquote><strong>উত্তর: (C) 7-ডিহাইড্রোকোলেস্টেরল।</strong><br><small><i>ব্যাখ্যা: সূর্যের অতিবেগুনি রশ্মির প্রভাবে ত্বকের নিচে থাকা 7-ডিহাইড্রোকোলেস্টেরল থেকে ভিটামিন D সংশ্লেষিত হয়।</i></small></blockquote></li>
+            <li><p>জলে দ্রাব্য ভিটামিন কোনটি?</p><ol class="options-list"><li>ভিটামিন K</li><li>ভিটামিন D</li><li>ভিটামিন E</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (D) ভিটামিন C।</strong><br><small><i>ব্যাখ্যা: ভিটামিন C এবং B কমপ্লেক্স জলে দ্রবণীয়।</i></small></blockquote></li>
+            <li><p>ভিটামিন A এর প্রিভিটামিন হল-</p><ol class="options-list"><li>বিটা ক্যারোটিন</li><li>রেটিনল</li><li>ক্যালসিফেরল</li><li>পাইরিথিয়ামিন</li></ol><blockquote><strong>উত্তর: (A) বিটা ক্যারোটিন।</strong><br><small><i>ব্যাখ্যা: বিটা ক্যারোটিন শরীরে ভিটামিন A-তে রূপান্তরিত হয়।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিনের রাসায়নিক নাম 'টোকোফেরল'?</p><ol class="options-list"><li>B12</li><li>K</li><li>E</li><li>C</li></ol><blockquote><strong>উত্তর: (C) E।</strong><br><small><i>ব্যাখ্যা: ভিটামিন E-এর রাসায়নিক নাম হলো টোকোফেরল (Tocopherol)।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিনের রাসায়নিক নাম ক্যালসিফেরল?</p><ol class="options-list"><li>ভিটামিন A</li><li>ভিটামিন E</li><li>ভিটামিন K</li><li>ভিটামিন D</li></ol><blockquote><strong>উত্তর: (D) ভিটামিন D।</strong><br><small><i>ব্যাখ্যা: ভিটামিন D-এর রাসায়নিক নাম হলো ক্যালসিফেরল (Calciferol)।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিনের রাসায়নিক নাম প্যান্টোথেনিক অ্যাসিড?</p><ol class="options-list"><li>ভিটামিন B3 এর</li><li>ভিটামিন B2-এর</li><li>ভিটামিন B12-এর</li><li>ভিটামিন B5 এর</li></ol><blockquote><strong>উত্তর: (D) ভিটামিন B5 এর।</strong><br><small><i>ব্যাখ্যা: ভিটামিন B5-এর রাসায়নিক নাম হলো প্যান্টোথেনিক অ্যাসিড।</i></small></blockquote></li>
+            <li><p>Vitamin B-এর অভাবজনিত রোগটি হল-</p><ol class="options-list"><li>বেরিবেরি</li><li>রাতকানা রোগ</li><li>রিকেট</li><li>স্কার্ভি</li></ol><blockquote><strong>উত্তর: (A) বেরিবেরি।</strong><br><small><i>ব্যাখ্যা: ভিটামিন B1 (থায়ামিন)-এর অভাবে বেরিবেরি রোগ হয়।</i></small></blockquote></li>
+            <li><p>Vitamin-K এর প্রধান কাজ-</p><ol class="options-list"><li>রক্তে ফসফরাসের মাত্রা নিয়ন্ত্রণ</li><li>শর্করা পরিপাক</li><li>রক্ততঞ্চন</li><li>রোগ প্রতিরোধ</li></ol><blockquote><strong>উত্তর: (C) রক্ততঞ্চন।</strong><br><small><i>ব্যাখ্যা: ভিটামিন K-এর প্রধান কাজ হলো রক্ত জমাট বাঁধতে সাহায্য করা।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিন জরায়ুর মধ্যে ভ্রূণের বৃদ্ধিতে সাহায্য করে?</p><ol class="options-list"><li>ভিটামিন A</li><li>ভিটামিন E</li><li>ভিটামিন K</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন E।</strong><br><small><i>ব্যাখ্যা: ভিটামিন E প্রজনন স্বাস্থ্যের জন্য গুরুত্বপূর্ণ এবং গর্ভাবস্থায় ভ্রূণের সঠিক বৃদ্ধিতে সহায়তা করে।</i></small></blockquote></li>
+            <li><p>বায়োটিন নামক ভিটামিনটি আগে যে নামে পরিচিত ছিল, তা হল-</p><ol class="options-list"><li>ভিটামিন G</li><li>ভিটামিন H</li><li>ভিটামিন M</li><li>ভিটামিন K</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন H।</strong><br><small><i>ব্যাখ্যা: বায়োটিন (ভিটামিন B7)-কে আগে ভিটামিন H বলা হতো।</i></small></blockquote></li>
+            <li><p>অ্যাভিডিন হল একটি-</p><ol class="options-list"><li>অ্যান্টিভিটামিন</li><li>প্রোভিটামিন</li><li>সিউডোভিটামিন</li><li>ভিটামিন</li></ol><blockquote><strong>উত্তর: (A) অ্যান্টিভিটামিন।</strong><br><small><i>ব্যাখ্যা: অ্যাভিডিন কাঁচা ডিমের সাদা অংশে পাওয়া একটি প্রোটিন যা বায়োটিনের শোষণকে বাধা দেয়।</i></small></blockquote></li>
+            <li><p>অ্যান্টিহিমারেজিক ফ্যাক্টর হল-</p><ol class="options-list"><li>ভিটামিন C</li><li>ভিটামিন B</li><li>ভিটামিন K</li><li>ভিটামিন A</li></ol><blockquote><strong>উত্তর: (C) ভিটামিন K।</strong><br><small><i>ব্যাখ্যা: ভিটামিন K রক্তক্ষরণ প্রতিরোধ করে বলে একে অ্যান্টিহিমারেজিক ফ্যাক্টর বলা হয়।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিনের অভাবে পেলাগ্রা রোগ হয়?</p><ol class="options-list"><li>ভিটামিন B1</li><li>ভিটামিন B3</li><li>ভিটামিন B5</li><li>ভিটামিন B12</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন B3।</strong><br><small><i>ব্যাখ্যা: পেলাগ্রা রোগটি ভিটামিন B3 (নিয়াসিন)-এর অভাবে হয়।</i></small></blockquote></li>
+            <li><p>যে খনিজের অভাবে রক্তাল্পতা দেখা যায়, সেটি হল-</p><ol class="options-list"><li>ম্যাগনেসিয়াম</li><li>লোহ</li><li>ক্যালসিয়াম</li><li>ফসফরাস</li></ol><blockquote><strong>উত্তর: (B) লোহ।</strong><br><small><i>ব্যাখ্যা: লোহা (Iron) হিমোগ্লোবিন তৈরির জন্য অপরিহার্য। এর অভাবে রক্তাল্পতা (Anemia) দেখা যায়।</i></small></blockquote></li>
+            <li><p>যে খনিজের অভাবে রক্তক্ষরণ ব্যাহত হয়, সেটি হল-</p><ol class="options-list"><li>Ca</li><li>K</li><li>Mg</li><li>Na</li></ol><blockquote><strong>উত্তর: (A) Ca।</strong><br><small><i>ব্যাখ্যা: ক্যালসিয়াম (Ca) রক্ত জমাট বাঁধার প্রক্রিয়ায় একটি অপরিহার্য ফ্যাক্টর হিসেবে কাজ করে।</i></small></blockquote></li>
+            <li><p>ভিটামিন D তৈরি হয়-</p><ol class="options-list"><li>অ্যামিনো অ্যাসিড</li><li>আর্গোস্টেরল</li><li>ফ্যাটি অ্যাসিড</li><li>কোলেস্টেরল</li></ol><blockquote><strong>উত্তর: (B) আর্গোস্টেরল।</strong><br><small><i>ব্যাখ্যা: উদ্ভিদে আর্গোস্টেরল থেকে ভিটামিন D2 এবং প্রাণীদেহে 7-ডিহাইড্রোকোলেস্টেরল থেকে ভিটামিন D3 তৈরি হয়।</i></small></blockquote></li>
+            <li><p>দুধে কোন ভিটামিন বর্তমান?</p><ol class="options-list"><li>ভিটামিন A, C এবং D</li><li>ভিটামিন C, D এবং E</li><li>ভিটামিন C, K এবং D</li><li>ভিটামিন A, B এবং D</li></ol><blockquote><strong>উত্তর: (D) ভিটামিন A, B এবং D।</strong><br><small><i>ব্যাখ্যা: দুধে ভিটামিন A, D এবং B কমপ্লেক্স ভালো পরিমাণে থাকে, কিন্তু ভিটামিন C খুব কম থাকে।</i></small></blockquote></li>
+            <li><p>অস্টিওম্যালেশিয়া রোগ কোন ভিটামিনের অভাবে হয়?</p><ol class="options-list"><li>ভিটামিন-C</li><li>ভিটামিন-D</li><li>ভিটামিন-K</li><li>ভিটামিন-A</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন-D।</strong><br><small><i>ব্যাখ্যা: অস্টিওম্যালেশিয়া হলো প্রাপ্তবয়স্কদের রিকেট রোগ, যা ভিটামিন D-এর অভাবে হয়।</i></small></blockquote></li>
+            <li><p>পেলাগ্রা ও স্কার্ভি নিচের কোন জোড়া ভিটামিনের অভাবে সংঘটিত হয়?</p><ol class="options-list"><li>ভিটামিন C এবং ভিটামিন D</li><li>ভিটামিন B3 এবং ভিটামিন C</li><li>ভিটামিন D এবং ভিটামিন A</li><li>ভিটামিন A এবং ভিটামিন B12</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন B3 এবং ভিটামিন C।</strong><br><small><i>ব্যাখ্যা: পেলাগ্রা হয় ভিটামিন B3 (নিয়াসিন)-এর অভাবে এবং স্কার্ভি হয় ভিটামিন C-এর অভাবে।</i></small></blockquote></li>
+            <li><p>কোন খনিজের অভাবে রিকেট রোগ হয়?</p><ol class="options-list"><li>সোডিয়াম</li><li>ক্যালসিয়াম</li><li>পটাসিয়াম</li><li>ম্যাগনেসিয়াম</li></ol><blockquote><strong>উত্তর: (B) ক্যালসিয়াম।</strong><br><small><i>ব্যাখ্যা: রিকেট রোগ মূলত ভিটামিন D-এর অভাবে হলেও, ক্যালসিয়ামের অভাবও এর একটি অন্যতম কারণ।</i></small></blockquote></li>
+            <li><p>ভিটামিনের কাজ প্রতিহত করে যে জৈব অণু তা হল-</p><ol class="options-list"><li>সিউডোভিটামিন</li><li>অ্যান্টিভিটামিন</li><li>প্রোভিটামিন</li><li>সবকটি</li></ol><blockquote><strong>উত্তর: (B) অ্যান্টিভিটামিন।</strong><br><small><i>ব্যাখ্যা: অ্যান্টিভিটামিন হলো এমন যৌগ যা ভিটামিনের স্বাভাবিক কাজকে বাধা দেয় বা প্রতিহত করে।</i></small></blockquote></li>
+            <li><p>ভিটামিনের মতো একই রকম দেখতে যে জৈব অণু তা হল-</p><ol class="options-list"><li>সিউডোভিটামিন</li><li>অ্যান্টিভিটামিন</li><li>প্রোভিটামিন</li><li>সবকটি</li></ol><blockquote><strong>উত্তর: (A) সিউডোভিটামিন।</strong><br><small><i>ব্যাখ্যা: সিউডোভিটামিন হলো এমন যৌগ যার গঠন ভিটামিনের মতো হলেও জৈবিক কার্যকলাপ থাকে না।</i></small></blockquote></li>
+            <li><p>স্টোমাটাইটিস এবং চিলোসিস রোগ দেখা দেয় যে ভিটামিনের অভাবে তা হল-</p><ol class="options-list"><li>রেটিনল</li><li>থায়ামিন</li><li>রাইবোফ্ল্যাভিন</li><li>পাইরিডক্সিন</li></ol><blockquote><strong>উত্তর: (C) রাইবোফ্ল্যাভিন।</strong><br><small><i>ব্যাখ্যা: স্টোমাটাইটিস (মুখে ঘা) এবং চিলোসিস (ঠোঁটের কোণে ঘা) ভিটামিন B2 (রাইবোফ্ল্যাভিন)-এর অভাবের লক্ষণ।</i></small></blockquote></li>
+            <li><p>নীচের কোনটি অ্যান্টি ভিটামিন?</p><ol class="options-list"><li>সায়ানোকোবালামিন</li><li>আর্গোস্টেরল</li><li>অ্যাভিডিন</li><li>মিথাইল কোবালামিন</li></ol><blockquote><strong>উত্তর: (C) অ্যাভিডিন।</strong><br><small><i>ব্যাখ্যা: অ্যাভিডিন কাঁচা ডিমে থাকে এবং বায়োটিনের (ভিটামিন H) কার্যকারিতা নষ্ট করে।</i></small></blockquote></li>
+            <li><p>মিথাইলকোবালামিন এর ছদ্ম ভিটামিন হল-</p><ol class="options-list"><li>ভিটামিন B এর</li><li>ভিটামিন B2-এর</li><li>ভিটামিন B12-এর</li><li>ভিটামিন B5 এর</li></ol><blockquote><strong>উত্তর: (C) ভিটামিন B12-এর।</strong><br><small><i>ব্যাখ্যা: মিথাইলকোবালামিন ভিটামিন B12-এর একটি সক্রিয় রূপ। কিছু যৌগ এর মতো গঠনযুক্ত হলেও কাজ করে না।</i></small></blockquote></li>
+            <li><p>অ্যান্টিস্টেরিলিটি বা বন্ধ্যাত্ব প্রতিরোধী ভিটামিন কোনটি?</p><ol class="options-list"><li>ভিটামিন K</li><li>ভিটামিন D</li><li>ভিটামিন E</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (C) ভিটামিন E।</strong><br><small><i>ব্যাখ্যা: ভিটামিন E-কে অ্যান্টিস্টেরিলিটি বা বন্ধ্যাত্বরোধী ভিটামিন বলা হয়।</i></small></blockquote></li>
+            <li><p>মাছের যকৃতের তেল সমৃদ্ধ:</p><ol class="options-list"><li>ভিটামিন-A</li><li>ভিটামিন-A এবং ভিটামিন-D উভয়ই</li><li>ভিটামিন-E</li><li>ভিটামিন-D</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন-A এবং ভিটামিন-D উভয়ই।</strong><br><small><i>ব্যাখ্যা: মাছের যকৃতের তেল ভিটামিন A এবং D-এর একটি উৎকৃষ্ট উৎস।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিনটি মানুষের ত্বকে সংশ্লেষিত হয়?</p><ol class="options-list"><li>ভিটামিন E</li><li>ভিটামিন D</li><li>ভিটামিন K</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন D।</strong><br><small><i>ব্যাখ্যা: সূর্যের অতিবেগুনি রশ্মির প্রভাবে মানব ত্বকে ভিটামিন D সংশ্লেষিত হয়।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিনের রাসায়নিক নাম 'টোকোফেরল'?</p><ol class="options-list"><li>B12</li><li>K</li><li>E</li><li>C</li></ol><blockquote><strong>উত্তর: (C) E।</strong><br><small><i>ব্যাখ্যা: ভিটামিন E-এর রাসায়নিক নাম হলো টোকোফেরল।</i></small></blockquote></li>
+            <li><p>লেবুতে কোন ভিটামিন থাকে?</p><ol class="options-list"><li>ভিটামিন-D</li><li>ভিটামিন-C</li><li>ভিটামিন-K</li><li>ভিটামিন-E</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন-C।</strong><br><small><i>ব্যাখ্যা: লেবুতে প্রচুর পরিমাণে ভিটামিন C থাকে।</i></small></blockquote></li>
+            <li><p>ভিটামিন সি হল -</p><ol class="options-list"><li>টোকোফেরল</li><li>সায়ানোকোবালঅ্যামিন</li><li>অ্যাসকরবিক অ্যাসিড</li><li>থায়ামিন</li></ol><blockquote><strong>উত্তর: (C) অ্যাসকরবিক অ্যাসিড।</strong><br><small><i>ব্যাখ্যা: ভিটামিন C-এর রাসায়নিক নাম অ্যাসকরবিক অ্যাসিড।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিনের অভাবে মানুষের স্কার্ভি হয়?</p><ol class="options-list"><li>ভিটামিন A</li><li>ভিটামিন D</li><li>ভিটামিন E</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (D) ভিটামিন C।</strong><br><small><i>ব্যাখ্যা: স্কার্ভি রোগ ভিটামিন C-এর গুরুতর অভাবে হয়।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিন তাপে নষ্ট হয়?</p><ol class="options-list"><li>ভিটামিন-D</li><li>ভিটামিন-C</li><li>ভিটামিন-K</li><li>ভিটামিন-E</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন-C।</strong><br><small><i>ব্যাখ্যা: ভিটামিন C তাপ সংবেদনশীল, তাই রান্না করলে এটি সহজে নষ্ট হয়ে যায়।</i></small></blockquote></li>
+            <li><p>অ্যানিমিয়া কোন ভিটামিনের অভাবে হয়?</p><ol class="options-list"><li>ভিটামিন B1</li><li>ভিটামিন B3</li><li>ভিটামিন B5</li><li>ভিটামিন B12</li></ol><blockquote><strong>উত্তর: (D) ভিটামিন B12।</strong><br><small><i>ব্যাখ্যা: ভিটামিন B12-এর অভাবে পারনিসিয়াস অ্যানিমিয়া নামক রক্তাল্পতা দেখা দেয়।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিনের রাসায়নিক নাম প্যান্টোথেনিক অ্যাসিড?</p><ol class="options-list"><li>ভিটামিন B3 এর</li><li>ভিটামিন B2-এর</li><li>ভিটামিন B12-এর</li><li>ভিটামিন B5 এর</li></ol><blockquote><strong>উত্তর: (D) ভিটামিন B5 এর।</strong><br><small><i>ব্যাখ্যা: ভিটামিন B5-এর রাসায়নিক নাম প্যান্টোথেনিক অ্যাসিড।</i></small></blockquote></li>
+            <li><p>বেরিবেরির কারণ কী?</p><ol class="options-list"><li>ভিটামিন B3 এর আধিক্য</li><li>ভিটামিন B1 এর অভাব</li><li>ভিটামিন C এর আধিক্য</li><li>ভিটামিন C এর অভাব</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন B1 এর অভাব।</strong><br><small><i>ব্যাখ্যা: ভিটামিন B1 (থায়ামিন)-এর অভাবে বেরিবেরি রোগ হয়।</i></small></blockquote></li>
+            <li><p>দৈনিক মূত্র উৎপাদনের পরিমাণ কত?</p><ol class="options-list"><li>1 লিটার</li><li>1.5 লিটার</li><li>2 লিটার</li><li>2.5 লিটার</li></ol><blockquote><strong>উত্তর: (B) 1.5 লিটার।</strong><br><small><i>ব্যাখ্যা: একজন সুস্থ প্রাপ্তবয়স্ক ব্যক্তি দৈনিক গড়ে প্রায় 1.5 লিটার মূত্র উৎপাদন করে।</i></small></blockquote></li>
+            <li><p>নিরামিষাশীদের জন্য ভিটামিন ও খনিজের প্রধান উৎস হল-</p><ol class="options-list"><li>কালো ছোলা ও গম</li><li>চাল ও সরিষা</li><li>শাক সবজি ও ফলমূল</li><li>সয়াবিন ও দুধ</li></ol><blockquote><strong>উত্তর: (C) শাক সবজি ও ফলমূল।</strong><br><small><i>ব্যাখ্যা: নিরামিষাশীদের জন্য বিভিন্ন প্রকারের শাক-সবজি এবং ফলমূল হলো ভিটামিন ও খনিজগুলির প্রধান উৎস।</i></small></blockquote></li>
+        </ol>
+    </div>
+
+    <nav class="navigation">
+        <a href="class4.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button">4</a>
+        <a href="class5.html" class="nav-button active">5</a>
+        <a href="#" class="nav-button disabled">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const desktopModeToggle = document.getElementById('desktopModeToggle');
+            const body = document.body;
+            const viewportMeta = document.querySelector('meta[name="viewport"]');
+            
+            const mobileViewport = 'width=device-width, initial-scale=1.0';
+            const desktopViewport = 'width=1200, initial-scale=1.0';
+
+            function applyTheme(theme) {
+                body.dataset.theme = theme;
+                localStorage.setItem('selected_theme', theme);
+            }
+
+            function applyMode(mode) {
+                if (mode === 'dark') {
+                    body.classList.add('dark-mode');
+                    darkModeToggle.checked = true;
+                } else {
+                    body.classList.remove('dark-mode');
+                    darkModeToggle.checked = false;
+                }
+                localStorage.setItem('selected_mode', mode);
+            }
+            
+            function applyDesktopMode(isDesktop) {
+                if (isDesktop) {
+                    body.classList.add('desktop-view');
+                    viewportMeta.setAttribute('content', desktopViewport);
+                    desktopModeToggle.textContent = 'মোবাইল মোড';
+                } else {
+                    body.classList.remove('desktop-view');
+                    viewportMeta.setAttribute('content', mobileViewport);
+                    desktopModeToggle.textContent = 'ডেস্কটপ মোড';
+                }
+                localStorage.setItem('desktop_mode_enabled', isDesktop);
+            }
+
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            const savedDesktopMode = localStorage.getItem('desktop_mode_enabled') === 'true'; 
+            
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            applyDesktopMode(savedDesktopMode); 
+            
+            themeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    applyTheme(button.dataset.themeName);
+                });
+            });
+
+            darkModeToggle.addEventListener('change', () => {
+                applyMode(darkModeToggle.checked ? 'dark' : 'light');
+            });
+            
+            desktopModeToggle.addEventListener('click', () => {
+                const isCurrentlyDesktop = body.classList.contains('desktop-view');
+                applyDesktopMode(!isCurrentlyDesktop);
+            });
+
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            const clockElement = document.getElementById('digital-clock');
+            function updateClock() {
+                if(clockElement) {
+                    const now = new Date();
+                    const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' };
+                    clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+                }
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            const yearSpan = document.getElementById('copyright-year');
+            if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+        });
+    </script>
+</body>
+</html>

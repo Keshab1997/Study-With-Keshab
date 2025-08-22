@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>খাদ্য ও পুষ্টি | Study With Keshab</title>
+    
+    <!-- প্রধান CSS ফাইল -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- আইকন ব্যবহারের জন্য Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- চার্ট ব্যবহারের জন্য Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    
+    <!-- পেজ লোডিং এর সময় হাইড করার জন্য স্টাইল -->
+    <style>
+      body.auth-loading { visibility: hidden; opacity: 0; }
+    </style>
+</head>
+<body class="day-mode homepage theme-blue auth-loading">
+
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <header class="main-header">
+        <img src="images/logo.jpg" alt="লোগো" class="profile-pic" id="logo-easter-egg">
+        <div class="header-text">
+            <h1>অধ্যায়: খাদ্য ও পুষ্টি</h1>
+            <p>আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী</p>
+        </div>
+        <button id="dark-mode-toggle" class="dark-mode-button" title="দিন/রাত মোড পরিবর্তন করুন">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </header>
+    
+    <div class="search-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="search-bar" placeholder="যেকোনো সেকশন খুঁজুন...">
+    </div>
+
+    <nav class="nav-grid">
+        <a href="https://keshab1997.github.io/Study-With-Keshab/" class="nav-button color-home"><i class="fa-solid fa-house"></i><span>হোম</span></a>
+        <a href="#dashboard" class="nav-button color-dashboard"><i class="fa-solid fa-chart-line"></i><span>ড্যাশবোর্ড</span></a>
+        <a href="#class-notes" class="nav-button color-notes"><i class="fa-solid fa-book-open"></i><span>ক্লাস নোট</span></a>
+        <a href="#quiz-sets" class="nav-button color-quiz"><i class="fa-solid fa-file-circle-question"></i><span>কুইজ সেট</span></a>
+        <button id="formula-sheet-btn" class="nav-button color-formulas"><i class="fa-solid fa-square-root-variable"></i><span>গুরুত্বপূর্ণ তথ্য</span></button>
+        <a href="#result-section" class="nav-button color-result"><i class="fa-solid fa-square-poll-vertical"></i><span>রেজাল্ট</span></a>
+        <a href="#leaderboard" class="nav-button color-leaderboard"><i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span></a>
+    </nav>
+
+    <main>
+        <!-- === এই অধ্যায়ের নাম JavaScript এর জন্য সেট করা হয়েছে === -->
+        <script>
+            const CURRENT_CHAPTER_NAME = "Biology খাদ্য ও পুষ্টি";
+        </script>
+        
+        <!-- ইউজার প্রোফাইল কার্ড -->
+        <section class="card" id="user-profile-card">
+            <div class="profile-header">
+                <img id="user-profile-pic" src="images/default-avatar.png" alt="Profile Picture" class="profile-pic-large">
+                <div class="profile-info">
+                    <h2 id="user-display-name">লোড হচ্ছে...</h2>
+                    <p id="user-email">লোড হচ্ছে...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ড্যাশবোর্ড সেকশন -->
+        <section class="card" id="dashboard">
+             <h2><i class="fa-solid fa-chart-line icon-title"></i> আমার ড্যাশবোর্ড</h2>
+             <div class="dashboard-grid">
+                <div class="dashboard-item"><h3>অধ্যায়ের অগ্রগতি (কুইজ)</h3><div class="progress-bar-container"><div class="progress-bar" id="chapter-progress-bar" style="width: 0%;"></div></div><p id="chapter-progress-text">0% সম্পন্ন</p></div>
+                <div class="dashboard-item"><h3>সামগ্রিক পারফরম্যান্স</h3><canvas id="quiz-pie-chart"></canvas></div>
+                <div class="dashboard-item"><h3>দৈনিক চ্যালেঞ্জ</h3><div id="daily-challenge" class="challenge-box"><p id="challenge-text">আজকের চ্যালেঞ্জ লোড হচ্ছে...</p></div></div>
+                <div class="dashboard-item"><h3>আমার অ্যাচিভমেন্টস</h3><div class="achievements-container" id="achievements-container"></div></div>
+             </div>
+        </section>
+
+        <!-- নতুন PDF নোট সেকশন -->
+        <section class="card" id="pdf-notes">
+            <h2><i class="fa-solid fa-file-pdf icon-title"></i> PDF নোট</h2>
+            <p>অতিরিক্ত পড়ার জন্য PDF নোটগুলো ডাউনলোড করুন।</p>
+            <div class="link-container styled-list">
+                <a href="https://drive.google.com/file/d/1V5cm_Ijve6DQk9N6H_044FKb-2josrkM/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 1</a>
+                <a href="https://drive.google.com/file/d/1Vf1dOqCVl4dvIgu0-8jEwOCGwhCZ1xpC/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 2</a>
+                <a href="https://drive.google.com/file/d/1Vd7UCqwjvpptJeu-zfhGe2m7xgz9DlR6/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 3</a>
+                <a href="https://drive.google.com/file/d/1VZjzh1MVu0MExbAtI61yhdVq8461fNo7/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 4</a>
+                <a href="https://drive.google.com/file/d/1VZ_vLZ87utX31sHU4apMBRU575KfyN_M/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 5</a>
+                <a href="https://drive.google.com/file/d/1VGTcq33XucLyFd5Yyi5QMDgwyJONfBhc/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 6</a>
+                <a href="https://drive.google.com/file/d/1VEBRdrGd9OFQyFu5w9fUdKvGxMPRWnL_/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 7</a>
+                <a href="https://drive.google.com/file/d/1Vm8xCFbNCf99mBqX09J4LuxK0Z98DnGt/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 8</a>
+                <a href="https://drive.google.com/file/d/1VioYz2KdlMCBWdjjUffMzbphzttuR5h1/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 9</a>
+                <a href="https://drive.google.com/file/d/1VfzuqcIn2n33Cz_wXG37TA7B6zZdSpLs/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 10</a>
+            </div>
+        </section>
+
+        <!-- ক্লাস নোট সেকশন -->
+        <section class="card" id="class-notes">
+            <h2><i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট</h2>
+            <p>লেকচারের সাথে মিলিয়ে পড়ার জন্য ক্লাস নোটগুলো পড়ুন।</p>
+            <div class="link-container styled-list">
+                <a href="class/class1.html"><i class="fa-solid fa-utensils fa-fw"></i> খাদ্য ও পুষ্টি</a>
+                <a href="class/class2.html"><i class="fa-solid fa-dna fa-fw"></i> DNA এবং RNA</a>
+                <a href="class/class3.html"><i class="fa-solid fa-pills fa-fw"></i> খাদ্য, পুষ্টি ও ভিটামিন (সারসংক্ষেপ)</a>
+                <a href="class/class4.html"><i class="fa-solid fa-question-circle fa-fw"></i> মানুষের খাদ্য ও ভিটামিন (PYQ)</a>
+                <a href="class/class5.html"><i class="fa-solid fa-clipboard-question fa-fw"></i> DNA, RNA এবং ভিটামিন (PYQ)</a>
+            </div>
+        </section>
+        
+        <!-- কুইজ সেট সেকশন -->
+        <section class="card" id="quiz-sets">
+             <h2><i class="fa-solid fa-file-circle-question icon-title"></i> কুইজ সেট</h2>
+             <p>নিজের প্রস্তুতি যাচাই করার জন্য ইন্টারেক্টিভ কুইজগুলোতে অংশ নিন।</p>
+             <div class="link-container styled-list">
+                 <a href="quiz/Qset1.html"><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 1</a>
+                 <a href="quiz/Qset2.html"><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 2</a>
+                 <a href="quiz/Qset3.html"><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 3</a>
+                 <a href="quiz/Qset4.html"><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 4</a>
+                 <a href="quiz/Qset5.html"><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 5</a>
+                 <a href="quiz/Qset6.html"><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 6</a>
+                 <a href="quiz/Qset7.html"><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 7</a>
+             </div>
+        </section>
+
+        <!-- রিভিশন লেকচার সেকশন -->
+        <section class="card" id="revision-lectures">
+            <h2><i class="fa-solid fa-star icon-title"></i> রিভিশন লেকচার</h2>
+            <p>গুরুত্বপূর্ণ বিষয়গুলো দ্রুত ঝালিয়ে নেওয়ার জন্য বিশেষ রিভিশন পেজগুলো দেখুন।</p>
+            <div class="link-container styled-list">
+                <a href="revision_series/class1.html"><i class="fa-solid fa-book-reader fa-fw"></i> MCQ Practice (মানুষের খাদ্য ও ভিটামিন)</a>
+                <a href="revision_series/class2.html"><i class="fa-solid fa-book-reader fa-fw"></i> MCQ Practice (DNA, RNA এবং ভিটামিন)</a>
+            </div>
+        </section>
+
+        <!-- লিডারবোর্ড সেকশন -->
+        <section class="card" id="leaderboard">
+            <h2><i class="fa-solid fa-trophy icon-title"></i> লিডারবোর্ড</h2>
+            <p>এই অধ্যায়ের সর্বোচ্চ স্কোরারদের তালিকা।</p>
+            <div class="leaderboard-container">
+                <table>
+                    <thead><tr><th>#</th><th>নাম</th><th>মোট স্কোর</th><th>বিস্তারিত</th></tr></thead>
+                    <tbody id="leaderboard-body"><!-- JavaScript দ্বারা ডেটা লোড হবে --></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- রেজাল্ট সেকশন -->
+        <section class="card" id="result-section">
+            <h2><i class="fa-solid fa-square-poll-vertical icon-title"></i> আমার রেজাল্ট</h2>
+            <p>এই অধ্যায়ে আপনার প্রতিটি কুইজের পারফরম্যান্স দেখুন এবং বন্ধুদের সাথে শেয়ার করুন।</p>
+            <div id="result-card-container" class="result-grid">
+                <!-- JavaScript দ্বারা রেজাল্ট কার্ড তৈরি হবে -->
+            </div>
+            <div id="no-result-message" style="display: none; text-align: center; padding: 20px; background-color: #f9f9f9; border-radius: 8px; margin-top: 20px;">
+                <p style="font-size: 1.1em; margin-bottom: 15px;">আপনি এখনও এই অধ্যায়ের কোনো কুইজে অংশ নেননি।</p>
+                <a href="#quiz-sets" class="button-primary">এখনই কুইজ দিন!</a>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Modal -->
+    <div id="formula-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h2>🌟 গুরুত্বপূর্ণ তথ্য ও ধারণা (খাদ্য ও পুষ্টি)</h2>
+            <ul>
+                <li><strong>শক্তির উৎস (তাপন মূল্য):</strong> কার্বোহাইড্রেট (~4 kcal/g), প্রোটিন (~4.2 kcal/g), ফ্যাট (~9.3 kcal/g)।</li>
+                <li><strong>ভিটামিনের প্রকারভেদ:</strong>
+                    <ul>
+                        <li><strong>ফ্যাটে দ্রবণীয়:</strong> ভিটামিন A, D, E, K (যকৃতে সঞ্চিত হয়)।</li>
+                        <li><strong>জলে দ্রবণীয়:</strong> ভিটামিন B কমপ্লেক্স, ভিটামিন C (দেহে সঞ্চিত থাকে না)।</li>
+                    </ul>
+                </li>
+                <li><strong>অভাবজনিত রোগ:</strong>
+                    <ul>
+                        <li><strong>ভিটামিন A:</strong> রাতকানা, জেরফথ্যালমিয়া। (রাসায়নিক নাম: রেটিনল)</li>
+                        <li><strong>ভিটামিন B1:</strong> বেরিবেরি। (রাসায়নিক নাম: থায়ামিন)</li>
+                        <li><strong>ভিটামিন B3:</strong> পেলাগ্রা। (রাসায়নিক নাম: নিয়াসিন)</li>
+                        <li><strong>ভিটামিন B12:</strong> পারনিসিয়াস অ্যানিমিয়া। (রাসায়নিক নাম: সায়ানোকোবালামিন, কোবাল্ট থাকে)</li>
+                        <li><strong>ভিটামিন C:</strong> স্কার্ভি। (রাসায়নিক নাম: অ্যাসকরবিক অ্যাসিড)</li>
+                        <li><strong>ভিটামিন D:</strong> শিশুদের রিকেট, প্রাপ্তবয়স্কদের অস্টিওম্যালেশিয়া। (রাসায়নিক নাম: ক্যালসিফেরল)</li>
+                        <li><strong>ভিটামিন K:</strong> রক্ততঞ্চন ব্যাহত হয়। (রাসায়নিক নাম: ফাইলোকুইনোন)</li>
+                        <li><strong>আয়োডিন:</strong> গলগন্ড (Goitre)।</li>
+                        <li><strong>লোহা (Iron):</strong> রক্তাল্পতা (Anemia)।</li>
+                        <li><strong>প্রোটিন:</strong> কোয়াশিওরকর, ম্যারাসমাস।</li>
+                    </ul>
+                </li>
+                <li><strong>DNA ও RNA:</strong>
+                    <ul>
+                        <li><strong>DNA:</strong> ডিঅক্সিরাইবোনিউক্লিক অ্যাসিড, গঠনগত একক - নিউক্লিওটাইড, বেস - A, G, C, T।</li>
+                        <li><strong>RNA:</strong> রাইবোনিউক্লিক অ্যাসিড, বেস - A, G, C, U (থাইমিনের পরিবর্তে ইউরাসিল)।</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <a id="back-to-top" href="#"><i class="fas fa-arrow-up"></i></a>
+    
+    <footer>
+        <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <!-- Firebase এবং পেজ প্রটেকশন স্ক্রিপ্ট -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script>
+        (function() {
+            firebase.auth().onAuthStateChanged(user => {
+                if (!user) {
+                    window.location.href = 'https://keshab1997.github.io/Study-With-Keshab/login.html'; 
+                } else {
+                    document.body.classList.remove('auth-loading');
+                }
+            });
+        })();
+    </script>
+    
+    <script type="module" src="https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- প্রধান জাভাস্ক্রিপ্ট ফাইল -->
+    <script type="module" src="js/script.js"></script>
+    
+</body>
+</html>

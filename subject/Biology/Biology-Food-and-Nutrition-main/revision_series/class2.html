@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>MCQ Practice (DNA, RNA এবং ভিটামিন)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        /* --- Global Styles & Theming Variables --- */
+        :root {
+            --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60;
+            --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b;
+            --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd;
+            --blockquote-border: #2196f3; --nav-button-bg: #fff;
+            --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1);
+            --correct-bg: #2ecc71; --incorrect-bg: #e74c3c;
+        }
+        [data-theme="forest"] {
+            --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; 
+            --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; 
+            --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60;
+        }
+        [data-theme="ocean"] {
+            --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; 
+            --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; 
+            --blockquote-bg: #e4f1fe; --blockquote-border: #3498db;
+        }
+        [data-theme="sunset"] {
+            --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; 
+            --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; 
+            --blockquote-bg: #fff8e1; --blockquote-border: #f57c00;
+        }
+        .dark-mode {
+            --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; 
+            --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; 
+            --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; 
+            --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; 
+            --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f;
+        }
+
+        /* --- Base Layout & Typography --- */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s, max-width 0.4s ease-in-out; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        
+        /* --- Desktop Mode Styling --- */
+        body.desktop-view .container,
+        body.desktop-view header,
+        body.desktop-view .controls-wrapper {
+            max-width: 1200px;
+        }
+
+        /* --- Header, Footer, Navigation --- */
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; transition: max-width 0.4s ease-in-out; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 20px; border-radius: 8px; border: 1px solid transparent; text-decoration: none; font-size: 1rem; font-weight: 600; transition: all 0.3s ease; cursor: pointer; }
+        .nav-button i { font-size: 1.2em; }
+        .nav-button.color-home { background-color: #3498db; color: #ffffff; box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); }
+        .nav-button.color-home:hover { background-color: #2980b9; transform: translateY(-3px); box-shadow: 0 6px 15px rgba(41, 128, 185, 0.4); }
+        .nav-button.color-home:active { transform: translateY(0); box-shadow: 0 2px 5px rgba(41, 128, 185, 0.3); }
+
+        /* --- Controls (Theme, Dark Mode, Set Selector) --- */
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; transition: max-width 0.4s ease-in-out; }
+        .theme-buttons button, #desktopModeToggle { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+        /* --- MCQ Specific Styles --- */
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question { margin-bottom: 40px; padding: 20px; border-radius: 10px; border: 2px solid transparent; transition: box-shadow 0.3s, border-color 0.3s; }
+        .mcq-question.active-question { border-color: var(--accent-color); box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5); }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        
+        /* --- Utility Styles --- */
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+    </style>
+	<!-- আইকন ব্যবহারের জন্য Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="..\images\logo.jpg" alt="Logo" class="logo">
+        <h1>DNA, RNA এবং ভিটামিন</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন ৬৬-৯০)</option>
+                <option value="2">Set 2 (প্রশ্ন ৯১-১১৫)</option>
+                <option value="3">Set 3 (প্রশ্ন ১১৬-১৪০)</option>
+            </select>
+        </div>
+        <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>বিগত বছরের পরীক্ষার প্রশ্নাবলী</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="../index.html" class="nav-button color-home">
+            <i class="fa-solid fa-house"></i>
+            <span>হোম</span>
+        </a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- AUDIO SETUP ---
+            const correctSound = new Audio('../sounds/correct.mp3');
+            const wrongSound = new Audio('../sounds/wrong.mp3');
+
+            // --- THEME, MODE, DESKTOP & SCROLL BUTTON LOGIC ---
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const desktopModeToggle = document.getElementById('desktopModeToggle');
+            const body = document.body;
+            const viewportMeta = document.querySelector('meta[name="viewport"]');
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            const mobileViewport = 'width=device-width, initial-scale=1.0';
+            const desktopViewport = 'width=1200, initial-scale=1.0';
+
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) {
+                if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+                else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+                localStorage.setItem('selected_mode', mode);
+            }
+            function applyDesktopMode(isDesktop) {
+                if (isDesktop) {
+                    body.classList.add('desktop-view');
+                    viewportMeta.setAttribute('content', desktopViewport);
+                    desktopModeToggle.textContent = 'মোবাইল মোড';
+                } else {
+                    body.classList.remove('desktop-view');
+                    viewportMeta.setAttribute('content', mobileViewport);
+                    desktopModeToggle.textContent = 'ডেস্কটপ মোড';
+                }
+                localStorage.setItem('desktop_mode_enabled', isDesktop);
+            }
+            
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            const savedDesktopMode = localStorage.getItem('desktop_mode_enabled') === 'true';
+
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            applyDesktopMode(savedDesktopMode);
+            
+            themeButtons.forEach(button => { button.addEventListener('click', () => applyTheme(button.dataset.themeName)); });
+            darkModeToggle.addEventListener('change', () => applyMode(darkModeToggle.checked ? 'dark' : 'light'));
+            desktopModeToggle.addEventListener('click', () => {
+                const isCurrentlyDesktop = body.classList.contains('desktop-view');
+                applyDesktopMode(!isCurrentlyDesktop);
+            });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+                scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+                scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+            });
+            scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            scrollToBottomBtn.addEventListener('click', () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+            // --- INTERACTIVE MCQ LOGIC ---
+            const mcqData = [
+                // Set 1: Questions 66-90 (25 questions)
+                { q: "ডিএনএ - এর সম্পূর্ণ নাম লেখ-", o: ["ডি অক্সিরাইবো নিউক্লিক অ্যাসিড", "ডি অক্সিডাস নিউক্লিক অ্যাসিড", "ডি অক্সিড নিউক্লিক অ্যাসিড", "ডি অক্সিন নিউরো অ্যাসিড"], a: 0, ex: "DNA এর পূর্ণরূপ হলো Deoxyribonucleic Acid। এটি জীবনের জেনেটিক নির্দেশাবলী বহনকারী একটি গুরুত্বপূর্ণ অণু।" },
+                { q: "আর এন এ (RNA) এর সম্পূর্ণরূপ টি হল-", o: ["রাইবোজোম নিউরো অ্যাসিড", "রাইবো নিউক্লিক অ্যাসিড", "রাইবো নিউরো অ্যাসিড", "রাইবো নিউক্লিয়াস অ্যাসিড"], a: 1, ex: "RNA এর পূর্ণরূপ হলো Ribonucleic Acid। এটি প্রোটিন সংশ্লেষণ এবং জিন এক্সপ্রেশনে গুরুত্বপূর্ণ ভূমিকা পালন করে।" },
+                { q: "DNA ও RNA -এর গঠনগত একক হল-", o: ["নিউক্লিওজোম", "নিউক্লিওটাইড", "নিউক্লিওলাস", "নিউক্লিওসাইড"], a: 1, ex: "DNA এবং RNA উভয়ই নিউক্লিওটাইড নামক একক অণু দিয়ে গঠিত। প্রতিটি নিউক্লিওটাইডে একটি ফসফেট গ্রুপ, একটি পেন্টোজ শর্করা এবং একটি নাইট্রোজেনঘটিত ক্ষারক থাকে।" },
+                { q: "RNA-তে শর্করা থাকে -", o: ["রাইবোজ", "কিটোনবডি", "থাইরয়েড", "আয়োডিন"], a: 0, ex: "RNA অণুতে যে শর্করাটি থাকে তার নাম রাইবোজ (Ribose)। অন্যদিকে, DNA অণুতে থাকে ডিঅক্সিরাইবোজ (Deoxyribose) শর্করা।" },
+                { q: "প্রতিটি রাইবোনিউক্লিক ও ডিঅক্সিরাইবোনিউক্লিক অ্যাসিড অণু যে উপাদানটি দ্বারা তৈরি, তা হল-", o: ["ফসফেট", "N₂ ক্ষারক", "নিউক্লিওসাইড", "নিউক্লিওটাইড"], a: 3, ex: "প্রতিটি RNA এবং DNA অণু অসংখ্য নিউক্লিওটাইড দিয়ে গঠিত। একটি নিউক্লিওটাইড একটি ফসফেট, একটি শর্করা এবং একটি নাইট্রোজেনঘটিত ক্ষারকের সমন্বয়ে গঠিত।" },
+                { q: "বংশগতির ধারক ও বাহক হল-", o: ["মেসোজোম", "পলিজোম", "নিউক্লিয়াস → ক্রোমোজোম → DNA → জিন", "রাইবোজোম"], a: 2, ex: "বংশগতির ধারক ও বাহক হলো DNA, যা জিনের সমন্বয়ে গঠিত। জিনগুলি ক্রোমোজোমের উপর থাকে এবং ক্রোমোজোম কোষের নিউক্লিয়াসের মধ্যে অবস্থিত।" },
+                { q: "ক্রোমোজোমে DNA-এর মাত্রা হল-", o: ["40%", "90%", "33.3%", "100%"], a: 0, ex: "ক্রোমোজোমের প্রধান উপাদান হলো DNA এবং প্রোটিন (মূলত হিস্টোন প্রোটিন)। সাধারণত, একটি ক্রোমোজোমে প্রায় 40% DNA এবং 60% প্রোটিন থাকে।" },
+                { q: "প্রতিটি ক্রোমোজোমে DNA অণু থাকে-", o: ["একটি", "চারটি", "দুটি", "পাঁচটি"], a: 0, ex: "সাধারণভাবে একটি ক্রোমোজোমকে একটি দীর্ঘ DNA অণু দ্বারা গঠিত ধরা হয়। প্রতিলিপিকরণের পর এটি দুটি সিস্টার ক্রোমাটিড গঠন করে, প্রতিটিতে একটি DNA অণু থাকে।" },
+                { q: "DNA-এর যে নির্দিষ্ট অংশ নির্দিষ্ট প্রোটিন সংশ্লেষের সংকেত বহন করে সেটি হল-", o: ["জিন", "কোষচক্র", "পিউরিণ", "গোঁফ খাজ"], a: 0, ex: "জিন হলো DNA-এর একটি নির্দিষ্ট অংশ যা একটি নির্দিষ্ট প্রোটিন বা RNA অণু সংশ্লেষণের জন্য প্রয়োজনীয় তথ্য বহন করে।" },
+                { q: "DNA সংশ্লেষিত হয়-", o: ["প্রোফেজ", "মেটাফেজ", "ইন্টারফেজের 'S' দশা", "টেলোফেজ দশায়"], a: 2, ex: "কোষচক্রের ইন্টারফেজ দশার 'S' (Synthesis) পর্যায়ে DNA প্রতিলিপিকরণ বা সংশ্লেষণ ঘটে। এই দশাতেই DNA-এর পরিমাণ দ্বিগুণ হয়।" },
+                { q: "DNA-এর যে নির্দিষ্ট অংশ নির্দিষ্ট প্রোটিন সংশ্লেষে সাহায্য করে, তাকে কী বলে?", o: ["মেটাফেজ", "ইন্টারফেজের 'S' দশা", "টেলোফেজ দশা", "জিন"], a: 3, ex: "জিন হলো DNA-এর সেই অংশ যা নির্দিষ্ট প্রোটিন সংশ্লেষণের জন্য প্রয়োজনীয় নির্দেশাবলী বা সংকেত ধারণ করে।" },
+                { q: "DNA-তে যে নাইট্রোজেন বেস অনুপস্থিত তা হল-", o: ["ইউরাসিল", "অ্যাডিনাইন", "থাইমিন", "সাইটোসিন"], a: 0, ex: "DNA-এর চারটি নাইট্রোজেনঘটিত ক্ষারক হলো অ্যাডেনিন (A), গুয়ানিন (G), সাইটোসিন (C) এবং থাইমিন (T)। ইউরাসিল (U) শুধুমাত্র RNA-তে পাওয়া যায়।" },
+                { q: "DNA-র পিরামিডিন বেসগুলি হল-", o: ["অ্যাডেনিন ও গুয়ানিন", "থাইমিন ও অ্যাডেনিন", "সাইটোসিন ও গুয়ানিন", "থাইমিন ও সাইটোসিন"], a: 3, ex: "DNA-এর পিরামিডিন ক্ষারকগুলি হলো থাইমিন (T) এবং সাইটোসিন (C)। অ্যাডেনিন ও গুয়ানিন হলো পিউরিন।" },
+                { q: "DNA পর্যবেক্ষণ প্রক্রিয়া (গঠন) আবিষ্কার করেন-", o: ["এ. এইচ. জি. খোরানা", "ওয়াটসন এবং ক্রিক", "ফ্রেডরিক স্যাঙ্গার", "ই. এম. সাউদার্ন"], a: 1, ex: "জেমস ওয়াটসন এবং ফ্রান্সিস ক্রিক ১৯৫৩ সালে DNA-এর দ্বি-হেলিক্স (Double Helix) কাঠামো আবিষ্কার করেন।" },
+                { q: "অ্যাডেনিন ও থাইমিন _______ হাইড্রোজেন বন্ড দিয়ে এবং গুয়ানিন ও সাইটোসিন _______ হাইড্রোজেন বন্ড দিয়ে সংযুক্ত থাকে।", o: ["২ টি ও ৩ টি", "৪ টি ও ২ টি", "৫ টি ও ১ টি", "৩ টি ও ৪ টি"], a: 0, ex: "DNA অণুতে, অ্যাডেনিন (A) এবং থাইমিন (T) দুটি হাইড্রোজেন বন্ধন দ্বারা এবং গুয়ানিন (G) এবং সাইটোসিন (C) তিনটি হাইড্রোজেন বন্ধন দ্বারা সংযুক্ত থাকে।" },
+                { q: "DNA-এর একটি প্যাঁচের মাপ-", o: ["34Å", "3.4Å", "24Å", "44Å"], a: 0, ex: "DNA-এর দ্বি-হেলিক্স কাঠামোর একটি সম্পূর্ণ প্যাঁচের দৈর্ঘ্য হলো 34 অ্যাংস্ট্রম (Å)। দুটি সংলগ্ন ক্ষারক জোড়ার মধ্যবর্তী দূরত্ব 3.4Å।" },
+                { q: "DNA অণুর গুয়ানিনের পরিপূরক ক্ষার মূলকটি হল-", o: ["অ্যাডেনিন (A)", "সাইটোসিন (C)", "থাইমিন (T)", "ইউরাসিল (U)"], a: 1, ex: "DNA অণুতে ক্ষারক-জোড় নীতি অনুযায়ী, গুয়ানিন (G) সবসময় সাইটোসিন (C) এর সাথে তিনটি হাইড্রোজেন বন্ধন দ্বারা যুক্ত থাকে।" },
+                { q: "পিউরিণ-জাতীয় নাইট্রোজেনযুক্ত ক্ষারটি হল-", o: ["অ্যাডেনিন", "সাইটোসিন", "থাইমিন", "ইউরাসিল"], a: 0, ex: "পিউরিণ-জাতীয় নাইট্রোজেনযুক্ত ক্ষারকগুলি হলো অ্যাডেনিন (A) এবং গুয়ানিন (G)।" },
+                { q: "পিরামিডিন-জাতীয় নাইট্রোজেনযুক্ত ক্ষার নয়-", o: ["থাইমিন", "সাইটোসিন", "ইউরাসিল", "গুয়ানিন"], a: 3, ex: "থাইমিন, সাইটোসিন এবং ইউরাসিল হলো পিরামিডিন-জাতীয় ক্ষারক। গুয়ানিন একটি পিউরিণ-জাতীয় ক্ষারক।" },
+                { q: "RNA-তে থাইমিনের বদলে যে ক্ষারটি থাকে তা হল-", o: ["সাইটোসিন", "গুয়ানিন", "অ্যাডেনিন", "ইউরাসিল"], a: 3, ex: "RNA-তে থাইমিনের (T) পরিবর্তে ইউরাসিল (U) নামক পিরামিডিন ক্ষারক থাকে।" },
+                { q: "নীচের কোনটি DNA-তে থাকে, কিন্তু RNA-তে পাওয়া যায় না?", o: ["অ্যাডেনিন", "গুয়ানিন", "থাইমিন", "ইউরাসিল"], a: 2, ex: "থাইমিন (T) শুধুমাত্র DNA-তে পাওয়া যায়। RNA-তে এর পরিবর্তে ইউরাসিল (U) থাকে।" },
+                { q: "কোনটি পিউরিণ নয়?", o: ["অ্যাডেনিন", "গুয়ানিন", "থাইমিন", "সবগুলিই"], a: 2, ex: "অ্যাডেনিন এবং গুয়ানিন হলো পিউরিণ ক্ষারক। থাইমিন একটি পিরামিডিন ক্ষারক।" },
+                { q: "একজন অপরাধীকে চিহ্নিত করতে, ফরেনসিক বিভাগ এই কৌশলটি ব্যবহার করে যার নাম:", o: ["ডিএনএ সম্পাদনা", "ডিএনএ স্প্লাইসিং", "DNA ফিঙ্গারপ্রিন্টিং", "DNA প্রশিক্ষণ"], a: 2, ex: "DNA ফিঙ্গারপ্রিন্টিং হলো একটি কৌশল যা দ্বারা ব্যক্তির অনন্য DNA প্রোফাইল তৈরি করে তাকে শনাক্ত করা হয়।" },
+                { q: "জেনেটিক ইঞ্জিনিয়ারিং এর অপর নাম কি?", o: ["DNA ফিঙ্গারপ্রিন্টিং", "ডিএনএ সম্পাদনা", "রিকম্বিন্যান্ট ডিএনএ প্রযুক্তি", "জেনেটিক চিকিৎসা"], a: 2, ex: "জেনেটিক ইঞ্জিনিয়ারিং সাধারণত রিকম্বিন্যান্ট ডিএনএ প্রযুক্তি (Recombinant DNA Technology) নামে পরিচিত।" },
+                { q: "DNA-এর অ্যাডেনিন (A) ও গুয়ানিন (G) বেসকে একত্রে বলে-", o: ["পিউরিণ", "ক্রোমোজোম", "টিউমার", "পিরামিডিন"], a: 0, ex: "DNA-এর নাইট্রোজেনঘটিত ক্ষারকগুলির মধ্যে অ্যাডেনিন (A) এবং গুয়ানিন (G) হলো দ্বি-চাক্রিক গঠনযুক্ত পিউরিণ।" },
+
+                // Set 2: Questions 91-115 (25 questions)
+                { q: "শ্যাম বেরিবেরি রোগে ভুগছে। এর কারণ তার _____ এর অভাব রয়েছে।", o: ["ভিটামিন A", "ভিটামিন K", "ভিটামিন B1", "ভিটামিন C"], a: 2, ex: "বেরিবেরি রোগ ভিটামিন B1 (থায়ামিন)-এর অভাবে হয়।" },
+                { q: "লেবুতে কোন ভিটামিন থাকে?", o: ["ভিটামিন-D", "ভিটামিন-C", "ভিটামিন-K", "ভিটামিন-E"], a: 1, ex: "লেবু এবং অন্যান্য সাইট্রাস ফল ভিটামিন-C (অ্যাসকরবিক অ্যাসিড)-এর একটি চমৎকার উৎস।" },
+                { q: "রাতকানা হয়?", o: ["ভিটামিন-A-র অভাবে", "ভিটামিন-K-র অভাবে", "ভিটামিন-C-র অভাবে", "ভিটামিন-D-র অভাবে"], a: 0, ex: "ভিটামিন-A (রেটিনল)-এর অভাবে রাতকানা (Night Blindness) রোগ হয়।" },
+                { q: "যকৃতে সঞ্চয়িত হয় কোন ভিটামিন?", o: ["ভিটামিন-A", "ভিটামিন-D", "ভিটামিন-B12", "ভিটামিন-E"], a: 0, ex: "যকৃত হলো ফ্যাট-দ্রবণীয় ভিটামিন (A, D, E, K)-এর প্রধান সঞ্চয়স্থল। ভিটামিন A দীর্ঘ সময় ধরে যকৃতে সঞ্চিত থাকে।" },
+                { q: "ভিটামিন যা সাধারণত মানুষের প্রস্রাবের দ্বারা নির্গত হয়-", o: ["ভিটামিন A", "ভিটামিন D", "ভিটামিন C", "ভিটামিন A ও D"], a: 2, ex: "জল-দ্রবণীয় ভিটামিন (ভিটামিন C এবং B কমপ্লেক্স) শরীরে প্রয়োজনের অতিরিক্ত হলে মূত্রের মাধ্যমে নির্গত হয়ে যায়।" },
+                { q: "কড লিভার তেল যে খাদ্যগুণে সমৃদ্ধ-", o: ["ভিটামিন A এবং D", "ভিটামিন A এবং C", "ভিটামিন A এবং B", "ভিটামিন A এবং E"], a: 0, ex: "কড লিভার তেল ভিটামিন A এবং ভিটামিন D উভয়েরই উৎকৃষ্ট উৎস।" },
+                { q: "ভিটামিন সি হল -", o: ["টোকোফেরল", "সায়ানোকোবালঅ্যামিন", "অ্যাসকরবিক অ্যাসিড", "থায়ামিন"], a: 2, ex: "ভিটামিন C-এর রাসায়নিক নাম হলো অ্যাসকরবিক অ্যাসিড (Ascorbic Acid)।" },
+                { q: "কোন ভিটামিন টি ফ্যাটে দ্রবীভূত হয়?", o: ["Vit B", "Vit D", "Vit P", "Vit C"], a: 1, ex: "ভিটামিন A, D, E, এবং K হলো ফ্যাট-দ্রবণীয় ভিটামিন। ভিটামিন B কমপ্লেক্স এবং C জল-দ্রবণীয়।" },
+                { q: "দুধে কোন খাদ্য উপাদানের অভাব থাকে?", o: ["Fe এবং ভিটামিন C", "Ca এবং ভিটামিন C", "ভিটামিন A এবং Ca", "ভিটামিন A এবং Fe"], a: 0, ex: "দুধে লোহা (Fe) এবং ভিটামিন C-এর পরিমাণ তুলনামূলকভাবে কম থাকে।" },
+                { q: "মানব ত্বকে ভিটামিন D সংশ্লেষিত হয় কোন যৌগ থেকে?", o: ["বিটা ক্যারোটিন", "বিটা সায়ানিন", "7-ডিহাইড্রোকোলেস্টেরল", "ক্যালসিফেরল"], a: 2, ex: "সূর্যের অতিবেগুনি রশ্মির প্রভাবে ত্বকের নিচে থাকা 7-ডিহাইড্রোকোলেস্টেরল থেকে ভিটামিন D সংশ্লেষিত হয়।" },
+                { q: "জলে দ্রাব্য ভিটামিন কোনটি?", o: ["ভিটামিন K", "ভিটামিন D", "ভিটামিন E", "ভিটামিন C"], a: 3, ex: "ভিটামিন C এবং B কমপ্লেক্স জলে দ্রবণীয়।" },
+                { q: "ভিটামিন A এর প্রিভিটামিন হল-", o: ["বিটা ক্যারোটিন", "রেটিনল", "ক্যালসিফেরল", "পাইরিথিয়ামিন"], a: 0, ex: "বিটা ক্যারোটিন হলো ভিটামিন A-এর একটি প্রোভিটামিন বা প্রিভিটামিন। এটি উদ্ভিদ থেকে পাওয়া যায় এবং শরীরে ভিটামিন A-তে রূপান্তরিত হয়।" },
+                { q: "কোন ভিটামিনের রাসায়নিক নাম 'টোকোফেরল'?", o: ["B12", "K", "E", "C"], a: 2, ex: "ভিটামিন E-এর রাসায়নিক নাম হলো টোকোফেরল (Tocopherol)।" },
+                { q: "কোন ভিটামিনের রাসায়নিক নাম ক্যালসিফেরল?", o: ["ভিটামিন A", "ভিটামিন E", "ভিটামিন K", "ভিটামিন D"], a: 3, ex: "ভিটামিন D-এর রাসায়নিক নাম হলো ক্যালসিফেরল (Calciferol)।" },
+                { q: "কোন ভিটামিনের রাসায়নিক নাম প্যান্টোথেনিক অ্যাসিড?", o: ["ভিটামিন B3 এর", "ভিটামিন B2-এর", "ভিটামিন B12-এর", "ভিটামিন B5 এর"], a: 3, ex: "ভিটামিন B5-এর রাসায়নিক নাম হলো প্যান্টোথেনিক অ্যাসিড (Pantothenic Acid)।" },
+                { q: "Vitamin B-এর অভাবজনিত রোগটি হল-", o: ["বেরিবেরি", "রাতকানা রোগ", "রিকেট", "স্কার্ভি"], a: 0, ex: "ভিটামিন B1 (থায়ামিন)-এর অভাবে বেরিবেরি রোগ হয়। প্রশ্নটি সাধারণভাবে 'Vitamin B' বললেও, বেরিবেরি নির্দিষ্টভাবে B1-এর অভাবে হয়।" },
+                { q: "Vitamin-K এর প্রধান কাজ-", o: ["রক্তে ফসফরাসের মাত্রা নিয়ন্ত্রণ", "শর্করা পরিপাক", "রক্ততঞ্চন", "রোগ প্রতিরোধ"], a: 2, ex: "ভিটামিন K-এর প্রধান কাজ হলো রক্ত জমাট বাঁধতে (blood clotting বা রক্ততঞ্চন) সাহায্য করা।" },
+                { q: "কোন ভিটামিন জরায়ুর মধ্যে ভ্রূণের বৃদ্ধিতে সাহায্য করে?", o: ["ভিটামিন A", "ভিটামিন E", "ভিটামিন K", "ভিটামিন C"], a: 1, ex: "ভিটামিন E প্রজনন স্বাস্থ্যের জন্য গুরুত্বপূর্ণ এবং গর্ভাবস্থায় ভ্রূণের সঠিক বৃদ্ধিতে সহায়তা করে।" },
+                { q: "বায়োটিন নামক ভিটামিনটি আগে যে নামে পরিচিত ছিল, তা হল-", o: ["ভিটামিন G", "ভিটামিন H", "ভিটামিন M", "ভিটামিন K"], a: 1, ex: "বায়োটিন (ভিটামিন B7)-কে আগে ভিটামিন H বলা হতো।" },
+                { q: "অ্যাভিডিন হল একটি-", o: ["অ্যান্টিভিটামিন", "প্রোভিটামিন", "সিউডোভিটামিন", "ভিটামিন"], a: 0, ex: "অ্যাভিডিন কাঁচা ডিমের সাদা অংশে পাওয়া একটি প্রোটিন যা বায়োটিনের (ভিটামিন H) শোষণকে বাধা দেয়, তাই এটি একটি অ্যান্টিভিটামিন।" },
+                { q: "অ্যান্টিহিমারেজিক ফ্যাক্টর হল-", o: ["ভিটামিন C", "ভিটামিন B", "ভিটামিন K", "ভিটামিন A"], a: 2, ex: "ভিটামিন K রক্তক্ষরণ প্রতিরোধ করে বলে একে অ্যান্টিহিমারেজিক ফ্যাক্টর (Antihemorrhagic factor) বলা হয়।" },
+                { q: "কোন ভিটামিনের অভাবে পেলাগ্রা রোগ হয়?", o: ["ভিটামিন B1", "ভিটামিন B3", "ভিটামিন B5", "ভিটামিন B12"], a: 1, ex: "পেলাগ্রা রোগটি ভিটামিন B3 (নিয়াসিন)-এর অভাবে হয়।" },
+                { q: "যে খনিজের অভাবে রক্তাল্পতা দেখা যায়, সেটি হল-", o: ["ম্যাগনেসিয়াম", "লোহ", "ক্যালসিয়াম", "ফসফরাস"], a: 1, ex: "লোহা (Iron) হিমোগ্লোবিন তৈরির জন্য অপরিহার্য। এর অভাবে রক্তাল্পতা (Anemia) দেখা যায়।" },
+                { q: "যে খনিজের অভাবে রক্তক্ষরণ ব্যাহত হয়, সেটি হল-", o: ["Ca", "K", "Mg", "Na"], a: 0, ex: "ক্যালসিয়াম (Ca) রক্ত জমাট বাঁধার প্রক্রিয়ায় একটি অপরিহার্য ফ্যাক্টর হিসেবে কাজ করে।" },
+                { q: "ভিটামিন D তৈরি হয়-", o: ["অ্যামিনো অ্যাসিড", "আর্গোস্টেরল", "ফ্যাটি অ্যাসিড", "কোলেস্টেরল"], a: 1, ex: "উদ্ভিদে আর্গোস্টেরল থেকে ভিটামিন D2 এবং প্রাণীদেহে 7-ডিহাইড্রোকোলেস্টেরল থেকে ভিটামিন D3 তৈরি হয়। প্রদত্ত অপশনগুলির মধ্যে আর্গোস্টেরল একটি সঠিক উৎস।" },
+                
+                // Set 3: Questions 116-140 (25 questions)
+                { q: "দুধে কোন ভিটামিন বর্তমান?", o: ["ভিটামিন A, C এবং D", "ভিটামিন C, D এবং E", "ভিটামিন C, K এবং D", "ভিটামিন A, B এবং D"], a: 3, ex: "দুধে ভিটামিন A, D এবং B কমপ্লেক্স (বিশেষ করে B2 ও B12) ভালো পরিমাণে থাকে। তবে এতে ভিটামিন C খুব কম থাকে।" },
+                { q: "অস্টিওম্যালেশিয়া রোগ কোন ভিটামিনের অভাবে হয়?", o: ["ভিটামিন-C", "ভিটামিন-D", "ভিটামিন-K", "ভিটামিন-A"], a: 1, ex: "অস্টিওম্যালেশিয়া হলো প্রাপ্তবয়স্কদের রিকেট রোগ, যা ভিটামিন D-এর অভাবে হাড় নরম হয়ে যাওয়ার কারণে হয়।" },
+                { q: "পেলাগ্রা ও স্কার্ভি নিচের কোন জোড়া ভিটামিনের অভাবে সংঘটিত হয়?", o: ["ভিটামিন C এবং ভিটামিন D", "ভিটামিন B3 এবং ভিটামিন C", "ভিটামিন D এবং ভিটামিন A", "ভিটামিন A এবং ভিটামিন B12"], a: 1, ex: "পেলাগ্রা হয় ভিটামিন B3 (নিয়াসিন)-এর অভাবে এবং স্কার্ভি হয় ভিটামিন C-এর অভাবে।" },
+                { q: "কোন খনিজের অভাবে রিকেট রোগ হয়?", o: ["সোডিয়াম", "ক্যালসিয়াম", "পটাসিয়াম", "ম্যাগনেসিয়াম"], a: 1, ex: "রিকেট রোগ মূলত ভিটামিন D-এর অভাবে হলেও, ক্যালসিয়ামের অভাবও এর একটি অন্যতম কারণ। ভিটামিন D ক্যালসিয়াম শোষণে সাহায্য করে।" },
+                { q: "ভিটামিনের কাজ প্রতিহত করে যে জৈব অণু তা হল-", o: ["সিউডোভিটামিন", "অ্যান্টিভিটামিন", "প্রোভিটামিন", "সবকটি"], a: 1, ex: "অ্যান্টিভিটামিন হলো এমন যৌগ যা ভিটামিনের স্বাভাবিক কাজকে বাধা দেয় বা প্রতিহত করে।" },
+                { q: "ভিটামিনের মতো একই রকম দেখতে যে জৈব অণু তা হল-", o: ["সিউডোভিটামিন", "অ্যান্টিভিটামিন", "প্রোভিটামিন", "সবকটি"], a: 0, ex: "সিউডোভিটামিন বা ছদ্ম ভিটামিন হলো এমন যৌগ যার গঠন ভিটামিনের মতো হলেও জৈবিক কার্যকলাপ থাকে না বা খুব কম থাকে।" },
+                { q: "স্টোমাটাইটিস এবং চিলোসিস রোগ দেখা দেয় যে ভিটামিনের অভাবে তা হল-", o: ["রেটিনল", "থায়ামিন", "রাইবোফ্ল্যাভিন", "পাইরিডক্সিন"], a: 2, ex: "স্টোমাটাইটিস (মুখে ঘা) এবং চিলোসিস (ঠোঁটের কোণে ঘা) ভিটামিন B2 (রাইবোফ্ল্যাভিন)-এর অভাবের সাধারণ লক্ষণ।" },
+                { q: "নীচের কোনটি অ্যান্টি ভিটামিন?", o: ["সায়ানোকোবালামিন", "আর্গোস্টেরল", "অ্যাভিডিন", "মিথাইল কোবালামিন"], a: 2, ex: "অ্যাভিডিন কাঁচা ডিমে থাকে এবং বায়োটিনের (ভিটামিন H) কার্যকারিতা নষ্ট করে, তাই এটি একটি অ্যান্টিভিটামিন।" },
+                { q: "মিথাইলকোবালামিন এর ছদ্ম ভিটামিন হল-", o: ["ভিটামিন B1 এর", "ভিটামিন B2-এর", "ভিটামিন B12-এর", "ভিটামিন B5 এর"], a: 2, ex: "মিথাইলকোবালামিন ভিটামিন B12-এর একটি সক্রিয় রূপ। কিছু যৌগ এর মতো গঠনযুক্ত হলেও কাজ করে না, সেগুলোকে ভিটামিন B12-এর ছদ্ম ভিটামিন বলা হয়।" },
+                { q: "অ্যান্টিস্টেরিলিটি বা বন্ধ্যাত্ব প্রতিরোধী ভিটামিন কোনটি?", o: ["ভিটামিন K", "ভিটামিন D", "ভিটামিন E", "ভিটামিন C"], a: 2, ex: "ভিটামিন E-কে অ্যান্টিস্টেরিলিটি বা বন্ধ্যাত্বরোধী ভিটামিন বলা হয় কারণ এটি প্রজনন ক্ষমতা বজায় রাখতে সাহায্য করে।" },
+                { q: "মাছের যকৃতের তেল সমৃদ্ধ:", o: ["ভিটামিন-A", "ভিটামিন-A এবং ভিটামিন-D উভয়ই", "ভিটামিন-E", "ভিটামিন-D"], a: 1, ex: "মাছের যকৃতের তেল, বিশেষ করে কড লিভার তেল, ভিটামিন A এবং D-এর একটি উৎকৃষ্ট উৎস।" },
+                { q: "কোন ভিটামিনটি মানুষের ত্বকে সংশ্লেষিত হয়?", o: ["ভিটামিন E", "ভিটামিন D", "ভিটামিন K", "ভিটামিন C"], a: 1, ex: "সূর্যের অতিবেগুনি রশ্মির প্রভাবে মানব ত্বকে ভিটামিন D সংশ্লেষিত হয়।" },
+                { q: "কোন ভিটামিনের রাসায়নিক নাম 'টোকোফেরল'?", o: ["B12", "K", "E", "C"], a: 2, ex: "ভিটামিন E-এর রাসায়নিক নাম হলো টোকোফেরল।" },
+                { q: "লেবুতে কোন ভিটামিন থাকে?", o: ["ভিটামিন-D", "ভিটামিন-C", "ভিটামিন-K", "ভিটামিন-E"], a: 1, ex: "লেবুতে প্রচুর পরিমাণে ভিটামিন C থাকে।" },
+                { q: "ভিটামিন সি হল -", o: ["টোকোফেরল", "সায়ানোকোবালঅ্যামিন", "অ্যাসকরবিক অ্যাসিড", "থায়ামিন"], a: 2, ex: "ভিটামিন C-এর রাসায়নিক নাম অ্যাসকরবিক অ্যাসিড।" },
+                { q: "কোন ভিটামিনের অভাবে মানুষের স্কার্ভি হয়?", o: ["ভিটামিন A", "ভিটামিন D", "ভিটামিন E", "ভিটামিন C"], a: 3, ex: "স্কার্ভি রোগ ভিটামিন C-এর গুরুতর অভাবে হয়।" },
+                { q: "কোন ভিটামিন তাপে নষ্ট হয়?", o: ["ভিটামিন-D", "ভিটামিন-C", "ভিটামিন-K", "ভিটামিন-E"], a: 1, ex: "ভিটামিন C তাপ সংবেদনশীল, তাই রান্না করলে এটি সহজে নষ্ট হয়ে যায়।" },
+                { q: "অ্যানিমিয়া কোন ভিটামিনের অভাবে হয়?", o: ["ভিটামিন B1", "ভিটামিন B3", "ভিটামিন B5", "ভিটামিন B12"], a: 3, ex: "ভিটামিন B12-এর অভাবে পারনিসিয়াস অ্যানিমিয়া নামক রক্তাল্পতা দেখা দেয়।" },
+                { q: "কোন ভিটামিনের রাসায়নিক নাম প্যান্টোথেনিক অ্যাসিড?", o: ["ভিটামিন B3 এর", "ভিটামিন B2-এর", "ভিটামিন B12-এর", "ভিটামিন B5 এর"], a: 3, ex: "ভিটামিন B5-এর রাসায়নিক নাম প্যান্টোথেনিক অ্যাসিড।" },
+                { q: "বেরিবেরির কারণ কী?", o: ["ভিটামিন B3 এর আধিক্য", "ভিটামিন B1 এর অভাব", "ভিটামিন C এর আধিক্য", "ভিটামিন C এর অভাব"], a: 1, ex: "ভিটামিন B1 (থায়ামিন)-এর অভাবে বেরিবেরি রোগ হয়।" },
+                { q: "দৈনিক মূত্র উৎপাদনের পরিমাণ কত?", o: ["1 লিটার", "1.5 লিটার", "2 লিটার", "2.5 লিটার"], a: 1, ex: "একজন সুস্থ প্রাপ্তবয়স্ক ব্যক্তি দৈনিক গড়ে প্রায় 1.5 লিটার (সাধারণত 1 থেকে 2 লিটারের মধ্যে) মূত্র উৎপাদন করে।" },
+                { q: "নিরামিষাশীদের জন্য ভিটামিন ও খনিজের প্রধান উৎস হল-", o: ["কালো ছোলা ও গম", "চাল ও সরিষা", "শাক সবজি ও ফলমূল", "সয়াবিন ও দুধ"], a: 2, ex: "নিরামিষাশীদের জন্য বিভিন্ন প্রকারের শাক-সবজি এবং ফলমূল হলো ভিটামিন ও খনিজগুলির প্রধান এবং সবচেয়ে বৈচিত্র্যময় উৎস।" },
+                // --- ADDED QUESTIONS ---
+                { q: "RNA প্রধানত কোষের কোন অংশে পাওয়া যায়?", o: ["নিউক্লিয়াস", "মাইটোকন্ড্রিয়া", "সাইটোপ্লাজম", "গলগি বস্তু"], a: 2, ex: "যদিও RNA নিউক্লিয়াসে তৈরি হয়, এর প্রধান কাজ (প্রোটিন সংশ্লেষণ) সাইটোপ্লাজমে সম্পন্ন হয়। তাই RNA প্রধানত সাইটোপ্লাজমে (বিশেষ করে রাইবোজোমে) পাওয়া যায়।" },
+                { q: "কোন ভিটামিনকে হরমোন হিসেবেও বিবেচনা করা হয়?", o: ["ভিটামিন A", "ভিটামিন C", "ভিটামিন D", "ভিটামিন K"], a: 2, ex: "ভিটামিন D ত্বকে তৈরি হয়ে রক্ত দ্বারা বাহিত হয়ে অন্ত্র এবং হাড়ের মতো দূরবর্তী অঙ্গে কাজ করে, যা হরমোনের কাজের পদ্ধতির অনুরূপ। তাই একে হরমোনও বলা হয়।" },
+                { q: "রাসায়নিকভাবে DNA এবং RNA-এর মধ্যে কোনটি বেশি স্থিতিশীল (stable)?", o: ["DNA", "RNA", "উভয়ই সমান স্থিতিশীল", "স্থিতিশীলতা নির্ভর করে কোষের ধরনের উপর"], a: 0, ex: "DNA-এর ডিঅক্সিরাইবোজ শর্করা এবং দ্বি-তন্ত্রী (double helix) গঠন এটিকে RNA-এর তুলনায় রাসায়নিকভাবে অনেক বেশি স্থিতিশীল করে তোলে। এই কারণেই DNA জেনেটিক তথ্য সংরক্ষণের জন্য আদর্শ।" }
+
+            ];
+
+            const mcqContainer = document.getElementById('mcq-container');
+            const mcqSetSelector = document.getElementById('mcqSetSelector');
+            const scoreTracker = document.getElementById('score-tracker');
+            
+            const setRanges = [
+                { start: 0, end: 25 },
+                { start: 25, end: 50 },
+                { start: 50, end: 75 }
+            ];
+            
+            let score = 0;
+            let totalQuestionsInSet = 0;
+
+            function generateMCQs(setNumber) {
+                mcqContainer.innerHTML = '';
+                mcqContainer.removeEventListener('click', handleOptionClick); 
+                score = 0;
+                
+                const range = setRanges[setNumber - 1];
+                const questionSet = mcqData.slice(range.start, range.end);
+                
+                totalQuestionsInSet = questionSet.length;
+                updateScoreDisplay();
+
+                questionSet.forEach((item, index) => {
+                    const globalIndex = range.start + index;
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'mcq-question';
+                    questionDiv.id = `q-${globalIndex}`;
+                    
+                    let optionsHTML = item.o.map((option, i) => 
+                        `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                    ).join('');
+                    
+                    questionDiv.innerHTML = `
+                        <h4>প্রশ্ন ${globalIndex + 66}: ${item.q}</h4>
+                        <div class="mcq-options">${optionsHTML}</div>
+                        <div class="mcq-explanation"><strong>ব্যাখ্যা:</strong> ${item.ex}</div>
+                    `;
+                    mcqContainer.appendChild(questionDiv);
+                });
+                setupOptionListeners();
+                setupIntersectionObserver();
+            }
+            
+            function updateScoreDisplay() {
+                scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+            }
+
+            function handleOptionClick(e) {
+                const selectedOption = e.target.closest('.mcq-option');
+                if (!selectedOption) return;
+                const questionDiv = selectedOption.closest('.mcq-question');
+                if (questionDiv.classList.contains('answered')) return;
+                questionDiv.classList.add('answered');
+                const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+                const selectedIndex = parseInt(selectedOption.dataset.index);
+                const correctIndex = mcqData[globalIndex].a;
+                if (selectedIndex === correctIndex) {
+                    selectedOption.classList.add('correct');
+                    correctSound.play().catch(e => console.log("Audio play failed: " + e));
+                    score++;
+                    updateScoreDisplay();
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    wrongSound.play().catch(e => console.log("Audio play failed: " + e));
+                    questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+                }
+                questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+            }
+
+            function setupOptionListeners() {
+                mcqContainer.addEventListener('click', handleOptionClick);
+            }
+            
+            mcqSetSelector.addEventListener('change', (e) => {
+                generateMCQs(parseInt(e.target.value, 10));
+            });
+
+            function setupIntersectionObserver() {
+                const questions = document.querySelectorAll('.mcq-question');
+                if (questions.length === 0) return;
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            document.querySelectorAll('.mcq-question.active-question').forEach(q => q.classList.remove('active-question'));
+                            entry.target.classList.add('active-question');
+                        }
+                    });
+                }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+                questions.forEach(q => observer.observe(q));
+            }
+            
+            // Initial load
+            generateMCQs(1);
+        });
+    </script>
+</body>
+</html>

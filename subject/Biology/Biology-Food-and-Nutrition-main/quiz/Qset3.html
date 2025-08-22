@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৩ - খাদ্য ও পুষ্টি</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset2.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset4.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology খাদ্য ও পুষ্টি",
+            setName: "Quiz Set 3",
+            name: "খাদ্য ও পুষ্টি - Set 3 (প্রশ্ন ৪১-৬০)",
+            questions: [
+                {
+                    question: "রেটিনল প্রধানত এর সাথে সম্পর্কিত -",
+                    options: ["ভিটামিন A", "ভিটামিন D", "ভিটামিন B", "ভিটামিন E"],
+                    answer: 0,
+                    explanation: "রেটিনল ভিটামিন A-এর রাসায়নিক নাম।"
+                },
+                {
+                    question: "ভিটামিন A এর অভাবে কোন রোগ হয়?",
+                    options: ["রাতের অন্ধত্ব", "রক্তাল্পতা", "বেরিবেরি", "যক্ষ্মা (টিবি)"],
+                    answer: 0,
+                    explanation: "ভিটামিন A-এর অভাবজনিত প্রধান রোগ হলো রাতকানা বা রাতের অন্ধত্ব।"
+                },
+                {
+                    question: "ভিটামিন K এর অভাব কিসের দিকে পরিচালিত করে:",
+                    options: ["রক্ত জমাট বাঁধার সমস্যা", "ক্যালসিয়াম বিপাকের সমস্যা", "হজমে সমস্যা", "সমস্ত বিকল্প"],
+                    answer: 0,
+                    explanation: "ভিটামিন K-এর প্রধান কাজ রক্ত তঞ্চনে সহায়তা করা, তাই এর অভাবে রক্ত জমাট বাঁধতে সমস্যা হয়।"
+                },
+                {
+                    question: "নিচের কোন ভিটামিন মানুষের রক্তের স্বাভাবিক জমাট বাঁধতে সাহায্য করে?",
+                    options: ["ভিটামিন-C", "ভিটামিন-D", "ভিটামিন- A", "ভিটামিন-K"],
+                    answer: 3,
+                    explanation: "ভিটামিন K রক্ত তঞ্চনের জন্য একটি অপরিহার্য উপাদান।"
+                },
+                {
+                    question: "ভিটামিন B1 এছাড়াও বলা হয়:",
+                    options: ["থায়ামিন", "বায়োটিন", "অ্যাসকরবিক অ্যাসিড", "নিয়াসিন"],
+                    answer: 0,
+                    explanation: "ভিটামিন B1-এর রাসায়নিক নাম থায়ামিন। এর অভাবে বেরিবেরি রোগ হয়।"
+                },
+                {
+                    question: "ভিটামিন C কেও বলা হয়-",
+                    options: ["অ্যাসিটিক অ্যাসিড", "রিবোফ্লাভিন", "অ্যাসকরবিক অ্যাসিড", "ফলিক এসিড"],
+                    answer: 2,
+                    explanation: "ভিটামিন C-এর রাসায়নিক নাম অ্যাসকরবিক অ্যাসিড।"
+                },
+                {
+                    question: "ভিটামিন K এর প্রধান কাজ হল:",
+                    options: ["ইমিউন সিস্টেম", "রক্ত জমাট বাঁধা", "ত্বকের স্বাস্থ্য", "ক্যালসিয়াম শোষণ"],
+                    answer: 1,
+                    explanation: "ভিটামিন K-এর প্রধান কাজ হলো রক্ত তঞ্চন প্রক্রিয়ায় সহায়তা করা।"
+                },
+                {
+                    question: "বেরিবেরির কারণ কী?",
+                    options: ["ভিটামিন B এর আধিক্য", "ভিটামিন B1 এর অভাব", "ভিটামিন C এর আধিক্য", "ভিটামিন C এর অভাব"],
+                    answer: 1,
+                    explanation: "ভিটামিন B1 বা থায়ামিনের অভাবে বেরিবেরি রোগ হয়।"
+                },
+                {
+                    question: "খাদ্য থেকে ভিটামিন-ডি এর সবচেয়ে সমৃদ্ধ উৎস হল:",
+                    options: ["তুলাবীজের তেল", "কড লিভার তেল", "জলপাই তেল", "সূর্যমুখী তেল"],
+                    answer: 1,
+                    explanation: "কড মাছের যকৃতের তেল ভিটামিন D এবং ভিটামিন A-এর একটি অত্যন্ত সমৃদ্ধ উৎস।"
+                },
+                {
+                    question: "মাছের যকৃতের তেল সমৃদ্ধ:",
+                    options: ["ভিটামিন-A এবং ভিটামিন-D উভয়ই", "ভিটামিন-A", "ভিটামিন-E", "ভিটামিন-D"],
+                    answer: 0,
+                    explanation: "মাছের যকৃতের তেলে প্রচুর পরিমাণে ভিটামিন A এবং ভিটামিন D উভয়ই পাওয়া যায়।"
+                },
+                {
+                    question: "নিচের কোন ভিটামিনটি রক্ত জমাট বাঁধার জন্য গুরুত্বপূর্ণ?",
+                    options: ["ভিটামিন B12", "ভিটামিন A", "ভিটামিন D", "ভিটামিন K"],
+                    answer: 3,
+                    explanation: "রক্ত তঞ্চন বা জমাট বাঁধার জন্য ভিটামিন K গুরুত্বপূর্ণ।"
+                },
+                {
+                    question: "নিচের কোন ভিটামিনে কোবাল্ট নামক খনিজ থাকে?",
+                    options: ["ভিটামিন B3", "ভিটামিন B12", "ভিটামিন B2", "ভিটামিন B6"],
+                    answer: 1,
+                    explanation: "ভিটামিন B12-এর রাসায়নিক নাম সায়ানোকোবালামিন। এর আণবিক গঠনে কোবাল্ট (Co) ধাতু থাকে।"
+                },
+                {
+                    question: "কোবালামিন কোন ভিটামিনে থাকে?",
+                    options: ["ভিটামিন B12", "ভিটামিন B5", "ভিটামিন B3", "ভিটামিন B1"],
+                    answer: 0,
+                    explanation: "কোবালামিন হলো ভিটামিন B12-এর অপর নাম।"
+                },
+                {
+                    question: "কোবালমিনকে বলা হয়:",
+                    options: ["ভিটামিন-D", "ভিটামিন- A", "ভিটামিন B12", "ভিটামিন-C"],
+                    answer: 2,
+                    explanation: "ভিটামিন B12-কে কোবালমিনও বলা হয়।"
+                },
+                {
+                    question: "নিয়াসিন হল একটি রূপ :",
+                    options: ["ভিটামিন B3", "ভিটামিন B1", "ভিটামিন B4", "ভিটামিন B2"],
+                    answer: 0,
+                    explanation: "ভিটামিন B3-এর রাসায়নিক নাম নিয়াসিন। এর অভাবে পেলাগ্রা রোগ হয়।"
+                },
+                {
+                    question: "পেলাগ্রা ____ এর অভাবের কারণে হয়:",
+                    options: ["রিবোফ্লাভিন", "ফলিক এসিড", "অ্যাসকরবিক অ্যাসিড", "নিয়াসিন"],
+                    answer: 3,
+                    explanation: "নিয়াসিন বা ভিটামিন B3-এর অভাবে পেলাগ্রা রোগ হয়।"
+                },
+                {
+                    question: "নিচের কোনটি লৌহের সবচেয়ে বেশি উৎস?",
+                    options: ["সবুজ শাকসবজি", "ডিম", "মটরশুটি", "দুধ"],
+                    answer: 0,
+                    explanation: "সবুজ শাকসবজি, যেমন পালং শাক, কচু শাক ইত্যাদি আয়রন বা লৌহের খুব ভালো উৎস।"
+                },
+                {
+                    question: "রিবোফ্লাভিন কি?",
+                    options: ["অ্যান্টিবায়োটিক", "ভিটামিন", "রঞ্জক পদার্থ", "উদ্ভিদ"],
+                    answer: 1,
+                    explanation: "রিবোফ্লাভিন হলো ভিটামিন B2-এর রাসায়নিক নাম।"
+                },
+                {
+                    question: "কোন ভিটামিনের অভাবে মেগালোব্লাস্টিক অ্যানিমিয়া হয়?",
+                    options: ["ভিটামিন C", "ভিটামিন A", "ভিটামিন B12", "ভিটামিন B9"],
+                    answer: 3,
+                    explanation: "ভিটামিন B9 (ফলিক অ্যাসিড) এবং ভিটামিন B12 উভয়ের অভাবেই মেগালোব্লাস্টিক অ্যানিমিয়া হতে পারে। এই প্রকার রক্তাল্পতায় লোহিত রক্তকণিকাগুলি আকারে অস্বাভাবিক বড় হয়ে যায়।"
+                },
+                {
+                    question: "প্রোটিনের অভাবজনিত রোগ চিহ্নিত করুন:",
+                    options: ["স্কার্ভি", "বেরিবেরি", "রাতকানা", "কোয়াশিওরকর"],
+                    answer: 3,
+                    explanation: "শিশুদের খাদ্যে প্রোটিনের তীব্র অভাবে কোয়াশিওরকর রোগ হয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

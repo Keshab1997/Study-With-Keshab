@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Practice (মানুষের খাদ্য ও ভিটামিন)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        /* --- Global Styles & Theming Variables --- */
+        :root {
+            --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60;
+            --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b;
+            --accent-color-rgb: 194, 24, 91; --blockquote-bg: #e3f2fd;
+            --blockquote-border: #2196f3; --nav-button-bg: #fff;
+            --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1);
+            --correct-bg: #2ecc71; --incorrect-bg: #e74c3c;
+        }
+        [data-theme="forest"] {
+            --accent-color: #e67e22; --accent-color-rgb: 230, 126, 34; --bg-color: #f0f4f0; --container-bg: #ffffff; 
+            --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; 
+            --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60;
+        }
+        [data-theme="ocean"] {
+            --accent-color: #e74c3c; --accent-color-rgb: 231, 76, 60; --bg-color: #eef5ff; --container-bg: #ffffff; 
+            --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; 
+            --blockquote-bg: #e4f1fe; --blockquote-border: #3498db;
+        }
+        [data-theme="sunset"] {
+            --accent-color: #bf360c; --accent-color-rgb: 191, 54, 12; --bg-color: #fff3e0; --container-bg: #ffffff; 
+            --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; 
+            --blockquote-bg: #fff8e1; --blockquote-border: #f57c00;
+        }
+        .dark-mode {
+            --accent-color: #f48fb1; --accent-color-rgb: 244, 143, 177; --bg-color: #121212; --container-bg: #1e1e1e; 
+            --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; 
+            --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --nav-button-bg: #2c2c2c; 
+            --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; 
+            --box-shadow-color: rgba(255, 255, 255, 0.05); --correct-bg: #00796b; --incorrect-bg: #d32f2f;
+        }
+
+        /* --- Base Layout & Typography --- */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s, max-width 0.4s ease-in-out; }
+        h1, h2 { margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+        
+        /* --- Desktop Mode Styling --- */
+        body.desktop-view .container,
+        body.desktop-view header,
+        body.desktop-view .controls-wrapper {
+            max-width: 1200px;
+        }
+
+        /* --- Header, Footer, Navigation --- */
+        header, footer { text-align: center; max-width: 900px; margin: 0 auto; padding: 20px 0; transition: max-width 0.4s ease-in-out; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        footer { font-size: 0.9em; opacity: 0.8; }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 20px; border-radius: 8px; border: 1px solid transparent; text-decoration: none; font-size: 1rem; font-weight: 600; transition: all 0.3s ease; cursor: pointer; }
+        .nav-button i { font-size: 1.2em; }
+        .nav-button.color-home { background-color: #3498db; color: #ffffff; box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); }
+        .nav-button.color-home:hover { background-color: #2980b9; transform: translateY(-3px); box-shadow: 0 6px 15px rgba(41, 128, 185, 0.4); }
+        .nav-button.color-home:active { transform: translateY(0); box-shadow: 0 2px 5px rgba(41, 128, 185, 0.3); }
+
+        /* --- Controls (Theme, Dark Mode, Set Selector) --- */
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; transition: max-width 0.4s ease-in-out; }
+        .theme-buttons button, #desktopModeToggle { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+        /* --- MCQ Specific Styles --- */
+        #mcqSetSelector { padding: 10px; font-size: 1em; font-family: 'Hind Siliguri', sans-serif; border: 1px solid var(--nav-button-border); border-radius: 5px; background-color: var(--nav-button-bg); color: var(--nav-button-text); }
+        #score-tracker { font-size: 1.2em; font-weight: bold; text-align: right; margin-bottom: 20px; color: var(--heading-color-2); }
+        .mcq-question { margin-bottom: 40px; padding: 20px; border-radius: 10px; border: 2px solid transparent; transition: box-shadow 0.3s, border-color 0.3s; }
+        .mcq-question.active-question { border-color: var(--accent-color); box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5); }
+        .mcq-question h4 { font-size: 1.3em; color: var(--heading-color-3); margin-top: 0; padding: 0; border: none; }
+        .mcq-options { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        @media (min-width: 600px) { .mcq-options { grid-template-columns: 1fr 1fr; } }
+        .mcq-option { padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1.1em; }
+        .mcq-option:hover { border-color: var(--accent-color); background-color: rgba(200, 200, 200, 0.1); }
+        .mcq-question.answered .mcq-option { cursor: not-allowed; pointer-events: none; }
+        .mcq-option.correct { background-color: var(--correct-bg); color: white; border-color: var(--correct-bg); }
+        .mcq-option.incorrect { background-color: var(--incorrect-bg); color: white; border-color: var(--incorrect-bg); }
+        .mcq-explanation { display: none; margin-top: 20px; padding: 15px; background-color: var(--blockquote-bg); border-left: 4px solid var(--blockquote-border); border-radius: 5px; font-size: 1em; }
+        .mcq-explanation strong { color: var(--heading-color-2); }
+        
+        /* --- Utility Styles --- */
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+    </style>
+	<!-- আইকন ব্যবহারের জন্য Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="..\images\logo.jpg" alt="Logo" class="logo">
+        <h1>মানুষের খাদ্য ও ভিটামিন</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <div class="mcq-controls">
+            <label for="mcqSetSelector">প্রশ্ন সেট: </label>
+            <select id="mcqSetSelector">
+                <option value="1">Set 1 (প্রশ্ন 1-22)</option>
+                <option value="2">Set 2 (প্রশ্ন 23-44)</option>
+                <option value="3">Set 3 (প্রশ্ন 45-66)</option>
+            </select>
+        </div>
+        <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>বিগত বছরের পরীক্ষার প্রশ্নাবলী</h2>
+        <div id="score-tracker"></div>
+        <div id="mcq-container">
+            <!-- Questions are dynamically loaded here -->
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="../index.html" class="nav-button color-home">
+            <i class="fa-solid fa-house"></i>
+            <span>হোম</span>
+        </a>
+    </nav>
+    
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- AUDIO SETUP ---
+            const correctSound = new Audio('../sounds/correct.mp3');
+            const wrongSound = new Audio('../sounds/wrong.mp3');
+
+            // --- THEME, MODE, DESKTOP & SCROLL BUTTON LOGIC ---
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const desktopModeToggle = document.getElementById('desktopModeToggle');
+            const body = document.body;
+            const viewportMeta = document.querySelector('meta[name="viewport"]');
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            const mobileViewport = 'width=device-width, initial-scale=1.0';
+            const desktopViewport = 'width=1200, initial-scale=1.0';
+
+            function applyTheme(theme) { body.dataset.theme = theme; localStorage.setItem('selected_theme', theme); }
+            function applyMode(mode) {
+                if (mode === 'dark') { body.classList.add('dark-mode'); darkModeToggle.checked = true; } 
+                else { body.classList.remove('dark-mode'); darkModeToggle.checked = false; }
+                localStorage.setItem('selected_mode', mode);
+            }
+            function applyDesktopMode(isDesktop) {
+                if (isDesktop) {
+                    body.classList.add('desktop-view');
+                    viewportMeta.setAttribute('content', desktopViewport);
+                    desktopModeToggle.textContent = 'মোবাইল মোড';
+                } else {
+                    body.classList.remove('desktop-view');
+                    viewportMeta.setAttribute('content', mobileViewport);
+                    desktopModeToggle.textContent = 'ডেস্কটপ মোড';
+                }
+                localStorage.setItem('desktop_mode_enabled', isDesktop);
+            }
+            
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            const savedDesktopMode = localStorage.getItem('desktop_mode_enabled') === 'true';
+
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            applyDesktopMode(savedDesktopMode);
+            
+            themeButtons.forEach(button => { button.addEventListener('click', () => applyTheme(button.dataset.themeName)); });
+            darkModeToggle.addEventListener('change', () => applyMode(darkModeToggle.checked ? 'dark' : 'light'));
+            desktopModeToggle.addEventListener('click', () => {
+                const isCurrentlyDesktop = body.classList.contains('desktop-view');
+                applyDesktopMode(!isCurrentlyDesktop);
+            });
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY, windowHeight = window.innerHeight, bodyHeight = document.body.offsetHeight;
+                scrollToTopBtn.style.display = (scrollPosition > 200) ? 'flex' : 'none';
+                scrollToBottomBtn.style.display = (scrollPosition + windowHeight < bodyHeight - 100) ? 'flex' : 'none';
+            });
+            scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            scrollToBottomBtn.addEventListener('click', () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+            // --- INTERACTIVE MCQ LOGIC ---
+            const mcqData = [
+                // Set 1: Questions 1-22
+                { q: "শক্তি উৎপাদনকারী খাদ্যসমূহকে কয়টি ভাগে ভাগ করা হয়?", o: ["দুটি", "তিনটি", "চারটি", "পাঁচটি"], a: 1, ex: "শক্তি উৎপাদনকারী বা দেহ-পরিপোষক খাদ্যকে প্রধানত তিনটি ভাগে ভাগ করা হয়: 1. কার্বোহাইড্রেট (শর্করা) 2. প্রোটিন (আমিষ) 3. ফ্যাট (স্নেহ পদার্থ)" },
+                { q: "কার্বোহাইড্রেটজাতীয় খাদ্যের তাপন মূল্য হল -", o: ["9.3 kcal / g", "4 kcal/g", "5.7 kcal/g", "7.9 kcal/g"], a: 1, ex: "প্রতি গ্রাম কার্বোহাইড্রেট দহনে প্রায় 4.1 কিলোক্যালোরি (kcal) শক্তি উৎপন্ন হয়। প্রদত্ত অপশনগুলির মধ্যে 4 kcal/g সবচেয়ে নিকটবর্তী উত্তর।" },
+                { q: "প্রোটিনজাতীয় খাদ্যের তাপন মূল্য হল-", o: ["9.3 kcal / g", "4.2 kcal / g", "5.7 kcal/g", "7.9 kcal/g"], a: 1, ex: "প্রতি গ্রাম প্রোটিন দহনে প্রায় 4.2 বা 4.3 কিলোক্যালোরি (kcal) শক্তি উৎপন্ন হয়। এটি মূলত দেহ গঠন ও ক্ষয়পূরণের কাজ করে।" },
+                { q: "ফ্যাটজাতীয় খাদ্যের তাপন মূল্য হল-", o: ["9.3 kcal/g", "4.1 kcal/g", "5.7 kcal/g", "7.9 kcal/g"], a: 0, ex: "ফ্যাটের তাপন মূল্য সবচেয়ে বেশি। প্রতি গ্রাম ফ্যাট বা স্নেহ পদার্থ দহনে প্রায় 9.3 কিলোক্যালোরি (kcal) শক্তি উৎপন্ন হয়।" },
+                { q: "মানবদেহে শক্তির দৈনন্দিন চাহিদার যত শতাংশ শর্করা থেকে উৎপন্ন হয় তা হল-", o: ["55-60%", "35-40%", "85-95%", "12-15%"], a: 0, ex: "আমাদের দৈনন্দিন শক্তির চাহিদার একটি বড় অংশ, প্রায় ৫৫-৬০%, কার্বোহাইড্রেট বা শর্করা জাতীয় খাদ্য থেকে আসে।" },
+                { q: "আমাদের দেহে শক্তির দৈনন্দিন চাহিদার যত শতাংশ প্রোটিন থেকে উৎপন্ন হয়, তা হল-", o: ["10-15%", "40-50%", "60-70%", "80-90%"], a: 0, ex: "প্রোটিন আমাদের দৈনন্দিন শক্তির চাহিদার প্রায় ১০-১৫% পূরণ করে। এর প্রধান কাজ দেহ গঠন করা।" },
+                { q: "আমাদের দেহে শক্তির দৈনন্দিন চাহিদার যত শতাংশ স্নেহপদার্থ থেকে উৎপন্ন হয়, তা হল-", o: ["12-13%", "25-30%", "40-50%", "60-70%"], a: 1, ex: "উচ্চ ক্যালোরিযুক্ত হওয়ায় স্নেহপদার্থ বা ফ্যাট আমাদের দৈনন্দিন শক্তির চাহিদার প্রায় ২৫-৩০% পূরণ করে।" },
+                { q: "মানবদেহে অপাচ্য কার্বোহাইড্রেট হল-", o: ["মলটোজ", "গ্লুকোজ", "সুক্রোজ", "সেলুলোজ"], a: 3, ex: "মানুষের পাচনতন্ত্রে সেলুলোজ হজম করার জন্য প্রয়োজনীয় উৎসেচক (সেলুলেজ) থাকে না। তাই এটি অপাচ্য কার্বোহাইড্রেট হিসেবে বিবেচিত হয়, যা রাফেজ (Roughage) হিসেবে মল নিষ্কাশনে সাহায্য করে।" },
+                { q: "প্রধানত যে খাদ্যোপাদান থেকে উৎসেচক ও হরমোন গঠিত হয়, সেটি হল-", o: ["কার্বোহাইড্রেট", "ফ্যাট", "ভিটামিন", "প্রোটিন"], a: 3, ex: "অধিকাংশ উৎসেচক এবং অনেক হরমোন (যেমন ইনসুলিন) প্রোটিন দ্বারা গঠিত। তাই প্রোটিনকে দেহ গঠনকারী খাদ্য উপাদান বলা হয়।" },
+                { q: "নীচের যেটি অত্যাবশ্যকীয় ফ্যাটি অ্যাসিড নয়, সেটি হল-", o: ["লিনোলেনিক অ্যাসিড", "অ্যারাকিডনিক অ্যাসিড", "অ্যাসকরবিক অ্যাসিড", "লিনোলেইক অ্যাসিড"], a: 2, ex: "অ্যাসকরবিক অ্যাসিড হলো ভিটামিন C, এটি কোনো ফ্যাটি অ্যাসিড নয়। লিনোলেনিক, লিনোলেইক এবং অ্যারাকিডনিক অ্যাসিড হলো অত্যাবশ্যকীয় ফ্যাটি অ্যাসিড, যা শরীর নিজে তৈরি করতে পারে না।" },
+                { q: "নিম্নলিখিত উপাদানগুলির মধ্যে কোনটি দেহকে শক্তির জোগান দেয়?", o: ["কার্বোহাইড্রেট", "ভিটামিন", "জল", "খনিজ লবণ"], a: 0, ex: "কার্বোহাইড্রেট হলো শক্তির প্রধান উৎস। ভিটামিন, জল ও খনিজ লবণ দেহকে সুরক্ষা প্রদান করে কিন্তু সরাসরি শক্তি উৎপাদন করে না।" },
+                { q: "গোরুর দুধে যে খাদ্য উপাদানের অভাব থাকে, তা হল-", o: ["Ca এবং ভিটামিন B12", "Fe এবং ভিটামিন C", "ভিটামিন D এবং ভিটামিন E", "ভিটামিন A এবং ভিটামিন D"], a: 1, ex: "গরুর দুধে ক্যালসিয়াম ও প্রোটিন প্রচুর পরিমাণে থাকলেও লোহা (Iron) এবং ভিটামিন C 거의 থাকে না বললেই চলে।" },
+                { q: "মানবদেহের যকৃতে শর্করা যেরূপে সঞ্চিত থাকে, তা হল-", o: ["গ্লাইকোজেন", "শ্বেতসার", "গ্লুকোজ", "সেলুলোজ"], a: 0, ex: "রক্তে অতিরিক্ত গ্লুকোজ যকৃৎ এবং পেশিতে গ্লাইকোজেন নামক পলিস্যাকারাইড রূপে জমা থাকে। প্রয়োজনের সময় এই গ্লাইকোজেন ভেঙে পুনরায় গ্লুকোজে পরিণত হয়।" },
+                { q: "একটি প্রাণীজ পলিস্যাকারাইড হল-", o: ["ল্যাকটোজ", "সেলুলোজ", "গ্লাইকোজেন", "গ্লুকোজ"], a: 2, ex: "গ্লাইকোজেন প্রাণীদের যকৃৎ ও পেশিতে সঞ্চিত শর্করা, তাই এটি একটি প্রাণীজ পলিস্যাকারাইড। শ্বেতসার ও সেলুলোজ হলো উদ্ভিজ্জ পলিস্যাকারাইড।" },
+                { q: "যদি একজন ব্যক্তি রিকেট রোগে ভুগছেন, তবে ব্যক্তির ঘাটতি রয়েছে -", o: ["ভিটামিন K", "ভিটামিন D", "ভিটামিন B", "ভিটামিন A"], a: 1, ex: "ভিটামিন D-এর অভাবে শিশুদের রিকেট রোগ হয়, এতে হাড় নরম ও দুর্বল হয়ে যায়।" },
+                { q: "কোন ভিটামিন শরীরে ক্যালসিয়াম শোষণকে উৎসাহিত করে?", o: ["A", "B", "D", "B6"], a: 2, ex: "ভিটামিন D অন্ত্র থেকে ক্যালসিয়াম শোষণে সহায়তা করে, যা হাড় ও দাঁতের গঠন মজবুত করে।" },
+                { q: "রক্ত জমাট না বাঁধার কারণ:", o: ["ভিটামিন D", "ভিটামিন K", "ভিটামিন A", "ভিটামিন B"], a: 1, ex: "ভিটামিন K রক্ত তঞ্চনে সাহায্যকারী প্রোটিন (যেমন প্রোথ্রোমবিন) তৈরিতে গুরুত্বপূর্ণ ভূমিকা পালন করে। এর অভাবে রক্ত জমাট বাঁধতে দেরি হয়।" },
+                { q: "কোন ভিটামিন রক্ত জমাট বাঁধার জন্য প্রয়োজনীয় প্রোটিন এবং ক্যালসিয়াম সক্রিয় করে?", o: ["ভিটামিন B1", "ভিটামিন K", "ভিটামিন D", "ভিটামিন C"], a: 1, ex: "ভিটামিন K রক্ত তঞ্চনের জন্য প্রয়োজনীয় প্রোটিন ফ্যাক্টরগুলিকে সক্রিয় করে।" },
+                { q: "নিম্নলিখিত থেকে জলে দ্রবণীয় ভিটামিন সনাক্ত করুন।", o: ["ভিটামিন E", "ভিটামিন D", "ভিটামিন B1", "ভিটামিন A"], a: 2, ex: "ভিটামিন B কমপ্লেক্স (B1 সহ) এবং ভিটামিন C জলে দ্রবণীয়। ভিটামিন A, D, E, K ফ্যাটে দ্রবণীয়।" },
+                { q: "নিচের কোনটির ঘাটতি বর্ণান্ধতা এবং দুর্বল দৃষ্টির কারণ?", o: ["ক্যালসিয়াম", "ভিটামিন A", "ভিটামিন K", "ভিটামিন C"], a: 1, ex: "ভিটামিন A (রেটিনল)-এর অভাবে রাতকানা রোগ হয় এবং দৃষ্টিশক্তি দুর্বল হয়ে পড়ে। চরম অভাবে জেরফথ্যালমিয়া হয়ে কর্নিয়া নষ্ট হতে পারে।" },
+                { q: "দাবী (A): বেরিবেরি একটি ভাইরাল সংক্রমণ। কারণ (R): ভিটামিনের অভাবে রোগ হয়। সঠিক উত্তরটি বেছে নিন-", o: ["A মিথ্যা কিন্তু R সত্য।", "A সত্য কিন্তু R মিথ্যা।", "A এবং R উভয়ই মিথ্যা।", "A এবং R উভয়ই সত্য এবং R হল A এর সঠিক ব্যাখ্যা।"], a: 0, ex: "দাবী A মিথ্যা, কারণ বেরিবেরি ভিটামিন B1 (থায়ামিন)-এর অভাবজনিত রোগ, এটি ভাইরাল সংক্রমণ নয়। কারণ R সত্য, কারণ ভিটামিনের অভাবে বিভিন্ন রোগ (যেমন স্কার্ভি, রিকেট) হয়।" },
+                { q: "নিচের কোনটি ভিটামিন A এর ভালো উৎস?", o: ["বাঁধাকপি", "গাজর", "আলু", "স্ট্রবেরি"], a: 1, ex: "গাজর বিটা-ক্যারোটিনের একটি চমৎকার উৎস, যা মানবদেহে ভিটামিন A-তে রূপান্তরিত হয়।" },
+
+                // Set 2: Questions 23-44
+                { q: "নিচের কোনটি ভিটামিন 'A'-এর সর্বোচ্চ উৎস?", o: ["কমলা", "গাজর", "ফুলকপি", "আখ"], a: 1, ex: "প্রদত্ত বিকল্পগুলির মধ্যে গাজর ভিটামিন A (বিটা-ক্যারোটিন রূপে) এর সর্বোচ্চ উৎস।" },
+                { q: "ভিটামিন A এর সাথে সম্পর্কিত:", o: ["কোবালামিন", "অ্যাসকরবিক অ্যাসিড", "রেটিনল", "অ্যামিনো অ্যাসিড"], a: 2, ex: "ভিটামিন A-এর রাসায়নিক নাম হলো রেটিনল।" },
+                { q: "রাতের অন্ধত্ব (রাতকানা) _____ এর অভাবের কারণে হয়।", o: ["ভিটামিন A", "ভিটামিন B", "ভিটামিন D", "ভিটামিন C"], a: 0, ex: "ভিটামিন A চোখের রেটিনায় রোডোপসিন নামক রঞ্জক পদার্থ তৈরিতে সাহায্য করে, যা কম আলোতে দেখতে প্রয়োজন। এর অভাবে রাতকানা রোগ হয়।" },
+                { q: "কোন ভিটামিনের অভাবে স্কার্ভি হয়?", o: ["ভিটামিন A", "ভিটামিন K", "ভিটামিন B6", "ভিটামিন C"], a: 3, ex: "ভিটামিন C (অ্যাসকরবিক অ্যাসিড)-এর অভাবে স্কার্ভি রোগ হয়, যার প্রধান লক্ষণ মাড়ি থেকে রক্তপাত।" },
+                { q: "ভিটামিন 'C' এর অভাবে নিচের কোন রোগ বেশির ভাগ হয়ে থাকে?", o: ["স্কার্ভি", "আথ্রাইটিস", "কিডনি ব্যর্থতা", "শ্বাসযন্ত্রের রোগ"], a: 0, ex: "ভিটামিন C-এর অভাবজনিত প্রধান রোগটি হলো স্কার্ভি।" },
+                { q: "স্কার্ভি রোগ, যার উপসর্গ হল মাড়ি থেকে রক্তপাত, ____ খাদ্য যোগ করার মাধ্যমে প্রতিরোধ করা যেতে পারে।", o: ["ভিটামিন - A", "ভিটামিন - C", "কোলেস্টেরল", "প্রোটিন"], a: 1, ex: "ভিটামিন C সমৃদ্ধ খাবার, যেমন টক ফল, খেলে স্কার্ভি রোগ প্রতিরোধ করা যায়।" },
+                { q: "সাইট্রাস ফল একটি সমৃদ্ধ উৎস হিসাবে বিবেচিত হয়:", o: ["ভিটামিন A", "ভিটামিন B", "ভিটামিন D", "ভিটামিন C"], a: 3, ex: "সাইট্রাস বা টক জাতীয় ফল (যেমন কমলা, লেবু) ভিটামিন C-এর একটি উৎকৃষ্ট উৎস।" },
+                { q: "____ এর অভাবের কারণে স্কার্ভি হয়।", o: ["ভিটামিন-K", "ভিটামিন-B2", "ভিটামিন B1", "ভিটামিন-C"], a: 3, ex: "স্কার্ভি রোগের প্রত্যক্ষ কারণ হলো খাদ্যে ভিটামিন C-এর অভাব।" },
+                { q: "নিচের কোন ভিটামিনটি চর্বি দ্রবণীয় নয়?", o: ["ভিটামিন-K", "ভিটামিন-D", "ভিটামিন-A", "ভিটামিন-C"], a: 3, ex: "ভিটামিন C জলে দ্রবণীয়। ভিটামিন A, D, E এবং K চর্বি বা ফ্যাটে দ্রবণীয়।" },
+                { q: "ভিটামিন সি-এর অভাবের কারণে:", o: ["গলগন্ড", "দৃষ্টিশক্তি হারানো", "স্কার্ভি", "বেরিবেরি"], a: 2, ex: "গলগন্ড আয়োডিনের অভাবে, দৃষ্টিশক্তি হারানো ভিটামিন A-এর অভাবে এবং বেরিবেরি ভিটামিন B1-এর অভাবে হয়। স্কার্ভি ভিটামিন C-এর অভাবে হয়।" },
+                { q: "ভিটামিন C এর অভাবে কোন রোগ হয়?", o: ["রিকেটস", "স্কার্ভি", "দাও দাও (বেরিবেরি)", "রাতকানা"], a: 1, ex: "রিকেটস ভিটামিন D-এর অভাবে, রাতকানা ভিটামিন A-এর অভাবে এবং বেরিবেরি ভিটামিন B1-এর অভাবে হয়।" },
+                { q: "কলা কোন ভিটামিনের ভালো উৎস?", o: ["A", "C", "D", "B"], a: 3, ex: "কলা ভিটামিন B6 (পাইরিডক্সিন) এবং পটাশিয়ামের একটি খুব ভালো উৎস।" },
+                { q: "কোন ভিটামিনের অভাবে অতিরিক্ত রক্তক্ষরণ হয় তার নাম বল?", o: ["ভিটামিন A", "ভিটামিন K", "ভিটামিন B", "ভিটামিন C"], a: 1, ex: "ভিটামিন K রক্ত তঞ্চনে সাহায্য করে। এর অভাবে রক্ত জমাট বাঁধতে সমস্যা হয় এবং অতিরিক্ত রক্তক্ষরণ হতে পারে।" },
+                { q: "রক্ত জমাট বাঁধার জন্য প্রয়োজনীয় ভিটামিন কোনটি?", o: ["E", "D", "K", "C"], a: 2, ex: "রক্ত তঞ্চন বা জমাট বাঁধার জন্য ভিটামিন K অপরিহার্য।" },
+                { q: "নিচের কোনটির অভাবে রিকেট রোগ হয়?", o: ["ভিটামিন D", "ভিটামিন B", "ভিটামিন A", "ভিটামিন C"], a: 0, ex: "ভিটামিন D-এর অভাবে শিশুদের হাড় দুর্বল হয়ে রিকেট রোগ হয়।" },
+                { q: "কোন ভিটামিন রক্ত জমাট বাঁধার জন্য প্রয়োজনীয় প্রোটিন এবং ক্যালসিয়াম সক্রিয় করে?", o: ["ভিটামিন K", "ভিটামিন D", "ভিটামিন B1", "ভিটামিন C"], a: 0, ex: "ভিটামিন K রক্ত তঞ্চন প্রক্রিয়ায় যুক্ত প্রোটিনগুলিকে সক্রিয় করতে সাহায্য করে।" },
+                { q: "কোন ভিটামিন আমাদের চোখ ও ত্বককে সুস্থ রাখে?", o: ["ভিটামিন D", "ভিটামিন B", "ভিটামিন A", "ভিটামিন E"], a: 2, ex: "ভিটামিন A দৃষ্টিশক্তি বজায় রাখে এবং ত্বকের আবরণী কলাকে সুস্থ রাখতে সাহায্য করে।" },
+                { q: "কোন ধরনের চিনি ফল মিষ্টি করার জন্য দায়ী?", o: ["ফ্রুক্টোজ", "সুক্রোজ", "মাল্টোজ", "ল্যাকটোজ"], a: 0, ex: "ফ্রুক্টোজকে 'ফল শর্করা' (Fruit Sugar) বলা হয় এবং এটি প্রাকৃতিক শর্করার মধ্যে সবচেয়ে মিষ্টি।" },
+                { q: "রেটিনল প্রধানত এর সাথে সম্পর্কিত -", o: ["ভিটামিন A", "ভিটামিন D", "ভিটামিন B", "ভিটামিন E"], a: 0, ex: "রেটিনল ভিটামিন A-এর রাসায়নিক নাম।" },
+                { q: "ভিটামিন A এর অভাবে কোন রোগ হয়?", o: ["রাতের অন্ধত্ব", "রক্তাল্পতা", "বেরিবেরি", "যক্ষ্মা (টিবি)"], a: 0, ex: "ভিটামিন A-এর অভাবজনিত প্রধান রোগ হলো রাতকানা বা রাতের অন্ধত্ব।" },
+                { q: "ভিটামিন K এর অভাব কিসের দিকে পরিচালিত করে:", o: ["রক্ত জমাট বাঁধার সমস্যা", "ক্যালসিয়াম বিপাকের সমস্যা", "হজমে সমস্যা", "সমস্ত বিকল্প"], a: 0, ex: "ভিটামিন K-এর প্রধান কাজ রক্ত তঞ্চনে সহায়তা করা, তাই এর অভাবে রক্ত জমাট বাঁধতে সমস্যা হয়।" },
+                { q: "নিচের কোন ভিটামিন মানুষের রক্তের স্বাভাবিক জমাট বাঁধতে সাহায্য করে?", o: ["ভিটামিন-C", "ভিটামিন-D", "ভিটামিন- A", "ভিটামিন-K"], a: 3, ex: "ভিটামিন K রক্ত তঞ্চনের জন্য একটি অপরিহার্য উপাদান।" },
+
+                // Set 3: Questions 45-66
+                { q: "ভিটামিন B1 এছাড়াও বলা হয়:", o: ["থায়ামিন", "বায়োটিন", "অ্যাসকরবিক অ্যাসিড", "নিয়াসিন"], a: 0, ex: "ভিটামিন B1-এর রাসায়নিক নাম থায়ামিন। এর অভাবে বেরিবেরি রোগ হয়।" },
+                { q: "ভিটামিন C কেও বলা হয়-", o: ["অ্যাসিটিক অ্যাসিড", "রিবোফ্লাভিন", "অ্যাসকরবিক অ্যাসিড", "ফলিক এসিড"], a: 2, ex: "ভিটামিন C-এর রাসায়নিক নাম অ্যাসকরবিক অ্যাসিড।" },
+                { q: "ভিটামিন K এর প্রধান কাজ হল:", o: ["ইমিউন সিস্টেম", "রক্ত জমাট বাঁধা", "ত্বকের স্বাস্থ্য", "ক্যালসিয়াম শোষণ"], a: 1, ex: "ভিটামিন K-এর প্রধান কাজ হলো রক্ত তঞ্চন প্রক্রিয়ায় সহায়তা করা।" },
+                { q: "বেরিবেরির কারণ কী?", o: ["ভিটামিন B এর আধিক্য", "ভিটামিন B1 এর অভাব", "ভিটামিন C এর আধিক্য", "ভিটামিন C এর অভাব"], a: 1, ex: "ভিটামিন B1 বা থায়ামিনের অভাবে বেরিবেরি রোগ হয়।" },
+                { q: "খাদ্য থেকে ভিটামিন-ডি এর সবচেয়ে সমৃদ্ধ উৎস হল:", o: ["তুলাবীজের তেল", "কড লিভার তেল", "জলপাই তেল", "সূর্যমুখী তেল"], a: 1, ex: "কড মাছের যকৃতের তেল ভিটামিন D এবং ভিটামিন A-এর একটি অত্যন্ত সমৃদ্ধ উৎস।" },
+                { q: "মাছের যকৃতের তেল সমৃদ্ধ:", o: ["ভিটামিন-A এবং ভিটামিন-D উভয়ই", "ভিটামিন-A", "ভিটামিন-E", "ভিটামিন-D"], a: 0, ex: "মাছের যকৃতের তেলে প্রচুর পরিমাণে ভিটামিন A এবং ভিটামিন D উভয়ই পাওয়া যায়।" },
+                { q: "নিচের কোন ভিটামিনটি রক্ত জমাট বাঁধার জন্য গুরুত্বপূর্ণ?", o: ["ভিটামিন B12", "ভিটামিন A", "ভিটামিন D", "ভিটামিন K"], a: 3, ex: "রক্ত তঞ্চন বা জমাট বাঁধার জন্য ভিটামিন K গুরুত্বপূর্ণ।" },
+                { q: "নিচের কোন ভিটামিনে কোবাল্ট নামক খনিজ থাকে?", o: ["ভিটামিন B3", "ভিটামিন B12", "ভিটামিন B2", "ভিটামিন B6"], a: 1, ex: "ভিটামিন B12-এর রাসায়নিক নাম সায়ানোকোবালামিন। এর আণবিক গঠনে কোবাল্ট (Co) ধাতু থাকে।" },
+                { q: "কোবালামিন কোন ভিটামিনে থাকে?", o: ["ভিটামিন B12", "ভিটামিন B5", "ভিটামিন B3", "ভিটামিন B1"], a: 0, ex: "কোবালামিন হলো ভিটামিন B12-এর অপর নাম।" },
+                { q: "কোবালমিনকে বলা হয়:", o: ["ভিটামিন-D", "ভিটামিন- A", "ভিটামিন B12", "ভিটামিন-C"], a: 2, ex: "ভিটামিন B12-কে কোবালমিনও বলা হয়।" },
+                { q: "নিয়াসিন হল একটি রূপ :", o: ["ভিটামিন B3", "ভিটামিন B1", "ভিটামিন B4", "ভিটামিন B2"], a: 0, ex: "ভিটামিন B3-এর রাসায়নিক নাম নিয়াসিন। এর অভাবে পেলাগ্রা রোগ হয়।" },
+                { q: "পেলাগ্রা ____ এর অভাবের কারণে হয়:", o: ["রিবোফ্লাভিন", "ফলিক এসিড", "অ্যাসকরবিক অ্যাসিড", "নিয়াসিন"], a: 3, ex: "নিয়াসিন বা ভিটামিন B3-এর অভাবে পেলাগ্রা রোগ হয়।" },
+                { q: "নিচের কোনটি লৌহের সবচেয়ে বেশি উৎস?", o: ["সবুজ শাকসবজি", "ডিম", "মটরশুটি", "দুধ"], a: 0, ex: "সবুজ শাকসবজি, যেমন পালং শাক, কচু শাক ইত্যাদি আয়রন বা লৌহের খুব ভালো উৎস।" },
+                { q: "রিবোফ্লাভিন কি?", o: ["অ্যান্টিবায়োটিক", "ভিটামিন", "রঞ্জক পদার্থ", "উদ্ভিদ"], a: 1, ex: "রিবোফ্লাভিন হলো ভিটামিন B2-এর রাসায়নিক নাম।" },
+                { q: "কোন ভিটামিনের অভাবে মেগালোব্লাস্টিক অ্যানিমিয়া হয়?", o: ["ভিটামিন C", "ভিটামিন A", "ভিটামিন B12", "ভিটামিন B9"], a: 3, ex: "ভিটামিন B9 (ফলিক অ্যাসিড) এবং ভিটামিন B12 উভয়ের অভাবেই মেগালোব্লাস্টিক অ্যানিমিয়া হতে পারে। এই প্রকার রক্তাল্পতায় লোহিত রক্তকণিকাগুলি আকারে অস্বাভাবিক বড় হয়ে যায়। প্রদত্ত অপশনগুলিতে ভিটামিন B9 কে বেশি প্রাধান্য দেওয়া হয়।" },
+                { q: "প্রোটিনের অভাবজনিত রোগ চিহ্নিত করুন:", o: ["স্কার্ভি", "বেরিবেরি", "রাতকানা", "কোয়াশিওরকর"], a: 3, ex: "শিশুদের খাদ্যে প্রোটিনের তীব্র অভাবে কোয়াশিওরকর রোগ হয়।" },
+                { q: "শিশুদের প্রোটিনের অভাবে যে রোগ হয় তাকে বলা হয়?", o: ["কোয়াশিওরকর", "বেরিবেরি", "পেলাগ্রা", "রিকেটস"], a: 0, ex: "শুধুমাত্র প্রোটিনের অভাবে কোয়াশিওরকর এবং প্রোটিন ও ক্যালোরি উভয়ের অভাবে ম্যারাসমাস রোগ হয়।" },
+                { q: "কোনটির অভাবে রক্তশূন্যতা হয়?", o: ["ফলিক এসিড", "লোহা", "ভিটামিন B12", "উপরের সবগুলো"], a: 3, ex: "রক্তশূন্যতা বা অ্যানিমিয়ার বিভিন্ন কারণ রয়েছে। লোহা (Iron), ফলিক অ্যাসিড (ভিটামিন B9), এবং ভিটামিন B12 - এই তিনটি উপাদানই লোহিত রক্তকণিকা তৈরির জন্য অপরিহার্য। এদের যেকোনো একটির অভাবে রক্তশূন্যতা হতে পারে।" },
+                { q: "মাছ থেকে পাওয়া কড লিভার অয়েল কোন ভিটামিনের সমৃদ্ধ উৎস?", o: ["ভিটামিন C", "ভিটামিন D", "ভিটামিন B12", "ভিটামিন B"], a: 1, ex: "কড লিভার অয়েল ভিটামিন D এবং ভিটামিন A উভয়েরই একটি उत्कृष्ट উৎস।" },
+                { q: "E300 এর সাধারণ নাম কি?", o: ["ভিটামিন D", "ভিটামিন B", "ভিটামিন C", "ভিটামিন A"], a: 2, ex: "E300 হলো ভিটামিন C বা অ্যাসকরবিক অ্যাসিডের ফুড অ্যাডিটিভ কোড, যা অ্যান্টিঅক্সিডেন্ট হিসেবে খাদ্যে ব্যবহৃত হয়।" },
+                { q: "ভিটামিন নামকরণ করেন -", o: ["কুহনে", "ক্যাসিমির ফাঙ্ক", "ইরহেনবার্গ", "বাইজারিঙ্ক"], a: 1, ex: "পোলিশ বিজ্ঞানী ক্যাসিমির ফাঙ্ক (Casimir Funk) ১৯১২ সালে প্রথম 'ভিটামিন' (Vitamine) শব্দটি ব্যবহার করেন।" },
+                { q: "জেরফথ্যালমিয়া কার অভাবে ঘটে?", o: ["ভিটামিন-C", "ভিটামিন-A", "ভিটামিন-K", "ভিটামিন-E"], a: 1, ex: "ভিটামিন A-এর তীব্র অভাবে চোখের কর্নিয়া শুকিয়ে যায় এবং দৃষ্টিশক্তি স্থায়ীভাবে নষ্ট হয়ে যেতে পারে। এই অবস্থাকে জেরফথ্যালমিয়া বলে।" }
+            ];
+
+            const mcqContainer = document.getElementById('mcq-container');
+            const mcqSetSelector = document.getElementById('mcqSetSelector');
+            const scoreTracker = document.getElementById('score-tracker');
+            
+            const setRanges = [
+                { start: 0, end: 22 },
+                { start: 22, end: 44 },
+                { start: 44, end: 66 }
+            ];
+            
+            let score = 0;
+            let totalQuestionsInSet = 0;
+
+            function generateMCQs(setNumber) {
+                mcqContainer.innerHTML = '';
+                mcqContainer.removeEventListener('click', handleOptionClick); // Remove old listener
+                score = 0;
+                
+                const range = setRanges[setNumber - 1];
+                const questionSet = mcqData.slice(range.start, range.end);
+                
+                totalQuestionsInSet = questionSet.length;
+                updateScoreDisplay();
+
+                questionSet.forEach((item, index) => {
+                    const globalIndex = range.start + index;
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'mcq-question';
+                    questionDiv.id = `q-${globalIndex}`;
+                    
+                    let optionsHTML = item.o.map((option, i) => 
+                        `<div class="mcq-option" data-index="${i}">${String.fromCharCode(65 + i)}) ${option}</div>`
+                    ).join('');
+                    
+                    questionDiv.innerHTML = `
+                        <h4>প্রশ্ন ${globalIndex + 1}: ${item.q}</h4>
+                        <div class="mcq-options">${optionsHTML}</div>
+                        <div class="mcq-explanation"><strong>ব্যাখ্যা:</strong> ${item.ex}</div>
+                    `;
+                    mcqContainer.appendChild(questionDiv);
+                });
+                setupOptionListeners();
+                setupIntersectionObserver();
+            }
+            
+            function updateScoreDisplay() {
+                scoreTracker.textContent = `স্কোর: ${score} / ${totalQuestionsInSet}`;
+            }
+
+            function handleOptionClick(e) {
+                const selectedOption = e.target.closest('.mcq-option');
+                if (!selectedOption) return;
+                const questionDiv = selectedOption.closest('.mcq-question');
+                if (questionDiv.classList.contains('answered')) return;
+                questionDiv.classList.add('answered');
+                const globalIndex = parseInt(questionDiv.id.split('-')[1]);
+                const selectedIndex = parseInt(selectedOption.dataset.index);
+                const correctIndex = mcqData[globalIndex].a;
+                if (selectedIndex === correctIndex) {
+                    selectedOption.classList.add('correct');
+                    correctSound.play().catch(e => console.log("Audio play failed: " + e));
+                    score++;
+                    updateScoreDisplay();
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    wrongSound.play().catch(e => console.log("Audio play failed: " + e));
+                    questionDiv.querySelector(`.mcq-option[data-index="${correctIndex}"]`).classList.add('correct');
+                }
+                questionDiv.querySelector('.mcq-explanation').style.display = 'block';
+            }
+
+            function setupOptionListeners() {
+                mcqContainer.addEventListener('click', handleOptionClick);
+            }
+            
+            mcqSetSelector.addEventListener('change', (e) => {
+                generateMCQs(parseInt(e.target.value, 10));
+            });
+
+            function setupIntersectionObserver() {
+                const questions = document.querySelectorAll('.mcq-question');
+                if (questions.length === 0) return;
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            document.querySelectorAll('.mcq-question.active-question').forEach(q => q.classList.remove('active-question'));
+                            entry.target.classList.add('active-question');
+                        }
+                    });
+                }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+                questions.forEach(q => observer.observe(q));
+            }
+            
+            // Initial load
+            generateMCQs(1);
+        });
+    </script>
+</body>
+</html>

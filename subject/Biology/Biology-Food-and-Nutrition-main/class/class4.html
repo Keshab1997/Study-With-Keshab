@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মানুষের খাদ্য ও ভিটামিন (PYQ) - Class 04</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        body.desktop-view .container, body.desktop-view .controls-wrapper, body.desktop-view header { max-width: 1200px; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; transition: max-width 0.4s ease-in-out; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s, max-width 0.4s ease-in-out; }
+        h1, h2, h3 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3 { font-size: 1.6em; color: var(--heading-color-3); }
+        p { font-size: 1.1em; margin-bottom: 5px; font-weight: 600; }
+        p small { font-weight: 400; font-size: 0.9em; color: var(--heading-color-3); }
+        strong { color: var(--accent-color); font-weight: 700; }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 15px 0; padding: 10px 20px; font-size: 1.1em; border-radius: 5px; }
+        blockquote strong { color: var(--heading-color-2); }
+        ol { padding-left: 20px; list-style-type: decimal; }
+        li { margin-bottom: 30px; padding-left: 10px; }
+        .options-list { list-style-type: lower-alpha; padding-left: 40px; }
+        .options-list li { margin-bottom: 8px; list-style-type: lower-alpha; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; transition: max-width 0.4s ease-in-out; }
+        .theme-buttons button, #desktopModeToggle { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover, #desktopModeToggle:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>মানুষের খাদ্য ও ভিটামিন (PYQ)</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div id="digital-clock" class="digital-clock"></div>
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+        </div>
+        <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+        <div class="dark-mode-toggle">
+            <span>দিন/রাত</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>CLASS NO: 04</h2>
+        <ol>
+            <li><p>শক্তি উৎপাদনকারী খাদ্যসমূহকে কয়টি ভাগে ভাগ করা হয়? <small>[SSC GROUP-B 05.08.2019]</small></p><ol class="options-list"><li>দুটি</li><li>তিনটি</li><li>চারটি</li><li>পাঁচটি</li></ol><blockquote><strong>উত্তর: (B) তিনটি।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: শক্তি উৎপাদনকারী বা দেহ-পরিপোষক খাদ্যকে প্রধানত তিনটি ভাগে ভাগ করা হয়: 1. কার্বোহাইড্রেট (শর্করা) 2. প্রোটিন (আমিষ) 3. ফ্যাট (স্নেহ পদার্থ)</i></small></blockquote></li>
+            <li><p>কার্বোহাইড্রেটজাতীয় খাদ্যের তাপন মূল্য হল - <small>[SSC CPO 31.05.2022]</small></p><ol class="options-list"><li>9.3 kcal / g</li><li>4 kcal/g</li><li>5.7 kcal/g</li><li>7.9 kcal/g</li></ol><blockquote><strong>উত্তর: (B) 4 kcal/g।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: প্রতি গ্রাম কার্বোহাইড্রেট দহনে প্রায় 4.1 কিলোক্যালোরি (kcal) শক্তি উৎপন্ন হয়। প্রদত্ত অপশনগুলির মধ্যে 4 kcal/g সবচেয়ে নিকটবর্তী উত্তর।</i></small></blockquote></li>
+            <li><p>প্রোটিনজাতীয় খাদ্যের তাপন মূল্য হল- <small>[SSC CHSL 25.05.2022]</small></p><ol class="options-list"><li>9.3 kcal / g</li><li>4.2 kcal / g</li><li>5.7 kcal/g</li><li>7.9 kcal/g</li></ol><blockquote><strong>উত্তর: (B) 4.2 kcal / g।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: প্রতি গ্রাম প্রোটিন দহনে প্রায় 4.2 বা 4.3 কিলোক্যালোরি (kcal) শক্তি উৎপন্ন হয়। এটি মূলত দেহ গঠন ও ক্ষয়পূরণের কাজ করে।</i></small></blockquote></li>
+            <li><p>ফ্যাটজাতীয় খাদ্যের তাপন মূল্য হল- <small>[SSC MTS 18.07.2022]</small></p><ol class="options-list"><li>9.3 kcal/g</li><li>4.1 kcal/g</li><li>5.7 kcal/g</li><li>7.9 kcal/g</li></ol><blockquote><strong>উত্তর: (A) 9.3 kcal/g।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ফ্যাটের তাপন মূল্য সবচেয়ে বেশি। প্রতি গ্রাম ফ্যাট বা স্নেহ পদার্থ দহনে প্রায় 9.3 কিলোক্যালোরি (kcal) শক্তি উৎপন্ন হয়।</i></small></blockquote></li>
+            <li><p>মানবদেহে শক্তির দৈনন্দিন চাহিদার যত শতাংশ শর্করা থেকে উৎপন্ন হয় তা হল- <small>[RRB GROUP-D 15.05.2017]</small></p><ol class="options-list"><li>55-60%</li><li>35-40%</li><li>85-95%</li><li>12-15%</li></ol><blockquote><strong>উত্তর: (A) 55-60%।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: আমাদের দৈনন্দিন শক্তির চাহিদার একটি বড় অংশ, প্রায় ৫৫-৬০%, কার্বোহাইড্রেট বা শর্করা জাতীয় খাদ্য থেকে আসে।</i></small></blockquote></li>
+            <li><p>আমাদের দেহে শক্তির দৈনন্দিন চাহিদার যত শতাংশ প্রোটিন থেকে উৎপন্ন হয়, তা হল- <small>[RRB GROUP-D 15.05.2017]</small></p><ol class="options-list"><li>10-15%</li><li>40-50%</li><li>60-70%</li><li>80-90%</li></ol><blockquote><strong>উত্তর: (A) 10-15%।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: প্রোটিন আমাদের দৈনন্দিন শক্তির চাহিদার প্রায় ১০-১৫% পূরণ করে। এর প্রধান কাজ দেহ গঠন করা।</i></small></blockquote></li>
+            <li><p>আমাদের দেহে শক্তির দৈনন্দিন চাহিদার যত শতাংশ স্নেহপদার্থ থেকে উৎপন্ন হয়, তা হল- <small>[RRB NTPC STAGE 1ST 27.04.2016]</small></p><ol class="options-list"><li>12-13%</li><li>25-30%</li><li>40-50%</li><li>60-70%</li></ol><blockquote><strong>উত্তর: (B) 25-30%।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: উচ্চ ক্যালোরিযুক্ত হওয়ায় স্নেহপদার্থ বা ফ্যাট আমাদের দৈনন্দিন শক্তির চাহিদার প্রায় ২৫-৩০% পূরণ করে।</i></small></blockquote></li>
+            <li><p>মানবদেহে অপাচ্য কার্বোহাইড্রেট হল- <small>[RRB JE 31.05.2019]</small></p><ol class="options-list"><li>মলটোজ</li><li>গ্লুকোজ</li><li>সুক্রোজ</li><li>সেলুলোজ</li></ol><blockquote><strong>উত্তর: (D) সেলুলোজ।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: মানুষের পাচনতন্ত্রে সেলুলোজ হজম করার জন্য প্রয়োজনীয় উৎসেচক (সেলুলেজ) থাকে না। তাই এটি অপাচ্য কার্বোহাইড্রেট হিসেবে বিবেচিত হয়, যা রাফেজ (Roughage) হিসেবে মল নিষ্কাশনে সাহায্য করে।</i></small></blockquote></li>
+            <li><p>প্রধানত যে খাদ্যোপাদান থেকে উৎসেচক ও হরমোন গঠিত হয়, সেটি হল- <small>[SSC CGL 12.02.2019]</small></p><ol class="options-list"><li>কার্বোহাইড্রেট</li><li>ফ্যাট</li><li>ভিটামিন</li><li>প্রোটিন</li></ol><blockquote><strong>উত্তর: (D) প্রোটিন।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: অধিকাংশ উৎসেচক এবং অনেক হরমোন (যেমন ইনসুলিন) প্রোটিন দ্বারা গঠিত। তাই প্রোটিনকে দেহ গঠনকারী খাদ্য উপাদান বলা হয়।</i></small></blockquote></li>
+            <li><p>নীচের যেটি অত্যাবশ্যকীয় ফ্যাটি অ্যাসিড নয়, সেটি হল- <small>[RRB NTPC 13.03.2021]</small></p><ol class="options-list"><li>লিনোলেনিক অ্যাসিড</li><li>অ্যারাকিডনিক অ্যাসিড</li><li>অ্যাসকরবিক অ্যাসিড</li><li>লিনোলেইক অ্যাসিড</li></ol><blockquote><strong>উত্তর: (C) অ্যাসকরবিক অ্যাসিড।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: অ্যাসকরবিক অ্যাসিড হলো ভিটামিন C, এটি কোনো ফ্যাটি অ্যাসিড নয়। লিনোলেনিক, লিনোলেইক এবং অ্যারাকিডনিক অ্যাসিড হলো অত্যাবশ্যকীয় ফ্যাটি অ্যাসিড, যা শরীর নিজে তৈরি করতে পারে না।</i></small></blockquote></li>
+            <li><p>নিম্নলিখিত উপাদানগুলির মধ্যে কোনটি দেহকে শক্তির জোগান দেয়? <small>[RRB GROUP-D 15.05.2017]</small></p><ol class="options-list"><li>কার্বোহাইড্রেট</li><li>ভিটামিন</li><li>জল</li><li>খনিজ লবণ</li></ol><blockquote><strong>উত্তর: (A) কার্বোহাইড্রেট।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: কার্বোহাইড্রেট হলো শক্তির প্রধান উৎস। ভিটামিন, জল ও খনিজ লবণ দেহকে সুরক্ষা প্রদান করে কিন্তু সরাসরি শক্তি উৎপাদন করে না।</i></small></blockquote></li>
+            <li><p>গোরুর দুধে যে খাদ্য উপাদানের অভাব থাকে, তা হল- <small>[RRB GROUP-D 24.10.2012]</small></p><ol class="options-list"><li>Ca এবং ভিটামিন B12</li><li>Fe এবং ভিটামিন C</li><li>ভিটামিন D এবং ভিটামিন E</li><li>ভিটামিন A এবং ভিটামিন D</li></ol><blockquote><strong>উত্তর: (B) Fe এবং ভিটামিন C।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: গরুর দুধে ক্যালসিয়াম ও প্রোটিন প্রচুর পরিমাণে থাকলেও লোহা (Iron) এবং ভিটামিন C প্রায় থাকে না বললেই চলে।</i></small></blockquote></li>
+            <li><p>মানবদেহের যকৃতে শর্করা যেরূপে সঞ্চিত থাকে, তা হল- <small>[RRB NTPC 15.02.2021]</small></p><ol class="options-list"><li>গ্লাইকোজেন</li><li>শ্বেতসার</li><li>গ্লুকোজ</li><li>সেলুলোজ</li></ol><blockquote><strong>উত্তর: (A) গ্লাইকোজেন।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: রক্তে অতিরিক্ত গ্লুকোজ যকৃৎ এবং পেশিতে গ্লাইকোজেন নামক পলিস্যাকারাইড রূপে জমা থাকে। প্রয়োজনের সময় এই গ্লাইকোজেন ভেঙে পুনরায় গ্লুকোজে পরিণত হয়।</i></small></blockquote></li>
+            <li><p>একটি প্রাণীজ পলিস্যাকারাইড হল- <small>[RRB NTPC 10.01.2021]</small></p><ol class="options-list"><li>ল্যাকটোজ</li><li>সেলুলোজ</li><li>গ্লাইকোজেন</li><li>গ্লুকোজ</li></ol><blockquote><strong>উত্তর: (C) গ্লাইকোজেন।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: গ্লাইকোজেন প্রাণীদের যকৃৎ ও পেশিতে সঞ্চিত শর্করা, তাই এটি একটি প্রাণীজ পলিস্যাকারাইড। শ্বেতসার ও সেলুলোজ হলো উদ্ভিজ্জ পলিস্যাকারাইড।</i></small></blockquote></li>
+            <li><p>যদি একজন ব্যক্তি রিকেট রোগে ভুগছেন, তবে ব্যক্তির ঘাটতি রয়েছে - <small>[RRB ALP & TEC 04.05.2021]</small></p><ol class="options-list"><li>ভিটামিন K</li><li>ভিটামিন D</li><li>ভিটামিন B</li><li>ভিটামিন A</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন D।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন D-এর অভাবে শিশুদের রিকেট রোগ হয়, এতে হাড় নরম ও দুর্বল হয়ে যায়।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিন শরীরে ক্যালসিয়াম শোষণকে উৎসাহিত করে? <small>[RRB JE 26.12.2018]</small></p><ol class="options-list"><li>A</li><li>B</li><li>D</li><li>B6</li></ol><blockquote><strong>উত্তর: (c) D।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন D অন্ত্র থেকে ক্যালসিয়াম শোষণে সহায়তা করে, যা হাড় ও দাঁতের গঠন মজবুত করে।</i></small></blockquote></li>
+            <li><p>রক্ত জমাট না বাঁধার কারণে ঘটে: <small>[RRB NTPC 05.03.2021]</small></p><ol class="options-list"><li>ভিটামিন D</li><li>ভিটামিন K</li><li>ভিটামিন A</li><li>ভিটামিন B</li></ol><blockquote><strong>উত্তর: (b) ভিটামিন K।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন K রক্ত তঞ্চনে সাহায্যকারী প্রোটিন (যেমন প্রোথ্রোমবিন) তৈরিতে গুরুত্বপূর্ণ ভূমিকা পালন করে। এর অভাবে রক্ত জমাট বাঁধতে দেরি হয়।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিন রক্ত জমাট বাঁধার জন্য প্রয়োজনীয় প্রোটিন এবং ক্যালসিয়াম সক্রিয় করে? <small>[RRB GROUP-D 03.10.2018]</small></p><ol class="options-list"><li>ভিটামিন B1</li><li>ভিটামিন K</li><li>ভিটামিন D</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (b) ভিটামিন K।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন K রক্ত তঞ্চনের জন্য প্রয়োজনীয় প্রোটিন ফ্যাক্টরগুলিকে সক্রিয় করে।</i></small></blockquote></li>
+            <li><p>নিম্নলিখিত থেকে জলে দ্রবণীয় ভিটামিন সনাক্ত করুন। <small>[RRB GROUP-D 03.10.2018]</small></p><ol class="options-list"><li>ভিটামিন E</li><li>ভিটামিন D</li><li>ভিটামিন B1</li><li>ভিটামিন A</li></ol><blockquote><strong>উত্তর: (C) ভিটামিন B1।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন B কমপ্লেক্স (B1 সহ) এবং ভিটামিন C জলে দ্রবণীয়। ভিটামিন A, D, E, K ফ্যাটে দ্রবণীয়।</i></small></blockquote></li>
+            <li><p>নিচের কোনটির ঘাটতি বর্ণান্ধতা এবং দুর্বল দৃষ্টির কারণ? <small>[RRB NTPC 16.04.2016 STAGE- 1ST]</small></p><ol class="options-list"><li>ক্যালসিয়াম</li><li>ভিটামিন A</li><li>ভিটামিন K</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (b) ভিটামিন A।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন A (রেটিনল)-এর অভাবে রাতকানা রোগ হয় এবং দৃষ্টিশক্তি দুর্বল হয়ে পড়ে। চরম অভাবে জেরফথ্যালমিয়া হয়ে কর্নিয়া নষ্ট হতে পারে।</i></small></blockquote></li>
+            <li><p>দাবী (A): বেরিবেরি একটি ভাইরাল সংক্রমণ। কারণ (R): ভিটামিনের অভাবে রোগ হয়। সঠিক উত্তরটি বেছে নিন- <small>[RRB GROUP-D 03.12.2018]</small></p><ol class="options-list"><li>A মিথ্যা কিন্তু R সত্য।</li><li>A সত্য কিন্তু R মিথ্যা।</li><li>A এবং R উভয়ই মিথ্যা।</li><li>A এবং R উভয়ই সত্য এবং R হল A এর সঠিক ব্যাখ্যা।</li></ol><blockquote><strong>উত্তর: (a) A মিথ্যা কিন্তু R সত্য।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: দাবী A মিথ্যা, কারণ বেরিবেরি ভিটামিন B1 (থায়ামিন)-এর অভাবজনিত রোগ, এটি ভাইরাল সংক্রমণ নয়। কারণ R সত্য, কারণ ভিটামিনের অভাবে বিভিন্ন রোগ (যেমন স্কার্ভি, রিকেট) হয়।</i></small></blockquote></li>
+            <li><p>নিচের কোনটি ভিটামিন A এর ভালো উৎস? <small>[RRB NTPC 05.03.2021]</small></p><ol class="options-list"><li>বাঁধাকপি</li><li>গাজর</li><li>আলু</li><li>স্ট্রবেরি</li></ol><blockquote><strong>উত্তর: (B) গাজর।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: গাজর বিটা-ক্যারোটিনের একটি চমৎকার উৎস, যা মানবদেহে ভিটামিন A-তে রূপান্তরিত হয়।</i></small></blockquote></li>
+            <li><p>নিচের কোনটি ভিটামিন 'A'-এর সর্বোচ্চ উৎস? <small>[RRB ALP&TEC. 03-10-2018]</small></p><ol class="options-list"><li>কমলা</li><li>গাজর</li><li>ফুলকপি</li><li>আখ</li></ol><blockquote><strong>উত্তর: (B) গাজর।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: প্রদত্ত বিকল্পগুলির মধ্যে গাজর ভিটামিন A (বিটা-ক্যারোটিন রূপে) এর সর্বোচ্চ উৎস।</i></small></blockquote></li>
+            <li><p>ভিটামিন A এর সাথে সম্পর্কিত: <small>[RRB NTPC 19.12.2021]</small></p><ol class="options-list"><li>কোবালামিন</li><li>অ্যাসকরবিক অ্যাসিড</li><li>রেটিনল</li><li>অ্যামিনো অ্যাসিড</li></ol><blockquote><strong>উত্তর: (C) রেটিনল।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন A-এর রাসায়নিক নাম হলো রেটিনল।</i></small></blockquote></li>
+            <li><p>রাতের অন্ধত্ব (রাতকানা) _____ এর অভাবের কারণে হয়। <small>[RRB GROUP-D 05/12/2018]</small></p><ol class="options-list"><li>ভিটামিন A</li><li>ভিটামিন B</li><li>ভিটামিন D</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (A) ভিটামিন A।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন A চোখের রেটিনায় রোডোপসিন নামক রঞ্জক পদার্থ তৈরিতে সাহায্য করে, যা কম আলোতে দেখতে প্রয়োজন। এর অভাবে রাতকানা রোগ হয়।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিনের অভাবে স্কার্ভি হয়? <small>[RRB ALP & TEC 13/07/2021]</small></p><ol class="options-list"><li>ভিটামিন A</li><li>ভিটামিন K</li><li>ভিটামিন B6</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (D) ভিটামিন C।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন C (অ্যাসকরবিক অ্যাসিড)-এর অভাবে স্কার্ভি রোগ হয়, যার প্রধান লক্ষণ মাড়ি থেকে রক্তপাত।</i></small></blockquote></li>
+            <li><p>ভিটামিন 'C' এর অভাবে নিচের কোন রোগ বেশির ভাগ হয়ে থাকে? <small>[RRB JE 22.05.2019]</small></p><ol class="options-list"><li>স্কার্ভি</li><li>আথ্রাইটিস</li><li>কিডনি ব্যর্থতা</li><li>শ্বাসযন্ত্রের রোগ</li></ol><blockquote><strong>উত্তর: (A) স্কার্ভি।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন C-এর অভাবজনিত প্রধান রোগটি হলো স্কার্ভি।</i></small></blockquote></li>
+            <li><p>স্কার্ভি রোগ, যার উপসর্গ হল মাড়ি থেকে রক্তপাত, ____ খাদ্য যোগ করার মাধ্যমে প্রতিরোধ করা যেতে পারে। <small>[RRB NTPC 10.01.2021]</small></p><ol class="options-list"><li>ভিটামিন - A</li><li>ভিটামিন - C</li><li>কোলেস্টেরল</li><li>প্রোটিন</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন - C।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন C সমৃদ্ধ খাবার, যেমন টক ফল, খেলে স্কার্ভি রোগ প্রতিরোধ করা যায়।</i></small></blockquote></li>
+            <li><p>সাইট্রাস ফল একটি সমৃদ্ধ উৎস হিসাবে বিবেচিত হয়: <small>[RRB NTPC 03.03.2021]</small></p><ol class="options-list"><li>ভিটামিন A</li><li>ভিটামিন B</li><li>ভিটামিন D</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (D) ভিটামিন C।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: সাইট্রাস বা টক জাতীয় ফল (যেমন কমলা, লেবু) ভিটামিন C-এর একটি উৎকৃষ্ট উৎস।</i></small></blockquote></li>
+            <li><p>____ এর অভাবের কারণে স্কার্ভি হয়। <small>[RRB NTPC 15.12.2022]</small></p><ol class="options-list"><li>ভিটামিন-K</li><li>ভিটামিন-B2</li><li>ভিটামিন B1</li><li>ভিটামিন-C</li></ol><blockquote><strong>উত্তর: (D) ভিটামিন-C।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: স্কার্ভি রোগের প্রত্যক্ষ কারণ হলো খাদ্যে ভিটামিন C-এর অভাব।</i></small></blockquote></li>
+            <li><p>নিচের কোন ভিটামিনটি চর্বি দ্রবণীয় নয়? <small>[RRB NTPC 02.03.2021]</small></p><ol class="options-list"><li>ভিটামিন-K</li><li>ভিটামিন-D</li><li>ভিটামিন-A</li><li>ভিটামিন-C</li></ol><blockquote><strong>উত্তর: (D) ভিটামিন-C।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন C জলে দ্রবণীয়। ভিটামিন A, D, E এবং K চর্বি বা ফ্যাটে দ্রবণীয়।</i></small></blockquote></li>
+            <li><p>ভিটামিন সি-এর অভাবের কারণে: <small>[RRB ALP & TEC 06/03/2013]</small></p><ol class="options-list"><li>গলগন্ড</li><li>দৃষ্টিশক্তি হারানো</li><li>স্কার্ভি</li><li>বেরিবেরি</li></ol><blockquote><strong>উত্তর: (C) স্কার্ভি।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: গলগন্ড আয়োডিনের অভাবে, দৃষ্টিশক্তি হারানো ভিটামিন A-এর অভাবে এবং বেরিবেরি ভিটামিন B1-এর অভাবে হয়। স্কার্ভি ভিটামিন C-এর অভাবে হয়।</i></small></blockquote></li>
+            <li><p>ভিটামিন C এর অভাবে কোন রোগ হয়? <small>[RRB JE 23.05.2019]</small></p><ol class="options-list"><li>রিকেটস</li><li>স্কার্ভি</li><li>দাও দাও (বেরিবেরি)</li><li>রাতকানা</li></ol><blockquote><strong>উত্তর: (B) স্কার্ভি।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: রিকেটস ভিটামিন D-এর অভাবে, রাতকানা ভিটামিন A-এর অভাবে এবং বেরিবেরি ভিটামিন B1-এর অভাবে হয়।</i></small></blockquote></li>
+            <li><p>কলা কোন ভিটামিনের ভালো উৎস? <small>[RRB JE 31.05.2019]</small></p><ol class="options-list"><li>A</li><li>C</li><li>D</li><li>B</li></ol><blockquote><strong>উত্তর: (D) B।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: কলা ভিটামিন B6 (পাইরিডক্সিন) এবং পটাশিয়ামের একটি খুব ভালো উৎস।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিনের অভাবে অতিরিক্ত রক্তক্ষরণ হয় তার নাম বল? <small>[SSC MTS 05/07/2022]</small></p><ol class="options-list"><li>ভিটামিন A</li><li>ভিটামিন K</li><li>ভিটামিন B</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন K।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন K রক্ত তঞ্চনে সাহায্য করে। এর অভাবে রক্ত জমাট বাঁধতে সমস্যা হয় এবং অতিরিক্ত রক্তক্ষরণ হতে পারে।</i></small></blockquote></li>
+            <li><p>রক্ত জমাট বাঁধার জন্য প্রয়োজনীয় ভিটামিন কোনটি? <small>[RRB NTPC 12.01.2021]</small></p><ol class="options-list"><li>E</li><li>D</li><li>K</li><li>C</li></ol><blockquote><strong>উত্তর: (c) K।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: রক্ত তঞ্চন বা জমাট বাঁধার জন্য ভিটামিন K অপরিহার্য।</i></small></blockquote></li>
+            <li><p>নিচের কোনটির অভাবে রিকেট রোগ হয়? <small>[RRB NTPC 12.01.2021]</small></p><ol class="options-list"><li>ভিটামিন D</li><li>ভিটামিন B</li><li>ভিটামিন A</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (A) ভিটামিন D।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন D-এর অভাবে শিশুদের হাড় দুর্বল হয়ে রিকেট রোগ হয়।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিন রক্ত জমাট বাঁধার জন্য প্রয়োজনীয় প্রোটিন এবং ক্যালসিয়াম সক্রিয় করে? <small>[RRB ALP & TEC 25.06.2018]</small></p><ol class="options-list"><li>ভিটামিন K</li><li>ভিটামিন D</li><li>ভিটামিন B1</li><li>ভিটামিন C</li></ol><blockquote><strong>উত্তর: (A) ভিটামিন K।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন K রক্ত তঞ্চন প্রক্রিয়ায় যুক্ত প্রোটিনগুলিকে সক্রিয় করতে সাহায্য করে।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিন আমাদের চোখ ও ত্বককে সুস্থ রাখে? <small>[RRB ALP & TEC 25.06.2018]</small></p><ol class="options-list"><li>ভিটামিন D</li><li>ভিটামিন B</li><li>ভিটামিন A</li><li>ভিটামিন E</li></ol><blockquote><strong>উত্তর: (C) ভিটামিন A।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন A দৃষ্টিশক্তি বজায় রাখে এবং ত্বকের আবরণী কলাকে সুস্থ রাখতে সাহায্য করে।</i></small></blockquote></li>
+            <li><p>কোন ধরনের চিনি ফল মিষ্টি করার জন্য দায়ী? <small>[RRB JE 05.12.2013]</small></p><ol class="options-list"><li>ফ্রুক্টোজ</li><li>সুক্রোজ</li><li>মাল্টোজ</li><li>ল্যাকটোজ</li></ol><blockquote><strong>উত্তর: (A) ফ্রুক্টোজ।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ফ্রুক্টোজকে 'ফল শর্করা' (Fruit Sugar) বলা হয় এবং এটি প্রাকৃতিক শর্করার মধ্যে সবচেয়ে মিষ্টি।</i></small></blockquote></li>
+            <li><p>রেটিনল প্রধানত এর সাথে সম্পর্কিত - <small>[RRB CGL 12.03.2018]</small></p><ol class="options-list"><li>ভিটামিন A</li><li>ভিটামিন D</li><li>ভিটামিন B</li><li>ভিটামিন E</li></ol><blockquote><strong>উত্তর: (A) ভিটামিন A।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: রেটিনল ভিটামিন A-এর রাসায়নিক নাম।</i></small></blockquote></li>
+            <li><p>ভিটামিন A এর অভাবে কোন রোগ হয়? <small>[RRB NTPC 12.12.2022]</small></p><ol class="options-list"><li>রাতের অন্ধত্ব</li><li>রক্তাল্পতা</li><li>বেরিবেরি</li><li>যক্ষ্মা (টিবি)</li></ol><blockquote><strong>উত্তর: (A) রাতের অন্ধত্ব।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন A-এর অভাবজনিত প্রধান রোগ হলো রাতকানা বা রাতের অন্ধত্ব।</i></small></blockquote></li>
+            <li><p>ভিটামিন K এর অভাব কিসের দিকে পরিচালিত করে: <small>[RRB JE 25.06.2019]</small></p><ol class="options-list"><li>রক্ত জমাট বাঁধার সমস্যা</li><li>ক্যালসিয়াম বিপাকের সমস্যা</li><li>হজমে সমস্যা</li><li>সমস্ত বিকল্প</li></ol><blockquote><strong>উত্তর: (A) রক্ত জমাট বাঁধার সমস্যা।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন K-এর প্রধান কাজ রক্ত তঞ্চনে সহায়তা করা, তাই এর অভাবে রক্ত জমাট বাঁধতে সমস্যা হয়।</i></small></blockquote></li>
+            <li><p>নিচের কোন ভিটামিন মানুষের রক্তের স্বাভাবিক জমাট বাঁধতে সাহায্য করে? <small>[RRB 15.09.2016]</small></p><ol class="options-list"><li>ভিটামিন-C</li><li>ভিটামিন-D</li><li>ভিটামিন- A</li><li>ভিটামিন-K</li></ol><blockquote><strong>উত্তর: (D) ভিটামিন-K।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন K রক্ত তঞ্চনের জন্য একটি অপরিহার্য উপাদান।</i></small></blockquote></li>
+            <li><p>ভিটামিন B1 এছাড়াও বলা হয়: <small>[RRB GROUP-D 26.08.2019]</small></p><ol class="options-list"><li>থায়ামিন</li><li>বায়োটিন</li><li>অ্যাসকরবিক অ্যাসিড</li><li>নিয়াসিন</li></ol><blockquote><strong>উত্তর: (A) থায়ামিন।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন B1-এর রাসায়নিক নাম থায়ামিন। এর অভাবে বেরিবেরি রোগ হয়।</i></small></blockquote></li>
+            <li><p>ভিটামিন C কেও বলা হয়- <small>[RRB ALP & TEC 06.09.2011]</small></p><ol class="options-list"><li>অ্যাসিটিক অ্যাসিড</li><li>রিবোফ্লাভিন</li><li>অ্যাসকরবিক অ্যাসিড</li><li>ফলিক এসিড</li></ol><blockquote><strong>উত্তর: (C) অ্যাসকরবিক অ্যাসিড।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন C-এর রাসায়নিক নাম অ্যাসকরবিক অ্যাসিড।</i></small></blockquote></li>
+            <li><p>ভিটামিন K এর প্রধান কাজ হল: <small>[RRB GROUP-D 25.03.2016]</small></p><ol class="options-list"><li>ইমিউন সিস্টেম</li><li>রক্ত জমাট বাঁধা</li><li>ত্বকের স্বাস্থ্য</li><li>ক্যালসিয়াম শোষণ</li></ol><blockquote><strong>উত্তর: (B) রক্ত জমাট বাঁধা।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন K-এর প্রধান কাজ হলো রক্ত তঞ্চন প্রক্রিয়ায় সহায়তা করা।</i></small></blockquote></li>
+            <li><p>বেরিবেরির কারণ কী? <small>[RRB CGL 26.03.2016]</small></p><ol class="options-list"><li>ভিটামিন B এর আধিক্য</li><li>ভিটামিন B1 এর অভাব</li><li>ভিটামিন C এর আধিক্য</li><li>ভিটামিন C এর অভাব</li></ol><blockquote><strong>উত্তর: (b) ভিটামিন B1 এর অভাব।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন B1 বা থায়ামিনের অভাবে বেরিবেরি রোগ হয়।</i></small></blockquote></li>
+            <li><p>খাদ্য থেকে ভিটামিন-ডি এর সবচেয়ে সমৃদ্ধ উৎস হল: <small>[RRB CDS 16.11.2013]</small></p><ol class="options-list"><li>তুলাবীজের তেল</li><li>কড লিভার তেল</li><li>জলপাই তেল</li><li>সূর্যমুখী তেল</li></ol><blockquote><strong>উত্তর: (B) কড লিভার তেল।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: কড মাছের যকৃতের তেল ভিটামিন D এবং ভিটামিন A-এর একটি অত্যন্ত সমৃদ্ধ উৎস।</i></small></blockquote></li>
+            <li><p>মাছের যকৃতের তেল সমৃদ্ধ: <small>[RRB GROUP-D 26.12.2022]</small></p><ol class="options-list"><li>ভিটামিন-A এবং ভিটামিন-D উভয়ই</li><li>ভিটামিন-A</li><li>ভিটামিন-E</li><li>ভিটামিন-D</li></ol><blockquote><strong>উত্তর: (a) ভিটামিন-A এবং ভিটামিন-D উভয়ই।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: মাছের যকৃতের তেলে প্রচুর পরিমাণে ভিটামিন A এবং ভিটামিন D উভয়ই পাওয়া যায়।</i></small></blockquote></li>
+            <li><p>নিচের কোন ভিটামিনটি রক্ত জমাট বাঁধার জন্য গুরুত্বপূর্ণ? <small>[RRB NTPC 12.12.2011]</small></p><ol class="options-list"><li>ভিটামিন B12</li><li>ভিটামিন A</li><li>ভিটামিন D</li><li>ভিটামিন K</li></ol><blockquote><strong>উত্তর: (d) ভিটামিন K।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: রক্ত তঞ্চন বা জমাট বাঁধার জন্য ভিটামিন K গুরুত্বপূর্ণ।</i></small></blockquote></li>
+            <li><p>নিচের কোন ভিটামিনে কোবাল্ট নামক খনিজ থাকে? <small>[RRB CDS 16.12.2016]</small></p><ol class="options-list"><li>ভিটামিন B3</li><li>ভিটামিন B12</li><li>ভিটামিন B2</li><li>ভিটামিন B6</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন B12।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন B12-এর রাসায়নিক নাম সায়ানোকোবালামিন। এর আণবিক গঠনে কোবাল্ট (Co) ধাতু থাকে।</i></small></blockquote></li>
+            <li><p>কোবালামিন কোন ভিটামিনে থাকে? <small>[RRB JE 12.06.2022]</small></p><ol class="options-list"><li>ভিটামিন B12</li><li>ভিটামিন B5</li><li>ভিটামিন B3</li><li>ভিটামিন B1</li></ol><blockquote><strong>উত্তর: (a) ভিটামিন B12।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: কোবালামিন হলো ভিটামিন B12-এর অপর নাম।</i></small></blockquote></li>
+            <li><p>কোবালমিনকে বলা হয়: <small>[RRB NTPC 21.03.2019]</small></p><ol class="options-list"><li>ভিটামিন-D</li><li>ভিটামিন- A</li><li>ভিটামিন B12</li><li>ভিটামিন-C</li></ol><blockquote><strong>উত্তর: (C) ভিটামিন B12।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন B12-কে কোবালমিনও বলা হয়।</i></small></blockquote></li>
+            <li><p>নিয়াসিন হল একটি রূপ : <small>[RRB 12.06.2019]</small></p><ol class="options-list"><li>ভিটামিন B3</li><li>ভিটামিন B1</li><li>ভিটামিন B4</li><li>ভিটামিন B2</li></ol><blockquote><strong>উত্তর: (A) ভিটামিন B3।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন B3-এর রাসায়নিক নাম নিয়াসিন। এর অভাবে পেলাগ্রা রোগ হয়।</i></small></blockquote></li>
+            <li><p>পেলাগ্রা ____ এর অভাবের কারণে হয়: <small>[RRB 13.09.2015]</small></p><ol class="options-list"><li>রিবোফ্লাভিন</li><li>ফলিক এসিড</li><li>অ্যাসকরবিক অ্যাসিড</li><li>নিয়াসিন</li></ol><blockquote><strong>উত্তর: (D) নিয়াসিন।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: নিয়াসিন বা ভিটামিন B3-এর অভাবে পেলাগ্রা রোগ হয়।</i></small></blockquote></li>
+            <li><p>নিচের কোনটি লৌহের সবচেয়ে বেশি উৎস? <small>[RRB JE 15.12.2011]</small></p><ol class="options-list"><li>সবুজ শাকসবজি</li><li>ডিম</li><li>মটরশুটি</li><li>দুধ</li></ol><blockquote><strong>উত্তর: (A) সবুজ শাকসবজি।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: সবুজ শাকসবজি, যেমন পালং শাক, কচু শাক ইত্যাদি আয়রন বা লৌহের খুব ভালো উৎস।</i></small></blockquote></li>
+            <li><p>রিবোফ্লাভিন কি? <small>[RRB JE 05.12.2013]</small></p><ol class="options-list"><li>অ্যান্টিবায়োটিক</li><li>ভিটামিন</li><li>রঞ্জক পদার্থ</li><li>উদ্ভিদ</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: রিবোফ্লাভিন হলো ভিটামিন B2-এর রাসায়নিক নাম।</i></small></blockquote></li>
+            <li><p>কোন ভিটামিনের অভাবে মেগালোব্লাস্টিক অ্যানিমিয়া হয়? <small>[RRB NTPC 02.03.2018]</small></p><ol class="options-list"><li>ভিটামিন C</li><li>ভিটামিন A</li><li>ভিটামিন B12</li><li>ভিটামিন B9</li></ol><blockquote><strong>উত্তর: (D) ভিটামিন B9।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন B9 (ফলিক অ্যাসিড) এবং ভিটামিন B12 উভয়ের অভাবেই মেগালোব্লাস্টিক অ্যানিমিয়া হতে পারে। এই প্রকার রক্তাল্পতায় লোহিত রক্তকণিকাগুলি আকারে অস্বাভাবিক বড় হয়ে যায়।</i></small></blockquote></li>
+            <li><p>প্রোটিনের অভাবজনিত রোগ চিহ্নিত করুন: <small>[RRB NTPC 12.12.2022]</small></p><ol class="options-list"><li>স্কার্ভি</li><li>বেরিবেরি</li><li>রাতকানা</li><li>কোয়াশিওরকর</li></ol><blockquote><strong>উত্তর: (D) কোয়াশিওরকর।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: শিশুদের খাদ্যে প্রোটিনের তীব্র অভাবে কোয়াশিওরকর রোগ হয়।</i></small></blockquote></li>
+            <li><p>শিশুদের প্রোটিনের অভাবে যে রোগ হয় তাকে বলা হয়? <small>[RRB JE 05.10.2018]</small></p><ol class="options-list"><li>কোয়াশিওরকর</li><li>বেরিবেরি</li><li>পেলাগ্রা</li><li>রিকেটস</li></ol><blockquote><strong>উত্তর: (A) কোয়াশিওরকর।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: শুধুমাত্র প্রোটিনের অভাবে কোয়াশিওরকর এবং প্রোটিন ও ক্যালোরি উভয়ের অভাবে ম্যারাসমাস রোগ হয়।</i></small></blockquote></li>
+            <li><p>কোনটির অভাবে রক্তশূন্যতা হয়? <small>[RRB ALP & TEC 12.06.2011]</small></p><ol class="options-list"><li>ফলিক এসিড</li><li>লোহা</li><li>ভিটামিন B12</li><li>উপরের সবগুলো</li></ol><blockquote><strong>উত্তর: (D) উপরের সবগুলো।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: রক্তশূন্যতা বা অ্যানিমিয়ার বিভিন্ন কারণ রয়েছে। লোহা (Iron), ফলিক অ্যাসিড (ভিটামিন B9), এবং ভিটামিন B12 - এই তিনটি উপাদানই লোহিত রক্তকণিকা তৈরির জন্য অপরিহার্য। এদের যেকোনো একটির অভাবে রক্তশূন্যতা হতে পারে।</i></small></blockquote></li>
+            <li><p>মাছ থেকে পাওয়া কড লিভার অয়েল কোন ভিটামিনের সমৃদ্ধ উৎস? <small>[RRB 13.2.2023]</small></p><ol class="options-list"><li>ভিটামিন C</li><li>ভিটামিন D</li><li>ভিটামিন B12</li><li>ভিটামিন B</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন D।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: কড লিভার অয়েল ভিটামিন D এবং ভিটামিন A উভয়েরই একটি उत्कृष्ट উৎস।</i></small></blockquote></li>
+            <li><p>E300 এর সাধারণ নাম কি? <small>[RRB ALP & TEC. 06.05.2016]</small></p><ol class="options-list"><li>ভিটামিন D</li><li>ভিটামিন B</li><li>ভিটামিন C</li><li>ভিটামিন A</li></ol><blockquote><strong>উত্তর: (C) ভিটামিন C।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: E300 হলো ভিটামিন C বা অ্যাসকরবিক অ্যাসিডের ফুড অ্যাডিটিভ কোড, যা অ্যান্টিঅক্সিডেন্ট হিসেবে খাদ্যে ব্যবহৃত হয়।</i></small></blockquote></li>
+            <li><p>ভিটামিন নামকরণ করেন - <small>[SSC CGL, PSC]</small></p><ol class="options-list"><li>কুহনে</li><li>ক্যাসিমির ফাঙ্ক</li><li>ইরহেনবার্গ</li><li>বাইজারিঙ্ক</li></ol><blockquote><strong>উত্তর: (b) ক্যাসিমির ফাঙ্ক।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: পোলিশ বিজ্ঞানী ক্যাসিমির ফাঙ্ক (Casimir Funk) ১৯১২ সালে প্রথম 'ভিটামিন' (Vitamine) শব্দটি ব্যবহার করেন।</i></small></blockquote></li>
+            <li><p>জেরফথ্যালমিয়া কার অভাবে ঘটে? </p><ol class="options-list"><li>ভিটামিন-C</li><li>ভিটামিন-A</li><li>ভিটামিন-K</li><li>ভিটামিন-E</li></ol><blockquote><strong>উত্তর: (B) ভিটামিন-A।</strong><br><small><i>বিস্তারিত ব্যাখ্যা: ভিটামিন A-এর তীব্র অভাবে চোখের কর্নিয়া শুকিয়ে যায় এবং দৃষ্টিশক্তি স্থায়ীভাবে নষ্ট হয়ে যেতে পারে। এই অবস্থাকে জেরফথ্যালমিয়া বলে।</i></small></blockquote></li>
+        </ol>
+    </div>
+
+    <nav class="navigation">
+        <a href="class3.html" class="nav-button">পূর্ববর্তী</a>
+        <a href="class1.html" class="nav-button">1</a>
+        <a href="class2.html" class="nav-button">2</a>
+        <a href="class3.html" class="nav-button">3</a>
+        <a href="class4.html" class="nav-button active">4</a>
+        <a href="class5.html" class="nav-button">5</a>
+        <a href="class5.html" class="nav-button">পরবর্তী</a>
+        <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+    <footer>
+        <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeButtons = document.querySelectorAll('.theme-buttons button');
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const desktopModeToggle = document.getElementById('desktopModeToggle');
+            const body = document.body;
+            const viewportMeta = document.querySelector('meta[name="viewport"]');
+            
+            const mobileViewport = 'width=device-width, initial-scale=1.0';
+            const desktopViewport = 'width=1200, initial-scale=1.0';
+
+            function applyTheme(theme) {
+                body.dataset.theme = theme;
+                localStorage.setItem('selected_theme', theme);
+            }
+
+            function applyMode(mode) {
+                if (mode === 'dark') {
+                    body.classList.add('dark-mode');
+                    darkModeToggle.checked = true;
+                } else {
+                    body.classList.remove('dark-mode');
+                    darkModeToggle.checked = false;
+                }
+                localStorage.setItem('selected_mode', mode);
+            }
+            
+            function applyDesktopMode(isDesktop) {
+                if (isDesktop) {
+                    body.classList.add('desktop-view');
+                    viewportMeta.setAttribute('content', desktopViewport);
+                    desktopModeToggle.textContent = 'মোবাইল মোড';
+                } else {
+                    body.classList.remove('desktop-view');
+                    viewportMeta.setAttribute('content', mobileViewport);
+                    desktopModeToggle.textContent = 'ডেস্কটপ মোড';
+                }
+                localStorage.setItem('desktop_mode_enabled', isDesktop);
+            }
+
+            const savedTheme = localStorage.getItem('selected_theme');
+            const savedMode = localStorage.getItem('selected_mode');
+            const savedDesktopMode = localStorage.getItem('desktop_mode_enabled') === 'true'; 
+            
+            if (savedTheme) applyTheme(savedTheme);
+            if (savedMode) applyMode(savedMode);
+            applyDesktopMode(savedDesktopMode); 
+            
+            themeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    applyTheme(button.dataset.themeName);
+                });
+            });
+
+            darkModeToggle.addEventListener('change', () => {
+                applyMode(darkModeToggle.checked ? 'dark' : 'light');
+            });
+            
+            desktopModeToggle.addEventListener('click', () => {
+                const isCurrentlyDesktop = body.classList.contains('desktop-view');
+                applyDesktopMode(!isCurrentlyDesktop);
+            });
+
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                if (scrollPosition > 200) { scrollToTopBtn.style.display = 'flex'; } else { scrollToTopBtn.style.display = 'none'; }
+                if (scrollPosition + windowHeight < bodyHeight - 100) { scrollToBottomBtn.style.display = 'flex'; } else { scrollToBottomBtn.style.display = 'none'; }
+            });
+            scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            scrollToBottomBtn.addEventListener('click', () => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); });
+
+            const clockElement = document.getElementById('digital-clock');
+            function updateClock() {
+                if(clockElement) {
+                    const now = new Date();
+                    const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' };
+                    clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+                }
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            const yearSpan = document.getElementById('copyright-year');
+            if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+        });
+    </script>
+</body>
+</html>

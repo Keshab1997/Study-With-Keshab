@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>খাদ্য, পুষ্টি ও ভিটামিন (সারসংক্ষেপ) - Class 03</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        :root { --bg-color: #f0f2f5; --container-bg: #ffffff; --text-color: #333333; --heading-color-1: #d81b60; --heading-color-2: #004d40; --heading-color-3: #1a237e; --accent-color: #c2185b; --blockquote-bg: #e3f2fd; --blockquote-border: #2196f3; --table-header-bg: #004d40; --table-header-text: #ffffff; --nav-button-bg: #fff; --nav-button-text: #333; --nav-button-border: #ccc; --nav-active-bg: #d81b60; --box-shadow-color: rgba(0, 0, 0, 0.1); }
+        [data-theme="forest"] { --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60; }
+        [data-theme="ocean"] { --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9; }
+        [data-theme="sunset"] { --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100; }
+        .dark-mode { --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05); }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        body.desktop-view .container, body.desktop-view header, body.desktop-view .controls-wrapper { max-width: 1200px; }
+        header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; transition: max-width 0.4s ease-in-out; }
+        .logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+        .container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s, max-width 0.4s ease-in-out; }
+        h1, h2, h3, h4 { border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 30px; }
+        h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+        h2 { font-size: 2em; color: var(--heading-color-2); }
+        h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+        h4 { border-bottom: 1px dotted #ccc; }
+        p { font-size: 1.1em; }
+        strong { color: var(--accent-color); font-weight: 600; }
+        blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-style: italic; font-size: 1.1em; border-radius: 5px; }
+        img { max-width: 100%; height: auto; display: block; margin: 25px auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 10px; padding-left: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 1em; }
+        table th, table td { border: 1px solid #ddd; padding: 12px 15px; text-align: left; vertical-align: top; }
+        .dark-mode table th, .dark-mode table td { border: 1px solid #444; }
+        table th { background-color: var(--table-header-bg); color: var(--table-header-text); font-weight: 600; }
+        table tr:nth-of-type(even) { background-color: var(--blockquote-bg); }
+        .dark-mode table tr:nth-of-type(even) { background-color: #2c2c2c; }
+        .controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; transition: max-width 0.4s ease-in-out; }
+        .theme-buttons button, #desktopModeToggle { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+        .theme-buttons button:hover, #desktopModeToggle:hover { opacity: 0.8; }
+        .dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--heading-color-1); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+        .navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+        .nav-button:hover { background-color: #e0e0e0; }
+        .nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+        .nav-button.disabled { pointer-events: none; opacity: 0.5; }
+        .home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+        .home-button:hover { background-color: #1565c0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+        .scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+        #scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+        .scroll-button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: খাদ্য, পুষ্টি ও ভিটামিন (সারসংক্ষেপ)</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 03</h2>
+    
+    <h3>ভূমিকা</h3>
+    <p>এই সারসংক্ষেপটি পড়লে আপনি খাদ্য, পুষ্টি, ভিটামিন, DNA ও RNA সম্পর্কিত আগের সমস্ত প্রশ্নের উত্তর সহজেই দিতে পারবেন।</p>
+    
+    <h3>১. খাদ্যের প্রকারভেদ ও কাজ</h3>
+    <p>খাদ্যের উপাদানগুলিকে প্রধানত ৩টি ভাগে ভাগ করা হয়:</p>
+    <ol>
+      <li><strong>শক্তি উৎপাদক খাদ্য (Energy-giving Food):</strong> কার্বোহাইড্রেট ও ফ্যাট।</li>
+      <li><strong>দেহ গঠনকারী খাদ্য (Body-building Food):</strong> প্রোটিন।</li>
+      <li><strong>দেহ সংরক্ষক খাদ্য (Protective Food):</strong> ভিটামিন ও খনিজ লবণ।</li>
+    </ol>
+
+    <h3>২. কার্বোহাইড্রেট, প্রোটিন ও ফ্যাট (Macronutrients)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>বৈশিষ্ট্য</th>
+                <th>কার্বোহাইড্রেট</th>
+                <th>প্রোটিন</th>
+                <th>ফ্যাট/লিপিড</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>গঠনগত একক</strong></td>
+                <td>গ্লুকোজ (মোনোস্যাকারাইড)</td>
+                <td>অ্যামাইনো অ্যাসিড</td>
+                <td>ফ্যাটি অ্যাসিড ও গ্লিসারল</td>
+            </tr>
+            <tr>
+                <td><strong>প্রধান কাজ</strong></td>
+                <td>শক্তির প্রধান উৎস</td>
+                <td>দেহ গঠন, বৃদ্ধি ও ক্ষয়পূরণ</td>
+                <td>শক্তির উৎসরূপে সঞ্চিত থাকা</td>
+            </tr>
+            <tr>
+                <td><strong>তাপন মূল্য</strong></td>
+                <td><strong>4.1 kcal/g</strong></td>
+                <td><strong>4.2 kcal/g</strong></td>
+                <td><strong>9.3 kcal/g</strong> (সর্বাধিক)</td>
+            </tr>
+            <tr>
+                <td><strong>গুরুত্বপূর্ণ তথ্য</strong></td>
+                <td>• ফলের মিষ্টি স্বাদের কারণ <strong>ফ্রুক্টোজ</strong>।<br>• প্রাণীদেহে সঞ্চিত শর্করা হলো <strong>গ্লাইকোজেন</strong>।</td>
+                <td>• অভাবজনিত রোগ: শিশুদের <strong>কোয়াশিওরকর</strong> ও <strong>ম্যারাসমাস</strong>।</td>
+                <td>• ফ্যাটে দ্রবণীয় ভিটামিন (A, D, E, K) শোষণে সাহায্য করে।</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>৩. ভিটামিন (Vitamins)</h3>
+    <ul>
+        <li><strong>আবিষ্কারক:</strong> বিজ্ঞানী <strong>ক্যাসিমির ফাঙ্ক (Casimir Funk)</strong>।</li>
+        <li><strong>ফ্যাটে দ্রবণীয়:</strong> Vitamin <strong>A, D, E, K</strong></li>
+        <li><strong>জলে দ্রবণীয়:</strong> Vitamin <strong>B Complex, C</strong></li>
+    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>ভিটামিন</th>
+                <th>রাসায়নিক নাম</th>
+                <th>গুরুত্বপূর্ণ তথ্য ও কাজ</th>
+                <th>অভাবজনিত রোগ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Vitamin A</strong></td>
+                <td><strong>রেটিনল</strong></td>
+                <td>• দৃষ্টিশক্তি রক্ষা করে।<br>• <strong>যকৃতে সঞ্চিত হয়</strong>।<br>• প্রি-ভিটামিন: <strong>বিটা-ক্যারোটিন</strong>।</td>
+                <td><strong>রাতকানা, জেরফথ্যালমিয়া</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Vitamin D</strong></td>
+                <td><strong>ক্যালসিফেরল</strong></td>
+                <td>• হাড় ও দাঁত গঠন করে।<br>• <strong>ক্যালসিয়াম (Ca) শোষণে</strong> সাহায্য করে।<br>• <strong>ত্বকে সংশ্লেষিত হয়</strong>।</td>
+                <td>শিশুদের <strong>রিকেট</strong>, প্রাপ্তবয়স্কদের <strong>অস্টিওম্যালেশিয়া</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Vitamin E</strong></td>
+                <td><strong>টোকোফেরল</strong></td>
+                <td>• <strong>অ্যান্টি-স্টেরিলিটি বা বন্ধ্যাত্বরোধী ভিটামিন</strong>।<br>• অ্যান্টিঅক্সিডেন্ট।</td>
+                <td>বন্ধ্যাত্ব</td>
+            </tr>
+            <tr>
+                <td><strong>Vitamin K</strong></td>
+                <td><strong>ফাইলোকুইনোন</strong></td>
+                <td>• <strong>রক্ত তঞ্চনে (Blood Clotting) সাহায্য করে</strong>।<br>• <strong>অ্যান্টি-হিমারেজিক ফ্যাক্টর</strong> বলা হয়।</td>
+                <td>রক্তক্ষরণ (Hemorrhage)</td>
+            </tr>
+            <tr>
+                <td><strong>Vitamin B12</strong></td>
+                <td><strong>সায়ানোকোবালামিন</strong></td>
+                <td>• <strong>কোবাল্ট (Co) ধাতু</strong> উপস্থিত থাকে।<br>• RBC গঠনে সাহায্য করে।</td>
+                <td><strong>পারনিসিয়াস অ্যানিমিয়া</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Vitamin C</strong></td>
+                <td><strong>অ্যাসকরবিক অ্যাসিড</strong></td>
+                <td>• রোগ প্রতিরোধ ক্ষমতা বাড়ায়।<br>• <strong>তাপে নষ্ট হয়ে যায়</strong>।<br>• <strong>মূত্রের মাধ্যমে দেহ থেকে নির্গত হয়</strong>।</td>
+                <td><strong>স্কার্ভি</strong> (মাড়ি দিয়ে রক্তপাত)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>৪. খনিজ লবণ (Minerals)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>খনিজ</th>
+                <th>প্রধান কাজ</th>
+                <th>অভাবজনিত রোগ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>লোহা (Iron - Fe)</strong></td>
+                <td>হিমোগ্লোবিন গঠন ও অক্সিজেন পরিবহন</td>
+                <td><strong>রক্তাল্পতা (Anemia)</strong></td>
+            </tr>
+            <tr>
+                <td><strong>ক্যালসিয়াম (Ca)</strong></td>
+                <td>হাড় ও দাঁত গঠন, <strong>রক্ত তঞ্চনে সাহায্য</strong></td>
+                <td><strong>রিকেট</strong>, অস্টিওপোরোসিস, টিটেনি</td>
+            </tr>
+            <tr>
+                <td><strong>আয়োডিন (I)</strong></td>
+                <td>থাইরয়েড হরমোন গঠন</td>
+                <td><strong>গলগণ্ড (Goitre)</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>৫. DNA ও RNA (সারসংক্ষেপ)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>বৈশিষ্ট্য</th>
+                <th>DNA (ডিএনএ)</th>
+                <th>RNA (আরএনএ)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>শর্করা</strong></td>
+                <td>ডি-অক্সিরাইবোজ</td>
+                <td>রাইবোজ</td>
+            </tr>
+            <tr>
+                <td><strong>নাইট্রোজেন বেস</strong></td>
+                <td>অ্যাডেনিন (A), গুয়ানিন (G), সাইটোসিন (C), <strong>থাইমিন (T)</strong></td>
+                <td>অ্যাডেনিন (A), গুয়ানিন (G), সাইটোসিন (C), <strong>ইউরাসিল (U)</strong></td>
+            </tr>
+            <tr>
+                <td><strong>বেস-জোড়</strong></td>
+                <td><strong>A=T (২টি H-বন্ড)</strong><br><strong>G≡C (৩টি H-বন্ড)</strong></td>
+                <td>সাধারণত একক-তন্ত্রী, তাই জোড় নেই</td>
+            </tr>
+            <tr>
+                <td><strong>কাঠামো</strong></td>
+                <td>দ্বি-হেলিক্স (Double Helix)</td>
+                <td>একক-তন্ত্রী (Single Stranded)</td>
+            </tr>
+            <tr>
+                <td><strong>প্রধান কাজ</strong></td>
+                <td>বংশগতির ধারক ও বাহক</td>
+                <td>প্রোটিন সংশ্লেষণ</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li><strong>অনুপস্থিত বেস:</strong> DNA-তে <strong>ইউরাসিল (U)</strong> থাকে না। RNA-তে <strong>থাইমিন (T)</strong> থাকে না।</li>
+        <li><strong>গঠন আবিষ্কার:</strong> DNA-এর দ্বি-হেলিক্স মডেল আবিষ্কার করেন <strong>ওয়াটসন ও ক্রিক</strong> (1953)।</li>
+        <li><strong>প্রযুক্তি:</strong> অপরাধী শনাক্তকরণে ব্যবহৃত হয় <strong>DNA ফিঙ্গারপ্রিন্টিং</strong>।</li>
+    </ul>
+
+</div>
+
+<nav class="navigation">
+    <a href="class2.html" class="nav-button">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button">1</a>
+    <a href="class2.html" class="nav-button">2</a>
+    <a href="class3.html" class="nav-button active">3</a>
+    <a href="class4.html" class="nav-button">4</a>
+    <a href="class5.html" class="nav-button">5</a>
+    <a href="class4.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeButtons = document.querySelectorAll('.theme-buttons button');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const desktopModeToggle = document.getElementById('desktopModeToggle');
+        const body = document.body;
+        const viewportMeta = document.querySelector('meta[name="viewport"]');
+        
+        const mobileViewport = 'width=device-width, initial-scale=1.0';
+        const desktopViewport = 'width=1200, initial-scale=1.0';
+
+        function applyTheme(theme) {
+            body.dataset.theme = theme;
+            localStorage.setItem('selected_theme', theme);
+        }
+
+        function applyMode(mode) {
+            if (mode === 'dark') {
+                body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            } else {
+                body.classList.remove('dark-mode');
+                darkModeToggle.checked = false;
+            }
+            localStorage.setItem('selected_mode', mode);
+        }
+        
+        function applyDesktopMode(isDesktop) {
+            if (isDesktop) {
+                body.classList.add('desktop-view');
+                viewportMeta.setAttribute('content', desktopViewport);
+                desktopModeToggle.textContent = 'মোবাইল মোড';
+            } else {
+                body.classList.remove('desktop-view');
+                viewportMeta.setAttribute('content', mobileViewport);
+                desktopModeToggle.textContent = 'ডেস্কটপ মোড';
+            }
+            localStorage.setItem('desktop_mode_enabled', isDesktop);
+        }
+
+        const savedTheme = localStorage.getItem('selected_theme');
+        const savedMode = localStorage.getItem('selected_mode');
+        const savedDesktopMode = localStorage.getItem('desktop_mode_enabled') === 'true'; 
+        
+        if (savedTheme) applyTheme(savedTheme);
+        if (savedMode) applyMode(savedMode);
+        applyDesktopMode(savedDesktopMode); 
+        
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                applyTheme(button.dataset.themeName);
+            });
+        });
+
+        darkModeToggle.addEventListener('change', () => {
+            applyMode(darkModeToggle.checked ? 'dark' : 'light');
+        });
+        
+        desktopModeToggle.addEventListener('click', () => {
+            const isCurrentlyDesktop = body.classList.contains('desktop-view');
+            applyDesktopMode(!isCurrentlyDesktop);
+        });
+
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const bodyHeight = document.body.offsetHeight;
+            if (scrollPosition > 200) {
+                scrollToTopBtn.style.display = 'flex';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+            if (scrollPosition + windowHeight < bodyHeight - 100) {
+                scrollToBottomBtn.style.display = 'flex';
+            } else {
+                scrollToBottomBtn.style.display = 'none';
+            }
+        });
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        scrollToBottomBtn.addEventListener('click', () => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        });
+
+        const clockElement = document.getElementById('digital-clock');
+        function updateClock() {
+            if(clockElement) {
+                const now = new Date();
+                const options = {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true,
+                    timeZone: 'Asia/Kolkata'
+                };
+                clockElement.textContent = now.toLocaleTimeString('en-GB', options);
+            }
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        const yearSpan = document.getElementById('copyright-year');
+        if(yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+    });
+</script>
+</body>
+</html>

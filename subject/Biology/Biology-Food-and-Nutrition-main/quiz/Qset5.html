@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৫ - খাদ্য ও পুষ্টি</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset4.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset6.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology খাদ্য ও পুষ্টি",
+            setName: "Quiz Set 5",
+            name: "খাদ্য ও পুষ্টি - Set 5 (প্রশ্ন ৮১-৯৯)",
+            questions: [
+                {
+                    question: "অ্যাডেনিন ও থাইমিন _______ হাইড্রোজেন বন্ড দিয়ে এবং গুয়ানিন ও সাইটোসিন _______ হাইড্রোজেন বন্ড দিয়ে সংযুক্ত থাকে।",
+                    options: ["২ টি ও ৩ টি", "৪ টি ও ২ টি", "৫ টি ও ১ টি", "৩ টি ও ৪ টি"],
+                    answer: 0,
+                    explanation: "DNA অণুতে, অ্যাডেনিন (A) এবং থাইমিন (T) দুটি হাইড্রোজেন বন্ধন দ্বারা সংযুক্ত থাকে (A=T), যেখানে গুয়ানিন (G) এবং সাইটোসিন (C) তিনটি হাইড্রোজেন বন্ধন দ্বারা সংযুক্ত থাকে (G≡C)।"
+                },
+                {
+                    question: "DNA-এর একটি প্যাঁচের মাপ-",
+                    options: ["34Å", "3.4Å", "24Å", "44Å"],
+                    answer: 0,
+                    explanation: "DNA-এর দ্বি-হেলিক্স কাঠামোর একটি সম্পূর্ণ প্যাঁচের দৈর্ঘ্য হলো 34 অ্যাংস্ট্রম (Å), যা 3.4 ন্যানোমিটারের সমান। প্রতিটি প্যাঁচে প্রায় 10 জোড়া ক্ষারক থাকে।"
+                },
+                {
+                    question: "DNA অণুর গুয়ানিনের পরিপূরক ক্ষার মূলকটি হল-",
+                    options: ["অ্যাডেনিন (A)", "সাইটোসিন (C)", "থাইমিন (T)", "ইউরাসিল (U)"],
+                    answer: 1,
+                    explanation: "DNA অণুতে ক্ষারক-জোড় নীতি অনুযায়ী, গুয়ানিন (G) সবসময় সাইটোসিন (C) এর সাথে তিনটি হাইড্রোজেন বন্ধন দ্বারা যুক্ত থাকে।"
+                },
+                {
+                    question: "পিউরিণ-জাতীয় নাইট্রোজেনযুক্ত ক্ষারটি হল-",
+                    options: ["অ্যাডেনিন", "সাইটোসিন", "থাইমিন", "ইউরাসিল"],
+                    answer: 0,
+                    explanation: "পিউরিণ-জাতীয় নাইট্রোজেনযুক্ত ক্ষারকগুলি হলো অ্যাডেনিন (A) এবং গুয়ানিন (G)।"
+                },
+                {
+                    question: "পিরামিডিন-জাতীয় নাইট্রোজেনযুক্ত ক্ষার নয়-",
+                    options: ["থাইমিন", "সাইটোসিন", "ইউরাসিল", "গুয়ানিন"],
+                    answer: 3,
+                    explanation: "থাইমিন, সাইটোসিন এবং ইউরাসিল হলো পিরামিডিন-জাতীয় ক্ষারক। গুয়ানিন একটি পিউরিণ-জাতীয় ক্ষারক।"
+                },
+                {
+                    question: "RNA-তে থাইমিনের বদলে যে ক্ষারটি থাকে তা হল-",
+                    options: ["সাইটোসিন", "গুয়ানিন", "অ্যাডেনিন", "ইউরাসিল"],
+                    answer: 3,
+                    explanation: "RNA-তে থাইমিনের (T) পরিবর্তে ইউরাসিল (U) নামক পিরামিডিন ক্ষারক থাকে।"
+                },
+                {
+                    question: "নীচের কোনটি DNA-তে থাকে, কিন্তু RNA-তে পাওয়া যায় না?",
+                    options: ["অ্যাডেনিন", "গুয়ানিন", "থাইমিন", "ইউরাসিল"],
+                    answer: 2,
+                    explanation: "থাইমিন (T) শুধুমাত্র DNA-তে পাওয়া যায়। RNA-তে এর পরিবর্তে ইউরাসিল (U) থাকে।"
+                },
+                {
+                    question: "কোনটি পিউরিণ নয়?",
+                    options: ["অ্যাডেনিন", "গুয়ানিন", "থাইমিন", "সবগুলিই"],
+                    answer: 2,
+                    explanation: "অ্যাডেনিন এবং গুয়ানিন হলো পিউরিণ ক্ষারক। থাইমিন একটি পিরামিডিন ক্ষারক।"
+                },
+                {
+                    question: "একজন অপরাধীকে চিহ্নিত করতে, ফরেনসিক বিভাগ এই কৌশলটি ব্যবহার করে যার নাম:",
+                    options: ["ডিএনএ সম্পাদনা", "ডিএনএ স্প্লাইসিং", "DNA ফিঙ্গারপ্রিন্টিং", "DNA প্রশিক্ষণ"],
+                    answer: 2,
+                    explanation: "DNA ফিঙ্গারপ্রিন্টিং হলো একটি কৌশল যা দ্বারা ব্যক্তির অনন্য DNA প্রোফাইল তৈরি করে তাকে শনাক্ত করা হয়। এটি অপরাধ তদন্ত এবং পিতৃত্ব নির্ধারণে ব্যবহৃত হয়।"
+                },
+                {
+                    question: "জেনেটিক ইঞ্জিনিয়ারিং এর অপর নাম কি?",
+                    options: ["DNA ফিঙ্গারপ্রিন্টিং", "ডিএনএ সম্পাদনা", "রিকম্বিন্যান্ট ডিএনএ প্রযুক্তি", "জেনেটিক চিকিৎসা"],
+                    answer: 2,
+                    explanation: "জেনেটিক ইঞ্জিনিয়ারিং সাধারণত রিকম্বিন্যান্ট ডিএনএ প্রযুক্তি (Recombinant DNA Technology) নামে পরিচিত।"
+                },
+                {
+                    question: "DNA-এর অ্যাডেনিন (A) ও গুয়ানিন (G) বেসকে একত্রে বলে-",
+                    options: ["পিউরিণ", "ক্রোমোজোম", "টিউমার", "পিরামিডিন"],
+                    answer: 0,
+                    explanation: "DNA-এর নাইট্রোজেনঘটিত ক্ষারকগুলির মধ্যে অ্যাডেনিন (A) এবং গুয়ানিন (G) হলো দ্বি-চাক্রিক গঠনযুক্ত পিউরিণ।"
+                },
+                {
+                    question: "শ্যাম বেরিবেরি রোগে ভুগছে। এর কারণ তার _____ এর অভাব রয়েছে।",
+                    options: ["ভিটামিন A", "ভিটামিন K", "ভিটামিন B1", "ভিটামিন C"],
+                    answer: 2,
+                    explanation: "বেরিবেরি রোগ ভিটামিন B1 (থায়ামিন)-এর অভাবে হয়।"
+                },
+                {
+                    question: "লেবুতে কোন ভিটামিন থাকে?",
+                    options: ["ভিটামিন-D", "ভিটামিন-C", "ভিটামিন-K", "ভিটামিন-E"],
+                    answer: 1,
+                    explanation: "লেবু এবং অন্যান্য সাইট্রাস ফল ভিটামিন-C (অ্যাসকরবিক অ্যাসিড)-এর একটি চমৎকার উৎস।"
+                },
+                {
+                    question: "রাতকানা হয়?",
+                    options: ["ভিটামিন-A-র অভাবে", "ভিটামিন-K-র অভাবে", "ভিটামিন-C-র অভাবে", "ভিটামিন-D-র অভাবে"],
+                    answer: 0,
+                    explanation: "ভিটামিন-A (রেটিনল)-এর অভাবে রাতকানা (Night Blindness) রোগ হয়।"
+                },
+                {
+                    question: "যকৃতে সঞ্চয়িত হয় কোন ভিটামিন?",
+                    options: ["ভিটামিন-A", "ভিটামিন-D", "ভিটামিন-B12", "ভিটামিন-E"],
+                    answer: 0,
+                    explanation: "যকৃত হলো ফ্যাট-দ্রবণীয় ভিটামিন (A, D, E, K)-এর প্রধান সঞ্চয়স্থল। ভিটামিন A দীর্ঘ সময় ধরে যকৃতে সঞ্চিত থাকে।"
+                },
+                {
+                    question: "ভিটামিন যা সাধারণত মানুষের প্রস্রাবের দ্বারা নির্গত হয়-",
+                    options: ["ভিটামিন A", "ভিটামিন D", "ভিটামিন C", "ভিটামিন A ও D"],
+                    answer: 2,
+                    explanation: "জল-দ্রবণীয় ভিটামিন (ভিটামিন C এবং B কমপ্লেক্স) শরীরে প্রয়োজনের অতিরিক্ত হলে মূত্রের মাধ্যমে নির্গত হয়ে যায়।"
+                },
+                {
+                    question: "কড লিভার তেল যে খাদ্যগুণে সমৃদ্ধ-",
+                    options: ["ভিটামিন A এবং D", "ভিটামিন A এবং C", "ভিটামিন A এবং B", "ভিটামিন A এবং E"],
+                    answer: 0,
+                    explanation: "কড লিভার তেল ভিটামিন A এবং ভিটামিন D উভয়েরই উৎকৃষ্ট উৎস।"
+                },
+                {
+                    question: "ভিটামিন সি হল -",
+                    options: ["টোকোফেরল", "সায়ানোকোবালঅ্যামিন", "অ্যাসকরবিক অ্যাসিড", "থায়ামিন"],
+                    answer: 2,
+                    explanation: "ভিটামিন C-এর রাসায়নিক নাম হলো অ্যাসকরবিক অ্যাসিড (Ascorbic Acid)।"
+                },
+                {
+                    question: "কোন ভিটামিন টি ফ্যাটে দ্রবীভূত হয়?",
+                    options: ["Vit B", "Vit D", "Vit P", "Vit C"],
+                    answer: 1,
+                    explanation: "ভিটামিন A, D, E, এবং K হলো ফ্যাট-দ্রবণীয় ভিটামিন। ভিটামিন B কমপ্লেক্স এবং C জল-দ্রবণীয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

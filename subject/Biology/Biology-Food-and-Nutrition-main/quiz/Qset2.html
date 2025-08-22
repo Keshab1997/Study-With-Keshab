@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ২ - খাদ্য ও পুষ্টি</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="Qset3.html" class="btn btn-secondary">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology খাদ্য ও পুষ্টি",
+            setName: "Quiz Set 2",
+            name: "খাদ্য ও পুষ্টি - Set 2 (প্রশ্ন ২১-৪০)",
+            questions: [
+                {
+                    question: "দাবী (A): বেরিবেরি একটি ভাইরাল সংক্রমণ। কারণ (R): ভিটামিনের অভাবে রোগ হয়। সঠিক উত্তরটি বেছে নিন-",
+                    options: ["A মিথ্যা কিন্তু R সত্য।", "A সত্য কিন্তু R মিথ্যা।", "A এবং R উভয়ই মিথ্যা।", "A এবং R উভয়ই সত্য এবং R হল A এর সঠিক ব্যাখ্যা।"],
+                    answer: 0,
+                    explanation: "দাবী A মিথ্যা, কারণ বেরিবেরি ভিটামিন B1 (থায়ামিন)-এর অভাবজনিত রোগ, এটি ভাইরাল সংক্রমণ নয়। কারণ R সত্য, কারণ ভিটামিনের অভাবে বিভিন্ন রোগ (যেমন স্কার্ভি, রিকেট) হয়।"
+                },
+                {
+                    question: "নিচের কোনটি ভিটামিন A এর ভালো উৎস?",
+                    options: ["বাঁধাকপি", "গাজর", "আলু", "স্ট্রবেরি"],
+                    answer: 1,
+                    explanation: "গাজর বিটা-ক্যারোটিনের একটি চমৎকার উৎস, যা মানবদেহে ভিটামিন A-তে রূপান্তরিত হয়।"
+                },
+                {
+                    question: "নিচের কোনটি ভিটামিন 'A'-এর সর্বোচ্চ উৎস?",
+                    options: ["কমলা", "গাজর", "ফুলকপি", "আখ"],
+                    answer: 1,
+                    explanation: "প্রদত্ত বিকল্পগুলির মধ্যে গাজর ভিটামিন A (বিটা-ক্যারোটিন রূপে) এর সর্বোচ্চ উৎস।"
+                },
+                {
+                    question: "ভিটামিন A এর সাথে সম্পর্কিত:",
+                    options: ["কোবালামিন", "অ্যাসকরবিক অ্যাসিড", "রেটিনল", "অ্যামিনো অ্যাসিড"],
+                    answer: 2,
+                    explanation: "ভিটামিন A-এর রাসায়নিক নাম হলো রেটিনল।"
+                },
+                {
+                    question: "রাতের অন্ধত্ব (রাতকানা) _____ এর অভাবের কারণে হয়।",
+                    options: ["ভিটামিন A", "ভিটামিন B", "ভিটামিন D", "ভিটামিন C"],
+                    answer: 0,
+                    explanation: "ভিটামিন A চোখের রেটিনায় রোডোপসিন নামক রঞ্জক পদার্থ তৈরিতে সাহায্য করে, যা কম আলোতে দেখতে প্রয়োজন। এর অভাবে রাতকানা রোগ হয়।"
+                },
+                {
+                    question: "কোন ভিটামিনের অভাবে স্কার্ভি হয়?",
+                    options: ["ভিটামিন A", "ভিটামিন K", "ভিটামিন B6", "ভিটামিন C"],
+                    answer: 3,
+                    explanation: "ভিটামিন C (অ্যাসকরবিক অ্যাসিড)-এর অভাবে স্কার্ভি রোগ হয়, যার প্রধান লক্ষণ মাড়ি থেকে রক্তপাত।"
+                },
+                {
+                    question: "ভিটামিন 'C' এর অভাবে নিচের কোন রোগ বেশির ভাগ হয়ে থাকে?",
+                    options: ["স্কার্ভি", "আথ্রাইটিস", "কিডনি ব্যর্থতা", "শ্বাসযন্ত্রের রোগ"],
+                    answer: 0,
+                    explanation: "ভিটামিন C-এর অভাবজনিত প্রধান রোগটি হলো স্কার্ভি।"
+                },
+                {
+                    question: "স্কার্ভি রোগ, যার উপসর্গ হল মাড়ি থেকে রক্তপাত, ____ খাদ্য যোগ করার মাধ্যমে প্রতিরোধ করা যেতে পারে।",
+                    options: ["ভিটামিন - A", "ভিটামিন - C", "কোলেস্টেরল", "প্রোটিন"],
+                    answer: 1,
+                    explanation: "ভিটামিন C সমৃদ্ধ খাবার, যেমন টক ফল, খেলে স্কার্ভি রোগ প্রতিরোধ করা যায়।"
+                },
+                {
+                    question: "সাইট্রাস ফল একটি সমৃদ্ধ উৎস হিসাবে বিবেচিত হয়:",
+                    options: ["ভিটামিন A", "ভিটামিন B", "ভিটামিন D", "ভিটামিন C"],
+                    answer: 3,
+                    explanation: "সাইট্রাস বা টক জাতীয় ফল (যেমন কমলা, লেবু) ভিটামিন C-এর একটি উৎকৃষ্ট উৎস।"
+                },
+                {
+                    question: "____ এর অভাবের কারণে স্কার্ভি হয়।",
+                    options: ["ভিটামিন-K", "ভিটামিন-B2", "ভিটামিন B1", "ভিটামিন-C"],
+                    answer: 3,
+                    explanation: "স্কার্ভি রোগের প্রত্যক্ষ কারণ হলো খাদ্যে ভিটামিন C-এর অভাব।"
+                },
+                {
+                    question: "নিচের কোন ভিটামিনটি চর্বি দ্রবণীয় নয়?",
+                    options: ["ভিটামিন-K", "ভিটামিন-D", "ভিটামিন-A", "ভিটামিন-C"],
+                    answer: 3,
+                    explanation: "ভিটামিন C জলে দ্রবণীয়। ভিটামিন A, D, E এবং K চর্বি বা ফ্যাটে দ্রবণীয়।"
+                },
+                {
+                    question: "ভিটামিন সি-এর অভাবের কারণে:",
+                    options: ["গলগন্ড", "দৃষ্টিশক্তি হারানো", "স্কার্ভি", "বেরিবেরি"],
+                    answer: 2,
+                    explanation: "গলগন্ড আয়োডিনের অভাবে, দৃষ্টিশক্তি হারানো ভিটামিন A-এর অভাবে এবং বেরিবেরি ভিটামিন B1-এর অভাবে হয়। স্কার্ভি ভিটামিন C-এর অভাবে হয়।"
+                },
+                {
+                    question: "ভিটামিন C এর অভাবে কোন রোগ হয়?",
+                    options: ["রিকেটস", "স্কার্ভি", "দাও দাও (বেরিবেরি)", "রাতকানা"],
+                    answer: 1,
+                    explanation: "রিকেটস ভিটামিন D-এর অভাবে, রাতকানা ভিটামিন A-এর অভাবে এবং বেরিবেরি ভিটামিন B1-এর অভাবে হয়।"
+                },
+                {
+                    question: "কলা কোন ভিটামিনের ভালো উৎস?",
+                    options: ["A", "C", "D", "B"],
+                    answer: 3,
+                    explanation: "কলা ভিটামিন B6 (পাইরিডক্সিন) এবং পটাশিয়ামের একটি খুব ভালো উৎস।"
+                },
+                {
+                    question: "কোন ভিটামিনের অভাবে অতিরিক্ত রক্তক্ষরণ হয় তার নাম বল?",
+                    options: ["ভিটামিন A", "ভিটামিন K", "ভিটামিন B", "ভিটামিন C"],
+                    answer: 1,
+                    explanation: "ভিটামিন K রক্ত তঞ্চনে সাহায্য করে। এর অভাবে রক্ত জমাট বাঁধতে সমস্যা হয় এবং অতিরিক্ত রক্তক্ষরণ হতে পারে।"
+                },
+                {
+                    question: "রক্ত জমাট বাঁধার জন্য প্রয়োজনীয় ভিটামিন কোনটি?",
+                    options: ["E", "D", "K", "C"],
+                    answer: 2,
+                    explanation: "রক্ত তঞ্চন বা জমাট বাঁধার জন্য ভিটামিন K অপরিহার্য।"
+                },
+                {
+                    question: "নিচের কোনটির অভাবে রিকেট রোগ হয়?",
+                    options: ["ভিটামিন D", "ভিটামিন B", "ভিটামিন A", "ভিটামিন C"],
+                    answer: 0,
+                    explanation: "ভিটামিন D-এর অভাবে শিশুদের হাড় দুর্বল হয়ে রিকেট রোগ হয়।"
+                },
+                {
+                    question: "কোন ভিটামিন রক্ত জমাট বাঁধার জন্য প্রয়োজনীয় প্রোটিন এবং ক্যালসিয়াম সক্রিয় করে?",
+                    options: ["ভিটামিন K", "ভিটামিন D", "ভিটামিন B1", "ভিটামিন C"],
+                    answer: 0,
+                    explanation: "ভিটামিন K রক্ত তঞ্চন প্রক্রিয়ায় যুক্ত প্রোটিনগুলিকে সক্রিয় করতে সাহায্য করে।"
+                },
+                {
+                    question: "কোন ভিটামিন আমাদের চোখ ও ত্বককে সুস্থ রাখে?",
+                    options: ["ভিটামিন D", "ভিটামিন B", "ভিটামিন A", "ভিটামিন E"],
+                    answer: 2,
+                    explanation: "ভিটামিন A দৃষ্টিশক্তি বজায় রাখে এবং ত্বকের আবরণী কলাকে সুস্থ রাখতে সাহায্য করে।"
+                },
+                {
+                    question: "কোন ধরনের চিনি ফল মিষ্টি করার জন্য দায়ী?",
+                    options: ["ফ্রুক্টোজ", "সুক্রোজ", "মাল্টোজ", "ল্যাকটোজ"],
+                    answer: 0,
+                    explanation: "ফ্রুক্টোজকে 'ফল শর্করা' (Fruit Sugar) বলা হয় এবং এটি প্রাকৃতিক শর্করার মধ্যে সবচেয়ে মিষ্টি।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>

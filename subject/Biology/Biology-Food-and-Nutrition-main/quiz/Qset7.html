@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৭ - খাদ্য ও পুষ্টি</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset6.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="#" class="btn btn-secondary disabled">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology খাদ্য ও পুষ্টি",
+            setName: "Quiz Set 7",
+            name: "খাদ্য ও পুষ্টি - Set 7 (প্রশ্ন ১১৯-১৩৭)",
+            questions: [
+                {
+                    question: "পেলাগ্রা ও স্কার্ভি নিচের কোন জোড়া ভিটামিনের অভাবে সংঘটিত হয়?",
+                    options: ["ভিটামিন C এবং ভিটামিন D", "ভিটামিন B3 এবং ভিটামিন C", "ভিটামিন D এবং ভিটামিন A", "ভিটামিন A এবং ভিটামিন B12"],
+                    answer: 1,
+                    explanation: "পেলাগ্রা হয় ভিটামিন B3 (নিয়াসিন)-এর অভাবে এবং স্কার্ভি হয় ভিটামিন C-এর অভাবে।"
+                },
+                {
+                    question: "কোন খনিজের অভাবে রিকেট রোগ হয়?",
+                    options: ["সোডিয়াম", "ক্যালসিয়াম", "পটাসিয়াম", "ম্যাগনেসিয়াম"],
+                    answer: 1,
+                    explanation: "রিকেট রোগ মূলত ভিটামিন D-এর অভাবে হলেও, ক্যালসিয়ামের অভাবও এর একটি অন্যতম কারণ।"
+                },
+                {
+                    question: "ভিটামিনের কাজ প্রতিহত করে যে জৈব অণু তা হল-",
+                    options: ["সিউডোভিটামিন", "অ্যান্টিভিটামিন", "প্রোভিটামিন", "সবকটি"],
+                    answer: 1,
+                    explanation: "অ্যান্টিভিটামিন হলো এমন যৌগ যা ভিটামিনের স্বাভাবিক কাজকে বাধা দেয় বা প্রতিহত করে।"
+                },
+                {
+                    question: "ভিটামিনের মতো একই রকম দেখতে যে জৈব অণু তা হল-",
+                    options: ["সিউডোভিটামিন", "অ্যান্টিভিটামিন", "প্রোভিটামিন", "সবকটি"],
+                    answer: 0,
+                    explanation: "সিউডোভিটামিন বা ছদ্ম ভিটামিন হলো এমন যৌগ যার গঠন ভিটামিনের মতো হলেও জৈবিক কার্যকলাপ থাকে না বা খুব কম থাকে।"
+                },
+                {
+                    question: "স্টোমাটাইটিস এবং চিলোসিস রোগ দেখা দেয় যে ভিটামিনের অভাবে তা হল-",
+                    options: ["রেটিনল", "থায়ামিন", "রাইবোফ্ল্যাভিন", "পাইরিডক্সিন"],
+                    answer: 2,
+                    explanation: "স্টোমাটাইটিস (মুখে ঘা) এবং চিলোসিস (ঠোঁটের কোণে ঘা) ভিটামিন B2 (রাইবোফ্ল্যাভিন)-এর অভাবের সাধারণ লক্ষণ।"
+                },
+                {
+                    question: "নীচের কোনটি অ্যান্টি ভিটামিন?",
+                    options: ["সায়ানোকোবালামিন", "আর্গোস্টেরল", "অ্যাভিডিন", "মিথাইল কোবালামিন"],
+                    answer: 2,
+                    explanation: "অ্যাভিডিন কাঁচা ডিমে থাকে এবং বায়োটিনের (ভিটামিন H) কার্যকারিতা নষ্ট করে, তাই এটি একটি অ্যান্টিভিটামিন।"
+                },
+                {
+                    question: "মিথাইলকোবালামিন এর ছদ্ম ভিটামিন হল-",
+                    options: ["ভিটামিন B এর", "ভিটামিন B2-এর", "ভিটামিন B12-এর", "ভিটামিন B5 এর"],
+                    answer: 2,
+                    explanation: "মিথাইলকোবালামিন ভিটামিন B12-এর একটি সক্রিয় রূপ। এর মতো গঠনযুক্ত কিন্তু অকার্যকর যৌগকে ছদ্ম ভিটামিন বলা হয়।"
+                },
+                {
+                    question: "অ্যান্টিস্টেরিলিটি বা বন্ধ্যাত্ব প্রতিরোধী ভিটামিন কোনটি?",
+                    options: ["ভিটামিন K", "ভিটামিন D", "ভিটামিন E", "ভিটামিন C"],
+                    answer: 2,
+                    explanation: "ভিটামিন E-কে অ্যান্টিস্টেরিলিটি বা বন্ধ্যাত্বরোধী ভিটামিন বলা হয় কারণ এটি প্রজনন ক্ষমতা বজায় রাখতে সাহায্য করে।"
+                },
+                {
+                    question: "মাছের যকৃতের তেল সমৃদ্ধ:",
+                    options: ["ভিটামিন-A", "ভিটামিন-A এবং ভিটামিন-D উভয়ই", "ভিটামিন-E", "ভিটামিন-D"],
+                    answer: 1,
+                    explanation: "মাছের যকৃতের তেল, বিশেষ করে কড লিভার তেল, ভিটামিন A এবং D-এর একটি উৎকৃষ্ট উৎস।"
+                },
+                {
+                    question: "কোন ভিটামিনটি মানুষের ত্বকে সংশ্লেষিত হয়?",
+                    options: ["ভিটামিন E", "ভিটামিন D", "ভিটামিন K", "ভিটামিন C"],
+                    answer: 1,
+                    explanation: "সূর্যের অতিবেগুনি রশ্মির প্রভাবে মানব ত্বকে ভিটামিন D সংশ্লেষিত হয়।"
+                },
+                {
+                    question: "কোন ভিটামিনের রাসায়নিক নাম 'টোকোফেরল'?",
+                    options: ["B12", "K", "E", "C"],
+                    answer: 2,
+                    explanation: "ভিটামিন E-এর রাসায়নিক নাম হলো টোকোফেরল।"
+                },
+                {
+                    question: "লেবুতে কোন ভিটামিন থাকে?",
+                    options: ["ভিটামিন-D", "ভিটামিন-C", "ভিটামিন-K", "ভিটামিন-E"],
+                    answer: 1,
+                    explanation: "লেবুতে প্রচুর পরিমাণে ভিটামিন C থাকে।"
+                },
+                {
+                    question: "ভিটামিন সি হল -",
+                    options: ["টোকোফেরল", "সায়ানোকোবালঅ্যামিন", "অ্যাসকরবিক অ্যাসিড", "থায়ামিন"],
+                    answer: 2,
+                    explanation: "ভিটামিন C-এর রাসায়নিক নাম অ্যাসকরবিক অ্যাসিড।"
+                },
+                {
+                    question: "কোন ভিটামিনের অভাবে মানুষের স্কার্ভি হয়?",
+                    options: ["ভিটামিন A", "ভিটামিন D", "ভিটামিন E", "ভিটামিন C"],
+                    answer: 3,
+                    explanation: "স্কার্ভি রোগ ভিটামিন C-এর গুরুতর অভাবে হয়।"
+                },
+                {
+                    question: "কোন ভিটামিন তাপে নষ্ট হয়?",
+                    options: ["ভিটামিন-D", "ভিটামিন-C", "ভিটামিন-K", "ভিটামিন-E"],
+                    answer: 1,
+                    explanation: "ভিটামিন C তাপ সংবেদনশীল, তাই রান্না করলে এটি সহজে নষ্ট হয়ে যায়।"
+                },
+                {
+                    question: "অ্যানিমিয়া কোন ভিটামিনের অভাবে হয়?",
+                    options: ["ভিটামিন B1", "ভিটামিন B3", "ভিটামিন B5", "ভিটামিন B12"],
+                    answer: 3,
+                    explanation: "ভিটামিন B12-এর অভাবে পারনিসিয়াস অ্যানিমিয়া নামক রক্তাল্পতা দেখা দেয়।"
+                },
+                {
+                    question: "কোন ভিটামিনের রাসায়নিক নাম প্যান্টোথেনিক অ্যাসিড?",
+                    options: ["ভিটামিন B3 এর", "ভিটামিন B2-এর", "ভিটামিন B12-এর", "ভিটামিন B5 এর"],
+                    answer: 3,
+                    explanation: "ভিটামিন B5-এর রাসায়নিক নাম প্যান্টোথেনিক অ্যাসিড।"
+                },
+                {
+                    question: "বেরিবেরির কারণ কী?",
+                    options: ["ভিটামিন B3 এর আধিক্য", "ভিটামিন B1 এর অভাব", "ভিটামিন C এর আধিক্য", "ভিটামিন C এর অভাব"],
+                    answer: 1,
+                    explanation: "ভিটামিন B1 (থায়ামিন)-এর অভাবে বেরিবেরি রোগ হয়।"
+                },
+                {
+                    question: "দৈনিক মূত্র উৎপাদনের পরিমাণ কত?",
+                    options: ["1 লিটার", "1.5 লিটার", "2 লিটার", "2.5 লিটার"],
+                    answer: 1,
+                    explanation: "একজন সুস্থ প্রাপ্তবয়স্ক ব্যক্তি দৈনিক গড়ে প্রায় 1.5 লিটার (সাধারণত 1 থেকে 2 লিটারের মধ্যে) মূত্র উৎপাদন করে।"
+                },
+                {
+                    question: "নিরামিষাশীদের জন্য ভিটামিন ও খনিজের প্রধান উৎস হল-",
+                    options: ["কালো ছোলা ও গম", "চাল ও সরিষা", "শাক সবজি ও ফলমূল", "সয়াবিন ও দুধ"],
+                    answer: 2,
+                    explanation: "নিরামিষাশীদের জন্য বিভিন্ন প্রকারের শাক-সবজি এবং ফলমূল হলো ভিটামিন ও খনিজগুলির প্রধান এবং সবচেয়ে বৈচিত্র্যময় উৎস।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>
