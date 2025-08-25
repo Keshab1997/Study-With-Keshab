@@ -1,157 +1,94 @@
 <!doctype html>
 <html lang="bn">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-            id="viewportMeta"
-        />
-        <title>লগইন - Study With Keshab</title>
-        <base href="/Study-With-Keshab/" />
-        <link rel="manifest" href="manifest.json" />
-        <meta name="theme-color" content="#4a90e2" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      id="viewportMeta"
+    />
+    <title>লগইন - Study With Keshab</title>
+    <base href="/Study-With-Keshab/" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#4a90e2" />
 
-        <!-- Google Fonts & Font Awesome -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        />
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
 
-        <!-- চূড়ান্ত এবং আধুনিক CSS -->
-        <link rel="stylesheet" href="css/login-style.css" />
-    </head>
-    <body class="login-page">
-        <!-- অ্যানিমেটেড ব্যাকগ্রাউন্ডের জন্য কন্টেইনার -->
-        <div class="animation-area">
-            <ul class="box-area">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
+    <!-- চূড়ান্ত এবং আধুনিক CSS -->
+    <link rel="stylesheet" href="css/login-style.css" />
+  </head>
+  <body class="login-page">
+    <!-- অ্যানিমেটেড ব্যাকগ্রাউন্ডের জন্য কন্টেইনার -->
+    <div class="animation-area">
+      <ul class="box-area">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
 
-        <!-- লগইন কন্টেইনার -->
-        <div class="login-container">
-            <div class="login-header">
-                <a href="index.html">
-                    <img
-                        src="images/logo.jpg"
-                        alt="Study With Keshab Logo"
-                        class="logo"
-                    />
-                </a>
-                <h1>স্বাগতম!</h1>
-                <p>আপনার শেখার জগতে প্রবেশ করুন।</p>
-            </div>
+    <!-- লগইন কন্টেইনার -->
+    <div class="login-container">
+      <div class="login-header">
+        <a href="index.html">
+          <img
+            src="images/logo.jpg"
+            alt="Study With Keshab Logo"
+            class="logo"
+          />
+        </a>
+        <h1>স্বাগতম!</h1>
+        <p>আপনার শেখার জগতে প্রবেশ করুন।</p>
+      </div>
 
-            <div class="login-form">
-                <button id="google-login-btn" class="google-btn">
-                    <i class="fab fa-google"></i>
-                    <span>Google দিয়ে লগইন করুন</span>
-                </button>
-            </div>
-
-            <div class="login-footer">
-                <a href="index.html">হোম পেজে ফিরে যান</a>
-            </div>
-        </div>
-
-        <!-- Firebase SDK (v8.10.0) -->
-        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
-
-        <!-- আপনার নিজস্ব স্ক্রিপ্ট -->
-        <script src="js/firebase-config.js"></script>
-        <script src="auth.js"></script>
-        <!-- === নতুন যোগ করা PWA এবং ডেস্কটপ মোড বাটন কোড === -->
-        <!-- Desktop/Mobile Mode Toggle Button -->
-        <button
-            id="toggleViewBtn"
-            style="
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                z-index: 1000;
-                padding: 10px 15px;
-                font-size: 14px;
-                background-color: #333;
-                color: white;
-                border: none;
-                border-radius: 50px;
-                cursor: pointer;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            "
-        >
-            ডেস্কটপ মোড
+      <div class="login-form">
+        <button id="google-login-btn" class="google-btn">
+          <i class="fab fa-google"></i>
+          <span>Google দিয়ে লগইন করুন</span>
         </button>
+      </div>
 
-        <script>
-            // --- 1. Service Worker Registration ---
-            if ("serviceWorker" in navigator) {
-                window.addEventListener("load", () => {
-                    navigator.serviceWorker
-                        .register("sw.js")
-                        .then((registration) => {
-                            console.log(
-                                "ServiceWorker registration successful!",
-                            );
-                        })
-                        .catch((err) => {
-                            console.log(
-                                "ServiceWorker registration failed: ",
-                                err,
-                            );
-                        });
-                });
-            }
+      <div class="login-footer">
+        <a href="index.html">হোম পেজে ফিরে যান</a>
+      </div>
+    </div>
 
-            // --- 2. Desktop/Mobile Mode Toggle Logic ---
-            const toggleBtn = document.getElementById("toggleViewBtn");
-            const viewportMeta = document.getElementById("viewportMeta");
+    <!-- Firebase SDK (v8.10.0) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-            // Check if a view mode is already saved in localStorage
-            let isDesktopView = localStorage.getItem("viewMode") === "desktop";
+    <!-- আপনার নিজস্ব স্ক্রিপ্ট -->
+    <script src="js/firebase-config.js"></script>
+    <script src="auth.js"></script>
 
-            // Function to apply the current view mode
-            function applyViewMode() {
-                if (isDesktopView) {
-                    viewportMeta.setAttribute("content", "width=1280");
-                    toggleBtn.textContent = "মোবাইল মোড";
-                } else {
-                    viewportMeta.setAttribute(
-                        "content",
-                        "width=device-width, initial-scale=1.0",
-                    );
-                    toggleBtn.textContent = "ডেস্কটপ মোড";
-                }
-            }
-
-            // Event listener for the button click
-            toggleBtn.addEventListener("click", () => {
-                isDesktopView = !isDesktopView; // Toggle the state
-                if (isDesktopView) {
-                    localStorage.setItem("viewMode", "desktop");
-                } else {
-                    localStorage.setItem("viewMode", "mobile");
-                }
-                applyViewMode();
+    <!-- PWA এর জন্য Service Worker রেজিস্ট্রেশন -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("sw.js")
+            .then((registration) => {
+              console.log("ServiceWorker registration successful!");
+            })
+            .catch((err) => {
+              console.log("ServiceWorker registration failed: ", err);
             });
-
-            // Apply the saved mode when the page loads
-            applyViewMode();
-        </script>
-        <!-- === PWA কোড শেষ === -->
-    </body>
+        });
+      }
+    </script>
+  </body>
 </html>
