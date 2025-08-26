@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ সেট ৪ - বংশগতি</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset3.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="#" class="btn btn-secondary disabled">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "Biology বংশগতি (Heredity)",
+            setName: "Quiz Set 4",
+            name: "বংশগতি - Set 4 (প্রশ্ন ৪৬-৫৬)",
+            questions: [
+                {
+                    question: "46. নীচের কোনটি Y ক্রোমোজোম সংযোজিত বৈশিষ্ট্য?",
+                    options: ["হিমোফিলিয়া", "বল্ডনেস", "টার্নার সিনড্রোম", "বর্ণান্ধতা"],
+                    answer: 1,
+                    explanation: "Y ক্রোমোজোমে অবস্থিত জিন দ্বারা নিয়ন্ত্রিত বৈশিষ্ট্যকে Y-সংযোজিত বা হোলান্ড্রিক বৈশিষ্ট্য বলে। এটি কেবল পুরুষদের মধ্যে দেখা যায়। কানের লোম, Baldness এর উদাহরণ।"
+                },
+                {
+                    question: "47. ক্লাইনফেলটার সিনড্রোমের ক্রোমোজোম বিন্যাস হল -",
+                    options: ["44 + XY", "44 + XX", "44 + XXY", "44 + XYY"],
+                    answer: 2,
+                    explanation: "ক্লাইনফেলটার সিনড্রোমে সেক্স ক্রোমোজোমের ট্রাইসোমি ঘটে, যেখানে একটি অতিরিক্ত X ক্রোমোজোম থাকে। ফলে ক্রোমোজোম বিন্যাস হয় 47, XXY।"
+                },
+                {
+                    question: "48. 20টি বিভিন্ন প্রকার অ্যামাইনো অ্যাসিডের জন্য কতগুলি জেনেটিক কোড বার্তা বহন করে?",
+                    options: ["64", "61", "20", "25"],
+                    answer: 1,
+                    explanation: "মোট জেনেটিক কোডন হল 64টি। এর মধ্যে 61টি কোডন 20 প্রকার অ্যামাইনো অ্যাসিডের জন্য সংকেত বহন করে এবং বাকি 3টি হলো স্টপ কোডন।"
+                },
+                {
+                    question: "49. 'DNA-finger printing' পদ্ধতির আবিষ্কর্তা কে?",
+                    options: ["বেটসন", "জাফরি", "জেকব", "বিডল"],
+                    answer: 1,
+                    explanation: "ব্রিটিশ বিজ্ঞানী স্যার অ্যালেক জেফ্রিস (Alec Jeffreys) 1984 সালে ডিএনএ ফিঙ্গারপ্রিন্টিং কৌশল আবিষ্কার করেন।"
+                },
+                {
+                    question: "50. 'DNA Finger Printing' পদ্ধতিতে কোন্টিকে তুলনার জন্য বিবেচনা করা হয়-",
+                    options: ["DNA-এর আণবিক ওজন", "সন্তানের মাতৃত্ব নির্ণয়", "পলিপেপটাইড সজ্জাক্রম", "DNA-এর দৈর্ঘ্য"],
+                    answer: 1,
+                    explanation: "DNA ফিঙ্গারপ্রিন্টিং পদ্ধতিতে মূলত DNA-এর মধ্যে থাকা বিশেষ পুনরাবৃত্তিমূলক অংশ (VNTRs) তুলনা করা হয়। এর প্রধান প্রয়োগগুলির মধ্যে একটি হলো পিতৃত্ব বা মাতৃত্ব নির্ণয়।"
+                },
+                {
+                    question: "51. DNA-এর পিরিমিডিন বেসগুলি হল -",
+                    options: ["অ্যাডেনিন ও গুয়ানিন", "সাইটোসিন ও গুয়ানিন", "থাইমিন ও অ্যাডেনিন", "থাইমিন ও সাইটোসিন"],
+                    answer: 3,
+                    explanation: "DNA-তে দুই প্রকার নাইট্রোজেন বেস থাকে: পিউরিন (অ্যাডেনিন, গুয়ানিন) এবং পিরিমিডিন (সাইটোসিন, থাইমিন)।"
+                },
+                {
+                    question: "52. মেন্ডেলীয় দ্বিসংকর জননের ফেনোটাইপ অনুপাত হল-",
+                    options: ["9:3:3:1", "1:1:1:1", "3:4:3:1", "1:2:1:1"],
+                    answer: 0,
+                    explanation: "মেন্ডেলের দ্বিসংকর জননের F2 জনুতে ফিনোটাইপিক অনুপাত 9:3:3:1।"
+                },
+                {
+                    question: "53. ওয়াটসন ও ক্লিক কী আবিষ্কারের জন্য বিখ্যাত?",
+                    options: ["প্লাজমোডিয়াম ভাইভ্যাক্সের জীবন ইতিহাস", "DNA-এর গঠন", "ভ্যাক্সিনিয়া", "অ্যান্টিবডি"],
+                    answer: 1,
+                    explanation: "জেমস ওয়াটসন এবং ফ্রান্সিস ক্রিক 1953 সালে DNA-এর দ্বি-তন্ত্রী বা ডাবল হেলিক্স গঠন আবিষ্কারের জন্য বিখ্যাত।"
+                },
+                {
+                    question: "54. DNA পর্যায়ক্রম প্রক্রিয়া আবিষ্কার করেন-",
+                    options: ["এইচ. জি. খোরানা", "ওয়াটসন এবং ক্লিক", "ফ্রেডরিক স্যাঙ্গার", "ই. এম. সাউদার্ন"],
+                    answer: 2,
+                    explanation: "ফ্রেডরিক স্যাঙ্গার DNA সিকোয়েন্সিং বা পর্যায়ক্রম নির্ণয়ের পদ্ধতি আবিষ্কার করেন, যা জেনেটিক গবেষণায় একটি যুগান্তকারী পদক্ষেপ।"
+                },
+                {
+                    question: "55. মানবদেহের স্বাভাবিক কোশে ক্রোমোজোম সংখ্যা হল-",
+                    options: ["46", "48", "50", "52"],
+                    answer: 0,
+                    explanation: "মানুষের প্রতিটি দেহকোষে 23 জোড়া অর্থাৎ 46টি ক্রোমোজোম থাকে।"
+                },
+                {
+                    question: "56. নীচের কোনটি জন্মগত রক্তাল্পতাজনিত রোগ?",
+                    options: ["থ্যালাসেমিয়া", "অ্যানিমিয়া", "হিমোফিলিয়া", "সবগুলি"],
+                    answer: 0,
+                    explanation: "থ্যালাসেমিয়া একটি বংশগত বা জন্মগত রোগ যেখানে হিমোগ্লোবিনের গঠন ত্রুটিপূর্ণ হওয়ার কারণে রক্তাল্পতা দেখা দেয়।"
+                }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>
