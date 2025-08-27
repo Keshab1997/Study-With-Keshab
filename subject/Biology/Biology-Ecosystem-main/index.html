@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাস্তুতন্ত্র (Ecosystem) | Study With Keshab</title>
+    
+    <!-- প্রধান CSS ফাইল -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- আইকন ব্যবহারের জন্য Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- চার্ট ব্যবহারের জন্য Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    
+    <!-- পেজ লোডিং এর সময় হাইড করার জন্য স্টাইল -->
+    <style>
+      body.auth-loading { visibility: hidden; opacity: 0; }
+    </style>
+</head>
+<body class="day-mode homepage theme-blue auth-loading">
+
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <header class="main-header">
+        <img src="images/logo.jpg" alt="লোগো" class="profile-pic" id="logo-easter-egg">
+        <div class="header-text">
+            <h1>অধ্যায়: বাস্তুতন্ত্র (Ecosystem)</h1>
+            <p>আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী</p>
+        </div>
+        <button id="dark-mode-toggle" class="dark-mode-button" title="দিন/রাত মোড পরিবর্তন করুন">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </header>
+    
+    <div class="search-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="search-bar" placeholder="যেকোনো সেকশন খুঁজুন...">
+    </div>
+
+    <nav class="nav-grid">
+        <a href="https://keshab1997.github.io/Study-With-Keshab/" class="nav-button color-home"><i class="fa-solid fa-house"></i><span>হোম</span></a>
+        <a href="#dashboard" class="nav-button color-dashboard"><i class="fa-solid fa-chart-line"></i><span>ড্যাশবোর্ড</span></a>
+        <a href="#class-notes" class="nav-button color-notes"><i class="fa-solid fa-book-open"></i><span>ক্লাস নোট</span></a>
+        <a href="#quiz-sets" class="nav-button color-quiz"><i class="fa-solid fa-file-circle-question"></i><span>কুইজ সেট</span></a>
+        <button id="formula-sheet-btn" class="nav-button color-formulas"><i class="fa-solid fa-square-root-variable"></i><span>গুরুত্বপূর্ণ তথ্য</span></button>
+        <a href="#result-section" class="nav-button color-result"><i class="fa-solid fa-square-poll-vertical"></i><span>রেজাল্ট</span></a>
+        <a href="#leaderboard" class="nav-button color-leaderboard"><i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span></a>
+    </nav>
+
+    <main>
+        <!-- === এই অধ্যায়ের নাম JavaScript এর জন্য সেট করা হয়েছে === -->
+        <script>
+            const CURRENT_CHAPTER_NAME = "Biology বাস্তুতন্ত্র (Ecosystem)";
+        </script>
+        
+        <!-- ইউজার প্রোফাইল কার্ড -->
+        <section class="card" id="user-profile-card">
+            <div class="profile-header">
+                <img id="user-profile-pic" src="images/default-avatar.png" alt="Profile Picture" class="profile-pic-large">
+                <div class="profile-info">
+                    <h2 id="user-display-name">লোড হচ্ছে...</h2>
+                    <p id="user-email">লোড হচ্ছে...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ড্যাশবোর্ড সেকশন -->
+        <section class="card" id="dashboard">
+             <h2><i class="fa-solid fa-chart-line icon-title"></i> আমার ড্যাশবোর্ড</h2>
+             <div class="dashboard-grid">
+                <div class="dashboard-item"><h3>অধ্যায়ের অগ্রগতি (কুইজ)</h3><div class="progress-bar-container"><div class="progress-bar" id="chapter-progress-bar" style="width: 0%;"></div></div><p id="chapter-progress-text">0% সম্পন্ন</p></div>
+                <div class="dashboard-item"><h3>সামগ্রিক পারফরম্যান্স</h3><canvas id="quiz-pie-chart"></canvas></div>
+                <div class="dashboard-item"><h3>দৈনিক চ্যালেঞ্জ</h3><div id="daily-challenge" class="challenge-box"><p id="challenge-text">আজকের চ্যালেঞ্জ লোড হচ্ছে...</p></div></div>
+                <div class="dashboard-item"><h3>আমার অ্যাচিভমেন্টস</h3><div class="achievements-container" id="achievements-container"></div></div>
+             </div>
+        </section>
+
+        <!-- PDF নোট সেকশন -->
+        <section class="card" id="pdf-notes">
+            <h2><i class="fa-solid fa-file-pdf icon-title"></i> PDF নোট</h2>
+            <p>অতিরিক্ত পড়ার জন্য PDF নোটগুলো ডাউনলোড করুন।</p>
+            <div class="link-container styled-list">
+                <a href="https://drive.google.com/file/d/1aOIek0w6c7u_XgdGMLKcmCcOz5A48Pbv/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 1</a>
+                <a href="https://drive.google.com/file/d/1aWLIg-7XIAL9RnEVHevnM6SRXZ9_8b4L/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 2</a>
+                <a href="https://drive.google.com/file/d/1aT0Mb22O0ZysgfFZsGAdHRdZVzOIEEI0/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 3</a>
+                <a href="https://drive.google.com/file/d/1aSpNw0KqGdq2juF4LuC4NETQZZSQfJZB/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 4</a>
+				<a href="https://drive.google.com/file/d/1aRPBvsvrSqOr9Gh3LfFgA9xayJcTp4EV/view?usp=drive_link" target="_blank"><i class="fa-solid fa-file-pdf fa-fw"></i> PDF নোট 5</a>
+            </div>
+        </section>
+        
+        <!-- ক্লাস নোট সেকশন -->
+        <section class="card" id="class-notes">
+            <h2><i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট</h2>
+            <p>লেকচারের সাথে মিলিয়ে পড়ার জন্য ক্লাস নোটগুলো পড়ুন।</p>
+            <div class="link-container styled-list">
+                <a href="class/class1.html"><i class="fa-solid fa-leaf fa-fw"></i> বাস্তুতন্ত্রের উপাদান ও কার্যকারিতা</a>
+                <a href="class/class2.html"><i class="fa-solid fa-arrows-spin fa-fw"></i> বাস্তুতন্ত্রের কার্যকারিতা ও পরিবেশ</a>
+            </div>
+        </section>
+        
+        <!-- কুইজ সেট সেকশন -->
+        <section class="card" id="quiz-sets">
+             <h2><i class="fa-solid fa-file-circle-question icon-title"></i> কুইজ সেট</h2>
+             <p>নিজের প্রস্তুতি যাচাই করার জন্য ইন্টারেক্টিভ কুইজগুলোতে অংশ নিন।</p>
+             <div class="link-container styled-list">
+                 <a href="quiz/Qset1.html"><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 1 </a>
+                 <a href="quiz/Qset2.html"><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 2 </a>
+                 <a href="quiz/Qset3.html"><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 3</a>
+             </div>
+        </section>
+
+        <!-- রিভিশন লেকচার সেকশন -->
+        <section class="card" id="revision-lectures">
+            <h2><i class="fa-solid fa-star icon-title"></i> রিভিশন লেকচার</h2>
+            <p>গুরুত্বপূর্ণ বিষয়গুলো দ্রুত ঝালিয়ে নেওয়ার জন্য বিশেষ রিভিশন পেজগুলো দেখুন।</p>
+            <div class="link-container styled-list">
+                <a href="revision_series/mcq_Ecosystem.html"><i class="fa-solid fa-book-reader fa-fw"></i> MCQ Practice (বাস্তুতন্ত্র)</a>
+            </div>
+        </section>
+
+        <!-- লিডারবোর্ড সেকশন -->
+        <section class="card" id="leaderboard">
+            <h2><i class="fa-solid fa-trophy icon-title"></i> লিডারবোর্ড</h2>
+            <p>এই অধ্যায়ের সর্বোচ্চ স্কোরারদের তালিকা।</p>
+            <div class="leaderboard-container">
+                <table>
+                    <thead><tr><th>#</th><th>নাম</th><th>মোট স্কোর</th><th>বিস্তারিত</th></tr></thead>
+                    <tbody id="leaderboard-body"><!-- JavaScript দ্বারা ডেটা লোড হবে --></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- রেজাল্ট সেকশন -->
+        <section class="card" id="result-section">
+            <h2><i class="fa-solid fa-square-poll-vertical icon-title"></i> আমার রেজাল্ট</h2>
+            <p>এই অধ্যায়ে আপনার প্রতিটি কুইজের পারফরম্যান্স দেখুন এবং বন্ধুদের সাথে শেয়ার করুন।</p>
+            <div id="result-card-container" class="result-grid">
+                <!-- JavaScript দ্বারা রেজাল্ট কার্ড তৈরি হবে -->
+            </div>
+            <div id="no-result-message" style="display: none; text-align: center; padding: 20px; background-color: #f9f9f9; border-radius: 8px; margin-top: 20px;">
+                <p style="font-size: 1.1em; margin-bottom: 15px;">আপনি এখনও এই অধ্যায়ের কোনো কুইজে অংশ নেননি।</p>
+                <a href="#quiz-sets" class="button-primary">এখনই কুইজ দিন!</a>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Modal -->
+    <div id="formula-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h2>🌟 গুরুত্বপূর্ণ তথ্য ও ধারণা (বাস্তুতন্ত্র)</h2>
+            <ul>
+                <li><strong>ইকোলজি (Ecology):</strong> শব্দটি প্রথম ব্যবহার করেন আর্নস্ট হেকেল।</li>
+                <li><strong>ইকোসিস্টেম (Ecosystem):</strong> শব্দটি প্রথম প্রবর্তন করেন এ. জি. ট্যান্সলে (1935)।</li>
+                <li><strong>বাস্তুতন্ত্রের উপাদান:</strong>
+                    <ul>
+                        <li><strong>জড় উপাদান (Abiotic):</strong> ভৌত (আলো, তাপমাত্রা), অজৈব (জল, O₂, CO₂), জৈব (হিউমাস)।</li>
+                        <li><strong>সজীব উপাদান (Biotic):</strong> উৎপাদক (সবুজ উদ্ভিদ), খাদক (তৃণভোজী, মাংসাশী), বিয়োজক (ব্যাকটেরিয়া, ছত্রাক)।</li>
+                    </ul>
+                </li>
+                <li><strong>শক্তিপ্রবাহ (Energy Flow):</strong> সর্বদা একমুখী (Unidirectional)। মূল উৎস সূর্য।</li>
+                <li><strong>লিন্ডেম্যানের দশ শতাংশের সূত্র (10% Law):</strong> একটি পুষ্টিস্তর থেকে পরবর্তী স্তরে মাত্র 10% শক্তি স্থানান্তরিত হয়।</li>
+                <li><strong>ইকোলজিক্যাল পিরামিড:</strong> ধারণা দেন চার্লস এলটন।
+                    <ul>
+                        <li><strong>শক্তির পিরামিড:</strong> সর্বদা সোজা (Always Upright) হয়।</li>
+                        <li><strong>সংখ্যার পিরামিড:</strong> পরজীবী খাদ্যশৃঙ্খলে উল্টানো (Inverted) হয়।</li>
+                        <li><strong>জীবভরের পিরামিড:</strong> জলজ বাস্তুতন্ত্রে উল্টানো (Inverted) হয়।</li>
+                    </ul>
+                </li>
+                <li><strong>দূষণজনিত রোগ:</strong>
+                    <ul>
+                        <li><strong>মিনামাটা:</strong> পারদ (Mercury) দূষণ।</li>
+                        <li><strong>ইটাই-ইটাই:</strong> ক্যাডমিয়াম (Cadmium) দূষণ।</li>
+                        <li><strong>ব্ল্যাক ফুট ডিজিজ:</strong> আর্সেনিক দূষণ।</li>
+                    </ul>
+                </li>
+                <li><strong>বিশ্ব পরিবেশ দিবস:</strong> প্রতি বছর 5ই জুন পালন করা হয়।</li>
+            </ul>
+        </div>
+    </div>
+    
+    <a id="back-to-top" href="#"><i class="fas fa-arrow-up"></i></a>
+    
+    <footer>
+        <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <!-- Firebase এবং পেজ প্রটেকশন স্ক্রিপ্ট -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script>
+        (function() {
+            firebase.auth().onAuthStateChanged(user => {
+                if (!user) {
+                    window.location.href = 'https://keshab1997.github.io/Study-With-Keshab/login.html'; 
+                } else {
+                    document.body.classList.remove('auth-loading');
+                }
+            });
+        })();
+    </script>
+    
+    <script type="module" src="https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- প্রধান জাভাস্ক্রিপ্ট ফাইল -->
+    <script type="module" src="js/script.js"></script>
+    
+</body>
+</html>
