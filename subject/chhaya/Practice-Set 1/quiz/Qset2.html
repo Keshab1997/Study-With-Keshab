@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ছায়া প্রকাশনী (Practice Set 1) - Quiz Set 2</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/quiz_style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+</head>
+<body class="day-mode">
+    <main class="quiz-page-container">
+        <header class="quiz-header">
+            <h1 id="quiz-title">লোড হচ্ছে...</h1>
+            <div class="score-board">
+                <span id="correct-count">✔️ 0</span>
+                <span id="wrong-count">❌ 0</span>
+                <span id="timer">00:00</span>
+            </div>
+            <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <div id="quiz-container">
+            <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+        </div>
+
+        <div class="page-navigation">
+            <a href="Qset1.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a>
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+            <a href="#" class="btn btn-secondary disabled">পরবর্তী <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+    
+    <script>
+        const quizSet = {
+            chapterName: "ছায়া প্রকাশনী (Practice Set 1)",
+            setName: "Quiz Set 2",
+            name: "Practice Set 1 (প্রশ্ন ২৬-৫০)",
+            questions: [
+                { question: "কাম্বালা খেলা কোন্ রাজ্যে অনুষ্ঠিত হয়?", options: ["কর্ণাটক", "গুজরাট", "তামিলনাড়ু", "কেরা"], answer: 0, explanation: "কাম্বালা হল কর্ণাটকের একটি ঐতিহ্যবাহী বার্ষিক মোষ দৌড় প্রতিযোগিতা।" },
+                { question: "একটি কার্বন পরমাণুর L কক্ষে কতগুলি ইলেকট্রন উপস্থিত থাকে?", options: ["4", "6", "8", "2"], answer: 0, explanation: "কার্বনের পারমাণবিক সংখ্যা 6। এর ইলেকট্রন বিন্যাস হল 2, 4। প্রথম কক্ষে (K) 2টি এবং দ্বিতীয় কক্ষে (L) 4টি ইলেকট্রন থাকে।" },
+                { question: "ভারতের কোন্ ধ্রুপদী নৃত্যে পাঙ ড্রাম হল একটি উল্লেখযোগ্য বাদ্যযন্ত্র?", options: ["ভরতনাট্যম", "কথাকলি", "কুচিপুড়ি", "মণিপুরি"], answer: 3, explanation: "পাঙ (বা মণিপুরি মৃদঙ্গ) হলো মণিপুরি ধ্রুপদী নৃত্যের একটি অপরিহার্য বাদ্যযন্ত্র।" },
+                { question: "নীচের কোনটির ইলেকট্রন ত্যাগ করার প্রবণতা সর্বাধিক?", options: ["S", "Fe", "H", "F"], answer: 1, explanation: "প্রদত্ত মৌলগুলির মধ্যে লোহা (Fe) একটি ধাতু এবং এর ইলেকট্রন ত্যাগ করার প্রবণতা অধাতুগুলির তুলনায় অনেক বেশি।" },
+                { question: "এস বিজয়লক্ষ্মী নীচের কোন্ খেলাটির সঙ্গে সম্পর্কিত?", options: ["ব্যাডমিন্টন", "দাবা", "টেবিল টেনিস", "হকি"], answer: 1, explanation: "সুব্বারমন বিজয়লক্ষ্মী (এস বিজয়লক্ষ্মী) হলেন ভারতের প্রথম মহিলা দাবা গ্র্যান্ডমাস্টার।" },
+                { question: "নীচের যেটির তিনটি সক্রিয় রূপ হল— রেটিনাল, রেটিনল, রেটিনোয়িক অ্যাসিড।", options: ["ভিটামিন-C", "ভিটামিন-A", "ভিটামিন-B", "ভিটামিন-D"], answer: 1, explanation: "ভিটামিন-A-এর রাসায়নিক নাম রেটিনল এবং এর অন্য দুটি সক্রিয় রূপ হল রেটিনাল এবং রেটিনোয়িক অ্যাসিড।" },
+                { question: "কোন্ গ্র্যান্ড স্লামটি ক্লে কোর্টে খেলা হয়?", options: ["ইউ এস ওপেন", "ফরাসি ওপেন", "অস্ট্রেলিয়ান ওপেন", "উইম্বলডন"], answer: 1, explanation: "ফরাসি ওপেন (Roland-Garros) লাল মাটির বা ক্লে কোর্টে খেলা হয়।" },
+                { question: "ফাইবার অপটিকস্ কোন্ নীতির অনুসারে কাজ করে?", options: ["অভ্যন্তরীণ পূর্ণ প্রতিফলন", "বিকিরণ", "প্রতিসরণ", "কোনোটিই নয়"], answer: 0, explanation: "অপটিক্যাল ফাইবার অভ্যন্তরীণ পূর্ণ প্রতিফলন (Total Internal Reflection) নীতির উপর ভিত্তি করে কাজ করে।" },
+                { question: "হোয়াইট গোল্ড নামে কোনটি পরিচিত?", options: ["নিকেল", "প্ল্যাটিনাম", "রোডিয়াম", "প্যালাডিয়াম"], answer: 1, explanation: "প্ল্যাটিনাম একটি অত্যন্ত মূল্যবান ধাতু, যার সাদা রঙের জন্য এটিকে 'হোয়াইট গোল্ড' বলা হয়।" },
+                { question: "মানব দেহের কোন্ অংশটি ভিটামিন A, ভিটামিন D-এর সাথে ভিটামিন B12 সঞ্চয় করতে পারে?", options: ["মস্তিষ্ক", "যকৃৎ", "অগ্ন্যাশয়", "লোহিত রক্তকণিকা"], answer: 1, explanation: "যকৃৎ বা লিভার ফ্যাট-দ্রবণীয় ভিটামিন (A, D, E, K) এবং ভিটামিন B12 সঞ্চয় করে রাখে।" },
+                { question: "নীচের কোনটি চাপের সমীকরণ?", options: ["বল/ঘনত্ব", "বল × আয়তন", "বল/আয়তন", "বল/ত্বরণ"], answer: -1, explanation: "চাপের সঠিক সমীকরণ হল চাপ = বল / ক্ষেত্রফল (Pressure = Force / Area)। প্রদত্ত বিকল্পগুলির কোনোটিই সঠিক নয়।" },
+                { question: "ইয়াগো যে নাটকের চরিত্র সেটি হল-", options: ["হ্যামলেট", "আর্মস অ্যান্ড দ্য ম্যান", "জাস্টিস", "ওথেলো"], answer: 3, explanation: "ইয়াগো হল উইলিয়াম শেক্সপিয়রের বিখ্যাত ট্র্যাজেডি 'ওথেলো'-র প্রধান খলনায়ক চরিত্র।" },
+                { question: "মানব হৃৎপিণ্ডের স্বাভাবিক পেসমেকারটি হল-", options: ["SA নোড", "AV নোড", "মায়োকার্ডিয়াম", "কোনোটিই নয়"], answer: 0, explanation: "সাইনোঅ্যাট্রিয়াল নোড বা SA নোড হৃৎপিণ্ডের স্বাভাবিক বা প্রাকৃতিক পেসমেকার হিসেবে কাজ করে।" },
+                { question: "পৃথিবীর অপসূর অবস্থান কবে ঘটে?", options: ["3 জানুয়ারি", "4 জুলাই", "15 মার্চ", "23 সেপ্টেম্বর"], answer: 1, explanation: "অপসূর (Aphelion) অবস্থানে পৃথিবী সূর্য থেকে সবচেয়ে দূরে থাকে, যা সাধারণত ৪ জুলাই ঘটে।" },
+                { question: "কোন্ মৌলটির জন্য আতশবাজিতে সবুজ শিখা উৎপন্ন হয়?", options: ["সোডিয়াম", "বেরিয়াম", "পারদ", "পটাশিয়াম"], answer: 1, explanation: "বেরিয়ামের লবণ পোড়ানোর ফলে আতশবাজিতে উজ্জ্বল সবুজ রঙের শিখা উৎপন্ন হয়।" },
+                { question: "HOOC-COOH কোন্ অ্যাসিডের রাসায়নিক সংকেত?", options: ["অক্সালিক অ্যাসিড", "অ্যাসেটিক অ্যাসিড", "কার্বনিক অ্যাসিড", "সাইট্রিক অ্যাসিড"], answer: 0, explanation: "HOOC-COOH বা (COOH)₂ হল অক্সালিক অ্যাসিডের রাসায়নিক সংকেত।" },
+                { question: "সর্বাধিক নরম ধাতু হল —", options: ["সিজিয়াম", "সোনা", "লেড", "রুপো"], answer: 0, explanation: "সিজিয়াম একটি ক্ষার ধাতু এবং এটি সবচেয়ে নরম ধাতুগুলির মধ্যে অন্যতম।" },
+                { question: "জাইলেম কলার কোন্ কোশগুলি খাদ্য সঞ্চয় করে?", options: ["জাইলেম তন্তু", "প্যারেনকাইমা", "নালিকা", "ট্রাকিড"], answer: 1, explanation: "জাইলেম কলার একমাত্র সজীব কোষ হল জাইলেম প্যারেনকাইমা, যা খাদ্য সঞ্চয় করে।" },
+                { question: "দার এস সালাম বন্দর কোন্ দেশে অবস্থিত?", options: ["তানজানিয়া", "মাদাগাস্কার", "সোমালিয়া", "লিবিয়া"], answer: 0, explanation: "দার এস সালাম তানজানিয়ার বৃহত্তম শহর এবং একটি প্রধান বন্দর।" },
+                { question: "নীচের কোনটি কোনো কম্পিউটার সিস্টেমের অক্সিলারি মেমরির অংশ নয়?", options: ["ফ্লপি", "PROM", "ম্যাগনেটিক টেপ", "CD-ROM"], answer: 1, explanation: "PROM (Programmable Read-Only Memory) হল এক ধরণের প্রাইমারি মেমরি, অক্সিলারি মেমরি নয়।" },
+                { question: "সানধুকাগিগর (Sundhnukagigar) আগ্নেয়গিরি, কোন্ দেশে অবস্থিত?", options: ["ইন্দোনেশিয়া", "আইসল্যান্ড", "চিলি", "টোঙ্গা"], answer: 1, explanation: "সানধুকাগিগর আগ্নেয়গিরিটি আইসল্যান্ডের রেইকজেনেস উপদ্বীপে অবস্থিত।" },
+                { question: "পিটুইটারি নিঃসৃত কোন্ হরমোনটি ডিম্বনিঃসরণ প্রক্রিয়ার সূচনা করে?", options: ["লিউটিনাইজিং হরমোন", "থাইরয়েড", "প্রোজেস্টেরন", "ইস্ট্রোজেন"], answer: 0, explanation: "লিউটিনাইজিং হরমোন (LH)-এর মাত্রা হঠাৎ বেড়ে গেলে (LH surge) ওভুলেশন প্রক্রিয়া শুরু হয়।" },
+                { question: "Arun-3 হাইড্রোইলেকট্রিক প্রজেক্টটি কোন্ দেশের সাথে সম্পর্কিত?", options: ["ভারত", "নেপাল", "ভুটান", "বাংলাদেশ"], answer: 1, explanation: "অরুণ-৩ জলবিদ্যুৎ প্রকল্পটি নেপালের অরুণ নদীর উপর অবস্থিত এবং ভারতের সহায়তায় নির্মিত হচ্ছে।" },
+                { question: "‘স্টেট অব্ ওশান রিপোর্ট 2024' কোন্ সংস্থা থেকে প্রকাশিত হয়?", options: ["UNCTAD", "UNDP", "UNEP", "UNESCO"], answer: 3, explanation: "'স্টেট অফ দ ওশান রিপোর্ট' প্রতি বছর ইউনেস্কো (UNESCO)-এর ইন্টারগভর্নমেন্টাল ওশেনোগ্রাফিক কমিশন (IOC) দ্বারা প্রকাশিত হয়।" },
+                { question: "কোন্ দেশের স্থানান্তর কৃষিকে ‘তামরাই' বলা হয়?", options: ["শ্রীলঙ্কা", "থাইল্যান্ড", "ব্রাজিল", "জাইরে"], answer: 1, explanation: "থাইল্যান্ডে স্থানান্তর কৃষিকে 'তামরাই' বলা হয়।" }
+            ]
+        };
+    </script>
+    
+    <script src="../js/quiz_script.js"></script>
+</body>
+</html>
