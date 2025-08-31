@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+            id="viewportMeta"
+        />
+        <meta
+            name="description"
+            content="Study With Keshab ওয়েবসাইটে ছায়া প্রকাশনীর সাধারণ বিজ্ঞান, গণিত, রিজনিং এবং অন্যান্য বিষয়ের তালিকা।"
+        />
+        <title>ছায়া প্রকাশনী - Study With Keshab</title>
+
+        <!-- Base Href -->
+        <base href="../" />
+
+        <!-- Google Fonts & Font Awesome -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+
+        <!-- মূল CSS ফাইল -->
+        <link rel="stylesheet" href="css/style.css" />
+
+        <style>
+            /* ছায়া প্রকাশনী পেজের জন্য নির্দিষ্ট থিম */
+            :root {
+                --text-color: #2c3e50;
+                --bg-light: #ecf0f1;
+                --bg-white: #ffffff;
+                --footer-bg: #2c3e50;
+                --footer-text: #bdc3c7;
+            }
+            body {
+                font-family: "Baloo Da 2", cursive;
+                background-color: var(--bg-light);
+                margin: 0;
+                color: var(--text-color);
+                line-height: 1.6;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+            .chapter-page {
+                padding: 4rem 2rem;
+            }
+            .section-title {
+                text-align: center;
+                font-size: clamp(2rem, 5vw, 3rem);
+                font-weight: 700;
+                margin-bottom: 3rem;
+                background: linear-gradient(45deg, #3498db, #2980b9);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-fill-color: transparent;
+            }
+            .chapter-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+            .chapter-card {
+                background: var(--bg-white);
+                border-radius: 15px;
+                padding: 2rem;
+                text-align: center;
+                font-size: 1.15rem; /* ফন্ট সাইজ একটু অ্যাডজাস্ট করা হলো */
+                font-weight: 600;
+                color: var(--text-color);
+                text-decoration: none;
+                border: 1px solid #dce4e6;
+                transition: all 0.35s ease-in-out;
+                box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
+                display: flex; /* আইকন এবং টেক্সটকে পাশাপাশি রাখতে */
+                align-items: center; /* উল্লম্বভাবে মাঝখানে আনতে */
+                justify-content: flex-start; /* কন্টেন্ট বাম দিক থেকে শুরু করতে */
+            }
+            .chapter-card i {
+                font-size: 2.2rem;
+                margin-right: 1.5rem; /* আইকন এবং টেক্সটের মধ্যে স্পেস */
+                width: 40px; /* আইকনের জন্য নির্দিষ্ট জায়গা */
+                transition: all 0.35s ease-in-out;
+            }
+            /* আইকনগুলোর জন্য আলাদা রঙ */
+            .chapter-list a:nth-child(1) i { color: #27ae60; } /* Science */
+            .chapter-list a:nth-child(2) i { color: #e67e22; } /* Maths */
+            .chapter-list a:nth-child(3) i { color: #8e44ad; } /* Reasoning */
+            .chapter-list a:nth-child(4) i { color: #c0392b; } /* Awareness */
+            .chapter-list a:nth-child(5) i { color: #2980b9; } /* Practice */
+            .chapter-list a:nth-child(6) i { color: #f1c40f; } /* Previous Years */
+            
+            .chapter-card:hover {
+                transform: translateY(-10px);
+                color: #fff;
+                background-image: linear-gradient(45deg, #3498db 0%, #2c3e50 100%);
+                box-shadow: 0 15px 35px rgba(52, 152, 219, 0.3);
+            }
+            .chapter-card:hover i {
+                color: #fff;
+                transform: scale(1.1) rotate(-5deg);
+            }
+            .footer {
+                background: var(--footer-bg);
+                text-align: center;
+                color: var(--footer-text);
+                padding: 2.5rem 1rem;
+                margin-top: 4rem;
+                border-top: 2px solid #3498db;
+            }
+            
+            /* === ভিউ টগল বাটনের CSS আগের মতোই থাকবে === */
+            .header-action-btn { background: none; border: none; color: #333; font-size: 1.3rem; cursor: pointer; padding: 5px 8px; margin-left: 8px; transition: color 0.3s ease; }
+            .header-action-btn:hover { color: #4a90e2; }
+            .mobile-navigation-menu .toggle-view-btn i { margin-right: 12px; width: 20px; }
+        </style>
+    </head>
+    <body>
+        <!-- হেডার অংশটি আগের কোড থেকে কপি করে এখানে পেস্ট করুন -->
+        <header class="site-header">
+            <!-- ... পুরো হেডার কোড ... -->
+        </header>
+
+        <!-- মোবাইল নেভিগেশন অংশটি আগের কোড থেকে কপি করে এখানে পেস্ট করুন -->
+        <nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
+            <!-- ... পুরো মোবাইল মেনু কোড ... -->
+        </nav>
+
+        <main class="chapter-page">
+            <div class="container">
+                <h1 class="section-title">📚 ছায়া প্রকাশনী</h1>
+                <div class="chapter-list">
+                    <!-- SECTION A -->
+                    <a href="subject/chhaya/general-science.html" class="chapter-card">
+                        <i class="fas fa-flask"></i> 
+                        <span>SECTION A: GENERAL SCIENCE<br><small>(সাধারণ বিজ্ঞান)</small></span>
+                    </a>
+                    <!-- SECTION B -->
+                    <a href="subject/chhaya/mathematics.html" class="chapter-card">
+                        <i class="fas fa-calculator"></i> 
+                        <span>SECTION B: MATHEMATICS<br><small>(গণিত)</small></span>
+                    </a>
+                    <!-- SECTION C -->
+                    <a href="subject/chhaya/reasoning.html" class="chapter-card">
+                        <i class="fas fa-lightbulb"></i> 
+                        <span>SECTION C: GENERAL INTELLIGENCE & REASONING</span>
+                    </a>
+                    <!-- SECTION D -->
+                    <a href="subject/chhaya/general-awareness.html" class="chapter-card">
+                        <i class="fas fa-globe-asia"></i> 
+                        <span>SECTION D: GENERAL AWARENESS & CURRENT AFFAIRS</span>
+                    </a>
+                    <!-- SECTION E -->
+                    <a href="subject/chhaya/practice-papers.html" class="chapter-card">
+                        <i class="fas fa-file-alt"></i> 
+                        <span>SECTION E: EXAM-TYPE PRACTICE PAPERS</span>
+                    </a>
+                    <!-- SECTION F -->
+                    <a href="subject/chhaya/previous-years.html" class="chapter-card">
+                        <i class="fas fa-history"></i> 
+                        <span>SECTION F: PREVIOUS YEARS' PAPERS</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <!-- ফুটার অংশটি আগের কোড থেকে কপি করে এখানে পেস্ট করুন -->
+        <footer class="footer">
+            &copy; ২০২৫ | ছায়া প্রকাশনী | Study With Keshab
+        </footer>
+        
+        <!-- সমস্ত স্ক্রিপ্ট অংশটি আগের কোড থেকে কপি করে এখানে পেস্ট করুন -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="js/firebase-config.js"></script>
+        <script src="js/script.js"></script>
+        <script>
+            // আগের কোডের পুরো JavaScript অংশটি এখানে পেস্ট করুন
+            document.addEventListener('DOMContentLoaded', () => {
+                // ... পুরো JavaScript কোড ...
+            });
+        </script>
+    </body>
+</html>
