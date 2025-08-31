@@ -6,7 +6,7 @@
     <meta name="description" content="Study With Keshab ওয়েবসাইটে ছায়া প্রকাশনীর সম্পূর্ণ সূচিপত্র। সাধারণ বিজ্ঞান, গণিত, রিজনিং এবং অন্যান্য সকল অধ্যায়ের তালিকা।" />
     <title>সূচিপত্র: ছায়া প্রকাশনী - Study With Keshab</title>
 
-    <!-- Base Href -->
+    <!-- Base Href (ফাইলটি subject/chhaya/ ফোল্ডারে থাকলে এটি সঠিক) -->
     <base href="../../" />
 
     <!-- Google Fonts & Font Awesome -->
@@ -101,19 +101,73 @@
         .chapter-title small {
             font-weight: 400;
             color: #555;
-            display: block; /* বাংলা নাম নিচে দেখানোর জন্য */
+            display: block;
             font-size: 0.9em;
             margin-top: 2px;
         }
         .chapter-list a:hover .chapter-title small {
             color: #3498db;
         }
+
+        /* ভিউ টগল বাটনের জন্য CSS */
+        .header-action-btn { background: none; border: none; font-size: 1.3rem; cursor: pointer; padding: 5px 8px; margin-left: 8px; transition: color 0.3s ease; }
+        .mobile-navigation-menu .toggle-view-btn i { margin-right: 12px; width: 20px; }
     </style>
 </head>
 <body>
-    <!-- হেডার, মোবাইল মেনু আগের ফাইল থেকে কপি করুন -->
-    <header class="site-header"> ... </header>
-    <nav id="mobile-navigation-menu" class="mobile-navigation-menu"> ... </nav>
+    <header class="site-header">
+        <div class="header-grid container">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
+            </a>
+
+            <nav class="primary-navigation">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li class="auth-link" id="guest-link-desktop">
+                        <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login / Sign up</a>
+                    </li>
+                    <li class="auth-link" id="logout-link-desktop" style="display: none">
+                        <a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <span id="user-name-display" class="nav-user-name"></span>
+                <button class="toggle-view-btn header-action-btn" title="ডেস্কটপ মোড">
+                    <i class="fas fa-desktop"></i>
+                </button>
+                <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
+                    <span class="sr-only">Menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li class="auth-link" id="guest-link-mobile">
+                <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login / Sign up</a>
+            </li>
+            <li class="auth-link" id="logout-link-mobile" style="display: none">
+                <a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+            <li>
+                <a href="#" class="toggle-view-btn">
+                    <i class="fas fa-desktop"></i>
+                    <span class="toggle-view-text">ডেস্কটপ মোড</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
     <main class="toc-page">
         <div class="container">
@@ -216,7 +270,18 @@
                     <ol class="chapter-list">
                         <li><a href="subject/chhaya/practice-papers/paper-1.html"><span class="chapter-title">Practice Paper 1</span></a></li>
                         <li><a href="subject/chhaya/practice-papers/paper-2.html"><span class="chapter-title">Practice Paper 2</span></a></li>
-                        <!-- ... বাকি ১৫টি পর্যন্ত যোগ করুন ... -->
+                        <li><a href="subject/chhaya/practice-papers/paper-3.html"><span class="chapter-title">Practice Paper 3</span></a></li>
+                        <li><a href="subject/chhaya/practice-papers/paper-4.html"><span class="chapter-title">Practice Paper 4</span></a></li>
+                        <li><a href="subject/chhaya/practice-papers/paper-5.html"><span class="chapter-title">Practice Paper 5</span></a></li>
+                        <li><a href="subject/chhaya/practice-papers/paper-6.html"><span class="chapter-title">Practice Paper 6</span></a></li>
+                        <li><a href="subject/chhaya/practice-papers/paper-7.html"><span class="chapter-title">Practice Paper 7</span></a></li>
+                        <li><a href="subject/chhaya/practice-papers/paper-8.html"><span class="chapter-title">Practice Paper 8</span></a></li>
+                        <li><a href="subject/chhaya/practice-papers/paper-9.html"><span class="chapter-title">Practice Paper 9</span></a></li>
+                        <li><a href="subject/chhaya/practice-papers/paper-10.html"><span class="chapter-title">Practice Paper 10</span></a></li>
+                        <li><a href="subject/chhaya/practice-papers/paper-11.html"><span class="chapter-title">Practice Paper 11</span></a></li>
+                        <li><a href="subject/chhaya/practice-papers/paper-12.html"><span class="chapter-title">Practice Paper 12</span></a></li>
+                        <li><a href="subject/chhaya/practice-papers/paper-13.html"><span class="chapter-title">Practice Paper 13</span></a></li>
+                        <li><a href="subject/chhaya/practice-papers/paper-14.html"><span class="chapter-title">Practice Paper 14</span></a></li>
                         <li><a href="subject/chhaya/practice-papers/paper-15.html"><span class="chapter-title">Practice Paper 15</span></a></li>
                     </ol>
                 </div>
@@ -229,20 +294,121 @@
                     <ol class="chapter-list">
                         <li><a href="subject/chhaya/previous-papers/group-d-2022-09-01.html"><span class="chapter-title">RRC GROUP-D EXAM 2022 <small>(01.09.2022)</small></span></a></li>
                         <li><a href="subject/chhaya/previous-papers/group-d-2022-09-02.html"><span class="chapter-title">RRC GROUP-D EXAM 2022 <small>(02.09.2022)</small></span></a></li>
-                        <!-- ... বাকি পেপারগুলো এখানে যোগ করুন ... -->
+                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-05a.html"><span class="chapter-title">RRC GROUP-D EXAM 2022 <small>(05.09.2022, 9am)</small></span></a></li>
+                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-05b.html"><span class="chapter-title">RRC GROUP-D EXAM 2022 <small>(05.09.2022, 12:45pm)</small></span></a></li>
+                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-05c.html"><span class="chapter-title">RRC GROUP-D EXAM 2022 <small>(05.09.2022, 5pm)</small></span></a></li>
+                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-08a.html"><span class="chapter-title">RRC GROUP-D EXAM 2022 <small>(08.09.2022, 9am)</small></span></a></li>
+                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-08b.html"><span class="chapter-title">RRC GROUP-D EXAM 2022 <small>(08.09.2022, 12:45pm)</small></span></a></li>
+                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-09a.html"><span class="chapter-title">RRC GROUP-D EXAM 2022 <small>(09.09.2022, 9am)</small></span></a></li>
+                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-09b.html"><span class="chapter-title">RRC GROUP-D EXAM 2022 <small>(09.09.2022, 12:45pm)</small></span></a></li>
+                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-09c.html"><span class="chapter-title">RRC GROUP-D EXAM 2022 <small>(09.09.2022, 5pm)</small></span></a></li>
+                        <li><a href="subject/chhaya/previous-papers/alp-2024-11-25a.html"><span class="chapter-title">RRC ALP EXAM 2024 CBT 1 <small>(25.11.2024, 9am)</small></span></a></li>
+                        <li><a href="subject/chhaya/previous-papers/alp-2024-11-25b.html"><span class="chapter-title">RRC ALP EXAM 2024 CBT 1 <small>(25.11.2024, 12:30pm)</small></span></a></li>
+                        <li><a href="subject/chhaya/previous-papers/alp-2023-07-22.html"><span class="chapter-title">RRC ALP EXAM 2023 CBT 1 <small>(22.07.2023)</small></span></a></li>
+                        <li><a href="subject/chhaya/previous-papers/ntpc-cbt2-2022-06-17.html"><span class="chapter-title">RRB NTPC CBT 2 EXAM 2022 <small>(17.06.2022, Shift 1)</small></span></a></li>
                         <li><a href="subject/chhaya/previous-papers/ntpc-cbt2-2022-06-15.html"><span class="chapter-title">RRB NTPC CBT 2 EXAM 2022 <small>(15.06.2022, Shift 3)</small></span></a></li>
                     </ol>
                 </div>
             </section>
-
         </div>
     </main>
     
-    <!-- ফুটার ও স্ক্রিপ্ট আগের ফাইল থেকে কপি করুন -->
-    <footer class="footer"> ... </footer>
+    <footer class="footer">
+        &copy; ২০২৫ | ছায়া প্রকাশনী | Study With Keshab
+    </footer>
+    
+    <!-- Firebase স্ক্রিপ্ট -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="js/firebase-config.js"></script>
+    
+    <!-- সাধারণ এবং অথেন্টিকেশন স্ক্রিপ্ট -->
     <script src="js/script.js"></script>
-    <script> ... </script>
+    
+    <!-- এই পেজের জন্য নির্দিষ্ট স্ক্রিপ্ট -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- 1. অথেন্টিকেশন এবং পেজ প্রোটেকশন লজিক ---
+            const auth = firebase.auth();
+            const guestLinksDesktop = document.getElementById('guest-link-desktop');
+            const logoutLinkDesktop = document.getElementById('logout-link-desktop');
+            const guestLinksMobile = document.getElementById('guest-link-mobile');
+            const logoutLinkMobile = document.getElementById('logout-link-mobile');
+            const userNameDisplay = document.getElementById('user-name-display');
 
+            auth.onAuthStateChanged(user => {
+                if (!user) {
+                    console.log("User not logged in. Redirecting...");
+                    window.location.href = 'login.html'; 
+                    return;
+                }
+                console.log("User is logged in:", user.displayName || user.email);
+                if (guestLinksDesktop) guestLinksDesktop.style.display = 'none';
+                if (logoutLinkDesktop) logoutLinkDesktop.style.display = 'list-item';
+                if (guestLinksMobile) guestLinksMobile.style.display = 'none';
+                if (logoutLinkMobile) logoutLinkMobile.style.display = 'list-item';
+                if (userNameDisplay) {
+                   userNameDisplay.textContent = user.displayName ? user.displayName.split(' ')[0] : 'User';
+                }
+            });
+
+            // লগআউট ফাংশনালিটি
+            const setupLogout = (buttonId) => {
+                const logoutBtn = document.getElementById(buttonId);
+                if (logoutBtn) {
+                    logoutBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        auth.signOut().then(() => {
+                            console.log('User signed out successfully.');
+                            window.location.href = 'login.html';
+                        }).catch(error => {
+                            console.error('Sign out error', error);
+                        });
+                    });
+                }
+            };
+            setupLogout('logout-btn-desktop');
+            setupLogout('logout-btn-mobile');
+
+            // --- 2. ডেস্কটপ/মোবাইল মোড টগল লজিক ---
+            const toggleBtns = document.querySelectorAll(".toggle-view-btn");
+            const viewportMeta = document.getElementById("viewportMeta");
+            let isDesktopView = localStorage.getItem("viewMode") === "desktop";
+
+            function applyViewMode() {
+                const desktopBtn = document.querySelector(".header-action-btn.toggle-view-btn");
+                const mobileMenuText = document.querySelector(".toggle-view-text");
+                const allIcons = document.querySelectorAll(".toggle-view-btn .fas");
+                
+                if (isDesktopView) {
+                    viewportMeta.setAttribute("content", "width=1280");
+                    if(desktopBtn) desktopBtn.title = "মোবাইল মোড";
+                    if(mobileMenuText) mobileMenuText.textContent = "মোবাইল মোড";
+                    allIcons.forEach(icon => {
+                        icon.classList.remove("fa-desktop");
+                        icon.classList.add("fa-mobile-alt");
+                    });
+                } else {
+                    viewportMeta.setAttribute("content", "width=device-width, initial-scale=1.0");
+                    if(desktopBtn) desktopBtn.title = "ডেস্কটপ মোড";
+                    if(mobileMenuText) mobileMenuText.textContent = "ডেস্কটপ মোড";
+                    allIcons.forEach(icon => {
+                        icon.classList.remove("fa-mobile-alt");
+                        icon.classList.add("fa-desktop");
+                    });
+                }
+            }
+            
+            toggleBtns.forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    isDesktopView = !isDesktopView;
+                    localStorage.setItem("viewMode", isDesktopView ? "desktop" : "mobile");
+                    applyViewMode();
+                });
+            });
+            applyViewMode();
+        });
+    </script>
 </body>
 </html>
