@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ছায়া প্রকাশনী (Practice Set 2) - Class 03</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: ছায়া প্রকাশনী (Practice Set 2)</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 03</h2>
+    
+    <h3>প্রশ্নোত্তর পর্ব (বিস্তারিত ব্যাখ্যাসহ)</h3>
+
+    <!-- প্রশ্ন ৫২ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৫২</h3>
+        <p><strong>'Some pens are files', 'All files are books'—এই দুটি বিবৃতিই সঠিক হলে, নীচের কোনটি নিশ্চিতভাবে সঠিক?</strong></p>
+        <ul>
+            <li>(A) All files are pens</li>
+            <li>(B) No book is pen</li>
+            <li>(C) All books are files</li>
+            <li>(D) Some pens are books</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) Some pens are books</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> এটি একটি রিজনিং প্রশ্ন যা ভেন ডায়াগ্রামের সাহায্যে সহজে বোঝা যায়।</p>
+                <ul>
+                    <li><strong>বিবৃতি ১:</strong> 'Some pens are files' (কিছু পেন হয় ফাইল) – এর অর্থ পেন এবং ফাইলের বৃত্ত দুটি একে অপরের উপর কিছুটা অংশ জুড়ে থাকবে।</li>
+                    <li><strong>বিবৃতি ২:</strong> 'All files are books' (সব ফাইল হয় বই) – এর অর্থ ফাইলের সম্পূর্ণ বৃত্তটি বইয়ের বৃত্তের ভেতরে থাকবে।</li>
+                    <li><strong>সিদ্ধান্ত:</strong> যেহেতু ফাইলের বৃত্তটি বইয়ের বৃত্তের ভেতরে আছে, এবং পেনের বৃত্তের কিছু অংশ ফাইলের বৃত্তের সাথে যুক্ত, তাই পেনের ওই অংশটি অবশ্যই বইয়ের বৃত্তের ভেতরেও পড়বে। সুতরাং, 'কিছু পেন হয় বই' (Some pens are books) সিদ্ধান্তটি নিশ্চিতভাবে সঠিক।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৫৩ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৫৩</h3>
+        <p><strong>...সারণির প্রতিটি অক্ষর, চিহ্ন ও সংখ্যা তার পরবর্তী অক্ষর, চিহ্ন ও সংখ্যার সাথে অবস্থান বিনিময় করলে A-এর বামদিকে চতুর্থস্থানে থাকবে— SMP©2LT@ND45 #ZAQ 980FG * 73EH</strong></p>
+        <ul>
+            <li>(A) P</li>
+            <li>(B) 4</li>
+            <li>(C) D</li>
+            <li>(D) @</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 4</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা (ধাপে ধাপে):</strong></p>
+                <p><strong>ধাপ ১: নিয়মটি বোঝা।</strong></p>
+                <ul>
+                    <li>প্রতিটি চিহ্ন তার পরেরটির সাথে জায়গা বদল করবে। অর্থাৎ, ১ম ও ২য়, ৩য় ও ৪র্থ, ৫ম ও ৬ষ্ঠ ইত্যাদি নিজেদের মধ্যে স্থান পরিবর্তন করবে।</li>
+                </ul>
+                <p><strong>ধাপ ২: A-এর চারপাশের অংশটি দেখা।</strong></p>
+                <ul>
+                    <li>মূল সারণিতে A-এর অবস্থান হলো <code>... 5 # Z A Q 9 ...</code></li>
+                </ul>
+                <p><strong>ধাপ ৩: নিয়ম অনুযায়ী স্থান পরিবর্তন করা।</strong></p>
+                <ul>
+                    <li><code>...ND45 #ZA...</code> অংশটি দেখা যাক।</li>
+                    <li><code>N</code> ও <code>D</code> স্থান পরিবর্তন করে হবে <code>DN</code>।</li>
+                    <li><code>4</code> ও <code>5</code> স্থান পরিবর্তন করে হবে <code>54</code>।</li>
+                    <li><code>#</code> ও <code>Z</code> স্থান পরিবর্তন করে হবে <code>Z#</code>।</li>
+                    <li><code>A</code> ও <code>Q</code> স্থান পরিবর্তন করে হবে <code>QA</code>।</li>
+                    <li>ফলে নতুন সারণির অংশটি হবে: <code>... DN 54 Z# QA ...</code></li>
+                </ul>
+                <p><strong>ধাপ ৪: A-এর বামদিকে চতুর্থ স্থান নির্ণয় করা।</strong></p>
+                <ul>
+                    <li>নতুন সারণিতে `A`-এর ঠিক বামে আছে `Q`। তার বামে আছে `#`। তার বামে আছে `Z`। তার বামে আছে `4`।</li>
+                    <li>সুতরাং, A-এর বামদিকে ১ম: Q, ২য়: #, ৩য়: Z, **৪র্থ: 4**।</li>
+                </ul>
+                <p><strong>পুনর্বিবেচনা:</strong> আসুন মূল প্রশ্নটি আর একবার দেখি। "...5 # Z A Q...". `5` ও `#` বদলাবে, `Z` ও `A` বদলাবে। নতুন ক্রম: `...# 5 A Z...`। এর আগে আছে `4` ও `D` যা মূল সারণিতে `D` ও `4` ছিল। তারা বদলালে হবে `4D`। তাহলে ক্রমটি হবে `...4 D # 5 A Z...`। এই ক্ষেত্রে A-এর বামদিকে ১ম-`5`, ২য়-`#`, ৩য়-`D`, ৪র্থ-`4`। <strong>প্রদত্ত উত্তরটিই সঠিক।</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৫৪ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৫৪</h3>
+        <p><strong>যেভাবে শার্ট, বোতামের সাথে সম্পর্কিত সেভাবে জুতো কীসের সাথে সম্পর্কিত?</strong></p>
+        <ul>
+            <li>(A) সেলাই</li>
+            <li>(B) পা</li>
+            <li>(C) লেস</li>
+            <li>(D) মোজা</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) লেস</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> শার্টকে আটকানোর জন্য বোতাম ব্যবহার করা হয়। একইভাবে, জুতোকে পায়ের সাথে আটকানোর জন্য ফিতে বা লেস ব্যবহার করা হয়।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৫৫ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৫৫</h3>
+        <p><strong>যেভাবে Victory : Defeat সম্পর্কিত সেভাবে নীচের কোন্ বিকল্পটি সম্পর্কিত?</strong></p>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> Victory (বিজয়) এবং Defeat (পরাজয়) শব্দ দুটি একে অপরের সম্পূর্ণ বিপরীত (antonym)। প্রদত্ত বিকল্পগুলির মধ্যে কোনো জোড়াই এমন সরাসরি বিপরীতার্থক সম্পর্কযুক্ত নয়।</p>
+                <p><strong>দ্রষ্টব্য:</strong> প্রশ্নটির বিকল্পগুলিতে সঠিক বিপরীতার্থক সম্পর্ক নেই।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৫৬ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৫৬</h3>
+        <p><strong>একটি শ্রেণিকক্ষে 43 জন ছাত্রছাত্রী আছে, রাজার ক্রম প্রথমদিক থেকে 21 তম হলে, শেষ দিক থেকে তার ক্রম কত?</strong></p>
+        <ul>
+            <li>(A) 21</li>
+            <li>(B) 22</li>
+            <li>(C) 23</li>
+            <li>(D) 24</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 23</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা (ধাপে ধাপে):</strong></p>
+                <ul>
+                    <li><strong>সূত্র:</strong> শেষ থেকে ক্রম = (মোট ছাত্রছাত্রীর সংখ্যা - প্রথম থেকে ক্রম) + 1</li>
+                    <li><strong>ধাপ ১:</strong> মান বসানো।
+                        <ul>
+                            <li>মোট ছাত্রছাত্রী = 43</li>
+                            <li>প্রথম থেকে ক্রম = 21</li>
+                        </ul>
+                    </li>
+                    <li><strong>ধাপ ২:</strong> গণনা।
+                        <ul>
+                            <li>শেষ থেকে ক্রম = (43 - 21) + 1 = 22 + 1 = <strong>23</strong>।</li>
+                            <li>রাজার সামনে 20 জন এবং পিছনে 22 জন আছে, তাই শেষ থেকে গুনলে তার ক্রম 23 তম হবে।</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৫৭ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৫৭</h3>
+        <p><strong>একটি সাংকেতিক ভাষায় COACHING-কে লেখা হয় ENCBJHPF। ওই ভাষায় SCHOOL-কে কী লেখা হবে?</strong></p>
+        <ul>
+            <li>(A) KQNJBU</li>
+            <li>(B) UBNQKJ</li>
+            <li>(C) NQKJBU</li>
+            <li>(D) UBJNQK</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) UBJNQK</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>নিয়ম বিশ্লেষণ:</strong></p>
+                <ul>
+                    <li>C (+2) → E</li>
+                    <li>O (-1) → N</li>
+                    <li>A (+2) → C</li>
+                    <li>C (-1) → B</li>
+                    <li>H (+2) → J</li>
+                    <li>I (-1) → H</li>
+                    <li>N (+2) → P</li>
+                    <li>G (-1) → F</li>
+                </ul>
+                <p>প্যাটার্নটি হলো: <strong>+2, -1, +2, -1 ...</strong></p>
+                <p><strong>SCHOOL-এর জন্য প্রয়োগ:</strong></p>
+                <ul>
+                    <li>S (+2) → U</li>
+                    <li>C (-1) → B</li>
+                    <li>H (+2) → J</li>
+                    <li>O (-1) → N</li>
+                    <li>O (+2) → Q</li>
+                    <li>L (-1) → K</li>
+                </ul>
+                <p>সঠিক কোডটি হবে <strong>UBJNQK</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৫৮ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৫৮</h3>
+        <p><strong>প্রদত্ত সারণিটি সম্পূর্ণ করুন। 1, 2, 4, 8, 16, ?</strong></p>
+        <ul>
+            <li>(A) 32</li>
+            <li>(B) 34</li>
+            <li>(C) 36</li>
+            <li>(D) 30</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 32</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> এটি একটি গুণোত্তর প্রগতি। সিরিজের প্রতিটি সংখ্যা তার আগের সংখ্যাকে ২ দিয়ে গুণ করে পাওয়া যাচ্ছে (1×2=2, 2×2=4, 4×2=8...)। সুতরাং, পরবর্তী সংখ্যাটি হবে 16 × 2 = <strong>32</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৫৯ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৫৯</h3>
+        <p><strong>বেমানানটি নির্বাচন করুন।</strong></p>
+        <ul>
+            <li>(A) XYZ1</li>
+            <li>(B) PQR2</li>
+            <li>(C) STU3</li>
+            <li>(D) DCB5</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) DCB5</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> প্রথম তিনটি বিকল্পে (XYZ, PQR, STU) অক্ষরগুলি ইংরেজি বর্ণমালা অনুযায়ী পরপর সাজানো আছে। কিন্তু চতুর্থ বিকল্পে (DCB) অক্ষরগুলি বিপরীত ক্রমে (D-এর আগে C, C-এর আগে B) সাজানো আছে। তাই এটি বেমানান।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬০ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬০</h3>
+        <p><strong>Head : Cap : : Finger : ?</strong></p>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> Cap (টুপি) মাথাকে ঢাকার জন্য বা রক্ষা করার জন্য ব্যবহার করা হয়। একইভাবে, Finger (আঙুল)-কে রক্ষা করার জন্য (বিশেষত সেলাইয়ের সময়) Thimble ব্যবহার করা হয়। প্রদত্ত বিকল্পগুলির মধ্যে কোনোটিই এই সম্পর্কটি সঠিকভাবে প্রকাশ করে না।</p>
+                <p><strong>দ্রষ্টব্য:</strong> এখানে সঠিক উত্তর হবে Thimble (আঙুলকে রক্ষা করার জন্য ব্যবহৃত), যা বিকল্পে নেই।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬১ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬১</h3>
+        <p><strong>রামানুজের মতে তার বোনের জন্মদিন 15 জানুয়ারির পর কিন্তু 20 জানুয়ারির আগে। রামানুজের বাবার মতে জন্মদিন 18 জানুয়ারির পর কিন্তু 22 জানুয়ারির আগে। রামানুজের বোনের জন্মদিন কবে?</strong></p>
+        <ul>
+            <li>(A) 18 জানুয়ারি</li>
+            <li>(B) 19 জানুয়ারি</li>
+            <li>(C) 20 জানুয়ারি</li>
+            <li>(D) 21 জানুয়ারি</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 19 জানুয়ারি</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>রামানুজের মতে সম্ভাব্য তারিখ: ১৬, ১৭, ১৮, <strong>১৯</strong> জানুয়ারি।</li>
+                    <li>বাবার মতে সম্ভাব্য তারিখ: <strong>১৯</strong>, ২০, ২১ জানুয়ারি।</li>
+                    <li>দুটি বিবৃতির মধ্যেই যে সাধারণ তারিখটি রয়েছে তা হলো <strong>১৯ জানুয়ারি</strong>।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬২ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬২</h3>
+        <p><strong>PRAGMATISM শব্দের প্রথম ও দ্বিতীয় বর্ণ স্থান বিনিময় করে, ...তাহলে ডানদিক থেকে অষ্টম বর্ণ হবে—</strong></p>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">G</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>মূল শব্দ: P R A G M A T I S M</li>
+                    <li>জোড়ায় জোড়ায় স্থান বিনিময় করলে নতুন শব্দটি হবে: R P G A A M I T M S</li>
+                    <li>ডানদিক থেকে গোনা শুরু করলে:</li>
+                    <li>১ম-S, ২য়-M, ৩য়-T, ৪র্থ-I, ৫ম-M, ৬ষ্ঠ-A, ৭ম-A, <strong>৮ম-G</strong></li>
+                </ul>
+                <p>সুতরাং, সঠিক উত্তর হবে <strong>G</strong>। (দ্রষ্টব্য: প্রদত্ত বিকল্পগুলিতে ভুল থাকতে পারে)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৩ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৩</h3>
+        <p><strong>ইংরেজি বর্ণমালার বর্ণগুলি বিপরীতক্রমে সাজালে বামদিক থেকে অষ্টম বর্ণের ডানদিকে তৃতীয় বর্ণ হবে—</strong></p>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">P</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>বিপরীতক্রমে বর্ণমালা: Z, Y, X, W, V, U, T, S, R, Q, P, O...</li>
+                    <li>বামদিক থেকে অষ্টম বর্ণটি হলো <strong>S</strong>।</li>
+                    <li>S-এর ডানদিকে (অর্থাৎ তালিকার পরবর্তী বর্ণগুলির দিকে) তৃতীয় বর্ণটি হলো: ১ম-R, ২য়-Q, <strong>৩য়-P</strong>।</li>
+                </ul>
+                <p>সঠিক উত্তর হবে <strong>P</strong>। (দ্রষ্টব্য: প্রদত্ত বিকল্পগুলিতে ভুল থাকতে পারে)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৪ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৪</h3>
+        <p><strong>একটি সাংকেতিক ভাষায় MATRIMONY-কে লেখা হয় AMRTMINOZ তাহলে ওই ভাষায় STRATAGIC-কে কী লেখা হবে?</strong></p>
+        <ul>
+            <li>(A) TSARTAGIC</li>
+            <li>(B) TSARATIGD</li>
+            <li>(C) TSARATGID</li>
+            <li>(D) TSARTAIGD</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) TSARATIGD</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li><strong>নিয়ম:</strong> শব্দটি জোড়ায় জোড়ায় ভাগ করে প্রতিটি জোড়ার অক্ষরগুলির স্থান বিনিময় করা হচ্ছে, এবং একদম শেষের অক্ষরটির পরবর্তী অক্ষরটি বসছে।
+                        <ul>
+                            <li>MA→AM, TR→RT, IM→MI, ON→NO, এবং শেষে Y(+1)→Z</li>
+                        </ul>
+                    </li>
+                    <li><strong>STRATAGIC-এর জন্য প্রয়োগ:</strong>
+                        <ul>
+                            <li>ST→TS, RA→AR, TA→AT, GI→IG, এবং শেষে C(+1)→D</li>
+                            <li>সঠিক কোড: <strong>TSARATIGD</strong></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৫ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৫</h3>
+        <p><strong>...সাংকেতিক ভাষায় 'yesterday'-এর সংকেত কী?</strong></p>
+        <ul>
+            <li>(A) Po</li>
+            <li>(B) Cho</li>
+            <li>(C) To</li>
+            <li>(D) Cho To</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) Cho</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>'Po Cho To' = 'Who came yesterday'</li>
+                    <li>'Ho No To' = 'who play there'</li>
+                    <li>'Bo Po No' = 'beauty came there'</li>
+                </ul>
+                <ul>
+                    <li>১ম ও ২য় বাক্য থেকে, সাধারণ শব্দ 'who' এবং সাধারণ কোড 'To'। সুতরাং, <strong>To = who</strong>।</li>
+                    <li>১ম ও ৩য় বাক্য থেকে, সাধারণ শব্দ 'came' এবং সাধারণ কোড 'Po'। সুতরাং, <strong>Po = came</strong>।</li>
+                    <li>এখন ১ম বাক্যে 'To' (who) এবং 'Po' (came) বাদ দিলে বাকি থাকে 'yesterday' এবং কোড বাকি থাকে 'Cho'। সুতরাং, <strong>Cho = yesterday</strong>।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৬ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৬</h3>
+        <p><strong>...পৃথক শব্দটি নির্ণয় করুন।</strong></p>
+        <ul>
+            <li>(A) SEEY (EYES)</li>
+            <li>(B) SPLI (LIPS)</li>
+            <li>(C) ANLI (NAIL)</li>
+            <li>(D) SOET (TOES)</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) ANLI (NAIL)</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> শব্দগুলি হলো EYES (চোখ), LIPS (ঠোঁট), NAIL (নখ), TOES (পায়ের আঙুল)। এদের মধ্যে EYES, LIPS, TOES হলো সরাসরি অঙ্গ, কিন্তু NAIL হলো আঙুলের উপর থাকা একটি অংশ (appendage)। এই যুক্তিতে NAIL পৃথক।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৭ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৭</h3>
+        <p><strong>Garden যেভাবে Gardener-এর সঙ্গে সম্পর্কিত, Agriculture সেভাবে কীসের সাথে সম্পর্কিত?</strong></p>
+        <ul>
+            <li>(A) Plant</li>
+            <li>(B) Field</li>
+            <li>(C) Farmer</li>
+            <li>(D) Produce</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) Farmer</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> Gardener (মালী) হলেন সেই ব্যক্তি যিনি Garden (বাগান)-এর পরিচর্যা করেন। একইভাবে, Farmer (কৃষক) হলেন সেই ব্যক্তি যিনি Agriculture (কৃষি)-এর কাজ করেন।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৮ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৮</h3>
+        <p><strong>রামজি হল সংগীতার ভাই। যদি সংগীতার বোন উর্মিলা, পাওয়ারের ভাইঝি হয়, তবে রামজি পাওয়ারের সাথে কীভাবে সম্পর্কিত?</strong></p>
+        <ul>
+            <li>(A) ছেলে</li>
+            <li>(B) ভাইপো</li>
+            <li>(C) বোনের ছেলে</li>
+            <li>(D) ভাই</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) ভাইপো</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> রামজি ও সংগীতা ভাই-বোন। উর্মিলা সংগীতার বোন, অর্থাৎ রামজি, সংগীতা এবং উর্মিলা তিনজনই সহোদর। উর্মিলা যদি পাওয়ারের ভাইঝি হয়, তার মানে পাওয়ার হলেন উর্মিলার কাকা বা মামা। যেহেতু রামজি উর্মিলার ভাই, তাই রামজি হবেন পাওয়ারের ভাইপো।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৯ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৯</h3>
+        <p><strong>সারণির পরবর্তী পদটি কী হবে? 1, 3, 9, 27, 81, ...</strong></p>
+        <ul>
+            <li>(A) 263</li>
+            <li>(B) 253</li>
+            <li>(C) 243</li>
+            <li>(D) 162</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 243</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> এটি একটি গুণোত্তর প্রগতি। সিরিজের প্রতিটি সংখ্যা তার আগের সংখ্যাকে ৩ দিয়ে গুণ করে পাওয়া যাচ্ছে (1×3=3, 3×3=9, 9×3=27...)। সুতরাং, পরবর্তী সংখ্যাটি হবে 81 × 3 = <strong>243</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭০ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭০</h3>
+        <p><strong>সুরেশ A বিন্দু থেকে ... এখন সে A বিন্দু থেকে কত দূরে আছে?</strong></p>
+        <ul>
+            <li>(A) 7 km</li>
+            <li>(B) 17 km</li>
+            <li>(C) 15 km</li>
+            <li>(D) 5 km</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 7 km</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>১. দক্ষিণে গেল 5 কিমি।</li>
+                    <li>২. ডানদিকে (পশ্চিমে) গেল 2 কিমি।</li>
+                    <li>৩. ডানদিকে (উত্তরে) গেল 5 কিমি। (এই পদক্ষেপের ফলে সে শুরুর পূর্ব-পশ্চিম লাইনে ফিরে এলো)।</li>
+                    <li>৪. বামদিকে (পশ্চিমে) গেল 5 কিমি।</li>
+                </ul>
+                <p>সে শুরুর বিন্দু থেকে শুধুমাত্র পশ্চিম দিকে সরেছে। মোট পশ্চিম দিকে দূরত্ব = 2 কিমি + 5 কিমি = <strong>7 কিমি</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭১ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭১</h3>
+        <p><strong>‘?’ চিহ্নিতস্থানে উপযুক্ত বিকল্প নির্বাচন করুন— ? : Foot :: Hand : Wrist</strong></p>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> Wrist (কব্জি) হলো সেই সন্ধি যা Hand (হাত)-কে বাহুর সাথে যুক্ত করে। একইভাবে, Ankle (গোড়ালি) হলো সেই সন্ধি যা Foot (পা)-কে পায়ের বাকি অংশের সাথে যুক্ত করে।</p>
+                <p><strong>দ্রষ্টব্য:</strong> এখানে সঠিক উত্তর হবে Ankle (গোড়ালি), যা বিকল্পে নেই।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭২ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭২</h3>
+        <p><strong>প্রশ্নচিহ্নিত স্থানের জন্য উপযুক্ত বিকল্প নির্বাচন করুন। AC FH KM PR ?</strong></p>
+        <ul>
+            <li>(A) UW</li>
+            <li>(B) VX</li>
+            <li>(C) XW</li>
+            <li>(D) TV</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) UW</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li><strong>প্রতিটি জোড়ার মধ্যে সম্পর্ক:</strong> প্রথম অক্ষর এবং দ্বিতীয় অক্ষরের মধ্যে ১টি অক্ষর বাদ দেওয়া হয়েছে (A, b, C; F, g, H; ইত্যাদি)।</li>
+                    <li><strong>জোড়াগুলির মধ্যে সম্পর্ক:</strong> প্রতিটি জোড়ার শেষ অক্ষর এবং পরের জোড়ার প্রথম অক্ষরের মধ্যে ২টি অক্ষর বাদ দেওয়া হয়েছে (C, d, e, F; H, i, j, K; ইত্যাদি)।</li>
+                </ul>
+                <p>এই নিয়ম অনুযায়ী, PR-এর পরে R (s, t) বাদ দিয়ে পরের জোড়া শুরু হবে <strong>U</strong> দিয়ে। এবং U (v) বাদ দিয়ে পরের অক্ষর হবে <strong>W</strong>। সুতরাং সঠিক উত্তর <strong>UW</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭৩ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭৩</h3>
+        <p><strong>...তাহলে সবচেয়ে বড়ো কে?</strong></p>
+        <ul>
+            <li>(A) R</li>
+            <li>(B) P</li>
+            <li>(C) R বা T</li>
+            <li>(D) তথ্য অসম্পূর্ণ</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) P</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>M, R ও T-এর থেকে বড়ো: M > R, M > T</li>
+                    <li>J, M-এর থেকে বড়ো: J > M</li>
+                    <li>J সবচেয়ে বড়ো নয়: ? > J</li>
+                </ul>
+                <p>সম্পর্কগুলিকে একত্রিত করলে: ? > J > M > (R, T)।</p>
+                <p>পাঁচজনের মধ্যে একমাত্র P বাকি আছে, সুতরাং প্রশ্নচিহ্নিত স্থানে P বসবে। ক্রমটি হলো: <strong>P > J > M > R/T</strong>। সবচেয়ে বড়ো হলো <strong>P</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭৪ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭৪</h3>
+        <p><strong>বিবৃতি : Some books are bags. All bags are trees. সিদ্ধান্ত: ...</strong></p>
+        <ul>
+            <li>(A) শুধুমাত্র সিদ্ধান্ত (i) সঠিক</li>
+            <li>(B) শুধুমাত্র সিদ্ধান্ত (ii) সঠিক</li>
+            <li>(C) সিদ্ধান্ত (i) ও (ii) কোনোটিই সঠিক নয়</li>
+            <li>(D) সিদ্ধান্ত (i) ও (ii) উভয়ই সঠিক</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) শুধুমাত্র সিদ্ধান্ত (i) সঠিক</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li><strong>বিবৃতি ১:</strong> কিছু বই হয় ব্যাগ।</li>
+                    <li><strong>বিবৃতি ২:</strong> সব ব্যাগ হয় গাছ।</li>
+                    <li><strong>সিদ্ধান্ত (i): Some books are trees (কিছু বই হয় গাছ):</strong> এটি সঠিক। কারণ যে বইগুলি ব্যাগ, সেই ব্যাগগুলি যেহেতু গাছের অংশ, তাই ওই বইগুলিও গাছের অংশ হবে।</li>
+                    <li><strong>সিদ্ধান্ত (ii): All trees are books (সব গাছ হয় বই):</strong> এটি ভুল। সব ব্যাগ গাছ, কিন্তু সব গাছ ব্যাগ নয়। তাই সব গাছ বই হবে এমন কোনো নিশ্চয়তা নেই।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭৫ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭৫</h3>
+        <p><strong>মীনাকে দেখিয়ে স্বরূপ বলল, ‘সে হল আমার ঠাকুরদার একমাত্র সন্তানের মেয়ে’। মীনার সঙ্গে স্বরূপের সম্পর্ক কী?</strong></p>
+        <ul>
+            <li>(A) তুতোভাই</li>
+            <li>(B) বোন</li>
+            <li>(C) পিসি</li>
+            <li>(D) বলা সম্ভব নয়</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) বোন</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>'আমার ঠাকুরদার একমাত্র সন্তান' – এর অর্থ স্বরূপের বাবা।</li>
+                    <li>'আমার বাবার মেয়ে' – এর অর্থ স্বরূপের বোন।</li>
+                </ul>
+                <p>সুতরাং, মীনা হলো স্বরূপের বোন।</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<nav class="navigation">
+    <a href="class2.html" class="nav-button">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button">1</a>
+    <a href="class2.html" class="nav-button">2</a>
+    <a href="class3.html" class="nav-button active">3</a>
+    <a href="class4.html" class="nav-button">4</a>
+    <a href="class4.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<!-- External JavaScript File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
