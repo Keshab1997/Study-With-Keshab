@@ -238,6 +238,7 @@ function loadChapterLeaderboard(db, chapterKey) {
         });
 }
 
+// === ## এই ফাংশনটি সম্পূর্ণ আপডেট করা হয়েছে ## ===
 function generateUserResult(db, user, chapterKey, chapterDisplayName) {
     const resultContainer = document.getElementById("result-card-container");
     const noResultMessage = document.getElementById("no-result-message");
@@ -266,15 +267,16 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                         user.photoURL ||
                         "/Study-With-Keshab/images/default-avatar.png";
 
+                    // --- মোট প্রশ্ন সংখ্যা এবং অন্যান্য ডেটা সঠিকভাবে গণনা করা হচ্ছে ---
                     let totalCorrect = 0;
                     let totalWrong = 0;
-                    let totalAttemptedQuestions = 0;
+                    let totalQuestionsInChapter = 0;
 
                     if (chapterData.quiz_sets) {
                         for (const key in chapterData.quiz_sets) {
                             const setData = chapterData.quiz_sets[key];
                             totalWrong += setData.wrong;
-                            // আনুমানিক সঠিক উত্তর গণনা
+                            totalQuestionsInChapter += setData.totalQuestions;
                             const attempted = setData.score + setData.wrong / 3;
                             totalCorrect += Math.round(
                                 attempted - setData.wrong,
@@ -282,7 +284,7 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                         }
                     }
 
-                    totalAttemptedQuestions = totalCorrect + totalWrong;
+                    const totalAttemptedQuestions = totalCorrect + totalWrong;
                     const accuracy =
                         totalAttemptedQuestions > 0
                             ? Math.round(
@@ -304,7 +306,7 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                     else if (rank <= 10) rankClass = "rank-silver";
 
                     const badges = [];
-                    const totalQuizzes = document.querySelectorAll(
+                    const totalQuizzesOnPage = document.querySelectorAll(
                         "#quiz-sets .link-container a",
                     ).length;
                     const completedQuizzesCount =
@@ -322,94 +324,75 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                         });
                     else if (rank <= 10)
                         badges.push({ text: "🥉 শীর্ষ দশে", class: "top-ten" });
-                    else if (
-                        totalParticipants > 10 &&
-                        rank <= Math.ceil(totalParticipants * 0.25)
-                    )
-                        badges.push({
-                            text: "🌟 উঠতি তারকা",
-                            class: "rising-star",
-                        });
 
                     if (accuracy >= 95)
                         badges.push({
                             text: "🎯 নির্ভুলতার রাজা",
                             class: "accuracy",
                         });
-                    else if (accuracy >= 85)
-                        badges.push({
-                            text: "✅ দারুণ নির্ভুলতা",
-                            class: "high-accuracy",
-                        });
 
                     if (
-                        totalQuizzes > 0 &&
-                        completedQuizzesCount >= totalQuizzes
+                        totalQuizzesOnPage > 0 &&
+                        completedQuizzesCount >= totalQuizzesOnPage
                     )
                         badges.push({
                             text: "💯 সম্পূর্ণকারী",
                             class: "completionist",
                         });
 
-                    let motivationalMessage = "";
-                    if (accuracy >= 90)
-                        motivationalMessage =
-                            "অসাধারণ! তোমার প্রস্তুতি শিখরে। চালিয়ে যাও!";
-                    else if (accuracy >= 70)
-                        motivationalMessage =
-                            "দারুণ চেষ্টা! ভুলগুলো আরেকবার দেখে নিলেই তুমি সেরা হবে।";
-                    else
-                        motivationalMessage =
-                            "চিন্তার কিছু নেই, প্রতিটি ভুলই নতুন কিছু শেখার সুযোগ। আবার চেষ্টা করো!";
+                    let motivationalMessage =
+                        accuracy >= 90
+                            ? "অসাধারণ! তোমার প্রস্তুতি শিখরে।"
+                            : "দারুণ চেষ্টা! ভুলগুলো আরেকবার দেখে নাও।";
 
                     const cleanChapterName = chapterDisplayName.replace(
                         "Biology ",
                         "",
                     );
-                    const shareText = `আমি '${cleanChapterName}' অধ্যায়ে ${score.toFixed(2)} স্কোর করেছি! Study With Keshab-এ আমার র‍্যাঙ্ক #${rank}। তুমিও তোমার প্রস্তুতি যাচাই করো!`;
+                    const shareText = `আমি '${cleanChapterName}' অধ্যায়ে ${score.toFixed(2)} স্কোর করেছি! Study With Keshab-এ আমার র‍্যাঙ্ক #${rank}।`;
                     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + window.location.href)}`;
                     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(shareText)}`;
 
                     resultContainer.innerHTML = `
-                    <div class="result-card ${rankClass}">
-                        <div class="result-header">
-                            <img src="${userPhoto}" alt="Profile Picture" class="result-profile-pic">
-                            <h3 class="result-user-name">${userName}</h3>
-                            <div class="rank-badge-container">
-                                ${badges.map((b) => `<span class="badge-item ${b.class}">${b.text}</span>`).join("")}
-                            </div>
-                        </div>
-                        <p class="motivational-quote">${motivationalMessage}</p>
-                        <div class="result-stats-grid">
-                            <div class="chart-container">
-                                <canvas id="accuracy-chart"></canvas>
-                            </div>
-                            <div class="result-details">
-                                <div class="result-item">
-                                    <h4>প্রাপ্ত নম্বর</h4>
-                                    <p class="score-display">
-                                        <span id="user-score">${score.toFixed(2)}</span> / <span id="total-questions-display">${totalAttemptedQuestions}</span>
-                                    </p>
-                                </div>
-                                <div class="result-item">
-                                    <h4>র‍্যাঙ্ক</h4>
-                                    <p id="user-rank">#${rank}</p>
+                        <div class="result-card ${rankClass}">
+                            <div class="result-header">
+                                <img src="${userPhoto}" alt="Profile Picture" class="result-profile-pic">
+                                <h3 class="result-user-name">${userName}</h3>
+                                <div class="rank-badge-container">
+                                    ${badges.map((b) => `<span class="badge-item ${b.class}">${b.text}</span>`).join("")}
                                 </div>
                             </div>
-                        </div>
-                        <p class="performance-comparison">
-                            আপনি এই অধ্যায়ে <strong>${betterThanPercentage}%</strong> শিক্ষার্থীর চেয়ে এগিয়ে আছেন!
-                        </p>
-                        <div class="result-share">
-                             <p>আপনার রেজাল্ট শেয়ার করুন!</p>
-                            <div class="share-buttons">
-                                <a href="${whatsappUrl}" target="_blank" class="share-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                                <a href="${facebookUrl}" target="_blank" class="share-btn facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                            <p class="motivational-quote">${motivationalMessage}</p>
+                            <div class="result-stats-grid">
+                                <div class="chart-container">
+                                    <canvas id="accuracy-chart"></canvas>
+                                </div>
+                                <div class="result-details">
+                                    <div class="result-item">
+                                        <h4>প্রাপ্ত নম্বর</h4>
+                                        <p class="score-display">
+                                            <span id="user-score">${score.toFixed(2)}</span> / <span id="total-questions-display">${totalQuestionsInChapter}</span>
+                                        </p>
+                                    </div>
+                                    <div class="result-item">
+                                        <h4>র‍্যাঙ্ক</h4>
+                                        <p id="user-rank">#${rank}</p>
+                                    </div>
+                                </div>
                             </div>
-                            <button id="download-result-btn"><i class="fa-solid fa-camera"></i> ছবি ডাউনলোড করুন</button>
+                            <p class="performance-comparison">
+                                আপনি এই অধ্যায়ে <strong>${betterThanPercentage}%</strong> শিক্ষার্থীর চেয়ে এগিয়ে আছেন!
+                            </p>
+                            <div class="result-share">
+                                 <p>আপনার রেজাল্ট শেয়ার করুন!</p>
+                                <div class="share-buttons">
+                                    <a href="${whatsappUrl}" target="_blank" class="share-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                                    <a href="${facebookUrl}" target="_blank" class="share-btn facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                                </div>
+                                <button id="download-result-btn"><i class="fa-solid fa-camera"></i> ছবি ডাউনলোড করুন</button>
+                            </div>
                         </div>
-                    </div>
-                `;
+                    `;
 
                     new CountUp("user-score", score, {
                         duration: 1.5,
@@ -417,7 +400,7 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                     }).start();
                     new CountUp(
                         "total-questions-display",
-                        totalAttemptedQuestions,
+                        totalQuestionsInChapter,
                         { duration: 1.5 },
                     ).start();
                     new CountUp("user-rank", rank, {
@@ -552,7 +535,6 @@ function createAccuracyChart(accuracy) {
     });
 }
 
-// === ## এই ফাংশনটি সম্পূর্ণ আপডেট করা হয়েছে ## ===
 function loadDashboardData(db, userId, chapterKey) {
     const quizLinks = document.querySelectorAll("#quiz-sets .link-container a");
     const totalQuizzesInChapter = quizLinks.length;
@@ -570,7 +552,6 @@ function loadDashboardData(db, userId, chapterKey) {
                 chapterData = doc.data().chapters[chapterKey];
             }
 
-            // --- পাই চার্টের জন্য সঠিক ডেটা গণনা ---
             let totalCorrectForChart = 0;
             let totalWrongForChart = 0;
 
@@ -583,8 +564,6 @@ function loadDashboardData(db, userId, chapterKey) {
                         typeof setData.score !== "undefined"
                     ) {
                         totalWrongForChart += setData.wrong;
-
-                        // সঠিক উত্তর গণনা: (score + (wrong * 1/3)) হলো মোট সঠিক উত্তরের সংখ্যা
                         const correctAnswers = Math.round(
                             setData.score + setData.wrong / 3,
                         );
@@ -663,8 +642,8 @@ function updatePieChart(correct, wrong) {
                 },
             },
             tooltips: {
-                titleFontFamily: "'Hind Siliguri', sans-serif",
-                bodyFontFamily: "'Hind Siliguri', sans-serif",
+                titleFontFamily: "'Hind Silguri', sans-serif",
+                bodyFontFamily: "'Hind Silguri', sans-serif",
             },
         },
     });
