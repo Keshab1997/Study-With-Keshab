@@ -3,7 +3,7 @@
   "short_name": "SWK",
   "start_url": "./?source=pwa",
   "scope": "/Study-With-Keshab/",
-  "display": "standalone",
+  "display": "Fullscreen",
   "background_color": "#f0f2f5",
   "theme_color": "#4a90e2",
   "icons": [
