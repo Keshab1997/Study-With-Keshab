@@ -24,26 +24,8 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/notification.css" />
     <!-- === নতুন বাটনটির জন্য CSS === -->
-    <style>
-      .header-action-btn {
-        background: none;
-        border: none;
-        color: #333; /* আপনার হেডার টেক্সটের রঙের সাথে মিলিয়ে নিন */
-        font-size: 1.3rem;
-        cursor: pointer;
-        padding: 5px 8px;
-        margin-left: 8px;
-        transition: color 0.3s ease;
-      }
-      .header-action-btn:hover {
-        color: #4a90e2; /* আপনার প্রাইমারি রঙের সাথে মিলিয়ে নিন */
-      }
-      /* মোবাইল মেনুর আইকনের জন্য সামান্য মার্জিন */
-      .mobile-navigation-menu .toggle-view-btn i {
-        margin-right: 12px;
-        width: 20px; /* অন্যান্য আইকনের সাথে সামঞ্জস্য রাখতে */
-      }
-    </style>
+    <link rel="stylesheet" href="css/cbt-styles.css" />
+
   </head>
   <body>
     <!-- === হেডার এবং মেনু (আপডেটেড) === -->
@@ -83,6 +65,13 @@
               <a href="index.html#feedback-module" class="feedback"
                 ><i class="fas fa-comment-alt"></i> Feedback</a
               >
+            </li>
+
+            <!-- === CBT Exam লিঙ্ক এখানে যোগ করা হয়েছে === -->
+            <li>
+              <a href="#cbt-exam-section" class="cbt-exam">
+                <i class="fas fa-laptop-code"></i> CBT Exam
+              </a>
             </li>
 
             <!-- অথেন্টিকেশন লিঙ্ক (আপডেটেড) -->
@@ -168,6 +157,13 @@
           <a href="index.html#feedback-module"
             ><i class="fas fa-comment-alt"></i> Feedback</a
           >
+        </li>
+
+        <!-- === CBT Exam লিঙ্ক এখানে যোগ করা হয়েছে === -->
+        <li>
+          <a href="#cbt-exam-section">
+            <i class="fas fa-laptop-code"></i> CBT Exam
+          </a>
         </li>
 
         <!-- মোবাইল অথেন্টিকেশন লিঙ্ক (আপডেটেড) -->
@@ -322,10 +318,47 @@
               "
               ><h3>ChhayaPrakashani</h3></a
             >
-        
           </div>
         </div>
       </section>
+      <!-- === CBT Exam Section Starts === -->
+      <section
+        id="cbt-exam-section"
+        class="features-section"
+        style="background-color: #f0f4f8"
+      >
+        <div class="container">
+          <h2 class="section-title">CBT Exam: পরীক্ষার প্রস্তুতি যাচাই করুন</h2>
+          <div
+            class="feature-item"
+            style="
+              max-width: 800px;
+              margin: 0 auto;
+              text-align: center;
+              background: #fff;
+              padding: 30px;
+              border-radius: 10px;
+              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            "
+          >
+            <i
+              class="fas fa-laptop-code"
+              style="font-size: 3rem; color: #4a90e2; margin-bottom: 15px"
+            ></i>
+            <h4>বাস্তব পরীক্ষার অভিজ্ঞতা নিন</h4>
+            <p style="margin-bottom: 25px">
+              আমাদের কম্পিউটার-ভিত্তিক পরীক্ষা (CBT) মডিউলের মাধ্যমে আপনার
+              প্রস্তুতিকে পরবর্তী স্তরে নিয়ে যান। এখানে আপনি আসল পরীক্ষার মতোই
+              পরিবেশে সময় ধরে পরীক্ষা দিতে পারবেন এবং নিজের পারফরম্যান্স
+              বিশ্লেষণ করতে পারবেন।
+            </p>
+            <a href="https://keshab1997.github.io/cbt-exam/" class="btn btn-primary"
+              >এখনই পরীক্ষা শুরু করুন <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </section>
+      <!-- === CBT Exam Section Ends === -->
 
       <section id="features" class="features-section">
         <div class="container">
@@ -489,35 +522,36 @@
 
       // Function to apply the current view mode
       function applyViewMode() {
-        const desktopBtn = document.querySelector(".header-action-btn.toggle-view-btn");
+        const desktopBtn = document.querySelector(
+          ".header-action-btn.toggle-view-btn",
+        );
         const mobileMenuText = document.querySelector(".toggle-view-text");
         const allIcons = document.querySelectorAll(".toggle-view-btn .fas");
-        
+
         if (isDesktopView) {
           viewportMeta.setAttribute("content", "width=1280");
-          if(desktopBtn) desktopBtn.title = "মোবাইল মোড";
-          if(mobileMenuText) mobileMenuText.textContent = "মোবাইল মোড";
-          allIcons.forEach(icon => {
-              icon.classList.remove("fa-desktop");
-              icon.classList.add("fa-mobile-alt");
+          if (desktopBtn) desktopBtn.title = "মোবাইল মোড";
+          if (mobileMenuText) mobileMenuText.textContent = "মোবাইল মোড";
+          allIcons.forEach((icon) => {
+            icon.classList.remove("fa-desktop");
+            icon.classList.add("fa-mobile-alt");
           });
-
         } else {
           viewportMeta.setAttribute(
             "content",
             "width=device-width, initial-scale=1.0",
           );
-          if(desktopBtn) desktopBtn.title = "ডেস্কটপ মোড";
-          if(mobileMenuText) mobileMenuText.textContent = "ডেস্কটপ মোড";
-          allIcons.forEach(icon => {
-              icon.classList.remove("fa-mobile-alt");
-              icon.classList.add("fa-desktop");
+          if (desktopBtn) desktopBtn.title = "ডেস্কটপ মোড";
+          if (mobileMenuText) mobileMenuText.textContent = "ডেস্কটপ মোড";
+          allIcons.forEach((icon) => {
+            icon.classList.remove("fa-mobile-alt");
+            icon.classList.add("fa-desktop");
           });
         }
       }
 
       // Event listener for all toggle buttons
-      toggleBtns.forEach(btn => {
+      toggleBtns.forEach((btn) => {
         btn.addEventListener("click", (e) => {
           e.preventDefault(); // মোবাইল মেনুর লিঙ্কে ক্লিক করলে যেন পেজ রিফ্রেশ না হয়
           isDesktopView = !isDesktopView; // Toggle the state
@@ -529,7 +563,6 @@
           applyViewMode();
         });
       });
-
 
       // Apply the saved mode when the page loads
       applyViewMode();

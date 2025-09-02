@@ -1,0 +1,51 @@
+/* === হেডার এবং মোবাইল মেনুর কাস্টম বাটন স্টাইল === */
+.header-action-btn {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 5px 8px;
+  margin-left: 8px;
+  transition: color 0.3s ease;
+}
+
+.header-action-btn:hover {
+  color: #4a90e2;
+  /* প্রাইমারি রঙ */
+}
+
+/* মোবাইল মেনুর আইকনের জন্য মার্জিন */
+.mobile-navigation-menu .toggle-view-btn i {
+  margin-right: 12px;
+  width: 20px;
+  /* অন্যান্য আইকনের সাথে সামঞ্জস্য রাখতে */
+}
+
+
+/* === CBT Exam সেকশনের স্টাইল === */
+#cbt-exam-section {
+  background-color: #f0f4f8;
+  /* হালকা ব্যাকগ্রাউন্ড রঙ */
+}
+
+.cbt-exam-card {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.cbt-exam-card i.fa-laptop-code {
+  font-size: 3rem;
+  color: #4a90e2;
+  /* প্রাইমারি রঙ */
+  margin-bottom: 15px;
+}
+
+.cbt-exam-card p {
+  margin-bottom: 25px;
+}
