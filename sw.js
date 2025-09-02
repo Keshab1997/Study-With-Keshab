@@ -1,58 +1,67 @@
-const CACHE_NAME = "study-with-keshab-cache-v2";
+const CACHE_NAME = "study-with-keshab-cache-v3";
 const urlsToCache = [
-  "/",
-  "index.html",
-  "about.html",
-  "contact.html",
-  "login.html",
-  "signup.html",
-  "notifications.html",
+  "/Study-With-Keshab/",
+  "/Study-With-Keshab/index.html",
+  "/Study-With-Keshab/about.html",
+  "/Study-With-Keshab/contact.html",
+  "/Study-With-Keshab/login.html",
+  "/Study-With-Keshab/signup.html",
+  "/Study-With-Keshab/notifications.html",
   // CSS Files
-  "css/style.css",
-  "css/notification.css",
+  "/Study-With-Keshab/css/style.css",
+  "/Study-With-Keshab/css/notification.css",
   // JS Files
-  "js/script.js", // তোমার প্রধান JS ফাইলের নাম যদি ভিন্ন হয়, পরিবর্তন করে নিও
-  "js/auth.js",
+  "/Study-With-Keshab/js/script.js",
+  "/Study-With-Keshab/js/auth.js",
   // Images / Icons
-  "images/icons/icon-192x192.png",
-  "images/icons/icon-512x512.png",
+  "/Study-With-Keshab/images/icons/icon-192x192.png",
+  "/Study-With-Keshab/images/icons/icon-512x512.png"
 ];
 
-// Install a service worker
+// Install SW and cache files
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log("Opened cache");
       return cache.addAll(urlsToCache);
-    }),
+    })
   );
 });
 
-// Cache and return requests
+// Fetch - cache first, then network + update cache
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
-      // Cache hit - return response
       if (response) {
         return response;
       }
-      return fetch(event.request);
-    }),
+      return fetch(event.request).then((fetchResponse) => {
+        return caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, fetchResponse.clone());
+          return fetchResponse;
+        });
+      }).catch(() => {
+        // Offline fallback
+        if (event.request.mode === "navigate") {
+          return caches.match("/Study-With-Keshab/index.html");
+        }
+      });
+    })
   );
 });
 
-// Update a service worker
+// Activate - clear old cache
 self.addEventListener("activate", (event) => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
+          if (!cacheWhitelist.includes(cacheName)) {
             return caches.delete(cacheName);
           }
-        }),
+        })
       );
-    }),
+    })
   );
 });
