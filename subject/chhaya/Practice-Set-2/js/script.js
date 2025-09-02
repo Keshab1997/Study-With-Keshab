@@ -1,20 +1,30 @@
 // Filename: js/script.js - Upgraded for Chapter-Based Dashboard & Leaderboard
 
+// === পরিবর্তন: CountUp ক্লাসটি মডিউল থেকে সঠিকভাবে ইম্পোর্ট করা হয়েছে ===
 import { CountUp } from "https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js";
 
+// এই ভেরিয়েবলটি নিশ্চিত করবে যে চার্টের প্লাগইনটি শুধু একবার রেজিস্টার হবে
 let isChartPluginRegistered = false;
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Firebase Authentication Check
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
+            // ব্যবহারকারী লগইন করা থাকলে অ্যাপ শুরু হবে
             initApp(user);
         } else {
+            // যদি ব্যবহারকারী লগইন করা না থাকে, তাহলে লগইন পেজে পাঠিয়ে দেওয়া হবে।
+            // নিশ্চিত করুন আপনার লগইন পেজের লিঙ্কটি সঠিক
             window.location.href =
                 "https://keshab1997.github.io/Study-With-Keshab/login.html";
         }
     });
 });
 
+/**
+ * Main function to initialize all functionalities.
+ * @param {firebase.User} user - The authenticated user object.
+ */
 function initApp(user) {
     const preloader = document.getElementById("preloader");
     if (preloader) {
@@ -23,21 +33,32 @@ function initApp(user) {
 
     const db = firebase.firestore();
 
+    // অধ্যায়ের নাম HTML ফাইল থেকে dynamically লোড করা হচ্ছে
     if (typeof CURRENT_CHAPTER_NAME === "undefined") {
-        console.error("CURRENT_CHAPTER_NAME is not set in the HTML file.");
-        alert("Error: Chapter name not found.");
-        return;
+        console.error(
+            "অধ্যায়ের নাম (CURRENT_CHAPTER_NAME) HTML ফাইলে সেট করা হয়নি।",
+        );
+        const chapterName = "Unknown Chapter";
+        alert("ত্রুটি: অধ্যায়ের নাম পাওয়া যায়নি।");
     }
     const chapterName = CURRENT_CHAPTER_NAME;
-    const chapterKey = chapterName.replace(/\s+/g, "_").replace(/,/g, "");
+    const chapterKey = chapterName.replace(/\s+/g, "_").replace(/,/g, ""); // Firestore-এর জন্য নিরাপদ কী
 
+    // --- UI সেটআপ এবং ডেটা লোড ---
     setupUserProfile(user);
     setupUIInteractions();
 
-    loadChapterLeaderboard(db, chapterKey);
-    loadDashboardData(db, user.uid, chapterKey);
+    // --- Firebase থেকে অধ্যায়-ভিত্তিক ডেটা লোড ---
+    loadChapterLeaderboard(db, chapterKey); // অধ্যায়-ভিত্তিক লিডারবোর্ড
+    loadDashboardData(db, user.uid, chapterKey); // অধ্যায়-ভিত্তিক ড্যাশবোর্ড
+
+    // আপনার উন্নত রেজাল্ট কার্ড ফাংশনটি এখানে কল করা হচ্ছে
     generateUserResult(db, user, chapterKey, chapterName);
 }
+
+// ===============================================
+// --- UI Setup Functions ---
+// ===============================================
 
 function setupUserProfile(user) {
     const displayNameElement = document.getElementById("user-display-name");
@@ -54,6 +75,7 @@ function setupUserProfile(user) {
 }
 
 function setupUIInteractions() {
+    // Dark Mode Toggle
     const darkModeToggle = document.getElementById("dark-mode-toggle");
     if (localStorage.getItem("theme") === "dark") {
         document.body.classList.replace("day-mode", "dark-mode");
@@ -75,6 +97,7 @@ function setupUIInteractions() {
         });
     }
 
+    // Search Bar
     const searchBar = document.getElementById("search-bar");
     if (searchBar) {
         searchBar.addEventListener("input", (e) => {
@@ -95,6 +118,7 @@ function setupUIInteractions() {
         });
     }
 
+    // Formula Modal
     const modal = document.getElementById("formula-modal");
     const openBtn = document.getElementById("formula-sheet-btn");
     if (modal && openBtn) {
@@ -109,6 +133,7 @@ function setupUIInteractions() {
         });
     }
 
+    // Back to Top button
     const backToTop = document.getElementById("back-to-top");
     if (backToTop) {
         window.addEventListener("scroll", () => {
@@ -116,6 +141,7 @@ function setupUIInteractions() {
         });
     }
 
+    // Leaderboard Dropdown Click Handler
     const leaderboardBody = document.getElementById("leaderboard-body");
     if (leaderboardBody) {
         leaderboardBody.addEventListener("click", function (event) {
@@ -152,6 +178,10 @@ function setupUIInteractions() {
         });
     }
 }
+
+// ===============================================
+// --- Firebase Data Loading Functions ---
+// ===============================================
 
 function loadChapterLeaderboard(db, chapterKey) {
     const leaderboardBody = document.getElementById("leaderboard-body");
@@ -195,16 +225,18 @@ function loadChapterLeaderboard(db, chapterKey) {
 
                     let scoreDetailsHTML = "<li>কোনো বিস্তারিত স্কোর নেই।</li>";
                     if (chapterData.quiz_sets) {
-                        const setNames = Object.keys(chapterData.quiz_sets);
-                        scoreDetailsHTML = setNames
-                            .map((setName) => {
-                                const setData = chapterData.quiz_sets[setName];
-                                const cleanSetName = setName.replace(/_/g, " ");
-                                const score =
-                                    setData.score % 1 === 0
-                                        ? setData.score
-                                        : setData.score.toFixed(2);
-                                return `<li><span class="label">${cleanSetName}:</span> ${score}/${setData.totalQuestions}</li>`;
+                        const sortedSets = Object.entries(
+                            chapterData.quiz_sets,
+                        ).sort(
+                            (a, b) =>
+                                parseInt(a[0].replace("Set_", "")) -
+                                parseInt(b[0].replace("Set_", "")),
+                        );
+
+                        scoreDetailsHTML = sortedSets
+                            .map(([setName, setData]) => {
+                                const cleanSetName = setName.replace("_", " ");
+                                return `<li><span class="label">${cleanSetName}:</span> ${setData.score}/${setData.totalQuestions}</li>`;
                             })
                             .join("");
                     }
@@ -213,7 +245,7 @@ function loadChapterLeaderboard(db, chapterKey) {
                         <tr class="leaderboard-row">
                             <td>${icon}${rank}</td>
                             <td>${userData.displayName || "Unknown User"}</td>
-                            <td><strong>${chapterData.totalScore.toFixed(2)}</strong></td>
+                            <td><strong>${chapterData.totalScore}</strong></td>
                             <td><button class="toggle-details-btn" aria-label="বিস্তারিত দেখুন"><i class="fas fa-chevron-down"></i></button></td>
                         </tr>
                         <tr class="details-row">
@@ -238,7 +270,6 @@ function loadChapterLeaderboard(db, chapterKey) {
         });
 }
 
-// === ## এই ফাংশনটি সম্পূর্ণ আপডেট করা হয়েছে ## ===
 function generateUserResult(db, user, chapterKey, chapterDisplayName) {
     const resultContainer = document.getElementById("result-card-container");
     const noResultMessage = document.getElementById("no-result-message");
@@ -267,30 +298,12 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                         user.photoURL ||
                         "/Study-With-Keshab/images/default-avatar.png";
 
-                    // --- মোট প্রশ্ন সংখ্যা এবং অন্যান্য ডেটা সঠিকভাবে গণনা করা হচ্ছে ---
-                    let totalCorrect = 0;
-                    let totalWrong = 0;
-                    let totalQuestionsInChapter = 0;
-
-                    if (chapterData.quiz_sets) {
-                        for (const key in chapterData.quiz_sets) {
-                            const setData = chapterData.quiz_sets[key];
-                            totalWrong += setData.wrong;
-                            totalQuestionsInChapter += setData.totalQuestions;
-                            const attempted = setData.score + setData.wrong / 3;
-                            totalCorrect += Math.round(
-                                attempted - setData.wrong,
-                            );
-                        }
-                    }
-
-                    const totalAttemptedQuestions = totalCorrect + totalWrong;
+                    const totalCorrect = chapterData.totalCorrect || 0;
+                    const totalWrong = chapterData.totalWrong || 0;
+                    const totalQuestions = totalCorrect + totalWrong;
                     const accuracy =
-                        totalAttemptedQuestions > 0
-                            ? Math.round(
-                                  (totalCorrect / totalAttemptedQuestions) *
-                                      100,
-                              )
+                        totalQuestions > 0
+                            ? Math.round((totalCorrect / totalQuestions) * 100)
                             : 0;
                     const betterThanPercentage =
                         totalParticipants > 1
@@ -305,104 +318,130 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                     if (rank <= 3) rankClass = "rank-gold";
                     else if (rank <= 10) rankClass = "rank-silver";
 
+                    // === ব্যাজ সিস্টেম আপগ্রেড করা হয়েছে ===
                     const badges = [];
-                    const totalQuizzesOnPage = document.querySelectorAll(
+                    const totalQuizzes = document.querySelectorAll(
                         "#quiz-sets .link-container a",
                     ).length;
                     const completedQuizzesCount =
                         chapterData.completedQuizzesCount || 0;
 
-                    if (rank === 1)
+                    // Rank-based Badges (prioritized and mutually exclusive for rank)
+                    if (rank === 1) {
                         badges.push({
                             text: "🏆 অধ্যায়ের সেরা",
                             class: "topper",
                         });
-                    else if (rank <= 3)
+                    } else if (rank <= 3) {
                         badges.push({
                             text: "🥈 শীর্ষ তিনে",
                             class: "top-three",
                         });
-                    else if (rank <= 10)
+                    } else if (rank <= 10) {
                         badges.push({ text: "🥉 শীর্ষ দশে", class: "top-ten" });
+                    } else if (
+                        totalParticipants > 10 &&
+                        rank <= Math.ceil(totalParticipants * 0.25)
+                    ) {
+                        badges.push({
+                            text: "🌟 উঠতি তারকা",
+                            class: "rising-star",
+                        });
+                    }
 
-                    if (accuracy >= 95)
+                    // Accuracy-based Badges (can be combined with other badges)
+                    if (accuracy >= 95) {
                         badges.push({
                             text: "🎯 নির্ভুলতার রাজা",
                             class: "accuracy",
                         });
+                    } else if (accuracy >= 85) {
+                        badges.push({
+                            text: "✅ দারুণ নির্ভুলতা",
+                            class: "high-accuracy",
+                        });
+                    }
 
+                    // Completion-based Badge (can be combined with other badges)
                     if (
-                        totalQuizzesOnPage > 0 &&
-                        completedQuizzesCount >= totalQuizzesOnPage
-                    )
+                        totalQuizzes > 0 &&
+                        completedQuizzesCount >= totalQuizzes
+                    ) {
                         badges.push({
                             text: "💯 সম্পূর্ণকারী",
                             class: "completionist",
                         });
+                    }
+                    // === ব্যাজ সিস্টেম আপগ্রেড শেষ ===
 
-                    let motivationalMessage =
-                        accuracy >= 90
-                            ? "অসাধারণ! তোমার প্রস্তুতি শিখরে।"
-                            : "দারুণ চেষ্টা! ভুলগুলো আরেকবার দেখে নাও।";
+                    let motivationalMessage = "";
+                    if (accuracy >= 90)
+                        motivationalMessage =
+                            "অসাধারণ! তোমার প্রস্তুতি শিখরে। চালিয়ে যাও!";
+                    else if (accuracy >= 70)
+                        motivationalMessage =
+                            "দারুণ চেষ্টা! ভুলগুলো আরেকবার দেখে নিলেই তুমি সেরা হবে।";
+                    else
+                        motivationalMessage =
+                            "চিন্তার কিছু নেই, প্রতিটি ভুলই নতুন কিছু শেখার সুযোগ। আবার চেষ্টা করো!";
 
                     const cleanChapterName = chapterDisplayName.replace(
                         "Biology ",
                         "",
                     );
-                    const shareText = `আমি '${cleanChapterName}' অধ্যায়ে ${score.toFixed(2)} স্কোর করেছি! Study With Keshab-এ আমার র‍্যাঙ্ক #${rank}।`;
+                    const shareText = `আমি '${cleanChapterName}' অধ্যায়ে ${score} স্কোর করেছি! Study With Keshab-এ আমার র‍্যাঙ্ক #${rank}। তুমিও তোমার প্রস্তুতি যাচাই করো!`;
                     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + window.location.href)}`;
                     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(shareText)}`;
 
                     resultContainer.innerHTML = `
-                        <div class="result-card ${rankClass}">
-                            <div class="result-header">
-                                <img src="${userPhoto}" alt="Profile Picture" class="result-profile-pic">
-                                <h3 class="result-user-name">${userName}</h3>
-                                <div class="rank-badge-container">
-                                    ${badges.map((b) => `<span class="badge-item ${b.class}">${b.text}</span>`).join("")}
-                                </div>
-                            </div>
-                            <p class="motivational-quote">${motivationalMessage}</p>
-                            <div class="result-stats-grid">
-                                <div class="chart-container">
-                                    <canvas id="accuracy-chart"></canvas>
-                                </div>
-                                <div class="result-details">
-                                    <div class="result-item">
-                                        <h4>প্রাপ্ত নম্বর</h4>
-                                        <p class="score-display">
-                                            <span id="user-score">${score.toFixed(2)}</span> / <span id="total-questions-display">${totalQuestionsInChapter}</span>
-                                        </p>
-                                    </div>
-                                    <div class="result-item">
-                                        <h4>র‍্যাঙ্ক</h4>
-                                        <p id="user-rank">#${rank}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="performance-comparison">
-                                আপনি এই অধ্যায়ে <strong>${betterThanPercentage}%</strong> শিক্ষার্থীর চেয়ে এগিয়ে আছেন!
-                            </p>
-                            <div class="result-share">
-                                 <p>আপনার রেজাল্ট শেয়ার করুন!</p>
-                                <div class="share-buttons">
-                                    <a href="${whatsappUrl}" target="_blank" class="share-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                                    <a href="${facebookUrl}" target="_blank" class="share-btn facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
-                                </div>
-                                <button id="download-result-btn"><i class="fa-solid fa-camera"></i> ছবি ডাউনলোড করুন</button>
+                    <div class="result-card ${rankClass}">
+                        <div class="result-header">
+                            <img src="${userPhoto}" alt="Profile Picture" class="result-profile-pic">
+                            <h3 class="result-user-name">${userName}</h3>
+                            <div class="rank-badge-container">
+                                ${badges.map((b) => `<span class="badge-item ${b.class}">${b.text}</span>`).join("")}
                             </div>
                         </div>
-                    `;
 
-                    new CountUp("user-score", score, {
+                        <p class="motivational-quote">${motivationalMessage}</p>
+
+                        <div class="result-stats-grid">
+                            <div class="chart-container">
+                                <canvas id="accuracy-chart"></canvas>
+                            </div>
+                            <div class="result-details">
+                                <div class="result-item">
+                                    <h4>প্রাপ্ত নম্বর</h4>
+                                    <p class="score-display">
+                                        <span id="user-score">${score}</span> / <span id="total-questions-display">${totalQuestions}</span>
+                                    </p>
+                                </div>
+                                <div class="result-item">
+                                    <h4>র‍্যাঙ্ক</h4>
+                                    <p id="user-rank">#${rank}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="performance-comparison">
+                            আপনি এই অধ্যায়ে <strong>${betterThanPercentage}%</strong> শিক্ষার্থীর চেয়ে এগিয়ে আছেন!
+                        </p>
+
+                        <div class="result-share">
+                             <p>আপনার রেজাল্ট শেয়ার করুন!</p>
+                            <div class="share-buttons">
+                                <a href="${whatsappUrl}" target="_blank" class="share-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                                <a href="${facebookUrl}" target="_blank" class="share-btn facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                            </div>
+                            <button id="download-result-btn"><i class="fa-solid fa-camera"></i> ছবি ডাউনলোড করুন</button>
+                        </div>
+                    </div>
+                `;
+
+                    new CountUp("user-score", score, { duration: 1.5 }).start();
+                    new CountUp("total-questions-display", totalQuestions, {
                         duration: 1.5,
-                        decimalPlaces: 2,
                     }).start();
-                    new CountUp(
-                        "total-questions-display",
-                        totalQuestionsInChapter,
-                        { duration: 1.5 },
-                    ).start();
                     new CountUp("user-rank", rank, {
                         prefix: "#",
                         duration: 1.5,
@@ -419,24 +458,24 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                                 '<i class="fa-solid fa-spinner fa-spin"></i> প্রসেসিং...';
                             btn.disabled = true;
 
-                            html2canvas(
-                                document.querySelector(".result-card"),
-                                {
-                                    backgroundColor:
-                                        document.body.classList.contains(
-                                            "dark-mode",
-                                        )
-                                            ? "#1e1e1e"
-                                            : "#ffffff",
-                                    scale: 2,
-                                    useCORS: true,
-                                },
-                            )
+                            const resultCard =
+                                document.querySelector(".result-card");
+                            html2canvas(resultCard, {
+                                backgroundColor:
+                                    document.body.classList.contains(
+                                        "dark-mode",
+                                    )
+                                        ? "#1e1e1e"
+                                        : "#ffffff",
+                                scale: 2,
+                                useCORS: true,
+                            })
                                 .then((canvas) => {
                                     const link = document.createElement("a");
                                     link.download = `StudyWithKeshab-${cleanChapterName}-Result.png`;
                                     link.href = canvas.toDataURL();
                                     link.click();
+
                                     btn.innerHTML = originalText;
                                     btn.disabled = false;
                                 })
@@ -476,8 +515,10 @@ function createAccuracyChart(accuracy) {
                     const ctx = chart.chart.ctx;
                     const chartArea = chart.chartArea;
                     if (!chartArea) return;
+
                     const fontStyle = centerConfig.fontStyle || "Arial";
                     const txt = centerConfig.text;
+
                     ctx.save();
                     const fontSize = (chartArea.height / 114).toFixed(2);
                     ctx.font = `bold ${fontSize}em ${fontStyle}`;
@@ -552,31 +593,14 @@ function loadDashboardData(db, userId, chapterKey) {
                 chapterData = doc.data().chapters[chapterKey];
             }
 
-            let totalCorrectForChart = 0;
-            let totalWrongForChart = 0;
-
-            if (chapterData.quiz_sets) {
-                for (const setName in chapterData.quiz_sets) {
-                    const setData = chapterData.quiz_sets[setName];
-                    if (
-                        setData &&
-                        typeof setData.wrong !== "undefined" &&
-                        typeof setData.score !== "undefined"
-                    ) {
-                        totalWrongForChart += setData.wrong;
-                        const correctAnswers = Math.round(
-                            setData.score + setData.wrong / 3,
-                        );
-                        totalCorrectForChart += correctAnswers;
-                    }
-                }
-            }
-
             updateChapterProgress(
                 chapterData.completedQuizzesCount || 0,
                 totalQuizzesInChapter,
             );
-            updatePieChart(totalCorrectForChart, totalWrongForChart);
+            updatePieChart(
+                chapterData.totalCorrect || 0,
+                chapterData.totalWrong || 0,
+            );
             updateUserAchievements(chapterData, totalQuizzesInChapter);
             loadDailyChallenge();
         })
@@ -588,6 +612,10 @@ function loadDashboardData(db, userId, chapterKey) {
             loadDailyChallenge();
         });
 }
+
+// ===============================================
+// --- Dashboard Update Functions ---
+// ===============================================
 
 function updateChapterProgress(completed, total) {
     const progressBar = document.getElementById("chapter-progress-bar");
@@ -603,7 +631,6 @@ function updatePieChart(correct, wrong) {
     const ctx = document.getElementById("quiz-pie-chart")?.getContext("2d");
     if (!ctx) return;
     if (window.myPieChart) window.myPieChart.destroy();
-
     const chartData =
         correct === 0 && wrong === 0
             ? {
@@ -625,7 +652,6 @@ function updatePieChart(correct, wrong) {
                       },
                   ],
               };
-
     window.myPieChart = new Chart(ctx, {
         type: "pie",
         data: chartData,
@@ -638,12 +664,12 @@ function updatePieChart(correct, wrong) {
                     fontColor: document.body.classList.contains("dark-mode")
                         ? "#e0e0e0"
                         : "#34495e",
-                    fontFamily: "'Hind Silguri', sans-serif",
+                    fontFamily: "'Hind Siliguri', sans-serif",
                 },
             },
             tooltips: {
-                titleFontFamily: "'Hind Silguri', sans-serif",
-                bodyFontFamily: "'Hind Silguri', sans-serif",
+                titleFontFamily: "'Hind Siliguri', sans-serif",
+                bodyFontFamily: "'Hind Siliguri', sans-serif",
             },
         },
     });
