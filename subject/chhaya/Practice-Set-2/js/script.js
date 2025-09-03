@@ -1,4 +1,4 @@
-// Filename: js/script.js - Upgraded for Chapter-Based Dashboard & Leaderboard
+// Filename: js/script.js - Upgraded for Chapter-Based Dashboard, Leaderboard & Correct Total Question Count
 
 // === পরিবর্তন: CountUp ক্লাসটি মডিউল থেকে সঠিকভাবে ইম্পোর্ট করা হয়েছে ===
 import { CountUp } from "https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js";
@@ -229,13 +229,13 @@ function loadChapterLeaderboard(db, chapterKey) {
                             chapterData.quiz_sets,
                         ).sort(
                             (a, b) =>
-                                parseInt(a[0].replace("Set_", "")) -
-                                parseInt(b[0].replace("Set_", "")),
+                                parseInt(a[0].replace(/[^0-9]/g, "")) -
+                                parseInt(b[0].replace(/[^0-9]/g, "")),
                         );
 
                         scoreDetailsHTML = sortedSets
                             .map(([setName, setData]) => {
-                                const cleanSetName = setName.replace("_", " ");
+                                const cleanSetName = setName.replace(/_/g, " ");
                                 return `<li><span class="label">${cleanSetName}:</span> ${setData.score}/${setData.totalQuestions}</li>`;
                             })
                             .join("");
@@ -299,8 +299,15 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                         "/Study-With-Keshab/images/default-avatar.png";
 
                     const totalCorrect = chapterData.totalCorrect || 0;
-                    const totalWrong = chapterData.totalWrong || 0;
-                    const totalQuestions = totalCorrect + totalWrong;
+
+                    // === ## পরিবর্তন: মোট প্রশ্ন গণনার লজিক ঠিক করা হয়েছে ## ===
+                    const totalQuestions = chapterData.quiz_sets
+                        ? Object.values(chapterData.quiz_sets).reduce(
+                              (sum, set) => sum + set.totalQuestions,
+                              0,
+                          )
+                        : 0;
+
                     const accuracy =
                         totalQuestions > 0
                             ? Math.round((totalCorrect / totalQuestions) * 100)
@@ -318,7 +325,6 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                     if (rank <= 3) rankClass = "rank-gold";
                     else if (rank <= 10) rankClass = "rank-silver";
 
-                    // === ব্যাজ সিস্টেম আপগ্রেড করা হয়েছে ===
                     const badges = [];
                     const totalQuizzes = document.querySelectorAll(
                         "#quiz-sets .link-container a",
@@ -326,7 +332,6 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                     const completedQuizzesCount =
                         chapterData.completedQuizzesCount || 0;
 
-                    // Rank-based Badges (prioritized and mutually exclusive for rank)
                     if (rank === 1) {
                         badges.push({
                             text: "🏆 অধ্যায়ের সেরা",
@@ -349,7 +354,6 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                         });
                     }
 
-                    // Accuracy-based Badges (can be combined with other badges)
                     if (accuracy >= 95) {
                         badges.push({
                             text: "🎯 নির্ভুলতার রাজা",
@@ -362,7 +366,6 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                         });
                     }
 
-                    // Completion-based Badge (can be combined with other badges)
                     if (
                         totalQuizzes > 0 &&
                         completedQuizzesCount >= totalQuizzes
@@ -372,7 +375,6 @@ function generateUserResult(db, user, chapterKey, chapterDisplayName) {
                             class: "completionist",
                         });
                     }
-                    // === ব্যাজ সিস্টেম আপগ্রেড শেষ ===
 
                     let motivationalMessage = "";
                     if (accuracy >= 90)
@@ -638,7 +640,7 @@ function updatePieChart(correct, wrong) {
                   datasets: [{ data: [1], backgroundColor: ["#bdc3c7"] }],
               }
             : {
-                  labels: ["সঠিক উত্তর", "ভুল উত্তর"],
+                  labels: ["সঠিক উত্তর", "ভুল ও উত্তর না দেওয়া"], // Label changed for clarity
                   datasets: [
                       {
                           data: [correct, wrong],
