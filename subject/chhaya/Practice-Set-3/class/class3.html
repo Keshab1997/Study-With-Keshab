@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ছায়া প্রকাশনী (Practice Set 3) - Class 03</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: ছায়া প্রকাশনী (Practice Set 3)</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 03</h2>
+    
+    <h3>গাণিতিক সমস্যা ও সমাধান</h3>
+
+    <!-- প্রশ্ন ৫৫ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৫৫</h3>
+        <p><strong>জল ও সিরাপের দুটি ভিন্ন মিশ্রণে জল ও সিরাপের অনুপাত যথাক্রমে 4 : 1 এবং 3 : 1 । মিশ্রণ দুটি 1 : 2 অনুপাতে মেশানো হলে, অন্তিম মিশ্রণে জল ও সিরাপের অনুপাত কত?</strong></p>
+        <ul>
+            <li>(A) 4 : 3</li>
+            <li>(B) 19 : 11</li>
+            <li>(C) 17 : 13</li>
+            <li>(D) 23 : 7</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 23 : 7</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১:</strong> প্রতিটি মিশ্রণে জল ও সিরাপের আনুপাতিক ভাগ নির্ণয়।<br>
+                    - <strong>প্রথম মিশ্রণ (অনুপাত 4:1):</strong> মোট ভাগ = 4+1 = 5।<br>
+                    জল = 4/5 অংশ, সিরাপ = 1/5 অংশ।<br>
+                    - <strong>দ্বিতীয় মিশ্রণ (অনুপাত 3:1):</strong> মোট ভাগ = 3+1 = 4।<br>
+                    জল = 3/4 অংশ, সিরাপ = 1/4 অংশ।</p>
+                <p><strong>ধাপ ২:</strong> মিশ্রণ দুটি 1:2 অনুপাতে মেশানো হচ্ছে।<br>
+                    ধরি, প্রথম মিশ্রণ থেকে 1 একক এবং দ্বিতীয় মিশ্রণ থেকে 2 একক নেওয়া হলো।</p>
+                <p><strong>ধাপ ৩:</strong> নতুন মিশ্রণে মোট জলের পরিমাণ নির্ণয়।<br>
+                    মোট জল = (1 × 4/5) + (2 × 3/4) = 4/5 + 6/4 = (16 + 30)/20 = 46/20</p>
+                <p><strong>ধাপ ৪:</strong> নতুন মিশ্রণে মোট সিরাপের পরিমাণ নির্ণয়।<br>
+                    মোট সিরাপ = (1 × 1/5) + (2 × 1/4) = 1/5 + 2/4 = (4 + 10)/20 = 14/20</p>
+                <p><strong>ধাপ ৫:</strong> অন্তিম মিশ্রণে জল ও সিরাপের অনুপাত নির্ণয়।<br>
+                    অনুপাত = (মোট জল) : (মোট সিরাপ) = (46/20) : (14/20) = 46 : 14<br>
+                    উভয়কে 2 দিয়ে ভাগ করে পাই = <strong>23 : 7</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৫৬ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৫৬</h3>
+        <p><strong>A একটি কাজের 75% করে 30 দিনে এবং B ওই কাজের 50% করে 18 দিনে। তারা একসঙ্গে কাজটি করলে 1 দিনে কাজটির কত অংশ সম্পন্ন হবে?</strong></p>
+        <ul>
+            <li>(A) 1/19</li>
+            <li>(B) 1/20</li>
+            <li>(C) 19/360</li>
+            <li>(D) 7/120</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 19/360</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১:</strong> A এবং B এর সম্পূর্ণ কাজ করতে কতদিন সময় লাগে তা নির্ণয়।<br>
+                    - <strong>A:</strong> 75% (বা 3/4 অংশ) কাজ করে 30 দিনে।<br>
+                    সম্পূর্ণ (1 অংশ) কাজ করবে = 30 × (4/3) = 40 দিনে।<br>
+                    - <strong>B:</strong> 50% (বা 1/2 অংশ) কাজ করে 18 দিনে।<br>
+                    সম্পূর্ণ (1 অংশ) কাজ করবে = 18 × 2 = 36 দিনে।</p>
+                <p><strong>ধাপ ২:</strong> A এবং B এর একদিনের কাজের পরিমাণ নির্ণয়।<br>
+                    - A একদিনে করে কাজের 1/40 অংশ।<br>
+                    - B একদিনে করে কাজের 1/36 অংশ।</p>
+                <p><strong>ধাপ ৩:</strong> তারা একসঙ্গে একদিনে কত অংশ কাজ করবে তা নির্ণয়।<br>
+                    একসঙ্গে একদিনে করে = (1/40 + 1/36) অংশ<br>
+                    = (9 + 10) / 360 [যেখানে 40 ও 36 এর ল.সা.গু. 360]<br>
+                    = <strong>19/360 অংশ</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৫৭ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৫৭</h3>
+        <p><strong>2020 সালের 21 মার্চ কোন্ বার ছিল?</strong></p>
+        <ul>
+            <li>(A) শনিবার</li>
+            <li>(B) বৃহস্পতিবার</li>
+            <li>(C) সোমবার</li>
+            <li>(D) শুক্রবার</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) শনিবার</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> এটি ক্যালেন্ডারের একটি সাধারণ গণনা। তারিখ এবং বার গণনার সূত্র বা পদ্ধতি ব্যবহার করে এটি নির্ণয় করা যায়। ২০২০ সাল একটি অধিবর্ষ (Leap Year) ছিল। এই ধরনের গণনার জন্য একটি সহজ পদ্ধতি হলো 'Odd Day' বা অতিরিক্ত দিনের হিসাব করা। এই হিসাব অনুযায়ী, ২০২০ সালের ২১শে মার্চ শনিবার ছিল।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৫৮ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৫৮</h3>
+        <p><strong>একটি ট্রেন 16 সেকেন্ডে 155 মিটার এবং 18 সেকেন্ডে 195 মিটার লম্বা একটি প্ল্যাটফর্ম অতিক্রম করে। ট্রেনটির গতিবেগ কত?</strong></p>
+        <ul>
+            <li>(A) 60 Km/h</li>
+            <li>(B) 72 Km/h</li>
+            <li>(C) 20 Km/h</li>
+            <li>(D) 75 Km/h</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 72 Km/h</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১:</strong> সমস্যাটি বিশ্লেষণ।<br>
+                    ট্রেনটি যখন একটি প্ল্যাটফর্ম অতিক্রম করে, তখন সে নিজের দৈর্ঘ্য এবং প্ল্যাটফর্মের দৈর্ঘ্য—এই দুইয়ের সমষ্টির সমান দূরত্ব অতিক্রম করে।<br>
+                    এখানে ট্রেনটি (195 - 155) = 40 মিটার বেশি দূরত্ব অতিক্রম করেছে (18 - 16) = 2 সেকেন্ড বেশি সময়ে। এর কারণ হলো দ্বিতীয় প্ল্যাটফর্মটি প্রথমটির চেয়ে 40 মিটার বেশি লম্বা।</p>
+                <p><strong>ধাপ ২:</strong> ট্রেনটির গতিবেগ নির্ণয় (মি/সেকেন্ড এককে)।<br>
+                    গতিবেগ = দূরত্ব / সময়<br>
+                    গতিবেগ = 40 মিটার / 2 সেকেন্ড = 20 মি/সেকেন্ড।</p>
+                <p><strong>ধাপ ৩:</strong> গতিবেগকে কিমি/ঘন্টা এককে রূপান্তর।<br>
+                    মি/সেকেন্ড থেকে কিমি/ঘন্টায় যেতে 18/5 দিয়ে গুণ করতে হয়।<br>
+                    গতিবেগ = 20 × (18/5) কিমি/ঘন্টা<br>
+                    = 4 × 18 = <strong>72 কিমি/ঘন্টা</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৫৯ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৫৯</h3>
+        <p><strong>রাম একটি কাজ একা করতে 24 দিন সময় নেয় এবং শ্যাম ওই কাজটিই পূর্ণ করতে সময় নেয় 30 দিন। যদি তারা 4 দিনের জন্য একসঙ্গে কাজ করে, তবে কাজের মোট কত অংশ বাকি থাকবে?</strong></p>
+        <ul>
+            <li>(A) 30%</li>
+            <li>(B) 25%</li>
+            <li>(C) 70%</li>
+            <li>(D) 80%</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 70%</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১:</strong> রাম ও শ্যামের একদিনের কাজের পরিমাণ নির্ণয়।<br>
+                    - রাম একদিনে করে কাজের 1/24 অংশ।<br>
+                    - শ্যাম একদিনে করে কাজের 1/30 অংশ।</p>
+                <p><strong>ধাপ ২:</strong> তারা একসঙ্গে একদিনে কত অংশ কাজ করে তা নির্ণয়।<br>
+                    একসঙ্গে একদিনে করে = (1/24 + 1/30) অংশ<br>
+                    = (5 + 4) / 120 [যেখানে 24 ও 30 এর ল.সা.গু. 120]<br>
+                    = 9/120 = 3/40 অংশ।</p>
+                <p><strong>ধাপ ৩:</strong> তারা 4 দিনে মোট কত অংশ কাজ করেছে তা নির্ণয়।<br>
+                    4 দিনে মোট কাজ হয়েছে = 4 × (3/40) = 12/40 = 3/10 অংশ।</p>
+                <p><strong>ধাপ ৪:</strong> কাজের কত অংশ বাকি আছে তা নির্ণয়।<br>
+                    বাকি কাজের পরিমাণ = 1 - (3/10) = 7/10 অংশ।</p>
+                <p><strong>ধাপ ৫:</strong> বাকি কাজকে শতকরা হারে প্রকাশ।<br>
+                    শতকরা হার = (7/10) × 100% = <strong>70%</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬০ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬০</h3>
+        <p><strong>একটি ছোটো সংখ্যার 20% একটি বড়ো সংখ্যার 25%-এর সঙ্গে যোগ করা হলে দুটি সংখ্যার সমষ্টির 23% পাওয়া যায়। বড়ো সংখ্যাটি, ছোটো সংখ্যার থেকে 4 বেশি। সংখ্যা দুটি কী?</strong></p>
+        <ul>
+            <li>(A) 8, 12</li>
+            <li>(B) 12, 16</li>
+            <li>(C) 20, 24</li>
+            <li>(D) 4, 8</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 8, 12</span> (দ্রষ্টব্য: প্রশ্নপত্রে দেওয়া উত্তর C. 20, 24 ভুল হতে পারে)</p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১:</strong> সংখ্যা দুটিকে চলরাশি দিয়ে ধরা।<br>ধরি, ছোটো সংখ্যাটি = x<br>তাহলে, বড়ো সংখ্যাটি = x + 4</p>
+                <p><strong>ধাপ ২:</strong> প্রশ্নানুসারে সমীকরণ গঠন।<br>(ছোটো সংখ্যার 20%) + (বড়ো সংখ্যার 25%) = (দুটি সংখ্যার সমষ্টির 23%)<br>=> 0.20x + 0.25(x+4) = 0.23(x + x+4)<br>=> 0.20x + 0.25x + 1 = 0.23(2x+4)</p>
+                <p><strong>ধাপ ৩:</strong> সমীকরণ সমাধান।<br>=> 0.45x + 1 = 0.46x + 0.92<br>=> 1 - 0.92 = 0.46x - 0.45x<br>=> 0.08 = 0.01x<br>=> x = 8</p>
+                <p>সুতরাং, ছোটো সংখ্যাটি = 8, এবং বড়ো সংখ্যাটি = 8 + 4 = 12।<br>সঠিক উত্তর হওয়া উচিত <strong>(A) 8, 12</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬১ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬১</h3>
+        <p><strong>এক ব্যক্তি 370000 টাকাকে তিনভাগে ভাগ করে তিনটি ব্যাংকে যথাক্রমে 4%, 5% ও 6% সরল সুদে জমা রাখল। প্রথম বছরের শেষে তিনটি ব্যাংকের থেকে তিনি সমান পরিমাণে সুদ পান। তিনি তিনটি ব্যাংকে কত টাকা করে জমা রেখেছিলেন?</strong></p>
+        <ul>
+            <li>(A) 160000, 110000, 100000</li>
+            <li>(B) 150000, 120000, 100000</li>
+            <li>(C) 140000, 130000, 100000</li>
+            <li>(D) 170000, 100000, 100000</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 150000 টাকা, 120000 টাকা, 100000 টাকা</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১:</strong> তিনটি অংশকে P₁, P₂, P₃ ধরা।<br>ধরি, তিনটি ব্যাংকে রাখা আসল টাকা যথাক্রমে P₁, P₂ এবং P₃।<br>P₁ + P₂ + P₃ = 370000</p>
+                <p><strong>ধাপ ২:</strong> সুদের পরিমাণ সমান হওয়ায় সমীকরণ গঠন।<br>যেহেতু সুদ সমান, (P × R × T)/100 সূত্রানুযায়ী (T=1 বছর):<br>P₁ × 4/100 = P₂ × 5/100 = P₃ × 6/100<br>=> 4P₁ = 5P₂ = 6P₃ = k (ধরি)</p>
+                <p><strong>ধাপ ৩:</strong> P₁, P₂, P₃ এর অনুপাত নির্ণয়।<br>P₁ : P₂ : P₃ = 1/4 : 1/5 : 1/6<br>হরগুলির (4,5,6) ল.সা.গু. 60 দিয়ে গুণ করে: <br>অনুপাত = (60/4) : (60/5) : (60/6) = 15 : 12 : 10</p>
+                <p><strong>ধাপ ৪:</strong> আনুপাতিক ভাগ নির্ণয়।<br>অনুপাতের যোগফল = 15 + 12 + 10 = 37<br>P₁ (4% হারে) = (15/37) × 370000 = 150000 টাকা।<br>P₂ (5% হারে) = (12/37) × 370000 = 120000 টাকা।<br>P₃ (6% হারে) = (10/37) × 370000 = 100000 টাকা।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬২ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬২</h3>
+        <p><strong>যদি A, B-এর 90% হয়, তাহলে B, A-এর কত শতাংশ হবে?</strong></p>
+        <ul>
+            <li>(A) 111.1</li>
+            <li>(B) 110</li>
+            <li>(C) 112.5</li>
+            <li>(D) 101.1</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 111.1</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১:</strong> প্রদত্ত সম্পর্ক থেকে সমীকরণ তৈরি।<br>A = B এর 90% => A = B × (90/100) => A = 0.9B</p>
+                <p><strong>ধাপ ২:</strong> B কে A এর সাপেক্ষে প্রকাশ করা।<br>A = 0.9B => B = A / 0.9 => B = A × (10/9)</p>
+                <p><strong>ধাপ ৩:</strong> শতাংশ নির্ণয়।<br>B, A-এর কত শতাংশ তা বের করতে (10/9) কে 100 দিয়ে গুণ করতে হবে।<br>শতাংশ = (10/9) × 100 = 1000 / 9 = <strong>111.11...%</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৩ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৩</h3>
+        <p><strong>সরল করুনঃ 129 ÷ [46 – { 93 ÷ (35 – 132 ÷ 11 x 3)}]</strong></p>
+        <ul>
+            <li>(A) 1</li>
+            <li>(B) 3</li>
+            <li>(C) 139</li>
+            <li>(D) 129/139</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 3</span> (দ্রষ্টব্য: প্রশ্নে 129 এর পরিবর্তে 417 হলে উত্তর মিলবে)</p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> BODMAS নিয়ম অনুযায়ী সমাধান:</p>
+                <p><strong>ধাপ ১:</strong> প্রথম বন্ধনীর ভিতরের কাজ (35 – 132 ÷ 11 x 3)<br>= 35 – (12 x 3) [ভাগ আগে]<br>= 35 – 36 = -1</p>
+                <p><strong>ধাপ ২:</strong> দ্বিতীয় বন্ধনীর ভিতরের কাজ { 93 ÷ (-1) }<br>= -93</p>
+                <p><strong>ধাপ ৩:</strong> তৃতীয় বন্ধনীর ভিতরের কাজ [ 46 – (-93) ]<br>= 46 + 93 = 139</p>
+                <p><strong>ধাপ ৪:</strong> শেষ ভাগ<br>= 129 ÷ 139<br>*প্রদত্ত প্রশ্ন অনুযায়ী উত্তর 129/139 হয়। যদি প্রশ্নটি 417 ÷ [..] হতো, তবে উত্তর 417 ÷ 139 = 3 হতো।*</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৪ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৪</h3>
+        <p><strong>3 : 8 :: 7.5 : x হলে x এর মান হবে—</strong></p>
+        <ul>
+            <li>(A) 15</li>
+            <li>(B) 20</li>
+            <li>(C) 25</li>
+            <li>(D) 30</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 20</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> এটি একটি সমানুপাতের সমস্যা। নিয়মটি হলো: প্রান্তীয় পদদ্বয়ের গুণফল = মধ্য পদদ্বয়ের গুণফল।<br>=> 3 × x = 8 × 7.5<br>=> 3x = 60<br>=> x = 60 / 3<br>=> <strong>x = 20</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৫ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৫</h3>
+        <p><strong>দুটি সংখ্যার অনুপাত 5 : 2 এবং তাদের বিয়োগফল 21 হলে ছোটো সংখ্যাটি হবে—</strong></p>
+        <ul>
+            <li>(A) 10</li>
+            <li>(B) 12</li>
+            <li>(C) 14</li>
+            <li>(D) 16</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 14</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১:</strong> সংখ্যা দুটিকে ধরা।<br>ধরি, সংখ্যা দুটি হলো 5x এবং 2x।</p>
+                <p><strong>ধাপ ২:</strong> প্রশ্নানুসারে সমীকরণ গঠন।<br>তাদের বিয়োগফল = 5x - 2x = 21<br>=> 3x = 21<br>=> x = 7</p>
+                <p><strong>ধাপ ৩:</strong> ছোটো সংখ্যাটি নির্ণয়।<br>ছোটো সংখ্যাটি হলো 2x = 2 × 7 = <strong>14</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৬ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৬</h3>
+        <p><strong>রবির বর্তমান বয়সের 5/6 অংশ শ্যামের বয়সের 5/9 অংশের সমান। 39 বছর আগে রবির বয়স, শ্যামের বয়সের দ্বিগুণ ছিল। রবির বর্তমান বয়স কত?</strong></p>
+        <ul>
+            <li>(A) 36</li>
+            <li>(B) 39</li>
+            <li>(C) 42</li>
+            <li>(D) 45</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 45</span> (দ্রষ্টব্য: প্রদত্ত তথ্যে অসামঞ্জস্য রয়েছে)</p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১:</strong> রবি (R) ও শ্যামের (S) বর্তমান বয়সের সম্পর্ক নির্ণয়।<br>R × (5/6) = S × (5/9) => R/6 = S/9 => R/S = 6/9 = 2/3.<br>ধরি, রবির বর্তমান বয়স = 2x, শ্যামের বর্তমান বয়স = 3x।</p>
+                <p><strong>ধাপ ২:</strong> 39 বছর আগের সম্পর্ক দিয়ে সমীকরণ গঠন।<br>(2x - 39) = 2 × (3x - 39)<br>=> 2x - 39 = 6x - 78<br>=> 39 = 4x => x = 9.75.<br>*এই গণনা অনুযায়ী বয়স পূর্ণসংখ্যায় আসছে না। প্রশ্নটিতে মুদ্রণজনিত ত্রুটি থাকতে পারে।*</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৭ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৭</h3>
+        <p><strong>√7744-এর মান হল—</strong></p>
+        <ul>
+            <li>(A) 78</li>
+            <li>(B) 82</li>
+            <li>(C) 84</li>
+            <li>(D) 88</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 88</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> বর্গমূল নির্ণয়ের পদ্ধতি:<br>
+                <strong>ধাপ ১:</strong> শেষ অঙ্কটি 4 হওয়ায় বর্গমূলের শেষ অঙ্ক 2 অথবা 8 হবে।<br>
+                <strong>ধাপ ২:</strong> শেষের দুটি অঙ্ক (44) বাদ দিলে থাকে 77। 77 এর ঠিক আগের পূর্ণবর্গ সংখ্যা 64 (8²)। সুতরাং, বর্গমূলের প্রথম অঙ্ক হবে 8।<br>
+                <strong>ধাপ ৩:</strong> সংখ্যাটি 82 অথবা 88। কোনটি সঠিক তা জানতে 8 × (8+1) = 72। যেহেতু 77 > 72, তাই বড় সংখ্যাটি (88) হবে উত্তর।<br>
+                সুতরাং, √7744 = <strong>88</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৮ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৮</h3>
+        <p><strong>এক বিক্রেতা 15টি ট্যাবলেট 20% লাভে এবং 25টি ট্যাবলেট 12% লাভে বিক্রয় করে। যদি তিনি সব ট্যাবলেট 18% লাভে বেচতেন, তাহলে 30000 টাকা বেশি লাভ করতেন। প্রতিটি ট্যাবলেটের ক্রয়মূল্য কত?</strong></p>
+        <ul>
+            <li>(A) 20000 টাকা</li>
+            <li>(B) 22000 টাকা</li>
+            <li>(C) 24000 টাকা</li>
+            <li>(D) 25000 টাকা</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 25000 টাকা</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১:</strong> প্রতিটি ট্যাবলেটের ক্রয়মূল্য x টাকা ধরা।<br>
+                <strong>ধাপ ২:</strong> প্রথম ক্ষেত্রে মোট লাভ = (15x × 0.20) + (25x × 0.12) = 3x + 3x = 6x।<br>
+                <strong>ধাপ ৩:</strong> দ্বিতীয় ক্ষেত্রে মোট লাভ = (15+25)x × 0.18 = 40x × 0.18 = 7.2x।<br>
+                <strong>ধাপ ৪:</strong> প্রশ্নানুসারে সমীকরণ গঠন।<br>7.2x - 6x = 30000<br>=> 1.2x = 30000<br>=> x = 30000 / 1.2 = <strong>25000 টাকা</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬৯ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৬৯</h3>
+        <p><strong>দুটি সংখ্যার অনুপাত 7 : 11 এবং তাদের গসাগু 81। সংখ্যা দুটির লসাগু কত?</strong></p>
+        <ul>
+            <li>(A) 6027</li>
+            <li>(B) 6157</li>
+            <li>(C) 6237</li>
+            <li>(D) 6347</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 6237</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>সূত্র:</strong> দুটি সংখ্যার ল.সা.গু. = (অনুপাতের সংখ্যা দুটির গুণফল) × (তাদের গ.সা.গু.)।<br>
+                ল.সা.গু. = 7 × 11 × 81<br>
+                = 77 × 81<br>
+                = <strong>6237</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭০ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭০</h3>
+        <p><strong>2018 সালের 4 অক্টোবর ছিল বৃহস্পতিবার। তাহলে 2019-এর 4 ফেব্রুয়ারি কী বার হবে?</strong></p>
+        <ul>
+            <li>(A) সোমবার</li>
+            <li>(B) মঙ্গলবার</li>
+            <li>(C) রবিবার</li>
+            <li>(D) শনিবার</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) সোমবার</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১:</strong> দুটি তারিখের মধ্যে মোট দিন সংখ্যা গণনা।<br>
+                    - অক্টোবর 2018: (31 - 4) = 27 দিন<br>
+                    - নভেম্বর 2018: 30 দিন<br>
+                    - ডিসেম্বর 2018: 31 দিন<br>
+                    - জানুয়ারি 2019: 31 দিন<br>
+                    - ফেব্রুয়ারি 2019: 4 দিন<br>
+                    মোট দিন = 27 + 30 + 31 + 31 + 4 = 123 দিন।</p>
+                <p><strong>ধাপ ২:</strong> অতিরিক্ত দিন (Odd Days) নির্ণয়।<br>
+                    123 কে 7 দিয়ে ভাগ করলে ভাগশেষ থাকে 4। (123 = 17 × 7 + 4)<br>
+                    সুতরাং, অতিরিক্ত দিন সংখ্যা = 4।</p>
+                <p><strong>ধাপ ৩:</strong> চূড়ান্ত বার নির্ণয়।<br>
+                    নির্ণেয় বার = বৃহস্পতিবার + 4 দিন = <strong>সোমবার</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭১ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭১</h3>
+        <p><strong>এক অসাধু ব্যবসায়ী জাল বাটখারা ব্যবহার করে কোনো দ্রব্যের ক্রয় এবং বিক্রয় উভয় ক্ষেত্রেই 10% করে ঠকায়। তার মোট লাভের শতকরা হার কত?</strong></p>
+        <ul>
+            <li>(A) 20%</li>
+            <li>(B) 21%</li>
+            <li>(C) 22%</li>
+            <li>(D) 19%</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 21%</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> এটি একটি ক্রমিক শতাংশ বৃদ্ধির সমস্যা।<br>
+                <strong>সূত্র:</strong> মোট পরিবর্তন = (x + y + xy/100) %<br>
+                এখানে, x = 10% এবং y = 10%<br>
+                মোট লাভের হার = (10 + 10 + (10 × 10)/100) %<br>
+                = (20 + 1) % = <strong>21%</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭২ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭২</h3>
+        <p><strong>5 জন পুরুষ এবং 6 জন মহিলা একটি কাজ 6 দিনে করে। 3 জন পুরুষ এবং 5 জন মহিলা ওই কাজটিই করে 9 দিনে। 3 জন পুরুষ এবং 2 জন মহিলা ওই কাজটি কতদিনে করবে?</strong></p>
+        <ul>
+            <li>(A) 10 3/4 দিন</li>
+            <li>(B) 11 1/4 দিন</li>
+            <li>(C) 11 5/11 দিন</li>
+            <li>(D) 12 দিন</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 11 5/11 দিন</span> (দ্রষ্টব্য: বিকল্পে ভুল থাকতে পারে)</p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১:</strong> পুরুষ (P) ও মহিলার (M) কার্যক্ষমতার সম্পর্ক নির্ণয়।<br>
+                    (5P + 6M) × 6 = (3P + 5M) × 9<br>
+                    => 30P + 36M = 27P + 45M<br>
+                    => 3P = 9M => <strong>P = 3M</strong></p>
+                <p><strong>ধাপ ২:</strong> মোট কাজের পরিমাণ নির্ণয়।<br>
+                    মোট কাজ = (5 × 3M + 6M) × 6 = 21M × 6 = 126M একক।</p>
+                <p><strong>ধাপ ৩:</strong> নতুন দলটি কাজটি কতদিনে করবে তা নির্ণয়।<br>
+                    নতুন দলের কার্যক্ষমতা = 3P + 2M = 3(3M) + 2M = 11M<br>
+                    প্রয়োজনীয় সময় = মোট কাজ / কার্যক্ষমতা = 126M / 11M = <strong>11 5/11 দিন</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭৩ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭৩</h3>
+        <p><strong>42 সেমি ব্যাসযুক্ত একটি নিরেট ধাতব গোলককে গলিয়ে এটির থেকে একটি তার তৈরি করা হল, যার ব্যাস 7 মিমি। তারের দৈর্ঘ্য কত?</strong></p>
+        <ul>
+            <li>(A) 1004 মি</li>
+            <li>(B) 1008 মি</li>
+            <li>(C) 1012 মি</li>
+            <li>(D) 1016 মি</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 1008 মি</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> গোলকের আয়তন = তারের (চোঙের) আয়তন।</p>
+                <p><strong>ধাপ ১:</strong> এককগুলিকে সেমি-তে রূপান্তর।<br>
+                    - গোলকের ব্যাসার্ধ (R) = 42/2 = 21 সেমি।<br>
+                    - তারের ব্যাসার্ধ (r) = 7 মিমি / 2 = 3.5 মিমি = 0.35 সেমি।</p>
+                <p><strong>ধাপ ২:</strong> আয়তনের সূত্র প্রয়োগ।<br>
+                    (4/3)πR³ = πr²h (যেখানে h = তারের দৈর্ঘ্য)<br>
+                    (4/3) × (21)³ = (0.35)² × h</p>
+                <p><strong>ধাপ ৩:</strong> h-এর মান নির্ণয়।<br>
+                    h = (4/3 × 21 × 21 × 21) / (0.35 × 0.35) = 12348 / 0.1225 = 100800 সেমি।</p>
+                <p><strong>ধাপ ৪:</strong> সেমি থেকে মিটারে রূপান্তর।<br>
+                    h = 100800 সেমি = <strong>1008 মিটার</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭৪ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭৪</h3>
+        <p><strong>একটি ঘনকের প্রান্তের দৈর্ঘ্য 40 সেমি। ঘনকের প্রতিটি তলে লাল রঙের একটি করে বৃত্ত আঁকা আছে। যদি বৃত্তগুলির সর্বাধিক সম্ভাব্য ক্ষেত্রফল হয়ে থাকে। তবে ঘনকটির পৃষ্ঠতলের রং না করা অংশের ক্ষেত্রফল কত হবে?</strong></p>
+        <ul>
+            <li>(A) 2057.14 সেমি²</li>
+            <li>(B) 7542.86 সেমি²</li>
+            <li>(C) 1600 সেমি²</li>
+            <li>(D) 9600 সেমি²</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 2057.14 সেমি²</span> (দ্রষ্টব্য: প্রশ্নপত্রে দেওয়া উত্তর ভুল হতে পারে)</p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১:</strong> ঘনকের মোট পৃষ্ঠতলের ক্ষেত্রফল = 6 × (বাহু)² = 6 × 40² = 9600 সেমি²।</p>
+                <p><strong>ধাপ ২:</strong> প্রতিটি তলে আঁকা বৃত্তের ব্যাসার্ধ (r) = 40/2 = 20 সেমি।<br>
+                    একটি বৃত্তের ক্ষেত্রফল = πr² = (22/7) × 20² = 8800/7 সেমি²।</p>
+                <p><strong>ধাপ ৩:</strong> ৬টি বৃত্তের মোট ক্ষেত্রফল = 6 × (8800/7) = 52800/7 সেমি² ≈ 7542.86 সেমি²।</p>
+                <p><strong>ধাপ ৪:</strong> রং না করা অংশের ক্ষেত্রফল = (ঘনকের মোট ক্ষেত্রফল) - (মোট বৃত্তের ক্ষেত্রফল)<br>
+                    = 9600 - 52800/7 = (67200 - 52800) / 7 = 14400 / 7 ≈ <strong>2057.14 সেমি²</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭৫ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭৫</h3>
+        <p><strong>A : B = 5 : 8 এবং B : C = 18 : 25 হলে A : C কত?</strong></p>
+        <ul>
+            <li>(A) 8 : 15</li>
+            <li>(B) 5 : 18</li>
+            <li>(C) 9 : 20</li>
+            <li>(D) 1 : 2</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 9 : 20</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p>A : C নির্ণয় করতে আমরা (A/B) × (B/C) করতে পারি।<br>
+                A/C = (5/8) × (18/25)<br>
+                = (5 × 18) / (8 × 25)<br>
+                = 90 / 200<br>
+                = 9 / 20<br>
+                সুতরাং, A : C = <strong>9 : 20</strong></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<nav class="navigation">
+    <a href="class2.html" class="nav-button">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button">1</a>
+    <a href="class2.html" class="nav-button">2</a>
+    <a href="class3.html" class="nav-button active">3</a>
+    <a href="class4.html" class="nav-button">4</a>
+    <a href="class4.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<!-- External JavaScript File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

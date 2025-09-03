@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ছায়া প্রকাশনী (Practice Set 3) - Class 04</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: ছায়া প্রকাশনী (Practice Set 3)</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 04</h2>
+    
+    <h3>গাণিতিক সমস্যা ও রিজনিং সমাধান</h3>
+
+    <!-- প্রশ্ন ৭৬ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭৬</h3>
+        <p><strong>বার্ষিক 12% চক্রবৃদ্ধি সুদের হারে 3000 টাকা 2 বছর পরে আনুমানিক কতটা বৃদ্ধি পাবে?</strong></p>
+        <ul>
+            <li>(A) 3766 টাকা</li>
+            <li>(B) 3763 টাকা</li>
+            <li>(C) 3773 টাকা</li>
+            <li>(D) 3873 টাকা</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 3763 টাকা (প্রায়)</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> প্রশ্নটি হলো ২ বছর পরে টাকা "কতটা বৃদ্ধি পাবে", অর্থাৎ সবৃদ্ধিমূল বা সুদ-আসল কত হবে তা জানতে চাওয়া হয়েছে।<br>
+                <strong>সূত্র:</strong> চক্রবৃদ্ধি সুদের ক্ষেত্রে সবৃদ্ধিমূল (A) = P (1 + R/100)ⁿ<br>
+                যেখানে, P = 3000 টাকা, R = 12%, n = 2 বছর।</p>
+                <p><strong>ধাপ ১:</strong> সূত্রে মান বসানো।<br>
+                A = 3000 (1 + 12/100)²</p>
+                <p><strong>ধাপ ২:</strong> সমীকরণ সমাধান।<br>
+                A = 3000 (1.12)²<br>
+                A = 3000 × 1.2544<br>
+                A = 3763.2 টাকা</p>
+                <p>প্রাপ্ত মান 3763.2 টাকা, যা প্রায় <strong>3763 টাকার</strong> সমান।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭৭ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭৭</h3>
+        <p><strong>যদি 3, 4, a, b, 10 -এর গড় হল 6 এবং মধ্যমা হল 5 এবং a < b, তাহলে a ও b-এর মান যথাক্রমে—</strong></p>
+        <ul>
+            <li>(A) 6, 7</li>
+            <li>(B) 5, 8</li>
+            <li>(C) 8, 5</li>
+            <li>(D) 7, 6</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 5, 8</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong></p>
+                <p><strong>ধাপ ১: গড় (Average) থেকে সমীকরণ নির্ণয়।</strong><br>
+                গড় = (3 + 4 + a + b + 10) / 5 = 6<br>
+                => 17 + a + b = 30<br>
+                => <strong>a + b = 13</strong></p>
+                <p><strong>ধাপ ২: মধ্যমা (Median) থেকে মান নির্ণয়।</strong><br>
+                সংখ্যাগুলিকে মানের ঊর্ধ্বক্রমে সাজালে (3, 4, a, b, 10) মাঝের পদটি (৩য় পদ) হবে মধ্যমা।<br>
+                যেহেতু মধ্যমা 5, তাহলে ৩য় পদটি অর্থাৎ <strong>a = 5</strong>।</p>
+                <p><strong>ধাপ ৩: a ও b এর মান নির্ণয়।</strong><br>
+                প্রথম সমীকরণে a = 5 বসিয়ে পাই:<br>
+                5 + b = 13 => <strong>b = 8</strong><br>
+                অতএব, a ও b-এর মান যথাক্রমে <strong>5 এবং 8</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭৮ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭৮</h3>
+        <p><strong>কোনো সাংকেতিক ভাষায় KEEN-কে PVVM হিসেবে লেখা হলে সেই ভাষায় PEAL কে লেখা হবে—</strong></p>
+        <ul>
+            <li>(A) KVZR</li>
+            <li>(B) KVZN</li>
+            <li>(C) KVZO</li>
+            <li>(D) KVZP</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) KVZO</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> এখানে প্রতিটি অক্ষরকে তার বিপরীত অক্ষর (Opposite Letter Pair) দিয়ে কোড করা হয়েছে। (যেমন A-Z, B-Y, C-X...)।<br>
+                K → P (KaPur)<br>
+                E → V (EVening)<br>
+                E → V<br>
+                N → M (MaN)<br>
+                একইভাবে, PEAL-এর কোড হবে:<br>
+                P → K<br>
+                E → V<br>
+                A → Z<br>
+                L → O (LOve)<br>
+                সঠিক কোডটি হলো <strong>KVZO</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭৯ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৭৯</h3>
+        <p><strong>পুকুর : জল :: পাহাড় : ?</strong></p>
+        <ul>
+            <li>(A) পাথর</li>
+            <li>(B) গাছ</li>
+            <li>(C) প্রাণী</li>
+            <li>(D) নদী</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) পাথর</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> পুকুর মূলত জল দ্বারা গঠিত। একইভাবে, পাহাড় মূলত <strong>পাথর</strong> দ্বারা গঠিত।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৮০ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৮০</h3>
+        <p><strong>কোনো সাংকেতিক ভাষায় AILMENT-কে লেখা হয় 1923540। ওই ভাষায় DISEASE-কে লেখা হবে—</strong></p>
+        <ul>
+            <li>(A) 4995195</li>
+            <li>(B) 4996196</li>
+            <li>(C) 4993193</li>
+            <li>(D) 4994194</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 4994194</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> এই প্রশ্নের কোডিং পদ্ধতিতে অসামঞ্জস্য রয়েছে, এটি সম্ভবত একটি মুদ্রণজনিত ত্রুটি। প্রদত্ত উত্তর অনুযায়ী কোনো স্পষ্ট যুক্তি খুঁজে পাওয়া কঠিন।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৮১ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৮১</h3>
+        <p><strong>নীচে প্রদত্ত বিবৃতির সাপেক্ষে কোন্ সিদ্ধান্তগুলি যুক্তিযুক্তভাবে সঠিক তা নির্ধারণ করুন।</strong></p>
+        <p><strong>বিবৃতি:</strong> 1. কিছু পেঙ্গুইন হল ময়ূর। 2. সব ময়ূর হল সাপ।</p>
+        <p><strong>সিদ্ধান্ত:</strong> I. কিছু পেঙ্গুইন হল সাপ। II. কোনো ময়ূর পেঙ্গুইন নয়।</p>
+        <ul>
+            <li>(A) কেবলমাত্র I সঠিক</li>
+            <li>(B) কেবলমাত্র II সঠিক</li>
+            <li>(C) I এবং II উভয়ই সঠিক</li>
+            <li>(D) কোনোটিই সঠিক নয়</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) কেবলমাত্র I সঠিক</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong><br>
+                - <strong>সিদ্ধান্ত I:</strong> যেহেতু কিছু পেঙ্গুইন হলো ময়ূর, এবং সমস্ত ময়ূরই সাপ, সুতরাং ওই পেঙ্গুইনগুলিও অবশ্যই সাপ হবে। তাই "কিছু পেঙ্গুইন হল সাপ" - <strong>এই সিদ্ধান্তটি সঠিক</strong>।<br>
+                - <strong>সিদ্ধান্ত II:</strong> "কোনো ময়ূর পেঙ্গুইন নয়" - এটি প্রথম বিবৃতির সরাসরি বিরোধী, যেখানে বলা হয়েছে "কিছু পেঙ্গুইন হল ময়ূর"। তাই <strong>এই সিদ্ধান্তটি ভুল</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৮২ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৮২</h3>
+        <p><strong>সীমা মন্দিরার থেকে বড়ো। দীপা মন্দিরার থেকে বড়ো কিন্তু সীমার থেকে ছোটো। কবিতা, রমা এবং মন্দিরার থেকে ছোটো। মন্দিরা রমার থেকে বড়ো। তাহলে কার বয়স এদের ঠিক মাঝে?</strong></p>
+        <ul>
+            <li>(A) রমা</li>
+            <li>(B) দীপা</li>
+            <li>(C) মন্দিরা</li>
+            <li>(D) কবিতা</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) মন্দিরা</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> সম্পর্কগুলিকে বয়সের ক্রম অনুযায়ী সাজালে ( > চিহ্নটি 'থেকে বড়ো' বোঝাচ্ছে):<br>
+                1. সীমা > দীপা > মন্দিরা<br>
+                2. মন্দিরা > রমা<br>
+                3. রমা > কবিতা (যেহেতু মন্দিরা রমা ও কবিতার থেকে বড়ো)<br>
+                সবগুলিকে একত্রিত করলে ক্রমটি দাঁড়ায়: <strong>সীমা > দীপা > মন্দিরা > রমা > কবিতা</strong>।<br>
+                এই ক্রমে মোট ৫ জন আছে এবং ঠিক মাঝখানে <strong>মন্দিরা</strong> অবস্থান করছে।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৮৩ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৮৩</h3>
+        <p><strong>‘*’ চিহ্নযুক্ত স্থানে সঠিক চিহ্ন বসিয়ে সমীকরণটি সঠিক করুন। 20 * 4 * 6 * 2 * 14 * 18</strong></p>
+        <ul>
+            <li>(A) :, ×, +, +, =</li>
+            <li>(B) ×, :, +, =, +</li>
+            <li>(C) :, ×, +, =, +</li>
+            <li>(D) ×, :, +, +, =</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) :, ×, +, =, +</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> চিহ্নগুলি বসালে সমীকরণটি দাঁড়ায়: 20 ÷ 4 × 6 + 2 = 14 + 18<br>
+                BODMAS নিয়ম অনুযায়ী বামপক্ষ = (20 ÷ 4) × 6 + 2 = 5 × 6 + 2 = 30 + 2 = 32<br>
+                ডানপক্ষ = 14 + 18 = 32<br>
+                যেহেতু বামপক্ষ = ডানপক্ষ, তাই সমীকরণটি সঠিক।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৮৪ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৮৪</h3>
+        <p><strong>সোমা পশ্চিমদিকে 5 Km গেল এবং ডানদিকে ঘুরল ও 1 Km হাঁটল। আবার ডানদিকে ঘুরে সে 3 Km হাঁটল। এরপর আবার সে ডানদিকে ঘুরল এবং 1 Km হাঁটল। সে প্রাথমিক বিন্দু থেকে কত দূরে আছে?</strong></p>
+        <ul>
+            <li>(A) 1 Km</li>
+            <li>(B) 2 Km</li>
+            <li>(C) 3 Km</li>
+            <li>(D) 4 Km</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 2 Km</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> সোমা প্রথমে পশ্চিমে 5 কিমি যায়, তারপর উত্তরে 1 কিমি, তারপর পূর্বে 3 কিমি এবং শেষে দক্ষিণে 1 কিমি আসে। তার উত্তর ও দক্ষিণ দিকের যাত্রা পরস্পরকে বাতিল করে দেয়। সে প্রাথমিক বিন্দুর সাপেক্ষে পশ্চিমে 5 কিমি এবং পূর্বে 3 কিমি গেছে। সুতরাং, প্রাথমিক বিন্দু থেকে তার দূরত্ব = 5 - 3 = <strong>2 কিমি</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৮৫ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৮৫</h3>
+        <p><strong>কোনো সাংকেতিক ভাষায় যদি TRUTH শব্দটিকে SQSGI লেখা হয়, তবে ওই সংকেত অনুযায়ী FALSE শব্দটিকে কী লেখা হবে?</strong></p>
+        <ul>
+            <li>(A) EGMSG</li>
+            <li>(B) EYKSD</li>
+            <li>(C) GVINH</li>
+            <li>(D) EGKSH</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) EYKSD</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> এই প্রশ্নের কোডিং পদ্ধতিতে অসামঞ্জস্য রয়েছে এবং এটি সম্ভবত একটি মুদ্রণজনিত ত্রুটি। প্রদত্ত উত্তর অনুযায়ী কোনো স্পষ্ট যুক্তি খুঁজে পাওয়া কঠিন।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৮৬ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৮৬</h3>
+        <p><strong>উপযুক্ত বর্ণ বসিয়ে শূন্যস্থান পূর্ণ করুন- bb_cd_bcc_db_c_dd</strong></p>
+        <ul>
+            <li>(A) cdbbdc</li>
+            <li>(B) dccbdc</li>
+            <li>(C) ccdbdc</li>
+            <li>(D) cdbddc</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) cdbbdc</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> শূন্যস্থানে বর্ণগুলি বসালে সিরিজটি দাঁড়ায়: bb**c**cd**d** / bcc**b**db**b** / c**d**c**c**dd। একটি সম্ভাব্য প্যাটার্ন হলো: bbccdd / bccddb / bccddd।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৮৭ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৮৭</h3>
+        <p><strong>নীচের চারটি শব্দের মধ্যে কোনটি বেমানান তা চিহ্নিত করুন—<br>I. মাইক্রোস্কোপ II. মাইক্রোফোন III. বাইনোকুলার IV. টেলিস্কোপ</strong></p>
+        <ul>
+            <li>(A) I</li>
+            <li>(B) IV</li>
+            <li>(C) II</li>
+            <li>(D) III</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) II (মাইক্রোফোন)</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> মাইক্রোস্কোপ, বাইনোকুলার এবং টেলিস্কোপ—এই তিনটিই দৃষ্টি সহায়ক যন্ত্র। কিন্তু <strong>মাইক্রোফোন</strong> একটি শ্রবণ সহায়ক যন্ত্র, যা শব্দকে বৈদ্যুতিক সংকেতে রূপান্তরিত করে।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৮৮ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৮৮</h3>
+        <p><strong>‘–’ যদি ‘÷’ হয়, ‘+’ যদি ‘x’ হয়, ‘÷’ যদি ‘–’ হয় এবং ‘x’ যদি ‘+’ হয় তাহলে কোন্ সমীকরণটি সঠিক?</strong></p>
+        <ul>
+            <li>(A) 46-6+6x3-2 = 27</li>
+            <li>(B) 46x6-3+4÷2 = 30</li>
+            <li>(C) 16+4-2÷3x8 = 45</li>
+            <li>(D) 52÷4+5x8-2 = 36</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 52÷4+5x8-2 = 36</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> চিহ্ন পরিবর্তন করে সমীকরণটি লিখলে হয়: 52 – 4 × 5 + 8 ÷ 2 = 36<br>BODMAS নিয়ম অনুযায়ী সমাধান: 52 – 20 + 4 = 32 + 4 = 36।<br>যেহেতু বামপক্ষ (36) = ডানপক্ষ (36), তাই এই সমীকরণটি সঠিক।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৮৯ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৮৯</h3>
+        <p><strong>A হল B-এর পুত্র। C হল A-এর ভাই। D হল C-এর পুত্র। D, B-এর সাথে কীভাবে সম্পর্কিত?</strong></p>
+        <ul>
+            <li>(A) ভাই</li>
+            <li>(B) বাবা</li>
+            <li>(C) নাতি</li>
+            <li>(D) দাদা</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) নাতি</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> C হলো B-এর পুত্র এবং D হলো C-এর পুত্র। সুতরাং, D হলো B-এর পুত্রের পুত্র, অর্থাৎ <strong>নাতি</strong> (Grandson)।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৯০ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৯০</h3>
+        <p><strong>নীচের শ্রেণিতে পরবর্তী সংখ্যাটি নির্বাচন করুন। 45, 54, 65, 78, ?</strong></p>
+        <ul>
+            <li>(A) 90</li>
+            <li>(B) 93</li>
+            <li>(C) 95</li>
+            <li>(D) 97</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 93</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> সংখ্যাগুলির মধ্যে পার্থক্য ক্রমান্বয়ে বাড়ছে:<br>
+                54 - 45 = 9<br>
+                65 - 54 = 11<br>
+                78 - 65 = 13<br>
+                পার্থক্যগুলি হলো 9, 11, 13। পরবর্তী পার্থক্য হবে 15।<br>
+                সুতরাং, পরবর্তী সংখ্যাটি হবে 78 + 15 = <strong>93</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৯১ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৯১</h3>
+        <p><strong>FUTURE-এর অনুভূমিক দর্পণ প্রতিবিম্ব কোনটি হবে?</strong></p>
+        <ul>
+            <li>(A) ꓞUTUЯƎ</li>
+            <li>(B) ƎЯUTUꓞ</li>
+            <li>(C) ƎЯ∩⊥∩ꓞ</li>
+            <li>(D) ERUTUF</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) ƎЯUTUꓞ</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> অনুভূমিক দর্পণ প্রতিবিম্ব বা জল প্রতিবিম্বে বস্তুর উপরের অংশ নিচে এবং নিচের অংশ উপরে দেখায়, কিন্তু বাম-ডান অপরিবর্তিত থাকে। প্রদত্ত বিকল্পগুলির মধ্যে B সঠিক প্রতিবিম্ব নির্দেশ করে।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৯২ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৯২</h3>
+        <p><strong>পরবর্তী বর্ণ-সংখ্যা জোড়াটি নির্ণয় করুন— 12A, 32E, 52 I, ?</strong></p>
+        <ul>
+            <li>(A) 72 K</li>
+            <li>(B) 72 M</li>
+            <li>(C) 72 O</li>
+            <li>(D) 72 L</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 72 M</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong><br>
+                - <strong>সংখ্যা সিরিজ:</strong> 12, 32, 52... (প্রতিবার 20 করে বাড়ছে)। পরবর্তী সংখ্যা হবে 52 + 20 = <strong>72</strong>।<br>
+                - <strong>বর্ণ সিরিজ:</strong> A, E, I... (প্রতিটি বর্ণের মধ্যে 3টি করে বর্ণ বাদ যাচ্ছে: BCD, FGH)। I-এর পর JKL বাদ দিলে পরবর্তী বর্ণ হবে <strong>M</strong>।<br>
+                সুতরাং, পরবর্তী পদটি হবে <strong>72M</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৯৩ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৯৩</h3>
+        <p><strong>‘কমলালেবু’ যদি ‘মাখন’ হয়, ‘মাখন’ যদি ‘সাবান’ হয়, ‘সাবান’ যদি ‘বালি’ হয়, বালি যদি ‘মধু’ হয় এবং ‘মধু’ যদি কমলালেবু হয়, তবে জামাকাপড় ধুতে কী ব্যবহার করা হয়?</strong></p>
+        <ul>
+            <li>(A) মধু</li>
+            <li>(B) বালি</li>
+            <li>(C) সাবান</li>
+            <li>(D) মাখন</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) বালি</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> সাধারণত জামাকাপড় ধুতে <strong>সাবান</strong> ব্যবহার করা হয়। এই সাংকেতিক ভাষায় 'সাবান'কে 'বালি' বলা হয়েছে। সুতরাং, উত্তর হবে <strong>বালি</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৯৪ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৯৪</h3>
+        <p><strong>সিসমোগ্রাফ : ভূমিকম্প :: গ্লুকোমিটার : ?</strong></p>
+        <ul>
+            <li>(A) রক্তচাপ</li>
+            <li>(B) বায়ুর চাপ</li>
+            <li>(C) রক্তে শর্করা</li>
+            <li>(D) হৃৎস্পন্দন</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) রক্তে শর্করা</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> সিসমোগ্রাফ যন্ত্রের সাহায্যে ভূমিকম্পের তীব্রতা মাপা হয়। একইভাবে, গ্লুকোমিটার যন্ত্রের সাহায্যে <strong>রক্তে শর্করার</strong> (Blood Sugar) পরিমাণ মাপা হয়।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৯৫ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৯৫</h3>
+        <p><strong>অজানা বর্ণটি নির্ণয় করুন – V, R, N, J, ?</strong></p>
+        <ul>
+            <li>(A) E</li>
+            <li>(B) F</li>
+            <li>(C) G</li>
+            <li>(D) H</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) F</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> এটি একটি বিপরীতমুখী বর্ণ সিরিজ যেখানে প্রতিবার 4 ঘর করে কমানো হচ্ছে।<br>
+                V (22) → R (18) → N (14) → J (10) → ?<br>
+                10 - 4 = 6, যা F-এর অবস্থান।<br>
+                সুতরাং, পরবর্তী বর্ণটি হবে <strong>F</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৯৬ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৯৬</h3>
+        <p><strong>কোনো সাংকেতিক ভাষায় PENCIL-কে RHPFKO লেখা হয়। ওই সংকেত অনুসারে ERASER-কে কী লেখা হবে?</strong></p>
+        <ul>
+            <li>(A) GTBSDQ</li>
+            <li>(B) GUCVGU</li>
+            <li>(C) GTCVGU</li>
+            <li>(D) GUVCGU</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) GUCVGU</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> প্যাটার্নটি হলো: +2, +3, +2, +3, +2, +3 ...<br>
+                P(+2)→R, E(+3)→H, N(+2)→P, C(+3)→F, I(+2)→K, L(+3)→O<br>
+                একইভাবে, ERASER এর কোড হবে:<br>
+                E(+2)→G, R(+3)→U, A(+2)→C, S(+3)→V, E(+2)→G, R(+3)→U<br>
+                সুতরাং, কোডটি হলো <strong>GUCVGU</strong>। (প্রদত্ত বিকল্প D ভুল হতে পারে)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৯৭ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৯৭</h3>
+        <p><strong>NATIONALISM শব্দটির বর্ণগুলির সাহায্যে নীচের শব্দগুলির মধ্যে কোন্ শব্দটি তৈরি করা যাবে (প্রতিটি বর্ণ একবার ব্যবহার করে)?</strong></p>
+        <ul>
+            <li>(A) MASON</li>
+            <li>(B) NATION</li>
+            <li>(C) NOMINAL</li>
+            <li>(D) ANIMAL</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) NOMINAL</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> NOMINAL শব্দটি তৈরি করতে প্রয়োজনীয় অক্ষরগুলি (N, O, M, I, N, A, L) সবই NATIONALISM শব্দটির মধ্যে উপস্থিত আছে।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৯৮ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৯৮</h3>
+        <p><strong>E, F, G, H এবং I একটি সারিতে দাঁড়িয়ে আছে। G সবথেকে লম্বা। E, F-এর থেকে লম্বা। H-এর উচ্চতা সবচেয়ে কম। F, I - এর থেকে লম্বা। যদি তারা সর্বোচ্চ থেকে সর্বনিম্ন উচ্চতা অনুযায়ী পরপর দাঁড়িয়ে থাকে, তাহলে তৃতীয় স্থানে কে দাঁড়াবে?</strong></p>
+        <ul>
+            <li>(A) E</li>
+            <li>(B) I</li>
+            <li>(C) F</li>
+            <li>(D) G</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) E</span> (দ্রষ্টব্য: প্রশ্নপত্রে দেওয়া উত্তর C ভুল হতে পারে)</p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> উচ্চতার ক্রম ( > চিহ্নটি 'থেকে লম্বা' বোঝাচ্ছে) অনুযায়ী সাজালে:<br>
+                G > E > F > I > H<br>
+                এই ক্রম অনুযায়ী সর্বোচ্চ থেকে তৃতীয় স্থানে <strong>E</strong> দাঁড়াবে।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৯৯ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ৯৯</h3>
+        <p><strong>নীচের কোন্ ভেনচিত্রটি ‘শিক্ষিত, ব্যবসায়ী ও মানুষ'—এদের মধ্যে সম্পর্ককে নির্দেশ করে?</strong></p>
+        <!-- Assuming option B is the correct Venn Diagram representation -->
+        <ul>
+            <li>(A) ...</li>
+            <li>(B) ...</li>
+            <li>(C) ...</li>
+            <li>(D) ...</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B)</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> 'মানুষ' একটি সার্বজনীন শ্রেণি। সমস্ত 'শিক্ষিত' এবং সমস্ত 'ব্যবসায়ী' ব্যক্তিই 'মানুষ'। কিছু শিক্ষিত ব্যক্তি ব্যবসায়ী হতে পারেন। সুতরাং, 'মানুষ' নামক বড় বৃত্তের ভিতরে 'শিক্ষিত' এবং 'ব্যবসায়ী' নামক দুটি পরস্পরছেদী বৃত্ত থাকবে।</p>
+                <pre>
+     ____________________
+    |        মানুষ        |
+    |    _______          |
+    |   /       \         |
+    |  | শিক্ষিত |_______  |
+    |  |        /       \ |
+    |   \______/ ব্যবসায়ী |
+    |         \_______/   |
+    |_____________________|
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ১০০ -->
+    <div class="question-item">
+        <h3>প্রশ্ন ১০০</h3>
+        <p><strong>রমেশ মাঠের কোনো এক স্থানে দাঁড়িয়ে প্রথমে পূর্বদিকে 10 মিটার, তারপর দক্ষিণদিকে 30 মিটার গেল। এরপর বামদিকে ঘুরে 50 মিটার এবং আবার বামদিকে ঘুরে 30 মিটার গিয়ে থামল। প্রথম স্থান থেকে শেষ স্থানের দূরত্ব কত?</strong></p>
+        <ul>
+            <li>(A) 50 মি.</li>
+            <li>(B) 60 মি.</li>
+            <li>(C) 70 মি.</li>
+            <li>(D) 80 মি.</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 60 মি.</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong> রমেশের উল্লম্ব সরণ (30 মিটার দক্ষিণ এবং 30 মিটার উত্তর) শূন্য। তার মোট অনুভূমিক সরণ হলো পূর্বদিকে।<br>
+                মোট দূরত্ব = (প্রথম পূর্বদিকের দূরত্ব) + (দ্বিতীয় পূর্বদিকের দূরত্ব)<br>
+                = 10 মিটার + 50 মিটার = <strong>60 মিটার</strong>।</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<nav class="navigation">
+    <a href="class3.html" class="nav-button">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button">1</a>
+    <a href="class2.html" class="nav-button">2</a>
+    <a href="class3.html" class="nav-button">3</a>
+    <a href="class4.html" class="nav-button active">4</a>
+    <a href="#" class="nav-button disabled">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<!-- External JavaScript File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
