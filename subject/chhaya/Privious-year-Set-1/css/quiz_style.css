@@ -932,3 +932,12 @@ td i { margin-right: 8px; }
 .modal-content ul { list-style: none; padding: 0; }
 .modal-content li { padding: 8px 0; border-bottom: 1px dashed var(--border-color); }
 .modal-content li:last-child { border-bottom: none; }
+/* Add this to your quiz_style.css */
+.review-card.review-skipped {
+    border-left-color: #f59e0b; /* A yellow-orange color for skipped questions */
+    background-color: rgba(245, 158, 11, 0.05);
+}
+
+.dark-mode .review-card.review-skipped {
+    background-color: rgba(245, 158, 11, 0.1);
+}
