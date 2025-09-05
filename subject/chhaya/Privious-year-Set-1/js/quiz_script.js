@@ -1,4 +1,4 @@
-// Filename: quiz/js/script.js - Upgraded with Skip Functionality
+// Filename: quiz/js/script.js - Upgraded for correct leaderboard saving
 
 // ===============================================
 // --- App Initialization & Global Variables ---
@@ -90,7 +90,6 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
-
 function startTimer() {
     let seconds = 0;
     clearInterval(timerInterval);
@@ -128,28 +127,20 @@ function showQuestion() {
                     .join("")}
             </div>
         </div>
-        <!-- Action Buttons Section -->
-        <div class="flex flex-col md:flex-row gap-4 mt-6">
-            <button id="skipBtn" onclick="skipQuestion()" class="action-btn gray w-full md:w-1/2">স্কিপ করুন (S)</button>
-            <button id="nextBtn" onclick="nextQuestion()" class="action-btn w-full md:w-1/2" disabled>পরবর্তী প্রশ্ন (Enter)</button>
-        </div>`;
+        <button id="nextBtn" onclick="nextQuestion()" class="action-btn w-full mt-6" disabled>পরবর্তী প্রশ্ন</button>`;
 }
 
 window.selectAnswer = function (selectedIndex, correctBtnIndex) {
     if (selectedAnswer !== null) return;
     clearInterval(timerInterval);
     selectedAnswer = selectedIndex;
-
-    // Disable option and skip buttons
     document
-        .querySelectorAll(".option-btn, #skipBtn")
+        .querySelectorAll(".option-btn")
         .forEach((btn) => (btn.disabled = true));
-
     const correctBtn = document.querySelector(
         `[data-index="${correctBtnIndex}"]`,
     );
     if (correctBtn) correctBtn.classList.add("correct");
-
     if (selectedIndex !== correctBtnIndex) {
         const selectedBtn = document.querySelector(
             `[data-index="${selectedIndex}"]`,
@@ -161,11 +152,9 @@ window.selectAnswer = function (selectedIndex, correctBtnIndex) {
         correctCount++;
         correctSound.play();
     }
-
     userAnswers[currentQuestionIndex] = selectedIndex;
     document.getElementById("correct-count").textContent = `✔️ ${correctCount}`;
     document.getElementById("wrong-count").textContent = `❌ ${wrongCount}`;
-
     const nextBtn = document.getElementById("nextBtn");
     if (nextBtn) {
         nextBtn.disabled = false;
@@ -173,30 +162,8 @@ window.selectAnswer = function (selectedIndex, correctBtnIndex) {
     }
 };
 
-/**
- * NEW FUNCTION: Handles skipping the current question.
- */
-window.skipQuestion = function () {
-    if (selectedAnswer !== null) return; // Can't skip after answering
-    clearInterval(timerInterval);
-
-    // Mark as "processed" but with a special value for review
-    selectedAnswer = -1; // Allows nextQuestion() to proceed
-    userAnswers[currentQuestionIndex] = null; // 'null' will signify a skipped question
-
-    // Count as wrong and play sound
-    wrongCount++;
-    document.getElementById("wrong-count").textContent = `❌ ${wrongCount}`;
-    wrongSound.play();
-
-    // Immediately go to the next question
-    nextQuestion();
-};
-
 function nextQuestion() {
-    // This check is important. It ensures we only proceed if an answer was selected OR the question was skipped.
     if (selectedAnswer === null) return;
-
     currentQuestionIndex++;
     if (currentQuestionIndex < quizSet.questions.length) {
         showQuestion();
@@ -212,6 +179,7 @@ function nextQuestion() {
 function showFinalResult() {
     clearInterval(timerInterval);
 
+    // স্কোর সেভ করার জন্য নতুন ফাংশন কল করা হবে
     if (quizSet.chapterName && quizSet.setName) {
         saveQuizResult(
             quizSet.chapterName,
@@ -244,39 +212,13 @@ function showFinalResult() {
 function showReview() {
     const container = document.getElementById("quiz-container");
     let reviewHTML = `<div class="space-y-4"><h2 class="text-2xl font-bold text-center text-blue-700 mb-4">📚 কুইজ রিভিউ</h2>`;
-
     quizSet.questions.forEach((q, i) => {
         const userAnswerIndex = userAnswers[i];
         const shuffledOptions = shuffledOptionsPerQuestion[i];
         const correctAnswerIndex = shuffledOptions.indexOf(q.options[q.answer]);
-
-        let userAnswerHTML;
-        let isCorrect = false;
-
-        // Check if the question was skipped
-        if (userAnswerIndex === null) {
-            userAnswerHTML = `<span class="font-bold text-orange-600">আপনি প্রশ্নটি স্কিপ করেছেন</span>`;
-        } else {
-            isCorrect = userAnswerIndex === correctAnswerIndex;
-            userAnswerHTML = `<span class="font-bold ${isCorrect ? "text-green-700" : "text-red-700"}">${shuffledOptions[userAnswerIndex]}</span>`;
-        }
-
-        const reviewCardClass =
-            userAnswerIndex === null
-                ? "review-skipped"
-                : isCorrect
-                  ? "review-correct"
-                  : "review-incorrect";
-
-        reviewHTML += `
-            <div class="review-card text-left ${reviewCardClass}">
-                <h3 class="font-semibold mb-2">📝 প্রশ্ন ${i + 1}: ${q.question}</h3>
-                <p><strong>সঠিক উত্তর:</strong> ${q.options[q.answer]}</p>
-                <p><strong>আপনার উত্তর:</strong> ${userAnswerHTML}</p>
-                <p class="mt-2"><strong>ব্যাখ্যা:</strong> ${q.explanation || "কোনো ব্যাখ্যা নেই"}</p>
-            </div>`;
+        const isCorrect = userAnswerIndex === correctAnswerIndex;
+        reviewHTML += `<div class="review-card text-left ${isCorrect ? "review-correct" : "review-incorrect"}"><h3 class="font-semibold mb-2">📝 প্রশ্ন ${i + 1}: ${q.question}</h3><p><strong>সঠিক উত্তর:</strong> ${q.options[q.answer]}</p><p><strong>আপনার উত্তর:</strong> <span class="font-bold ${isCorrect ? "text-green-700" : "text-red-700"}">${shuffledOptions[userAnswerIndex] ?? "উত্তর দেননি"}</span></p><p class="mt-2"><strong>ব্যাখ্যা:</strong> ${q.explanation || "কোনো ব্যাখ্যা নেই"}</p></div>`;
     });
-
     reviewHTML += `<div class="text-center mt-6"><button onclick="location.reload()" class="action-btn gray">🔁 আবার দিন</button></div></div>`;
     container.innerHTML = reviewHTML;
 }
@@ -285,6 +227,14 @@ function showReview() {
 // --- নতুন এবং সঠিক স্কোর সেভ করার ফাংশন ---
 // =============================================================
 
+/**
+ * Saves quiz result to the 'users' collection, compatible with the dashboard.
+ * @param {string} chapterName - e.g., "কার্য, ক্ষমতা ও শক্তি"
+ * @param {string} setName - e.g., "Quiz Set 1"
+ * @param {number} score - Number of correct answers.
+ * @param {number} wrong - Number of wrong answers.
+ * @param {number} totalQuestions - Total questions in the quiz.
+ */
 function saveQuizResult(chapterName, setName, score, wrong, totalQuestions) {
     const user = firebase.auth().currentUser;
     if (!user) {
@@ -295,13 +245,18 @@ function saveQuizResult(chapterName, setName, score, wrong, totalQuestions) {
     const db = firebase.firestore();
     const userDocRef = db.collection("users").doc(user.uid);
 
-    const chapterKey = chapterName.replace(/\s/g, "_");
-    const setKey = setName.replace(/\s/g, "_");
+    // অধ্যায়ের নাম এবং সেটের নামকে Firestore-এর জন্য নিরাপদ কী-তে রূপান্তর করি
+    const chapterKey = chapterName.replace(/\s/g, "_"); // "কার্য, ক্ষমতা ও শক্তি" -> "কার্য,_ক্ষমতা_ও_শক্তি"
+    const setKey = setName.replace(/\s/g, "_"); // "Quiz Set 1" -> "Quiz_Set_1"
 
     db.runTransaction((transaction) => {
         return transaction.get(userDocRef).then((doc) => {
             if (!doc.exists) {
+                // যদি ইউজারের কোনো ডকুমেন্ট না থাকে, তবে একটি নতুন ডকুমেন্ট তৈরি হবে
+                // এটি সাধারণত হবে না কারণ লগইন করার সময় ডকুমেন্ট তৈরি হওয়ার কথা
                 console.error("User document does not exist!");
+                // আপনি চাইলে এখানে নতুন ডকুমেন্ট তৈরি করতে পারেন
+                // transaction.set(userDocRef, { displayName: user.displayName, email: user.email });
                 return;
             }
 
@@ -315,6 +270,7 @@ function saveQuizResult(chapterName, setName, score, wrong, totalQuestions) {
                 quiz_sets: {},
             };
 
+            // পুরনো স্কোর থেকে বর্তমান কুইজের স্কোর বিয়োগ করি (যদি থাকে)
             const oldSetData = chapterData.quiz_sets[setKey];
             if (oldSetData) {
                 chapterData.totalCorrect -= oldSetData.score;
@@ -322,19 +278,23 @@ function saveQuizResult(chapterName, setName, score, wrong, totalQuestions) {
                     oldSetData.totalQuestions - oldSetData.score;
                 chapterData.totalScore -= oldSetData.score;
             } else {
+                // যদি এটি নতুন কুইজ হয়, তাহলে সম্পন্ন করা কুইজের সংখ্যা বাড়াই
                 chapterData.completedQuizzesCount += 1;
             }
 
+            // নতুন স্কোর যোগ করি
             chapterData.totalCorrect += score;
             chapterData.totalWrong += wrong;
             chapterData.totalScore += score;
 
+            // এই কুইজ সেটের বিস্তারিত তথ্য সেভ করি
             chapterData.quiz_sets[setKey] = {
                 score: score,
                 totalQuestions: totalQuestions,
                 attemptedAt: firebase.firestore.FieldValue.serverTimestamp(),
             };
 
+            // সবশেষে, মূল ইউজার ডকুমেন্টে আপডেট করা ডেটা বসিয়ে দিই
             const updateData = {};
             updateData[`chapters.${chapterKey}`] = chapterData;
 
@@ -362,19 +322,10 @@ function setupKeyboard() {
         ) {
             return;
         }
-
         const nextBtn = document.getElementById("nextBtn");
-
         if (event.key === "Enter" && nextBtn && !nextBtn.disabled) {
             nextQuestion();
         }
-
-        // New: Skip with 's' key
-        if (event.key.toLowerCase() === "s" && selectedAnswer === null) {
-            event.preventDefault();
-            skipQuestion();
-        }
-
         if (selectedAnswer === null) {
             const keyMap = { 1: 0, 2: 1, 3: 2, 4: 3, a: 0, b: 1, c: 2, d: 3 };
             const index = keyMap[event.key.toLowerCase()];
@@ -388,3 +339,4 @@ function setupKeyboard() {
         }
     });
 }
+
