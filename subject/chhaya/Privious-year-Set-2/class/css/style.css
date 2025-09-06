@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-color: #f0f2f5;
+    --container-bg: #ffffff;
+    --text-color: #333333;
+    --heading-color-1: #d81b60;
+    --heading-color-2: #004d40;
+    --heading-color-3: #1a237e;
+    --accent-color: #c2185b;
+    --blockquote-bg: #e3f2fd;
+    --blockquote-border: #2196f3;
+    --table-header-bg: #004d40;
+    --table-header-text: #ffffff;
+    --nav-button-bg: #fff;
+    --nav-button-text: #333;
+    --nav-button-border: #ccc;
+    --nav-active-bg: #d81b60;
+    --box-shadow-color: rgba(0, 0, 0, 0.1);
+    
+    /* MCQ Card Variables */
+    --card-border-color: #e0e0e0;
+    --card-shadow-color: rgba(0, 0, 0, 0.08);
+    --mcq-tag-bg: #007bff;
+    --mcq-tag-text: #ffffff;
+    --success-color: #28a745;
+}
+
+[data-theme="forest"] {
+    --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50; --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50; --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60; --table-header-bg: #27ae60;
+    --mcq-tag-bg: #27ae60;
+}
+
+[data-theme="ocean"] {
+    --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e; --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d; --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db; --table-header-bg: #2980b9;
+    --mcq-tag-bg: #2980b9;
+}
+
+[data-theme="sunset"] {
+    --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e; --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315; --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00; --table-header-bg: #e65100;
+    --mcq-tag-bg: #e65100;
+}
+
+.dark-mode {
+    --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0; --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679; --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6; --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0; --nav-button-border: #555; --nav-active-bg: #bb86fc; --box-shadow-color: rgba(255, 255, 255, 0.05);
+    
+    /* MCQ Card Variables for Dark Mode */
+    --card-border-color: #444;
+    --card-shadow-color: rgba(0, 0, 0, 0.2);
+    --mcq-tag-bg: var(--heading-color-1); /* #bb86fc */
+    --success-color: #4caf50;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+body.desktop-view .container, body.desktop-view header, body.desktop-view .controls-wrapper { max-width: 1200px; }
+header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; transition: max-width 0.4s ease-in-out; }
+.logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+.container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s, max-width 0.4s ease-in-out; }
+h1, h2, h3, h4 { border-bottom: 2px solid var(--card-border-color); padding-bottom: 10px; margin-top: 30px; }
+h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+h2 { font-size: 2em; color: var(--heading-color-2); }
+h3, h4 { font-size: 1.6em; color: var(--heading-color-3); }
+h4 { border-bottom: 1px dotted var(--card-border-color); }
+p { font-size: 1.1em; }
+strong { color: var(--accent-color); font-weight: 600; }
+blockquote { background-color: var(--blockquote-bg); border-left: 5px solid var(--blockquote-border); margin: 20px 0; padding: 15px 20px; font-style: italic; font-size: 1.1em; border-radius: 5px; }
+img { max-width: 100%; height: auto; display: block; margin: 25px auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+ol, ul { padding-left: 20px; }
+li { margin-bottom: 10px; padding-left: 10px; }
+table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 1em; }
+table th, table td { border: 1px solid var(--nav-button-border); padding: 12px 15px; text-align: left; }
+table th { background-color: var(--table-header-bg); color: var(--table-header-text); font-weight: 600; }
+table tr:nth-of-type(even) { background-color: var(--blockquote-bg); }
+.controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; transition: max-width 0.4s ease-in-out; }
+.theme-buttons button, #desktopModeToggle, #rotateScreenToggle { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; font-weight: 600; transition: all 0.2s; }
+.theme-buttons button:hover, #desktopModeToggle:hover, #rotateScreenToggle:hover { opacity: 0.8; }
+.dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+.switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+.slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: var(--heading-color-1); }
+input:checked + .slider:before { transform: translateX(26px); }
+.digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+.navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+.dark-mode .navigation { border-top-color: #333; }
+.nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; }
+.nav-button:hover { background-color: #e0e0e0; }
+.dark-mode .nav-button:hover { background-color: #3a3a3a; }
+.nav-button.active { background-color: var(--nav-active-bg); color: white; border-color: var(--nav-active-bg); }
+.nav-button.disabled { pointer-events: none; opacity: 0.5; }
+.home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+.home-button:hover { background-color: #1565c0; }
+footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+.scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: opacity 0.3s, visibility 0.3s; }
+#scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+.scroll-button:hover { opacity: 0.8; }
+
+/* =================================
+   Modern MCQ Card Style (আধুনিক কার্ড ডিজাইন)
+   ================================= */
+
+.question-item {
+    background-color: var(--container-bg);
+    border: 1px solid var(--card-border-color);
+    border-radius: 12px;
+    padding: 50px 25px 25px 25px; /* উপরের দিকে ট্যাগের জন্য জায়গা */
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px var(--card-shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* h3 ট্যাগকে পজিশন করার জন্য */
+    overflow: hidden; /* ট্যাগের বর্ডার-রেডিয়াস ঠিকভাবে দেখানোর জন্য */
+}
+
+.question-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--card-shadow-color);
+}
+
+/* প্রশ্নের নম্বর ট্যাগ (e.g., প্রশ্ন ২৭) */
+.question-item h3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--mcq-tag-bg);
+    color: var(--mcq-tag-text);
+    padding: 8px 20px;
+    border-radius: 12px 0 12px 0; /* স্টাইলিশ কর্নার */
+    font-weight: bold;
+    font-size: 1rem;
+    
+    /* বেস h3 স্টাইল ওভাররাইড */
+    border-bottom: none;
+    margin: 0;
+}
+
+/* প্রশ্নের মূল টেক্সট */
+.question-item > p:first-of-type {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.question-item > p:first-of-type strong {
+    color: var(--text-color);
+}
+
+/* অপশনের তালিকা (ul এবং li) */
+.question-item ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.question-item ul li {
+    font-size: 1.1em;
+    padding: 12px 15px;
+    border-bottom: 1px dashed var(--card-border-color);
+    transition: background-color 0.2s;
+    border-radius: 6px;
+}
+
+.question-item ul li:last-child {
+    border-bottom: none;
+}
+
+.question-item ul li:hover {
+    background-color: var(--blockquote-bg);
+    cursor: pointer;
+}
+
+/* উত্তর এবং ব্যাখ্যা সেকশন */
+.answer-section .answer-divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--card-border-color);
+    margin: 15px 0;
+}
+
+.answer-section p {
+    font-size: 1.1em;
+}
+
+.answer-section .answer-label {
+    color: var(--accent-color);
+}
+
+.answer-section .correct-answer {
+    color: var(--success-color);
+    font-weight: bold;
+    background-color: var(--blockquote-bg);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* ব্যাখ্যা বক্স */
+.explanation {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: var(--blockquote-bg);
+    border-left: 4px solid var(--blockquote-border);
+    border-radius: 4px;
+}
+.explanation p {
+    margin: 0;
+    font-size: 1em;
+}
+/* =================================== */
+/*        প্রশ্নপত্রের টেবিলের স্টাইল        */
+/* =================================== */
+
+.marks-table {
+    width: 100%;                  /* টেবিলকে পুরো জায়গা জুড়ে বিস্তৃত করবে */
+    border-collapse: collapse;    /* সেলের বর্ডারগুলোকে একত্রিত করবে */
+    margin: 25px 0;               /* টেবিলের উপরে এবং নীচে ফাঁকা জায়গা দেবে */
+    text-align: center;           /* টেবিলের লেখা মাঝখানে দেখাবে */
+    font-size: 1rem;              /* সাধারণ ফন্ট সাইজ */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* হালকা শ্যাডো দেবে */
+    border-radius: 8px;           /* টেবিলের কোণাগুলো সামান্য গোলাকার করবে */
+    overflow: hidden;             /* শ্যাডো এবং বর্ডার-রেডিয়াস ঠিকভাবে দেখানোর জন্য */
+}
+
+/* টেবিলের হেডার (<th>) ডিজাইন */
+.marks-table th {
+    background-color: #f2f2f2;    /* হেডারের জন্য একটি হালকা ধূসর الخلفية */
+    color: #333;                  /* হেডারের লেখার রঙ */
+    font-weight: 600;             /* লেখাকে স্বাভাবিকের চেয়ে একটু মোটা করবে */
+    padding: 12px 15px;           /* সেলের ভিতরে জায়গা তৈরি করবে */
+    border-bottom: 2px solid #ccc; /* হেডারের নিচে একটি মোটা বর্ডার দেবে */
+}
+
+/* টেবিলের সাধারণ সেল (<td>) ডিজাইন */
+.marks-table td {
+    padding: 10px 15px;           /* সেলের ভিতরে জায়গা তৈরি করবে */
+    border: 1px solid #e9e9e9;    /* খুব হালকা বর্ডার দেবে */
+}
+
+/* জোড় সংখ্যার সারিগুলোর জন্য আলাদা রঙ (Zebra-striping) */
+.marks-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;    /* একটি সারির পর অন্য সারির রঙ হালকা পরিবর্তন করবে */
+}
+
+/* মাউস হোভার করলে সারির রঙ পরিবর্তন হবে */
+.marks-table tbody tr:hover {
+    background-color: #e6f7ff;    /* মাউস পয়েন্টার রাখলে সারি হাইলাইট হবে */
+    cursor: default;              /* মাউসের কার্সার স্বাভাবিক থাকবে */
+}
+
+/* ================================================ */
+/*        *** ছবির জন্য আপডেট করা স্টাইল ***        */
+/* ================================================ */
+
+.question-image-container {
+    /* ছবিকে মাঝে আনার জন্য এবং আকার নিয়ন্ত্রণের জন্য */
+    max-width: 500px; /* ছবির কন্টেইনারের সর্বোচ্চ প্রস্থ 500px হবে */
+    margin: 20px auto; /* উপরে-নিচে 20px এবং ডানে-বামে auto মার্জিন দিয়ে মাঝে আনবে */
+}
+
+.question-image {
+    width: 100%; /* ছবিটি তার কন্টেইনারের 100% প্রস্থ নেবে */
+    max-width: 100%; /* অতিরিক্ত নিরাপত্তা, যেন ছবিটি কন্টেইনারের বাইরে না যায় */
+    height: auto;
+    display: block; /* margin: auto কাজ করার জন্য এটি জরুরি */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--card-shadow-color);
+}
