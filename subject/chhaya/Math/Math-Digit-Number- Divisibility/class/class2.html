@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit, Number & Divisibility - Class 01</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: Digit, Number & Divisibility</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 01</h2>
+    
+    <!-- প্রশ্ন 1 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 1</h3>
+        <p><strong>দুই অঙ্কবিশিষ্ট সংখ্যার অঙ্কের সমষ্টি 9। সংখ্যাটি থেকে 27 বিয়োগ করলে অঙ্কদ্বয় পরস্পর স্থান পরিবর্তন করে। সংখ্যাটি হল—</strong></p>
+        <ul>
+            <li>(A) 72</li>
+            <li>(B) 63</li>
+            <li>(C) 45</li>
+            <li>(D) কোনোটিই নয়</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 63</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li><strong>বিকল্প পরীক্ষা করে:</strong>
+                        <ul>
+                            <li>(B) 63: অঙ্কের সমষ্টি 6 + 3 = 9 (শর্ত পূরণ)। 63 থেকে 27 বিয়োগ করলে হয় 36, যা 63-এর উল্টো। সুতরাং এটিই সঠিক উত্তর।</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 2 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 2</h3>
+        <p><strong>একটি ছাত্রকে 3 দ্বারা কোনো একটি সংখ্যাকে ভাগ করতে বলা হল। ভুলবশত সে 3 দ্বারা গুণ করলে উত্তর 29.7 হয়। সঠিক উত্তরটি কী?</strong></p>
+        <ul>
+            <li>(A) 3.3</li>
+            <li>(B) 9.3</li>
+            <li>(C) 9.8</li>
+            <li>(D) 9.9</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 3.3</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>ধরা যাক, সংখ্যাটি হল x।</li>
+                    <li>ভুলবশত, x × 3 = 29.7 => x = 29.7 / 3 = 9.9</li>
+                    <li>সঠিক উত্তর হবে = 9.9 / 3 = 3.3</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- প্রশ্ন 3 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 3</h3>
+        <p><strong>3 অঙ্কবিশিষ্ট বৃহত্তম পূর্ণবর্গ সংখ্যা—</strong></p>
+        <ul>
+            <li>(A) 981</li>
+            <li>(B) 971</li>
+            <li>(C) 964</li>
+            <li>(D) 961</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 961</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>31² = 961 এবং 32² = 1024 (4 অঙ্কের)। সুতরাং, 3 অঙ্কবিশিষ্ট বৃহত্তম পূর্ণবর্গ সংখ্যাটি হল 961।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 4 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 4</h3>
+        <p><strong>1, 9, 25, 49, 81, ?</strong></p>
+        <ul>
+            <li>(A) 100</li>
+            <li>(B) 112</li>
+            <li>(C) 121</li>
+            <li>(D) 144</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 121</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>এই সিরিজটি পরপর বিজোড় সংখ্যাগুলির বর্গ: 1², 3², 5², 7², 9²। পরবর্তী পদটি হবে 11² = 121।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 5 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 5</h3>
+        <p><strong>2² + 3² + 4² + 5² + 6² + 7² + 8² + 9² + 10² = ?</strong></p>
+        <ul>
+            <li>(A) 385</li>
+            <li>(B) 2916</li>
+            <li>(C) 540</li>
+            <li>(D) 384</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 384</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>আমরা জানি, 1² + 2² + ... + 10² = [10(10+1)(2×10+1)]/6 = 385।</li>
+                    <li>প্রশ্নটিতে 1² বাদ দেওয়া হয়েছে। সুতরাং, নির্ণেয় যোগফল = 385 - 1² = 385 - 1 = 384।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- প্রশ্ন 6 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 6</h3>
+        <p><strong>1³ + 2³ + 3³ + ... + 9³ + 10³ = ?</strong></p>
+        <ul>
+            <li>(A) 3575</li>
+            <li>(B) 2525</li>
+            <li>(C) 5075</li>
+            <li>(D) 3025</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 3025</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>প্রথম n সংখ্যক স্বাভাবিক সংখ্যার ঘনের যোগফলের সূত্র: [n(n+1)/2]²</li>
+                    <li>এখানে n = 10। যোগফল = [10(10+1)/2]² = (55)² = 3025।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 7 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 7</h3>
+        <p><strong>একটি ভাগ-সংক্রান্ত প্রশ্নে, ভাজ্য 37693, ভাগফল 52 এবং ভাগশেষ যদি 52 এবং 104-এর মধ্যে যে-কোনো একটি সংখ্যা হয়, তবে ভাজক হবে—</strong></p>
+        <ul>
+            <li>(A) 722</li>
+            <li>(B) 723</li>
+            <li>(C) 724</li>
+            <li>(D) 725</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 723</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>ভাজ্য = (ভাজক × ভাগফল) + ভাগশেষ।</li>
+                    <li>ভাজক = (ভাজ্য - ভাগশেষ) / ভাগফল।</li>
+                    <li>বিকল্প (B) থেকে, ভাজক 723 ধরলে: 37693 = (723 × 52) + ভাগশেষ => 37693 = 37596 + ভাগশেষ => ভাগশেষ = 97।</li>
+                    <li>যেহেতু 97 সংখ্যাটি 52 এবং 104-এর মধ্যে, তাই এটিই সঠিক উত্তর।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 8 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 8</h3>
+        <p><strong>x78y সংখ্যাটি যদি 55 দ্বারা বিভাজ্য হয়, তবে x এবং y-এর মান হবে—</strong></p>
+        <ul>
+            <li>(A) 1, 0</li>
+            <li>(B) 4, 5</li>
+            <li>(C) 6, 5</li>
+            <li>(D) তথ্য অপর্যাপ্ত</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 4, 5</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>55 দ্বারা বিভাজ্য মানে 5 এবং 11 উভয় দ্বারা বিভাজ্য।</li>
+                    <li>5 দ্বারা বিভাজ্যতার জন্য y=0 বা y=5 হবে। 11 দ্বারা বিভাজ্যতার জন্য (x+8) - (7+y) = 0 বা 11-এর গুণিতক হবে।</li>
+                    <li>y=5 ধরলে, (x+8) - (7+5) = x-4। যদি x-4=0 হয়, তবে x=4।</li>
+                    <li>সুতরাং, x=4, y=5 একটি সমাধান। সংখ্যাটি 4785, যা 55 দ্বারা বিভাজ্য (4785 ÷ 55 = 87)।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 9 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 9</h3>
+        <p><strong>50-এর কম মৌলিক সংখ্যার সংখ্যা—</strong></p>
+        <ul>
+            <li>(A) 16</li>
+            <li>(B) 15</li>
+            <li>(C) 14</li>
+            <li>(D) 18</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 15</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>50-এর কম মৌলিক সংখ্যাগুলি হল: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47। মোট 15টি।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 10 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 10</h3>
+        <p><strong>A, B, C, D এবং E-এই পাঁচটি ক্রমিক যুগ্ম সংখ্যার গড় 52। B এবং E-এর গুণফল কত?</strong></p>
+        <ul>
+            <li>(A) 2912</li>
+            <li>(B) 2688</li>
+            <li>(C) 3024</li>
+            <li>(D) 2800</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 2800</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>পাঁচটি ক্রমিক সংখ্যার গড় হলো মাঝের সংখ্যাটি। সুতরাং, C = 52।</li>
+                    <li>সংখ্যাগুলো হলো: 48(A), 50(B), 52(C), 54(D), 56(E)।</li>
+                    <li>B এবং E-এর গুণফল = 50 × 56 = 2800।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 11 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 11</h3>
+        <p><strong>দুটি সংখ্যার পার্থক্য 1365। যখন বড়ো সংখ্যাটি ছোটো সংখ্যাটির দ্বারা ভাগ করা হয়, তখন ভাগফল এবং ভাগশেষ হিসেবে যথাক্রমে 6 এবং 15 পাওয়া যায়। ছোটো সংখ্যাটি কত?</strong></p>
+        <ul>
+            <li>(A) 240</li>
+            <li>(B) 270</li>
+            <li>(C) 295</li>
+            <li>(D) 360</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 270</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>ধরা যাক ছোট সংখ্যাটি S। বড় সংখ্যাটি B = 6S + 15।</li>
+                    <li>পার্থক্য: B - S = 1365 => (6S + 15) - S = 1365 => 5S = 1350 => S = 270।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- প্রশ্ন 12 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 12</h3>
+        <p><strong>0, 1, 2, 3 এবং 4 এই অঙ্কগুলি মাত্র একবার ব্যবহার করে গঠিত 5 অঙ্কবিশিষ্ট বৃহত্তম এবং ক্ষুদ্রতম সংখ্যার পার্থক্য কত?</strong></p>
+        <ul>
+            <li>(A) 32976</li>
+            <li>(B) 32679</li>
+            <li>(C) 32769</li>
+            <li>(D) কোনোটিই নয়</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 32976</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>বৃহত্তম সংখ্যা: 43210</li>
+                    <li>ক্ষুদ্রতম সংখ্যা: 10234</li>
+                    <li>পার্থক্য = 43210 - 10234 = 32976।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 13 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 13</h3>
+        <p><strong>বিকল্পগুলির কোনটি মৌলিক বা যৌগিক সংখ্যা কোনোটিই নয়?</strong></p>
+        <ul>
+            <li>(A) 4</li>
+            <li>(B) 1</li>
+            <li>(C) 3</li>
+            <li>(D) 2</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 1</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>1-এর কেবল একটি উৎপাদক আছে, তাই এটি মৌলিক বা যৌগিক কোনোটিই নয়।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 14 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 14</h3>
+        <p><strong>কোনো এক ভাগ-সংক্রান্ত অঙ্কে ভাগফল 403, ভাজক 100, এবং ভাগশেষ 58 হয়, তবে ভাজ্য কত?</strong></p>
+        <ul>
+            <li>(A) 40458</li>
+            <li>(B) 34058</li>
+            <li>(C) 43058</li>
+            <li>(D) 40358</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 40358</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>ভাজ্য = (ভাজক × ভাগফল) + ভাগশেষ = (100 × 403) + 58 = 40300 + 58 = 40358।</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- প্রশ্ন 15 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 15</h3>
+        <p><strong>একটি দুই অঙ্কবিশিষ্ট সংখ্যার অঙ্কের যোগফল 8। যদি সংখ্যাটি থেকে 18 বিয়োগ করা হয়, তবে সংখ্যাটির অঙ্ক দুটি স্থান পরিবর্তন করবে। সংখ্যাটি কত?</strong></p>
+        <ul>
+            <li>(A) 44</li>
+            <li>(B) 35</li>
+            <li>(C) 62</li>
+            <li>(D) 53</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 53</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>বিকল্প (D) পরীক্ষা করে: 5+3=8। 53 - 18 = 35, যা 53-এর উল্টো।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 16 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 16</h3>
+        <p><strong>5 অঙ্কবিশিষ্ট ক্ষুদ্রতম কোন্ সংখ্যাটি 476 দ্বারা সম্পূর্ণরূপে বিভাজ্য?</strong></p>
+        <ul>
+            <li>(A) 47600</li>
+            <li>(B) 10000</li>
+            <li>(C) 10476</li>
+            <li>(D) 10472</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 10472</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>5 অঙ্কের ক্ষুদ্রতম সংখ্যা হল 10000।</li>
+                    <li>10000 ÷ 476 করলে ভাগশেষ থাকে 4।</li>
+                    <li>নির্ণেয় সংখ্যা = 10000 + (476 - 4) = 10000 + 472 = 10472।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 17 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 17</h3>
+        <p><strong>একটি ভাজ্য সংখ্যাকে 11 দিয়ে ভাগ করলে ভাগশেষ হয় 2। সংখ্যাটি হল—</strong></p>
+        <ul>
+            <li>(A) 2345</li>
+            <li>(B) 3433</li>
+            <li>(C) 3465</li>
+            <li>(D) কোনোটিই নয়</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 2345</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>2345 ÷ 11 = 213, ভাগশেষ 2।</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- প্রশ্ন 18 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 18</h3>
+        <p><strong>ক্ষুদ্রতম মৌলিক সংখ্যা কত?</strong></p>
+        <ul>
+            <li>(A) 7</li>
+            <li>(B) 5</li>
+            <li>(C) 3</li>
+            <li>(D) 2</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 2</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>2 হলো ক্ষুদ্রতম এবং একমাত্র জোড় মৌলিক সংখ্যা।</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- প্রশ্ন 19 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 19</h3>
+        <p><strong>একটি 2 অঙ্কবিশিষ্ট সংখ্যা তার অঙ্কের সমষ্টির 5 গুণ। সংখ্যাটির সাথে 9 যোগ করলে অঙ্কগুলি পরস্পর স্থান পরিবর্তন করে। অঙ্কগুলির যোগফল—</strong></p>
+        <ul>
+            <li>(A) 11</li>
+            <li>(B) 7</li>
+            <li>(C) 6</li>
+            <li>(D) 9</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 9</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>সমাধান করে সংখ্যাটি পাওয়া যায় 45 (45 = 5 × (4+5) এবং 45+9=54)। অঙ্কের যোগফল = 4+5 = 9।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 20 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 20</h3>
+        <p><strong>একটি সংখ্যাকে 68 দিয়ে ভাগ করলে ভাগফল 269 এবং ভাগশেষ শূন্য হয়। একই সংখ্যাকে 67 দিয়ে ভাগ করলে ভাগশেষ কত হবে?</strong></p>
+        <ul>
+            <li>(A) 0</li>
+            <li>(B) 1</li>
+            <li>(C) 2</li>
+            <li>(D) 3</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 1</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>সংখ্যাটি = 68 × 269 = 18292।</li>
+                    <li>18292 ÷ 67 করলে ভাগশেষ 1 থাকে।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<nav class="navigation">
+    <a href="class1.html" class="nav-button ">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button ">1</a>
+    <a href="class2.html" class="nav-button active">2</a>
+    <a href="class3.html" class="nav-button">3</a>
+    <a href="class3.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<!-- External JavaScript File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
