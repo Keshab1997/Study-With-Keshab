@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square-Square Root, Cube-Cube Root - Class 03</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: Square-Square Root, Cube-Cube Root</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 03</h2>
+    
+    <h3><strong>প্রস্তুতি: যা আপনাকে মুখস্থ রাখতে হবে</strong></h3>
+    <p>বর্গমূলের মতোই, ঘনমূলের জন্যেও আপনাকে 1 থেকে 10 পর্যন্ত সংখ্যার ঘন (cube) মুখস্থ রাখতে হবে।</p>
+    <pre style="line-height: 1.6; font-size: 1em;">
+1³ = 1
+2³ = 8
+3³ = 27
+4³ = 64
+5³ = 125
+6³ = 216
+7³ = 343
+8³ = 512
+9³ = 729
+10³ = 1000
+    </pre>
+
+    <h4><strong>একক ঘরের অঙ্কের চমৎকার নিয়ম (Unique Unit Digit Rule)</strong></h4>
+    <p>ঘনমূলের ক্ষেত্রে একক ঘরের অঙ্ক বের করা বর্গমূলের চেয়েও অনেক সহজ, কারণ প্রতিটি অঙ্কের জন্য একটি নির্দিষ্ট একক ঘরের অঙ্ক আছে।</p>
+    
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>সংখ্যার শেষ অঙ্ক</th>
+                <th>ঘনমূলের শেষ অঙ্ক</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>1</td></tr>
+            <tr><td>8</td><td>2</td></tr>
+            <tr><td>7</td><td>3</td></tr>
+            <tr><td>4</td><td>4</td></tr>
+            <tr><td>5</td><td>5</td></tr>
+            <tr><td>6</td><td>6</td></tr>
+            <tr><td>3</td><td>7</td></tr>
+            <tr><td>2</td><td>8</td></tr>
+            <tr><td>9</td><td>9</td></tr>
+            <tr><td>0</td><td>0</td></tr>
+        </tbody>
+    </table>
+
+    <p><strong>সহজে মনে রাখার টিপস:</strong></p>
+    <ul>
+        <li>1, 4, 5, 6, 9, 0 - এদের ক্ষেত্রে যা আছে তাই থাকে।</li>
+        <li>2 ↔ 8 এবং 3 ↔ 7 - এরা পরস্পরের সাথে জায়গা বদল করে। (2-এর জন্য 8, 8-এর জন্য 2; 3-এর জন্য 7, 7-এর জন্য 3)</li>
+    </ul>
+
+    <hr>
+
+    <h3><strong>সেরা কৌশল: অনুমান পদ্ধতি (Estimation Method for Cube Roots)</strong></h3>
+    <p>এই পদ্ধতিটি পূর্ণঘন সংখ্যার জন্য অত্যন্ত দ্রুত এবং নির্ভুল।</p>
+
+    <h4><strong>উদাহরণ 1: ³√17576 (17,576-এর ঘনমূল) বের করুন</strong></h4>
+    <ol>
+        <li><strong>ধাপ 1: একক ঘরের অঙ্ক দেখুন</strong>
+            <p>সংখ্যাটির শেষে <strong>6</strong> আছে। আমাদের নিয়ম অনুযায়ী, যদি সংখ্যার শেষে 6 থাকে, তবে তার ঘনমূলের শেষেও <strong>6</strong> থাকবে। সুতরাং, আমাদের উত্তরের একক ঘরের অঙ্ক হলো <strong>6</strong>।</p>
+        </li>
+        <li><strong>ধাপ 2: শেষ তিনটি অঙ্ক বাদ দিন</strong>
+            <p>ঘনমূলের জন্য আমরা ডান দিক থেকে তিনটি অঙ্ক বাদ দেব। <code>17 576</code> → 576 বাদ দিন। বাকি থাকে <strong>17</strong>।</p>
+        </li>
+        <li><strong>ধাপ 3: নিকটবর্তী ছোট ঘন সংখ্যা খুঁজুন</strong>
+            <p>এখন এমন একটি সংখ্যা খুঁজুন যার ঘন (cube) 17-এর সমান বা তার থেকে ঠিক ছোট।
+            <br>আমাদের তালিকা থেকে দেখুন: 2³ = 8 (ছোট), 3³ = 27 (বড়)।
+            <br>সুতরাং, আমরা ছোটটি অর্থাৎ <strong>2</strong> নেব। এই <strong>2</strong> হবে আমাদের উত্তরের প্রথম অঙ্ক।</p>
+        </li>
+        <li><strong>ধাপ 4: উত্তর সাজান</strong>
+            <p>প্রথম অঙ্ক হলো <strong>2</strong> এবং একক ঘরের অঙ্ক হলো <strong>6</strong>।
+            <br>সুতরাং, ³√17576 = <strong>26</strong>।</p>
+        </li>
+    </ol>
+
+    <h4><strong>উদাহরণ 2: ³√300763 (3,00,763-এর ঘনমূল) বের করুন</strong></h4>
+    <ol>
+        <li><strong>ধাপ 1: একক ঘরের অঙ্ক দেখুন</strong>
+            <p>সংখ্যাটির শেষে <strong>3</strong> আছে। আমাদের নিয়ম অনুযায়ী, 3 থাকলে ঘনমূলের শেষে <strong>7</strong> হবে (কারণ 3 ↔ 7)। সুতরাং, উত্তরের একক ঘরের অঙ্ক হলো <strong>7</strong>।</p>
+        </li>
+        <li><strong>ধাপ 2: শেষ তিনটি অঙ্ক বাদ দিন</strong>
+            <p><code>300 763</code> → 763 বাদ দিন। বাকি থাকে <strong>300</strong>।</p>
+        </li>
+        <li><strong>ধাপ 3: নিকটবর্তী ছোট ঘন সংখ্যা খুঁজুন</strong>
+            <p>300-এর সমান বা তার থেকে ঠিক ছোট ঘন সংখ্যাটি খুঁজুন।
+            <br>আমাদের তালিকা থেকে: 6³ = 216 (ছোট), 7³ = 343 (বড়)।
+            <br>সুতরাং, আমরা ছোটটি অর্থাৎ <strong>6</strong> নেব। এটিই আমাদের উত্তরের প্রথম অঙ্ক।</p>
+        </li>
+        <li><strong>ধাপ 4: উত্তর সাজান</strong>
+            <p>প্রথম অঙ্ক হলো <strong>6</strong> এবং একক ঘরের অঙ্ক হলো <strong>7</strong>।
+            <br>সুতরাং, ³√300763 = <strong>67</strong>।</p>
+        </li>
+    </ol>
+    
+    <hr>
+
+    <h3><strong>আরেকটি পদ্ধতি: মৌলিক উৎপাদক বিশ্লেষণ (Prime Factorization Method)</strong></h3>
+    <p>ছোট সংখ্যার জন্য বা যখন আপনি নিশ্চিত নন যে সংখ্যাটি পূর্ণঘন কি না, তখন এই পদ্ধতিটি খুব কার্যকরী।</p>
+    
+    <h4><strong>উদাহরণ: ³√216 বের করুন</strong></h4>
+    <ol>
+        <li><strong>মৌলিক উৎপাদকে ভাঙুন:</strong><br>
+        216 = 2 × 108 = 2 × 2 × 54 = 2 × 2 × 2 × 27 = 2 × 2 × 2 × 3 × 3 × 3</li>
+        <li><strong>তিনটি করে সংখ্যার গ্রুপ তৈরি করুন:</strong><br>
+        216 = (2 × 2 × 2) × (3 × 3 × 3)</li>
+        <li><strong>প্রতিটি গ্রুপ থেকে একটি করে সংখ্যা নিন এবং গুণ করুন:</strong><br>
+        ³√216 = 2 × 3 = <strong>6</strong></li>
+    </ol>
+
+    <hr>
+
+    <h3><strong>"কত গুণ বা ভাগ করতে হবে" - এই ধরনের অঙ্কের জন্য প্রয়োগ</strong></h3>
+    <h4><strong>প্রশ্ন: 26244 সংখ্যাটিকে কত দিয়ে গুণ করলে গুণফল একটি পূর্ণঘন সংখ্যা হবে?</strong></h4>
+    <ol>
+        <li><strong>মৌলিক উৎপাদকে ভাঙুন:</strong><br>
+        26244 = 2 × 2 × 3 × 3 × 3 × 3 × 3 × 3 × 3 × 3 = 2² × 3⁸</li>
+        <li><strong>পূর্ণঘন বানানোর জন্য প্রয়োজনীয় উৎপাদক খুঁজুন:</strong>
+            <ul>
+                <li>একটি সংখ্যা পূর্ণঘন হতে হলে তার প্রতিটি মৌলিক উৎপাদকের ঘাত (power) 3 দ্বারা বিভাজ্য হতে হয়।</li>
+                <li><code>2²</code>-কে <code>2³</code> বানাতে হলে একটি <code>2¹</code> দিয়ে গুণ করতে হবে।</li>
+                <li><code>3⁸</code>-কে এমন একটি ঘাতে পরিণত করতে হবে যা 3 দ্বারা বিভাজ্য (যেমন 9)। <code>3⁹</code> বানাতে হলে একটি <code>3¹</code> দিয়ে গুণ করতে হবে।</li>
+            </ul>
+        </li>
+        <li><strong>প্রয়োজনীয় গুণনীয়ক:</strong>
+            <p>আমাদের গুণ করতে হবে <code>2¹ × 3¹ = 6</code> দিয়ে।</p>
+        </li>
+    </ol>
+    <p><strong>উপসংহার:</strong> বর্গমূলের মতোই, প্রতিযোগিতামূলক পরীক্ষার জন্য ঘনমূলের <strong>অনুমান পদ্ধতিটিই</strong> সবচেয়ে সেরা এবং দ্রুততম। এটি অনুশীলন করলে আপনি 5-10 সেকেন্ডের মধ্যে যেকোনো পূর্ণঘন সংখ্যার ঘনমূল বের করতে পারবেন।</p>
+
+</div>
+
+<nav class="navigation">
+    <a href="class2.html" class="nav-button">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button">1</a>
+    <a href="class2.html" class="nav-button">2</a>
+    <a href="class3.html" class="nav-button active">3</a>
+    <a href="class4.html" class="nav-button">4</a>
+    <a href="class5.html" class="nav-button">5</a>
+    <a href="class6.html" class="nav-button">6</a>
+    <a href="class4.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<!-- External JavaScript File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

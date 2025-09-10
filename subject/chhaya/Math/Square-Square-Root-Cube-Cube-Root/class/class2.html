@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square-Square Root, Cube-Cube Root - Class 02</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: Square-Square Root, Cube-Cube Root</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 02</h2>
+    
+    <h3><strong>প্রস্তুতি: যা আপনাকে মুখস্থ রাখতেই হবে</strong></h3>
+    <p>যেকোনো কৌশল ব্যবহারের আগে আপনাকে 1 থেকে 25 পর্যন্ত সংখ্যাগুলোর বর্গ মুখস্থ রাখতে হবে। এটি আপনাকে দ্রুত অনুমান করতে সাহায্য করবে।</p>
+    <pre style="line-height: 1.6; font-size: 1em;">
+1² = 1      11² = 121     21² = 441
+2² = 4      12² = 144     22² = 484
+3² = 9      13² = 169     23² = 529
+4² = 16     14² = 196     24² = 576
+5² = 25     15² = 225     25² = 625
+6² = 36     16² = 256
+7² = 49     17² = 289
+8² = 64     18² = 324
+9² = 81     19² = 361
+10² = 100    20² = 400
+    </pre>
+
+    <p><strong>একক ঘরের অঙ্কের নিয়ম:</strong></p>
+    <ul>
+        <li>যদি কোনো পূর্ণবর্গ সংখ্যার শেষে <strong>1</strong> থাকে, তার বর্গমূলের শেষে <strong>1</strong> বা <strong>9</strong> থাকবে।</li>
+        <li>যদি শেষে <strong>4</strong> থাকে, বর্গমূলের শেষে <strong>2</strong> বা <strong>8</strong> থাকবে।</li>
+        <li>যদি শেষে <strong>5</strong> থাকে, বর্গমূলের শেষে <strong>5</strong> থাকবে।</li>
+        <li>যদি শেষে <strong>6</strong> থাকে, বর্গমূলের শেষে <strong>4</strong> বা <strong>6</strong> থাকবে।</li>
+        <li>যদি শেষে <strong>9</strong> থাকে, বর্গমূলের শেষে <strong>3</strong> বা <strong>7</strong> থাকবে।</li>
+    </ul>
+
+    <hr>
+
+    <h3><strong>সেরা কৌশল: অনুমান পদ্ধতি (Estimation Method)</strong></h3>
+    <p>এই পদ্ধতিটি পূর্ণবর্গ সংখ্যার জন্য সবচেয়ে দ্রুত কাজ করে।</p>
+
+    <h4><strong>উদাহরণ 1: √7921 বের করুন</strong></h4>
+    <ol>
+        <li><strong>ধাপ 1: একক ঘরের অঙ্ক দেখুন</strong>
+            <p>সংখ্যাটির শেষে <strong>1</strong> আছে। তাই, এর বর্গমূলের একক ঘরের অঙ্ক <strong>1</strong> অথবা <strong>9</strong> হবে।</p>
+        </li>
+        <li><strong>ধাপ 2: শেষ দুটি অঙ্ক বাদ দিন</strong>
+            <p>সংখ্যাটি থেকে শেষ দুটি অঙ্ক (21) বাদ দিন। বাকি থাকে <strong>79</strong>।</p>
+        </li>
+        <li><strong>ধাপ 3: নিকটবর্তী ছোট বর্গ সংখ্যা খুঁজুন</strong>
+            <p>এখন এমন একটি সংখ্যা খুঁজুন যার বর্গ 79-এর সমান বা তার থেকে ঠিক ছোট।
+            <br>আমরা জানি, 8² = 64 এবং 9² = 81।
+            <br>79-এর থেকে ঠিক ছোট বর্গ সংখ্যাটি হলো 64, যা <strong>8</strong>-এর বর্গ। সুতরাং, আমাদের উত্তরের প্রথম অঙ্কটি হবে <strong>8</strong>।</p>
+        </li>
+        <li><strong>ধাপ 4: সঠিক একক ঘরের অঙ্কটি বেছে নিন</strong>
+            <p>এখন আমাদের কাছে দুটি সম্ভাব্য উত্তর আছে: <strong>81</strong> অথবা <strong>89</strong>।
+            <br>সঠিকটি বের করার জন্য, আমরা যে প্রথম অঙ্কটি পেয়েছি (<strong>8</strong>), সেটিকে তার পরের সংখ্যা (<strong>9</strong>) দিয়ে গুণ করব।
+            <br>8 × 9 = <strong>72</strong>
+            <br>এখন এই গুণফলটিকে ধাপ 2-এর সংখ্যার (79) সাথে তুলনা করুন।
+            <br>যেহেতু <strong>79 > 72</strong> (আমাদের সংখ্যাটি গুণফলের চেয়ে বড়), তাই আমরা সম্ভাব্য দুটি একক ঘরের অঙ্ক (1 এবং 9) থেকে <strong>বড়টি (9)</strong> বেছে নেব।
+            <br>সুতরাং, সঠিক উত্তর হলো <strong>89</strong>।</p>
+        </li>
+    </ol>
+
+    <h4><strong>উদাহরণ 2: √2704 বের করুন</strong></h4>
+    <ul>
+        <li><strong>ধাপ 1:</strong> শেষে <strong>4</strong> আছে, তাই বর্গমূলের শেষে <strong>2</strong> বা <strong>8</strong> হবে।</li>
+        <li><strong>ধাপ 2:</strong> শেষ দুটি অঙ্ক (04) বাদ দিন। বাকি থাকে <strong>27</strong>।</li>
+        <li><strong>ধাপ 3:</strong> 27-এর ঠিক আগের পূর্ণবর্গ সংখ্যাটি হলো 25, যা <strong>5</strong>-এর বর্গ। সুতরাং, উত্তরের প্রথম অঙ্ক <strong>5</strong>।</li>
+        <li><strong>ধাপ 4:</strong> সম্ভাব্য উত্তর <strong>52</strong> বা <strong>58</strong>।
+            <ul>
+                <li>প্রথম অঙ্ক (<strong>5</strong>) এবং তার পরের সংখ্যা (<strong>6</strong>) গুণ করুন: 5 × 6 = <strong>30</strong>।</li>
+                <li>এখন তুলনা করুন: <strong>27 < 30</strong> (আমাদের সংখ্যাটি গুণফলের চেয়ে ছোট)।</li>
+                <li>সুতরাং, আমরা সম্ভাব্য দুটি একক ঘরের অঙ্ক (2 এবং 8) থেকে <strong>ছোটটি (2)</strong> বেছে নেব।</li>
+                <li>সঠিক উত্তর হলো <strong>52</strong>।</li>
+            </ul>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h3><strong>অন্যান্য গুরুত্বপূর্ণ পদ্ধতি</strong></h3>
+
+    <h4><strong>1. মৌলিক উৎপাদক বিশ্লেষণ পদ্ধতি (Prime Factorization Method)</strong></h4>
+    <p>ছোট সংখ্যার জন্য এটি খুব কার্যকরী।</p>
+    <p><strong>উদাহরণ: √1764 বের করুন</strong></p>
+    <ol>
+        <li>সংখ্যাটিকে মৌলিক উৎপাদকে ভাঙুন:<br>
+        1764 = 2 × 882 = 2 × 2 × 441 = 2 × 2 × 3 × 147 = 2 × 2 × 3 × 3 × 49 = 2 × 2 × 3 × 3 × 7 × 7</li>
+        <li>একই সংখ্যার জোড়া তৈরি করুন:<br>
+        1764 = (2 × 2) × (3 × 3) × (7 × 7)</li>
+        <li>প্রতিটি জোড়া থেকে একটি করে সংখ্যা নিন এবং গুণ করুন:<br>
+        √1764 = 2 × 3 × 7 = 42</li>
+    </ol>
+
+    <h4><strong>2. ভাগ প্রক্রিয়া (Long Division Method)</strong></h4>
+    <p>যেকোনো সংখ্যার (এমনকি যা পূর্ণবর্গ নয়) বর্গমূল বের করার জন্য এটি একটি নির্ভরযোগ্য পদ্ধতি। "কত যোগ বা বিয়োগ করতে হবে" - এই ধরনের অঙ্কের জন্য এটি অপরিহার্য।</p>
+    <p><strong>উদাহরণ: √36562-এর ক্ষেত্রে বাড়তি সংখ্যা বের করুন</strong><br>
+    এই প্রক্রিয়ায় ভাগ করে দেখা যাবে ভাগফল 191 এবং ভাগশেষ (remainder) <strong>81</strong> থাকছে। অর্থাৎ, 36562 থেকে 81 বাদ দিলে সংখ্যাটি পূর্ণবর্গ হবে।</p>
+
+    <h3><strong>কোন পদ্ধতি কখন ব্যবহার করবেন?</strong></h3>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>পদ্ধতি</th>
+                <th>কখন ব্যবহার করবেন</th>
+                <th>সুবিধা</th>
+                <th>অসুবিধা</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>অনুমান পদ্ধতি</strong></td>
+                <td>যখন আপনি নিশ্চিত যে সংখ্যাটি <strong>পূর্ণবর্গ</strong> এবং দ্রুত উত্তর প্রয়োজন। (MCQ-এর জন্য সেরা)</td>
+                <td>অত্যন্ত দ্রুত, মাত্র কয়েক সেকেন্ড লাগে।</td>
+                <td>শুধুমাত্র পূর্ণবর্গ সংখ্যার জন্য কাজ করে।</td>
+            </tr>
+            <tr>
+                <td><strong>মৌলিক উৎপাদক</strong></td>
+                <td>ছোট থেকে মাঝারি আকারের সংখ্যার জন্য।</td>
+                <td>বোঝা খুব সহজ এবং নির্ভুল।</td>
+                <td>বড় সংখ্যার উৎপাদক বের করা সময়সাপেক্ষ।</td>
+            </tr>
+            <tr>
+                <td><strong>ভাগ প্রক্রিয়া</strong></td>
+                <td><strong>যেকোনো</strong> সংখ্যার জন্য। বিশেষ করে যখন প্রশ্ন থাকে "কত যোগ বা বিয়োগ করতে হবে"।</td>
+                <td>সার্বজনীন পদ্ধতি, দশমিক সংখ্যারও বর্গমূল করা যায়।</td>
+                <td>অন্য পদ্ধতির চেয়ে সময় বেশি লাগে।</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h3><strong>Long Division Method</strong></h3>
+    <h4><strong>উদাহরণ: 54756-এর বর্গমূল নির্ণয়</strong></h4>
+    
+    <h4>ধাপ 1: সংখ্যাটিকে জোড়ায় ভাগ করা</h4>
+    <p>ডান দিক থেকে শুরু করে সংখ্যাটির অঙ্কগুলোকে জোড়ায় জোড়ায় ভাগ করুন। যদি শুরুতে একটি মাত্র অঙ্ক বাকি থাকে, তবে সেটি একাই একটি গ্রুপ হবে।</p>
+    <p><code>5</code> <code>47</code> <code>56</code></p>
+    
+    <h4>ধাপ 2: প্রথম গ্রুপের জন্য ভাজক ও ভাগফল নির্ণয়</h4>
+    <ul>
+        <li>প্রথম গ্রুপটি হলো <strong>5</strong>।</li>
+        <li>এমন একটি সংখ্যা খুঁজুন যার বর্গ 5-এর সমান বা তার থেকে ঠিক ছোট। 2² = 4 (সঠিক), 3² = 9 (বড়)।</li>
+        <li>সুতরাং, আমরা <strong>2</strong> নেব। এই <strong>2</strong> হবে আমাদের ভাজক (divisor) এবং ভাগফলের (quotient) প্রথম অঙ্ক।</li>
+    </ul>
+    <pre>
+      2
+    +---+
+  2 | 5 47 56
+    - 4
+    +---+
+    </pre>
+
+    <h4>ধাপ 3: বিয়োগ করুন এবং পরবর্তী জোড়া নামান</h4>
+    <ul>
+        <li>5 থেকে 4 বিয়োগ করলে থাকে <strong>1</strong>।</li>
+        <li>এবার পরবর্তী জোড়া (<strong>47</strong>) নিচে নামিয়ে আনুন। নতুন ভাজ্য (dividend) হলো <strong>147</strong>।</li>
+    </ul>
+    <pre>
+      2
+    +---+
+  2 | 5 47 56
+    - 4
+    +---+
+      1 47
+    </pre>
+
+    <h4>ধাপ 4: নতুন ভাজক তৈরি করুন</h4>
+    <ul>
+        <li>এখন পর্যন্ত পাওয়া ভাগফলকে (<strong>2</strong>) দ্বিগুণ করুন: 2 × 2 = <strong>4</strong>।</li>
+        <li>এই <strong>4</strong> হবে আমাদের নতুন ভাজকের প্রথম অংশ। এর পাশে একটি খালি জায়গা রাখুন `(4_)`। আমাদের এমন একটি অঙ্ক খুঁজে বের করতে হবে যা এই খালি জায়গায় (X) বসবে এবং সেই অঙ্ক দিয়েই পুরো নতুন ভাজকটিকে `(4X)` গুণ করলে গুণফল 147-এর সমান বা তার থেকে ছোট হবে।</li>
+        <li>ট্রায়াল: 42 × 2 = 84 (ছোট), 43 × 3 = 129 (কাছাকাছি), 44 × 4 = 176 (বড়)।</li>
+        <li>সুতরাং, আমরা <strong>3</strong> নেব।</li>
+    </ul>
+
+    <h4>ধাপ 5: প্রক্রিয়াটি পুনরাবৃত্তি করুন</h4>
+    <ul>
+        <li>ভাগফলের স্থানে 3 লিখুন। নতুন ভাজক হলো <strong>43</strong>।</li>
+        <li>147 থেকে 129 বিয়োগ করুন। বিয়োগফল <strong>18</strong>।</li>
+        <li>পরবর্তী জোড়া (<strong>56</strong>) নিচে নামিয়ে আনুন। নতুন ভাজ্য হলো <strong>1856</strong>।</li>
+    </ul>
+    <pre>
+      2  3
+    +-----+
+  2 | 5 47 56
+    - 4
+    +-----+
+43 | 1 47
+    - 1 29
+    +-----+
+        18 56
+    </pre>
+
+    <h4>ধাপ 6: আবার নতুন ভাজক তৈরি করুন</h4>
+    <ul>
+        <li>এখন পর্যন্ত পাওয়া ভাগফল হলো <strong>23</strong>। একে দ্বিগুণ করুন: 23 × 2 = <strong>46</strong>।</li>
+        <li>এই <strong>46</strong> হবে নতুন ভাজকের প্রথম অংশ `(46_)`।</li>
+        <li>ভাজ্যের শেষে <strong>6</strong> আছে, তাই খালি জায়গায় <strong>4</strong> (4×4=16) অথবা <strong>6</strong> (6×6=36) বসতে পারে।</li>
+        <li>ট্রায়াল: 464 × 4 = 1856 (মিলে গেছে!)</li>
+        <li>সুতরাং, আমরা <strong>4</strong> নেব।</li>
+    </ul>
+
+    <h4>ধাপ 7: চূড়ান্ত ফলাফল</h4>
+    <ul>
+        <li>ভাগফলের স্থানে 4 লিখুন। বিয়োগ করলে ভাগশেষ <strong>0</strong> থাকে।</li>
+    </ul>
+    <pre>
+      2  3  4  &lt;-- এটিই উত্তর (বর্গমূল)
+    +-------+
+  2 | 5 47 56
+    - 4
+    +-------+
+43 | 1 47
+    - 1 29
+    +-------+
+464 |  18 56
+     - 18 56
+     +-------+
+           0
+    </pre>
+    <p>সুতরাং, <strong>√54756 = 234</strong>।</p>
+
+    <hr>
+    
+    <h3><strong>"কত যোগ বা বিয়োগ করতে হবে" - এই ধরনের অঙ্কে প্রয়োগ</strong></h3>
+    <p>যদি বলা হতো <strong>54760</strong> থেকে কত বিয়োগ করলে পূর্ণবর্গ হবে?<br>
+    <ul>
+        <li>উপরের প্রক্রিয়া অনুযায়ী, 234² = 54756।</li>
+        <li>ভাগশেষ থাকতো <strong>4</strong> (54760 - 54756 = 4)।</li>
+        <li>উত্তর হতো: 4 বিয়োগ করতে হবে।</li>
+    </ul>
+    </p>
+    <p>যদি বলা হতো <strong>54750</strong>-এর সাথে কত যোগ করলে পূর্ণবর্গ হবে?<br>
+    <ul>
+        <li>আমরা জানি 234² = 54756।</li>
+        <li>প্রয়োজনীয় সংখ্যা = 54756 - 54750 = <strong>6</strong>।</li>
+        <li>উত্তর হতো: 6 যোগ করতে হবে।</li>
+    </ul>
+    </p>
+
+</div>
+
+<nav class="navigation">
+    <a href="class1.html" class="nav-button">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button">1</a>
+    <a href="class2.html" class="nav-button active">2</a>
+    <a href="class3.html" class="nav-button">3</a>
+    <a href="class4.html" class="nav-button">4</a>
+    <a href="class5.html" class="nav-button">5</a>
+    <a href="class6.html" class="nav-button">6</a>
+    <a href="class3.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<!-- External JavaScript File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square-Square Root, Cube-Cube Root - Class 01</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: Square-Square Root, Cube-Cube Root</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 01</h2>
+    
+    <h3><strong>বর্গ (Square) নির্ণয়ের কৌশল</strong></h3>
+
+    <h4><strong>1. (a ± b)² সূত্রের ব্যবহার (Base Method)</strong></h4>
+    <p>এই পদ্ধতিটি 100, 50, 1000 ইত্যাদি সংখ্যার কাছাকাছি থাকা সংখ্যার জন্য খুব কার্যকরী।</p>
+
+    <p><strong>কেস 1: 100-এর কাছাকাছি সংখ্যার বর্গ (যেমন: 92², 108²)</strong></p>
+    <ul>
+        <li><strong>উদাহরণ: 92² নির্ণয় করুন</strong>
+            <ol>
+                <li><strong>বেস (Base) ধরুন 100।</strong> 92 সংখ্যাটি 100 থেকে কত কম? <strong>8</strong> কম (100 - 8 = 92)।</li>
+                <li><strong>প্রথম অংশ:</strong> মূল সংখ্যা (92) থেকে ওই পার্থক্য (8) বিয়োগ করুন: 92 - 8 = <strong>84</strong>।</li>
+                <li><strong>দ্বিতীয় অংশ:</strong> পার্থক্যের (8) বর্গ করুন: 8² = <strong>64</strong>।</li>
+                <li><strong>উত্তর:</strong> দুটি অংশকে পাশাপাশি বসিয়ে দিন: <strong>8464</strong>।<br><em>সুতরাং, 92² = 8464।</em></li>
+            </ol>
+        </li>
+        <li><strong>উদাহরণ: 108² নির্ণয় করুন</strong>
+            <ol>
+                <li><strong>বেস 100।</strong> 108 সংখ্যাটি 100 থেকে কত বেশি? <strong>8</strong> বেশি।</li>
+                <li><strong>প্রথম অংশ:</strong> মূল সংখ্যা (108) -এর সাথে ওই পার্থক্য (8) যোগ করুন: 108 + 8 = <strong>116</strong>।</li>
+                <li><strong>দ্বিতীয় অংশ:</strong> পার্থক্যের (8) বর্গ করুন: 8² = <strong>64</strong>।</li>
+                <li><strong>উত্তর:</strong> <strong>11664</strong>।</li>
+            </ol>
+        </li>
+    </ul>
+
+    <p><strong>কেস 2: 50-এর কাছাকাছি সংখ্যার বর্গ (যেমন: 47², 56²)</strong></p>
+    <p>এই ক্ষেত্রে একটি "Magic Number" <strong>25</strong> মনে রাখতে হবে।</p>
+    <ul>
+        <li><strong>উদাহরণ: 47² নির্ণয় করুন</strong>
+            <ol>
+                <li><strong>বেস 50।</strong> 47 সংখ্যাটি 50 থেকে কত কম? <strong>3</strong> কম।</li>
+                <li><strong>প্রথম অংশ:</strong> Magic Number (25) থেকে ওই পার্থক্য (3) বিয়োগ করুন: 25 - 3 = <strong>22</strong>।</li>
+                <li><strong>দ্বিতীয় অংশ:</strong> পার্থক্যের (3) বর্গ করুন: 3² = <strong>09</strong> (সবসময় দুটি অঙ্ক লিখতে হবে)।</li>
+                <li><strong>উত্তর:</strong> <strong>2209</strong>।</li>
+            </ol>
+        </li>
+        <li><strong>উদাহরণ: 56² নির্ণয় করুন</strong>
+            <ol>
+                <li><strong>বেস 50।</strong> 56 সংখ্যাটি 50 থেকে কত বেশি? <strong>6</strong> বেশি।</li>
+                <li><strong>প্রথম অংশ:</strong> Magic Number (25) -এর সাথে ওই পার্থক্য (6) যোগ করুন: 25 + 6 = <strong>31</strong>।</li>
+                <li><strong>দ্বিতীয় অংশ:</strong> পার্থক্যের (6) বর্গ করুন: 6² = <strong>36</strong>।</li>
+                <li><strong>উত্তর:</strong> <strong>3136</strong>।</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h4><strong>2. যে সংখ্যার শেষে 5 আছে তার বর্গ (Ending in 5)</strong></h4>
+    <p>এটি সবচেয়ে সহজ কৌশল।</p>
+    <ul>
+        <li><strong>উদাহরণ: 75² নির্ণয় করুন</strong>
+            <ol>
+                <li><strong>শেষের অংশ:</strong> শেষে সবসময় <strong>25</strong> বসবে।</li>
+                <li><strong>প্রথম অংশ:</strong> 5-এর আগের অঙ্কটি হলো <strong>7</strong>। 7-কে তার ঠিক পরের সংখ্যা (<strong>8</strong>) দিয়ে গুণ করুন: 7 × 8 = <strong>56</strong>।</li>
+                <li><strong>উত্তর:</strong> দুটি অংশকে পাশাপাশি বসিয়ে দিন: <strong>5625</strong>।</li>
+            </ol>
+        </li>
+        <li><strong>উদাহরণ: 115² নির্ণয় করুন</strong>
+            <ol>
+                <li><strong>শেষের অংশ:</strong> <strong>25</strong>।</li>
+                <li><strong>প্রথম অংশ:</strong> 5-এর আগের সংখ্যাটি হলো <strong>11</strong>। 11-কে তার পরের সংখ্যা (<strong>12</strong>) দিয়ে গুণ করুন: 11 × 12 = <strong>132</strong>।</li>
+                <li><strong>উত্তর:</strong> <strong>13225</strong>।</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h4><strong>3. যে কোনো দুই অঙ্কের সংখ্যার বর্গ (Universal Method)</strong></h4>
+    <p>এই পদ্ধতিটি <code>(a+b)² = a² + 2ab + b²</code> সূত্রের ওপর ভিত্তি করে তৈরি।</p>
+    <ul>
+        <li><strong>উদাহরণ: 63² নির্ণয় করুন</strong> (a=6, b=3)
+            <ol>
+                <li>ডান দিক থেকে শুরু করুন। প্রথমে <strong>b²</strong> বের করুন: 3² = <strong>09</strong>। <code>9</code> লিখুন, হাতে <code>0</code> রাখুন।</li>
+                <li>এবার <strong>2ab</strong> বের করুন: 2 × 6 × 3 = <strong>36</strong>। হাতে থাকা <code>0</code> যোগ করুন: 36 + 0 = 36। <code>6</code> লিখুন, হাতে <code>3</code> রাখুন।</li>
+                <li>শেষে <strong>a²</strong> বের করুন: 6² = <strong>36</strong>। হাতে থাকা <code>3</code> যোগ করুন: 36 + 3 = <strong>39</strong>। <code>39</code> লিখুন।</li>
+                <li><strong>উত্তর:</strong> <strong>3969</strong>।</li>
+            </ol>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h3><strong>ঘন (Cube) নির্ণয়ের কৌশল</strong></h3>
+    <p>ঘন নির্ণয় করা বর্গের চেয়ে একটু জটিল, তবে অনুশীলন করলে দ্রুত করা সম্ভব।</p>
+
+    <h4><strong>1. (a+b)³ সূত্রের ব্যবহার (Ratio Method)</strong></h4>
+    <p>এই পদ্ধতিটি <code>(a+b)³ = a³ + 3a²b + 3ab² + b³</code> সূত্রের একটি সহজ রূপ।</p>
+    <ul>
+        <li><strong>উদাহরণ: 24³ নির্ণয় করুন</strong> (a=2, b=4)
+            <ol>
+                <li><strong> চারটি খালি স্থান তৈরি করুন:</strong> <code>_ _ _ _</code></li>
+                <li><strong>প্রথম স্থানে a³ এবং শেষ স্থানে b³ লিখুন:</strong><br>
+                    a³ = 2³ = <strong>8</strong><br>
+                    b³ = 4³ = <strong>64</strong><br>
+                    সুতরাং, <code>8 _ _ 64</code></li>
+                <li><strong>মাঝের দুটি স্থান পূরণ করুন:</strong><br>
+                    দ্বিতীয় স্থানে: a²b = 2² × 4 = <strong>16</strong><br>
+                    তৃতীয় স্থানে: ab² = 2 × 4² = <strong>32</strong><br>
+                    সুতরাং, <code>8 16 32 64</code></li>
+                <li><strong>মাঝের দুটি সংখ্যাকে দ্বিগুণ করে তাদের নিচে লিখুন:</strong>
+<pre>
+  8   16   32   64
+      32   64
+</pre>
+                </li>
+                <li><strong>এবার কলাম অনুযায়ী যোগ করুন (ডান দিক থেকে):</strong>
+                    <ul>
+                        <li><strong>শেষ কলাম:</strong> 64। <code>4</code> লিখুন, হাতে <code>6</code> রাখুন।</li>
+                        <li><strong>তৃতীয় কলাম:</strong> 32 + 64 + (হাতে থাকা 6) = 102। <code>2</code> লিখুন, হাতে <code>10</code> রাখুন।</li>
+                        <li><strong>দ্বিতীয় কলাম:</strong> 16 + 32 + (হাতে থাকা 10) = 58। <code>8</code> লিখুন, হাতে <code>5</code> রাখুন।</li>
+                        <li><strong>প্রথম কলাম:</strong> 8 + (হাতে থাকা 5) = 13। <code>13</code> লিখুন।</li>
+                    </ul>
+                </li>
+                <li><strong>উত্তর:</strong> <strong>13824</strong>।</li>
+            </ol>
+        </li>
+        <li><strong>উদাহরণ: 32³ নির্ণয় করুন</strong> (a=3, b=2)
+            <ol>
+                <li><strong>a³ এবং b³:</strong> 3³=<strong>27</strong>, 2³=<strong>8</strong> → <code>27 _ _ 8</code></li>
+                <li><strong>a²b এবং ab²:</strong> 3²×2=<strong>18</strong>, 3×2²=<strong>12</strong> → <code>27 18 12 8</code></li>
+                <li><strong>মাঝের সংখ্যা দ্বিগুণ করে নিচে লিখুন:</strong>
+<pre>
+  27   18   12   08
+       36   24
+</pre>
+                </li>
+                <li><strong>যোগ করুন:</strong>
+                    <ul>
+                        <li><strong>শেষ কলাম:</strong> 08। <code>8</code> লিখুন, হাতে <code>0</code>।</li>
+                        <li><strong>তৃতীয় কলাম:</strong> 12 + 24 + 0 = 36। <code>6</code> লিখুন, হাতে <code>3</code>।</li>
+                        <li><strong>দ্বিতীয় কলাম:</strong> 18 + 36 + 3 = 57। <code>7</code> লিখুন, হাতে <code>5</code>।</li>
+                        <li><strong>প্রথম কলাম:</strong> 27 + 5 = 32। <code>32</code> লিখুন।</li>
+                    </ul>
+                </li>
+                <li><strong>উত্তর:</strong> <strong>32768</strong>।</li>
+            </ol>
+        </li>
+    </ul>
+
+</div>
+
+<nav class="navigation">
+    <a href="class1.html" class="nav-button disabled">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button active">1</a>
+    <a href="class2.html" class="nav-button">2</a>
+    <a href="class3.html" class="nav-button">3</a>
+    <a href="class4.html" class="nav-button">4</a>
+    <a href="class5.html" class="nav-button">5</a>
+    <a href="class6.html" class="nav-button">6</a>
+    <a href="class2.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<!-- External JavaScript File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

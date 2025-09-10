@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Square-Square-Root-Cube-Cube-Root | Study With Keshab</title>
+
+        <link rel="stylesheet" href="css/style.css" />
+
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        />
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+        <style>
+            body.auth-loading {
+                visibility: hidden;
+                opacity: 0;
+            }
+            .disabled-section {
+                opacity: 0.5;
+                pointer-events: none; /* User cannot click inside this section */
+            }
+            .coming-soon {
+                text-align: center;
+                font-style: italic;
+                color: #888;
+                padding: 20px;
+                border: 1px dashed #ccc;
+                border-radius: 8px;
+                margin-top: 15px;
+            }
+        </style>
+    </head>
+    <body class="day-mode homepage theme-blue auth-loading">
+        <div id="preloader">
+            <div class="loader"></div>
+        </div>
+
+        <header class="main-header">
+            <img
+                src="images/logo.jpg"
+                alt="লোগো"
+                class="profile-pic"
+                id="logo-easter-egg"
+            />
+            <div class="header-text">
+                <h1>অধ্যায়: Digit, Number & Divisibility</h1>
+                <p>আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী</p>
+            </div>
+            <button
+                id="dark-mode-toggle"
+                class="dark-mode-button"
+                title="দিন/রাত মোড পরিবর্তন করুন"
+            >
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </header>
+
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+                type="text"
+                id="search-bar"
+                placeholder="যেকোনো সেকশন খুঁজুন..."
+            />
+        </div>
+
+        <nav class="nav-grid">
+            <a
+                href="https://keshab1997.github.io/Study-With-Keshab/"
+                class="nav-button color-home"
+                ><i class="fa-solid fa-house"></i><span>হোম</span></a
+            >
+            <a href="#dashboard" class="nav-button color-dashboard"
+                ><i class="fa-solid fa-chart-line"></i
+                ><span>ড্যাশবোর্ড</span></a
+            >
+            <a href="#class-notes" class="nav-button color-notes"
+                ><i class="fa-solid fa-book-open"></i><span>ক্লাস নোট</span></a
+            >
+            <a href="#pdf-notes" class="nav-button color-pdf"
+                ><i class="fa-solid fa-file-pdf"></i><span>পিডিএফ নোট</span></a
+            >
+            <a href="#quiz-sets" class="nav-button color-quiz"
+                ><i class="fa-solid fa-file-circle-question"></i
+                ><span>কুইজ সেট</span></a
+            >
+            <a
+                href="https://keshab1997.github.io/cbt-exam/index.html?exam=cbt6&chapter=Digit-Number-Divisibility"
+                class="nav-button color-cbt"
+            >
+                <i class="fa-solid fa-laptop-code"></i>
+                <span>CBT</span>
+            </a>
+            <a href="#result-section" class="nav-button color-result"
+                ><i class="fa-solid fa-square-poll-vertical"></i
+                ><span>রেজাল্ট</span></a
+            >
+            <a href="#leaderboard" class="nav-button color-leaderboard"
+                ><i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span></a
+            >
+        </nav>
+
+        <main>
+            <script>
+                const CURRENT_CHAPTER_NAME = "Square-Square-Root-Cube-Cube-Root";
+            </script>
+
+            <section class="card" id="user-profile-card">
+                <div class="profile-header">
+                    <img
+                        id="user-profile-pic"
+                        src="images/default-avatar.png"
+                        alt="Profile Picture"
+                        class="profile-pic-large"
+                    />
+                    <div class="profile-info">
+                        <h2 id="user-display-name">লোড হচ্ছে...</h2>
+                        <p id="user-email">লোড হচ্ছে...</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card disabled-section" id="dashboard">
+                <h2>
+                    <i class="fa-solid fa-chart-line icon-title"></i> আমার
+                    ড্যাশবোর্ড
+                </h2>
+                <div class="coming-soon">
+                    <p>এই বৈশিষ্ট্যটি শীঘ্রই আসছে...</p>
+                </div>
+            </section>
+
+            <section class="card" id="class-notes">
+                <h2>
+                    <i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট
+                </h2>
+                <p>অধ্যায়ের প্রতিটি অংশের বিস্তারিত আলোচনা পড়ুন।</p>
+                <div class="link-container styled-list">
+                    <a href="class/class1.html"
+                        ><i class="fa-solid fa-person-chalkboard fa-fw"></i>
+                        Class 01</a
+                    >
+                    <a href="class/class2.html"
+                        ><i class="fa-solid fa-person-chalkboard fa-fw"></i>
+                        Class 02</a
+                    >
+                    <a href="class/class3.html"
+                        ><i class="fa-solid fa-person-chalkboard fa-fw"></i>
+                        Class 03</a
+                    >
+					<a href="class/class4.html"
+                        ><i class="fa-solid fa-person-chalkboard fa-fw"></i>
+                        Class 04</a
+                    >
+					<a href="class/class5.html"
+                        ><i class="fa-solid fa-person-chalkboard fa-fw"></i>
+                        Class 05</a
+                    >
+					<a href="class/class6.html"
+                        ><i class="fa-solid fa-person-chalkboard fa-fw"></i>
+                        Class 06</a
+                    >
+                </div>
+            </section>
+
+            <section class="card" id="pdf-notes">
+                <h2>
+                    <i class="fa-solid fa-file-pdf icon-title"></i> পিডিএফ নোট
+                </h2>
+                <p>সম্পূর্ণ নোটটি PDF ফরম্যাটে ডাউনলোড করুন।</p>
+                <div class="link-container styled-list">
+                    <a
+                        href="PDF\Square-Square Root, Cube-Cube Root - Google Docs.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><i class="fa-solid fa-download fa-fw"></i> সম্পূর্ণ নোট PDF</a
+                    >
+                </div>
+            </section>
+
+            <section class="card disabled-section" id="quiz-sets">
+                <h2>
+                    <i class="fa-solid fa-file-circle-question icon-title"></i>
+                    কুইজ সেট
+                </h2>
+                <div class="coming-soon">
+                    <p>এই বৈশিষ্ট্যটি শীঘ্রই আসছে...</p>
+                </div>
+            </section>
+
+            <section class="card disabled-section" id="leaderboard">
+                <h2>
+                    <i class="fa-solid fa-trophy icon-title"></i> লিডারবোর্ড
+                </h2>
+                <div class="coming-soon">
+                    <p>এই বৈশিষ্ট্যটি শীঘ্রই আসছে...</p>
+                </div>
+            </section>
+
+            <section class="card disabled-section" id="result-section">
+                <h2>
+                    <i class="fa-solid fa-square-poll-vertical icon-title"></i>
+                    আমার রেজাল্ট
+                </h2>
+                <div class="coming-soon">
+                    <p>এই বৈশিষ্ট্যটি শীঘ্রই আসছে...</p>
+                </div>
+            </section>
+        </main>
+
+        <a id="back-to-top" href="#"><i class="fas fa-arrow-up"></i></a>
+
+        <footer>
+            <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+            <div class="social-links">
+                <a href="#" target="_blank"
+                    ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </footer>
+
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+        <script src="js/firebase-config.js"></script>
+        <script>
+            (function () {
+                firebase.auth().onAuthStateChanged((user) => {
+                    if (!user) {
+                        window.location.href =
+                            "https://keshab1997.github.io/Study-With-Keshab/login.html";
+                    } else {
+                        document.body.classList.remove("auth-loading");
+                    }
+                });
+            })();
+        </script>
+
+        <script
+            type="module"
+            src="https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js"
+        ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+        <script type="module" src="js/script.js"></script>
+    </body>
+</html>

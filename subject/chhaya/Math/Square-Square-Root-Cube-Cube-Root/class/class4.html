@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square-Square Root, Cube-Cube Root - Class 04</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: Square-Square Root, Cube-Cube Root</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 04</h2>
+
+    <h3><strong>1. পূর্ণবর্গ সংখ্যা খোঁজার নিয়ম (What to Add/Subtract)</strong></h3>
+    <p><strong>সমস্যা:</strong> কোনো সংখ্যার সাথে কত যোগ বা বিয়োগ করলে তা পূর্ণবর্গ হবে? (প্রশ্ন 1, 16, 17, 27, 38)</p>
+    <ul>
+        <li><strong>কত বিয়োগ করতে হবে (What to subtract):</strong>
+            <ol>
+                <li>প্রদত্ত সংখ্যাটির কাছাকাছি বর্গমূল বের করুন (ভাগ প্রক্রিয়ার সাহায্যে)।</li>
+                <li>যে ভাগশেষ (remainder) থাকবে, সেটিই হলো উত্তর। ওই সংখ্যাটি বাদ দিলেই আগের পূর্ণবর্গ সংখ্যাটি পাওয়া যাবে।</li>
+            </ol>
+            <p><em>উদাহরণ (প্রশ্ন 27):</em> 36562-এর বর্গমূল করলে ভাগফল হয় 191 এবং ভাগশেষ থাকে 81। সুতরাং, 81 বাদ দিতে হবে।</p>
+        </li>
+        <li><strong>কত যোগ করতে হবে (What to add):</strong>
+            <ol>
+                <li>প্রদত্ত সংখ্যাটির কাছাকাছি বর্গমূল বের করুন। ধরা যাক, ভাগফল হলো <strong>n</strong>।</li>
+                <li>এর পরের পূর্ণ সংখ্যাটি হলো <strong>(n+1)</strong>।</li>
+                <li><code>(n+1)²</code> -এর মান বের করুন।</li>
+                <li>প্রয়োজনীয় সংখ্যা = <code>(n+1)²</code> - (প্রদত্ত সংখ্যা)।</li>
+            </ol>
+            <p><em>উদাহরণ (প্রশ্ন 17):</em> 2600-এর কাছাকাছি বর্গমূল 50 (50²=2500)। পরের সংখ্যা 51। 51² = 2601। অতএব, যোগ করতে হবে 2601 - 2600 = 1।</p>
+        </li>
+    </ul>
+
+    <h3><strong>2. একক ঘরের অঙ্ক দেখে বর্গমূল অনুমান (Unit Digit Trick)</strong></h3>
+    <p><strong>সমস্যা:</strong> বড় সংখ্যার বর্গমূল দ্রুত অনুমান করা। (প্রশ্ন 5, 18, 22)</p>
+    <ul>
+        <li><strong>নিয়ম:</strong>
+            <ul>
+                <li>যদি কোনো পূর্ণবর্গ সংখ্যার শেষে <strong>1</strong> থাকে, তার বর্গমূলের শেষে <strong>1</strong> বা <strong>9</strong> থাকবে।</li>
+                <li>যদি শেষে <strong>4</strong> থাকে, বর্গমূলের শেষে <strong>2</strong> বা <strong>8</strong> থাকবে।</li>
+                <li>যদি শেষে <strong>5</strong> থাকে, বর্গমূলের শেষে <strong>5</strong> থাকবে।</li>
+                <li>যদি শেষে <strong>6</strong> থাকে, বর্গমূলের শেষে <strong>4</strong> বা <strong>6</strong> থাকবে।</li>
+                <li>যদি শেষে <strong>9</strong> থাকে, বর্গমূলের শেষে <strong>3</strong> বা <strong>7</strong> থাকবে।</li>
+                <li><strong>মনে রাখবেন:</strong> কোনো পূর্ণবর্গ সংখ্যার শেষে <strong>2, 3, 7, 8</strong> থাকে না।</li>
+            </ul>
+        </li>
+        <li><strong>উদাহরণ (প্রশ্ন 18):</strong> <code>x² = 12544</code>। এর বর্গমূল বের করতে হবে।
+            <ol>
+                <li>শেষে <strong>4</strong> আছে, তাই বর্গমূলের শেষে <strong>2</strong> বা <strong>8</strong> থাকবে।</li>
+                <li>আমরা জানি 110² = 12100 এবং 120² = 14400। উত্তর 110 ও 120 এর মধ্যে।</li>
+                <li>যেহেতু শেষে 2 বা 8 থাকতে পারে, সম্ভাব্য উত্তর 112 বা 118। 112² করে দেখলেই উত্তর মিলে যাবে।</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3><strong>3. বীজগণিতের সূত্র (Algebraic Formulas)</strong></h3>
+    <p>এই সূত্রগুলো অনেক অঙ্ককে খুব সহজ করে দেয়।</p>
+    <ul>
+        <li><code>a² - b² = (a + b)(a - b)</code>
+            <p><em>প্রয়োগ (প্রশ্ন 18):</em> <code>x² - 78² = 6460</code> ⇒ <code>x² = 6460 + 78²</code></p>
+        </li>
+        <li><code>a³ - b³ = (a - b)(a² + ab + b²)</code>
+            <p><em>প্রয়োগ (প্রশ্ন 37):</em> <code>(5.5³ - 4³) / (5.5² + 5.5×4 + 4²)</code> = <code>(a³ - b³) / (a² + ab + b²)</code> = <strong>(a - b)</strong> = 5.5 - 4 = 1.5</p>
+        </li>
+        <li><code>a³ + b³ = (a + b)(a² - ab + b²)</code></li>
+        <li><code>(a + b)² = a² + 2ab + b²</code> এবং <code>(a - b)² = a² - 2ab + b²</code></li>
+    </ul>
+
+    <h3><strong>4. করণী সরলীকরণ ও নিরসন (Simplification of Surds)</strong></h3>
+    <p><strong>সমস্যা:</strong> রুটের মধ্যে থাকা রাশির যোগ, বিয়োগ, গুণ, ভাগ। (প্রশ্ন 3, 13, 15, 30)</p>
+    <ul>
+        <li><strong>করণী নিরসন (Rationalization):</strong> হরে (denominator) যদি <code>√a + √b</code> থাকে, তবে লব ও হরকে <code>√a - √b</code> দিয়ে গুণ করতে হয়।
+            <p><em>উদাহরণ (প্রশ্ন 13):</em> <code>(2 + √3) / (2 - √3)</code>। এখানে লব ও হরকে <code>(2 + √3)</code> দিয়ে গুণ করা হয়েছে।</p>
+        </li>
+        <li><strong>কমন নেওয়া:</strong> অঙ্ককে সহজ করার জন্য কমন নেওয়া খুব জরুরি।
+            <p><em>উদাহরণ (প্রশ্ন 30):</em> <code>(√32 + √48) / (√8 + √12)</code>
+            <br>= <code>(4√2 + 4√3) / (2√2 + 2√3)</code>
+            <br>= <code>4(√2 + √3) / 2(√2 + √3)</code> = 4/2 = 2</p>
+        </li>
+    </ul>
+
+    <h3><strong>5. বিশেষ সিরিজ বা ধারার সূত্র (Formulas for Special Series)</strong></h3>
+    <p><strong>সমস্যা:</strong> নির্দিষ্ট প্যাটার্নে থাকা সিরিজের যোগফল। (প্রশ্ন 15, 35)</p>
+    <ul>
+        <li><strong>ক্রমিক বিজোড় সংখ্যার যোগফল:</strong> প্রথম <strong>n</strong>-সংখ্যক বিজোড় সংখ্যার যোগফল হলো <strong>n²</strong>।
+            <p><em>প্রয়োগ (প্রশ্ন 35):</em> (1+3+5) = 3টি সংখ্যা, যোগফল 3² = 9। (1+3+5+7) = 4টি সংখ্যা, যোগফল 4² = 16।</p>
+        </li>
+        <li><strong>টেলিস্কোপিক সিরিজ (Telescopic Series):</strong>
+            <ul>
+                <li><strong>সূত্র:</strong> <code>1/(√a + √b) = (√b - √a) / (b-a)</code></li>
+                <li><em>প্রয়োগ (প্রশ্ন 15):</em> <code>1/(√1 + √2) + 1/(√2 + √3) + ...</code>
+                <br>প্রতিটি পদের মান হয় (√2 - √1), (√3 - √2), ... ইত্যাদি।
+                <br>মাঝের সব পদ কেটে গিয়ে শুধু প্রথম পদের শেষ অংশ (–√1) এবং শেষ পদের প্রথম অংশ (+√100) থেকে যায়। উত্তর: √100 - √1 = 10 - 1 = 9।</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3><strong>6. সূচকের নিয়ম (Rules of Indices)</strong></h3>
+    <p><strong>সমস্যা:</strong> ঘাত বা পাওয়ার সংক্রান্ত অঙ্ক। (প্রশ্ন 29, 31)</p>
+    <ul>
+        <li><code>a⁻ⁿ = 1/aⁿ</code> (প্রশ্ন 31)</li>
+        <li><code>a^(m/n) = ⁿ√aᵐ</code> (প্রশ্ন 31)</li>
+        <li><strong>শর্টকাট (প্রশ্ন 29):</strong> যদি <code>√x√x√x...</code> <strong>n</strong> বার থাকে, তবে তার মান হয় <strong>x^((2ⁿ - 1) / 2ⁿ)</strong>।
+            <p><em>উদাহরণ:</em> <code>√2√2√2√2</code> (এখানে x=2, n=4)
+            <br>মান = <code>2^((2⁴ - 1) / 2⁴)</code> = <code>2^((16 - 1) / 16)</code> = <code>2^(15/16)</code></p>
+        </li>
+    </ul>
+
+    <h3><strong>7. সাধারণ স্মার্ট কৌশল (General Smart Tricks)</strong></h3>
+    <ul>
+        <li><strong>অপশন টেস্ট করা (Option Testing):</strong> সমীকরণ সমাধান না করে বিকল্পগুলি বসিয়ে উত্তর মেলানো অনেক সময় সহজ হয়। (প্রশ্ন 26)</li>
+        <li><strong>অনুমান করা (Estimation):</strong> সঠিক উত্তর বের করার আগে কাছাকাছি একটা মান অনুমান করুন। এতে ভুল বিকল্পগুলি সহজেই বাদ দেওয়া যায়। (প্রশ্ন 28)</li>
+        <li><strong>ভাগ ও গুণ সরল করা:</strong> সরাসরি গুণ বা ভাগ না করে উৎপাদকে ভেঙে কাটাকাটি করলে অঙ্ক সহজ হয়। (প্রশ্ন 20)</li>
+    </ul>
+
+</div>
+
+<nav class="navigation">
+    <a href="class3.html" class="nav-button">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button">1</a>
+    <a href="class2.html" class="nav-button">2</a>
+    <a href="class3.html" class="nav-button">3</a>
+    <a href="class4.html" class="nav-button active">4</a>
+    <a href="class5.html" class="nav-button">5</a>
+    <a href="class6.html" class="nav-button">6</a>
+    <a href="class5.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<!-- External JavaScript File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
