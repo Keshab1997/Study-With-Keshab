@@ -496,8 +496,66 @@
     <script src="js/notification.js"></script>
     <script src="js/script.js"></script>
 
+    <!-- PWA Install Button -->
+    <div id="pwa-install-container" style="display: none; position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+      <button id="pwa-install-btn" style="
+        background: linear-gradient(135deg, #4a90e2, #357abd);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 25px;
+        font-family: 'Hind Siliguri', sans-serif;
+        font-size: 14px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.2s;
+      " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <i class="fas fa-download"></i>
+        অ্যাপ ইনস্টল করুন
+      </button>
+    </div>
+
     <!-- === নতুন যোগ করা PWA এবং ডেস্কটপ মোড বাটন কোড (সম্পূর্ণ আপডেট করা) === -->
     <script>
+      // --- PWA Install Prompt Handling ---
+      let deferredPrompt;
+      const pwaContainer = document.getElementById('pwa-install-container');
+      const pwaBtn = document.getElementById('pwa-install-btn');
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('PWA install prompt triggered');
+        e.preventDefault();
+        deferredPrompt = e;
+        pwaContainer.style.display = 'block';
+      });
+
+      pwaBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          console.log('User choice:', outcome);
+          if (outcome === 'accepted') {
+            pwaContainer.style.display = 'none';
+          }
+          deferredPrompt = null;
+        }
+      });
+
+      // Hide install button if already installed
+      window.addEventListener('appinstalled', () => {
+        console.log('PWA installed successfully');
+        pwaContainer.style.display = 'none';
+      });
+
+      // Check if app is already installed
+      if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) {
+        console.log('App is running in standalone mode');
+        pwaContainer.style.display = 'none';
+      }
+
       // --- 1. Service Worker Registration ---
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
