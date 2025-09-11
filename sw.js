@@ -1,4 +1,4 @@
-const CACHE_NAME = "study-with-keshab-cache-v5";
+const CACHE_NAME = "study-with-keshab-cache-v6";
 const urlsToCache = [
   "/",
   "/index.html",
@@ -26,15 +26,6 @@ const urlsToCache = [
   "/images/logo.jpg"
 ];
 
-// Install SW and cache files
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log("Opened cache");
-      return cache.addAll(urlsToCache);
-    })
-  );
-});
 
 // Fetch - cache first, then network + update cache
 self.addEventListener("fetch", (event) => {
@@ -84,6 +75,22 @@ self.addEventListener("activate", (event) => {
           }
         })
       );
+    }).then(() => {
+      // Force immediate control of all clients
+      return self.clients.claim();
+    })
+  );
+});
+
+// Force immediate activation
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      console.log("Opened cache");
+      return cache.addAll(urlsToCache);
+    }).then(() => {
+      // Skip waiting to activate immediately
+      return self.skipWaiting();
     })
   );
 });
