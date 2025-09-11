@@ -1,9 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("Admin.js: DOM loaded, checking Firebase...");
+    console.log("Firebase available:", typeof firebase !== 'undefined');
+    console.log("Firebase apps:", firebase ? firebase.apps.length : 'undefined');
 
     if (typeof firebase === 'undefined' || !firebase.apps.length) {
         console.error("Firebase SDK not loaded or initialized.");
         return;
     }
+    console.log("Firebase initialized successfully, proceeding with admin panel...");
     const auth = firebase.auth();
     const db = firebase.firestore();
     const functions = firebase.functions();
@@ -51,8 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const checkAdminRole = async (user) => {
+        console.log("checkAdminRole: Checking role for user", user.uid, user.email);
         try {
             const doc = await db.collection('users').doc(user.uid).get();
+            console.log("checkAdminRole: User doc exists:", doc.exists);
+            if (doc.exists) {
+                console.log("checkAdminRole: User data:", doc.data());
+            }
             if (doc.exists && doc.data().role === 'admin') {
                 initializeAdminPanel(user, doc.data());
             } else {
@@ -82,15 +91,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- ডেটা লোডিং এবং ক্যাশিং ---
     const loadAllUserData = async () => {
+        console.log("loadAllUserData: Starting to load user data...");
         if (userListLoading) userListLoading.style.display = 'block';
         try {
+            console.log("loadAllUserData: Attempting Firestore query...");
             const usersSnapshot = await db.collection('users').get();
+            console.log("loadAllUserData: Query successful, got", usersSnapshot.docs.length, "users");
             allUsersCache = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             
             // ড্যাশবোর্ড ডেটা সেট করুন
             const adminCount = allUsersCache.filter(user => user.role === 'admin').length;
+            console.log("loadAllUserData: Total users:", allUsersCache.length, "Admins:", adminCount);
             totalUsersStat.textContent = allUsersCache.length;
             totalAdminsStat.textContent = adminCount;
+            console.log("loadAllUserData: Updated dashboard stats");
             renderUserTable(allUsersCache);
             
             // লিডারবোর্ডের ড্রপডাউন তৈরি করুন
@@ -98,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error("Error loading all user data:", error);
+            console.error("Error details:", error.code, error.message);
         } finally {
             if (userListLoading) userListLoading.style.display = 'none';
         }
