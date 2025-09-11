@@ -8,7 +8,6 @@
       id="viewportMeta"
     />
     <title>Study With Keshab - Learn Smart. Grow Strong.</title>
-    <base href="/Study-With-Keshab/" />
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#4a90e2" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -569,7 +568,7 @@
 
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
-      .register("/Study-With-Keshab/sw.js")
+      .register("sw.js")
       .then(() => console.log("✅ Service Worker Registered"))
       .catch((err) => console.log("SW registration failed", err));
   }
