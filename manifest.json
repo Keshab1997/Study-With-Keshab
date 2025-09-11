@@ -4,7 +4,7 @@
   "start_url": ".",
   "scope": ".",
   "display": "standalone",
-  "orientation": "portrait-primary",
+  "orientation": "portrait",
   "background_color": "#f0f2f5",
   "theme_color": "#4a90e2",
   "description": "Bengali educational platform with interactive learning materials",
