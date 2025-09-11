@@ -1064,3 +1064,27 @@ footer {
         text-align: center;
     }
 }
+
+/* =================================
+   Custom Button Color for PDF Note
+   ================================= */
+
+/* পিডিএফ নোট বাটনের ডিফল্ট স্টাইল */
+.nav-button.color-pdf {
+    background: linear-gradient(135deg, #e53935, #c62828);
+    /* সুন্দর লাল গ্র্যাডিয়েন্ট */
+    color: #ffffff;
+    /* সাদা টেক্সট */
+    transition: all 0.3s ease-in-out;
+    /* হোভারের জন্য মসৃণ অ্যানিমেশন */
+}
+
+/* মাউস হোভার করলে বাটনের স্টাইল */
+.nav-button.color-pdf:hover {
+    background: linear-gradient(135deg, #c62828, #b71c1c);
+    /* গাঢ় লাল গ্র্যাডিয়েন্ট */
+    transform: translateY(-4px);
+    /* বাটনটি সামান্য উপরে উঠবে */
+    box-shadow: 0 6px 12px rgba(229, 57, 53, 0.4);
+    /* একটি সুন্দর লালচে শ্যাডো */
+}
