@@ -1,21 +1,29 @@
-const CACHE_NAME = "study-with-keshab-cache-v3";
+const CACHE_NAME = "study-with-keshab-cache-v5";
 const urlsToCache = [
-  "/Study-With-Keshab/",
-  "/Study-With-Keshab/index.html",
-  "/Study-With-Keshab/about.html",
-  "/Study-With-Keshab/contact.html",
-  "/Study-With-Keshab/login.html",
-  "/Study-With-Keshab/signup.html",
-  "/Study-With-Keshab/notifications.html",
+  "/",
+  "/index.html",
+  "/about.html",
+  "/contact.html",
+  "/login.html",
+  "/signup.html",
+  "/notifications.html",
+  "/admin.html",
   // CSS Files
-  "/Study-With-Keshab/css/style.css",
-  "/Study-With-Keshab/css/notification.css",
+  "/css/style.css",
+  "/css/notification.css",
+  "/css/cbt-styles.css",
+  "/css/login-style.css",
+  "/css/admin.css",
   // JS Files
-  "/Study-With-Keshab/js/script.js",
-  "/Study-With-Keshab/js/auth.js",
+  "/js/script.js",
+  "/js/firebase-config.js",
+  "/js/notification.js",
+  "/js/notification-data.js",
+  "/auth.js",
   // Images / Icons
-  "/Study-With-Keshab/images/icons/icon-192x192.png",
-  "/Study-With-Keshab/images/icons/icon-512x512.png"
+  "/images/icons/icon-192x192.png",
+  "/images/icons/icon-512x512.png",
+  "/images/logo.jpg"
 ];
 
 // Install SW and cache files
@@ -30,20 +38,34 @@ self.addEventListener("install", (event) => {
 
 // Fetch - cache first, then network + update cache
 self.addEventListener("fetch", (event) => {
+  // Only cache GET requests from same origin
+  if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin)) {
+    return; // Let the request go through normally for non-GET or cross-origin requests
+  }
+
   event.respondWith(
     caches.match(event.request).then((response) => {
       if (response) {
         return response;
       }
       return fetch(event.request).then((fetchResponse) => {
-        return caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, fetchResponse.clone());
-          return fetchResponse;
-        });
+        // Only cache successful responses
+        if (fetchResponse.status === 200) {
+          try {
+            return caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, fetchResponse.clone());
+              return fetchResponse;
+            });
+          } catch (error) {
+            console.warn('Failed to cache response:', error);
+            return fetchResponse;
+          }
+        }
+        return fetchResponse;
       }).catch(() => {
         // Offline fallback
         if (event.request.mode === "navigate") {
-          return caches.match("/Study-With-Keshab/index.html");
+          return caches.match("/index.html");
         }
       });
     })
