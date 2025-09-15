@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বিগত বছরের প্রশ্নপত্র (সেট 1) - Class 07</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: বিগত বছরের প্রশ্নপত্র (সেট 1)</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 07</h2>
+    
+    <h3>প্রশ্ন এবং সঠিক উত্তরসমূহ (পর্ব ৭)</h3>
+
+    <!-- প্রশ্ন 92 (সংশোধিত + ধাপে ধাপে ব্যাখ্যা) -->
+<div class="question-item">
+  <h3>প্রশ্ন 92</h3>
+  <p>
+    <strong>
+      কোনো সাংকেতিক ভাষায়– <br><br>
+      • ‘ENTER’ = VBWKH <br>
+      • ‘SHIFT’ = WCLEV <br><br>
+      তাহলে ‘TOUCH’ = ?
+    </strong>
+  </p>
+
+  <!-- অপশন -->
+  <ul>
+    <li>(A) KFXRW</li>
+    <li>(B) WXLKZ</li>
+    <li>(C) WLXZK</li>
+    <li>(D) KZXLW</li>
+  </ul>
+
+  <div class="answer-section">
+    <hr class="answer-divider">
+    <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) KZXLW</span></p>
+
+    <div class="explanation">
+      <p><strong>ব্যাখ্যা (ধাপে ধাপে):</strong></p>
+
+      <ol>
+        <li>
+          কোডিং নিয়ম দুই ধাপে হয়:
+          <ol type="i">
+            <li><strong>ধাপ–১:</strong> বাম থেকে গণনা করে <em>বিজোড়</em> অবস্থানের অক্ষরে +3, <em>জোড়</em> অবস্থানে −3 শিফট।<br>
+              (A→D, B→E ... এবং Z-এর পরে ঘুরে A, একইভাবে −3 দিলে ঘুরে যায়)</li>
+            <li><strong>ধাপ–২:</strong> পাওয়া ফলটি <em>উল্টো করে</em> (reverse) লেখা হয়।</li>
+          </ol>
+        </li>
+
+        <li>
+          <strong>নিয়ম যাচাই (SHIFT → WCLEV):</strong><br>
+          S(+3)=V, H(−3)=E, I(+3)=L, F(−3)=C, T(+3)=W ⇒ মেলে “<code>VELCW</code>”।<br>
+          এবার উল্টো করলে “<code>WCLEV</code>” — যা দেওয়া আউটপুটের সাথে <strong>মিলে</strong>।
+        </li>
+
+        <li>
+          <strong>নিয়ম যাচাই (ENTER):</strong><br>
+          E(+3)=H, N(−3)=K, T(+3)=W, E(−3)=B, R(+3)=U ⇒ “<code>HKWBU</code>”।<br>
+          উল্টো করলে “<code>UBWKH</code>” — দেওয়া “VBWKH”-এর সাথে প্রথম অক্ষরে সামান্য অমিল আছে, তাই এখানে টাইপো থাকা খুব সম্ভব।<br>
+          তবু নিয়মটা পরিষ্কার: <em>+3/−3 আলটানেট করে তারপর রিভার্স</em>।
+        </li>
+
+        <li>
+          <strong>এবার ‘TOUCH’ কোড করি:</strong>
+          <table border="1" cellpadding="6" cellspacing="0">
+            <tr><th>অবস্থান</th><th>অক্ষর</th><th>শিফট</th><th>ফল</th></tr>
+            <tr><td>1 (বিজোড়)</td><td>T</td><td>+3</td><td>W</td></tr>
+            <tr><td>2 (জোড়)</td><td>O</td><td>−3</td><td>L</td></tr>
+            <tr><td>3 (বিজোড়)</td><td>U</td><td>+3</td><td>X</td></tr>
+            <tr><td>4 (জোড়)</td><td>C</td><td>−3</td><td>Z</td></tr>
+            <tr><td>5 (বিজোড়)</td><td>H</td><td>+3</td><td>K</td></tr>
+          </table>
+          ধাপ–১ শেষে পাওয়া যায় “<code>WLXZK</code>”।<br>
+          ধাপ–২ (উল্টো করলে) হয় “<code>KZXLW</code>”।
+        </li>
+      </ol>
+
+      <p><strong>চূড়ান্ত উত্তর:</strong> (D) KZXLW ✅</p>
+    </div>
+  </div>
+</div>
+
+    
+    <!-- প্রশ্ন 93 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 93</h3>
+        <p><strong>তিনটি বিবৃতির সঙ্গে তিনটি সিদ্ধান্ত I, II ও III দেওয়া হয়েছে। কোন্ সিদ্ধান্ত/সিদ্ধান্তগুলি বিবৃতিকে অনুসরণ করছে?</strong></p>
+        <ul>
+            <li><strong>বিবৃতি:</strong> সকল এনভেলপ হল চিঠি। কোনো চিঠিই কাগজ নয়। কিছু কাগজ হল নোটবুক।</li>
+            <li><strong>সিদ্ধান্ত:</strong> I. কিছু কাগজ হল এনভেলপ। II. সকল নোটবুক কাগজ হতে পারে না। III. কিছু নোটবুক হল এনভেলপ।</li>
+        </ul>
+        <ul>
+            <li>(A) I</li>
+            <li>(B) III</li>
+            <li>(C) II</li>
+            <li>(D) কোনোটিই নয়</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) কোনোটিই নয়</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা (যুক্তি):</strong>
+                    <ul>
+                        <li><strong>সিদ্ধান্ত I:</strong> বিবৃতি অনুযায়ী, "কোনো চিঠিই কাগজ নয়"। যেহেতু সকল এনভেলপ চিঠির অন্তর্গত, তাই <strong>কোনো এনভেলপই কাগজ হতে পারে না</strong>। সুতরাং, এই সিদ্ধান্তটি ভুল।</li>
+                        <li><strong>সিদ্ধান্ত II:</strong> "কিছু কাগজ হল নোটবুক" - এই বিবৃতি থেকে এটা নিশ্চিতভাবে বলা যায় না যে সকল নোটবুক কাগজ হতে পারে কি না। তাই "সকল নোটবুক কাগজ হতে পারে না" এই সিদ্ধান্তটি নিশ্চিতভাবে সত্য নয়।</li>
+                        <li><strong>সিদ্ধান্ত III:</strong> এনভেলপ এবং নোটবুকের মধ্যে কোনো নিশ্চিত সম্পর্ক স্থাপন করা যায় না। তাই এই সিদ্ধান্তটিও অনুসরণ করে না।</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 94 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 94</h3>
+        <p><strong>নীচের কোন্ সংখ্যা দ্বারা ‘?’ চিহ্নিত স্থান পূরণ করা যাবে?<br>4, 21, 47, 100, 198, ?</strong></p>
+        <ul>
+            <li>(A) 355</li>
+            <li>(B) 359</li>
+            <li>(C) 399</li>
+            <li>(D) 395</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 359</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা (গাণিতিক সমাধান):</strong><br>এই শ্রেণিটি দুটি স্তরের পার্থক্যের উপর ভিত্তি করে তৈরি।
+                    <ul>
+                        <li><strong>ধাপ 1 (প্রথম স্তরের পার্থক্য):</strong> 17, 26, 53, 98</li>
+                        <li><strong>ধাপ 2 (দ্বিতীয় স্তরের পার্থক্য):</strong> 9, 27, 45. দেখা যাচ্ছে, পার্থক্যগুলি 18 করে বাড়ছে (9, 9+18=27, 27+18=45)।</li>
+                        <li><strong>ধাপ 3 (পরবর্তী সংখ্যা নির্ণয়):</strong>
+                            <ul>
+                                <li>দ্বিতীয় স্তরের পরবর্তী পার্থক্য হবে: 45 + 18 = <strong>63</strong>।</li>
+                                <li>প্রথম স্তরের পরবর্তী পার্থক্য হবে: 98 + 63 = <strong>161</strong>।</li>
+                                <li>সুতরাং, নির্ণেয় সংখ্যাটি হবে: 198 + 161 = <strong>359</strong>।</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 95 -->
+<div class="question-item">
+  <h3>প্রশ্ন 95</h3>
+  <p>
+    <strong>
+      একটি বিবৃতির সঙ্গে দুটি সিদ্ধান্ত দেওয়া হয়েছে। কোন্ সিদ্ধান্তটি বিবৃতি অনুযায়ী সঠিক?
+    </strong>
+  </p>
+
+  <ul>
+    <li><strong>বিবৃতি:</strong> X > E ≥ U < W = T > J < L</li>
+    <li><strong>সিদ্ধান্ত:</strong> 
+      <br>I. T < E 
+      <br>II. X < U
+    </li>
+  </ul>
+
+  <!-- অপশন -->
+  <ul>
+    <li>(A) I অথবা II সঠিক নয়</li>
+    <li>(B) II সঠিক</li>
+    <li>(C) I সঠিক</li>
+    <li>(D) I ও II সঠিক</li>
+  </ul>
+
+  <div class="answer-section">
+    <hr class="answer-divider">
+    <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) I অথবা II সঠিক নয়</span></p>
+
+    <div class="explanation">
+      <p><strong>ব্যাখ্যা (ধাপে ধাপে):</strong></p>
+      <ol>
+        <li>
+          <strong>সিদ্ধান্ত I (T < E):</strong><br>
+          বিবৃতিতে E এবং T সম্পর্কিত অংশ হলো: <br>
+          <code>E ≥ U < W = T</code><br>
+          এখানে E-এর সাথে U-এর সম্পর্ক ≥, আর U-এর সাথে T-এর সম্পর্ক &lt; (কারণ U < W = T)।  
+          <br>ফলে E এবং T-এর মধ্যে সরাসরি কোনো নিশ্চিত সম্পর্ক স্থাপন করা যায় না।  
+          <br><em>অতএব, সিদ্ধান্ত I ভুল।</em>
+        </li>
+        <li>
+          <strong>সিদ্ধান্ত II (X < U):</strong><br>
+          বিবৃতির শুরুতে আছে: <br>
+          <code>X > E ≥ U</code><br>
+          অর্থাৎ X > E এবং E ≥ U ⇒ X > U।  
+          কিন্তু সিদ্ধান্তে বলা হয়েছে X < U, যা পুরোপুরি বিপরীত।  
+          <br><em>অতএব, সিদ্ধান্ত II-ও ভুল।</em>
+        </li>
+        <li>
+          যেহেতু I বা II কোনোটিই সঠিক নয়, তাই সঠিক উত্তর হবে: <strong>(A)</strong>।
+        </li>
+      </ol>
+      <p><strong>চূড়ান্ত উত্তর:</strong> (A) I অথবা II সঠিক নয় ✅</p>
+    </div>
+  </div>
+</div>
+
+    
+    <!-- প্রশ্ন 96 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 96</h3>
+        <p><strong>একটি শ্রেণির 50 জন ছাত্র একটি সারিতে উত্তরদিকে মুখ করে দাঁড়িয়ে আছে। রাকেশ ডানদিক থেকে 17-তম স্থানে এবং কমলেশ বামদিক থেকে 22-তম স্থানে রয়েছে। রাকেশ ও কমলেশের মাঝে কতজন ছাত্র রয়েছে?</strong></p>
+        <ul>
+            <li>(A) 9</li>
+            <li>(B) 11 (সঠিক উত্তর)</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">11</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা (গাণিতিক সমাধান):</strong><br><strong>দ্রষ্টব্য:</strong> প্রদত্ত বিকল্পগুলির মধ্যে সঠিক উত্তরটি নেই।
+                    <ul>
+                        <li><strong>ধাপ 1:</strong> মোট ছাত্র = 50 জন।</li>
+                        <li><strong>ধাপ 2:</strong> কমলেশের স্থান বামদিক থেকে = 22-তম।</li>
+                        <li><strong>ধাপ 3:</strong> রাকেশের স্থান ডানদিক থেকে 17-তম, যা বামদিক থেকে = (50 - 17) + 1 = 34-তম।</li>
+                        <li><strong>ধাপ 4:</strong> তাদের মাঝে ছাত্র সংখ্যা = (বড় স্থান - ছোট স্থান) - 1 = (34 - 22) - 1 = 12 - 1 = <strong>11 জন</strong>।</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- প্রশ্ন 97 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 97</h3>
+        <p><strong>একজন দোকানি যথাক্রমে 50 টাকা, 40 টাকা এবং 30 টাকা প্রতি কেজি দরে আপেল কেনেন এবং যথাক্রমে 2 : 4 : 9 অনুপাতে ওজন অনুসারে মিশ্রিত করে 30% লাভে বিক্রি করলেন। আপেলগুলির প্রতি কেজি দরে বিক্রয়মূল্য কত?</strong></p>
+        <ul>
+            <li>(A) 75 টাকা/কেজি</li>
+            <li>(B) 45.9 টাকা/কেজি</li>
+            <li>(C) 10.8 টাকা/কেজি</li>
+            <li>(D) 23.5 টাকা/কেজি</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 45.9 টাকা/কেজি</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা (গাণিতিক সমাধান):</strong>
+                    <ul>
+                        <li><strong>ধাপ 1: মিশ্রণের গড় ক্রয়মূল্য (CP) নির্ণয়:</strong><br>গড় ক্রয়মূল্য = [(50×2) + (40×4) + (30×9)] / (2+4+9) = [100 + 160 + 270] / 15 = 530 / 15 টাকা/কেজি।</li>
+                        <li><strong>ধাপ 2: 30% লাভে বিক্রয়মূল্য (SP) নির্ণয়:</strong><br>বিক্রয়মূল্য = (530 / 15) × (1 + 30/100) = (530 / 15) × 1.3 ≈ <strong>45.93 টাকা/কেজি</strong>।</li>
+                    </ul>
+                    নিকটতম উত্তর হলো 45.9 টাকা/কেজি।
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 98 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 98</h3>
+        <p><strong>FRANCK শব্দটির মধ্যে এমন কতগুলি বর্ণজোড়া রয়েছে, (বাম ও ডানদিক উভয় দিক থেকেই) যাদের নিজেদের মধ্যে এবং ইংরেজি বর্ণমালায় একই সংখ্যক বর্ণ রয়েছে?</strong></p>
+        <ul>
+            <li>(A) একটিও নয়</li>
+            <li>(B) তিনটি</li>
+            <li>(C) দুটি</li>
+            <li>(D) একটি</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) দুটি</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা (যুক্তি):</strong>
+                    <ul>
+                        <li><strong>বাম থেকে ডানদিকে:</strong> F (G H I J) K (একটি জোড়া: FK), A (B) C (একটি জোড়া: AC)।</li>
+                        <li><strong>ডান থেকে বামদিকে:</strong> কোনো জোড়া নেই।</li>
+                    </ul>
+                    সুতরাং, মোট দুটি জোড়া পাওয়া গেল: <strong>(F, K)</strong> এবং <strong>(A, C)</strong>।
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+		<!-- প্রশ্ন 99 (English digit সহ) -->
+<div class="question-item">
+  <h3>প্রশ্ন 99</h3>
+  <p><strong>
+    কৃয়ার কাছে 1 টাকা, 50 পয়সা ও 25 পয়সার মুদ্রা 1/4:1/2:1/2 অনুপাতে রয়েছে।  
+    যদি তার কাছে 100 টি 25 পয়সার মুদ্রা থাকে, তবে কৃয়ার কাছে মোট কত টাকা রয়েছে?
+  </strong></p>
+
+  <!-- অপশন -->
+  <ul>
+    <li>(A) 100 টাকা</li>
+    <li>(B) 75 টাকা</li>
+    <li>(C) 125 টাকা</li>
+    <li>(D) 120 টাকা</li>
+  </ul>
+
+  <div class="answer-section">
+    <hr class="answer-divider">
+    <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 125 টাকা</span></p>
+
+    <div class="explanation">
+      <p><strong>ব্যাখ্যা (ধাপে ধাপে):</strong></p>
+      <ul>
+        <li><strong>Step 1:</strong> অনুপাত = 1/4 : 1/2 : 1/2 ⇒ সরল করলে <strong>1 : 2 : 2</strong>।</li>
+        <li><strong>Step 2:</strong> 25 পয়সার মুদ্রা = 2 ভাগ = 100 টি ⇒ 1 ভাগ = 50 টি।</li>
+        <li><strong>Step 3:</strong>
+          <br>1 টাকার মুদ্রা (1 ভাগ) = 50 টি  
+          <br>50 পয়সার মুদ্রা (2 ভাগ) = 100 টি  
+          <br>25 পয়সার মুদ্রা (2 ভাগ) = 100 টি
+        </li>
+        <li><strong>Step 4:</strong>
+          <br>(50 × 1 টাকা) + (100 × 0.50 টাকা) + (100 × 0.25 টাকা)  
+          <br>= 50 + 50 + 25 = <strong>125 টাকা</strong>
+        </li>
+      </ul>
+      <p><strong>Final Answer:</strong> (C) 125 টাকা ✅</p>
+    </div>
+  </div>
+</div>
+
+    
+    <!-- প্রশ্ন 100 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 100</h3>
+        <p><strong>নীচে পাঁচটি, তিন অংকবিশিষ্ট সংখ্যা দেওয়া হয়েছে। যদি সমস্ত সংখ্যাকে ঊর্ধ্বক্রমে (ascending order) সাজানো হয়, তবে কতগুলি সংখ্যার স্থান অপরিবর্তিত থাকবে?<br>(বাম) 534 945 317 354 781 (ডান)</strong></p>
+        <ul>
+            <li>(A) 0</li>
+            <li>(B) 1</li>
+            <li>(C) 2</li>
+            <li>(D) 5</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 0</span></p>
+            <div class="explanation">
+                <p><strong>ব্যাখ্যা:</strong>
+                    <ul>
+                        <li><strong>আসল ক্রম:</strong> 534, 945, 317, 354, 781</li>
+                        <li><strong>ঊর্ধ্বক্রমে সাজানোর পরের ক্রম:</strong> 317, 354, 534, 781, 945</li>
+                    </ul>
+                    দুটি ক্রমের তুলনা করলে দেখা যায়, কোনো সংখ্যার স্থানই অপরিবর্তিত নেই। সুতরাং, উত্তর হলো <strong>0</strong>।
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<nav class="navigation">
+    <a href="class6.html" class="nav-button">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button">1</a>
+    <a href="class2.html" class="nav-button">2</a>
+    <a href="class3.html" class="nav-button">3</a>
+    <a href="class4.html" class="nav-button">4</a>
+    <a href="class5.html" class="nav-button">5</a>
+    <a href="class6.html" class="nav-button">6</a>
+    <a href="class7.html" class="nav-button active">7</a>
+    <a href="class8.html" class="nav-button">8</a>
+    <a href="class8.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<!-- External JavaScript File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
