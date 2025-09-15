@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Previous Year Set 3 - Quiz Set 6</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        />
+        <link rel="stylesheet" href="../css/quiz_style.css" />
+
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+        <script src="../js/firebase-config.js"></script>
+    </head>
+    <body class="day-mode">
+        <main class="quiz-page-container">
+            <header class="quiz-header">
+                <h1 id="quiz-title">লোড হচ্ছে...</h1>
+                <div class="score-board">
+                    <span id="correct-count">✔️ 0</span>
+                    <span id="wrong-count">❌ 0</span>
+                    <span id="timer">00:00</span>
+                </div>
+                <button id="mode-toggle" class="mode-toggle-btn">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </header>
+
+            <div id="quiz-container">
+                <!-- JavaScript দিয়ে প্রশ্ন এখানে লোড হবে -->
+            </div>
+
+            <div class="page-navigation">
+                <a href="Qset5.html" class="btn btn-secondary"
+                    ><i class="fas fa-arrow-left"></i> পূর্ববর্তী</a
+                >
+                <a href="../index.html" class="btn btn-primary"
+                    ><i class="fas fa-home"></i> হোম</a
+                >
+                <a href="#" class="btn btn-secondary disabled"
+                    >পরবর্তী <i class="fas fa-arrow-right"></i
+                ></a>
+            </div>
+        </main>
+
+        <script>
+            const quizSet = {
+                chapterName: "Previous-Year-Set-3",
+                setName: "Quiz Set 6",
+                name: "Previous Year Set 3 (প্রশ্ন ৮৯-১০০)",
+                questions: [
+                    {
+                        question: "সংখ্যা, চিহ্ন শ্রেণি দেখে উত্তর দাও।<br>74 & @ 34 % @ $ 4 @ 34 % 4 $ 5 * @ 4345 * 3<br>কতগুলি 4 আছে যার ঠিক পরে চিহ্ন আছে?",
+                        options: ["নয়টি", "সাতটি", "পাঁচটি", "তিনটি"],
+                        answer: 2,
+                        explanation: "শ্রেণিটি থেকে এমন ‘4’ খুঁজে বের করতে হবে যার ঠিক পরেই একটি চিহ্ন (@, %, $, *) আছে।<br>7<b>4 &</b> @ 3<b>4 %</b> @ $ <b>4 @</b> 3<b>4 %</b> <b>4 $</b> 5 * @ 4345 * 3<br>এই শর্ত পূরণ করে এমন 5টি '4' আছে।"
+                    },
+                    {
+                        question: "পাঁচজন ব্যক্তি P, Q, R, S এবং T একই বছরের বিভিন্ন মাসে যেমন জানুয়ারি, ফেব্রুয়ারি, মার্চ, এপ্রিল এবং মে-তে ঘুরতে যায়। Q, ফেব্রুয়ারিতে যায়। Q ও P-এর মাঝে একজন যায়। T ও R-এর মাঝে তিনজন যায়। P-যে মাসে যায় R তার পরের মাসে যায়। মে মাসে কে যায়?",
+                        options: ["S", "P", "T", "R"],
+                        answer: 3,
+                        explanation: "ধাপে ধাপে সমাধান:<br>1. ফেব্রুয়ারি: Q<br>2. Q ও P-এর মাঝে একজন, তাই এপ্রিল: P<br>3. P-এর পরের মাসে R, তাই মে: R<br>4. T ও R-এর মাঝে তিনজন, তাই জানুয়ারি: T<br>5. বাকি থাকে S, তাই মার্চ: S<br>পূর্ণ বিন্যাস: T(জানু), Q(ফেব), S(মার্চ), P(এপ্রিল), R(মে)। সুতরাং, মে মাসে R যায়।"
+                    },
+                    {
+                        question: "দ্বিতীয় বর্ণগুচ্ছ প্রথমটির সঙ্গে এবং চতুর্থ বর্ণগুচ্ছ দ্বিতীয়টি সঙ্গে যেভাবে সম্পর্কিত একইভাবে পঞ্চম বর্ণগুচ্ছ কোনটির সঙ্গে সম্পর্কিত?<br>LAPTOP : QPUQBM :: MOBILE : FMJCPN :: DEVICE : ?",
+                        options: ["FDJWFE", "RDJFEW", "RDJFFW", "EFWJDF"],
+                        answer: 0,
+                        explanation: "নিয়মটি হলো: শব্দটিকে প্রথমে উল্টো করে লেখা হয় এবং তারপর প্রতিটি বর্ণের পরবর্তী বর্ণটি লেখা হয়।<br>DEVICE → উল্টো করলে হয় ECIVED<br>E+1=F, C+1=D, I+1=J, V+1=W, E+1=F, D+1=E<br>সুতরাং, কোডটি হবে FDJWFE।"
+                    },
+                    {
+                        question: "যদি ‘−’ মানে ‘÷’, ‘+’ মানে ‘×’, ‘÷’ মানে ‘−’ এবং ‘×’ মানে ‘+’ হয়, তবে কোন্ সমীকরণটি সঠিক?",
+                        options: ["20 + 3 − 9 ÷ 5 × 2 = 20", "20 − 3 + 9 × 5 ÷ 2 = 63", "20 × 3 ÷ 9 − 5 + 2 = 32", "20 ÷ 3 × 9 + 5 − 2 = 50"],
+                        answer: 1,
+                        explanation: "বিকল্প (B) পরীক্ষা করি:<br>20 − 3 + 9 × 5 ÷ 2<br>→ 20 ÷ 3 × 9 + 5 − 2<br>→ (20/3) × 9 + 5 - 2<br>→ 20 × 3 + 3 = 60 + 3 = 63 (এখানে একটি ছোট ভুল আছে, সঠিক গণনা: 60 + 5 - 2 = 63)। সুতরাং, এটি সঠিক।"
+                    },
+                    {
+                        question: "একটি সারিতে কয়েকজন ব্যক্তি উত্তর দিকে মুখ করে বসে, P-এর বামদিকে তৃতীয়স্থানে R বসে। P-এর ডানদিকে চতুর্থ স্থানে Q বসেছে। Q ও T-এর মাঝে দুজন বসেছে। যদি সারিতে আর কোনো ব্যক্তি না থাকে, তবে মোট কত জন সারিতে থাকবে?",
+                        options: ["12", "11", "15", "13"],
+                        answer: 1,
+                        explanation: "ধাপে ধাপে বিন্যাস: <br>1. R _ _ P (P-এর বামে ৩য় স্থানে R)<br>2. R _ _ P _ _ _ Q (P-এর ডানে ৪র্থ স্থানে Q)<br>3. Q ও T-এর মাঝে দুজন। T, Q-এর ডানে বসলে: R _ _ P _ _ _ Q _ _ T<br>মোট ব্যক্তি = 1(R)+2+1(P)+3+1(Q)+2+1(T) = 11 জন।"
+                    },
+                    {
+                        question: "'ALOEVERA'-এর সংকেত কী হবে?",
+                        options: ["84232615", "14232415", "14762618", "84762618"],
+                        answer: 1,
+                        explanation: "<b>শর্ত II:</b> একটি শব্দে দুটির বেশি Vowel থাকলে প্রথম Vowel হবে 1, দ্বিতীয়টির সংকেত 2 এইভাবে থাকবে।<br>ALOEVERA-তে Vowel গুলি হলো A(1), O(2), E(3), E(4), A(5)।<br>Consonant-গুলির কোড টেবিল থেকে: L→4, V→2, R→1।<br>সম্পূর্ণ কোড: A(1) L(4) O(2) E(3) V(2) E(4) R(1) A(5) → 14232415।"
+                    },
+                    {
+                        question: "AMBUSHED শব্দটি ইংরেজি বর্ণমালার বিপরীতক্রমে সাজালে কতগুলি বর্ণের অবস্থান অপরিবর্তিত থাকবে?",
+                        options: ["দুই", "শূন্য", "তিন", "এক"],
+                        answer: 1,
+                        explanation: "মূল শব্দ:   A M B U S H E D<br>বিপরীতক্রমে সাজানো শব্দ: U S M H E D B A<br>তুলনা করলে দেখা যায়, কোনো বর্ণের অবস্থানই অপরিবর্তিত নেই। সুতরাং উত্তর হবে শূন্য।"
+                    },
+                    {
+                        question: "কোনো দৌড় প্রতিযোগিতায়<br> I. G, L-এর পিছনে এবং L, D-এর পিছনে আছে।<br>II. D, G এর সামনে এবং G, R-এর সামনে আছে।<br>III. V-এর পিছনে F নেই, V, R-এর সামনে আছে।<br><b>সিদ্ধান্ত:</b> I. D-এর পিছনে V থাকবে। II. F, R-এর সামনে আছে। III. D, R-এর আগে আছে।",
+                        options: ["সিদ্ধান্ত III অনুসরণ করছে", "সিদ্ধান্ত II ও III অনুসরণ করছে", "সিদ্ধান্ত I ও III অনুসরণ করছে", "সিদ্ধান্ত I ও II অনুসরণ করছে"],
+                        answer: 1,
+                        explanation: "বিবৃতি থেকে সম্পর্ক: D > L > G > R এবং F ≥ V > R।<br><b>সিদ্ধান্ত I (D > V?):</b> D ও V-এর মধ্যে সরাসরি সম্পর্ক নেই, তাই এটি নিশ্চিত নয়।<br><b>সিদ্ধান্ত II (F > R?):</b> যেহেতু F ≥ V এবং V > R, তাই F > R। এটি সঠিক।<br><b>সিদ্ধান্ত III (D > R?):</b> যেহেতু D > L > G > R, তাই D > R। এটি সঠিক।<br>সুতরাং, সিদ্ধান্ত II ও III অনুসরণ করছে।"
+                    },
+                    {
+                        question: "T, U, V, W, X, Y, Z এবং A উত্তরদিকে একটি সারিতে বসে আছে... A-এর ঠিক ডানদিকে কে আছে?",
+                        options: ["U", "W", "Z", "T"],
+                        answer: 0,
+                        explanation: "শর্তগুলি অনুযায়ী ধাপে ধাপে সাজালে সম্পূর্ণ বিন্যাসটি দাঁড়ায় (বাম থেকে ডানে):<br><b>A U T Z V X W Y</b><br>এই বিন্যাসে, A একদম বাম দিকে বসেছে এবং তার ঠিক ডানদিকে U বসেছে।"
+                    },
+                    {
+                        question: "বিবৃতি: (a) সব চড়ুই হল পাখি (b) কিছু পাখি হল প্রাণী (c) সব কুকুর হল প্রাণী<br><b>সিদ্ধান্ত:</b> I. কিছু কুকুর হল চড়ুই II. সব প্রাণী হল পাখি, এটি একটি সম্ভাবনা III. কিছু প্রাণী হল চড়ুই",
+                        options: ["I ও II সঠিক", "II সঠিক", "III সঠিক", "I সঠিক"],
+                        answer: 1,
+                        explanation: "<b>সিদ্ধান্ত I:</b> কুকুর এবং চড়ুইয়ের মধ্যে কোনো নিশ্চিত সম্পর্ক নেই। (ভুল)<br><b>সিদ্ধান্ত II:</b> এমন একটি ভেন চিত্র আঁকা সম্ভব যেখানে 'প্রাণী' বৃত্তটি 'পাখি' বৃত্তের সম্পূর্ণ ভিতরে থাকবে এবং কোনো বিবৃতিকে লঙ্ঘন করবে না। যেহেতু এটি একটি সম্ভাবনা, তাই এটি সঠিক।<br><b>সিদ্ধান্ত III:</b> কিছু প্রাণী চড়ুই হবেই, এমন কোনো নিশ্চয়তা নেই। (ভুল)"
+                    },
+                    {
+                        question: "এমন কতগুলি Walker আছে যেগুলি Highchair কিন্তু Prams বা Strollers হবে না?",
+                        options: ["8", "5", "6", "9"],
+                        answer: 1,
+                        explanation: "আমাদের এমন সংখ্যা খুঁজতে হবে যা Walker (ত্রিভুজ) এবং Highchair (আয়তক্ষেত্র)-এর মধ্যে আছে, কিন্তু Prams (বৃত্ত) বা Strollers (বর্গক্ষেত্র)-এর মধ্যে নেই।<br>ত্রিভুজ ও আয়তক্ষেত্রের সাধারণ অংশ হল 5 এবং 6।<br>এর মধ্যে 6 বর্গক্ষেত্রের ভিতরে আছে।<br>শুধুমাত্র 5 সংখ্যাটি বৃত্ত এবং বর্গক্ষেত্র উভয়েরই বাইরে আছে। সুতরাং, উত্তর 5।"
+                    },
+                    {
+                        question: "ছয়জন শিশু F, G, H, I, J এবং K পরীক্ষা দিচ্ছে... কে সবচেয়ে কম নম্বর পায়?",
+                        options: ["H", "J", "K", "I"],
+                        answer: 1,
+                        explanation: "বিবৃতিগুলি থেকে নম্বরের ক্রম সাজাই ('>' মানে বেশি নম্বর):<br>1. H > J<br>2. G > H এবং K > H<br>3. I > J<br>4. F > G<br>সবগুলিকে একত্রিত করলে পাই: F > G > H > J, K > H > J, এবং I > J। দেখা যাচ্ছে, F, G, H, K, এবং I প্রত্যেকেই J-এর থেকে বেশি নম্বর পেয়েছে। সুতরাং, J সবচেয়ে কম নম্বর পায়।"
+                    }
+                ],
+            };
+        </script>
+
+        <script src="../js/quiz_script.js"></script>
+    </body>
+</html>
