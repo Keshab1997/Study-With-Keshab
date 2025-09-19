@@ -132,22 +132,39 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ===================================================================
-    // --- নতুন কিবোর্ড শর্টকাট ফাংশনালিটি (New Keyboard Shortcut Functionality) ---
+    // --- নতুন এবং উন্নত কিবোর্ড শর্টকাট ফাংশনালিটি (Smooth Scrolling) ---
     // ===================================================================
 
-    const SCROLL_AMOUNT = 80; // Arrow key দিয়ে স্ক্রল করার পরিমাণ
-    const AUTO_SCROLL_SPEED = 1; // অটো-স্ক্রলের গতি (কম মানে দ্রুত)
-    let autoScrollInterval = null;
+    const SCROLL_SPEED = 2.5;
+    const AUTO_SCROLL_SPEED = 1;
 
-    // অটো-স্ক্রল ফাংশন
+    let smoothScrollInterval = null;
+    let autoScrollInterval = null;
+    let isArrowKeyDown = false;
+
+    function startSmoothScroll(direction) {
+        if (smoothScrollInterval) return;
+        isArrowKeyDown = true;
+        smoothScrollInterval = setInterval(() => {
+            const amount = direction === "down" ? SCROLL_SPEED : -SCROLL_SPEED;
+            window.scrollBy(0, amount);
+        }, 10);
+    }
+
+    function stopSmoothScroll() {
+        clearInterval(smoothScrollInterval);
+        smoothScrollInterval = null;
+        isArrowKeyDown = false;
+    }
+
     function toggleAutoScroll() {
+        if (smoothScrollInterval) stopSmoothScroll();
         if (autoScrollInterval) {
             clearInterval(autoScrollInterval);
             autoScrollInterval = null;
         } else {
             autoScrollInterval = setInterval(() => {
-                window.scrollBy(0, 1); // প্রতিবার 1 পিক্সেল নিচে স্ক্রল
-                // যদি পেজের শেষে পৌঁছে যায়, অটো-স্ক্রল বন্ধ হয়ে যাবে
+                window.scrollBy(0, 1);
                 if (
                     window.innerHeight + window.scrollY >=
                     document.body.offsetHeight
@@ -159,13 +176,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // কিবোর্ড শর্টকাটের তালিকা
     function showHelp() {
         alert(
             `কিবোর্ড শর্টকাট তালিকা:
 --------------------------------
-↑ (Up Arrow)      : উপরে স্ক্রল করুন
-↓ (Down Arrow)    : নিচে স্ক্রল করুন
+↑ (Up Arrow)      : উপরে মসৃণভাবে স্ক্রল করুন
+↓ (Down Arrow)    : নিচে মসৃণভাবে স্ক্রল করুন
 Spacebar          : অটো-স্ক্রল চালু/বন্ধ করুন
 Home              : পেজের শুরুতে যান
 End               : পেজের শেষে যান
@@ -177,40 +193,38 @@ PageDown          : এক পৃষ্ঠা নিচে যান
         );
     }
 
-    // প্রধান কিবোর্ড ইভেন্ট লিসেনার
     window.addEventListener("keydown", (event) => {
-        // যদি ব্যবহারকারী কোনো ইনপুট ফিল্ডে টাইপ করেন, তবে শর্টকাট কাজ করবে না
         if (["INPUT", "TEXTAREA", "SELECT"].includes(event.target.tagName)) {
             return;
         }
 
-        // event.key অনুযায়ী কাজ করবে
+        // isArrowKeyDown ফ্ল্যাগটি চেক করে key-repeat হওয়া আটকানো হচ্ছে
+        if (
+            (event.key === "ArrowUp" || event.key === "ArrowDown") &&
+            !isArrowKeyDown
+        ) {
+            event.preventDefault();
+            startSmoothScroll(event.key === "ArrowDown" ? "down" : "up");
+            return; // Arrow key হলে switch এ যাবে না
+        }
+
+        // non-arrow key গুলোর জন্য switch ব্যবহার করা হচ্ছে
+        // key repeat আটকাতে switch এর বাইরে রাখা হয়েছে
+        if (event.repeat) return;
+
         switch (event.key) {
-            case "ArrowUp":
-                event.preventDefault();
-                window.scrollBy({ top: -SCROLL_AMOUNT, behavior: "smooth" });
-                break;
-
-            case "ArrowDown":
-                event.preventDefault();
-                window.scrollBy({ top: SCROLL_AMOUNT, behavior: "smooth" });
-                break;
-
-            case " ": // Spacebar
+            case " ":
                 event.preventDefault();
                 toggleAutoScroll();
                 break;
-
             case "Home":
                 event.preventDefault();
                 scrollToTopBtn.click();
                 break;
-
             case "End":
                 event.preventDefault();
                 scrollToBottomBtn.click();
                 break;
-
             case "PageUp":
                 event.preventDefault();
                 window.scrollBy({
@@ -218,7 +232,6 @@ PageDown          : এক পৃষ্ঠা নিচে যান
                     behavior: "smooth",
                 });
                 break;
-
             case "PageDown":
                 event.preventDefault();
                 window.scrollBy({
@@ -226,22 +239,26 @@ PageDown          : এক পৃষ্ঠা নিচে যান
                     behavior: "smooth",
                 });
                 break;
-
             case "d":
             case "D":
                 darkModeToggle.click();
                 break;
-
             case "m":
             case "M":
                 desktopModeToggle.click();
                 break;
-
             case "?":
             case "h":
             case "H":
                 showHelp();
                 break;
+        }
+    });
+
+    window.addEventListener("keyup", (event) => {
+        if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+            event.preventDefault();
+            stopSmoothScroll();
         }
     });
 });
