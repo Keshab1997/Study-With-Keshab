@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+            id="viewportMeta"
+        />
+        <meta
+            name="description"
+            content="Study With Keshab ওয়েবসাইটে General Knowledge (GK) পরীক্ষার জন্য অনুশীলন পত্রের তালিকা।"
+        />
+        <title>অনুশীলন পত্রের তালিকা | Study With Keshab</title>
+
+        <!-- Base Href (গুরুত্বপূর্ণ) -->
+        <base href="../" />
+
+        <!-- Google Fonts & Font Awesome -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+
+        <style>
+            :root {
+                --text-color: #192335;
+                --bg-light: #f7f9fc;
+                --bg-white: #ffffff;
+                --footer-bg: #0b172a;
+                --footer-text: #a0b3d1;
+                --primary-blue: #2575fc;
+                --primary-purple: #6a11cb;
+            }
+            body {
+                font-family: "Baloo Da 2", cursive;
+                background-color: var(--bg-light);
+                margin: 0;
+                color: var(--text-color);
+                line-height: 1.6;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            /* --- নতুন হেডার স্টাইল --- */
+            .page-header {
+                background: var(--bg-white);
+                padding: 1rem 0;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+            .header-content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+            }
+            .header-back-btn {
+                font-size: 1.5rem;
+                color: var(--text-color);
+                text-decoration: none;
+                padding: 0.5rem;
+            }
+            .header-title {
+                font-size: clamp(1.2rem, 4vw, 1.5rem);
+                font-weight: 600;
+                color: var(--text-color);
+                /* হেডারকে সঠিকভাবে মাঝখানে আনার জন্য এই স্টাইল */
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
+            }
+            /* --- নতুন হেডার স্টাইল শেষ --- */
+
+            .chapter-page {
+                padding: 2rem 2rem 4rem; /* উপরের padding কমানো হয়েছে কারণ হেডার এখন জায়গা নিচ্ছে */
+            }
+            .chapter-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem; /* শিরোনাম থেকে একটু দূরত্ব তৈরি করতে */
+            }
+            .chapter-card {
+                background: var(--bg-white);
+                border-radius: 15px;
+                padding: 2rem;
+                text-align: center;
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--text-color);
+                text-decoration: none;
+                border: 1px solid #e8eaf6;
+                transition: all 0.35s ease-in-out;
+                box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
+            }
+            .chapter-card i {
+                display: block;
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                transition: all 0.35s ease-in-out;
+                color: var(--primary-blue);
+            }
+            .chapter-card:hover {
+                transform: translateY(-10px);
+                color: #fff;
+                background-image: linear-gradient(
+                    45deg,
+                    var(--primary-purple) 0%,
+                    var(--primary-blue) 100%
+                );
+                box-shadow: 0 15px 35px rgba(37, 117, 252, 0.3);
+            }
+            .chapter-card:hover i {
+                color: #fff;
+                transform: scale(1.1) rotate(-5deg);
+            }
+            .footer {
+                background: var(--footer-bg);
+                text-align: center;
+                color: var(--footer-text);
+                padding: 2.5rem 1rem;
+                margin-top: 4rem;
+                border-top: 2px solid var(--primary-blue);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- নতুন হেডার শুরু -->
+        <header class="page-header">
+            <div class="header-content container">
+                <a
+                    href="#"
+                    onclick="history.back(); return false;"
+                    class="header-back-btn"
+                    aria-label="ফিরে যান"
+                >
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h1 class="header-title">অনুশীলন পত্রের তালিকা</h1>
+                <!-- ডান দিকে কোনো আইকন প্রয়োজন হলে এখানে যোগ করতে পারেন -->
+            </div>
+        </header>
+        <!-- নতুন হেডার শেষ -->
+
+        <main class="chapter-page">
+            <div class="container">
+                <div class="chapter-list">
+                    <!-- এখানে প্রতিটি প্র্যাকটিস সেটের জন্য একটি করে কার্ড থাকবে -->
+                    <a
+                        href="https://keshab1997.github.io/Textbook-Railway-Practice-Set-1/"
+                        class="chapter-card"
+                        ><i class="fas fa-file-alt"></i> Practice Set 1</a
+                    >
+                    <a
+                        href="subject/practice-papers/set-2.html"
+                        class="chapter-card"
+                        ><i class="fas fa-file-alt"></i> Practice Set 2</a
+                    >
+                    <a
+                        href="subject/practice-papers/set-3.html"
+                        class="chapter-card"
+                        ><i class="fas fa-file-alt"></i> Practice Set 3</a
+                    >
+                    <a
+                        href="subject/practice-papers/set-4.html"
+                        class="chapter-card"
+                        ><i class="fas fa-file-alt"></i> Practice Set 4</a
+                    >
+                    <a
+                        href="subject/practice-papers/set-5.html"
+                        class="chapter-card"
+                        ><i class="fas fa-file-alt"></i> Practice Set 5</a
+                    >
+                    <a
+                        href="subject/practice-papers/set-6.html"
+                        class="chapter-card"
+                        ><i class="fas fa-file-alt"></i> Practice Set 6</a
+                    >
+                    <a
+                        href="subject/practice-papers/set-7.html"
+                        class="chapter-card"
+                        ><i class="fas fa-file-alt"></i> Practice Set 7</a
+                    >
+                    <a
+                        href="subject/practice-papers/set-8.html"
+                        class="chapter-card"
+                        ><i class="fas fa-file-alt"></i> Practice Set 8</a
+                    >
+                    <a
+                        href="subject/practice-papers/set-9.html"
+                        class="chapter-card"
+                        ><i class="fas fa-file-alt"></i> Practice Set 9</a
+                    >
+                    <a
+                        href="subject/practice-papers/set-10.html"
+                        class="chapter-card"
+                        ><i class="fas fa-file-alt"></i> Practice Set 10</a
+                    >
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            &copy; ২০২৫ | Practice Sets | Study With Keshab
+        </footer>
+
+        <!-- আপনার প্রয়োজনীয় জাভাস্ক্রিপ্ট ফাইলগুলো এখানে থাকবে -->
+        <script src="js/script.js"></script>
+    </body>
+</html>
