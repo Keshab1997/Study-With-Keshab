@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+            id="viewportMeta"
+        />
+        <meta
+            name="description"
+            content="Study With Keshab ওয়েবসাইটে কারেন্ট অ্যাফেয়ার্সের সকল বিভাগ। জাতীয়, আন্তর্জাতিক, অর্থনীতি, খেলাধুলা সহ সকল সাম্প্রতিক ঘটনার আপডেট খুঁজুন।"
+        />
+        <title>কারেন্ট অ্যাফেয়ার্স - Study With Keshab</title>
+
+        <!-- Base Href (Optional but good practice for nested pages) -->
+        <base href="../" />
+
+        <!-- Google Fonts & Font Awesome -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+
+        <!-- মূল CSS ফাইল -->
+        <link rel="stylesheet" href="css/style.css" />
+
+        <style>
+            /* কারেন্ট অ্যাফেয়ার্স পেজের জন্য নির্দিষ্ট থিম */
+            :root {
+                --text-color: #1c204b;
+                --bg-light: #f4f7fc;
+                --bg-white: #ffffff;
+                --footer-bg: #0b172a;
+                --footer-text: #a0b3d1;
+            }
+            body {
+                font-family: "Baloo Da 2", cursive;
+                background-color: var(--bg-light);
+                margin: 0;
+                color: var(--text-color);
+                line-height: 1.6;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+            .chapter-page {
+                padding: 4rem 2rem;
+            }
+            .section-title {
+                text-align: center;
+                font-size: clamp(2rem, 5vw, 3rem); /* রেসপন্সিভ ফন্ট সাইজ */
+                font-weight: 700;
+                margin-bottom: 3rem;
+                background: linear-gradient(45deg, #4e54c8, #8f94fb);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-fill-color: transparent;
+            }
+            .chapter-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+            }
+            .chapter-card {
+                background: var(--bg-white);
+                border-radius: 15px;
+                padding: 2rem;
+                text-align: center;
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--text-color);
+                text-decoration: none;
+                border: 1px solid #e0e7ff;
+                transition: all 0.35s ease-in-out;
+                box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
+                position: relative;
+                overflow: hidden;
+            }
+            .chapter-card i {
+                display: block;
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                transition: all 0.35s ease-in-out;
+            }
+            /* আইকনগুলোর জন্য নতুন রঙের সেট */
+            .chapter-list a:nth-child(1) i {
+                color: #1e88e5;
+            } /* জাতীয় */
+            .chapter-list a:nth-child(2) i {
+                color: #43a047;
+            } /* আন্তর্জাতিক */
+            .chapter-list a:nth-child(3) i {
+                color: #f4511e;
+            } /* অর্থনীতি */
+            .chapter-list a:nth-child(4) i {
+                color: #5e35b1;
+            } /* বিজ্ঞান ও প্রযুক্তি */
+            .chapter-list a:nth-child(5) i {
+                color: #fb8c00;
+            } /* খেলাধুলা */
+            .chapter-list a:nth-child(6) i {
+                color: #e53935;
+            } /* পুরস্কার ও সম্মাননা */
+            .chapter-list a:nth-child(7) i {
+                color: #00897b;
+            } /* প্রতিরক্ষা */
+            .chapter-list a:nth-child(8) i {
+                color: #3949ab;
+            } /* পরিবেশ */
+            .chapter-list a:nth-child(9) i {
+                color: #d81b60;
+            } /* গুরুত্বপূর্ণ দিবস */
+            .chapter-list a:nth-child(10) i {
+                color: #6d4c41;
+            } /* নিয়োগ ও পদত্যাগ */
+            .chapter-list a:nth-child(11) i {
+                color: #039be5;
+            } /* বই ও লেখক */
+            .chapter-list a:nth-child(12) i {
+                color: #757575;
+            } /* বিবিধ */
+
+            .chapter-card:hover {
+                transform: translateY(-10px);
+                color: #fff;
+                background-image: linear-gradient(
+                    45deg,
+                    #4e54c8 0%,
+                    #8f94fb 100%
+                );
+                box-shadow: 0 15px 35px rgba(78, 84, 200, 0.3);
+            }
+            .chapter-card:hover i {
+                color: #fff;
+                transform: scale(1.1) rotate(-5deg);
+            }
+            .footer {
+                background: var(--footer-bg);
+                text-align: center;
+                color: var(--footer-text);
+                padding: 2.5rem 1rem;
+                margin-top: 4rem;
+                border-top: 2px solid #6c72ff;
+            }
+
+            /* === নতুন ভিউ টগল বাটনের জন্য CSS === */
+            .header-action-btn {
+                background: none;
+                border: none;
+                color: #333;
+                font-size: 1.3rem;
+                cursor: pointer;
+                padding: 5px 8px;
+                margin-left: 8px;
+                transition: color 0.3s ease;
+            }
+            .header-action-btn:hover {
+                color: #4a90e2;
+            }
+            .mobile-navigation-menu .toggle-view-btn i {
+                margin-right: 12px;
+                width: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="header-grid container">
+                <a href="index.html" class="logo-link">
+                    <img
+                        src="images/logo.jpg"
+                        alt="Study With Keshab Logo"
+                        class="logo-img"
+                    />
+                </a>
+
+                <nav class="primary-navigation">
+                    <ul>
+                        <li>
+                            <a href="index.html"
+                                ><i class="fas fa-home"></i> Home</a
+                            >
+                        </li>
+                        <li>
+                            <a href="index.html#subjects"
+                                ><i class="fas fa-book-open"></i> Subjects</a
+                            >
+                        </li>
+                        <li>
+                            <a href="about.html"
+                                ><i class="fas fa-info-circle"></i> About</a
+                            >
+                        </li>
+                        <li>
+                            <a href="contact.html"
+                                ><i class="fas fa-envelope"></i> Contact</a
+                            >
+                        </li>
+                        <li class="auth-link" id="guest-link-desktop">
+                            <a href="login.html"
+                                ><i class="fas fa-sign-in-alt"></i> Login / Sign
+                                up</a
+                            >
+                        </li>
+                        <li
+                            class="auth-link"
+                            id="logout-link-desktop"
+                            style="display: none"
+                        >
+                            <a href="#" id="logout-btn-desktop"
+                                ><i class="fas fa-sign-out-alt"></i> Logout</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <span id="user-name-display" class="nav-user-name"></span>
+                    <!-- === নতুন ভিউ টগল বাটন (ডেস্কটপ) === -->
+                    <button
+                        class="toggle-view-btn header-action-btn"
+                        title="ডেস্কটপ মোড"
+                    >
+                        <i class="fas fa-desktop"></i>
+                    </button>
+                    <button
+                        class="mobile-nav-toggle"
+                        aria-controls="mobile-navigation-menu"
+                        aria-expanded="false"
+                    >
+                        <span class="sr-only">Menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <nav
+            id="mobile-navigation-menu"
+            class="mobile-navigation-menu"
+            data-visible="false"
+        >
+            <ul>
+                <li>
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="index.html#subjects"
+                        ><i class="fas fa-book-open"></i> Subjects</a
+                    >
+                </li>
+                <li>
+                    <a href="about.html"
+                        ><i class="fas fa-info-circle"></i> About</a
+                    >
+                </li>
+                <li>
+                    <a href="contact.html"
+                        ><i class="fas fa-envelope"></i> Contact</a
+                    >
+                </li>
+                <li class="auth-link" id="guest-link-mobile">
+                    <a href="login.html"
+                        ><i class="fas fa-sign-in-alt"></i> Login / Sign up</a
+                    >
+                </li>
+                <li
+                    class="auth-link"
+                    id="logout-link-mobile"
+                    style="display: none"
+                >
+                    <a href="#" id="logout-btn-mobile"
+                        ><i class="fas fa-sign-out-alt"></i> Logout</a
+                    >
+                </li>
+                <!-- === নতুন ভিউ টগল বাটন (মোবাইল মেনু) === -->
+                <li>
+                    <a href="#" class="toggle-view-btn">
+                        <i class="fas fa-desktop"></i>
+                        <span class="toggle-view-text">ডেস্কটপ মোড</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="chapter-page">
+            <div class="container">
+                <h1 class="section-title">
+                    🌐 কারেন্ট অ্যাফেয়ার্স - বিভাগ তালিকা
+                </h1>
+                <div class="chapter-list">
+                    <a
+                        href="subject/current-affairs/national.html"
+                        class="chapter-card"
+                        ><i class="fas fa-flag"></i> জাতীয়</a
+                    >
+                    <a
+                        href="subject/current-affairs/international.html"
+                        class="chapter-card"
+                        ><i class="fas fa-globe-asia"></i> আন্তর্জাতিক</a
+                    >
+                    <a
+                        href="subject/current-affairs/economy.html"
+                        class="chapter-card"
+                        ><i class="fas fa-chart-line"></i> অর্থনীতি</a
+                    >
+                    <a
+                        href="subject/current-affairs/science-tech.html"
+                        class="chapter-card"
+                        ><i class="fas fa-satellite-dish"></i> বিজ্ঞান ও
+                        প্রযুক্তি</a
+                    >
+                    <a
+                        href="subject/current-affairs/sports.html"
+                        class="chapter-card"
+                        ><i class="fas fa-trophy"></i> খেলাধুলা</a
+                    >
+                    <a
+                        href="subject/current-affairs/awards.html"
+                        class="chapter-card"
+                        ><i class="fas fa-award"></i> পুরস্কার ও সম্মাননা</a
+                    >
+                    <a
+                        href="subject/current-affairs/defense.html"
+                        class="chapter-card"
+                        ><i class="fas fa-shield-halved"></i> প্রতিরক্ষা</a
+                    >
+                    <a
+                        href="subject/current-affairs/environment.html"
+                        class="chapter-card"
+                        ><i class="fas fa-tree"></i> পরিবেশ</a
+                    >
+                    <a
+                        href="subject/current-affairs/important-days.html"
+                        class="chapter-card"
+                        ><i class="fas fa-calendar-check"></i> গুরুত্বপূর্ণ
+                        দিবস</a
+                    >
+                    <a
+                        href="subject/current-affairs/appointments.html"
+                        class="chapter-card"
+                        ><i class="fas fa-user-tie"></i> নিয়োগ ও পদত্যাগ</a
+                    >
+                    <a
+                        href="subject/current-affairs/books-authors.html"
+                        class="chapter-card"
+                        ><i class="fas fa-book"></i> বই ও লেখক</a
+                    >
+                    <a
+                        href="subject/current-affairs/misc.html"
+                        class="chapter-card"
+                        ><i class="fas fa-lightbulb"></i> বিবিধ</a
+                    >
+                    <a
+                        href="https://keshab1997.github.io/Yourstudy-Current-affairs/"
+                        class="chapter-card"
+                        ><i class="fa-solid fa-user-graduate"></i> YOURSTUDY</a
+                    >
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            &copy; ২০২৫ | কারেন্ট অ্যাফেয়ার্স বিভাগ | Study With Keshab
+        </footer>
+
+        <!-- Firebase স্ক্রিপ্ট -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="js/firebase-config.js"></script>
+
+        <!-- সাধারণ এবং অথেন্টিকেশন স্ক্রিপ্ট -->
+        <script src="js/script.js"></script>
+
+        <!-- এই পেজের জন্য নির্দিষ্ট স্ক্রিপ্ট -->
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                // --- 1. অথেন্টিকেশন এবং পেজ প্রোটেকশন লজিক ---
+                const auth = firebase.auth();
+
+                const guestLinksDesktop =
+                    document.getElementById("guest-link-desktop");
+                const logoutLinkDesktop = document.getElementById(
+                    "logout-link-desktop",
+                );
+                const guestLinksMobile =
+                    document.getElementById("guest-link-mobile");
+                const logoutLinkMobile =
+                    document.getElementById("logout-link-mobile");
+                const userNameDisplay =
+                    document.getElementById("user-name-display");
+
+                auth.onAuthStateChanged((user) => {
+                    // পেজ প্রোটেকশন: ইউজার লগইন না থাকলে login.html পেজে পাঠিয়ে দেওয়া হবে
+                    if (!user) {
+                        console.log("User not logged in. Redirecting...");
+                        window.location.href = "login.html";
+                        return; // রিডাইরেক্ট করার পর আর কিছু করার দরকার নেই
+                    }
+
+                    // ইউজার লগইন থাকলে UI আপডেট করা হবে
+                    console.log(
+                        "User is logged in:",
+                        user.displayName || user.email,
+                    );
+                    if (guestLinksDesktop)
+                        guestLinksDesktop.style.display = "none";
+                    if (logoutLinkDesktop)
+                        logoutLinkDesktop.style.display = "list-item";
+                    if (guestLinksMobile)
+                        guestLinksMobile.style.display = "none";
+                    if (logoutLinkMobile)
+                        logoutLinkMobile.style.display = "list-item";
+                    if (userNameDisplay) {
+                        userNameDisplay.textContent = user.displayName
+                            ? user.displayName.split(" ")[0]
+                            : "User";
+                    }
+                });
+
+                // লগআউট ফাংশনালিটি
+                const setupLogout = (buttonId) => {
+                    const logoutBtn = document.getElementById(buttonId);
+                    if (logoutBtn) {
+                        logoutBtn.addEventListener("click", (e) => {
+                            e.preventDefault();
+                            auth.signOut()
+                                .then(() => {
+                                    console.log(
+                                        "User signed out successfully.",
+                                    );
+                                    window.location.href = "login.html";
+                                })
+                                .catch((error) => {
+                                    console.error("Sign out error", error);
+                                });
+                        });
+                    }
+                };
+                setupLogout("logout-btn-desktop");
+                setupLogout("logout-btn-mobile");
+
+                // --- 2. ডেস্কটপ/মোবাইল মোড টগল লজিক ---
+                const toggleBtns =
+                    document.querySelectorAll(".toggle-view-btn");
+                const viewportMeta = document.getElementById("viewportMeta");
+                let isDesktopView =
+                    localStorage.getItem("viewMode") === "desktop";
+
+                function applyViewMode() {
+                    const desktopBtn = document.querySelector(
+                        ".header-action-btn.toggle-view-btn",
+                    );
+                    const mobileMenuText =
+                        document.querySelector(".toggle-view-text");
+                    const allIcons = document.querySelectorAll(
+                        ".toggle-view-btn .fas",
+                    );
+
+                    if (isDesktopView) {
+                        viewportMeta.setAttribute("content", "width=1280");
+                        if (desktopBtn) desktopBtn.title = "মোবাইল মোড";
+                        if (mobileMenuText)
+                            mobileMenuText.textContent = "মোবাইল মোড";
+                        allIcons.forEach((icon) => {
+                            icon.classList.remove("fa-desktop");
+                            icon.classList.add("fa-mobile-alt");
+                        });
+                    } else {
+                        viewportMeta.setAttribute(
+                            "content",
+                            "width=device-width, initial-scale=1.0",
+                        );
+                        if (desktopBtn) desktopBtn.title = "ডেস্কটপ মোড";
+                        if (mobileMenuText)
+                            mobileMenuText.textContent = "ডেস্কটপ মোড";
+                        allIcons.forEach((icon) => {
+                            icon.classList.remove("fa-mobile-alt");
+                            icon.classList.add("fa-desktop");
+                        });
+                    }
+                }
+
+                toggleBtns.forEach((btn) => {
+                    btn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        isDesktopView = !isDesktopView;
+                        localStorage.setItem(
+                            "viewMode",
+                            isDesktopView ? "desktop" : "mobile",
+                        );
+                        applyViewMode();
+                    });
+                });
+
+                // পেজ লোড হওয়ার সময় সঠিক ভিউ মোড প্রয়োগ করুন
+                applyViewMode();
+            });
+        </script>
+    </body>
+</html>
