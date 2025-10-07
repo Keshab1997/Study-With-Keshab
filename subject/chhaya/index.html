@@ -1,414 +1,1173 @@
 <!doctype html>
 <html lang="bn">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" id="viewportMeta" />
-    <meta name="description" content="Study With Keshab ওয়েবসাইটে ছায়া প্রকাশনীর সম্পূর্ণ সূচিপত্র। সাধারণ বিজ্ঞান, গণিত, রিজনিং এবং অন্যান্য সকল অধ্যায়ের তালিকা।" />
-    <title>সূচিপত্র: ছায়া প্রকাশনী - Study With Keshab</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+            id="viewportMeta"
+        />
+        <meta
+            name="description"
+            content="Study With Keshab ওয়েবসাইটে ছায়া প্রকাশনীর সম্পূর্ণ সূচিপত্র। সাধারণ বিজ্ঞান, গণিত, রিজনিং এবং অন্যান্য সকল অধ্যায়ের তালিকা।"
+        />
+        <title>সূচিপত্র: ছায়া প্রকাশনী - Study With Keshab</title>
 
-    <!-- Base Href (ফাইলটি subject/chhaya/ ফোল্ডারে থাকলে এটি সঠিক) -->
-    <base href="../../" />
+        <!-- Base Href (ফাইলটি subject/chhaya/ ফোল্ডারে থাকলে এটি সঠিক) -->
+        <base href="../../" />
 
-    <!-- Google Fonts & Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        <!-- Google Fonts & Font Awesome -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
 
-    <!-- মূল CSS ফাইল -->
-    <link rel="stylesheet" href="css/style.css" />
+        <!-- মূল CSS ফাইল -->
+        <link rel="stylesheet" href="css/style.css" />
 
-    <style>
-        /* সূচিপত্র পেজের জন্য নির্দিষ্ট থিম */
-        :root {
-            --text-color: #2c3e50;
-            --bg-light: #ecf0f1;
-            --bg-white: #ffffff;
-            --header-bg: #3498db;
-            --header-text: #ffffff;
-            --border-color: #dde4e6;
-            --hover-bg: #f9fbfb;
-            --footer-bg: #2c3e50;
-            --footer-text: #bdc3c7;
-        }
-        body {
-            font-family: "Baloo Da 2", cursive;
-            background-color: var(--bg-light);
-            margin: 0;
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .toc-page {
-            padding: 4rem 1rem;
-        }
-        .page-title {
-            text-align: center;
-            font-size: clamp(2.2rem, 6vw, 3.2rem);
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: var(--text-color);
-        }
-        .toc-section {
-            background: var(--bg-white);
-            border-radius: 12px;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-        .toc-header {
-            background-color: var(--header-bg);
-            color: var(--header-text);
-            padding: 1rem 1.5rem;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-        .toc-header i {
-            margin-right: 12px;
-        }
-        .toc-body {
-            padding: 0;
-        }
-        .chapter-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .chapter-list li a {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.9rem 1.5rem;
-            text-decoration: none;
-            color: var(--text-color);
-            border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            font-size: 1.1rem;
-        }
-        .chapter-list li:last-child a {
-            border-bottom: none;
-        }
-        .chapter-list li a:hover {
-            background-color: var(--hover-bg);
-            color: var(--header-bg);
-        }
-        .chapter-title {
-            font-weight: 600;
-        }
-        .chapter-title small {
-            font-weight: 400;
-            color: #555;
-            display: block;
-            font-size: 0.9em;
-            margin-top: 2px;
-        }
-        .chapter-list a:hover .chapter-title small {
-            color: #3498db;
-        }
-
-        /* ভিউ টগল বাটনের জন্য CSS */
-        .header-action-btn { background: none; border: none; font-size: 1.3rem; cursor: pointer; padding: 5px 8px; margin-left: 8px; transition: color 0.3s ease; }
-        .mobile-navigation-menu .toggle-view-btn i { margin-right: 12px; width: 20px; }
-    </style>
-</head>
-<body>
-    <header class="site-header">
-        <div class="header-grid container">
-            <a href="index.html" class="logo-link">
-                <img src="images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
-            </a>
-
-            <nav class="primary-navigation">
-                <ul>
-                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
-                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
-                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-                    <li class="auth-link" id="guest-link-desktop">
-                        <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login / Sign up</a>
-                    </li>
-                    <li class="auth-link" id="logout-link-desktop" style="display: none">
-                        <a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                    </li>
-                </ul>
-            </nav>
-
-            <div class="header-actions">
-                <span id="user-name-display" class="nav-user-name"></span>
-                <button class="toggle-view-btn header-action-btn" title="ডেস্কটপ মোড">
-                    <i class="fas fa-desktop"></i>
-                </button>
-                <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
-                    <span class="sr-only">Menu</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
-        <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
-            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
-            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-            <li class="auth-link" id="guest-link-mobile">
-                <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login / Sign up</a>
-            </li>
-            <li class="auth-link" id="logout-link-mobile" style="display: none">
-                <a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> Logout</a>
-            </li>
-            <li>
-                <a href="#" class="toggle-view-btn">
-                    <i class="fas fa-desktop"></i>
-                    <span class="toggle-view-text">ডেস্কটপ মোড</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <main class="toc-page">
-        <div class="container">
-            <h1 class="page-title">📖 সূচিপত্র - ছায়া প্রকাশনী</h1>
-
-            <!-- SECTION A: GENERAL SCIENCE -->
-            <section class="toc-section">
-                <div class="toc-header"><i class="fas fa-flask"></i> SECTION A: GENERAL SCIENCE (সাধারণ বিজ্ঞান)</div>
-                <div class="toc-body">
-                    <ol class="chapter-list">
-                        <li><a href="subject/chhaya/general-science/physics.html"><span class="chapter-title">Chapter 1 ► Physics <small>(পদার্থবিদ্যা)</small></span></a></li>
-                        <li><a href="subject/chhaya/general-science/chemistry.html"><span class="chapter-title">Chapter 2 ► Chemistry <small>(রসায়ন)</small></span></a></li>
-                        <li><a href="subject/chhaya/general-science/biology.html"><span class="chapter-title">Chapter 3 ► Biology <small>(জীববিদ্যা)</small></span></a></li>
-                        <li><a href="subject/chhaya/general-science/env-science.html"><span class="chapter-title">Chapter 4 ► Environmental Science <small>(পরিবেশ বিজ্ঞান)</small></span></a></li>
-                        <li><a href="subject/chhaya/general-science/computer-it.html"><span class="chapter-title">Chapter 5 ► Computer & IT <small>(কম্পিউটার ও তথ্যপ্রযুক্তি)</small></span></a></li>
-                    </ol>
-                </div>
-            </section>
-
-            <!-- SECTION B: MATHEMATICS -->
-            <section class="toc-section">
-                <div class="toc-header"><i class="fas fa-calculator"></i> SECTION B: MATHEMATICS (গণিত)</div>
-                <div class="toc-body">
-                    <ol class="chapter-list">
-                        <li><a href="subject/chhaya/Math/Math-Digit-Number- Divisibility/index.html"><span class="chapter-title">Chapter 1 ► Digit, Number & Divisibility</span></a></li>
-                        <li><a href="subject/chhaya/Math/Square-Square-Root-Cube-Cube-Root/index.html"><span class="chapter-title">Chapter 2 ► Square-Square Root, Cube-Cube Root</span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-3.html"><span class="chapter-title">Chapter 3 ► Decimal and Recurring Decimal</span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-4.html"><span class="chapter-title">Chapter 4 ► Fraction <small>(ভগ্নাংশ)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-5.html"><span class="chapter-title">Chapter 5 ► HCF & LCM <small>(গ.সা.গু ও ল.সা.গু)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-6.html"><span class="chapter-title">Chapter 6 ► Indices & Surds <small>(সূচক ও করণী)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-7.html"><span class="chapter-title">Chapter 7 ► Simplification <small>(সরলীকরণ)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-8.html"><span class="chapter-title">Chapter 8 ► Average <small>(গড়)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-9.html"><span class="chapter-title">Chapter 9 ► Ratio & Proportion <small>(অনুপাত ও সমানুপাত)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-10.html"><span class="chapter-title">Chapter 10 ► Mixture <small>(মিশ্রণ)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-11.html"><span class="chapter-title">Chapter 11 ► Percentage <small>(শতাংশ)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-12.html"><span class="chapter-title">Chapter 12 ► Partnership <small>(অংশীদারিত্ব)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-13.html"><span class="chapter-title">Chapter 13 ► Simple Interest <small>(সরল সুদ)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-14.html"><span class="chapter-title">Chapter 14 ► Compound Interest <small>(চক্রবৃদ্ধি সুদ)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-15.html"><span class="chapter-title">Chapter 15 ► Profit & Loss <small>(লাভ ও ক্ষতি)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-16.html"><span class="chapter-title">Chapter 16 ► Time & Distance <small>(সময় ও দূরত্ব)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-17.html"><span class="chapter-title">Chapter 17 ► Time & Work <small>(সময় ও কার্য)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-18.html"><span class="chapter-title">Chapter 18 ► Pipes & Cisterns <small>(নল ও চৌবাচ্চা)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-19.html"><span class="chapter-title">Chapter 19 ► Mensuration <small>(পরিমিতি)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-20.html"><span class="chapter-title">Chapter 20 ► Elementary Algebra <small>(বীজগণিত)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-21.html"><span class="chapter-title">Chapter 21 ► Logarithm <small>(লগারিদম)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-22.html"><span class="chapter-title">Chapter 22 ► Geometry <small>(জ্যামিতি)</small></span></a></li>
-                        <li><a href="subject/chhaya/mathematics/ch-23.html"><span class="chapter-title">Chapter 23 ► Trigonometry <small>(ত্রিকোণমিতি)</small></span></a></li>
-                    </ol>
-                </div>
-            </section>
-            
-            <!-- SECTION C: GENERAL INTELLIGENCE & REASONING -->
-            <section class="toc-section">
-                <div class="toc-header"><i class="fas fa-lightbulb"></i> SECTION C: GENERAL INTELLIGENCE & REASONING</div>
-                 <div class="toc-body">
-                    <ol class="chapter-list">
-                       <li><a href="subject/chhaya/reasoning/ch-1.html"><span class="chapter-title">Chapter 1 ► Number Series <small>(সংখ্যা শ্রেণি)</small></span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-2.html"><span class="chapter-title">Chapter 2 ► Letter Series <small>(অক্ষর শ্রেণি)</small></span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-3.html"><span class="chapter-title">Chapter 3 ► Classification <small>(শ্রেণি বিভাজন)</small></span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-4.html"><span class="chapter-title">Chapter 4 ► Analogy <small>(সাদৃশ্য)</small></span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-5.html"><span class="chapter-title">Chapter 5 ► Direction Test <small>(দিক নির্ণয়)</small></span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-6.html"><span class="chapter-title">Chapter 6 ► Coding & Decoding</span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-7.html"><span class="chapter-title">Chapter 7 ► Problems on Alphabet</span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-8.html"><span class="chapter-title">Chapter 8 ► Blood Relations</span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-9.html"><span class="chapter-title">Chapter 9 ► Sequence & Ranking Test</span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-10.html"><span class="chapter-title">Chapter 10 ► Missing Number Test</span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-11.html"><span class="chapter-title">Chapter 11 ► Venn Diagrams <small>(ভেন চিত্র)</small></span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-12.html"><span class="chapter-title">Chapter 12 ► Puzzle Test <small>(ধাঁধা)</small></span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-13.html"><span class="chapter-title">Chapter 13 ► Clock <small>(ঘড়ি)</small></span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-14.html"><span class="chapter-title">Chapter 14 ► Statement & Conclusions</span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-15.html"><span class="chapter-title">Chapter 15 ► Non-verbal Reasoning</span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-16.html"><span class="chapter-title">Chapter 16 ► Cube & Dice <small>(ঘনক ও ছক্কা)</small></span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-17.html"><span class="chapter-title">Chapter 17 ► Calender <small>(ক্যালেন্ডার)</small></span></a></li>
-                       <li><a href="subject/chhaya/reasoning/ch-18.html"><span class="chapter-title">Chapter 18 ► Mathematical Operations</span></a></li>
-                    </ol>
-                </div>
-            </section>
-            
-            <!-- SECTION D: GENERAL AWARENESS & CURRENT AFFAIRS -->
-            <section class="toc-section">
-                <div class="toc-header"><i class="fas fa-globe-asia"></i> SECTION D: GENERAL AWARENESS & CURRENT AFFAIRS</div>
-                 <div class="toc-body">
-                    <ol class="chapter-list">
-                        <li><a href="subject/chhaya/awareness/ch-1.html"><span class="chapter-title">Chapter 1 ► General Knowledge <small>(সাধারণ জ্ঞান)</small></span></a></li>
-                        <li><a href="subject/chhaya/awareness/ch-2.html"><span class="chapter-title">Chapter 2 ► Art, Culture, Literature & Awards</span></a></li>
-                        <li><a href="subject/chhaya/awareness/ch-3.html"><span class="chapter-title">Chapter 3 ► Games & Sports <small>(খেলাধুলা)</small></span></a></li>
-                        <li><a href="subject/chhaya/awareness/ch-4.html"><span class="chapter-title">Chapter 4 ► United Nations Organization <small>(রাষ্ট্রপুঞ্জ)</small></span></a></li>
-                        <li><a href="subject/chhaya/awareness/ch-5.html"><span class="chapter-title">Chapter 5 ► History <small>(ইতিহাস)</small></span></a></li>
-                        <li><a href="subject/chhaya/awareness/ch-6.html"><span class="chapter-title">Chapter 6 ► Geography <small>(ভূগোল)</small></span></a></li>
-                        <li><a href="subject/chhaya/awareness/ch-7.html"><span class="chapter-title">Chapter 7 ► Constitution of India <small>(ভারতের সংবিধান)</small></span></a></li>
-                        <li><a href="subject/chhaya/awareness/ch-8.html"><span class="chapter-title">Chapter 8 ► Economy of India <small>(ভারতের অর্থনীতি)</small></span></a></li>
-                    </ol>
-                </div>
-            </section>
-            
-            <!-- SECTION E: EXAM-TYPE PRACTICE PAPERS -->
-            <section class="toc-section">
-                <div class="toc-header"><i class="fas fa-file-alt"></i> SECTION E: EXAM-TYPE PRACTICE PAPERS</div>
-                 <div class="toc-body">
-                    <ol class="chapter-list">
-                        <li><a href="subject/chhaya/Practice-Set 1/index.html"><span class="chapter-title">Practice Paper 1</span></a></li>
-                        <li><a href="subject/chhaya/Practice-Set-2/index.html"><span class="chapter-title">Practice Paper 2</span></a></li>
-                        <li><a href="subject/chhaya/Practice-Set-3/index.html"><span class="chapter-title">Practice Paper 3</span></a></li>
-                        <li><a href="subject/chhaya/practice-papers/paper-4.html"><span class="chapter-title">Practice Paper 4</span></a></li>
-                        <li><a href="subject/chhaya/practice-papers/paper-5.html"><span class="chapter-title">Practice Paper 5</span></a></li>
-                        <li><a href="subject/chhaya/practice-papers/paper-6.html"><span class="chapter-title">Practice Paper 6</span></a></li>
-                        <li><a href="subject/chhaya/practice-papers/paper-7.html"><span class="chapter-title">Practice Paper 7</span></a></li>
-                        <li><a href="subject/chhaya/practice-papers/paper-8.html"><span class="chapter-title">Practice Paper 8</span></a></li>
-                        <li><a href="subject/chhaya/practice-papers/paper-9.html"><span class="chapter-title">Practice Paper 9</span></a></li>
-                        <li><a href="subject/chhaya/practice-papers/paper-10.html"><span class="chapter-title">Practice Paper 10</span></a></li>
-                        <li><a href="subject/chhaya/practice-papers/paper-11.html"><span class="chapter-title">Practice Paper 11</span></a></li>
-                        <li><a href="subject/chhaya/practice-papers/paper-12.html"><span class="chapter-title">Practice Paper 12</span></a></li>
-                        <li><a href="subject/chhaya/practice-papers/paper-13.html"><span class="chapter-title">Practice Paper 13</span></a></li>
-                        <li><a href="subject/chhaya/practice-papers/paper-14.html"><span class="chapter-title">Practice Paper 14</span></a></li>
-                        <li><a href="subject/chhaya/practice-papers/paper-15.html"><span class="chapter-title">Practice Paper 15</span></a></li>
-                    </ol>
-                </div>
-            </section>
-            
-            <!-- SECTION F: PREVIOUS YEARS' PAPERS -->
-            <section class="toc-section">
-                <div class="toc-header"><i class="fas fa-history"></i> SECTION F: PREVIOUS YEARS' PAPERS</div>
-                <div class="toc-body">
-                    <ol class="chapter-list">
-                        <li><a href="subject/chhaya/Privious-Year/Privious-year-Set-1/index.html"><span class="chapter-title">RRB GROUP-D EXAM 2022 <small>(01.09.2022)</small></span></a></li>
-                        <li><a href="subject/chhaya/Privious-Year/Privious-year-Set-2/index.html"><span class="chapter-title">RRB GROUP-D EXAM 2022 <small>(02.09.2022)</small></span></a></li>
-                        <li><a href="subject/chhaya/Privious-Year/Privious-year-Set-3/index.html"><span class="chapter-title">RRB GROUP-D EXAM 2022 <small>(05.09.2022, 9am)</small></span></a></li>
-                        <li><a href="subject/chhaya/Privious-Year/Privious-year-Set-4/index.html"><span class="chapter-title">RRB GROUP-D EXAM 2022 <small>(05.09.2022, 12:45pm)</small></span></a></li>
-                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-05c.html"><span class="chapter-title">RRB GROUP-D EXAM 2022 <small>(05.09.2022, 5pm)</small></span></a></li>
-                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-08a.html"><span class="chapter-title">RRB GROUP-D EXAM 2022 <small>(08.09.2022, 9am)</small></span></a></li>
-                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-08b.html"><span class="chapter-title">RRB GROUP-D EXAM 2022 <small>(08.09.2022, 12:45pm)</small></span></a></li>
-                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-09a.html"><span class="chapter-title">RRB GROUP-D EXAM 2022 <small>(09.09.2022, 9am)</small></span></a></li>
-                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-09b.html"><span class="chapter-title">RRB GROUP-D EXAM 2022 <small>(09.09.2022, 12:45pm)</small></span></a></li>
-                        <li><a href="subject/chhaya/previous-papers/group-d-2022-09-09c.html"><span class="chapter-title">RRB GROUP-D EXAM 2022 <small>(09.09.2022, 5pm)</small></span></a></li>
-                        <li><a href="subject/chhaya/previous-papers/alp-2024-11-25a.html"><span class="chapter-title">RRB ALP EXAM 2024 CBT 1 <small>(25.11.2024, 9am)</small></span></a></li>
-                        <li><a href="subject/chhaya/previous-papers/alp-2024-11-25b.html"><span class="chapter-title">RRB ALP EXAM 2024 CBT 1 <small>(25.11.2024, 12:30pm)</small></span></a></li>
-                        <li><a href="subject/chhaya/previous-papers/alp-2023-07-22.html"><span class="chapter-title">RRB ALP EXAM 2023 CBT 1 <small>(22.07.2023)</small></span></a></li>
-                        <li><a href="subject/chhaya/previous-papers/ntpc-cbt2-2022-06-17.html"><span class="chapter-title">RRB NTPC CBT 2 EXAM 2022 <small>(17.06.2022, Shift 1)</small></span></a></li>
-                        <li><a href="subject/chhaya/previous-papers/ntpc-cbt2-2022-06-15.html"><span class="chapter-title">RRB NTPC CBT 2 EXAM 2022 <small>(15.06.2022, Shift 3)</small></span></a></li>
-                    </ol>
-                </div>
-            </section>
-        </div>
-    </main>
-    
-    <footer class="footer">
-        &copy; ২০২৫ | ছায়া প্রকাশনী | Study With Keshab
-    </footer>
-    
-    <!-- Firebase স্ক্রিপ্ট -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="js/firebase-config.js"></script>
-    
-    <!-- সাধারণ এবং অথেন্টিকেশন স্ক্রিপ্ট -->
-    <script src="js/script.js"></script>
-    
-    <!-- এই পেজের জন্য নির্দিষ্ট স্ক্রিপ্ট -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- 1. অথেন্টিকেশন এবং পেজ প্রোটেকশন লজিক ---
-            const auth = firebase.auth();
-            const guestLinksDesktop = document.getElementById('guest-link-desktop');
-            const logoutLinkDesktop = document.getElementById('logout-link-desktop');
-            const guestLinksMobile = document.getElementById('guest-link-mobile');
-            const logoutLinkMobile = document.getElementById('logout-link-mobile');
-            const userNameDisplay = document.getElementById('user-name-display');
-
-            auth.onAuthStateChanged(user => {
-                if (!user) {
-                    console.log("User not logged in. Redirecting...");
-                    window.location.href = 'login.html'; 
-                    return;
-                }
-                console.log("User is logged in:", user.displayName || user.email);
-                if (guestLinksDesktop) guestLinksDesktop.style.display = 'none';
-                if (logoutLinkDesktop) logoutLinkDesktop.style.display = 'list-item';
-                if (guestLinksMobile) guestLinksMobile.style.display = 'none';
-                if (logoutLinkMobile) logoutLinkMobile.style.display = 'list-item';
-                if (userNameDisplay) {
-                   userNameDisplay.textContent = user.displayName ? user.displayName.split(' ')[0] : 'User';
-                }
-            });
-
-            // লগআউট ফাংশনালিটি
-            const setupLogout = (buttonId) => {
-                const logoutBtn = document.getElementById(buttonId);
-                if (logoutBtn) {
-                    logoutBtn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        auth.signOut().then(() => {
-                            console.log('User signed out successfully.');
-                            window.location.href = 'login.html';
-                        }).catch(error => {
-                            console.error('Sign out error', error);
-                        });
-                    });
-                }
-            };
-            setupLogout('logout-btn-desktop');
-            setupLogout('logout-btn-mobile');
-
-            // --- 2. ডেস্কটপ/মোবাইল মোড টগল লজিক ---
-            const toggleBtns = document.querySelectorAll(".toggle-view-btn");
-            const viewportMeta = document.getElementById("viewportMeta");
-            let isDesktopView = localStorage.getItem("viewMode") === "desktop";
-
-            function applyViewMode() {
-                const desktopBtn = document.querySelector(".header-action-btn.toggle-view-btn");
-                const mobileMenuText = document.querySelector(".toggle-view-text");
-                const allIcons = document.querySelectorAll(".toggle-view-btn .fas");
-                
-                if (isDesktopView) {
-                    viewportMeta.setAttribute("content", "width=1280");
-                    if(desktopBtn) desktopBtn.title = "মোবাইল মোড";
-                    if(mobileMenuText) mobileMenuText.textContent = "মোবাইল মোড";
-                    allIcons.forEach(icon => {
-                        icon.classList.remove("fa-desktop");
-                        icon.classList.add("fa-mobile-alt");
-                    });
-                } else {
-                    viewportMeta.setAttribute("content", "width=device-width, initial-scale=1.0");
-                    if(desktopBtn) desktopBtn.title = "ডেস্কটপ মোড";
-                    if(mobileMenuText) mobileMenuText.textContent = "ডেস্কটপ মোড";
-                    allIcons.forEach(icon => {
-                        icon.classList.remove("fa-mobile-alt");
-                        icon.classList.add("fa-desktop");
-                    });
-                }
+        <style>
+            /* সূচিপত্র পেজের জন্য নির্দিষ্ট থিম */
+            :root {
+                --text-color: #2c3e50;
+                --bg-light: #ecf0f1;
+                --bg-white: #ffffff;
+                --header-bg: #3498db;
+                --header-text: #ffffff;
+                --border-color: #dde4e6;
+                --hover-bg: #f9fbfb;
+                --footer-bg: #2c3e50;
+                --footer-text: #bdc3c7;
             }
-            
-            toggleBtns.forEach(btn => {
-                btn.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    isDesktopView = !isDesktopView;
-                    localStorage.setItem("viewMode", isDesktopView ? "desktop" : "mobile");
-                    applyViewMode();
+            body {
+                font-family: "Baloo Da 2", cursive;
+                background-color: var(--bg-light);
+                margin: 0;
+                color: var(--text-color);
+                line-height: 1.6;
+            }
+            .container {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+            .toc-page {
+                padding: 4rem 1rem;
+            }
+            .page-title {
+                text-align: center;
+                font-size: clamp(2.2rem, 6vw, 3.2rem);
+                font-weight: 700;
+                margin-bottom: 3rem;
+                color: var(--text-color);
+            }
+            .toc-section {
+                background: var(--bg-white);
+                border-radius: 12px;
+                margin-bottom: 2.5rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+                overflow: hidden;
+                border: 1px solid var(--border-color);
+            }
+            .toc-header {
+                background-color: var(--header-bg);
+                color: var(--header-text);
+                padding: 1rem 1.5rem;
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+            .toc-header i {
+                margin-right: 12px;
+            }
+            .toc-body {
+                padding: 0;
+            }
+            .chapter-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .chapter-list li a {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.9rem 1.5rem;
+                text-decoration: none;
+                color: var(--text-color);
+                border-bottom: 1px solid var(--border-color);
+                transition:
+                    background-color 0.3s ease,
+                    color 0.3s ease;
+                font-size: 1.1rem;
+            }
+            .chapter-list li:last-child a {
+                border-bottom: none;
+            }
+            .chapter-list li a:hover {
+                background-color: var(--hover-bg);
+                color: var(--header-bg);
+            }
+            .chapter-title {
+                font-weight: 600;
+            }
+            .chapter-title small {
+                font-weight: 400;
+                color: #555;
+                display: block;
+                font-size: 0.9em;
+                margin-top: 2px;
+            }
+            .chapter-list a:hover .chapter-title small {
+                color: #3498db;
+            }
+
+            /* ভিউ টগল বাটনের জন্য CSS */
+            .header-action-btn {
+                background: none;
+                border: none;
+                font-size: 1.3rem;
+                cursor: pointer;
+                padding: 5px 8px;
+                margin-left: 8px;
+                transition: color 0.3s ease;
+            }
+            .mobile-navigation-menu .toggle-view-btn i {
+                margin-right: 12px;
+                width: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="header-grid container">
+                <a href="index.html" class="logo-link">
+                    <img
+                        src="images/logo.jpg"
+                        alt="Study With Keshab Logo"
+                        class="logo-img"
+                    />
+                </a>
+
+                <nav class="primary-navigation">
+                    <ul>
+                        <li>
+                            <a href="index.html"
+                                ><i class="fas fa-home"></i> Home</a
+                            >
+                        </li>
+                        <li>
+                            <a href="index.html#subjects"
+                                ><i class="fas fa-book-open"></i> Subjects</a
+                            >
+                        </li>
+                        <li>
+                            <a href="about.html"
+                                ><i class="fas fa-info-circle"></i> About</a
+                            >
+                        </li>
+                        <li>
+                            <a href="contact.html"
+                                ><i class="fas fa-envelope"></i> Contact</a
+                            >
+                        </li>
+                        <li class="auth-link" id="guest-link-desktop">
+                            <a href="login.html"
+                                ><i class="fas fa-sign-in-alt"></i> Login / Sign
+                                up</a
+                            >
+                        </li>
+                        <li
+                            class="auth-link"
+                            id="logout-link-desktop"
+                            style="display: none"
+                        >
+                            <a href="#" id="logout-btn-desktop"
+                                ><i class="fas fa-sign-out-alt"></i> Logout</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <span id="user-name-display" class="nav-user-name"></span>
+                    <button
+                        class="toggle-view-btn header-action-btn"
+                        title="ডেস্কটপ মোড"
+                    >
+                        <i class="fas fa-desktop"></i>
+                    </button>
+                    <button
+                        class="mobile-nav-toggle"
+                        aria-controls="mobile-navigation-menu"
+                        aria-expanded="false"
+                    >
+                        <span class="sr-only">Menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <nav
+            id="mobile-navigation-menu"
+            class="mobile-navigation-menu"
+            data-visible="false"
+        >
+            <ul>
+                <li>
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="index.html#subjects"
+                        ><i class="fas fa-book-open"></i> Subjects</a
+                    >
+                </li>
+                <li>
+                    <a href="about.html"
+                        ><i class="fas fa-info-circle"></i> About</a
+                    >
+                </li>
+                <li>
+                    <a href="contact.html"
+                        ><i class="fas fa-envelope"></i> Contact</a
+                    >
+                </li>
+                <li class="auth-link" id="guest-link-mobile">
+                    <a href="login.html"
+                        ><i class="fas fa-sign-in-alt"></i> Login / Sign up</a
+                    >
+                </li>
+                <li
+                    class="auth-link"
+                    id="logout-link-mobile"
+                    style="display: none"
+                >
+                    <a href="#" id="logout-btn-mobile"
+                        ><i class="fas fa-sign-out-alt"></i> Logout</a
+                    >
+                </li>
+                <li>
+                    <a href="#" class="toggle-view-btn">
+                        <i class="fas fa-desktop"></i>
+                        <span class="toggle-view-text">ডেস্কটপ মোড</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="toc-page">
+            <div class="container">
+                <h1 class="page-title">📖 সূচিপত্র - ছায়া প্রকাশনী</h1>
+
+                <!-- SECTION A: GENERAL SCIENCE -->
+                <section class="toc-section">
+                    <div class="toc-header">
+                        <i class="fas fa-flask"></i> SECTION A: GENERAL SCIENCE
+                        (সাধারণ বিজ্ঞান)
+                    </div>
+                    <div class="toc-body">
+                        <ol class="chapter-list">
+                            <li>
+                                <a
+                                    href="subject/chhaya/general-science/physics.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 1 ► Physics
+                                        <small>(পদার্থবিদ্যা)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/general-science/chemistry.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 2 ► Chemistry
+                                        <small>(রসায়ন)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/general-science/biology.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 3 ► Biology
+                                        <small>(জীববিদ্যা)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/general-science/env-science.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 4 ► Environmental Science
+                                        <small>(পরিবেশ বিজ্ঞান)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/general-science/computer-it.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 5 ► Computer & IT
+                                        <small
+                                            >(কম্পিউটার ও তথ্যপ্রযুক্তি)</small
+                                        ></span
+                                    ></a
+                                >
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- SECTION B: MATHEMATICS -->
+                <section class="toc-section">
+                    <div class="toc-header">
+                        <i class="fas fa-calculator"></i> SECTION B: MATHEMATICS
+                        (গণিত)
+                    </div>
+                    <div class="toc-body">
+                        <ol class="chapter-list">
+                            <li>
+                                <a
+                                    href="subject/chhaya/Math/Math-Digit-Number- Divisibility/index.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 1 ► Digit, Number &
+                                        Divisibility</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/Math/Square-Square-Root-Cube-Cube-Root/index.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 2 ► Square-Square Root,
+                                        Cube-Cube Root</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-3.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 3 ► Decimal and Recurring
+                                        Decimal</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-4.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 4 ► Fraction
+                                        <small>(ভগ্নাংশ)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-5.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 5 ► HCF & LCM
+                                        <small>(গ.সা.গু ও ল.সা.গু)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-6.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 6 ► Indices & Surds
+                                        <small>(সূচক ও করণী)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-7.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 7 ► Simplification
+                                        <small>(সরলীকরণ)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-8.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 8 ► Average
+                                        <small>(গড়)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-9.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 9 ► Ratio & Proportion
+                                        <small>(অনুপাত ও সমানুপাত)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-10.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 10 ► Mixture
+                                        <small>(মিশ্রণ)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-11.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 11 ► Percentage
+                                        <small>(শতাংশ)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-12.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 12 ► Partnership
+                                        <small>(অংশীদারিত্ব)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-13.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 13 ► Simple Interest
+                                        <small>(সরল সুদ)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-14.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 14 ► Compound Interest
+                                        <small>(চক্রবৃদ্ধি সুদ)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-15.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 15 ► Profit & Loss
+                                        <small>(লাভ ও ক্ষতি)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-16.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 16 ► Time & Distance
+                                        <small>(সময় ও দূরত্ব)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-17.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 17 ► Time & Work
+                                        <small>(সময় ও কার্য)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-18.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 18 ► Pipes & Cisterns
+                                        <small>(নল ও চৌবাচ্চা)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-19.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 19 ► Mensuration
+                                        <small>(পরিমিতি)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-20.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 20 ► Elementary Algebra
+                                        <small>(বীজগণিত)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-21.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 21 ► Logarithm
+                                        <small>(লগারিদম)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-22.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 22 ► Geometry
+                                        <small>(জ্যামিতি)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/mathematics/ch-23.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 23 ► Trigonometry
+                                        <small>(ত্রিকোণমিতি)</small></span
+                                    ></a
+                                >
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- SECTION C: GENERAL INTELLIGENCE & REASONING -->
+                <section class="toc-section">
+                    <div class="toc-header">
+                        <i class="fas fa-lightbulb"></i> SECTION C: GENERAL
+                        INTELLIGENCE & REASONING
+                    </div>
+                    <div class="toc-body">
+                        <ol class="chapter-list">
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-1.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 1 ► Number Series
+                                        <small>(সংখ্যা শ্রেণি)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-2.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 2 ► Letter Series
+                                        <small>(অক্ষর শ্রেণি)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-3.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 3 ► Classification
+                                        <small>(শ্রেণি বিভাজন)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-4.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 4 ► Analogy
+                                        <small>(সাদৃশ্য)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-5.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 5 ► Direction Test
+                                        <small>(দিক নির্ণয়)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-6.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 6 ► Coding & Decoding</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-7.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 7 ► Problems on Alphabet</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-8.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 8 ► Blood Relations</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-9.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 9 ► Sequence & Ranking
+                                        Test</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-10.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 10 ► Missing Number Test</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-11.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 11 ► Venn Diagrams
+                                        <small>(ভেন চিত্র)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-12.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 12 ► Puzzle Test
+                                        <small>(ধাঁধা)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-13.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 13 ► Clock
+                                        <small>(ঘড়ি)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-14.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 14 ► Statement &
+                                        Conclusions</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-15.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 15 ► Non-verbal Reasoning</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-16.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 16 ► Cube & Dice
+                                        <small>(ঘনক ও ছক্কা)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-17.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 17 ► Calender
+                                        <small>(ক্যালেন্ডার)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/reasoning/ch-18.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 18 ► Mathematical
+                                        Operations</span
+                                    ></a
+                                >
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- SECTION D: GENERAL AWARENESS & CURRENT AFFAIRS -->
+                <section class="toc-section">
+                    <div class="toc-header">
+                        <i class="fas fa-globe-asia"></i> SECTION D: GENERAL
+                        AWARENESS & CURRENT AFFAIRS
+                    </div>
+                    <div class="toc-body">
+                        <ol class="chapter-list">
+                            <li>
+                                <a href="subject/chhaya/awareness/ch-1.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 1 ► General Knowledge
+                                        <small>(সাধারণ জ্ঞান)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/awareness/ch-2.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 2 ► Art, Culture, Literature &
+                                        Awards</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/awareness/ch-3.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 3 ► Games & Sports
+                                        <small>(খেলাধুলা)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/awareness/ch-4.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 4 ► United Nations Organization
+                                        <small>(রাষ্ট্রপুঞ্জ)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/awareness/ch-5.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 5 ► History
+                                        <small>(ইতিহাস)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/awareness/ch-6.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 6 ► Geography
+                                        <small>(ভূগোল)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/awareness/ch-7.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 7 ► Constitution of India
+                                        <small>(ভারতের সংবিধান)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="subject/chhaya/awareness/ch-8.html"
+                                    ><span class="chapter-title"
+                                        >Chapter 8 ► Economy of India
+                                        <small>(ভারতের অর্থনীতি)</small></span
+                                    ></a
+                                >
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- SECTION E: EXAM-TYPE PRACTICE PAPERS -->
+                <section class="toc-section">
+                    <div class="toc-header">
+                        <i class="fas fa-file-alt"></i> SECTION E: EXAM-TYPE
+                        PRACTICE PAPERS
+                    </div>
+                    <div class="toc-body">
+                        <ol class="chapter-list">
+                            <li>
+                                <a
+                                    href="subject/chhaya/Practice-Set 1/index.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 1</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/Practice-Set-2/index.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 2</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/Practice-Set-3/index.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 3</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/practice-papers/paper-4.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 4</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/practice-papers/paper-5.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 5</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/practice-papers/paper-6.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 6</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/practice-papers/paper-7.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 7</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/practice-papers/paper-8.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 8</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/practice-papers/paper-9.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 9</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/practice-papers/paper-10.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 10</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/practice-papers/paper-11.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 11</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/practice-papers/paper-12.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 12</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/practice-papers/paper-13.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 13</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/practice-papers/paper-14.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 14</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/practice-papers/paper-15.html"
+                                    ><span class="chapter-title"
+                                        >Practice Paper 15</span
+                                    ></a
+                                >
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- SECTION F: PREVIOUS YEARS' PAPERS -->
+                <section class="toc-section">
+                    <div class="toc-header">
+                        <i class="fas fa-history"></i> SECTION F: PREVIOUS
+                        YEARS' PAPERS
+                    </div>
+                    <div class="toc-body">
+                        <ol class="chapter-list">
+                            <li>
+                                <a
+                                    href="subject/chhaya/Privious-Year/Privious-year-Set-1/index.html"
+                                    ><span class="chapter-title"
+                                        >RRB GROUP-D EXAM 2022
+                                        <small>(01.09.2022)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/Privious-Year/Privious-year-Set-2/index.html"
+                                    ><span class="chapter-title"
+                                        >RRB GROUP-D EXAM 2022
+                                        <small>(02.09.2022)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/Privious-Year/Privious-year-Set-3/index.html"
+                                    ><span class="chapter-title"
+                                        >RRB GROUP-D EXAM 2022
+                                        <small>(05.09.2022, 9am)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/Privious-Year/Privious-year-Set-4/index.html"
+                                    ><span class="chapter-title"
+                                        >RRB GROUP-D EXAM 2022
+                                        <small
+                                            >(05.09.2022, 12:45pm)</small
+                                        ></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/Privious-Year/Privious-year-Set-5"
+                                    ><span class="chapter-title"
+                                        >RRB GROUP-D EXAM 2022
+                                        <small>(05.09.2022, 5pm)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/previous-papers/group-d-2022-09-08a.html"
+                                    ><span class="chapter-title"
+                                        >RRB GROUP-D EXAM 2022
+                                        <small>(08.09.2022, 9am)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/previous-papers/group-d-2022-09-08b.html"
+                                    ><span class="chapter-title"
+                                        >RRB GROUP-D EXAM 2022
+                                        <small
+                                            >(08.09.2022, 12:45pm)</small
+                                        ></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/previous-papers/group-d-2022-09-09a.html"
+                                    ><span class="chapter-title"
+                                        >RRB GROUP-D EXAM 2022
+                                        <small>(09.09.2022, 9am)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/previous-papers/group-d-2022-09-09b.html"
+                                    ><span class="chapter-title"
+                                        >RRB GROUP-D EXAM 2022
+                                        <small
+                                            >(09.09.2022, 12:45pm)</small
+                                        ></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/previous-papers/group-d-2022-09-09c.html"
+                                    ><span class="chapter-title"
+                                        >RRB GROUP-D EXAM 2022
+                                        <small>(09.09.2022, 5pm)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/previous-papers/alp-2024-11-25a.html"
+                                    ><span class="chapter-title"
+                                        >RRB ALP EXAM 2024 CBT 1
+                                        <small>(25.11.2024, 9am)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/previous-papers/alp-2024-11-25b.html"
+                                    ><span class="chapter-title"
+                                        >RRB ALP EXAM 2024 CBT 1
+                                        <small
+                                            >(25.11.2024, 12:30pm)</small
+                                        ></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/previous-papers/alp-2023-07-22.html"
+                                    ><span class="chapter-title"
+                                        >RRB ALP EXAM 2023 CBT 1
+                                        <small>(22.07.2023)</small></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/previous-papers/ntpc-cbt2-2022-06-17.html"
+                                    ><span class="chapter-title"
+                                        >RRB NTPC CBT 2 EXAM 2022
+                                        <small
+                                            >(17.06.2022, Shift 1)</small
+                                        ></span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="subject/chhaya/previous-papers/ntpc-cbt2-2022-06-15.html"
+                                    ><span class="chapter-title"
+                                        >RRB NTPC CBT 2 EXAM 2022
+                                        <small
+                                            >(15.06.2022, Shift 3)</small
+                                        ></span
+                                    ></a
+                                >
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="footer">
+            &copy; ২০২৫ | ছায়া প্রকাশনী | Study With Keshab
+        </footer>
+
+        <!-- Firebase স্ক্রিপ্ট -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="js/firebase-config.js"></script>
+
+        <!-- সাধারণ এবং অথেন্টিকেশন স্ক্রিপ্ট -->
+        <script src="js/script.js"></script>
+
+        <!-- এই পেজের জন্য নির্দিষ্ট স্ক্রিপ্ট -->
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                // --- 1. অথেন্টিকেশন এবং পেজ প্রোটেকশন লজিক ---
+                const auth = firebase.auth();
+                const guestLinksDesktop =
+                    document.getElementById("guest-link-desktop");
+                const logoutLinkDesktop = document.getElementById(
+                    "logout-link-desktop",
+                );
+                const guestLinksMobile =
+                    document.getElementById("guest-link-mobile");
+                const logoutLinkMobile =
+                    document.getElementById("logout-link-mobile");
+                const userNameDisplay =
+                    document.getElementById("user-name-display");
+
+                auth.onAuthStateChanged((user) => {
+                    if (!user) {
+                        console.log("User not logged in. Redirecting...");
+                        window.location.href = "login.html";
+                        return;
+                    }
+                    console.log(
+                        "User is logged in:",
+                        user.displayName || user.email,
+                    );
+                    if (guestLinksDesktop)
+                        guestLinksDesktop.style.display = "none";
+                    if (logoutLinkDesktop)
+                        logoutLinkDesktop.style.display = "list-item";
+                    if (guestLinksMobile)
+                        guestLinksMobile.style.display = "none";
+                    if (logoutLinkMobile)
+                        logoutLinkMobile.style.display = "list-item";
+                    if (userNameDisplay) {
+                        userNameDisplay.textContent = user.displayName
+                            ? user.displayName.split(" ")[0]
+                            : "User";
+                    }
                 });
+
+                // লগআউট ফাংশনালিটি
+                const setupLogout = (buttonId) => {
+                    const logoutBtn = document.getElementById(buttonId);
+                    if (logoutBtn) {
+                        logoutBtn.addEventListener("click", (e) => {
+                            e.preventDefault();
+                            auth.signOut()
+                                .then(() => {
+                                    console.log(
+                                        "User signed out successfully.",
+                                    );
+                                    window.location.href = "login.html";
+                                })
+                                .catch((error) => {
+                                    console.error("Sign out error", error);
+                                });
+                        });
+                    }
+                };
+                setupLogout("logout-btn-desktop");
+                setupLogout("logout-btn-mobile");
+
+                // --- 2. ডেস্কটপ/মোবাইল মোড টগল লজিক ---
+                const toggleBtns =
+                    document.querySelectorAll(".toggle-view-btn");
+                const viewportMeta = document.getElementById("viewportMeta");
+                let isDesktopView =
+                    localStorage.getItem("viewMode") === "desktop";
+
+                function applyViewMode() {
+                    const desktopBtn = document.querySelector(
+                        ".header-action-btn.toggle-view-btn",
+                    );
+                    const mobileMenuText =
+                        document.querySelector(".toggle-view-text");
+                    const allIcons = document.querySelectorAll(
+                        ".toggle-view-btn .fas",
+                    );
+
+                    if (isDesktopView) {
+                        viewportMeta.setAttribute("content", "width=1280");
+                        if (desktopBtn) desktopBtn.title = "মোবাইল মোড";
+                        if (mobileMenuText)
+                            mobileMenuText.textContent = "মোবাইল মোড";
+                        allIcons.forEach((icon) => {
+                            icon.classList.remove("fa-desktop");
+                            icon.classList.add("fa-mobile-alt");
+                        });
+                    } else {
+                        viewportMeta.setAttribute(
+                            "content",
+                            "width=device-width, initial-scale=1.0",
+                        );
+                        if (desktopBtn) desktopBtn.title = "ডেস্কটপ মোড";
+                        if (mobileMenuText)
+                            mobileMenuText.textContent = "ডেস্কটপ মোড";
+                        allIcons.forEach((icon) => {
+                            icon.classList.remove("fa-mobile-alt");
+                            icon.classList.add("fa-desktop");
+                        });
+                    }
+                }
+
+                toggleBtns.forEach((btn) => {
+                    btn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        isDesktopView = !isDesktopView;
+                        localStorage.setItem(
+                            "viewMode",
+                            isDesktopView ? "desktop" : "mobile",
+                        );
+                        applyViewMode();
+                    });
+                });
+                applyViewMode();
             });
-            applyViewMode();
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
