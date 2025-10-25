@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Time & Distance (সময় ও দূরত্ব) - Class 08</title>
+        <!-- External CSS File Link -->
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body data-theme="default">
+        <header>
+            <img src="../images/logo.jpg" alt="Logo" class="logo" />
+            <h1>অধ্যায়: Time & Distance (সময় ও দূরত্ব)</h1>
+        </header>
+
+        <div class="controls-wrapper">
+            <div id="digital-clock" class="digital-clock"></div>
+            <div class="theme-buttons">
+                <button data-theme-name="default">Default</button>
+                <button data-theme-name="forest">Forest</button>
+                <button data-theme-name="ocean">Ocean</button>
+                <button data-theme-name="sunset">Sunset</button>
+            </div>
+            <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+            <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+            <div class="dark-mode-toggle">
+                <span>দিন/রাত</span>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>CLASS NO: 08 (প্রশ্নোত্তর পর্ব)</h2>
+
+            <!-- প্রশ্ন ৫১ -->
+            <div class="question-item">
+                <h3>প্রশ্ন ৫১</h3>
+                <p>
+                    <strong>স্বাভাবিক গতির ⁵/₇ ভাগ গতিতে হাঁটলে একটি ছেলে স্কুলে 6 মিনিট দেরিতে পৌঁছায়। স্বাভাবিক গতিতে তার স্কুলে পৌঁছোতে কত মিনিট সময় লাগে? [RRB (NTPC) Exam. '16]</strong>
+                </p>
+                <ul>
+                    <li>(A) 16</li>
+                    <li>(B) 15</li>
+                    <li>(C) 14</li>
+                    <li>(D) 12</li>
+                </ul>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(B) 15</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                        <p>আমরা জানি, দূরত্ব স্থির থাকলে গতিবেগের অনুপাত সময়ের অনুপাতের ব্যস্তানুপাতিক হয়।</p>
+                        <p><strong>ধাপ ১: গতিবেগ এবং সময়ের অনুপাত নির্ণয়</strong><br>
+                        ধরা যাক, স্বাভাবিক গতিবেগ S₁ এবং পরিবর্তিত গতিবেগ S₂।<br>
+                        S₂ = (5/7) × S₁<br>
+                        সুতরাং, S₂ / S₁ = 5 / 7 বা S₁ : S₂ = 7 : 5।</p>
+                        <p>যেহেতু গতিবেগ ও সময় ব্যস্তানুপাতিক, তাই সময়ের অনুপাত হবে:<br>
+                        T₁ : T₂ = 5 : 7 (এখানে T₁ স্বাভাবিক সময় এবং T₂ পরিবর্তিত সময়)</p>
+                        <p><strong>ধাপ ২: সময়ের পার্থক্য থেকে স্বাভাবিক সময় নির্ণয়</strong><br>
+                        ধরা যাক, স্বাভাবিক সময় T₁ = 5x মিনিট এবং পরিবর্তিত সময় T₂ = 7x মিনিট।<br>
+                        প্রশ্নে বলা হয়েছে, দেরিতে পৌঁছায় 6 মিনিট।<br>
+                        অর্থাৎ, সময়ের পার্থক্য = T₂ - T₁ = 7x - 5x = 2x মিনিট।</p>
+                        <p>শর্তানুসারে, 2x = 6<br>
+                        => x = 3</p>
+                        <p>ছেলেটির স্বাভাবিক সময় T₁ = 5x = 5 × 3 = 15 মিনিট।</p>
+                        <p>সুতরাং, স্বাভাবিক গতিতে তার স্কুলে পৌঁছোতে 15 মিনিট সময় লাগে।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ৫২ -->
+            <div class="question-item">
+                <h3>প্রশ্ন ৫২</h3>
+                <p>
+                    <strong>সমবেগে গতিশীল একটি ট্রেনের গতিবেগ 10 কিমি/ঘণ্টা বেশি হলে একটি নির্দিষ্ট দূরত্ব অতিক্রম করতে 2 ঘণ্টা কম সময় লাগে। আবার ট্রেনটির বেগ 10 কিমি/ঘণ্টা কম হলে নির্দিষ্ট সময়ের থেকে 3 ঘণ্টা বেশি সময় লাগে। ট্রেনটির অতিক্রান্ত দূরত্ব কত? [RRB (NTPC) Exam. '16]</strong>
+                </p>
+                <ul>
+                    <li>(A) 300 কিমি</li>
+                    <li>(B) 600 কিমি</li>
+                    <li>(C) 800 কিমি</li>
+                    <li>(D) 1200 কিমি</li>
+                </ul>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(B) 600 কিমি</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                        <p>ধরা যাক, ট্রেনটির প্রকৃত গতিবেগ v কিমি/ঘণ্টা এবং প্রকৃত সময় t ঘণ্টা।<br>
+                        অতএব, অতিক্রান্ত দূরত্ব d = v × t।</p>
+                        <p><strong>প্রথম শর্তানুসারে:</strong><br>
+                        গতিবেগ = (v + 10) কিমি/ঘণ্টা, সময় = (t - 2) ঘণ্টা।<br>
+                        d = (v + 10)(t - 2)<br>
+                        vt = vt - 2v + 10t - 20<br>
+                        => 2v - 10t = -20<br>
+                        => v - 5t = -10  ... (i)</p>
+                        <p><strong>দ্বিতীয় শর্তানুসারে:</strong><br>
+                        গতিবেগ = (v - 10) কিমি/ঘণ্টা, সময় = (t + 3) ঘণ্টা।<br>
+                        d = (v - 10)(t + 3)<br>
+                        vt = vt + 3v - 10t - 30<br>
+                        => 3v - 10t = 30  ... (ii)</p>
+                        <p>এখন সমীকরণ (ii) থেকে সমীকরণ (i) বিয়োগ করে পাই:<br>
+                        (3v - 10t) - (v - 5t) = 30 - (-10)  (ভুল সংশোধন, সরাসরি বিয়োগ করা যায়)<br>
+                        সঠিক পদ্ধতি: সমীকরণ (ii) থেকে (i) কে 2 দিয়ে গুণ করে বিয়োগ করি (10t মেলানোর জন্য):<br>
+                        `3v - 10t = 30`<br>
+                        `2v - 10t = -20` (সমীকরণ (i) × 2)<br>
+                        `(-)  (+)    (+)` (চিহ্ন পরিবর্তন করে)<br>
+                        -------------------<br>
+                        `v = 50`</p>
+                        <p>v-এর মান সমীকরণ (i)-এ বসিয়ে পাই:<br>
+                        50 - 5t = -10<br>
+                        => 60 = 5t<br>
+                        => t = 12</p>
+                        <p>অতএব, ট্রেনটির প্রকৃত গতিবেগ 50 কিমি/ঘণ্টা এবং প্রকৃত সময় 12 ঘণ্টা।<br>
+                        ট্রেনটির অতিক্রান্ত দূরত্ব d = v × t = 50 × 12 = 600 কিমি।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ৫৩ -->
+            <div class="question-item">
+                <h3>প্রশ্ন ৫৩</h3>
+                <p>
+                    <strong>একটি গাড়ি তার যাত্রাপথের প্রথম 39 কিমি যায় 45 মিনিটে এবং শেষ 25 কিমি 35 মিনিটে যায়। গাড়িটির গড়বেগ কত? [RRB (NTPC) Exam. '16]</strong>
+                </p>
+                <ul>
+                    <li>(A) 40 কিমি/ঘণ্টা</li>
+                    <li>(B) 4 কিমি/ঘণ্টা</li>
+                    <li>(C) 49 কিমি/ঘণ্টা</li>
+                    <li>(D) 48 কিমি/ঘণ্টা</li>
+                </ul>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(D) 48 কিমি/ঘণ্টা</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                        <p>গড়বেগের সূত্র হলো = (মোট অতিক্রান্ত দূরত্ব) / (মোট সময়)</p>
+                        <p><strong>ধাপ ১: মোট দূরত্ব এবং মোট সময় নির্ণয়</strong></p>
+                        <ul>
+                            <li>মোট দূরত্ব = 39 কিমি + 25 কিমি = 64 কিমি।</li>
+                            <li>মোট সময় = 45 মিনিট + 35 মিনিট = 80 মিনিট।</li>
+                        </ul>
+                        <p><strong>ধাপ ২: সময়কে ঘণ্টায় রূপান্তর</strong><br>
+                        যেহেতু গড়বেগ কিমি/ঘণ্টা এককে চাওয়া হয়েছে, তাই মোট সময়কে ঘণ্টায় পরিবর্তন করতে হবে।<br>
+                        80 মিনিট = 80/60 ঘণ্টা = 4/3 ঘণ্টা।</p>
+                        <p><strong>ধাপ ৩: গড়বেগ নির্ণয়</strong><br>
+                        গড়বেগ = মোট দূরত্ব / মোট সময়<br>
+                        = 64 কিমি / (4/3) ঘণ্টা<br>
+                        = 64 × (3/4) কিমি/ঘণ্টা<br>
+                        = 16 × 3 = 48 কিমি/ঘণ্টা।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ৫৪ -->
+            <div class="question-item">
+                <h3>প্রশ্ন ৫৪</h3>
+                <p>
+                    <strong>স্থির জলে এক ব্যক্তি 7½ কিমি/ঘণ্টা বেগে দাঁড় বাইতে পারে। স্রোতের অনুকূলে যেতে তার যত সময় লাগে, স্রোতের প্রতিকূলে ওই দূরত্ব যেতে তার দ্বিগুণ সময় লাগে। স্রোতের বেগ (কিমি/ঘণ্টা এককে) হল— [RRB (NTPC) Exam. '16]</strong>
+                </p>
+                <ul>
+                    <li>(A) 2</li>
+                    <li>(B) 2.5</li>
+                    <li>(C) 3</li>
+                    <li>(D) 4</li>
+                </ul>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(B) 2.5</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                        <p>ধরা যাক, স্রোতের বেগ v কিমি/ঘণ্টা।<br>
+                        স্থির জলে ব্যক্তির বেগ u = 7½ = 7.5 কিমি/ঘণ্টা।</p>
+                        <ul>
+                            <li>স্রোতের অনুকূলে বেগ = u + v = 7.5 + v</li>
+                            <li>স্রোতের প্রতিকূলে বেগ = u - v = 7.5 - v</li>
+                        </ul>
+                        <p>প্রশ্নানুসারে, প্রতিকূলে যেতে অনুকূলের দ্বিগুণ সময় লাগে। যেহেতু দূরত্ব একই, তাই:<br>
+                        (প্রতিকূলের সময়) = 2 × (অনুকূলের সময়)<br>
+                        দূরত্ব / (প্রতিকূলের বেগ) = 2 × (দূরত্ব / (অনুকূলের বেগ))<br>
+                        1 / (7.5 - v) = 2 / (7.5 + v)<br>
+                        => 7.5 + v = 2(7.5 - v)<br>
+                        => 7.5 + v = 15 - 2v<br>
+                        => v + 2v = 15 - 7.5<br>
+                        => 3v = 7.5<br>
+                        => v = 7.5 / 3 = 2.5</p>
+                        <p>সুতরাং, স্রোতের বেগ 2.5 কিমি/ঘণ্টা।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ৫৫ -->
+            <div class="question-item">
+                <h3>প্রশ্ন ৫৫</h3>
+                <p>
+                    <strong>দুজন ব্যক্তি একসাথে একটি নির্দিষ্ট দূরত্বের জন্য হাঁটা শুরু করেন। দুজনের গতিবেগ যথাক্রমে 3 কিমি/ঘণ্টা ও 3.75 কিমি/ঘণ্টা। দ্বিতীয় ব্যক্তি প্রথম জনের আধা ঘণ্টা আগে পৌঁছালে দূরত্ব ছিল— [RRB NTPC Exam. '21]</strong>
+                </p>
+                <ul>
+                    <li>(A) 7 কিমি</li>
+                    <li>(B) 6.7 কিমি</li>
+                    <li>(C) 0.7 কিমি</li>
+                    <li>(D) 7.5 কিমি</li>
+                </ul>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(D) 7.5 কিমি</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                        <p>ধরা যাক, দূরত্ব d কিমি।<br>
+                        প্রথম ব্যক্তির গতিবেগ = 3 কিমি/ঘণ্টা। তার সময় লাগে t₁ = d/3 ঘণ্টা।<br>
+                        দ্বিতীয় ব্যক্তির গতিবেগ = 3.75 কিমি/ঘণ্টা। তার সময় লাগে t₂ = d/3.75 ঘণ্টা।</p>
+                        <p>দ্বিতীয় ব্যক্তি দ্রুততর, তাই সে কম সময় নেয়। সময়ের পার্থক্য আধা ঘণ্টা বা 0.5 ঘণ্টা।<br>
+                        t₁ - t₂ = 0.5<br>
+                        d/3 - d/3.75 = 0.5<br>
+                        d * (1/3 - 1/3.75) = 0.5<br>
+                        d * (1/3 - 4/15) = 0.5  (কারণ 3.75 = 15/4)<br>
+                        d * ( (5-4) / 15 ) = 0.5<br>
+                        d * (1/15) = 0.5<br>
+                        d = 0.5 × 15 = 7.5</p>
+                        <p>সুতরাং, দূরত্ব ছিল 7.5 কিমি।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ৫৬ -->
+            <div class="question-item">
+                <h3>প্রশ্ন ৫৬</h3>
+                <p>
+                    <strong>একটি গাড়ি প্রথম 10 কিমি 4 কিমি/ঘণ্টা গতিতে এবং পরের 10 কিমি 2 কিমি/ঘণ্টা গতিতে অতিক্রম করে। গাড়িটির গড় গতি নির্ণয় করো। [RRB RPF SI Exam. '19]</strong>
+                </p>
+                <ul>
+                    <li>(A) 2.67 কিমি/ঘণ্টা</li>
+                    <li>(B) 3.33 কিমি/ঘণ্টা</li>
+                    <li>(C) 2 কিমি/ঘণ্টা</li>
+                    <li>(D) 5.54 কিমি/ঘণ্টা</li>
+                </ul>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(A) 2.67 কিমি/ঘণ্টা</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                        <p>গড় গতি = (মোট অতিক্রান্ত দূরত্ব) / (মোট সময়)</p>
+                        <p><strong>ধাপ ১: মোট দূরত্ব ও মোট সময় নির্ণয়</strong></p>
+                        <ul>
+                            <li>মোট দূরত্ব = 10 কিমি + 10 কিমি = 20 কিমি।</li>
+                            <li>প্রথম অংশের সময় = 10 কিমি / 4 কিমি/ঘণ্টা = 2.5 ঘণ্টা।</li>
+                            <li>দ্বিতীয় অংশের সময় = 10 কিমি / 2 কিমি/ঘণ্টা = 5 ঘণ্টা।</li>
+                            <li>মোট সময় = 2.5 + 5 = 7.5 ঘণ্টা।</li>
+                        </ul>
+                        <p><strong>ধাপ ২: গড় গতি নির্ণয়</strong><br>
+                        গড় গতি = 20 কিমি / 7.5 ঘণ্টা<br>
+                        = 200 / 75 = 8 / 3 ≈ 2.67 কিমি/ঘণ্টা।</p>
+                        <p><em>(বিকল্প পদ্ধতি: যেহেতু দূরত্ব সমান, তাই (2xy / (x+y)) সূত্র ব্যবহার করা যায়। গড় গতি = (2 × 4 × 2) / (4 + 2) = 16/6 = 8/3 ≈ 2.67 কিমি/ঘণ্টা।)</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ৫৭ -->
+            <div class="question-item">
+                <h3>প্রশ্ন ৫৭</h3>
+                <p>
+                    <strong>সমান দৈর্ঘ্যের দুটি ট্রেন একইদিকে যথাক্রমে 46 কিমি/ঘণ্টা ও 36 কিমি/ঘণ্টা বেগে সমান্তরাল লাইনে চলছে। দ্রুতগামী ট্রেনটি 36 সেকেন্ডে অপেক্ষাকৃত ধীরগতির ট্রেনকে অতিক্রম করে। ট্রেন দুটির আপেক্ষিক গতিবেগ কত (মিটার/সেকেন্ড)? [RRB Group-D Exam. '22]</strong>
+                </p>
+                <ul>
+                    <li>(A) 25/8</li>
+                    <li>(B) 25/9</li>
+                    <li>(C) 25/7</li>
+                    <li>(D) 25/18</li>
+                </ul>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(B) 25/9</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                        <p>এই প্রশ্নে শুধুমাত্র আপেক্ষিক গতিবেগ মিটার/সেকেন্ড এককে বের করতে বলা হয়েছে।</p>
+                        <p><strong>ধাপ ১: আপেক্ষিক গতিবেগ নির্ণয় (কিমি/ঘণ্টা এককে)</strong><br>
+                        ট্রেন দুটি একই দিকে চলছে, তাই আপেক্ষিক গতিবেগ হবে তাদের গতিবেগের বিয়োগফল।<br>
+                        আপেক্ষিক গতিবেগ = 46 - 36 = 10 কিমি/ঘণ্টা।</p>
+                        <p><strong>ধাপ ২: গতিবেগকে মিটার/সেকেন্ড এককে রূপান্তর</strong><br>
+                        গতিবেগ (মি/সে) = গতিবেগ (কিমি/ঘণ্টা) × (5/18)<br>
+                        = 10 × (5/18)<br>
+                        = 50 / 18<br>
+                        = 25 / 9 মিটার/সেকেন্ড।</p>
+                        <p><em>(দ্রষ্টব্য: এখানে 36 সেকেন্ড এবং সমান দৈর্ঘ্যের তথ্যটি ট্রেনের দৈর্ঘ্য নির্ণয়ের জন্য প্রয়োজন, কিন্তু প্রশ্নের উত্তর দেওয়ার জন্য প্রয়োজন নয়।)</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ৫৮ -->
+            <div class="question-item">
+                <h3>প্রশ্ন ৫৮</h3>
+                <p>
+                    <strong>আজহার 10 ঘণ্টায় একটি যাত্রা শেষ করতে পারে। তিনি যাত্রার অর্ধেক পথ 21 কিমি/ঘণ্টা বেগে এবং বাকি পথ 24 কিমি/ঘণ্টা বেগে সম্পূর্ণ করলে, যাত্রাপথের দূরত্ব কত ছিল? [RRB RPF SI Exam. '19]</strong>
+                </p>
+                <ul>
+                    <li>(A) 234</li>
+                    <li>(B) 225</li>
+                    <li>(C) 224</li>
+                    <li>(D) 232</li>
+                </ul>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(C) 224</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                        <p>ধরা যাক, যাত্রাপথের অর্ধেক দূরত্ব d কিমি। তাহলে মোট দূরত্ব 2d কিমি।</p>
+                        <ul>
+                            <li>প্রথম অর্ধেক পথের জন্য সময় = d / 21 ঘণ্টা।</li>
+                            <li>দ্বিতীয় অর্ধেক পথের জন্য সময় = d / 24 ঘণ্টা।</li>
+                            <li>মোট সময় = 10 ঘণ্টা।</li>
+                        </ul>
+                        <p>শর্তানুসারে,<br>
+                        (d / 21) + (d / 24) = 10<br>
+                        (8d + 7d) / 168 = 10 (21 ও 24 এর ল.সা.গু. 168)<br>
+                        15d / 168 = 10<br>
+                        15d = 1680<br>
+                        d = 1680 / 15 = 112</p>
+                        <p>সুতরাং, অর্ধেক দূরত্ব হল 112 কিমি।<br>
+                        মোট যাত্রাপথের দূরত্ব = 2 × d = 2 × 112 = 224 কিমি।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ৫৯ -->
+            <div class="question-item">
+                <h3>প্রশ্ন ৫৯</h3>
+                <p>
+                    <strong>131 মিটার এবং 89 মিটার লম্বা দুটি ট্রেন যথাক্রমে 42 কিমি/ঘণ্টা এবং 30 কিমি/ঘণ্টা গতিবেগে বিপরীত দিকে যাচ্ছে। ট্রেন দুটি মিলিত হওয়ার পর থেকে কত সময়ে (সেকেন্ডে) একে অপরকে সম্পূর্ণ অতিক্রম করবে? [RRB (NTPC) Exam. '21]</strong>
+                </p>
+                <ul>
+                    <li>(A) 10</li>
+                    <li>(B) 11</li>
+                    <li>(C) 20</li>
+                    <li>(D) 18</li>
+                </ul>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(B) 11</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                        <p><strong>ধাপ ১: মোট দূরত্ব এবং আপেক্ষিক গতিবেগ নির্ণয়</strong></p>
+                        <ul>
+                            <li>মোট দূরত্ব = দুটি ট্রেনের দৈর্ঘ্যের যোগফল = 131 + 89 = 220 মিটার।</li>
+                            <li>যেহেতু ট্রেন দুটি বিপরীত দিকে যাচ্ছে, আপেক্ষিক গতিবেগ হবে তাদের গতিবেগের যোগফল。<br>
+                            আপেক্ষিক গতিবেগ = 42 + 30 = 72 কিমি/ঘণ্টা।</li>
+                        </ul>
+                        <p><strong>ধাপ ২: গতিবেগকে মিটার/সেকেন্ড এককে রূপান্তর</strong><br>
+                        আপেক্ষিক গতিবেগ = 72 × (5/18) = 4 × 5 = 20 মিটার/সেকেন্ড।</p>
+                        <p><strong>ধাপ ৩: সময় নির্ণয়</strong><br>
+                        সময় = মোট দূরত্ব / আপেক্ষিক গতিবেগ<br>
+                        = 220 / 20 = 11 সেকেন্ড।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- প্রশ্ন ৬০ -->
+            <div class="question-item">
+                <h3>প্রশ্ন ৬০</h3>
+                <p>
+                    <strong>250 মিটার লম্বা ট্রেন 100 কিমি/ঘণ্টা বেগে বিপরীত দিক থেকে আসা 62 কিমি/ঘণ্টা গতিবেগের অপর ট্রেনকে অতিক্রম করে 10 সেকেন্ডে। দ্বিতীয় ট্রেনের দৈর্ঘ্য কত মিটার? [RRB ALP, 2024]</strong>
+                </p>
+                <ul>
+                    <li>(A) 200</li>
+                    <li>(B) 240</li>
+                    <li>(C) 230</li>
+                    <li>(D) 270</li>
+                </ul>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(A) 200</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                        <p>ধরা যাক, দ্বিতীয় ট্রেনের দৈর্ঘ্য L মিটার।</p>
+                        <p><strong>ধাপ ১: মোট দূরত্ব এবং আপেক্ষিক গতিবেগ নির্ণয়</strong></p>
+                        <ul>
+                            <li>মোট দূরত্ব = প্রথম ট্রেনের দৈর্ঘ্য + দ্বিতীয় ট্রেনের দৈর্ঘ্য = 250 + L মিটার।</li>
+                            <li>বিপরীত দিকে যাওয়ায়, আপেক্ষিক গতিবেগ = 100 + 62 = 162 কিমি/ঘণ্টা।</li>
+                        </ul>
+                        <p><strong>ধাপ ২: আপেক্ষিক গতিবেগকে মিটার/সেকেন্ড এককে রূপান্তর</strong><br>
+                        আপেক্ষিক গতিবেগ = 162 × (5/18) = 9 × 5 = 45 মিটার/সেকেন্ড।</p>
+                        <p><strong>ধাপ ৩: সমীকরণ গঠন ও সমাধান</strong><br>
+                        আমরা জানি, দূরত্ব = গতিবেগ × সময়<br>
+                        250 + L = 45 × 10<br>
+                        250 + L = 450<br>
+                        L = 450 - 250 = 200</p>
+                        <p>সুতরাং, দ্বিতীয় ট্রেনের দৈর্ঘ্য 200 মিটার।</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <nav class="navigation">
+            <a href="class7.html" class="nav-button">পূর্ববর্তী</a>
+            <a href="class1.html" class="nav-button">1</a>
+            <a href="class2.html" class="nav-button">2</a>
+            <a href="class3.html" class="nav-button">3</a>
+            <a href="class4.html" class="nav-button">4</a>
+            <a href="class5.html" class="nav-button">5</a>
+            <a href="class6.html" class="nav-button">6</a>
+            <a href="class7.html" class="nav-button">7</a>
+            <a href="class8.html" class="nav-button active">8</a>
+            <a href="class8.html" class="nav-button disabled">পরবর্তী</a>
+            <a href="../index.html" class="nav-button home-button">Home</a>
+        </nav>
+
+        <footer>
+            <p>
+                কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব
+                সংরক্ষিত।
+            </p>
+            <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+        </footer>
+
+        <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">
+            ↑
+        </button>
+        <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">
+            ↓
+        </button>
+
+        <!-- External JavaScript File Link -->
+        <script src="js/script.js"></script>
+    </body>
+</html>

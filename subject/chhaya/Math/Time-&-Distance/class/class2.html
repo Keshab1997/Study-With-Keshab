@@ -1,927 +1,264 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="bn">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ছায়া প্রকাশনী (Practice Set 4) - Class 02</title>
-        <!-- External CSS File Link -->
-        <link rel="stylesheet" href="css/style.css" />
-    </head>
-    <body data-theme="default">
-        <header>
-            <img src="../images/logo.jpg" alt="Logo" class="logo" />
-            <h1>অধ্যায়: ছায়া প্রকাশনী (Practice Set 4)</h1>
-        </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time & Distance (সময় ও দূরত্ব) - Class 02</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-theme="default">
+    <header>
+      <img src="../images/logo.jpg" alt="Logo" class="logo" />
+      <h1>অধ্যায়: Time & Distance (সময় ও দূরত্ব)</h1>
+    </header>
 
-        <div class="controls-wrapper">
-            <div id="digital-clock" class="digital-clock"></div>
-            <div class="theme-buttons">
-                <button data-theme-name="default">Default</button>
-                <button data-theme-name="forest">Forest</button>
-                <button data-theme-name="ocean">Ocean</button>
-                <button data-theme-name="sunset">Sunset</button>
-            </div>
-            <button id="desktopModeToggle">ডেস্কটপ মোড</button>
-            <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
-            <div class="dark-mode-toggle">
-                <span>দিন/রাত</span>
-                <label class="switch">
-                    <input type="checkbox" id="darkModeToggle" />
-                    <span class="slider"></span>
-                </label>
-            </div>
-        </div>
+    <div class="controls-wrapper">
+      <div id="digital-clock" class="digital-clock"></div>
+      <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+      </div>
+      <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+      <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+      <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
 
-        <div class="container">
-            <h2>CLASS NO: 02</h2>
+    <div class="container">
+      <h2>CLASS NO: 02 (নৌকা ও স্রোত)</h2>
 
-            <h3>প্রশ্নোত্তর পর্ব (MCQ)</h3>
+      <p>
+        নৌকা ও স্রোতের অঙ্ক করার জন্য যা যা জানতে ও মনে রাখতে হবে, তা নিচে
+        বিস্তারিত আলোচনা করা হলো।
+      </p>
 
-            <!-- প্রশ্ন ২১ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ২১</h3>
-                <p>
-                    <strong
-                        >নিম্নলিখিত কোন্ দেশটি ওয়ার্ল্ড ব্যাংক গ্রুপের সদস্য
-                        নয়?</strong
-                    >
-                </p>
-                <ul>
-                    <li>(A) আফগানিস্তান</li>
-                    <li>(B) বাহারিন</li>
-                    <li>(C) নাউরু</li>
-                    <li>(D) কিউবা</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(D) কিউবা</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            ওয়ার্ল্ড ব্যাংক গ্রুপ (World Bank Group) 189টি সদস্য
-                            দেশ নিয়ে গঠিত। কিছু দেশ রাজনৈতিক বা অর্থনৈতিক কারণে
-                            এর সদস্য নয়। কিউবা, উত্তর কোরিয়া, অ্যান্ডোরা,
-                            মোনাকো এবং লিশটেনস্টাইন এই সংস্থার সদস্য নয়।
-                            আফগানিস্তান, বাহারিন এবং নাউরু সকলেই ওয়ার্ল্ড ব্যাংক
-                            গ্রুপের সদস্য।
-                        </p>
-                    </div>
-                </div>
-            </div>
+      <div class="theory-section">
+        <h3>মূল ধারণা (Core Concepts)</h3>
+        <p>এখানে দুটি প্রধান গতিবেগ কাজ করে:</p>
+        <ol>
+          <li>
+            <strong>নৌকার নিজস্ব গতিবেগ (Speed of the Boat):</strong> স্থির জলে
+            (যেমন পুকুর বা হ্রদ) নৌকাটি যে বেগে চলতে পারে।
+          </li>
+          <li>
+            <strong>স্রোতের গতিবেগ (Speed of the Stream):</strong> নদীর জল যে
+            বেগে প্রবাহিত হচ্ছে।
+          </li>
+        </ol>
+        <p>এই দুটি গতিবেগের উপর ভিত্তি করে দুটি পরিস্থিতি তৈরি হয়:</p>
+        <ul>
+          <li>
+            <strong>স্রোতের অনুকূলে (Downstream):</strong> যখন নৌকা স্রোতের দিকে
+            যায়। এক্ষেত্রে স্রোত নৌকাকে সাহায্য করে, তাই নৌকার কার্যকরী গতিবেগ
+            বেড়ে যায়।
+          </li>
+          <li>
+            <strong>স্রোতের প্রতিকূলে (Upstream):</strong> যখন নৌকা স্রোতের
+            বিপরীতে যায়। এক্ষেত্রে স্রোত নৌকাকে বাধা দেয়, তাই নৌকার কার্যকরী
+            গতিবেগ কমে যায়।
+          </li>
+        </ul>
+      </div>
 
-            <!-- প্রশ্ন ২২ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ২২</h3>
-                <p>
-                    <strong
-                        >প্রদত্ত চার অঙ্কের কোন্ বৃহত্তম সংখ্যাটি
-                        পূর্ণবর্গ?</strong
-                    >
-                </p>
-                <ul>
-                    <li>(A) 9000</li>
-                    <li>(B) 9999</li>
-                    <li>(C) 9801</li>
-                    <li>(D) 9008</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(C) 9801</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            এই সমস্যাটি সমাধানের জন্য আমরা নিম্নলিখিত ধাপগুলি
-                            অনুসরণ করব:
-                        </p>
-                        <p>
-                            <strong>ধাপ ১:</strong> চার অঙ্কের বৃহত্তম সংখ্যাটি
-                            হলো 9999।
-                        </p>
-                        <p>
-                            <strong>ধাপ ২:</strong> আমরা 9999-এর বর্গমূল নির্ণয়
-                            করার চেষ্টা করব।<br />√9999 ≈ 99.99...
-                        </p>
-                        <p>
-                            <strong>ধাপ ৩:</strong> যেহেতু আমরা একটি পূর্ণবর্গ
-                            সংখ্যা চাই, তাই আমরা বর্গমূলের পূর্ণসংখ্যা অংশটি
-                            নেব, যা হলো 99।
-                        </p>
-                        <p>
-                            <strong>ধাপ ৪:</strong> এখন, আমরা 99-এর বর্গ নির্ণয়
-                            করব।<br />99² = 99 × 99 = 9801।
-                        </p>
-                        <p>
-                            যেহেতু 100² = 10000 (যা পাঁচ অঙ্কের সংখ্যা), তাই
-                            9801 হলো চার অঙ্কের বৃহত্তম পূর্ণবর্গ সংখ্যা।
-                        </p>
-                    </div>
-                </div>
-            </div>
+      <hr class="content-divider" />
 
-            <!-- প্রশ্ন ২৩ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ২৩</h3>
-                <p>
-                    <strong
-                        >রঙ্গভূমি, গোদান, গবন, বরদান উপন্যাসগুলির
-                        রচয়িতা—</strong
-                    >
-                </p>
-                <ul>
-                    <li>(A) সুমিত্রা نন্দন পন্থ</li>
-                    <li>(B) মৈথিলী শরণ গুপ্ত</li>
-                    <li>(C) রামধারী সিং দিনকর</li>
-                    <li>(D) মুন্সি প্রেমচাঁদ</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(D) মুন্সি প্রেমচাঁদ</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            রঙ্গভূমি, গোদান, গবন, বরদান, নির্মলা, কর্মভূমি
-                            ইত্যাদি হিন্দি সাহিত্যের বিখ্যাত উপন্যাসগুলির
-                            রচয়িতা হলেন মুন্সি প্রেমচাঁদ। তিনি হিন্দি ও উর্দু
-                            সাহিত্যের অন্যতম শ্রেষ্ঠ লেখক হিসেবে পরিচিত।
-                        </p>
-                    </div>
-                </div>
-            </div>
+      <div class="theory-section">
+        <h3>প্রধান পরিভাষা ও সূত্রাবলী (Key Terminology & Formulas)</h3>
+        <p>অঙ্ক করার সুবিধার জন্য আমরা কয়েকটি সংক্ষিপ্ত নাম ব্যবহার করব:</p>
+        <ul>
+          <li>স্থির জলে নৌকার বেগ = <strong>B</strong> (Boat's speed)</li>
+          <li>স্রোতের বেগ = <strong>S</strong> (Stream's speed)</li>
+          <li>
+            স্রোতের অনুকূলে নৌকার বেগ = <strong>D</strong> (Downstream speed)
+          </li>
+          <li>
+            স্রোতের প্রতিকূলে নৌকার বেগ = <strong>U</strong> (Upstream speed)
+          </li>
+        </ul>
+        <p>এই চারটি রাশির মধ্যে সম্পর্কই হলো নৌকা-স্রোতের অঙ্কের ভিত্তি।</p>
 
-            <!-- প্রশ্ন ২৪ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ২৪</h3>
-                <p>
-                    <strong
-                        >A একা একটি কাজ করতে পারে 32 দিনে, B-এর সাথে একত্রে সেই
-                        কাজটি সম্পন্ন করে 24 দিনে। যদি C একা সেই কাজটি 64 দিনে
-                        সম্পন্ন করে, তবে B ও C একত্রে কত দিনে কাজটি সম্পন্ন করতে
-                        পারবে?</strong
-                    >
-                </p>
-                <ul>
-                    <li>(A) 38 2/5 দিনে</li>
-                    <li>(B) 38 3/5 দিনে</li>
-                    <li>(C) 37 4/5 দিনে</li>
-                    <li>(D) 38 4/5 দিনে</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(A) 38 2/5 দিনে</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            এই সমস্যাটি সমাধান করার জন্য আমরা কাজের একক ধরে
-                            এগোব।
-                        </p>
-                        <p>
-                            <strong>ধাপ ১:</strong> মোট কাজের পরিমাণ নির্ণয়।<br />32,
-                            24, এবং 64-এর লসাগু (LCM) হলো 192।<br />ধরি, মোট
-                            কাজের পরিমাণ = 192 একক।
-                        </p>
-                        <p>
-                            <strong>ধাপ ২:</strong> প্রত্যেকের একদিনের কাজের
-                            পরিমাণ (দক্ষতা) নির্ণয়।
-                        </p>
-                        <ul>
-                            <li>A একা একদিনে কাজ করে = 192 / 32 = 6 একক।</li>
-                            <li>
-                                A ও B একত্রে একদিনে কাজ করে = 192 / 24 = 8 একক।
-                            </li>
-                            <li>C একা একদিনে কাজ করে = 192 / 64 = 3 একক।</li>
-                        </ul>
-                        <p>
-                            <strong>ধাপ ৩:</strong> B-এর একদিনের কাজের পরিমাণ
-                            নির্ণয়।<br />B একা একদিনে কাজ করে = (A ও B-এর
-                            একত্রে কাজ) - (A-এর কাজ)<br />= 8 - 6 = 2 একক।
-                        </p>
-                        <p>
-                            <strong>ধাপ ৪:</strong> B ও C একত্রে একদিনে কতটা কাজ
-                            করে তা নির্ণয়।<br />B ও C একত্রে একদিনে কাজ করে =
-                            (B-এর কাজ) + (C-এর কাজ)<br />= 2 + 3 = 5 একক।
-                        </p>
-                        <p>
-                            <strong>ধাপ ৫:</strong> B ও C একত্রে কাজটি সম্পন্ন
-                            করতে কতদিন সময় নেবে তা নির্ণয়।<br />প্রয়োজনীয় সময়
-                            = মোট কাজ / একদিনের সম্মিলিত কাজ<br />= 192 / 5
-                            দিন<br />= 38 2/5 দিন।
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ২৫ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ২৫</h3>
-                <p><strong>নিম্নলিখিত কোনটি অপারেটিং সিস্টেম নয়?</strong></p>
-                <ul>
-                    <li>(A) mac OS</li>
-                    <li>(B) MS Windows</li>
-                    <li>(C) Microsoft Office</li>
-                    <li>(D) Linux</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(C) Microsoft Office</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <ul>
-                            <li>
-                                <strong>অপারেটিং সিস্টেম (OS):</strong> এটি একটি
-                                সিস্টেম সফটওয়্যার যা কম্পিউটারের হার্ডওয়্যার
-                                এবং সফটওয়্যার রিসোর্স পরিচালনা করে এবং
-                                ব্যবহারকারীকে পরিষেবা প্রদান করে। mac OS, MS
-                                Windows, Linux, Android ইত্যাদি অপারেটিং
-                                সিস্টেমের উদাহরণ।
-                            </li>
-                            <li>
-                                <strong>অ্যাপ্লিকেশন সফটওয়্যার:</strong> এটি
-                                ব্যবহারকারীর নির্দিষ্ট কাজ সম্পাদনের জন্য তৈরি
-                                করা হয়। <strong>Microsoft Office</strong> একটি
-                                অ্যাপ্লিকেশন সফটওয়্যার স্যুট, যার মধ্যে Word,
-                                Excel, PowerPoint-এর মতো প্রোগ্রাম থাকে। এটি
-                                অপারেটিং সিস্টেম নয়।
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ২৬ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ২৬</h3>
-                <p>
-                    <strong
-                        >নিম্নে প্রদত্ত দেশগুলির কোনটির স্থলভাগের ক্ষেত্রফল
-                        বৃহত্তম?</strong
-                    >
-                </p>
-                <ul>
-                    <li>(A) চিন</li>
-                    <li>(B) ব্রাজিল</li>
-                    <li>(C) অস্ট্রেলিয়া</li>
-                    <li>(D) কানাডা</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(D) কানাডা</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            স্থলভাগের ক্ষেত্রফলের দিক থেকে বিশ্বের দেশগুলির ক্রম
-                            নিম্নরূপ:
-                        </p>
-                        <ol>
-                            <li>রাশিয়া</li>
-                            <li><strong>কানাডা</strong></li>
-                            <li>চিন</li>
-                            <li>মার্কিন যুক্তরাষ্ট্র</li>
-                            <li>ব্রাজিল</li>
-                            <li>অস্ট্রেলিয়া</li>
-                        </ol>
-                        <p>
-                            প্রদত্ত বিকল্পগুলির মধ্যে কানাডার স্থলভাগের
-                            ক্ষেত্রফল বৃহত্তম।
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ২৭ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ২৭</h3>
-                <p><strong>GST-এর অধীনে ভারতে করের স্তরগুলি কী কী?</strong></p>
-                <ul>
-                    <li>(A) 6%, 12%, 17% ও 28%</li>
-                    <li>(B) 6%, 9%, 18% ও 28%</li>
-                    <li>(C) 3%, 6%, 18% ও 28%</li>
-                    <li>(D) 5%, 12%, 18% ও 28%</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer"
-                            >(D) 5%, 12%, 18% ও 28%</span
-                        >
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            ভারতে পণ্য ও পরিষেবা কর (GST)-এর অধীনে প্রধানত চারটি
-                            করের স্তর বা স্ল্যাব রয়েছে। সেগুলি হলো:
-                            <strong>5%, 12%, 18%</strong> এবং
-                            <strong>28%</strong>। এছাড়াও, কিছু অত্যাবশ্যকীয়
-                            পণ্যের উপর 0% এবং সোনা ও মূল্যবান পাথরের উপর 3% GST
-                            ধার্য করা হয়।
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ২৮ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ২৮</h3>
-                <p><strong>পুসিনিয়া গ্রামিনিস ছত্রাকটি যেটির কারণ—</strong></p>
-                <ul>
-                    <li>(A) মানুষের গোলকৃমি</li>
-                    <li>(B) গমের কালো মরিচা</li>
-                    <li>(C) আখের রেড রট</li>
-                    <li>(D) আলুর ধসা রোগ</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(B) গমের কালো মরিচা</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            পুসিনিয়া গ্রামিনিস (Puccinia graminis) হলো এক
-                            প্রকার ছত্রাক যা গমের ব্ল্যাক স্টেম রাস্ট বা কালো
-                            মরিচা রোগের জন্য দায়ী। এই রোগে গমের কান্ড ও পাতায়
-                            কালো বা গাঢ় বাদামী দাগ দেখা যায়, যা ফসলের ব্যাপক
-                            ক্ষতি করে।
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ২৯ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ২৯</h3>
-                <p>
-                    <strong
-                        >কোনো একটি সাংকেতিক ভাষায় 'SPECTROSCOPY'-কে লেখা হয়
-                        'ESPRCTCOSYOP'-রূপে তাহলে ওই ভাষায় 'EXTRAVAGANZA'-কে কী
-                        রূপে লেখা হবে?</strong
-                    >
-                </p>
-                <ul>
-                    <li>(A) TEXVRAAAGANZ</li>
-                    <li>(B) REXTGAVAANZA</li>
-                    <li>(C) TEXVRAAGANZ</li>
-                    <li>(D) TXEVARAGAAZN</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(A) TEXVRAAAGANZ</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            এই প্রশ্নটির সাংকেতিকরণের উদাহরণ (`SPECTROSCOPY` ->
-                            `ESPRCTCOSYOP`) এবং সমাধান (`EXTRAVAGANZA`-এর কোড)
-                            এর মধ্যেকার যুক্তিতে অসামঞ্জস্য রয়েছে। এটি একটি
-                            ত্রুটিপূর্ণ প্রশ্ন। তবে, যদি আমরা সমাধানটি
-                            (`TEXVRAAAGANZ`) থেকে যুক্তিটি বের করি, তবে সেটি
-                            হলো:
-                        </p>
-                        <p>
-                            <strong>যুক্তি:</strong> শব্দটিকে তিনটি অক্ষরের
-                            গ্রুপে ভাগ করা হয়েছে এবং প্রতিটি গ্রুপের শেষ
-                            অক্ষরটিকে প্রথমে আনা হয়েছে। (XYZ → ZXY)
-                        </p>
-                        <p><strong>প্রয়োগ:</strong></p>
-                        <ul>
-                            <li>
-                                EXTRAVAGANZA শব্দটিকে তিনটি অক্ষরের গ্রুপে ভাগ
-                                করি:
-                                <ul>
-                                    <li>(EXT) (RAV) (AGA) (NZA)</li>
-                                </ul>
-                            </li>
-                            <li>
-                                এবার প্রতিটি গ্রুপে যুক্তিটি প্রয়োগ করি:
-                                <ul>
-                                    <li>(EXT) → <strong>TEX</strong></li>
-                                    <li>(RAV) → <strong>VRA</strong></li>
-                                    <li>(AGA) → <strong>AAG</strong></li>
-                                    <li>(NZA) → <strong>ANZ</strong></li>
-                                </ul>
-                            </li>
-                            <li>
-                                সব গ্রুপ একসাথে করলে হয়:
-                                <strong>TEXVRAAAGANZ</strong>
-                            </li>
-                        </ul>
-                        <p>এই যুক্তিটি বিকল্প (A)-এর সাথে মিলে যায়।</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ৩০ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ৩০</h3>
-                <p>
-                    <strong>জাতীয় সড়কপথ সম্পর্কিত কোন্ তথ্যটি সঠিক নয়?</strong>
-                </p>
-                <ul>
-                    <li>(A) ভারতের ক্ষুদ্রতম জাতীয় সড়ক হল NH-8</li>
-                    <li>
-                        (B) জাতীয় সড়কপথের উন্নতি, নিয়ন্ত্রণ, রক্ষণাবেক্ষণের
-                        ভারপ্রাপ্ত সংস্থা হল NHAI
-                    </li>
-                    <li>(C) ভারতের ক্ষুদ্রতম জাতীয় সড়ক হল NH-47A</li>
-                    <li>(D) ভারতের দীর্ঘতম জাতীয় সড়ক হল NH-44</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer"
-                            >(A) ভারতের ক্ষুদ্রতম জাতীয় সড়ক হল NH-8</span
-                        >
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <ul>
-                            <li>
-                                বিবৃতি (A) <strong>সঠিক নয়</strong>। NH-8
-                                (বর্তমানে NH-48 এর অংশ) দিল্লি থেকে মুম্বাই
-                                পর্যন্ত একটি প্রধান জাতীয় সড়ক, এটি ক্ষুদ্রতম
-                                নয়।
-                            </li>
-                            <li>
-                                বিবৃতি (B) সঠিক। NHAI (National Highways
-                                Authority of India) জাতীয় সড়কপথের উন্নয়ন ও
-                                রক্ষণাবেক্ষণের দায়িত্বে রয়েছে।
-                            </li>
-                            <li>
-                                বিবৃতি (C) সঠিক। NH-47A (বর্তমানে NH-966B)
-                                কেরালায় অবস্থিত এবং এটি ভারতের ক্ষুদ্রতম জাতীয়
-                                সড়কগুলির মধ্যে অন্যতম (প্রায় 6 কিমি)।
-                            </li>
-                            <li>
-                                বিবৃতি (D) সঠিক। NH-44 (শ্রীনগর থেকে
-                                কন্যাকুমারী) ভারতের দীর্ঘতম জাতীয় সড়ক।
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ৩১ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ৩১</h3>
-                <p>
-                    <strong
-                        >প্রদত্ত বিবৃতিটি বিবেচনা করে তার ভিত্তিতে কোন্
-                        অনুমানগুলি গ্রহণ করা সম্ভব তা নির্ণয় করুন।<br />বিবৃতি:
-                        পার্কের একটি সাইনবোর্ডে বিবৃত হয়েছে—দয়া করে ডাস্টবিন
-                        ব্যবহার করুন, যত্রতত্র ময়লা ফেলিবেন না এবং নিজ সমাজকে
-                        পরিচ্ছন্ন রাখুন।<br />অনুমান:<br />I. যত্রতত্র ময়লা ফেলা
-                        সমাজকে কলুষিত করে।<br />II. বিশ্বাস করা যায় জনগণ এই
-                        বিজ্ঞপ্তিতে গুরুত্ব প্রদান করবে।</strong
-                    >
-                </p>
-                <ul>
-                    <li>(A) I ও II উভয় অনুমানই অন্তর্নিহিত</li>
-                    <li>(B) শুধুমাত্র অনুমান II অনুমানই অন্তর্নিহিত</li>
-                    <li>(C) শুধুমাত্র অনুমান I অন্তর্নিহিত</li>
-                    <li>(D) I অথবা II অন্তর্নিহিত</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer"
-                            >(A) I ও II উভয় অনুমানই অন্তর্নিহিত</span
-                        >
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <ul>
-                            <li>
-                                <strong>অনুমান I:</strong> সাইনবোর্ডে সমাজকে
-                                পরিচ্ছন্ন রাখার আবেদন করা হয়েছে এবং যত্রতত্র
-                                ময়লা ফেলতে বারণ করা হয়েছে। এর অন্তর্নিহিত অর্থ
-                                হলো, যত্রতত্র ময়লা ফেললে সমাজ অপরিচ্ছন্ন বা
-                                কলুষিত হয়। তাই এই অনুমানটি গ্রহণ করা যায়।
-                            </li>
-                            <li>
-                                <strong>অনুমান II:</strong> কোনো বিজ্ঞপ্তি বা
-                                নির্দেশিকা জারি করার পেছনে কর্তৃপক্ষের এই
-                                বিশ্বাস থাকে যে জনগণ সেটি পড়বে, বুঝবে এবং মেনে
-                                চলবে। যদি এই বিশ্বাস না থাকত, তবে বিজ্ঞপ্তি
-                                দেওয়ার কোনো অর্থই হয় না। তাই এই অনুমানটিও
-                                গ্রহণ করা যায়।
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ৩২ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ৩২</h3>
-                <p>
-                    <strong
-                        >কোনো একটি বস্তুকে 340 টাকার পরিবর্তে 350 টাকায় বিক্রি
-                        করা হলে 5% অধিক লাভ হয়। বস্তুটির ক্রয়মূল্য কত?</strong
-                    >
-                </p>
-                <ul>
-                    <li>(A) 100 টাকা</li>
-                    <li>(B) 250 টাকা</li>
-                    <li>(C) 160 টাকা</li>
-                    <li>(D) 200 টাকা</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(D) 200 টাকা</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            <strong>ধাপ ১:</strong> বিক্রয়মূল্যের পার্থক্য
-                            নির্ণয়।<br />পার্থক্য = 350 টাকা - 340 টাকা = 10
-                            টাকা।
-                        </p>
-                        <p>
-                            <strong>ধাপ ২:</strong> সমস্যাটি বোঝা।<br />বিক্রয়মূল্য
-                            10 টাকা বাড়ানোর ফলে লাভ 5% বেড়েছে। এর অর্থ হলো, এই
-                            অতিরিক্ত 10 টাকাই হলো ক্রয়মূল্যের 5%।
-                        </p>
-                        <p>
-                            <strong>ধাপ ৩:</strong> ক্রয়মূল্য নির্ণয়।<br />ধরি,
-                            ক্রয়মূল্য = C টাকা।<br />প্রশ্নানুসারে, C-এর 5% =
-                            10 টাকা<br />=> C × (5/100) = 10<br />=> C = 10 ×
-                            (100/5)<br />=> C = 10 × 20<br />=> C = 200 টাকা।
-                        </p>
-                        <p>
-                            অতএব, বস্তুটির ক্রয়মূল্য <strong>200 টাকা</strong>।
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ৩৩ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ৩৩</h3>
-                <p>
-                    <strong
-                        >একটি ছেলেকে নির্দেশ করে সুরেশ বলল, "তার মায়ের ভাই হল
-                        আমার মায়ের বাবার একমাত্র ছেলে"। ছেলেটির মা সুরেশের সাথে
-                        কীভাবে সম্পর্কিত?</strong
-                    >
-                </p>
-                <ul>
-                    <li>(A) মাসি</li>
-                    <li>(B) মা</li>
-                    <li>(C) দিদি/ঠাকুমা</li>
-                    <li>(D) বোন</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(A) মাসি</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>এই সম্পর্কটি ধাপে ধাপে বিশ্লেষণ করা যাক:</p>
-                        <ul>
-                            <li>
-                                "আমার মায়ের বাবার একমাত্র ছেলে" — এর অর্থ
-                                সুরেশের <strong>মামা</strong> (maternal uncle)।
-                            </li>
-                            <li>
-                                এখন সুরেশের উক্তিটি হলো: "তার (ছেলেটির) মায়ের
-                                ভাই হলো আমার মামা"।
-                            </li>
-                            <li>
-                                যদি ছেলেটির মামা এবং সুরেশের মামা একই ব্যক্তি
-                                হন, তার মানে ছেলেটির মা এবং সুরেশের মা হলেন দুই
-                                বোন।
-                            </li>
-                            <li>
-                                অতএব, ছেলেটির মা হলেন সুরেশের
-                                <strong>মাসি</strong> (mother's sister)।
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ৩৪ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ৩৪</h3>
-                <p>
-                    <strong
-                        >ভারতের সংবিধান বলবৎ (came into force) হয়েছিল যে
-                        সালে—</strong
-                    >
-                </p>
-                <ul>
-                    <li>(A) 1947</li>
-                    <li>(B) 1950</li>
-                    <li>(C) 1948</li>
-                    <li>(D) 1949</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(B) 1950</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            ভারতের সংবিধান গণপরিষদ কর্তৃক গৃহীত হয়েছিল 1949
-                            সালের 26শে নভেম্বর। কিন্তু এটি সম্পূর্ণরূপে কার্যকর
-                            বা বলবৎ হয়েছিল
-                            <strong>1950 সালের 26শে জানুয়ারি</strong>। এই দিনটি
-                            ভারতে প্রজাতন্ত্র দিবস হিসেবে পালিত হয়।
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ৩৫ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ৩৫</h3>
-                <p><strong>নিম্নলিখিত কোনটি 3.14 x 10⁶-এর সমান?</strong></p>
-                <ul>
-                    <li>(A) 31.40000</li>
-                    <li>(B) 3140000</li>
-                    <li>(C) 3140</li>
-                    <li>(D) 314000</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(B) 3140000</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            3.14 x 10⁶-কে সাধারণ সংখ্যায় রূপান্তর করতে হলে
-                            দশমিক বিন্দুটিকে ডানদিকে 6 ঘর সরাতে হবে।
-                        </p>
-                        <ul>
-                            <li>3.14</li>
-                            <li>1 ঘর সরালে: 31.4</li>
-                            <li>2 ঘর সরালে: 314.</li>
-                            <li>3 ঘর সরালে: 3140.</li>
-                            <li>4 ঘর সরালে: 31400.</li>
-                            <li>5 ঘর সরালে: 314000.</li>
-                            <li>6 ঘর সরালে: 3140000.</li>
-                        </ul>
-                        <p>
-                            সুতরাং, 3.14 x 10⁶ = 31,40,000 বা
-                            <strong>3140000</strong>।
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ৩৬ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ৩৬</h3>
-                <p><strong>হায়দরাবাদ-এর শেষ নিজাম (শাসক) কে ছিলেন?</strong></p>
-                <ul>
-                    <li>(A) আফজল-উদ-দৌলা</li>
-                    <li>(B) মীর মেহবুব আলি খান</li>
-                    <li>(C) মীর ওসমান আলি খান</li>
-                    <li>(D) নসর-উদ-দৌলা</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer"
-                            >(C) মীর ওসমান আলি খান</span
-                        >
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            হায়দরাবাদ রাজ্যের শেষ নিজাম ছিলেন মীর ওসমান আলি
-                            খান। তিনি 1911 থেকে 1948 সাল পর্যন্ত শাসন করেন,
-                            যতক্ষণ না অপারেশন পোলো-র মাধ্যমে হায়দরাবাদ রাজ্যটি
-                            ভারতের অন্তর্ভুক্ত হয়।
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ৩৭ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ৩৭</h3>
-                <p>
-                    <strong
-                        >প্রদত্ত বিবৃতি ও সিদ্ধান্তগুলি সতর্কতার সাথে পড়ুন।
-                        প্রদত্ত তথ্যকে সত্য ধরে নিয়ে (যদিও তা সাধারণ ধারণা বা
-                        জ্ঞান থেকে পৃথক হতে পারে) কোন সিদ্ধান্তটি/গুলি
-                        যুক্তিযুক্তভাবে বিবৃতিগুলিকে অনুসরণ করে তা নির্ণয়
-                        করুন।<br />বিবৃতি: নার্সরা শুধুমাত্র লম্বা পুরুষদের
-                        বিবাহ করে। অক্ষিত খুব লম্বা।<br />সিদ্ধান্ত:<br />I.
-                        অক্ষিতকে একজন নার্সের সাথে বিবাহ হয়েছিল।<br />II.
-                        অক্ষিতের নার্সের সাথে বিবাহ হয়নি।</strong
-                    >
-                </p>
-                <ul>
-                    <li>(A) I অথবা II অনুসরণ করে</li>
-                    <li>(B) I ও II উভয়ই অনুসরণ করে</li>
-                    <li>(C) শুধুমাত্র II অনুসরণ করে</li>
-                    <li>(D) শুধুমাত্র I অনুসরণ করে</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer"
-                            >(A) I অথবা II অনুসরণ করে</span
-                        >
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <ul>
-                            <li>
-                                বিবৃতি থেকে জানা যায় যে, কোনো নার্স যদি বিবাহ
-                                করে, তবে তার স্বামী অবশ্যই লম্বা হবে। কিন্তু এর
-                                বিপরীতটি সত্য নয়, অর্থাৎ, কোনো লম্বা পুরুষকে যে
-                                নার্সের সাথেই বিবাহ করতে হবে, এমন কোনো
-                                বাধ্যবাধকতা নেই।
-                            </li>
-                            <li>
-                                অক্ষিত লম্বা, তাই তার কোনো নার্সের সাথে বিবাহ
-                                হওয়ার <em>সম্ভাবনা</em> আছে, কিন্তু এটি নিশ্চিত
-                                নয় (সুতরাং সিদ্ধান্ত I অনুসরণ করে না)।
-                            </li>
-                            <li>
-                                একইভাবে, তার যে কোনো নার্সের সাথে বিবাহ হয়নি,
-                                সেটাও নিশ্চিতভাবে বলা যায় না (সুতরাং সিদ্ধান্ত
-                                II অনুসরণ করে না)।
-                            </li>
-                            <li>
-                                কিন্তু, এই দুটি সিদ্ধান্তের মধ্যে একটি অবশ্যই
-                                সত্য হবে। অক্ষিতের হয় কোনো নার্সের সাথে বিবাহ
-                                হয়েছে অথবা হয়নি। এই দুটি সম্ভাবনা পরস্পর
-                                взаимоисклюющими (mutually exclusive) এবং
-                                সামগ্রিকভাবে সম্পূর্ণ (collectively exhaustive)।
-                                তাই, "I অথবা II অনুসরণ করে" বিকল্পটি সঠিক।
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ৩৮ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ৩৮</h3>
-                <p>
-                    <strong
-                        >সম্প্রতি কোন দেশ কর্তৃক প্রধানমন্ত্রী নরেন্দ্র মোদীকে
-                        সেই দেশের সর্বোচ্চ নাগরিক সম্মান 'St Andrew the Apostle'
-                        প্রদান করা হয়েছে?</strong
-                    >
-                </p>
-                <ul>
-                    <li>(A) ফ্রান্স</li>
-                    <li>(B) স্পেন</li>
-                    <li>(C) রাশিয়া</li>
-                    <li>(D) সাউথ কোরিয়া</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(C) রাশিয়া</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            2019 সালে রাশিয়া প্রধানমন্ত্রী নরেন্দ্র মোদীকে
-                            তাদের সর্বোচ্চ রাষ্ট্রীয় সম্মান, 'অর্ডার অফ সেন্ট
-                            অ্যান্ড্রু দ্য অ্যাপোস্টল' (Order of St Andrew the
-                            Apostle) প্রদান করে। ভারত ও রাশিয়ার মধ্যে
-                            দ্বিপাক্ষিক সম্পর্ক উন্নয়নে তাঁর অবদানের জন্য এই
-                            সম্মাননা দেওয়া হয়।
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ৩৯ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ৩৯</h3>
-                <p>
-                    <strong
-                        >পুলিৎজার পুরস্কার 2024-এ Fiction বিভাগে পুরস্কৃত 'Night
-                        Watch'-এর রচয়িতা—</strong
-                    >
-                </p>
-                <ul>
-                    <li>(A) জেইন অ্যান ফিলিপ্স</li>
-                    <li>(B) এয়ান রুষ</li>
-                    <li>(C) ইয়ুন লি</li>
-                    <li>(D) গীতাঞ্জলি শ্রী</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer"
-                            >(A) জেইন অ্যান ফিলিপ্স</span
-                        >
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            2024 সালের পুলিৎজার পুরস্কারে ফিকশন (Fiction) বিভাগে
-                            পুরস্কৃত হয় জেইন অ্যান ফিলিপ্স (Jayne Anne
-                            Phillips) রচিত উপন্যাস 'Night Watch'। এই উপন্যাসটি
-                            আমেরিকান গৃহযুদ্ধের পরবর্তী সময়ের প্রেক্ষাপটে লেখা।
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- প্রশ্ন ৪০ -->
-            <div class="question-item">
-                <h3>প্রশ্ন ৪০</h3>
-                <p>
-                    <strong>অশ্বিনী পোন্নাপ্পা কোন খেলার সঙ্গে যুক্ত?</strong>
-                </p>
-                <ul>
-                    <li>(A) টেনিস</li>
-                    <li>(B) গল্ফ</li>
-                    <li>(C) ব্যাডমিন্টন</li>
-                    <li>(D) স্কোয়াশ</li>
-                </ul>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <p>
-                        <strong class="answer-label">সঠিক উত্তর:</strong>
-                        <span class="correct-answer">(C) ব্যাডমিন্টন</span>
-                    </p>
-                    <div class="explanation">
-                        <p><strong>ব্যাখ্যা:</strong></p>
-                        <p>
-                            অশ্বিনী পোন্নাপ্পা একজন বিখ্যাত ভারতীয় ব্যাডমিন্টন
-                            খেলোয়াড়। তিনি মূলত মহিলাদের ডাবলস এবং মিক্সড ডাবলস
-                            বিভাগে খেলেন। তিনি বিভিন্ন আন্তর্জাতিক
-                            প্রতিযোগিতায়, যেমন কমনওয়েলথ গেমস এবং বিশ্ব
-                            চ্যাম্পিয়নশিপে ভারতের হয়ে পদক জিতেছেন।
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <nav class="navigation">
-            <a href="class1.html" class="nav-button">পূর্ববর্তী</a>
-            <a href="class1.html" class="nav-button">1</a>
-            <a href="class2.html" class="nav-button active">2</a>
-            <a href="class3.html" class="nav-button">3</a>
-            <a href="class4.html" class="nav-button">4</a>
-            <a href="class5.html" class="nav-button">5</a>
-            <a href="class3.html" class="nav-button">পরবর্তী</a>
-            <a href="../index.html" class="nav-button home-button">Home</a>
-        </nav>
-
-        <footer>
+        <h4>১. অনুকূল এবং প্রতিকূলের বেগ নির্ণয়ের সূত্র</h4>
+        <ul>
+          <li>
             <p>
-                কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব
-                সংরক্ষিত।
+              <strong>স্রোতের অনুকূলে বেগ (D):</strong> নৌকার বেগ এবং স্রোতের
+              বেগ যোগ হয়।
             </p>
-            <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
-        </footer>
+            <p><strong>D = B + S</strong></p>
+          </li>
+          <li>
+            <p>
+              <strong>স্রোতের প্রতিকূলে বেগ (U):</strong> নৌকার বেগ থেকে স্রোতের
+              বেগ বিয়োগ হয়।
+            </p>
+            <p><strong>U = B - S</strong></p>
+          </li>
+        </ul>
+        <p>
+          <strong>উদাহরণ:</strong> যদি স্থির জলে একটি নৌকার বেগ 10 কিমি/ঘন্টা
+          এবং স্রোতের বেগ 2 কিমি/ঘন্টা হয়, তাহলে:
+        </p>
+        <ul>
+          <li>অনুকূলে বেগ হবে = 10 + 2 = 12 কিমি/ঘন্টা।</li>
+          <li>প্রতিকূলে বেগ হবে = 10 - 2 = 8 কিমি/ঘন্টা।</li>
+        </ul>
 
-        <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">
-            ↑
-        </button>
-        <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">
-            ↓
-        </button>
+        <h4>
+          ২. নৌকার বেগ এবং স্রোতের বেগ নির্ণয়ের সূত্র (সবচেয়ে গুরুত্বপূর্ণ)
+        </h4>
+        <p>
+          অনেক অঙ্কে আপনাকে অনুকূল (D) এবং প্রতিকূলের (U) বেগ দেওয়া থাকবে এবং
+          সেখান থেকে নৌকার নিজস্ব বেগ (B) ও স্রোতের বেগ (S) বের করতে হবে। এটি
+          <strong>অবশ্যই মুখস্থ রাখতে হবে</strong>।
+        </p>
+        <ul>
+          <li>
+            <p><strong>স্থির জলে নৌকার বেগ (B):</strong></p>
+            <p><strong>B = (D + U) / 2</strong></p>
+            <p>(অর্থাৎ, অনুকূল ও প্রতিকূলের বেগের গড়)</p>
+          </li>
+          <li>
+            <p><strong>স্রোতের বেগ (S):</strong></p>
+            <p><strong>S = (D - U) / 2</strong></p>
+            <p>(অর্থাৎ, অনুকূল ও প্রতিকূলের বেগের পার্থক্যের অর্ধেক)</p>
+          </li>
+        </ul>
+        <p>
+          <strong>উদাহরণ:</strong> একটি নৌকা স্রোতের অনুকূলে 21 কিমি/ঘন্টা এবং
+          প্রতিকূলে 9 কিমি/ঘন্টা বেগে যায়। স্থির জলে নৌকার বেগ ও স্রোতের বেগ কত?
+        </p>
+        <div class="solution">
+          <ul>
+            <li>
+              স্থির জলে নৌকার বেগ (B) = (21 + 9) / 2 = 30 / 2 =
+              <strong>15 কিমি/ঘন্টা</strong>।
+            </li>
+            <li>
+              স্রোতের বেগ (S) = (21 - 9) / 2 = 12 / 2 =
+              <strong>6 কিমি/ঘন্টা</strong>।
+            </li>
+          </ul>
+        </div>
+      </div>
 
-        <!-- External JavaScript File Link -->
-        <script src="js/script.js"></script>
-    </body>
+      <hr class="content-divider" />
+
+      <div class="theory-section">
+        <h3>সাধারণ অঙ্ক সমাধানের ধাপ</h3>
+        <p>
+          নৌকা ও স্রোতের অঙ্কগুলো মূলত <strong>সময় = দূরত্ব / গতিবেগ</strong> এই
+          সূত্র ব্যবহার করেই করা হয়।
+        </p>
+
+        <h4>পরিস্থিতি ১: একটি নির্দিষ্ট দূরত্ব যেতে বা আসতে সময় নির্ণয়</h4>
+        <p>
+          <strong>প্রশ্ন:</strong> স্থির জলে নৌকার বেগ 8 কিমি/ঘন্টা এবং স্রোতের
+          বেগ 2 কিমি/ঘন্টা। স্রোতের অনুকূলে 50 কিমি যেতে কত সময় লাগবে?
+        </p>
+        <div class="solution">
+          <p><strong>সমাধান:</strong></p>
+          <ol>
+            <li>অনুকূলে বেগ (D) = B + S = 8 + 2 = 10 কিমি/ঘন্টা।</li>
+            <li>দূরত্ব = 50 কিমি।</li>
+            <li>সময় = দূরত্ব / গতিবেগ = 50 / 10 = <strong>5 ঘন্টা</strong>।</li>
+          </ol>
+        </div>
+
+        <h4>পরিস্থিতি ২: যাওয়া-আসার মোট সময় দেওয়া থাকলে দূরত্ব নির্ণয়</h4>
+        <p>
+          <strong>প্রশ্ন:</strong> এক ব্যক্তি স্থির জলে 5 কিমি/ঘন্টা বেগে নৌকা
+          চালাতে পারে। স্রোতের বেগ 1 কিমি/ঘন্টা। একটি স্থানে গিয়ে আবার ফিরে আসতে
+          তার মোট 1 ঘন্টা সময় লাগলে, স্থানটির দূরত্ব কত?
+        </p>
+        <div class="solution">
+          <p><strong>সমাধান:</strong></p>
+          <ol>
+            <li>অনুকূলে বেগ (D) = 5 + 1 = 6 কিমি/ঘন্টা।</li>
+            <li>প্রতিকূলে বেগ (U) = 5 - 1 = 4 কিমি/ঘন্টা।</li>
+            <li>ধরি, দূরত্ব = `x` কিমি।</li>
+            <li>যাওয়ার সময় (অনুকূলে) = `x / 6` ঘন্টা।</li>
+            <li>আসার সময় (প্রতিকূলে) = `x / 4` ঘন্টা।</li>
+            <li>প্রশ্নানুসারে, (x/6) + (x/4) = 1</li>
+            <li>=> (2x + 3x) / 12 = 1</li>
+            <li>=> 5x = 12</li>
+            <li>=> x = 12 / 5 = <strong>2.4 কিমি</strong>।</li>
+          </ol>
+        </div>
+      </div>
+
+      <hr class="content-divider" />
+
+      <div class="theory-section">
+        <h3>যা কিছু অবশ্যই মুখস্থ করতে হবে (Must Memorize)</h3>
+        <ol>
+          <li>
+            <strong>অনুকূলে বেগ (D) = নৌকার বেগ (B) + স্রোতের বেগ (S)</strong>
+          </li>
+          <li>
+            <strong>প্রতিকূলে বেগ (U) = নৌকার বেগ (B) - স্রোতের বেগ (S)</strong>
+          </li>
+          <li>
+            <strong>নৌকার বেগ (B) = (অনুকূলে বেগ + প্রতিকূলে বেগ) / 2</strong>
+          </li>
+          <li>
+            <strong>স্রোতের বেগ (S) = (অনুকূলে বেগ - প্রতিকূলে বেগ) / 2</strong>
+          </li>
+        </ol>
+        <p>
+          এই চারটি সূত্র এবং <strong>"সময় = দূরত্ব / গতিবেগ"</strong>—এই মূল
+          সূত্রটি মাথায় রাখলে নৌকা ও স্রোতের প্রায় সমস্ত অঙ্কই আপনি করতে পারবেন।
+        </p>
+
+        <p><strong>সর্বশেষ টিপস:</strong></p>
+        <ul>
+          <li>
+            ট্রেনের অঙ্কের মতোই, এখানেও একক (unit) মেলানো খুব জরুরি। গতিবেগ
+            কিমি/ঘন্টায় থাকলে সময় ঘন্টায় এবং দূরত্ব কিমিতে রাখতে হবে।
+          </li>
+          <li>
+            অঙ্ক পড়ে ভালোভাবে বোঝার চেষ্টা করুন কোন বেগটি দেওয়া আছে - নৌকার
+            নিজস্ব বেগ (B), নাকি অনুকূলের বেগ (D), নাকি প্রতিকূলের বেগ (U)। এই
+            জায়গাটাতেই সবচেয়ে বেশি ভুল হয়।
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <nav class="navigation">
+      <a href="class1.html" class="nav-button">পূর্ববর্তী</a>
+      <a href="class1.html" class="nav-button">1</a>
+      <a href="class2.html" class="nav-button active">2</a>
+      <a href="class3.html" class="nav-button">3</a>
+      <a href="class4.html" class="nav-button">4</a>
+      <a href="class5.html" class="nav-button">5</a>
+      <a href="class6.html" class="nav-button">6</a>
+      <a href="class7.html" class="nav-button">7</a>
+      <a href="class8.html" class="nav-button">8</a>
+      <a href="class3.html" class="nav-button">পরবর্তী</a>
+      <a href="../index.html" class="nav-button home-button">Home</a>
+    </nav>
+
+    <footer>
+      <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+      <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">
+      ↑
+    </button>
+    <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">
+      ↓
+    </button>
+
+    <!-- External JavaScript File Link -->
+    <script src="js/script.js"></script>
+  </body>
 </html>
