@@ -1,486 +1,573 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="bn">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Time & Distance (সময় ও দূরত্ব) | Study With Keshab</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time & Distance (সময় ও দূরত্ব) | Study With Keshab</title>
 
-        <!-- প্রধান CSS ফাইল -->
-        <link rel="stylesheet" href="css/style.css" />
+    <!-- প্রধান CSS ফাইল -->
+    <link rel="stylesheet" href="css/style.css" />
 
-        <!-- আইকন ব্যবহারের জন্য Font Awesome CDN -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        />
+    <!-- আইকন ব্যবহারের জন্য Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
 
-        <!-- চার্ট ব্যবহারের জন্য Chart.js -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <!-- চার্ট ব্যবহারের জন্য Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
-        <!-- পেজ লোডিং এর সময় হাইড করার জন্য স্টাইল -->
+    <!-- পেজ লোডিং এর সময় হাইড করার জন্য স্টাইল -->
+    <style>
+      body.auth-loading {
+        visibility: hidden;
+        opacity: 0;
+      }
+      /* PDF নোট বাটনের জন্য নতুন স্টাইল */
+      .color-pdf {
+        background-color: #e74c3c; /* PDF এর জন্য উপযুক্ত লাল রঙ */
+      }
+    </style>
+  </head>
+  <body class="day-mode homepage theme-blue auth-loading">
+    <div id="preloader">
+      <div class="loader"></div>
+    </div>
+
+    <header class="main-header">
+      <img
+        src="images/logo.jpg"
+        alt="লোগো"
+        class="profile-pic"
+        id="logo-easter-egg"
+      />
+      <div class="header-text">
+        <h1>অধ্যায়: Time & Distance (সময় ও দূরত্ব)</h1>
+        <p>আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী</p>
+      </div>
+      <button
+        id="dark-mode-toggle"
+        class="dark-mode-button"
+        title="দিন/রাত মোড পরিবর্তন করুন"
+      >
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </header>
+
+    <div class="search-container">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="search-bar" placeholder="যেকোনো সেকশন খুঁজুন..." />
+    </div>
+
+    <nav class="nav-grid">
+      <a href="../../../../index.html" class="nav-button color-home"
+        ><i class="fa-solid fa-house"></i><span>হোম</span></a
+      >
+      <a href="#dashboard" class="nav-button color-dashboard"
+        ><i class="fa-solid fa-chart-line"></i><span>ড্যাশবোর্ড</span></a
+      >
+      <a href="#class-notes" class="nav-button color-notes"
+        ><i class="fa-solid fa-book-open"></i><span>ক্লাস নোট</span></a
+      >
+      <!-- PDF নোট বাটন -->
+      <a href="#pdf-notes" class="nav-button color-pdf"
+        ><i class="fa-solid fa-file-pdf"></i><span>PDF নোট</span></a
+      >
+      <a href="#quiz-sets" class="nav-button color-quiz"
+        ><i class="fa-solid fa-file-circle-question"></i
+        ><span>কুইজ সেট</span></a
+      >
+
+      <button id="formula-sheet-btn" class="nav-button color-formulas">
+        <i class="fa-solid fa-square-root-variable"></i
+        ><span>গুরুত্বপূর্ণ তথ্য</span>
+      </button>
+      <a href="#result-section" class="nav-button color-result"
+        ><i class="fa-solid fa-square-poll-vertical"></i><span>রেজাল্ট</span></a
+      >
+      <a href="#leaderboard" class="nav-button color-leaderboard"
+        ><i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span></a
+      >
+    </nav>
+
+    <main>
+      <!-- === এই অধ্যায়ের নাম JavaScript এর জন্য সেট করা হয়েছে === -->
+      <script>
+        const CURRENT_CHAPTER_NAME = "Time & Distance (সময় ও দূরত্ব)";
+      </script>
+
+      <!-- ইউজার প্রোফাইল কার্ড -->
+      <section class="card" id="user-profile-card">
+        <div class="profile-header">
+          <img
+            id="user-profile-pic"
+            src="images/default-avatar.png"
+            alt="Profile Picture"
+            class="profile-pic-large"
+          />
+          <div class="profile-info">
+            <h2 id="user-display-name">লোড হচ্ছে...</h2>
+            <p id="user-email">লোড হচ্ছে...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ড্যাশবোর্ড সেকশন -->
+      <section class="card" id="dashboard">
+        <h2>
+          <i class="fa-solid fa-chart-line icon-title"></i> আমার ড্যাশবোর্ড
+        </h2>
+        <div class="dashboard-grid">
+          <div class="dashboard-item">
+            <h3>অধ্যায়ের অগ্রগতি (কুইজ)</h3>
+            <div class="progress-bar-container">
+              <div
+                class="progress-bar"
+                id="chapter-progress-bar"
+                style="width: 0%"
+              ></div>
+            </div>
+            <p id="chapter-progress-text">0% সম্পন্ন</p>
+          </div>
+          <div class="dashboard-item">
+            <h3>সামগ্রিক পারফরম্যান্স</h3>
+            <canvas id="quiz-pie-chart"></canvas>
+          </div>
+          <div class="dashboard-item">
+            <h3>দৈনিক চ্যালেঞ্জ</h3>
+            <div id="daily-challenge" class="challenge-box">
+              <p id="challenge-text">আজকের চ্যালেঞ্জ লোড হচ্ছে...</p>
+            </div>
+          </div>
+          <div class="dashboard-item">
+            <h3>আমার অ্যাচিভমেন্টস</h3>
+            <div
+              class="achievements-container"
+              id="achievements-container"
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ক্লাস নোট সেকশন -->
+      <section class="card" id="class-notes">
+        <h2><i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট</h2>
+        <p>অনুশীলনী সেটের প্রতিটি অংশের বিস্তারিত আলোচনা পড়ুন।</p>
+        <div class="link-container styled-list">
+          <a href="class/class1.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 01 - প্রশ্ন (1-10)
+          </a>
+          <a href="class/class2.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 02 - প্রশ্ন (11-20)
+          </a>
+          <a href="class/class3.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 03 - প্রশ্ন (21-30)
+          </a>
+          <a href="class/class4.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 04 - প্রশ্ন (31-40)
+          </a>
+          <a href="class/class5.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 05 - প্রশ্ন (41-50)
+          </a>
+          <a href="class/class6.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 06 - প্রশ্ন (51-60)
+          </a>
+        </div>
+      </section>
+
+      <!-- PDF নোট সেকশন -->
+      <section class="card" id="pdf-notes">
+        <h2><i class="fa-solid fa-file-pdf icon-title"></i> PDF নোট</h2>
+        <p>
+          এই অধ্যায়ের সম্পূর্ণ নোট এবং অনুশীলনীর সমাধান PDF আকারে ডাউনলোড করুন।
+        </p>
+        <div class="link-container styled-list">
+          <a href="pdf/Time_and_Distance_Full_Notes.pdf" target="_blank">
+            <i class="fa-solid fa-download fa-fw"></i>
+            সম্পূর্ণ অধ্যায়ের PDF নোট
+          </a>
+          <a href="pdf/Time_and_Distance_Practice_Set.pdf" target="_blank">
+            <i class="fa-solid fa-download fa-fw"></i>
+            অনুশীলনী সেটের PDF
+          </a>
+          <a href="pdf/Time_and_Distance_Formulas.pdf" target="_blank">
+            <i class="fa-solid fa-download fa-fw"></i>
+            গুরুত্বপূর্ণ সূত্রাবলীর PDF
+          </a>
+        </div>
+      </section>
+
+      <!-- কুইজ সেট সেকশন -->
+      <section class="card" id="quiz-sets">
+        <h2>
+          <i class="fa-solid fa-file-circle-question icon-title"></i>
+          কুইজ সেট
+        </h2>
+        <p>নিজের প্রস্তুতি যাচাই করার জন্য ইন্টারেক্টিভ কুইজগুলোতে অংশ নিন।</p>
+        <div class="link-container styled-list">
+          <a href="quiz/Qset1.html"
+            ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 1 (প্রশ্ন
+            1-25)</a
+          >
+          <a href="quiz/Qset2.html"
+            ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 2 (প্রশ্ন
+            26-50)</a
+          >
+          <a href="quiz/Qset3.html"
+            ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 3 (প্রশ্ন
+            51-75)</a
+          >
+
+          <a
+            href="https://keshab1997.github.io/cbt-exam/index.html?exam=cbt3&chapter=Practice Set 3"
+          >
+            <i class="fa-solid fa-laptop-code fa-fw"></i> Mock Test (প্রশ্ন
+            1-100)
+          </a>
+        </div>
+      </section>
+
+      <!-- লিডারবোর্ড সেকশন -->
+      <section class="card" id="leaderboard">
+        <h2><i class="fa-solid fa-trophy icon-title"></i> লিডারবোর্ড</h2>
+        <p>এই অধ্যায়ের সর্বোচ্চ স্কোরারদের তালিকা।</p>
+        <div class="leaderboard-container">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>নাম</th>
+                <th>মোট স্কোর</th>
+                <th>বিস্তারিত</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+              <!-- JavaScript দ্বারা ডেটা লোড হবে -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- রেজাল্ট সেকশন -->
+      <section class="card" id="result-section">
+        <h2>
+          <i class="fa-solid fa-square-poll-vertical icon-title"></i>
+          আমার রেজাল্ট
+        </h2>
+        <p>
+          এই অধ্যায়ে আপনার প্রতিটি কুইজের পারফরম্যান্স দেখুন এবং বন্ধুদের সাথে
+          শেয়ার করুন।
+        </p>
+        <div id="result-card-container" class="result-grid">
+          <!-- JavaScript দ্বারা রেজাল্ট কার্ড তৈরি হবে -->
+        </div>
+        <div
+          id="no-result-message"
+          style="
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-top: 20px;
+          "
+        >
+          <p style="font-size: 1.1em; margin-bottom: 15px">
+            আপনি এখনও এই অধ্যায়ের কোনো কুইজে অংশ নেননি।
+          </p>
+          <a href="#quiz-sets" class="button-primary">এখনই কুইজ দিন!</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="formula-modal" class="modal-overlay">
+      <div class="modal-content">
+        <button class="modal-close-btn">&times;</button>
+        <h2>🔢 ট্রেন এবং নৌকা ও স্রোত সংক্রান্ত সূত্রাবলী</h2>
+
+        <!-- Train Section -->
+        <h3>🚂 ট্রেন সংক্রান্ত অঙ্ক ও সূত্রাবলী</h3>
+        <p>
+          ট্রেন সংক্রান্ত অঙ্কগুলো কয়েকটি নির্দিষ্ট সূত্রের উপর ভিত্তি করে তৈরি
+          হয়। এই সূত্রগুলো এবং তাদের পেছনের ধারণাগুলো ভালোভাবে বুঝতে পারলে আপনি
+          যেকোনো ধরনের ট্রেনের অঙ্ক সহজেই সমাধান করতে পারবেন।
+        </p>
+
+        <h4>মূল সূত্র (The Basic Formula)</h4>
+        <p>ট্রেনের সমস্ত অঙ্ক মূলত একটাই সূত্রের উপর দাঁড়িয়ে আছে:</p>
+        <blockquote>
+          <strong>গতিবেগ (Speed) = দূরত্ব (Distance) / সময় (Time)</strong>
+        </blockquote>
+        <p>এই সূত্র থেকে আমরা আরও দুটি সূত্র পাই:</p>
+        <ul>
+          <li><strong>সময় = দূরত্ব / গতিবেগ</strong></li>
+          <li><strong>দূরত্ব = গতিবেগ × সময়</strong></li>
+        </ul>
+
+        <h4>এককের রূপান্তর (Unit Conversion)</h4>
+        <ul>
+          <li>
+            <strong>কিমি/ঘন্টা থেকে মিটার/সেকেন্ডে রূপান্তর:</strong> গতিবেগকে
+            <strong>5/18</strong> দিয়ে গুণ করতে হবে।<br />
+            <em>(কারণ: ১ কিমি/ঘন্টা = ১০০০ মি / ৩৬০০ সে = ৫/১৮ মি/সে)</em><br />
+            <strong>উদাহরণ:</strong> 72 কিমি/ঘন্টা = 72 × (5/18) = 20 মি/সে।
+          </li>
+          <li>
+            <strong>মিটার/সেকেন্ড থেকে কিমি/ঘন্টায় রূপান্তর:</strong> গতিবেগকে
+            <strong>18/5</strong> দিয়ে গুণ করতে হবে。<br />
+            <strong>উদাহরণ:</strong> 25 মি/সে = 25 × (18/5) = 90 কিমি/ঘন্টা।
+          </li>
+        </ul>
+
+        <h4>বিভিন্ন পরিস্থিতি ও তার সূত্রাবলী</h4>
+        <h5>১. যখন ট্রেন একটি স্থির বিন্দুকে (পোস্ট, গাছ) অতিক্রম করে:</h5>
+        <ul>
+          <li>
+            <strong>ধারণা:</strong> এক্ষেত্রে ট্রেনটি নিজের সম্পূর্ণ দৈর্ঘ্য
+            অতিক্রম করে।
+          </li>
+          <li>
+            <strong>সূত্র:</strong>
+            <blockquote>
+              <strong>সময় = ট্রেনের দৈর্ঘ্য / ট্রেনের গতিবেগ</strong>
+            </blockquote>
+          </li>
+        </ul>
+
+        <h5>
+          ২. যখন ট্রেন একটি স্থির লম্বা বস্তুকে (প্ল্যাটফর্ম, সেতু) অতিক্রম করে:
+        </h5>
+        <ul>
+          <li>
+            <strong>ধারণা:</strong> এক্ষেত্রে মোট অতিক্রান্ত দূরত্ব = ট্রেনের
+            দৈর্ঘ্য + বস্তুর দৈর্ঘ্য।
+          </li>
+          <li>
+            <strong>সূত্র:</strong>
+            <blockquote>
+              <strong
+                >সময় = (ট্রেনের দৈর্ঘ্য + বস্তুর দৈর্ঘ্য) / ট্রেনের
+                গতিবেগ</strong
+              >
+            </blockquote>
+          </li>
+        </ul>
+
+        <h4>আপেক্ষিক গতিবেগ (Relative Speed)</h4>
+        <ul>
+          <li>
+            <strong>যখন দুটি ট্রেন একই দিকে যায়:</strong> আপেক্ষিক গতিবেগ =
+            গতিবেগের <strong>পার্থক্য (S₁ - S₂)</strong>।
+          </li>
+          <li>
+            <strong>যখন দুটি ট্রেন বিপরীত দিকে যায়:</strong> আপেক্ষিক গতিবেগ =
+            গতিবেগের <strong>যোগফল (S₁ + S₂)</strong>।
+          </li>
+        </ul>
+
+        <h5>৩. যখন দুটি ট্রেন (বিপরীত দিকে) একে অপরকে অতিক্রম করে:</h5>
+        <ul>
+          <li>
+            <strong>সূত্র:</strong>
+            <blockquote>
+              <strong
+                >সময় = (ট্রেন ১-এর দৈর্ঘ্য + ট্রেন ২-এর দৈর্ঘ্য) / (গতিবেগের
+                যোগফল)</strong
+              >
+            </blockquote>
+          </li>
+        </ul>
+
+        <h5>৪. যখন দুটি ট্রেন (একই দিকে) একে অপরকে অতিক্রম করে:</h5>
+        <ul>
+          <li>
+            <strong>সূত্র:</strong>
+            <blockquote>
+              <strong
+                >সময় = (ট্রেন ১-এর দৈর্ঘ্য + ট্রেন ২-এর দৈর্ঘ্য) / (গতিবেগের
+                পার্থক্য)</strong
+              >
+            </blockquote>
+          </li>
+        </ul>
+
+        <h4>সারসংক্ষেপ (Quick Summary Table)</h4>
         <style>
-            body.auth-loading {
-                visibility: hidden;
-                opacity: 0;
-            }
+          .formula-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+            font-size: 0.9em;
+          }
+          .formula-table th,
+          .formula-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+          }
+          .formula-table th {
+            background-color: #f2f2f2;
+          }
         </style>
-    </head>
-    <body class="day-mode homepage theme-blue auth-loading">
-        <div id="preloader">
-            <div class="loader"></div>
-        </div>
+        <table class="formula-table">
+          <thead>
+            <tr>
+              <th>পরিস্থিতি</th>
+              <th>অতিক্রান্ত দূরত্ব</th>
+              <th>ব্যবহৃত গতিবেগ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>স্থির বিন্দু (পোস্ট, মানুষ)</td>
+              <td>ট্রেনের দৈর্ঘ্য</td>
+              <td>ট্রেনের নিজের গতিবেগ</td>
+            </tr>
+            <tr>
+              <td>স্থির বস্তু (প্ল্যাটফর্ম, সেতু)</td>
+              <td>ট্রেনের দৈর্ঘ্য + বস্তুর দৈর্ঘ্য</td>
+              <td>ট্রেনের নিজের গতিবেগ</td>
+            </tr>
+            <tr>
+              <td>দুটি ট্রেন (বিপরীত দিকে)</td>
+              <td>ট্রেন ১ এর দৈর্ঘ্য + ট্রেন ২ এর দৈর্ঘ্য</td>
+              <td>গতিবেগ ১ + গতিবেগ ২</td>
+            </tr>
+            <tr>
+              <td>দুটি ট্রেন (একই দিকে)</td>
+              <td>ট্রেন ১ এর দৈর্ঘ্য + ট্রেন ২ এর দৈর্ঘ্য</td>
+              <td>গতিবেগ ১ - গতিবেগ ২</td>
+            </tr>
+            <tr>
+              <td>গতিশীল মানুষ</td>
+              <td>ট্রেনের দৈর্ঘ্য</td>
+              <td>ট্রেন ও মানুষের আপেক্ষিক গতিবেগ</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <header class="main-header">
-            <img
-                src="images/logo.jpg"
-                alt="লোগো"
-                class="profile-pic"
-                id="logo-easter-egg"
-            />
-            <div class="header-text">
-                <h1>অধ্যায়: Time & Distance (সময় ও দূরত্ব)</h1>
-                <p>আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী</p>
-            </div>
-            <button
-                id="dark-mode-toggle"
-                class="dark-mode-button"
-                title="দিন/রাত মোড পরিবর্তন করুন"
-            >
-                <i class="fa-solid fa-moon"></i>
-            </button>
-        </header>
+        <hr style="margin: 20px 0" />
 
-        <div class="search-container">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input
-                type="text"
-                id="search-bar"
-                placeholder="যেকোনো সেকশন খুঁজুন..."
-            />
-        </div>
+        <!-- Boat and Stream Section -->
+        <h3>🛶 নৌকা ও স্রোত সংক্রান্ত অঙ্ক ও সূত্রাবলী</h3>
+        <p>
+          নৌকা ও স্রোতের অঙ্ক করার জন্য যা যা জানতে ও মনে রাখতে হবে, তা নিচে
+          বিস্তারিত আলোচনা করা হলো।
+        </p>
 
-        <nav class="nav-grid">
-            <a
-                href="../../../../index.html"
-                class="nav-button color-home"
-                ><i class="fa-solid fa-house"></i><span>হোম</span></a
-            >
-            <a href="#dashboard" class="nav-button color-dashboard"
-                ><i class="fa-solid fa-chart-line"></i
-                ><span>ড্যাশবোর্ড</span></a
-            >
-            <a href="#class-notes" class="nav-button color-notes"
-                ><i class="fa-solid fa-book-open"></i><span>ক্লাস নোট</span></a
-            >
-            <a href="#quiz-sets" class="nav-button color-quiz"
-                ><i class="fa-solid fa-file-circle-question"></i
-                ><span>কুইজ সেট</span></a
-            >
-            
-            <button id="formula-sheet-btn" class="nav-button color-formulas">
-                <i class="fa-solid fa-square-root-variable"></i
-                ><span>গুরুত্বপূর্ণ তথ্য</span>
-            </button>
-            <a href="#result-section" class="nav-button color-result"
-                ><i class="fa-solid fa-square-poll-vertical"></i
-                ><span>রেজাল্ট</span></a
-            >
-            <a href="#leaderboard" class="nav-button color-leaderboard"
-                ><i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span></a
-            >
-        </nav>
+        <h4>মূল ধারণা ও পরিভাষা</h4>
+        <ul>
+          <li>
+            <strong>স্থির জলে নৌকার বেগ (B):</strong> স্থির জলে নৌকার নিজস্ব
+            গতিবেগ।
+          </li>
+          <li><strong>স্রোতের বেগ (S):</strong> নদীর জলের গতিবেগ।</li>
+          <li>
+            <strong>স্রোতের অনুকূলে বেগ (D - Downstream):</strong> যখন নৌকা
+            স্রোতের দিকে যায়। কার্যকরী গতিবেগ বাড়ে।
+          </li>
+          <li>
+            <strong>স্রোতের প্রতিকূলে বেগ (U - Upstream):</strong> যখন নৌকা
+            স্রোতের বিপরীতে যায়। কার্যকরী গতিবেগ কমে।
+          </li>
+        </ul>
 
-        <main>
-            <!-- === এই অধ্যায়ের নাম JavaScript এর জন্য সেট করা হয়েছে === -->
-            <script>
-                const CURRENT_CHAPTER_NAME = "Time & Distance (সময় ও দূরত্ব)";
-            </script>
+        <h4>প্রধান সূত্রাবলী (Key Formulas)</h4>
+        <h5>১. অনুকূল এবং প্রতিকূলের বেগ নির্ণয়</h5>
+        <ul>
+          <li>
+            <strong>স্রোতের অনুকূলে বেগ (D):</strong>
+            <blockquote><strong>D = B + S</strong></blockquote>
+          </li>
+          <li>
+            <strong>স্রোতের প্রতিকূলে বেগ (U):</strong>
+            <blockquote><strong>U = B - S</strong></blockquote>
+          </li>
+        </ul>
 
-            <!-- ইউজার প্রোফাইল কার্ড -->
-            <section class="card" id="user-profile-card">
-                <div class="profile-header">
-                    <img
-                        id="user-profile-pic"
-                        src="images/default-avatar.png"
-                        alt="Profile Picture"
-                        class="profile-pic-large"
-                    />
-                    <div class="profile-info">
-                        <h2 id="user-display-name">লোড হচ্ছে...</h2>
-                        <p id="user-email">লোড হচ্ছে...</p>
-                    </div>
-                </div>
-            </section>
+        <h5>২. নৌকার বেগ এবং স্রোতের বেগ নির্ণয় (সবচেয়ে গুরুত্বপূর্ণ)</h5>
+        <p>যখন অনুকূল (D) এবং প্রতিকূলের (U) বেগ দেওয়া থাকে:</p>
+        <ul>
+          <li>
+            <strong>স্থির জলে নৌকার বেগ (B):</strong>
+            <blockquote><strong>B = (D + U) / 2</strong></blockquote>
+          </li>
+          <li>
+            <strong>স্রোতের বেগ (S):</strong>
+            <blockquote><strong>S = (D - U) / 2</strong></blockquote>
+          </li>
+        </ul>
+        <p>
+          <strong>উদাহরণ:</strong> অনুকূলে বেগ 21 কিমি/ঘন্টা এবং প্রতিকূলে বেগ 9
+          কিমি/ঘন্টা হলে,
+        </p>
+        <ul>
+          <li>নৌকার বেগ (B) = (21 + 9) / 2 = 15 কিমি/ঘন্টা।</li>
+          <li>স্রোতের বেগ (S) = (21 - 9) / 2 = 6 কিমি/ঘন্টা।</li>
+        </ul>
 
-            <!-- ড্যাশবোর্ড সেকশন -->
-            <section class="card" id="dashboard">
-                <h2>
-                    <i class="fa-solid fa-chart-line icon-title"></i> আমার
-                    ড্যাশবোর্ড
-                </h2>
-                <div class="dashboard-grid">
-                    <div class="dashboard-item">
-                        <h3>অধ্যায়ের অগ্রগতি (কুইজ)</h3>
-                        <div class="progress-bar-container">
-                            <div
-                                class="progress-bar"
-                                id="chapter-progress-bar"
-                                style="width: 0%"
-                            ></div>
-                        </div>
-                        <p id="chapter-progress-text">0% সম্পন্ন</p>
-                    </div>
-                    <div class="dashboard-item">
-                        <h3>সামগ্রিক পারফরম্যান্স</h3>
-                        <canvas id="quiz-pie-chart"></canvas>
-                    </div>
-                    <div class="dashboard-item">
-                        <h3>দৈনিক চ্যালেঞ্জ</h3>
-                        <div id="daily-challenge" class="challenge-box">
-                            <p id="challenge-text">
-                                আজকের চ্যালেঞ্জ লোড হচ্ছে...
-                            </p>
-                        </div>
-                    </div>
-                    <div class="dashboard-item">
-                        <h3>আমার অ্যাচিভমেন্টস</h3>
-                        <div
-                            class="achievements-container"
-                            id="achievements-container"
-                        ></div>
-                    </div>
-                </div>
-            </section>
+        <h4>যা কিছু অবশ্যই মনে রাখবেন:</h4>
+        <ol>
+          <li>
+            <strong>একক:</strong> অঙ্ক শুরু করার আগে সর্বদা একক (unit) মিলিয়ে
+            নিন।
+          </li>
+          <li>
+            <strong>দূরত্ব:</strong> মূল সূত্র
+            <strong>সময় = দূরত্ব / গতিবেগ</strong> ব্যবহার করে দূরত্ব, সময় বা
+            গতিবেগ নির্ণয় করুন।
+          </li>
+          <li>
+            <strong>বেগ শনাক্তকরণ:</strong> অঙ্ক পড়ে ভালোভাবে বুঝুন কোন বেগটি
+            দেওয়া আছে - নৌকার নিজস্ব বেগ (B), অনুকূলের বেগ (D), নাকি প্রতিকূলের
+            বেগ (U)।
+          </li>
+        </ol>
+      </div>
+    </div>
 
-            <!-- ক্লাস নোট সেকশন -->
-            <section class="card" id="class-notes">
-                <h2>
-                    <i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট
-                </h2>
-                <p>অনুশীলনী সেটের প্রতিটি অংশের বিস্তারিত আলোচনা পড়ুন।</p>
-                <div class="link-container styled-list">
-                    <a href="class/class1.html">
-                        <i class="fa-solid fa-person-chalkboard fa-fw"></i>
-                        Class 01 - প্রশ্ন (1-10)
-                    </a>
-                    <a href="class/class2.html">
-                        <i class="fa-solid fa-person-chalkboard fa-fw"></i>
-                        Class 02 - প্রশ্ন (11-20)
-                    </a>
-                    <a href="class/class3.html">
-                        <i class="fa-solid fa-person-chalkboard fa-fw"></i>
-                        Class 03 - প্রশ্ন (21-30)
-                    </a>
-                    <a href="class/class4.html">
-                        <i class="fa-solid fa-person-chalkboard fa-fw"></i>
-                        Class 04 - প্রশ্ন (31-40)
-                    </a>
-                    <a href="class/class5.html">
-                        <i class="fa-solid fa-person-chalkboard fa-fw"></i>
-                        Class 05 - প্রশ্ন (41-50)
-                    </a>
-                    <a href="class/class6.html">
-                        <i class="fa-solid fa-person-chalkboard fa-fw"></i>
-                        Class 06 - প্রশ্ন (51-60)
-                    </a>
-                </div>
-            </section>
-            
-            <!-- PDF নোট সেকশন (সংশোধিত) -->
-            <section class="card" id="pdf-notes">
-                <h2>
-                    <i class="fa-solid fa-file-pdf icon-title"></i> PDF নোট
-                </h2>
-                <p>এই অধ্যায়ের সম্পূর্ণ নোট এবং অনুশীলনীর সমাধান PDF আকারে ডাউনলোড করুন।</p>
-                <div class="link-container styled-list">
-                    <a href="pdf/Time_and_Distance_Full_Notes.pdf" target="_blank">
-                        <i class="fa-solid fa-download fa-fw"></i>
-                        সম্পূর্ণ অধ্যায়ের PDF নোট
-                    </a>
-                    <a href="pdf/Time_and_Distance_Practice_Set.pdf" target="_blank">
-                        <i class="fa-solid fa-download fa-fw"></i>
-                        অনুশীলনী সেটের PDF
-                    </a>
-                    <a href="pdf/Time_and_Distance_Formulas.pdf" target="_blank">
-                        <i class="fa-solid fa-download fa-fw"></i>
-                        গুরুত্বপূর্ণ সূত্রাবলীর PDF
-                    </a>
-                </div>
-            </section>
+    <a id="back-to-top" href="#"><i class="fas fa-arrow-up"></i></a>
 
-            <!-- কুইজ সেট সেকশন -->
-            <section class="card" id="quiz-sets">
-                <h2>
-                    <i class="fa-solid fa-file-circle-question icon-title"></i>
-                    কুইজ সেট
-                </h2>
-                <p>
-                    নিজের প্রস্তুতি যাচাই করার জন্য ইন্টারেক্টিভ কুইজগুলোতে অংশ
-                    নিন।
-                </p>
-                <div class="link-container styled-list">
-                    <a href="quiz/Qset1.html"
-                        ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz
-                        Set 1 (প্রশ্ন 1-25)</a
-                    >
-                    <a href="quiz/Qset2.html"
-                        ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz
-                        Set 2 (প্রশ্ন 26-50)</a
-                    >
-                    <a href="quiz/Qset3.html"
-                        ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz
-                        Set 3 (প্রশ্ন 51-75)</a
-                    >
+    <footer>
+      <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+      <div class="social-links">
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </footer>
 
-                    <a
-                        href="https://keshab1997.github.io/cbt-exam/index.html?exam=cbt3&chapter=Practice Set 3"
-                    >
-                        <i class="fa-solid fa-laptop-code fa-fw"></i> Mock Test
-                        (প্রশ্ন 1-100)
-                    </a>
-                </div>
-            </section>
+    <!-- Firebase এবং পেজ প্রটেকশন স্ক্রিপ্ট -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script>
+      (function () {
+        firebase.auth().onAuthStateChanged((user) => {
+          if (!user) {
+            window.location.href =
+              "https://keshab1997.github.io/Study-With-Keshab/login.html";
+          } else {
+            document.body.classList.remove("auth-loading");
+          }
+        });
+      })();
+    </script>
 
-            <!-- লিডারবোর্ড সেকশন -->
-            <section class="card" id="leaderboard">
-                <h2>
-                    <i class="fa-solid fa-trophy icon-title"></i> লিডারবোর্ড
-                </h2>
-                <p>এই অধ্যায়ের সর্বোচ্চ স্কোরারদের তালিকা।</p>
-                <div class="leaderboard-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>নাম</th>
-                                <th>মোট স্কোর</th>
-                                <th>বিস্তারিত</th>
-                            </tr>
-                        </thead>
-                        <tbody id="leaderboard-body">
-                            <!-- JavaScript দ্বারা ডেটা লোড হবে -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-            <!-- রেজাল্ট সেকশন -->
-            <section class="card" id="result-section">
-                <h2>
-                    <i class="fa-solid fa-square-poll-vertical icon-title"></i>
-                    আমার রেজাল্ট
-                </h2>
-                <p>
-                    এই অধ্যায়ে আপনার প্রতিটি কুইজের পারফরম্যান্স দেখুন এবং
-                    বন্ধুদের সাথে শেয়ার করুন।
-                </p>
-                <div id="result-card-container" class="result-grid">
-                    <!-- JavaScript দ্বারা রেজাল্ট কার্ড তৈরি হবে -->
-                </div>
-                <div
-                    id="no-result-message"
-                    style="
-                        display: none;
-                        text-align: center;
-                        padding: 20px;
-                        background-color: #f9f9f9;
-                        border-radius: 8px;
-                        margin-top: 20px;
-                    "
-                >
-                    <p style="font-size: 1.1em; margin-bottom: 15px">
-                        আপনি এখনও এই অধ্যায়ের কোনো কুইজে অংশ নেননি।
-                    </p>
-                    <a href="#quiz-sets" class="button-primary"
-                        >এখনই কুইজ দিন!</a
-                    >
-                </div>
-            </section>
-        </main>
-
-        <!-- Modal -->
-        <div id="formula-modal" class="modal-overlay">
-            <div class="modal-content">
-                <button class="modal-close-btn">&times;</button>
-                <h2>🔢 ট্রেন এবং নৌকা ও স্রোত সংক্রান্ত সূত্রাবলী</h2>
-                
-                <!-- Train Section -->
-                <h3>🚂 ট্রেন সংক্রান্ত অঙ্ক ও সূত্রাবলী</h3>
-                <p>ট্রেন সংক্রান্ত অঙ্কগুলো কয়েকটি নির্দিষ্ট সূত্রের উপর ভিত্তি করে তৈরি হয়। এই সূত্রগুলো এবং তাদের পেছনের ধারণাগুলো ভালোভাবে বুঝতে পারলে আপনি যেকোনো ধরনের ট্রেনের অঙ্ক সহজেই সমাধান করতে পারবেন।</p>
-
-                <h4>মূল সূত্র (The Basic Formula)</h4>
-                <p>ট্রেনের সমস্ত অঙ্ক মূলত একটাই সূত্রের উপর দাঁড়িয়ে আছে:</p>
-                <blockquote><strong>গতিবেগ (Speed) = দূরত্ব (Distance) / সময় (Time)</strong></blockquote>
-                <p>এই সূত্র থেকে আমরা আরও দুটি সূত্র পাই:</p>
-                <ul>
-                    <li><strong>সময় = দূরত্ব / গতিবেগ</strong></li>
-                    <li><strong>দূরত্ব = গতিবেগ × সময়</strong></li>
-                </ul>
-
-                <h4>এককের রূপান্তর (Unit Conversion)</h4>
-                <ul>
-                    <li>
-                        <strong>কিমি/ঘন্টা থেকে মিটার/সেকেন্ডে রূপান্তর:</strong> গতিবেগকে <strong>5/18</strong> দিয়ে গুণ করতে হবে।<br>
-                        <em>(কারণ: ১ কিমি/ঘন্টা = ১০০০ মি / ৩৬০০ সে = ৫/১৮ মি/সে)</em><br>
-                        <strong>উদাহরণ:</strong> 72 কিমি/ঘন্টা = 72 × (5/18) = 20 মি/সে।
-                    </li>
-                    <li>
-                        <strong>মিটার/সেকেন্ড থেকে কিমি/ঘন্টায় রূপান্তর:</strong> গতিবেগকে <strong>18/5</strong> দিয়ে গুণ করতে হবে。<br>
-                        <strong>উদাহরণ:</strong> 25 মি/সে = 25 × (18/5) = 90 কিমি/ঘন্টা।
-                    </li>
-                </ul>
-
-                <h4>বিভিন্ন পরিস্থিতি ও তার সূত্রাবলী</h4>
-                <h5>১. যখন ট্রেন একটি স্থির বিন্দুকে (পোস্ট, গাছ) অতিক্রম করে:</h5>
-                <ul>
-                    <li><strong>ধারণা:</strong> এক্ষেত্রে ট্রেনটি নিজের সম্পূর্ণ দৈর্ঘ্য অতিক্রম করে।</li>
-                    <li><strong>সূত্র:</strong> <blockquote><strong>সময় = ট্রেনের দৈর্ঘ্য / ট্রেনের গতিবেগ</strong></blockquote></li>
-                </ul>
-
-                <h5>২. যখন ট্রেন একটি স্থির লম্বা বস্তুকে (প্ল্যাটফর্ম, সেতু) অতিক্রম করে:</h5>
-                <ul>
-                    <li><strong>ধারণা:</strong> এক্ষেত্রে মোট অতিক্রান্ত দূরত্ব = ট্রেনের দৈর্ঘ্য + বস্তুর দৈর্ঘ্য।</li>
-                    <li><strong>সূত্র:</strong> <blockquote><strong>সময় = (ট্রেনের দৈর্ঘ্য + বস্তুর দৈর্ঘ্য) / ট্রেনের গতিবেগ</strong></blockquote></li>
-                </ul>
-
-                <h4>আপেক্ষিক গতিবেগ (Relative Speed)</h4>
-                <ul>
-                    <li><strong>যখন দুটি ট্রেন একই দিকে যায়:</strong> আপেক্ষিক গতিবেগ = গতিবেগের <strong>পার্থক্য (S₁ - S₂)</strong>।</li>
-                    <li><strong>যখন দুটি ট্রেন বিপরীত দিকে যায়:</strong> আপেক্ষিক গতিবেগ = গতিবেগের <strong>যোগফল (S₁ + S₂)</strong>।</li>
-                </ul>
-
-                <h5>৩. যখন দুটি ট্রেন (বিপরীত দিকে) একে অপরকে অতিক্রম করে:</h5>
-                <ul>
-                    <li><strong>সূত্র:</strong> <blockquote><strong>সময় = (ট্রেন ১-এর দৈর্ঘ্য + ট্রেন ২-এর দৈর্ঘ্য) / (গতিবেগের যোগফল)</strong></blockquote></li>
-                </ul>
-                
-                <h5>৪. যখন দুটি ট্রেন (একই দিকে) একে অপরকে অতিক্রম করে:</h5>
-                <ul>
-                    <li><strong>সূত্র:</strong> <blockquote><strong>সময় = (ট্রেন ১-এর দৈর্ঘ্য + ট্রেন ২-এর দৈর্ঘ্য) / (গতিবেগের পার্থক্য)</strong></blockquote></li>
-                </ul>
-
-                <h4>সারসংক্ষেপ (Quick Summary Table)</h4>
-                <style>
-                    .formula-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.9em; }
-                    .formula-table th, .formula-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-                    .formula-table th { background-color: #f2f2f2; }
-                </style>
-                <table class="formula-table">
-                    <thead>
-                        <tr>
-                            <th>পরিস্থিতি</th>
-                            <th>অতিক্রান্ত দূরত্ব</th>
-                            <th>ব্যবহৃত গতিবেগ</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>স্থির বিন্দু (পোস্ট, মানুষ)</td>
-                            <td>ট্রেনের দৈর্ঘ্য</td>
-                            <td>ট্রেনের নিজের গতিবেগ</td>
-                        </tr>
-                        <tr>
-                            <td>স্থির বস্তু (প্ল্যাটফর্ম, সেতু)</td>
-                            <td>ট্রেনের দৈর্ঘ্য + বস্তুর দৈর্ঘ্য</td>
-                            <td>ট্রেনের নিজের গতিবেগ</td>
-                        </tr>
-                        <tr>
-                            <td>দুটি ট্রেন (বিপরীত দিকে)</td>
-                            <td>ট্রেন ১ এর দৈর্ঘ্য + ট্রেন ২ এর দৈর্ঘ্য</td>
-                            <td>গতিবেগ ১ + গতিবেগ ২</td>
-                        </tr>
-                        <tr>
-                            <td>দুটি ট্রেন (একই দিকে)</td>
-                            <td>ট্রেন ১ এর দৈর্ঘ্য + ট্রেন ২ এর দৈর্ঘ্য</td>
-                            <td>গতিবেগ ১ - গতিবেগ ২</td>
-                        </tr>
-                        <tr>
-                            <td>গতিশীল মানুষ</td>
-                            <td>ট্রেনের দৈর্ঘ্য</td>
-                            <td>ট্রেন ও মানুষের আপেক্ষিক গতিবেগ</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <hr style="margin: 20px 0;">
-
-                <!-- Boat and Stream Section -->
-                <h3>🛶 নৌকা ও স্রোত সংক্রান্ত অঙ্ক ও সূত্রাবলী</h3>
-                <p>নৌকা ও স্রোতের অঙ্ক করার জন্য যা যা জানতে ও মনে রাখতে হবে, তা নিচে বিস্তারিত আলোচনা করা হলো।</p>
-                
-                <h4>মূল ধারণা ও পরিভাষা</h4>
-                <ul>
-                    <li><strong>স্থির জলে নৌকার বেগ (B):</strong> স্থির জলে নৌকার নিজস্ব গতিবেগ।</li>
-                    <li><strong>স্রোতের বেগ (S):</strong> নদীর জলের গতিবেগ।</li>
-                    <li><strong>স্রোতের অনুকূলে বেগ (D - Downstream):</strong> যখন নৌকা স্রোতের দিকে যায়। কার্যকরী গতিবেগ বাড়ে।</li>
-                    <li><strong>স্রোতের প্রতিকূলে বেগ (U - Upstream):</strong> যখন নৌকা স্রোতের বিপরীতে যায়। কার্যকরী গতিবেগ কমে।</li>
-                </ul>
-
-                <h4>প্রধান সূত্রাবলী (Key Formulas)</h4>
-                <h5>১. অনুকূল এবং প্রতিকূলের বেগ নির্ণয়</h5>
-                <ul>
-                    <li><strong>স্রোতের অনুকূলে বেগ (D):</strong> <blockquote><strong>D = B + S</strong></blockquote></li>
-                    <li><strong>স্রোতের প্রতিকূলে বেগ (U):</strong> <blockquote><strong>U = B - S</strong></blockquote></li>
-                </ul>
-
-                <h5>২. নৌকার বেগ এবং স্রোতের বেগ নির্ণয় (সবচেয়ে গুরুত্বপূর্ণ)</h5>
-                <p>যখন অনুকূল (D) এবং প্রতিকূলের (U) বেগ দেওয়া থাকে:</p><ul>
-                    <li><strong>স্থির জলে নৌকার বেগ (B):</strong> <blockquote><strong>B = (D + U) / 2</strong></blockquote></li>
-                    <li><strong>স্রোতের বেগ (S):</strong> <blockquote><strong>S = (D - U) / 2</strong></blockquote></li>
-                </ul>
-                <p><strong>উদাহরণ:</strong> অনুকূলে বেগ 21 কিমি/ঘন্টা এবং প্রতিকূলে বেগ 9 কিমি/ঘন্টা হলে,</p>
-                <ul>
-                    <li>নৌকার বেগ (B) = (21 + 9) / 2 = 15 কিমি/ঘন্টা।</li>
-                    <li>স্রোতের বেগ (S) = (21 - 9) / 2 = 6 কিমি/ঘন্টা।</li>
-                </ul>
-
-                <h4>যা কিছু অবশ্যই মনে রাখবেন:</h4>
-                <ol>
-                    <li><strong>একক:</strong> অঙ্ক শুরু করার আগে সর্বদা একক (unit) মিলিয়ে নিন।</li>
-                    <li><strong>দূরত্ব:</strong> মূল সূত্র <strong>সময় = দূরত্ব / গতিবেগ</strong> ব্যবহার করে দূরত্ব, সময় বা গতিবেগ নির্ণয় করুন।</li>
-                    <li><strong>বেগ শনাক্তকরণ:</strong> অঙ্ক পড়ে ভালোভাবে বুঝুন কোন বেগটি দেওয়া আছে - নৌকার নিজস্ব বেগ (B), অনুকূলের বেগ (D), নাকি প্রতিকূলের বেগ (U)।</li>
-                </ol>
-
-            </div>
-        </div>
-
-        <a id="back-to-top" href="#"><i class="fas fa-arrow-up"></i></a>
-
-        <footer>
-            <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
-            <div class="social-links">
-                <a href="#" target="_blank"
-                    ><i class="fab fa-facebook-f"></i
-                ></a>
-                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-            </div>
-        </footer>
-
-        <!-- Firebase এবং পেজ প্রটেকশন স্ক্রিপ্ট -->
-        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-        <script src="js/firebase-config.js"></script>
-        <script>
-            (function () {
-                firebase.auth().onAuthStateChanged((user) => {
-                    if (!user) {
-                        window.location.href =
-                            "https://keshab1997.github.io/Study-With-Keshab/login.html";
-                    } else {
-                        document.body.classList.remove("auth-loading");
-                    }
-                });
-            })();
-        </script>
-
-        <script
-            type="module"
-            src="https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js"
-        ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-        <!-- প্রধান জাভাস্ক্রিপ্ট ফাইল -->
-        <script type="module" src="js/script.js"></script>
-    </body>
+    <!-- প্রধান জাভাস্ক্রিপ্ট ফাইল -->
+    <script type="module" src="js/script.js"></script>
+  </body>
 </html>
