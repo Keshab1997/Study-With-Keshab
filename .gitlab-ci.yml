@@ -1,4 +1,5 @@
 # GitHub-এ কোড সিঙ্ক করার জন্য CI/CD জব
+
 sync_to_github:
   stage: deploy
   # শুধুমাত্র 'main' ব্রাঞ্চে কোড পুশ হলে এই জবটি চলবে
