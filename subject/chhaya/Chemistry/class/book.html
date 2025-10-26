@@ -1,308 +1,390 @@
 <!DOCTYPE html>
 <html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>বই প্রদর্শক (উন্নত সংস্করণ)</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>বই প্রদর্শক (উন্নত জুম)</title>
     <style>
-        /* বেসিক স্টাইল রিসেট */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            font-family: Arial, sans-serif;
-            background-color: #333;
-            color: #fff;
-            overflow: hidden; /* পুরো পেজের স্ক্রলবার লুকানো */
-            touch-action: none; /* মোবাইলে অনাকাঙ্ক্ষিত স্ক্রলিং বন্ধ করতে */
-        }
-
-        /* মূল কন্টেইনার */
-        .viewer-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-
-        /* ছবির কন্টেইনার (Drag-to-pan এর জন্য) */
-        .image-wrapper {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin-bottom: 10px;
-            overflow: auto; /* জুম করার পর স্ক্রল করার জন্য */
-            cursor: grab; /* মাউস কার্সর পরিবর্তন */
-        }
-        .image-wrapper.grabbing {
-            cursor: grabbing;
-        }
-
-        /* ছবি */
-        #book-page {
-            max-width: 100%;
-            max-height: 90vh;
-            object-fit: contain;
-            border: 2px solid #555;
-            border-radius: 5px;
-            transition: transform 0.2s ease-in-out;
-            pointer-events: none; /* ছবির উপর মাউস ইভেন্ট বন্ধ করা, যাতে wrapper-এ কাজ করে */
-        }
-
-        /* নেভিগেশন বার */
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background-color: #2c2c2c;
+        color: #fff;
+        overflow: hidden;
+        /* মোবাইল ডিভাইসে ডিফল্ট জুম এবং স্ক্রলিং বন্ধ করা */
+        touch-action: none;
+      }
+      .viewer-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      .image-wrapper {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 10px;
+        overflow: hidden; /* আমরা JS দিয়ে স্ক্রল কন্ট্রোল করব */
+        cursor: grab;
+      }
+      .image-wrapper.grabbing {
+        cursor: grabbing;
+      }
+      #book-page {
+        max-width: 95%;
+        max-height: 95%;
+        object-fit: contain;
+        border-radius: 5px;
+        /* মসৃণ জুম এবং প্যান এর জন্য ট্রানজিশন */
+        transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transform-origin: center center; /* জুমের কেন্দ্রবিন্দু */
+      }
+      .navigation {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        gap: 12px;
+        background-color: rgba(40, 40, 40, 0.9);
+        border-radius: 50px; /* ক্যাপসুল আকৃতি */
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+      }
+      .icon-button {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border: none;
+        border-radius: 50%;
+        background-color: #007bff;
+        color: white;
+        transition: background-color 0.3s, transform 0.1s;
+      }
+      .icon-button:hover {
+        background-color: #0056b3;
+      }
+      .icon-button:active {
+        transform: scale(0.92);
+      }
+      .icon-button svg {
+        width: 24px;
+        height: 24px;
+      }
+      .reset-zoom-btn {
+        background-color: #28a745;
+      }
+      .reset-zoom-btn:hover {
+        background-color: #218838;
+      }
+      .icon-button:disabled {
+        background-color: #555;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+      #page-counter {
+        font-size: 16px;
+        font-weight: bold;
+        padding: 0 10px;
+        min-width: 80px;
+        text-align: center;
+      }
+      @media (max-width: 600px) {
         .navigation {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            gap: 15px;
-            background-color: rgba(40, 40, 40, 0.8);
-            border-radius: 10px;
+          gap: 8px;
+          padding: 6px;
         }
-
-        /* আইকন বাটন */
         .icon-button {
-            width: 44px;
-            height: 44px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            border: none;
-            border-radius: 50%; /* গোল বাটন */
-            background-color: #007bff;
-            color: white;
-            transition: background-color 0.3s, transform 0.1s;
+          width: 40px;
+          height: 40px;
         }
-        .icon-button:hover {
-            background-color: #0056b3;
-        }
-        .icon-button:active {
-            transform: scale(0.95);
-        }
-        .icon-button svg {
-            width: 24px;
-            height: 24px;
-        }
-        
-        /* রিসেট বাটনের ভিন্ন রং */
-        .reset-zoom-btn {
-            background-color: #28a745;
-        }
-        .reset-zoom-btn:hover {
-            background-color: #218838;
-        }
-
-        /* নিষ্ক্রিয় বাটন */
-        .icon-button:disabled {
-            background-color: #555;
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
-        /* পেজ কাউন্টার */
         #page-counter {
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0 10px;
-            min-width: 80px;
-            text-align: center;
+          font-size: 14px;
+          min-width: 70px;
         }
-
-        /* মোবাইল ডিভাইসের জন্য রেসপন্সিভ স্টাইল */
-        @media (max-width: 600px) {
-            .navigation {
-                gap: 10px;
-            }
-            .icon-button {
-                width: 40px;
-                height: 40px;
-            }
-            .icon-button svg {
-                width: 20px;
-                height: 20px;
-            }
-            #page-counter {
-                font-size: 16px;
-                min-width: 70px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="viewer-container">
-        <div class="image-wrapper">
-            <img id="book-page" src="" alt="বইয়ের পাতা লোড হচ্ছে...">
-        </div>
-        <div class="navigation">
-            <!-- পূর্ববর্তী -->
-            <button id="prev-btn" class="icon-button" title="পূর্ববর্তী পাতা">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-            </button>
-            
-            <span id="page-counter"></span>
-            
-            <!-- পরবর্তী -->
-            <button id="next-btn" class="icon-button" title="পরবর্তী পাতা">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
-            </button>
-            
-            <span style="width: 20px;"></span>
-
-            <!-- জুম আউট -->
-            <button id="zoom-out-btn" class="icon-button" title="জুম আউট">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13H5v-2h14v2z"/></svg>
-            </button>
-
-            <!-- রিসেট -->
-            <button id="reset-zoom-btn" class="icon-button reset-zoom-btn" title="জুম রিসেট">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
-            </button>
-
-            <!-- জুম ইন -->
-            <button id="zoom-in-btn" class="icon-button" title="জুম ইন">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-            </button>
-        </div>
+      <div class="image-wrapper">
+        <img id="book-page" src="" alt="বইয়ের পাতা লোড হচ্ছে..." />
+      </div>
+      <div class="navigation">
+        <button id="prev-btn" class="icon-button" title="পূর্ববর্তী পাতা">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+          </svg>
+        </button>
+        <span id="page-counter"></span>
+        <button id="next-btn" class="icon-button" title="পরবর্তী পাতা">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
+          </svg>
+        </button>
+        <span style="width: 15px"></span>
+        <button id="zoom-out-btn" class="icon-button" title="জুম আউট">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M19 13H5v-2h14v2z" />
+          </svg>
+        </button>
+        <button
+          id="reset-zoom-btn"
+          class="icon-button reset-zoom-btn"
+          title="জুম রিসেট"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"
+            />
+          </svg>
+        </button>
+        <button id="zoom-in-btn" class="icon-button" title="জুম ইন">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+          </svg>
+        </button>
+      </div>
     </div>
 
     <script>
-        const imageLinks = [
-            "https://i.postimg.cc/xTtH6nDQ/31.jpg", "https://i.postimg.cc/ZqydYNWG/32.jpg",
-            "https://i.postimg.cc/TwV5gXqJ/33.jpg", "https://i.postimg.cc/Hxw8XC4t/34.jpg",
-            "https://i.postimg.cc/7hqGNQmj/35.jpg", "https://i.postimg.cc/prk9cYSy/36.jpg",
-            "https://i.postimg.cc/6qz7bLPj/37.jpg", "https://i.postimg.cc/dQ9T0w0c/38.jpg",
-            "https://i.postimg.cc/wTTRyZtt/39.jpg", "https://i.postimg.cc/DyjJq6Ly/40.jpg",
-            "https://i.postimg.cc/tgPsGHcc/41.jpg"
-        ];
+      // --- Configuration & State ---
+      const imageLinks = [
+        "https://i.postimg.cc/xTtH6nDQ/31.jpg",
+        "https://i.postimg.cc/ZqydYNWG/32.jpg",
+        "https://i.postimg.cc/TwV5gXqJ/33.jpg",
+        "https://i.postimg.cc/Hxw8XC4t/34.jpg",
+        "https://i.postimg.cc/7hqGNQmj/35.jpg",
+        "https://i.postimg.cc/prk9cYSy/36.jpg",
+        "https://i.postimg.cc/6qz7bLPj/37.jpg",
+        "https://i.postimg.cc/dQ9T0w0c/38.jpg",
+        "https://i.postimg.cc/wTTRyZtt/39.jpg",
+        "https://i.postimg.cc/DyjJq6Ly/40.jpg",
+        "https://i.postimg.cc/tgPsGHcc/41.jpg",
+      ];
+      const DOM = {
+        bookPage: document.getElementById("book-page"),
+        imageWrapper: document.querySelector(".image-wrapper"),
+        pageCounter: document.getElementById("page-counter"),
+        prevBtn: document.getElementById("prev-btn"),
+        nextBtn: document.getElementById("next-btn"),
+        zoomInBtn: document.getElementById("zoom-in-btn"),
+        zoomOutBtn: document.getElementById("zoom-out-btn"),
+        resetZoomBtn: document.getElementById("reset-zoom-btn"),
+      };
 
-        // DOM Elements
-        const bookPage = document.getElementById('book-page');
-        const imageWrapper = document.querySelector('.image-wrapper');
-        const pageCounter = document.getElementById('page-counter');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const zoomInBtn = document.getElementById('zoom-in-btn');
-        const zoomOutBtn = document.getElementById('zoom-out-btn');
-        const resetZoomBtn = document.getElementById('reset-zoom-btn');
+      let state = {
+        currentPageIndex: 0,
+        scale: 1.0,
+        isPinching: false,
+        isDragging: false,
+        initialPinchDistance: 0,
+        lastTap: 0,
+        start: { x: 0, y: 0 },
+        offset: { x: 0, y: 0 },
+      };
 
-        // State Variables
-        let currentPageIndex = 0;
-        const totalPages = imageLinks.length;
-        let currentScale = 1.0;
-        const ZOOM_STEP = 0.2;
-        const MIN_SCALE = 1.0; // স্বাভাবিক আকারের চেয়ে ছোট হতে দেবে না
-        const MAX_SCALE = 4.0;
+      const config = {
+        totalPages: imageLinks.length,
+        ZOOM_STEP: 0.2,
+        MIN_SCALE: 1.0,
+        MAX_SCALE: 5.0,
+        DEFAULT_PAGE_NUM_START: 31,
+        DOUBLE_TAP_ZOOM: 2.5,
+      };
 
-        // --- ইমেজ প্রি-লোডিং ফাংশন (দ্রুত পেজ চেঞ্জের জন্য) ---
-        function preloadImages(index) {
-            // পরের ইমেজ প্রি-লোড
-            if (index + 1 < totalPages) {
-                const nextImg = new Image();
-                nextImg.src = imageLinks[index + 1];
-            }
-            // আগের ইমেজ প্রি-লোড
-            if (index - 1 >= 0) {
-                const prevImg = new Image();
-                prevImg.src = imageLinks[index - 1];
-            }
+      // --- Core Functions ---
+      function applyTransform() {
+        DOM.bookPage.style.transform = `translate(${state.offset.x}px, ${state.offset.y}px) scale(${state.scale})`;
+        DOM.zoomInBtn.disabled = state.scale >= config.MAX_SCALE;
+        DOM.zoomOutBtn.disabled = state.scale <= config.MIN_SCALE;
+        DOM.imageWrapper.style.cursor = state.scale > 1.0 ? "grab" : "default";
+      }
+
+      function resetState() {
+        state.scale = 1.0;
+        state.offset = { x: 0, y: 0 };
+        applyTransform();
+      }
+
+      function showPage(index) {
+        resetState();
+        DOM.bookPage.src = imageLinks[index];
+        DOM.pageCounter.textContent = `পাতা ${
+          index + config.DEFAULT_PAGE_NUM_START
+        } / ${config.totalPages - 1 + config.DEFAULT_PAGE_NUM_START}`;
+        DOM.prevBtn.disabled = index === 0;
+        DOM.nextBtn.disabled = index === config.totalPages - 1;
+        if (index + 1 < config.totalPages)
+          new Image().src = imageLinks[index + 1];
+        if (index - 1 >= 0) new Image().src = imageLinks[index - 1];
+      }
+
+      // --- Event Handlers ---
+      // Page Navigation
+      DOM.prevBtn.addEventListener("click", () => {
+        if (!DOM.prevBtn.disabled) {
+          state.currentPageIndex--;
+          showPage(state.currentPageIndex);
         }
-
-        // --- জুম ফাংশন ---
-        function applyZoom() {
-            bookPage.style.transform = `scale(${currentScale})`;
-            zoomInBtn.disabled = currentScale >= MAX_SCALE;
-            zoomOutBtn.disabled = currentScale <= MIN_SCALE;
-            // যখন জুম স্বাভাবিক, তখন grab কার্সার দরকার নেই
-            imageWrapper.style.cursor = currentScale > 1.0 ? 'grab' : 'default';
+      });
+      DOM.nextBtn.addEventListener("click", () => {
+        if (!DOM.nextBtn.disabled) {
+          state.currentPageIndex++;
+          showPage(state.currentPageIndex);
         }
+      });
 
-        function resetZoom() {
-            currentScale = 1.0;
-            applyZoom();
+      // Zoom Buttons
+      DOM.zoomInBtn.addEventListener("click", () => {
+        state.scale = Math.min(
+          config.MAX_SCALE,
+          state.scale + config.ZOOM_STEP
+        );
+        applyTransform();
+      });
+      DOM.zoomOutBtn.addEventListener("click", () => {
+        state.scale = Math.max(
+          config.MIN_SCALE,
+          state.scale - config.ZOOM_STEP
+        );
+        if (state.scale === config.MIN_SCALE) resetState();
+        else applyTransform();
+      });
+      DOM.resetZoomBtn.addEventListener("click", resetState);
+
+      // Keyboard Navigation
+      document.addEventListener("keydown", (e) => {
+        e.key === "ArrowRight" && DOM.nextBtn.click();
+        e.key === "ArrowLeft" && DOM.prevBtn.click();
+      });
+
+      // Mouse Wheel Zoom
+      DOM.imageWrapper.addEventListener("wheel", (e) => {
+        e.preventDefault();
+        e.deltaY < 0 ? DOM.zoomInBtn.click() : DOM.zoomOutBtn.click();
+      });
+
+      // --- Pointer (Mouse & Touch) Handlers for Pan, Pinch, Double-tap ---
+      function getDistance(p1, p2) {
+        return Math.sqrt(
+          Math.pow(p2.clientX - p1.clientX, 2) +
+            Math.pow(p2.clientY - p1.clientY, 2)
+        );
+      }
+
+      function onPointerDown(e) {
+        if (e.pointerType === "mouse" && e.button !== 0) return; // Only main mouse button
+
+        if (e.touches && e.touches.length === 2) {
+          // Start Pinch
+          e.preventDefault();
+          state.isPinching = true;
+          state.initialPinchDistance = getDistance(e.touches[0], e.touches[1]);
+        } else {
+          // Start Drag
+          state.isDragging = true;
+          DOM.imageWrapper.classList.add("grabbing");
+          state.start.x = e.pageX || e.touches[0].pageX;
+          state.start.y = e.pageY || e.touches[0].pageY;
         }
+      }
 
-        // --- পাতা দেখানো এবং নেভিগেশন ---
-        function showPage(index) {
-            resetZoom(); 
-            bookPage.src = imageLinks[index];
-            pageCounter.textContent = `পাতা ${index + 31} / ${totalPages + 30}`; // পাতা ৩১ থেকে শুরু
-            prevBtn.disabled = (index === 0);
-            nextBtn.disabled = (index === totalPages - 1);
-            preloadImages(index); // পরবর্তী ও পূর্ববর্তী পাতা প্রি-লোড করা
+      function onPointerMove(e) {
+        if (state.isPinching && e.touches && e.touches.length === 2) {
+          // Pinching
+          e.preventDefault();
+          const currentDistance = getDistance(e.touches[0], e.touches[1]);
+          const newScale =
+            state.scale * (currentDistance / state.initialPinchDistance);
+          state.scale = Math.max(
+            config.MIN_SCALE,
+            Math.min(newScale, config.MAX_SCALE)
+          );
+          state.initialPinchDistance = currentDistance; // Update for continuous pinch
+          applyTransform();
+        } else if (state.isDragging && state.scale > 1) {
+          // Dragging
+          e.preventDefault();
+          const currentX = e.pageX || e.touches[0].pageX;
+          const currentY = e.pageY || e.touches[0].pageY;
+          state.offset.x += currentX - state.start.x;
+          state.offset.y += currentY - state.start.y;
+          state.start.x = currentX;
+          state.start.y = currentY;
+          applyTransform();
         }
+      }
 
-        // --- Event Listeners ---
-        prevBtn.addEventListener('click', () => { if (!prevBtn.disabled) { currentPageIndex--; showPage(currentPageIndex); } });
-        nextBtn.addEventListener('click', () => { if (!nextBtn.disabled) { currentPageIndex++; showPage(currentPageIndex); } });
-        zoomInBtn.addEventListener('click', () => { currentScale = Math.min(MAX_SCALE, currentScale + ZOOM_STEP); applyZoom(); });
-        zoomOutBtn.addEventListener('click', () => { currentScale = Math.max(MIN_SCALE, currentScale - ZOOM_STEP); applyZoom(); });
-        resetZoomBtn.addEventListener('click', resetZoom);
-        
-        imageWrapper.addEventListener('wheel', (event) => {
-            event.preventDefault();
-            if (event.deltaY < 0) zoomInBtn.click();
-            else zoomOutBtn.click();
-        });
+      function onPointerUp(e) {
+        // Double Tap/Click
+        const currentTime = new Date().getTime();
+        if (currentTime - state.lastTap < 300) {
+          if (state.scale > 1) {
+            resetState();
+          } else {
+            state.scale = config.DOUBLE_TAP_ZOOM;
+            applyTransform();
+          }
+        }
+        state.lastTap = currentTime;
 
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowRight') nextBtn.click();
-            else if (event.key === 'ArrowLeft') prevBtn.click();
-        });
+        state.isDragging = false;
+        state.isPinching = false;
+        DOM.imageWrapper.classList.remove("grabbing");
+      }
 
-        // --- জুম করা ছবি সরানোর (Drag-to-pan) যুক্তি ---
-        let isDragging = false;
-        let startX, startY, scrollLeftStart, scrollTopStart;
+      DOM.imageWrapper.addEventListener("mousedown", onPointerDown);
+      DOM.imageWrapper.addEventListener("mousemove", onPointerMove);
+      window.addEventListener("mouseup", onPointerUp); // Use window to catch mouseup outside wrapper
 
-        const startDragging = (e) => {
-            if (currentScale <= 1.0) return; // জুম না থাকলে ড্র্যাগ কাজ করবে না
-            isDragging = true;
-            imageWrapper.classList.add('grabbing');
-            const pointer = e.touches ? e.touches[0] : e;
-            startX = pointer.pageX - imageWrapper.offsetLeft;
-            startY = pointer.pageY - imageWrapper.offsetTop;
-            scrollLeftStart = imageWrapper.scrollLeft;
-            scrollTopStart = imageWrapper.scrollTop;
-        };
+      DOM.imageWrapper.addEventListener("touchstart", onPointerDown, {
+        passive: false,
+      });
+      DOM.imageWrapper.addEventListener("touchmove", onPointerMove, {
+        passive: false,
+      });
+      DOM.imageWrapper.addEventListener("touchend", onPointerUp);
 
-        const stopDragging = () => {
-            isDragging = false;
-            imageWrapper.classList.remove('grabbing');
-        };
-
-        const onDrag = (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            const pointer = e.touches ? e.touches[0] : e;
-            const x = pointer.pageX - imageWrapper.offsetLeft;
-            const y = pointer.pageY - imageWrapper.offsetTop;
-            const walkX = (x - startX) * 1.5; // ড্র্যাগিং স্পিড বাড়াতে গুণক ব্যবহার
-            const walkY = (y - startY) * 1.5;
-            imageWrapper.scrollLeft = scrollLeftStart - walkX;
-            imageWrapper.scrollTop = scrollTopStart - walkY;
-        };
-
-        imageWrapper.addEventListener('mousedown', startDragging);
-        imageWrapper.addEventListener('touchstart', startDragging);
-        imageWrapper.addEventListener('mouseup', stopDragging);
-        imageWrapper.addEventListener('mouseleave', stopDragging);
-        imageWrapper.addEventListener('touchend', stopDragging);
-        imageWrapper.addEventListener('mousemove', onDrag);
-        imageWrapper.addEventListener('touchmove', onDrag);
-
-        // --- প্রথম পাতা লোড করা ---
-        showPage(currentPageIndex);
-
+      // Initial Load
+      showPage(state.currentPageIndex);
     </script>
-
-</body>
+  </body>
 </html>
