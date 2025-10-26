@@ -1,18 +1,24 @@
-# GitHub-এ কোড সিঙ্ক করার জন্য CI/CD জব
+# This pipeline syncs the code from GitLab to GitHub automatically.
+
+stages:
+  - deploy
 
 sync_to_github:
   stage: deploy
-  # শুধুমাত্র 'main' ব্রাঞ্চে কোড পুশ হলে এই জবটি চলবে
-  only:
-    - main
-  
+  image: alpine:latest  # Using a lightweight Docker image
+
+  before_script:
+    - apk add --no-cache git  # Installing Git in the runner
+
   script:
-    # গিট ব্যবহারকারীর তথ্য কনফিগার করা
-    - git config --global user.email "keshabsarkar2018@gmail.com"
-    - git config --global user.name "Keshab Sarkar"
-    
-    # GitHub রিপোজিটরিকে 'github' নামে একটি রিমোট হিসেবে যোগ করা
-    - git remote add github "https://oauth2:${GITHUB_PAT}@github.com/Keshab1997/Study-With-Keshab.git"
-    
-    # GitLab-এর সব ব্রাঞ্চ এবং ট্যাগ GitHub-এ পুশ করা
-    - git push --mirror github
+    # Adding the GitHub repository as a remote.
+    # The URL uses your GitHub username (Keshab1997), the GITHUB_TOKEN variable,
+    # and your repository name (Study-With-Keshab).
+    - git remote add github https://Keshab1997:$GITHUB_TOKEN@github.com/Keshab1997/Study-With-Keshab.git
+
+    # Forcefully pushing all changes from the current GitLab branch to the same branch on GitHub.
+    # The '-f' flag ensures that the GitHub repo exactly mirrors the GitLab repo.
+    - git push -f github HEAD:$CI_COMMIT_REF_NAME
+
+  only:
+    - main  # This job will only run for commits on the 'main' branch.
