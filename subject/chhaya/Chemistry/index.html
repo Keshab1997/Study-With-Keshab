@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ছায়া প্রকাশনী (Chemistry) | Study With Keshab</title>
+
+    <!-- প্রধান CSS ফাইল -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- আইকন ব্যবহারের জন্য Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+
+    <!-- চার্ট ব্যবহারের জন্য Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+    <!-- পেজ লোডিং এর সময় হাইড করার জন্য স্টাইল -->
+    <style>
+      body.auth-loading {
+        visibility: hidden;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body class="day-mode homepage theme-blue auth-loading">
+    <div id="preloader">
+      <div class="loader"></div>
+    </div>
+
+    <header class="main-header">
+      <img
+        src="images/logo.jpg"
+        alt="লোগো"
+        class="profile-pic"
+        id="logo-easter-egg"
+      />
+      <div class="header-text">
+        <h1>অধ্যায়: ছায়া প্রকাশনী (Chemistry)</h1>
+        <p>আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী</p>
+      </div>
+      <button
+        id="dark-mode-toggle"
+        class="dark-mode-button"
+        title="দিন/রাত মোড পরিবর্তন করুন"
+      >
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </header>
+
+    <div class="search-container">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="search-bar" placeholder="যেকোনো সেকশন খুঁজুন..." />
+    </div>
+
+    <nav class="nav-grid">
+      <a href="../../../../index.html" class="nav-button color-home"
+        ><i class="fa-solid fa-house"></i><span>হোম</span></a
+      >
+      <a href="#dashboard" class="nav-button color-dashboard"
+        ><i class="fa-solid fa-chart-line"></i><span>ড্যাশবোর্ড</span></a
+      >
+      <a href="#class-notes" class="nav-button color-notes"
+        ><i class="fa-solid fa-book-open"></i><span>ক্লাস নোট</span></a
+      >
+      <a href="#quiz-sets" class="nav-button color-quiz"
+        ><i class="fa-solid fa-file-circle-question"></i
+        ><span>কুইজ সেট</span></a
+      >
+      <a
+        href="https://keshab1997.github.io/cbt-exam/index.html?exam=cbt3&chapter=Practice Set 3"
+        class="nav-button color-cbt"
+      >
+        <i class="fa-solid fa-laptop-code"></i>
+        <span>CBT</span>
+      </a>
+      <button id="formula-sheet-btn" class="nav-button color-formulas">
+        <i class="fa-solid fa-square-root-variable"></i
+        ><span>গুরুত্বপূর্ণ তথ্য</span>
+      </button>
+      <a href="#result-section" class="nav-button color-result"
+        ><i class="fa-solid fa-square-poll-vertical"></i><span>রেজাল্ট</span></a
+      >
+      <a href="#leaderboard" class="nav-button color-leaderboard"
+        ><i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span></a
+      >
+    </nav>
+
+    <main>
+      <!-- === এই অধ্যায়ের নাম JavaScript এর জন্য সেট করা হয়েছে === -->
+      <script>
+        const CURRENT_CHAPTER_NAME = "chhaya-prakashani-chemistry";
+      </script>
+
+      <!-- ইউজার প্রোফাইল কার্ড -->
+      <section class="card" id="user-profile-card">
+        <div class="profile-header">
+          <img
+            id="user-profile-pic"
+            src="images/default-avatar.png"
+            alt="Profile Picture"
+            class="profile-pic-large"
+          />
+          <div class="profile-info">
+            <h2 id="user-display-name">লোড হচ্ছে...</h2>
+            <p id="user-email">লোড হচ্ছে...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ড্যাশবোর্ড সেকশন -->
+      <section class="card" id="dashboard">
+        <h2>
+          <i class="fa-solid fa-chart-line icon-title"></i> আমার ড্যাশবোর্ড
+        </h2>
+        <div class="dashboard-grid">
+          <div class="dashboard-item">
+            <h3>অধ্যায়ের অগ্রগতি (কুইজ)</h3>
+            <div class="progress-bar-container">
+              <div
+                class="progress-bar"
+                id="chapter-progress-bar"
+                style="width: 0%"
+              ></div>
+            </div>
+            <p id="chapter-progress-text">0% সম্পন্ন</p>
+          </div>
+          <div class="dashboard-item">
+            <h3>সামগ্রিক পারফরম্যান্স</h3>
+            <canvas id="quiz-pie-chart"></canvas>
+          </div>
+          <div class="dashboard-item">
+            <h3>দৈনিক চ্যালেঞ্জ</h3>
+            <div id="daily-challenge" class="challenge-box">
+              <p id="challenge-text">আজকের চ্যালেঞ্জ লোড হচ্ছে...</p>
+            </div>
+          </div>
+          <div class="dashboard-item">
+            <h3>আমার অ্যাচিভমেন্টস</h3>
+            <div
+              class="achievements-container"
+              id="achievements-container"
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ক্লাস নোট সেকশন -->
+      <section class="card" id="class-notes">
+        <h2><i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট</h2>
+        <p>অনুশীলনী সেটের প্রতিটি অংশের বিস্তারিত আলোচনা পড়ুন।</p>
+        <div class="link-container styled-list">
+          <a href="class/class1.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Pdf-notes
+          </a>
+          <a href="class/class1.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 01 - প্রশ্ন (1-20)
+          </a>
+          <a href="class/class2.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 02 - প্রশ্ন (21-40)
+          </a>
+          <a href="class/class3.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 03 - প্রশ্ন (41-60)
+          </a>
+          <a href="class/class4.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 04 - প্রশ্ন (61-80)
+          </a>
+          <a href="class/class5.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 05 - প্রশ্ন (81-100)
+          </a>
+          <a href="class/class6.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 06 - প্রশ্ন (101-120)
+          </a>
+          <a href="class/class7.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 07 - প্রশ্ন (121-140)
+          </a>
+          <a href="class/class8.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 08 - প্রশ্ন (141-160)
+          </a>
+          <a href="class/class9.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 09 - প্রশ্ন (161-180)
+          </a>
+          <a href="class/class10.html">
+            <i class="fa-solid fa-person-chalkboard fa-fw"></i>
+            Class 10 - প্রশ্ন (181-185)
+          </a>
+        </div>
+      </section>
+
+      <!-- কুইজ সেট সেকশন -->
+      <section class="card" id="quiz-sets">
+        <h2>
+          <i class="fa-solid fa-file-circle-question icon-title"></i>
+          কুইজ সেট
+        </h2>
+        <p>নিজের প্রস্তুতি যাচাই করার জন্য ইন্টারেক্টিভ কুইজগুলোতে অংশ নিন।</p>
+        <div class="link-container styled-list">
+          <a href="quiz/Qset1.html"
+            ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 1 (প্রশ্ন
+            1-20)</a
+          >
+          <a href="quiz/Qset2.html"
+            ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 2 (প্রশ্ন
+            21-40)</a
+          >
+          <a href="quiz/Qset3.html"
+            ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 3 (প্রশ্ন
+            41-60)</a
+          >
+          <a href="quiz/Qset4.html"
+            ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 4 (প্রশ্ন
+            61-80)</a
+          >
+          <a href="quiz/Qset5.html"
+            ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 5 (প্রশ্ন
+            81-100)</a
+          >
+          <a href="quiz/Qset6.html"
+            ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 6 (প্রশ্ন
+            101-120)</a
+          >
+          <a href="quiz/Qset7.html"
+            ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 7 (প্রশ্ন
+            121-140)</a
+          >
+          <a href="quiz/Qset8.html"
+            ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 8 (প্রশ্ন
+            141-160)</a
+          >
+          <a href="quiz/Qset9.html"
+            ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 9 (প্রশ্ন
+            161-180)</a
+          >
+          <a href="quiz/Qset10.html"
+            ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 10 (প্রশ্ন
+            181-185)</a
+          >
+        </div>
+      </section>
+
+      <!-- লিডারবোর্ড সেকশন -->
+      <section class="card" id="leaderboard">
+        <h2><i class="fa-solid fa-trophy icon-title"></i> লিডারবোর্ড</h2>
+        <p>এই অধ্যায়ের সর্বোচ্চ স্কোরারদের তালিকা।</p>
+        <div class="leaderboard-container">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>নাম</th>
+                <th>মোট স্কোর</th>
+                <th>বিস্তারিত</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+              <!-- JavaScript দ্বারা ডেটা লোড হবে -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- রেজাল্ট সেকশন -->
+      <section class="card" id="result-section">
+        <h2>
+          <i class="fa-solid fa-square-poll-vertical icon-title"></i>
+          আমার রেজাল্ট
+        </h2>
+        <p>
+          এই অধ্যায়ে আপনার প্রতিটি কুইজের পারফরম্যান্স দেখুন এবং বন্ধুদের সাথে
+          শেয়ার করুন।
+        </p>
+        <div id="result-card-container" class="result-grid">
+          <!-- JavaScript দ্বারা রেজাল্ট কার্ড তৈরি হবে -->
+        </div>
+        <div
+          id="no-result-message"
+          style="
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-top: 20px;
+          "
+        >
+          <p style="font-size: 1.1em; margin-bottom: 15px">
+            আপনি এখনও এই অধ্যায়ের কোনো কুইজে অংশ নেননি।
+          </p>
+          <a href="#quiz-sets" class="button-primary">এখনই কুইজ দিন!</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Chemistry Modal -->
+    <div id="chemistry-modal" class="modal-overlay">
+      <div class="modal-content">
+        <button class="modal-close-btn">&times;</button>
+        <h2>🌟 রসায়নের গুরুত্বপূর্ণ তথ্য ও ধারণা</h2>
+        <ul>
+          <li>
+            <strong>পারমাণবিক গঠন ও পর্যায় সারণি:</strong>
+            আইসোটোপ (প্রোটন সংখ্যা সমান), আইসোবার (ভরসংখ্যা সমান), আইসোটোন
+            (নিউট্রন সংখ্যা সমান), আধুনিক পর্যায় সারণি (মোজলে, পারমাণবিক
+            সংখ্যার ওপর নির্ভরশীল), হ্যালোজেন (শ্রেণি 17), নিষ্ক্রিয় গ্যাস
+            (শ্রেণি 18), ক্ষার ধাতু (শ্রেণি 1), কোয়ান্টাম তত্ত্ব (ম্যাক্স
+            প্ল্যাঙ্ক)।
+          </li>
+          <li>
+            <strong>ভৌত রসায়ন:</strong>
+            গ্যাসের সূত্র (বয়েলের সূত্র, চার্লসের সূত্র), আদর্শ গ্যাস সমীকরণ
+            (PV=nRT), অ্যাসিড ও ক্ষার (pH স্কেল), ফেনলপথ্যালিন (ক্ষারে গোলাপী
+            বর্ণ), মিথাইল অরেঞ্জ (অ্যাসিডে লাল), রাসায়নিক বন্ধন (আয়নীয়,
+            সমযোজী), মোলারিটি (দ্রবণের గాঢ়ত্ব)।
+          </li>
+          <li>
+            <strong>অজৈব রসায়ন:</strong>
+            মরিচার সংকেত (হাইড্রেটেড ফেরিক অক্সাইড - Fe₂O₃.xH₂O), সংকর ধাতু
+            (পিতল - Cu+Zn, কাঁসা - Cu+Sn), বেকিং সোডা (NaHCO₃), ওয়াশিং সোডা
+            (Na₂CO₃.10H₂O), ব্লিচিং পাউডার (CaOCl₂), প্লাস্টার অফ প্যারিস
+            (CaSO₄.½H₂O), খর ও মৃদু জল (ক্যালসিয়াম ও ম্যাগনেসিয়াম লবণের
+            উপস্থিতি)।
+          </li>
+          <li>
+            <strong>জৈব রসায়ন:</strong>
+            হাইড্রোকার্বন (অ্যালকেন-CnH2n+2, অ্যালকিন-CnH2n, অ্যালকাইন-CnH2n-2),
+            কার্যকরী মূলক (অ্যালকোহল -OH, কার্বক্সিলিক অ্যাসিড -COOH), C-60
+            ফুলারিন (কার্বনের রূপভেদ, ফুটবল আকৃতি), পলিমার (PVC, টেফলন, নাইলন),
+            বায়োগ্যাসের মূল উপাদান (মিথেন - CH₄), ভিনিগার (অ্যাসেটিক অ্যাসিডের
+            লঘু দ্রবণ)। e/li>
+          </li>
+
+          <li>
+            <strong>পরিবেশ রসায়ন:</strong>
+            গ্রীনহাউস গ্যাস (CO₂, CH₄, N₂O), অ্যাসিড বৃষ্টি (SO₂, NO₂), ওজোন
+            স্তর ক্ষয় (CFCs), জলদূষণ (মিনামাটা রোগ - পারদ, ইটাই-ইটাই রোগ -
+            ক্যাডমিয়াম), BOD (Biochemical Oxygen Demand - জলদূষণের সূচক)।
+          </li>
+          <li>
+            <strong>প্রাত্যহিক জীবনের রসায়ন:</strong>
+            সাবান ও ডিটারজেন্ট, সার (NPK - নাইট্রোজেন, ফসফরাস, পটাসিয়াম), ওষুধ
+            (অ্যান্টাসিড, অ্যান্টিবায়োটিক), কৃত্রিম মিষ্টি পদার্থ (স্যাকারিন,
+            অ্যাসপার্টেম), বিস্ফোরক (TNT, RDX), ফলের পাকার জন্য ব্যবহৃত হরমোন
+            (ইথিলিন)।
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <a id="back-to-top" href="#"><i class="fas fa-arrow-up"></i></a>
+
+    <footer>
+      <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+      <div class="social-links">
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </footer>
+
+    <!-- Firebase এবং পেজ প্রটেকশন স্ক্রিপ্ট -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script>
+      (function () {
+        firebase.auth().onAuthStateChanged((user) => {
+          if (!user) {
+            window.location.href =
+              "https://keshab1997.github.io/Study-With-Keshab/login.html";
+          } else {
+            document.body.classList.remove("auth-loading");
+          }
+        });
+      })();
+    </script>
+
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- প্রধান জাভাস্ক্রিপ্ট ফাইল -->
+    <script type="module" src="js/script.js"></script>
+  </body>
+</html>
