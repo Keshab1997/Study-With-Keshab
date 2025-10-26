@@ -1,0 +1,17 @@
+# GitHub-এ কোড সিঙ্ক করার জন্য CI/CD জব
+sync_to_github:
+  stage: deploy
+  # শুধুমাত্র 'main' ব্রাঞ্চে কোড পুশ হলে এই জবটি চলবে
+  only:
+    - main
+  
+  script:
+    # গিট ব্যবহারকারীর তথ্য কনফিগার করা
+    - git config --global user.email "keshabsarkar2018@gmail.com"
+    - git config --global user.name "Keshab Sarkar"
+    
+    # GitHub রিপোজিটরিকে 'github' নামে একটি রিমোট হিসেবে যোগ করা
+    - git remote add github "https://oauth2:${GITHUB_PAT}@github.com/Keshab1997/Study-With-Keshab.git"
+    
+    # GitLab-এর সব ব্রাঞ্চ এবং ট্যাগ GitHub-এ পুশ করা
+    - git push --mirror github
