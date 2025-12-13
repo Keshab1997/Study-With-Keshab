@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ক্যালেন্ডার (Reasoning) | Study With Keshab</title>
 
-    <!-- প্রধান CSS ফাইল -->
-    <link rel="stylesheet" href="css/style.css" />
+    <!-- প্রধান CSS ফাইল (পাথ ঠিক করা হয়েছে) -->
+    <link rel="stylesheet" href="../css/style.css" />
 
     <!-- আইকন ব্যবহারের জন্য Font Awesome CDN -->
     <link
@@ -17,7 +17,7 @@
     <!-- চার্ট ব্যবহারের জন্য Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
-    <!-- পেজ লোডিং এর সময় হাইড করার জন্য স্টাইল (আপনার স্যাম্পল অনুযায়ী) -->
+    <!-- পেজ লোডিং এর সময় হাইড করার জন্য স্টাইল -->
     <style>
       body.auth-loading {
         visibility: hidden;
@@ -31,8 +31,9 @@
     </div>
 
     <header class="main-header">
+      <!-- লোগো পাথ ঠিক করা হয়েছে -->
       <img
-        src="images/logo.jpg"
+        src="../images/logo.jpg"
         alt="লোগো"
         class="profile-pic"
         id="logo-easter-egg"
@@ -56,8 +57,8 @@
     </div>
 
     <nav class="nav-grid">
-      <!-- পাথ আপনার ফোল্ডার স্ট্রাকচার অনুযায়ী সেট করা হয়েছে -->
-      <a href="../../../../index.html" class="nav-button color-home"
+      <!-- নেভিগেশন লিংকগুলো এক ফোল্ডার গভীরতার জন্য আপডেট করা হয়েছে -->
+      <a href="../../../../../index.html" class="nav-button color-home"
         ><i class="fa-solid fa-house"></i><span>হোম</span></a
       >
       <a href="#dashboard" class="nav-button color-dashboard"
@@ -98,9 +99,10 @@
       <!-- ইউজার প্রোফাইল কার্ড -->
       <section class="card" id="user-profile-card">
         <div class="profile-header">
+          <!-- ডিফল্ট অবতার ইমেজ পাথ ঠিক করা হয়েছে -->
           <img
             id="user-profile-pic"
-            src="images/default-avatar.png"
+            src="../images/default-avatar.png"
             alt="Profile Picture"
             class="profile-pic-large"
           />
@@ -153,19 +155,20 @@
         <h2><i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট</h2>
         <p>ক্যালেন্ডার অধ্যায়ের কনসেপ্ট এবং শর্টকাট টেকনিকগুলো শিখুন।</p>
         <div class="link-container styled-list">
-          <a href="class/book.html">
+          <!-- যেহেতু এই ফাইলটি class ফোল্ডারের ভেতরেই আছে, তাই লিংকগুলো আপডেট করা হলো -->
+          <a href="book.html">
             <i class="fa-solid fa-file-pdf fa-fw"></i>
             Calendar Theory PDF
           </a>
-          <a href="class/class1.html">
+          <a href="class1.html">
             <i class="fa-solid fa-person-chalkboard fa-fw"></i>
             Class 01 - বেসিক কনসেপ্ট ও Odd Days
           </a>
-          <a href="class/class2.html">
+          <a href="class2.html">
             <i class="fa-solid fa-person-chalkboard fa-fw"></i>
             Class 02 - দিন নির্ণয়ের শর্টকাট
           </a>
-          <a href="class/class3.html">
+          <a href="class3.html">
             <i class="fa-solid fa-person-chalkboard fa-fw"></i>
             Class 03 - রিপিটেশন অফ ক্যালেন্ডার
           </a>
@@ -180,13 +183,14 @@
         </h2>
         <p>ক্যালেন্ডার সংক্রান্ত সমস্যা সমাধানের দক্ষতা যাচাই করুন।</p>
         <div class="link-container styled-list">
-          <a href="quiz/Qset1.html"
+          <!-- কুইজ ফোল্ডারটি এক ধাপ উপরে, তাই ../quiz ব্যবহার করা হয়েছে -->
+          <a href="../quiz/Qset1.html"
             ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 1 (Basic Level)</a
           >
-          <a href="quiz/Qset2.html"
+          <a href="../quiz/Qset2.html"
             ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 2 (Moderate Level)</a
           >
-          <a href="quiz/Qset3.html"
+          <a href="../quiz/Qset3.html"
             ><i class="fa-solid fa-pen-to-square fa-fw"></i> Quiz Set 3 (Advanced Level)</a
           >
         </div>
@@ -300,7 +304,9 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-    <script src="js/firebase-config.js"></script>
+    
+    <!-- JS ফাইলের পাথ ঠিক করা হয়েছে -->
+    <script src="../js/firebase-config.js"></script>
     <script>
       (function () {
         firebase.auth().onAuthStateChanged((user) => {
@@ -320,7 +326,7 @@
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-    <!-- প্রধান জাভাস্ক্রিপ্ট ফাইল -->
-    <script type="module" src="js/script.js"></script>
+    <!-- প্রধান জাভাস্ক্রিপ্ট ফাইল (পাথ ঠিক করা হয়েছে) -->
+    <script type="module" src="../js/script.js"></script>
   </body>
 </html>
