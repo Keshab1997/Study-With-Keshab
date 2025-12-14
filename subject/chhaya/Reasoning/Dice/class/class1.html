@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calendar Reasoning - Class 01 | Study With Keshab</title>
+        <!-- External CSS File Link -->
+        <link rel="stylesheet" href="css/style.css" />
+        <!-- FontAwesome for Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+        
+        <style>
+            .code-table th {
+                background-color: #e9ecef !important;
+                color: #333 !important;
+            }
+            .dark-mode .code-table th {
+                background-color: #333 !important;
+                color: #fff !important;
+            }
+            /* ট্রিকস বক্সের জন্য স্টাইল */
+            .trick-box {
+                background-color: #e0f7fa;
+                padding: 15px;
+                border-radius: 8px;
+                border: 2px dashed #00bcd4;
+                text-align: center;
+                margin-top: 15px;
+            }
+            .trick-title {
+                color: #006064;
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+    <body data-theme="default">
+        <header>
+            <img src="../images/logo.jpg" alt="Logo" class="logo" />
+            <h1>অধ্যায়: ক্যালেন্ডার (Reasoning) - পর্ব ১</h1>
+        </header>
+
+        <div class="controls-wrapper">
+            <div id="digital-clock" class="digital-clock"></div>
+            <div class="theme-buttons">
+                <button data-theme-name="default">Default</button>
+                <button data-theme-name="forest">Forest</button>
+                <button data-theme-name="ocean">Ocean</button>
+                <button data-theme-name="sunset">Sunset</button>
+            </div>
+            <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+            <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+            <div class="dark-mode-toggle">
+                <span>দিন/রাত</span>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>CLASS NO: 01 - MASTER NOTE</h2>
+
+            <!-- PART 1: Magic Code & Formula -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-wand-magic-sparkles"></i> PART 1: ম্যাজিক কোড ও ফর্মুলা</h3>
+                <p>যেকোনো তারিখের বার বের করার জন্য নিচের কোডগুলো মুখস্থ রাখতে হবে।</p>
+
+                <h4>1. মাসের কোড (Month Code)</h4>
+                <p>ফোন নম্বরের মতো মুখস্থ করো: <strong>033 — 614 — 625 — 035</strong></p>
+                
+                <div style="overflow-x:auto;">
+                    <table class="code-table">
+                        <tr>
+                            <th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th>
+                            <th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th>
+                        </tr>
+                        <tr>
+                            <td>0</td><td>3</td><td>3</td><td>6</td><td>1</td><td>4</td>
+                            <td>6</td><td>2</td><td>5</td><td>0</td><td>3</td><td>5</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h4>2. সেঞ্চুরি কোড (Century Code)</h4>
+                <ul>
+                    <li>1600 - 1699 = <strong>6</strong></li>
+                    <li>1700 - 1799 = <strong>4</strong></li>
+                    <li>1800 - 1899 = <strong>2</strong></li>
+                    <li>1900 - 1999 = <strong>0</strong> (সবচেয়ে বেশি আসে)</li>
+                    <li>2000 - 2099 = <strong>6</strong> (এখনকার সময়)</li>
+                </ul>
+
+                <div class="step-box" style="border-left-color: var(--heading-color-1);">
+                    <strong>💡 বের করার নিয়ম (400 Rule):</strong><br>
+                    সেঞ্চুরি সালকে (যেমন 1900, 2000) <strong>400</strong> দিয়ে ভাগ করো। ভাগশেষ (Remainder) অনুযায়ী কোড হবে:
+                    <ul style="margin-top: 5px; list-style: none; padding-left: 10px;">
+                        <li>🔹 ভাগশেষ <strong>0</strong> (মিলে গেলে) ➔ কোড <strong>6</strong></li>
+                        <li>🔹 ভাগশেষ <strong>100</strong> থাকলে ➔ কোড <strong>4</strong></li>
+                        <li>🔹 ভাগশেষ <strong>200</strong> থাকলে ➔ কোড <strong>2</strong></li>
+                        <li>🔹 ভাগশেষ <strong>300</strong> থাকলে ➔ কোড <strong>0</strong></li>
+                    </ul>
+                </div>
+
+                <h4>3. বারের কোড (Day Code)</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>0 = Sunday (রবি)</li>
+                    <li>1 = Monday (সোম)</li>
+                    <li>2 = Tuesday (মঙ্গল)</li>
+                    <li>3 = Wednesday (বুধ)</li>
+                    <li>4 = Thursday (বৃহস্পতি)</li>
+                    <li>5 = Friday (শুক্র)</li>
+                    <li>6 = Saturday (শনি)</li>
+                </ul>
+
+                <div class="magic-formula">
+                    <h4>🚀 সুপার ফর্মুলা (The Formula)</h4>
+                    <div class="formula-fraction">
+                        <span class="formula-numerator">Date + Month Code + Year (Last 2) + Leap Count + Century Code</span>
+                        <span>7</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 2: Basic Concepts -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-circle-info"></i> PART 2: বেসিক কনসেপ্ট (Basic Concepts)</h3>
+                
+                <h4>1. বছরের হিসাব ও Odd Day:</h4>
+                <ul>
+                    <li><strong>Normal Year:</strong> 365 দিন = <strong>1</strong> Odd Day.</li>
+                    <li><strong>Leap Year:</strong> 366 দিন = <strong>2</strong> Odd Days.</li>
+                </ul>
+
+                <h4>2. মাসের Odd Days (Monthly Odd Days)</h4>
+                <div style="overflow-x:auto;">
+                    <table class="code-table">
+                        <tr>
+                            <th style="width: 50%;">মাসের নাম (Month)</th>
+                            <th>মোট দিন</th>
+                            <th>Odd Days</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Jan, Mar, May, Jul, Aug, Oct, Dec</td>
+                            <td>31</td>
+                            <td><strong>3</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Apr, Jun, Sep, Nov</td>
+                            <td>30</td>
+                            <td><strong>2</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">February (Normal / Leap)</td>
+                            <td>28 / 29</td>
+                            <td><strong>0 / 1</strong></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Memory Trick Added Here -->
+                <div class="trick-box">
+                    <div class="trick-title">🧠 মনে রাখার সুপার ট্রিকস: "সে নো জুন আপ"</div>
+                    <p style="margin: 5px 0;">
+                        শুধু এই ৪টি মাসের নাম মনে রাখো: <strong>Se-No-Jun-Ap</strong><br>
+                        (Sep, Nov, Jun, Apr)<br>
+                        এদের <strong>Odd Day = 2</strong>। (বাকি সব মাসের 3, শুধু Feb বাদে)।
+                    </p>
+                </div>
+            </div>
+
+            <!-- Examples -->
+            <div class="question-item">
+                <h3>📝 উদাহরণ সমাধান (Example 1)</h3>
+                <p><strong>প্রশ্ন: 15 August 1947 কী বার ছিল?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <div class="explanation">
+                        <p><strong>হিসাব:</strong> 15 + 2 (Code) + 47 + 11 (Leap) + 0 (Century) = 75</p>
+                        <p>75 ÷ 7 = ভাগশেষ <strong>5</strong> ➔ <span class="correct-answer">Friday (শুক্রবার)</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 3: Advanced Rules (Future & Past) -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-clock-rotate-left"></i> PART 3: ভিন্ন তারিখ ও সালের হিসাব (Advanced Rules)</h3>
+                
+                <h4>Rule 1: ভবিষ্যৎ তারিখ নির্ণয় (Future Date)</h4>
+                <p><strong>প্রশ্ন: 2022 সালের 10 September রবিবার হলে, 2025 সালের 12 October কি বার?</strong></p>
+                
+                <div class="step-box">
+                    <strong>ধাপ 1 (Year):</strong> 22➔23(+1), 23➔24(+2), 24➔25(+1) = মোট <strong>4</strong> Odd Days.
+                </div>
+                <div class="step-box">
+                    <strong>ধাপ 2 (Month):</strong><br>
+                    • Sep (বাকি ২০ দিন) = <strong>6</strong> Odd Day<br>
+                    • Oct (১২ তারিখ) = <strong>5</strong> Odd Day<br>
+                    • মোট = 11 দিন ➔ <strong>4</strong> Odd Days.
+                </div>
+                <div class="step-box">
+                    <strong>ফাইনাল:</strong> 4 (Year) + 4 (Month) = 8 ➔ ভাগশেষ 1।<br>
+                    রবিবার + 1 = <span class="highlight">সোমবার (Monday)</span>।
+                </div>
+
+                <hr style="margin: 20px 0; border: 1px dashed #ccc;">
+
+                <h4>Rule 2: অতীতের তারিখ নির্ণয় (Past Date)</h4>
+                <p><strong>প্রশ্ন: 2014 সালের 25 July সোমবার হলে, 2012 সালের 12 August কি বার ছিল?</strong></p>
+                
+                <div class="step-box">
+                    <strong>ধাপ 1 (Year Back):</strong> 14➔13(-1), 13➔12(-1) = মোট <strong>-2</strong>।<br>
+                    25 July 2012 ছিল = সোম - 2 = <strong>শনিবার</strong>।
+                </div>
+                <div class="step-box">
+                    <strong>ধাপ 2 (Month Future):</strong><br>
+                    • July (বাকি ৬ দিন) = <strong>6</strong><br>
+                    • August (১২ তারিখ) = <strong>5</strong><br>
+                    • মোট = 11 ➔ ভাগশেষ <strong>4</strong>।
+                </div>
+                <div class="step-box">
+                    <strong>ফাইনাল:</strong> জুলাই থেকে আগস্ট সামনে যাচ্ছি, তাই (+)।<br>
+                    শনিবার + 4 = <span class="highlight">বুধবার (Wednesday)</span>।
+                </div>
+            </div>
+
+            <!-- PART 4: Shortcuts -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-lightbulb"></i> PART 4: শর্টকাট ট্রিকস (Shortcut Tricks)</h3>
+                
+                <h4>1. ক্যালেন্ডার রিপিটেশন (Calendar Repetition):</h4>
+                <ul>
+                    <li><strong>Leap Year:</strong> +28 বছর পর।</li>
+                    <li><strong>Leap Year + 1:</strong> +6 বছর পর।</li>
+                    <li><strong>Leap Year + 2/3:</strong> +11 বছর পর।</li>
+                </ul>
+
+                <h4>2. সামনে/পিছনে যাওয়ার নিয়ম:</h4>
+                <p>61 দিন পর কী বার? ➔ 61 ÷ 7 = ভাগশেষ 5 ➔ বার + 5।</p>
+
+                <h4>3. একই মাসের ক্যালেন্ডার:</h4>
+                <ul>
+                    <li>Feb - Mar - Nov (কোড 3)</li>
+                    <li>Apr - Jul (কোড 6)</li>
+                    <li>Sep - Dec (কোড 5)</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <nav class="navigation">
+            <a href="#" class="nav-button disabled">পূর্ববর্তী</a>
+            <a href="class1.html" class="nav-button active">1</a>
+            <a href="class2.html" class="nav-button">2</a>
+            <a href="class3.html" class="nav-button">3</a>
+            <a href="class2.html" class="nav-button">পরবর্তী</a>
+            <a href="../index.html" class="nav-button home-button">Home</a>
+        </nav>
+
+        <footer>
+            <p>কপিরাইট © <span id="copyright-year"></span> - কেশব সরকার</p>
+        </footer>
+
+        <button id="scrollToTopBtn" class="scroll-button">↑</button>
+        <button id="scrollToBottomBtn" class="scroll-button">↓</button>
+
+        <script src="js/script.js"></script>
+    </body>
+</html>

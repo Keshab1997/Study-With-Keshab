@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calendar Reasoning - Class 03 | Study With Keshab</title>
+        <!-- External CSS File Link -->
+        <link rel="stylesheet" href="css/style.css" />
+        <!-- FontAwesome for Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+        
+        <style>
+             /* ক্লাস নোট/প্রশ্নের জন্য কিছু অতিরিক্ত ইনলাইন স্টাইল */
+             .explanation ul {
+                padding-left: 20px;
+                margin-top: 5px;
+            }
+            .explanation li {
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+    <body data-theme="default">
+        <header>
+            <img src="../images/logo.jpg" alt="Logo" class="logo" />
+            <h1>অধ্যায়: ক্যালেন্ডার (Reasoning) - পর্ব ৩</h1>
+        </header>
+
+        <div class="controls-wrapper">
+            <div id="digital-clock" class="digital-clock"></div>
+            <div class="theme-buttons">
+                <button data-theme-name="default">Default</button>
+                <button data-theme-name="forest">Forest</button>
+                <button data-theme-name="ocean">Ocean</button>
+                <button data-theme-name="sunset">Sunset</button>
+            </div>
+            <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+            <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+            <div class="dark-mode-toggle">
+                <span>দিন/রাত</span>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>CLASS NO: 03 - PRACTICE SET</h2>
+            <p>অ্যাডভান্সড ক্যালেন্ডার সমস্যা ও সমাধান</p>
+
+            <!-- Question 16 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 16</h3>
+                <p><strong>রমেশের জন্মদিন 21 অক্টোবর। সে সোহমের থেকে 9 দিনের ছোটো। এ বছর যদি গান্ধীজয়ন্তী (2 অক্টোবর) রবিবারে হয়, তবে সোহম কী বারে তার জন্মদিন পালন করবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(C) বুধবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>বিশ্লেষণ:</strong></p>
+                        <ul>
+                            <li>রমেশ সোহমের থেকে ছোট, মানে সোহম আগে জন্মেছে।</li>
+                            <li>রমেশের জন্মদিন = 21 অক্টোবর।</li>
+                            <li>সোহমের জন্মদিন = 21 - 9 = 12 অক্টোবর।</li>
+                            <li>দেওয়া আছে, 2 অক্টোবর = রবিবার।</li>
+                            <li><strong>হিসাব:</strong> 2 অক্টোবর থেকে 12 অক্টোবর পর্যন্ত পার্থক্য = 12 - 2 = 10 দিন।</li>
+                            <li>10 কে 7 দিয়ে ভাগ করলে ভাগশেষ (Odd days) থাকে <strong>3</strong>।</li>
+                            <li>রবিবার + 3 দিন = বুধবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 17</h3>
+                <p><strong>যদি পরশু রবিবার হয়, তবে গত পরশু কী বার ছিল?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(A) বুধবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <ul>
+                            <li>পরশু (আগামীকালের পরের দিন) = রবিবার।</li>
+                            <li>তাহলে, আগামীকাল = শনিবার।</li>
+                            <li>আজ = শুক্রবার।</li>
+                            <li>গতকাল = বৃহস্পতিবার।</li>
+                            <li>গত পরশু (গতকালের আগের দিন) = বুধবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 18</h3>
+                <p><strong>যদি আজ বৃহস্পতিবার হয়, তবে 363 দিন বাদে কী বার হবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(D) কোনোটিই নয়</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>হিসাব:</strong></p>
+                        <ul>
+                            <li>363 কে 7 দিয়ে ভাগ করলে, 363 ÷ 7 = 51 সপ্তাহ আর <strong>6</strong> দিন অবশিষ্ট থাকে।</li>
+                            <li>বৃহস্পতিবার + 6 দিন = বুধবার।</li>
+                            <li>অপশনে 'বুধবার' নেই, তাই উত্তর হবে 'কোনোটিই নয়'।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 19</h3>
+                <p><strong>কৈলাসের মনে আছে যে তার ভাই দীপকের জন্মদিন 20 মে এবং 28 মে-এর মাঝে ছিল, আবার গীতার মনে আছে যে দীপকের জন্মদিন 12 মে এবং 22 মে-এর মাঝে ছিল তবে দীপকের জন্মদিন কোন্ তারিখে ছিল?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(B) 21 মে</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <ul>
+                            <li>কৈলাসের মতে: 21, 22, 23, 24, 25, 26, 27 (20-এর পর কিন্তু 28-এর আগে)।</li>
+                            <li>গীতার মতে: 13, 14, 15, 16, 17, 18, 19, 20, 21 (12-এর পর কিন্তু 22-এর আগে)।</li>
+                            <li>উভয়ের মতে কমন (Common) তারিখ হলো: <strong>21 মে</strong>।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 20</h3>
+                <p><strong>গতকালের আগের দিন শনিবার হলে, আগামীকালের পরের দিন কী বার হবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(C) বুধবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <ul>
+                            <li>গতকালের আগের দিন = শনিবার।</li>
+                            <li>গতকাল = রবিবার।</li>
+                            <li>আজ = সোমবার।</li>
+                            <li>আগামীকাল = মঙ্গলবার।</li>
+                            <li>আগামীকালের পরের দিন = বুধবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 21 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 21</h3>
+                <p><strong>আজ সোমবার হলে, 61 দিন পর কী বার হবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(B) শনিবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>হিসাব:</strong></p>
+                        <ul>
+                            <li>61 ÷ 7 = 8 সপ্তাহ + <strong>5</strong> দিন অবশিষ্ট।</li>
+                            <li>সোমবার + 5 দিন = শনিবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 22 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 22</h3>
+                <p><strong>যদি 2015 সালের 26 জানুয়ারি সোমবার হয়, তাহলে 2011 সালের 26 জানুয়ারি ছিল—</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(B) বুধবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong> আমরা পিছনের দিকে (Backwards) যাব।</p>
+                        <ul>
+                            <li>2015 থেকে 2014 = -1 দিন (সাধারণ বছর)।</li>
+                            <li>2014 থেকে 2013 = -1 দিন (সাধারণ বছর)।</li>
+                            <li>2013 থেকে 2012 = -2 দিন (লিপ ইয়ার, কারণ ফেব্রুয়ারি 2012 এর মধ্যে পড়ছে)।</li>
+                            <li>2012 থেকে 2011 = -1 দিন (সাধারণ বছর)।</li>
+                            <li>মোট কমাতে হবে: 1 + 1 + 2 + 1 = 5 দিন।</li>
+                            <li>সোমবার - 5 দিন = বুধবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 23 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 23</h3>
+                <p><strong>যদি 26 জানুয়ারি বুধবার হয় তবে জানুয়ারির শেষ দিনটি কী বার হবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(B) সোমবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <ul>
+                            <li>জানুয়ারি মাস = 31 দিন।</li>
+                            <li>বাকি দিন = 31 - 26 = 5 দিন।</li>
+                            <li>বুধবার + 5 দিন = সোমবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 24 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 24</h3>
+                <p><strong>19 জুলাই, 2019 শুক্রবার হলে 21 সেপ্টেম্বর, 2019 কোন্ বার হবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(D) শনিবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>দিন গণনা:</strong></p>
+                        <ul>
+                            <li>জুলাই (বাকি দিন): 31 - 19 = 12 দিন।</li>
+                            <li>আগস্ট: 31 দিন (Odd days = 3)।</li>
+                            <li>সেপ্টেম্বর: 21 দিন (Odd days = 0, কারণ 21 ÷ 7 মিলে যায়)।</li>
+                            <li>মোট দিন = 12 + 3 + 0 = 15 দিন।</li>
+                            <li>15 কে 7 দিয়ে ভাগ করলে ভাগশেষ <strong>1</strong>।</li>
+                            <li>শুক্রবার + 1 = শনিবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 25 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 25</h3>
+                <p><strong>3 ফেব্রুয়ারি, 2015 দিনটি মঙ্গলবার হলে, 6 জুন, 2015 দিনটি সপ্তাহের কোন্ দিন হবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(D) শনিবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong> 2015 সাধারণ বছর (ফেব্রুয়ারি = 28 দিন)।</p>
+                        <ul>
+                            <li>ফেব্রুয়ারি (বাকি): 28 - 3 = 25 দিন (Odd days = 4)।</li>
+                            <li>মার্চ: 31 দিন (Odd days = 3)।</li>
+                            <li>এপ্রিল: 30 দিন (Odd days = 2)।</li>
+                            <li>মে: 31 দিন (Odd days = 3)।</li>
+                            <li>জুন: 6 দিন (Odd days = 6)।</li>
+                            <li>মোট Odd days = 4 + 3 + 2 + 3 + 6 = 18।</li>
+                            <li>18 ÷ 7 = ভাগশেষ <strong>4</strong>।</li>
+                            <li>মঙ্গলবার + 4 দিন = শনিবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <nav class="navigation">
+            <a href="class2.html" class="nav-button">পূর্ববর্তী</a>
+            <a href="class1.html" class="nav-button">1</a>
+            <a href="class2.html" class="nav-button">2</a>
+            <a href="class3.html" class="nav-button active">3</a>
+            
+            <!-- ৩টি ক্লাসের পর আর নেই, তাই পরবর্তী বাটন ডিসএবল -->
+            <a href="#" class="nav-button disabled">পরবর্তী</a>
+            
+            <a href="../index.html" class="nav-button home-button">Home</a>
+        </nav>
+
+        <footer>
+            <p>
+                কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব
+                সংরক্ষিত।
+            </p>
+            <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+        </footer>
+
+        <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">
+            ↑
+        </button>
+        <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">
+            ↓
+        </button>
+
+        <!-- External JavaScript File Link -->
+        <script src="js/script.js"></script>
+    </body>
+</html>

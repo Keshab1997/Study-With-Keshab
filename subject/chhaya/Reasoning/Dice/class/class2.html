@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calendar Reasoning - Class 02 | Study With Keshab</title>
+        <!-- External CSS File Link -->
+        <link rel="stylesheet" href="css/style.css" />
+        <!-- FontAwesome for Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+        
+        <style>
+             /* ক্লাস নোট/প্রশ্নের জন্য কিছু অতিরিক্ত ইনলাইন স্টাইল */
+             .explanation ul {
+                padding-left: 20px;
+                margin-top: 5px;
+            }
+            .explanation li {
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+    <body data-theme="default">
+        <header>
+            <img src="../images/logo.jpg" alt="Logo" class="logo" />
+            <h1>অধ্যায়: ক্যালেন্ডার (Reasoning) - পর্ব ২</h1>
+        </header>
+
+        <div class="controls-wrapper">
+            <div id="digital-clock" class="digital-clock"></div>
+            <div class="theme-buttons">
+                <button data-theme-name="default">Default</button>
+                <button data-theme-name="forest">Forest</button>
+                <button data-theme-name="ocean">Ocean</button>
+                <button data-theme-name="sunset">Sunset</button>
+            </div>
+            <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+            <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+            <div class="dark-mode-toggle">
+                <span>দিন/রাত</span>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>CLASS NO: 02 - PRACTICE SET</h2>
+            <p>বিভিন্ন ধরণের ক্যালেন্ডার সমস্যার সমাধান ও ব্যাখ্যা</p>
+
+            <!-- Question 1 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 1</h3>
+                <p><strong>যদি 1997 সালের 4 জানুয়ারি শনিবার হয়, তবে 1998 সালের 4 জানুয়ারি কী বার হবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(D) রবিবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <ul>
+                            <li><strong>নিয়ম:</strong> 1997 একটি সাধারণ বছর (Normal Year)। সাধারণ বছরে একই তারিখে পরের বছর <strong>+1</strong> দিন বাড়ে।</li>
+                            <li><strong>হিসাব:</strong> শনিবার + 1 = রবিবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 2</h3>
+                <p><strong>যদি 2004 সালের 4 ফেব্রুয়ারি সোমবার হয়, তবে সেই একই বছর 1 জানুয়ারি কী বার ছিল?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(D) মঙ্গলবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <p>এখানে আমরা পিছনের তারিখে যাচ্ছি।</p>
+                        <ul>
+                            <li>জানুয়ারি মাসের বাকি দিন = 31 - 1 = 30 দিন।</li>
+                            <li>ফেব্রুয়ারি মাসের দিন = 4 দিন।</li>
+                            <li>মোট দিন = 30 + 4 = 34 দিন।</li>
+                            <li>34 কে 7 দিয়ে ভাগ করলে ভাগশেষ থাকে <strong>6</strong>।</li>
+                        </ul>
+                        <p>যেহেতু পিছনের তারিখে যাচ্ছি, তাই সোমবার থেকে 6 দিন বিয়োগ করতে হবে (অথবা 1 দিন যোগ করতে হবে)।<br>
+                        সোম - 6 = মঙ্গলবার।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 3</h3>
+                <p><strong>যদি কোনো বছর 13 জুলাই বুধবার হয়, তবে সেই একই বছর 16 জুন কী বার ছিল?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(C) বৃহস্পতিবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <p>এটিও পিছনের দিকের হিসাব:</p>
+                        <ul>
+                            <li>জুন মাসের বাকি দিন (16 তারিখের পর) = 30 - 16 = 14 দিন।</li>
+                            <li>জুলাই মাসের দিন = 13 দিন।</li>
+                            <li>মোট দিন = 14 + 13 = 27 দিন।</li>
+                            <li>27 কে 7 দিয়ে ভাগ করলে ভাগশেষ থাকে <strong>6</strong>।</li>
+                        </ul>
+                        <p>বুধবার - 6 = বৃহস্পতিবার।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 4</h3>
+                <p><strong>যদি কোনো-এক বছর 15 অক্টোবর শনিবার হয়, তবে সেই বছর 27 অক্টোবর কী বার হবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(D) বৃহস্পতিবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <ul>
+                            <li>পার্থক্য = 27 - 15 = 12 দিন।</li>
+                            <li>12 কে 7 দিয়ে ভাগ করলে ভাগশেষ থাকে <strong>5</strong>।</li>
+                            <li>শনিবার + 5 = বৃহস্পতিবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 5</h3>
+                <p><strong>যদি কোনো-এক বছর 17 জানুয়ারি সোমবার ছিল, তাহলে সেই বছর 19 জুন কী বার হবে? (ফেব্রুয়ারি মাসে 28 দিন ছিল)</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(A) রবিবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>দিন গণনা (Odd Days):</strong></p>
+                        <ul>
+                            <li>জানুয়ারি (বাকি): 31 - 17 = 14 (0 odd day)</li>
+                            <li>ফেব্রুয়ারি: 28 (0 odd day)</li>
+                            <li>মার্চ: 31 (3 odd days)</li>
+                            <li>এপ্রিল: 30 (2 odd days)</li>
+                            <li>মে: 31 (3 odd days)</li>
+                            <li>জুন: 19 (19 ÷ 7 = ভাগশেষ 5)</li>
+                        </ul>
+                        <p>মোট Odd days: 0 + 0 + 3 + 2 + 3 + 5 = 13 দিন।<br>
+                        13 কে 7 দিয়ে ভাগ করলে ভাগশেষ <strong>6</strong>।<br>
+                        সোমবার + 6 = রবিবার।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 6</h3>
+                <p><strong>গতকালের আগের দিন সোমবার হলে, আগামীকালের পরের দিন কী বার হবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(B) শুক্রবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <ul>
+                            <li>গতকালের আগের দিন = সোমবার।</li>
+                            <li>সুতরাং, গতকাল = মঙ্গলবার।</li>
+                            <li>আজ = বুধবার।</li>
+                            <li>আগামীকাল = বৃহস্পতিবার।</li>
+                            <li>আগামীকালের পরের দিন = শুক্রবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 7</h3>
+                <p><strong>যদি 4 জানুয়ারি 2008 শুক্রবার হয়, তবে 4 জানুয়ারি 2009 কোন্ বার হবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(D) রবিবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <p>2008 সালটি লিপ ইয়ার (Leap Year) এবং এই সময়ের মধ্যে ফেব্রুয়ারি মাস পড়ছে।<br>
+                        নিয়ম অনুযায়ী লিপ ইয়ার পার হলে <strong>+2</strong> দিন বাড়ে।<br>
+                        শুক্রবার + 2 = রবিবার।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 8</h3>
+                <p><strong>যদি পরশু শুক্রবার হয়, তাহলে আগামীকালের পরের তৃতীয় দিন কী বার হবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(C) রবিবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <ul>
+                            <li>পরশু (আগামীকালের পরের দিন) = শুক্রবার।</li>
+                            <li>তার মানে, আগামীকাল = বৃহস্পতিবার।</li>
+                            <li>প্রশ্ন: আগামীকালের পরের তৃতীয় দিন।</li>
+                            <li>আগামীকাল (বৃহস্পতি) + 3 দিন = রবি। (শুক্র, শনি, রবি)।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 9</h3>
+                <p><strong>ভাইয়ের জন্মদিন: রামের মতে 15-এর পরে কিন্তু 18-এর আগে। কলির মতে 16-এর পরে কিন্তু 19-এর আগে। জন্মদিনটি কবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(A) 17</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <ul>
+                            <li>রামের মতে: 15-এর পরে, 18-এর আগে (সম্ভাব্য তারিখ: 16, 17)।</li>
+                            <li>কলির মতে: 16-এর পরে, 19-এর আগে (সম্ভাব্য তারিখ: 17, 18)।</li>
+                            <li>দুটি তথ্যের মধ্যে সাধারণ (Common) তারিখ হলো <strong>17</strong>।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 10</h3>
+                <p><strong>আমার জন্মদিন আমার ভাইয়ের জন্মদিনের 64 দিন বাদে। ভাইয়ের জন্মদিন সোমবার হলে আমার জন্মদিন কবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(A) মঙ্গলবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <ul>
+                            <li>64 দিন ÷ 7 = ভাগশেষ <strong>1</strong>।</li>
+                            <li>সোমবার + 1 = মঙ্গলবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 11</h3>
+                <p><strong>2010 সালের 1 জানুয়ারি কী বার ছিল?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(A) শুক্রবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>লজিক:</strong></p>
+                        <ul>
+                            <li>2000 সাল পর্যন্ত 0 odd days।</li>
+                            <li>2001 থেকে 2009 (9 বছর): এর মধ্যে 2টি লিপ ইয়ার (2004, 2008) এবং 7টি সাধারণ বছর।</li>
+                            <li>Odd days = (2 × 2) + (7 × 1) = 4 + 7 = 11 দিন।</li>
+                            <li>11 কে 7 দিয়ে ভাগ করলে ভাগশেষ <strong>4</strong>।</li>
+                            <li>2010 সালের 1 জানুয়ারি = <strong>1</strong> দিন।</li>
+                            <li>মোট Odd days = 4 + 1 = 5.</li>
+                            <li>কোড অনুযায়ী: 5 = শুক্রবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 12</h3>
+                <p><strong>কোনো-এক মাসের 3 তারিখ যদি সোমবার হয়, তবে সেই মাসেই 21 তারিখের পরের 5ম দিন কী বার হবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(C) বুধবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <ul>
+                            <li>21 তারিখের পরের 5ম দিন = 21 + 5 = 26 তারিখ।</li>
+                            <li>পার্থক্য = 26 - 3 = 23 দিন।</li>
+                            <li>23 ÷ 7 = ভাগশেষ <strong>2</strong>।</li>
+                            <li>সোমবার + 2 = বুধবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 13</h3>
+                <p><strong>কোনো-এক অধিবর্ষে (Leap Year) 1 মার্চ শুক্রবারের পরের তৃতীয় বার ছিল। তবে 22 নভেম্বর কী বার হবে?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(D) কোনোটিই নয়</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <p>1 মার্চ = শুক্রবার + 3 দিন = সোমবার।</p>
+                        <p><strong>দিন গণনা (মার্চ থেকে নভেম্বর):</strong></p>
+                        <ul>
+                            <li>মার্চ (বাকি): 30 (2 odd)</li>
+                            <li>এপ্রিল: 30 (2 odd)</li>
+                            <li>মে: 31 (3 odd)</li>
+                            <li>জুন: 30 (2 odd)</li>
+                            <li>জুলাই: 31 (3 odd)</li>
+                            <li>আগস্ট: 31 (3 odd)</li>
+                            <li>সেপ্টেম্বর: 30 (2 odd)</li>
+                            <li>অক্টোবর: 31 (3 odd)</li>
+                            <li>নভেম্বর: 22 (1 odd)</li>
+                        </ul>
+                        <p>মোট Odd days = 2+2+3+2+3+3+2+3+1 = 21।<br>
+                        21 ÷ 7 = ভাগশেষ <strong>0</strong>।<br>
+                        সোমবার + 0 = সোমবার। (অপশনে সোমবার নেই)।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 14</h3>
+                <p><strong>শ্যামল 1996 সালের 6 মার্চ জন্মগ্রহণ করে। স্বাধীনতা দিবস (15 আগস্ট) পালিত হয় বৃহস্পতিবার। শ্যামল কোন্ বারে জন্মগ্রহণ করেছিল?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(B) বুধবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <p>আমরা আগস্ট থেকে মার্চে পিছনের দিকে হিসাব করব:</p>
+                        <ul>
+                            <li>মার্চ (বাকি): 25 (4 odd)</li>
+                            <li>এপ্রিল: 2</li>
+                            <li>মে: 3</li>
+                            <li>জুন: 2</li>
+                            <li>জুলাই: 3</li>
+                            <li>আগস্ট: 15 (1 odd)</li>
+                        </ul>
+                        <p>মোট: 4+2+3+2+3+1 = 15 ÷ 7 = ভাগশেষ <strong>1</strong>।<br>
+                        যেহেতু জন্ম আগে হয়েছে, তাই বৃহস্পতিবার - 1 = বুধবার।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question-item">
+                <h3>প্রশ্ন 15</h3>
+                <p><strong>আগামীকালের দুদিন পর যদি শুক্রবার হয়, তবে গতকালের দুদিন আগের দিনটি কী বার ছিল?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <p>
+                        <strong class="answer-label">সঠিক উত্তর:</strong>
+                        <span class="correct-answer">(A) শনিবার</span>
+                    </p>
+                    <div class="explanation">
+                        <p><strong>ব্যাখ্যা:</strong></p>
+                        <ul>
+                            <li>আগামীকাল + 2 = শুক্রবার -> আগামীকাল = বুধবার -> আজ = মঙ্গলবার।</li>
+                            <li>গতকাল = সোমবার।</li>
+                            <li>গতকালের দুদিন আগে = সোমবার - 2 = শনিবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <nav class="navigation">
+            <a href="class1.html" class="nav-button">পূর্ববর্তী</a>
+            <a href="class1.html" class="nav-button">1</a>
+            <a href="class2.html" class="nav-button active">2</a>
+            <a href="class3.html" class="nav-button">3</a>
+            <a href="class3.html" class="nav-button">পরবর্তী</a>
+            <a href="../index.html" class="nav-button home-button">Home</a>
+        </nav>
+
+        <footer>
+            <p>
+                কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব
+                সংরক্ষিত।
+            </p>
+            <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+        </footer>
+
+        <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">
+            ↑
+        </button>
+        <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">
+            ↓
+        </button>
+
+        <!-- External JavaScript File Link -->
+        <script src="js/script.js"></script>
+    </body>
+</html>
