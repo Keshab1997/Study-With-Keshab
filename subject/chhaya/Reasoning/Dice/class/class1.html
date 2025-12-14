@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Calendar Reasoning - Class 01 | Study With Keshab</title>
+        <title>Dice Reasoning - Class 01 | Study With Keshab</title>
         <!-- External CSS File Link -->
         <link rel="stylesheet" href="css/style.css" />
         <!-- FontAwesome for Icons -->
@@ -33,12 +33,38 @@
                 font-size: 1.1em;
                 margin-bottom: 5px;
             }
+            /* ডাইস ফেস স্টাইল (নতুন যোগ করা হয়েছে) */
+            .dice-face {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                background-color: #fff;
+                border: 1px solid #333;
+                border-radius: 4px;
+                text-align: center;
+                line-height: 28px;
+                font-weight: bold;
+                margin: 0 2px;
+                color: #000;
+                box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            }
+            .dark-mode .dice-face {
+                background-color: #444;
+                border-color: #fff;
+                color: #fff;
+            }
+            .dice-group {
+                margin: 10px 0;
+                padding: 10px;
+                background: rgba(0,0,0,0.05);
+                border-radius: 5px;
+            }
         </style>
     </head>
     <body data-theme="default">
         <header>
             <img src="../images/logo.jpg" alt="Logo" class="logo" />
-            <h1>অধ্যায়: ক্যালেন্ডার (Reasoning) - পর্ব ১</h1>
+            <h1>অধ্যায়: ডাইস (Reasoning) - পর্ব ১</h1>
         </header>
 
         <div class="controls-wrapper">
@@ -63,189 +89,127 @@
         <div class="container">
             <h2>CLASS NO: 01 - MASTER NOTE</h2>
 
-            <!-- PART 1: Magic Code & Formula -->
+            <!-- Rule 1: One Common Number -->
             <div class="note-box">
-                <h3 class="note-title"><i class="fa-solid fa-wand-magic-sparkles"></i> PART 1: ম্যাজিক কোড ও ফর্মুলা</h3>
-                <p>যেকোনো তারিখের বার বের করার জন্য নিচের কোডগুলো মুখস্থ রাখতে হবে।</p>
+                <h3 class="note-title"><i class="fa-solid fa-rotate-right"></i> Rule 1: One Common Number (ঘড়ির কাঁটার নিয়ম)</h3>
+                <p><strong>নিয়ম:</strong> যখন দুটি Dice-এর ছবিতে <strong>একটি মাত্র সংখ্যা কমন (Common)</strong> থাকে, তখন সেই কমন সংখ্যাটি ধরে <strong>ঘড়ির কাঁটার দিকে (Clockwise)</strong> ঘুরতে হবে।</p>
 
-                <h4>1. মাসের কোড (Month Code)</h4>
-                <p>ফোন নম্বরের মতো মুখস্থ করো: <strong>033 — 614 — 625 — 035</strong></p>
-                
-                <div style="overflow-x:auto;">
-                    <table class="code-table">
-                        <tr>
-                            <th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th>
-                            <th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th>
-                        </tr>
-                        <tr>
-                            <td>0</td><td>3</td><td>3</td><td>6</td><td>1</td><td>4</td>
-                            <td>6</td><td>2</td><td>5</td><td>0</td><td>3</td><td>5</td>
-                        </tr>
-                    </table>
-                </div>
+                <div class="question-item">
+                    <h4>📝 Demo Question</h4>
+                    <p>নিচের দুটি Dice থেকে বলুন <strong>'3'</strong>-এর বিপরীতে কোন সংখ্যাটি আছে?</p>
+                    
+                    <div class="dice-group">
+                        <p><strong>Dice 1:</strong> <span class="dice-face">2</span> <span class="dice-face" style="border-color: red; color: red;">5</span> <span class="dice-face">1</span></p>
+                        <p><strong>Dice 2:</strong> <span class="dice-face">4</span> <span class="dice-face" style="border-color: red; color: red;">5</span> <span class="dice-face">3</span></p>
+                    </div>
 
-                <h4>2. সেঞ্চুরি কোড (Century Code)</h4>
-                <ul>
-                    <li>1600 - 1699 = <strong>6</strong></li>
-                    <li>1700 - 1799 = <strong>4</strong></li>
-                    <li>1800 - 1899 = <strong>2</strong></li>
-                    <li>1900 - 1999 = <strong>0</strong> (সবচেয়ে বেশি আসে)</li>
-                    <li>2000 - 2099 = <strong>6</strong> (এখনকার সময়)</li>
-                </ul>
-
-                <div class="step-box" style="border-left-color: var(--heading-color-1);">
-                    <strong>💡 বের করার নিয়ম (400 Rule):</strong><br>
-                    সেঞ্চুরি সালকে (যেমন 1900, 2000) <strong>400</strong> দিয়ে ভাগ করো। ভাগশেষ (Remainder) অনুযায়ী কোড হবে:
-                    <ul style="margin-top: 5px; list-style: none; padding-left: 10px;">
-                        <li>🔹 ভাগশেষ <strong>0</strong> (মিলে গেলে) ➔ কোড <strong>6</strong></li>
-                        <li>🔹 ভাগশেষ <strong>100</strong> থাকলে ➔ কোড <strong>4</strong></li>
-                        <li>🔹 ভাগশেষ <strong>200</strong> থাকলে ➔ কোড <strong>2</strong></li>
-                        <li>🔹 ভাগশেষ <strong>300</strong> থাকলে ➔ কোড <strong>0</strong></li>
-                    </ul>
-                </div>
-
-                <h4>3. বারের কোড (Day Code)</h4>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li>0 = Sunday (রবি)</li>
-                    <li>1 = Monday (সোম)</li>
-                    <li>2 = Tuesday (মঙ্গল)</li>
-                    <li>3 = Wednesday (বুধ)</li>
-                    <li>4 = Thursday (বৃহস্পতি)</li>
-                    <li>5 = Friday (শুক্র)</li>
-                    <li>6 = Saturday (শনি)</li>
-                </ul>
-
-                <div class="magic-formula">
-                    <h4>🚀 সুপার ফর্মুলা (The Formula)</h4>
-                    <div class="formula-fraction">
-                        <span class="formula-numerator">Date + Month Code + Year (Last 2) + Leap Count + Century Code</span>
-                        <span>7</span>
+                    <div class="answer-section">
+                        <hr class="answer-divider" />
+                        <div class="explanation">
+                            <p><strong>সমাধান:</strong> এখানে দুটি Dice-এই <strong>'5'</strong> কমন আছে। এখন 5 থেকে ঘড়ির কাঁটার দিকে সংখ্যাগুলো সাজাই:</p>
+                            <ul style="list-style: none; padding-left: 10px;">
+                                <li>Dice 1: <strong>5</strong> ➔ 1 ➔ 2</li>
+                                <li>Dice 2: <strong>5</strong> ➔ 3 ➔ 4</li>
+                            </ul>
+                            <p>সোজাসুজি তাকালে দেখা যাচ্ছে 1-এর বিপরীতে 3 এবং 2-এর বিপরীতে 4।</p>
+                            <p><strong>উত্তর:</strong> <span class="correct-answer">3-এর বিপরীতে 1</span></p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- PART 2: Basic Concepts -->
+            <!-- Rule 2: Two Common Numbers -->
             <div class="note-box">
-                <h3 class="note-title"><i class="fa-solid fa-circle-info"></i> PART 2: বেসিক কনসেপ্ট (Basic Concepts)</h3>
-                
-                <h4>1. বছরের হিসাব ও Odd Day:</h4>
-                <ul>
-                    <li><strong>Normal Year:</strong> 365 দিন = <strong>1</strong> Odd Day.</li>
-                    <li><strong>Leap Year:</strong> 366 দিন = <strong>2</strong> Odd Days.</li>
-                </ul>
+                <h3 class="note-title"><i class="fa-solid fa-dice"></i> Rule 2: Two Common Numbers (দুটি কমন সংখ্যার নিয়ম)</h3>
+                <p><strong>নিয়ম:</strong> যখন দুটি Dice-এর ছবিতে <strong>দুটি সংখ্যা কমন</strong> থাকে, তখন কমন দুটি বাদ দিয়ে বাকি যে দুটি সংখ্যা পড়ে থাকে, তারা একে অপরের <strong>বিপরীত (Opposite)</strong> হয়।</p>
 
-                <h4>2. মাসের Odd Days (Monthly Odd Days)</h4>
-                <div style="overflow-x:auto;">
-                    <table class="code-table">
-                        <tr>
-                            <th style="width: 50%;">মাসের নাম (Month)</th>
-                            <th>মোট দিন</th>
-                            <th>Odd Days</th>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;">Jan, Mar, May, Jul, Aug, Oct, Dec</td>
-                            <td>31</td>
-                            <td><strong>3</strong></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;">Apr, Jun, Sep, Nov</td>
-                            <td>30</td>
-                            <td><strong>2</strong></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;">February (Normal / Leap)</td>
-                            <td>28 / 29</td>
-                            <td><strong>0 / 1</strong></td>
-                        </tr>
-                    </table>
-                </div>
+                <div class="question-item">
+                    <h4>📝 Demo Question</h4>
+                    <p>নিচের দুটি Dice থেকে বলুন <strong>'4'</strong>-এর বিপরীতে কোন সংখ্যাটি আছে?</p>
+                    
+                    <div class="dice-group">
+                        <p><strong>Dice 1:</strong> <span class="dice-face" style="color: blue;">1</span> <span class="dice-face" style="color: blue;">6</span> <span class="dice-face">4</span></p>
+                        <p><strong>Dice 2:</strong> <span class="dice-face" style="color: blue;">1</span> <span class="dice-face" style="color: blue;">6</span> <span class="dice-face">2</span></p>
+                    </div>
 
-                <!-- Memory Trick Added Here -->
-                <div class="trick-box">
-                    <div class="trick-title">🧠 মনে রাখার সুপার ট্রিকস: "সে নো জুন আপ"</div>
-                    <p style="margin: 5px 0;">
-                        শুধু এই ৪টি মাসের নাম মনে রাখো: <strong>Se-No-Jun-Ap</strong><br>
-                        (Sep, Nov, Jun, Apr)<br>
-                        এদের <strong>Odd Day = 2</strong>। (বাকি সব মাসের 3, শুধু Feb বাদে)।
-                    </p>
-                </div>
-            </div>
-
-            <!-- Examples -->
-            <div class="question-item">
-                <h3>📝 উদাহরণ সমাধান (Example 1)</h3>
-                <p><strong>প্রশ্ন: 15 August 1947 কী বার ছিল?</strong></p>
-                <div class="answer-section">
-                    <hr class="answer-divider" />
-                    <div class="explanation">
-                        <p><strong>হিসাব:</strong> 15 + 2 (Code) + 47 + 11 (Leap) + 0 (Century) = 75</p>
-                        <p>75 ÷ 7 = ভাগশেষ <strong>5</strong> ➔ <span class="correct-answer">Friday (শুক্রবার)</span></p>
+                    <div class="answer-section">
+                        <hr class="answer-divider" />
+                        <div class="explanation">
+                            <p><strong>সমাধান:</strong> এখানে <strong>1</strong> এবং <strong>6</strong> দুটি Dice-এই কমন আছে।</p>
+                            <p>তাহলে বাকি রইল Dice 1-এ <strong>'4'</strong> এবং Dice 2-তে <strong>'2'</strong>।</p>
+                            <p><strong>উত্তর:</strong> নিয়ম অনুযায়ী, <span class="correct-answer">4-এর বিপরীতে 2</span> হবে।</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- PART 3: Advanced Rules (Future & Past) -->
+            <!-- Rule 3: Open Dice -->
             <div class="note-box">
-                <h3 class="note-title"><i class="fa-solid fa-clock-rotate-left"></i> PART 3: ভিন্ন তারিখ ও সালের হিসাব (Advanced Rules)</h3>
-                
-                <h4>Rule 1: ভবিষ্যৎ তারিখ নির্ণয় (Future Date)</h4>
-                <p><strong>প্রশ্ন: 2022 সালের 10 September রবিবার হলে, 2025 সালের 12 October কি বার?</strong></p>
-                
-                <div class="step-box">
-                    <strong>ধাপ 1 (Year):</strong> 22➔23(+1), 23➔24(+2), 24➔25(+1) = মোট <strong>4</strong> Odd Days.
-                </div>
-                <div class="step-box">
-                    <strong>ধাপ 2 (Month):</strong><br>
-                    • Sep (বাকি ২০ দিন) = <strong>6</strong> Odd Day<br>
-                    • Oct (১২ তারিখ) = <strong>5</strong> Odd Day<br>
-                    • মোট = 11 দিন ➔ <strong>4</strong> Odd Days.
-                </div>
-                <div class="step-box">
-                    <strong>ফাইনাল:</strong> 4 (Year) + 4 (Month) = 8 ➔ ভাগশেষ 1।<br>
-                    রবিবার + 1 = <span class="highlight">সোমবার (Monday)</span>।
-                </div>
+                <h3 class="note-title"><i class="fa-solid fa-box-open"></i> Rule 3: Open Dice (খোলা পাশার নিয়ম)</h3>
+                <p><strong>নিয়ম:</strong> যখন একটি Dice খুলে দেওয়া থাকে, তখন <strong>এক ঘর ছেড়ে এক ঘর (Alternate)</strong> একে অপরের বিপরীত হয়। সোজা লাইনে (লম্বা বা আড়াআড়ি) এটা গুনতে হয়।</p>
 
-                <hr style="margin: 20px 0; border: 1px dashed #ccc;">
+                <div class="question-item">
+                    <h4>📝 Demo Question</h4>
+                    <p>একটি খোলা পাশার ছবি নিচে দেওয়া হলো, <strong>'2'</strong>-এর বিপরীতে কে আছে?</p>
+                    <div class="step-box">
+                        <strong>বিন্যাস:</strong> লম্বালম্বি লাইন: 1, 2, 3, 4 এবং পাশে দুটি ডানা 5 ও 6।
+                    </div>
 
-                <h4>Rule 2: অতীতের তারিখ নির্ণয় (Past Date)</h4>
-                <p><strong>প্রশ্ন: 2014 সালের 25 July সোমবার হলে, 2012 সালের 12 August কি বার ছিল?</strong></p>
-                
-                <div class="step-box">
-                    <strong>ধাপ 1 (Year Back):</strong> 14➔13(-1), 13➔12(-1) = মোট <strong>-2</strong>।<br>
-                    25 July 2012 ছিল = সোম - 2 = <strong>শনিবার</strong>।
-                </div>
-                <div class="step-box">
-                    <strong>ধাপ 2 (Month Future):</strong><br>
-                    • July (বাকি ৬ দিন) = <strong>6</strong><br>
-                    • August (১২ তারিখ) = <strong>5</strong><br>
-                    • মোট = 11 ➔ ভাগশেষ <strong>4</strong>।
-                </div>
-                <div class="step-box">
-                    <strong>ফাইনাল:</strong> জুলাই থেকে আগস্ট সামনে যাচ্ছি, তাই (+)।<br>
-                    শনিবার + 4 = <span class="highlight">বুধবার (Wednesday)</span>।
+                    <div class="answer-section">
+                        <hr class="answer-divider" />
+                        <div class="explanation">
+                            <p><strong>সমাধান:</strong> এক ঘর ছেড়ে এক ঘর বিপরীত হবে:</p>
+                            <ul>
+                                <li>1-এর এক ঘর ছেড়ে আছে 3। (তাই 1 ↔ 3 বিপরীত)</li>
+                                <li>2-এর এক ঘর ছেড়ে আছে 4। (তাই 2 ↔ 4 বিপরীত)</li>
+                                <li>বাকি থাকা বাইরের সংখ্যা দুটি (5 ও 6) একে অপরের বিপরীত।</li>
+                            </ul>
+                            <p><strong>উত্তর:</strong> <span class="correct-answer">2-এর বিপরীতে 4</span> হবে।</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- PART 4: Shortcuts -->
+            <!-- Rule 4: Standard Dice -->
             <div class="note-box">
-                <h3 class="note-title"><i class="fa-solid fa-lightbulb"></i> PART 4: শর্টকাট ট্রিকস (Shortcut Tricks)</h3>
-                
-                <h4>1. ক্যালেন্ডার রিপিটেশন (Calendar Repetition):</h4>
+                <h3 class="note-title"><i class="fa-solid fa-cube"></i> Rule 4: Standard Dice (মানক পাশা)</h3>
+                <p><strong>নিয়ম:</strong> যদি প্রশ্নে <strong>একটি মাত্র Dice</strong> দেওয়া থাকে, তখন চেক করতে হবে এটি Standard Dice কি না।</p>
                 <ul>
-                    <li><strong>Leap Year:</strong> +28 বছর পর।</li>
-                    <li><strong>Leap Year + 1:</strong> +6 বছর পর।</li>
-                    <li><strong>Leap Year + 2/3:</strong> +11 বছর পর।</li>
+                    <li><strong>শর্ত:</strong> যদি পাশাপাশি থাকা কোনো তলের যোগফল <strong>7 না হয়</strong>, তবে সেটি Standard Dice।</li>
+                    <li>Standard Dice-এ সবসময় বিপরীত তলের যোগফল <strong>7</strong> হয় (যেমন: 1-এর উল্টো 6)।</li>
                 </ul>
 
-                <h4>2. সামনে/পিছনে যাওয়ার নিয়ম:</h4>
-                <p>61 দিন পর কী বার? ➔ 61 ÷ 7 = ভাগশেষ 5 ➔ বার + 5।</p>
+                <div class="question-item">
+                    <h4>📝 Demo Question</h4>
+                    <p>নিচে একটি Dice দেওয়া হলো: (1, 4, 5)। বলুন <strong>'4'</strong>-এর বিপরীতে কী হবে?</p>
+                    
+                    <div class="dice-group">
+                        <p><strong>Dice:</strong> <span class="dice-face">1</span> <span class="dice-face">4</span> <span class="dice-face">5</span></p>
+                    </div>
 
-                <h4>3. একই মাসের ক্যালেন্ডার:</h4>
-                <ul>
-                    <li>Feb - Mar - Nov (কোড 3)</li>
-                    <li>Apr - Jul (কোড 6)</li>
-                    <li>Sep - Dec (কোড 5)</li>
-                </ul>
+                    <div class="answer-section">
+                        <hr class="answer-divider" />
+                        <div class="explanation">
+                            <p><strong>যাচাই:</strong> প্রথমে চেক করি পাশাপাশি যোগফল 7 হয় কিনা:</p>
+                            <ul>
+                                <li>1 + 4 = 5 (৭ নয়)</li>
+                                <li>4 + 5 = 9 (৭ নয়)</li>
+                                <li>1 + 5 = 6 (৭ নয়)</li>
+                            </ul>
+                            <p>যেহেতু কোনো যোগফলই 7 হলো না, তাই এটি একটি <strong>Standard Dice</strong>।</p>
+                            <p><strong>উত্তর:</strong> 4-এর সাথে কত যোগ করলে 7 হয়? (7 - 4 = 3)। তাই <span class="correct-answer">4-এর বিপরীতে 3</span> হবে।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips Section -->
+            <div class="trick-box">
+                <div class="trick-title"><i class="fa-solid fa-lightbulb"></i> এক্সাম টিপস (Exam Tips)</div>
+                <p style="margin: 5px 0;">
+                    পরীক্ষায় সাধারণত <strong>Rule 1 (One Common)</strong> এবং <strong>Rule 2 (Two Common)</strong> থেকেই ৯০% প্রশ্ন আসে।<br>
+                    তাই এই দুটি রুল সবচেয়ে ভালো করে প্র্যাকটিস করুন।
+                </p>
             </div>
 
         </div>
