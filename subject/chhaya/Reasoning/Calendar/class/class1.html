@@ -10,74 +10,17 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
         
         <style>
-            /* ক্লাস নোটের জন্য কিছু অতিরিক্ত ইনলাইন স্টাইল */
-            .note-box {
-                background: #fff;
-                padding: 20px;
-                margin-bottom: 20px;
-                border-radius: 10px;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                border-left: 5px solid #4a90e2;
-            }
-            .note-title {
-                color: #2c3e50;
-                border-bottom: 2px solid #eee;
-                padding-bottom: 10px;
-                margin-bottom: 15px;
-                font-size: 1.2rem;
-            }
-            .code-table {
-                width: 100%;
-                border-collapse: collapse;
-                margin: 15px 0;
-                font-size: 0.9rem;
-            }
-            .code-table th, .code-table td {
-                border: 1px solid #ddd;
-                padding: 8px;
-                text-align: center;
-            }
+            /* ক্লাস নোটের জন্য কিছু অতিরিক্ত ইনলাইন স্টাইল 
+               (তবে মূল ডিজাইন style.css থেকে আসবে) */
+            
+            /* টেবিলের বিশেষ ফিক্স */
             .code-table th {
-                background-color: #f2f2f2;
-                font-weight: bold;
+                background-color: #e9ecef !important;
+                color: #333 !important;
             }
-            .magic-formula {
-                background-color: #e8f4fd;
-                padding: 15px;
-                border-radius: 8px;
-                text-align: center;
-                margin: 20px 0;
-                border: 1px dashed #3498db;
-            }
-            .formula-fraction {
-                display: inline-block;
-                text-align: center;
-                vertical-align: middle;
-            }
-            .formula-numerator {
-                border-bottom: 2px solid #000;
-                padding-bottom: 5px;
-                display: block;
-            }
-            .warning-box {
-                background-color: #fff3cd;
-                color: #856404;
-                padding: 15px;
-                border-radius: 5px;
-                border-left: 5px solid #ffeeba;
-                margin-top: 15px;
-            }
-            .highlight {
-                color: #e74c3c;
-                font-weight: bold;
-            }
-            /* নতুন স্টেপ এরিয়া স্টাইল */
-            .step-box {
-                background-color: #f8f9fa;
-                padding: 10px;
-                border-radius: 5px;
-                margin: 5px 0;
-                border-left: 3px solid #2ecc71;
+            .dark-mode .code-table th {
+                background-color: #333 !important;
+                color: #fff !important;
             }
         </style>
     </head>
@@ -109,7 +52,7 @@
         <div class="container">
             <h2>CLASS NO: 01 - MASTER NOTE</h2>
 
-            <!-- PART 1: Magic Code & Formula (Moved to Top) -->
+            <!-- PART 1: Magic Code & Formula -->
             <div class="note-box">
                 <h3 class="note-title"><i class="fa-solid fa-wand-magic-sparkles"></i> PART 1: ম্যাজিক কোড ও ফর্মুলা</h3>
                 <p>যেকোনো তারিখের বার বের করার জন্য নিচের কোডগুলো মুখস্থ রাখতে হবে।</p>
@@ -138,6 +81,18 @@
                     <li>1900 - 1999 = <strong>0</strong> (সবচেয়ে বেশি আসে)</li>
                     <li>2000 - 2099 = <strong>6</strong> (এখনকার সময়)</li>
                 </ul>
+
+                <!-- New Calculation Rule Added Here -->
+                <div class="step-box" style="border-left-color: var(--heading-color-1);">
+                    <strong>💡 বের করার নিয়ম (400 Rule):</strong><br>
+                    সেঞ্চুরি সালকে (যেমন 1900, 2000) <strong>400</strong> দিয়ে ভাগ করো। ভাগশেষ (Remainder) অনুযায়ী কোড হবে:
+                    <ul style="margin-top: 5px; list-style: none; padding-left: 10px;">
+                        <li>🔹 ভাগশেষ <strong>0</strong> (মিলে গেলে) ➔ কোড <strong>6</strong></li>
+                        <li>🔹 ভাগশেষ <strong>100</strong> থাকলে ➔ কোড <strong>4</strong></li>
+                        <li>🔹 ভাগশেষ <strong>200</strong> থাকলে ➔ কোড <strong>2</strong></li>
+                        <li>🔹 ভাগশেষ <strong>300</strong> থাকলে ➔ কোড <strong>0</strong></li>
+                    </ul>
+                </div>
 
                 <h4>3. বারের কোড (Day Code)</h4>
                 <ul style="list-style: none; padding-left: 0;">
@@ -169,7 +124,7 @@
                 </div>
             </div>
 
-            <!-- PART 2: Basic Concepts (Moved down) -->
+            <!-- PART 2: Basic Concepts -->
             <div class="note-box">
                 <h3 class="note-title"><i class="fa-solid fa-circle-info"></i> PART 2: বেসিক কনসেপ্ট (Basic Concepts)</h3>
                 
@@ -187,7 +142,7 @@
                 <ul>
                     <li><strong>সাধারণ সাল (Ex: 2004, 2024):</strong> 4 দিয়ে ভাগ করে মিললে লিপ ইয়ার।</li>
                     <li><strong>শতাব্দী সাল (Ex: 1900, 2000):</strong> 400 দিয়ে ভাগ করে মিললে লিপ ইয়ার।
-                        <br><span style="font-size: 0.9em; color: #555;">(Note: 1900 লিপ ইয়ার নয়, কিন্তু 2000 লিপ ইয়ার)</span>
+                        <br><span style="font-size: 0.9em; opacity: 0.8;">(Note: 1900 লিপ ইয়ার নয়, কিন্তু 2000 লিপ ইয়ার)</span>
                     </li>
                 </ul>
 
@@ -242,7 +197,7 @@
                 </div>
             </div>
 
-            <!-- PART 3: Advanced Rules (Updated with English Digits) -->
+            <!-- PART 3: Advanced Rules -->
             <div class="note-box">
                 <h3 class="note-title"><i class="fa-solid fa-clock-rotate-left"></i> PART 3: ভিন্ন তারিখ ও সালের হিসাব (Advanced Rules)</h3>
                 
