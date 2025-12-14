@@ -17,6 +17,10 @@
   --nav-button-border: #ccc;
   --nav-active-bg: #d81b60;
   --box-shadow-color: rgba(0, 0, 0, 0.1);
+  
+  /* Note Box & Step Box Colors (Light Mode) */
+  --note-box-bg: #ffffff;
+  --step-box-bg: #f8f9fa;
 
   /* MCQ Card Variables */
   --card-border-color: #e0e0e0;
@@ -38,6 +42,8 @@
   --blockquote-border: #27ae60;
   --table-header-bg: #27ae60;
   --mcq-tag-bg: #27ae60;
+  --note-box-bg: #ffffff;
+  --step-box-bg: #e8f5e9;
 }
 
 [data-theme="ocean"] {
@@ -52,6 +58,8 @@
   --blockquote-border: #3498db;
   --table-header-bg: #2980b9;
   --mcq-tag-bg: #2980b9;
+  --note-box-bg: #ffffff;
+  --step-box-bg: #e4f1fe;
 }
 
 [data-theme="sunset"] {
@@ -66,6 +74,8 @@
   --blockquote-border: #f57c00;
   --table-header-bg: #e65100;
   --mcq-tag-bg: #e65100;
+  --note-box-bg: #ffffff;
+  --step-box-bg: #fff8e1;
 }
 
 .dark-mode {
@@ -85,10 +95,14 @@
   --nav-active-bg: #bb86fc;
   --box-shadow-color: rgba(255, 255, 255, 0.05);
 
+  /* Dark Mode specific background for boxes */
+  --note-box-bg: #2a2a2a; 
+  --step-box-bg: #333333;
+
   /* MCQ Card Variables for Dark Mode */
   --card-border-color: #444;
   --card-shadow-color: rgba(0, 0, 0, 0.2);
-  --mcq-tag-bg: var(--heading-color-1); /* #bb86fc */
+  --mcq-tag-bg: var(--heading-color-1); 
   --success-color: #4caf50;
 }
 
@@ -178,6 +192,7 @@ blockquote {
   font-style: italic;
   font-size: 1.1em;
   border-radius: 5px;
+  color: var(--text-color); /* Added for dark mode visibility */
 }
 img {
   max-width: 100%;
@@ -195,11 +210,76 @@ li {
   margin-bottom: 10px;
   padding-left: 10px;
 }
+
+/* =================================
+   CUSTOM BOX STYLES (Fixed for Dark Mode)
+   ================================= */
+.note-box {
+  background-color: var(--note-box-bg); /* Now uses variable */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-left: 5px solid #4a90e2;
+  color: var(--text-color);
+}
+
+.step-box {
+  background-color: var(--step-box-bg); /* Now uses variable */
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+  border-left: 3px solid #2ecc71;
+  color: var(--text-color);
+}
+
+.warning-box {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 15px;
+  border-radius: 5px;
+  border-left: 5px solid #ffeeba;
+  margin-top: 15px;
+}
+/* Dark mode adjustment for warning box specifically */
+.dark-mode .warning-box {
+  background-color: #4a3b00;
+  color: #ffd54f;
+  border-left-color: #ffd54f;
+}
+
+.highlight {
+  color: #e74c3c;
+  font-weight: bold;
+}
+.magic-formula {
+    background-color: var(--blockquote-bg);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 20px 0;
+    border: 1px dashed #3498db;
+}
+.formula-fraction {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+.formula-numerator {
+    border-bottom: 2px solid var(--text-color);
+    padding-bottom: 5px;
+    display: block;
+}
+
+/* =================================
+   TABLE STYLES 
+   ================================= */
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 1em;
+  background-color: var(--container-bg);
 }
 table th,
 table td {
@@ -215,6 +295,30 @@ table th {
 table tr:nth-of-type(even) {
   background-color: var(--blockquote-bg);
 }
+
+/* Special Fix for "Month Code" Table Visibility */
+.code-table th {
+    background-color: #e9ecef;
+    color: #333333;
+    text-align: center;
+    border-color: #dee2e6;
+}
+.code-table td {
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Dark Mode Fix for Code Table */
+.dark-mode .code-table th {
+    background-color: #333333;
+    color: #ffffff;
+    border-color: #555;
+}
+
+/* =================================
+   CONTROLS & BUTTONS
+   ================================= */
 .controls-wrapper {
   max-width: 900px;
   margin: 20px auto;
@@ -385,19 +489,19 @@ footer {
 }
 
 /* =================================
-   Modern MCQ Card Style (আধুনিক কার্ড ডিজাইন)
+   Modern MCQ Card Style
    ================================= */
 
 .question-item {
   background-color: var(--container-bg);
   border: 1px solid var(--card-border-color);
   border-radius: 12px;
-  padding: 50px 25px 25px 25px; /* উপরের দিকে ট্যাগের জন্য জায়গা */
+  padding: 50px 25px 25px 25px; 
   margin-bottom: 30px;
   box-shadow: 0 4px 12px var(--card-shadow-color);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative; /* h3 ট্যাগকে পজিশন করার জন্য */
-  overflow: hidden; /* ট্যাগের বর্ডার-রেডিয়াস ঠিকভাবে দেখানোর জন্য */
+  position: relative; 
+  overflow: hidden; 
 }
 
 .question-item:hover {
@@ -405,7 +509,7 @@ footer {
   box-shadow: 0 8px 20px var(--card-shadow-color);
 }
 
-/* প্রশ্নের নম্বর ট্যাগ (e.g., প্রশ্ন ২৭) */
+/* প্রশ্নের নম্বর ট্যাগ */
 .question-item h3 {
   position: absolute;
   top: 0;
@@ -413,11 +517,9 @@ footer {
   background-color: var(--mcq-tag-bg);
   color: var(--mcq-tag-text);
   padding: 8px 20px;
-  border-radius: 12px 0 12px 0; /* স্টাইলিশ কর্নার */
+  border-radius: 12px 0 12px 0; 
   font-weight: bold;
   font-size: 1rem;
-
-  /* বেস h3 স্টাইল ওভাররাইড */
   border-bottom: none;
   margin: 0;
 }
@@ -433,7 +535,7 @@ footer {
   color: var(--text-color);
 }
 
-/* অপশনের তালিকা (ul এবং li) */
+/* অপশনের তালিকা */
 .question-item ul {
   list-style-type: none;
   padding: 0;
@@ -494,16 +596,13 @@ footer {
   font-size: 1em;
 }
 
-/* ================================================================
-   Responsive Design for Mobile (মোবাইলের জন্য নতুন যোগ করা কোড)
-   ================================================================ */
+/* =================================
+   Responsive Design
+   ================================= */
 @media (max-width: 768px) {
-  /* Body-র padding কমানো হয়েছে যাতে কন্টেন্ট স্ক্রিনের বেশি জায়গা পায় */
   body {
     padding: 10px;
   }
-
-  /* মূল কন্টেইনার এবং হেডারকে পুরো স্ক্রিন জুড়ে দেওয়া হয়েছে */
   .container,
   header,
   .controls-wrapper {
@@ -511,35 +610,20 @@ footer {
     max-width: 100%;
     padding-left: 15px;
     padding-right: 15px;
-    box-sizing: border-box; /* এটি নিশ্চিত করে যে padding মূল width এর বাইরে যাবে না */
+    box-sizing: border-box;
   }
-
   .container {
     padding-top: 20px;
     padding-bottom: 20px;
   }
-
-  /* মোবাইল ডিভাইসের জন্য হেডিং-এর সাইজ ঠিক করা হয়েছে */
-  h1 {
-    font-size: 1.8em;
-  }
-  h2 {
-    font-size: 1.6em;
-  }
-  h3,
-  h4 {
-    font-size: 1.4em;
-  }
-  p {
-    font-size: 1em;
-  }
-
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.6em; }
+  h3, h4 { font-size: 1.4em; }
+  p { font-size: 1em; }
   .controls-wrapper {
     flex-direction: column;
     gap: 10px;
   }
-
-  /* MCQ কার্ডের padding কমানো হয়েছে */
   .question-item {
     padding: 45px 15px 15px 15px;
   }
