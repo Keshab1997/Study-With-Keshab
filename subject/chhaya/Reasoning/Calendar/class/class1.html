@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calendar Reasoning - Class 01 | Study With Keshab</title>
+        <!-- External CSS File Link -->
+        <link rel="stylesheet" href="css/style.css" />
+        <!-- FontAwesome for Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+        
+        <style>
+            /* ক্লাস নোটের জন্য কিছু অতিরিক্ত ইনলাইন স্টাইল */
+            .note-box {
+                background: #fff;
+                padding: 20px;
+                margin-bottom: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                border-left: 5px solid #4a90e2;
+            }
+            .note-title {
+                color: #2c3e50;
+                border-bottom: 2px solid #eee;
+                padding-bottom: 10px;
+                margin-bottom: 15px;
+                font-size: 1.2rem;
+            }
+            .code-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 15px 0;
+                font-size: 0.9rem;
+            }
+            .code-table th, .code-table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: center;
+            }
+            .code-table th {
+                background-color: #f2f2f2;
+                font-weight: bold;
+            }
+            .magic-formula {
+                background-color: #e8f4fd;
+                padding: 15px;
+                border-radius: 8px;
+                text-align: center;
+                margin: 20px 0;
+                border: 1px dashed #3498db;
+            }
+            .formula-fraction {
+                display: inline-block;
+                text-align: center;
+                vertical-align: middle;
+            }
+            .formula-numerator {
+                border-bottom: 2px solid #000;
+                padding-bottom: 5px;
+                display: block;
+            }
+            .warning-box {
+                background-color: #fff3cd;
+                color: #856404;
+                padding: 15px;
+                border-radius: 5px;
+                border-left: 5px solid #ffeeba;
+                margin-top: 15px;
+            }
+            .highlight {
+                color: #e74c3c;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body data-theme="default">
+        <header>
+            <img src="../images/logo.jpg" alt="Logo" class="logo" />
+            <h1>অধ্যায়: ক্যালেন্ডার (Reasoning) - পর্ব ১</h1>
+        </header>
+
+        <div class="controls-wrapper">
+            <div id="digital-clock" class="digital-clock"></div>
+            <div class="theme-buttons">
+                <button data-theme-name="default">Default</button>
+                <button data-theme-name="forest">Forest</button>
+                <button data-theme-name="ocean">Ocean</button>
+                <button data-theme-name="sunset">Sunset</button>
+            </div>
+            <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+            <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+            <div class="dark-mode-toggle">
+                <span>দিন/রাত</span>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>CLASS NO: 01 - MASTER NOTE</h2>
+
+            <!-- PART 1 -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-circle-info"></i> PART 1: বেসিক কনসেপ্ট (Basic Concepts)</h3>
+                
+                <h4>1. বছরের হিসাব:</h4>
+                <ul>
+                    <li><strong>Normal Year (365 Days):</strong> বছরে <strong>1</strong>টি Odd Day (বাড়তি দিন) থাকে।
+                        <br><em>Rule:</em> সাধারণ বছরে তারিখ এক থাকলে বার <strong>+1</strong> বাড়ে।
+                    </li>
+                    <li><strong>Leap Year (366 Days):</strong> বছরে <strong>2</strong>টি Odd Days থাকে।
+                        <br><em>Rule:</em> লিপ ইয়ার বছরে তারিখ এক থাকলে বার <strong>+2</strong> বাড়ে।
+                    </li>
+                </ul>
+
+                <h4>2. লিপ ইয়ার চেনার উপায়:</h4>
+                <ul>
+                    <li><strong>সাধারণ সাল (Ex: 2004, 2024):</strong> 4 দিয়ে ভাগ করে মিললে লিপ ইয়ার।</li>
+                    <li><strong>শতাব্দী সাল (Ex: 1900, 2000):</strong> 400 দিয়ে ভাগ করে মিললে লিপ ইয়ার।
+                        <br><span style="font-size: 0.9em; color: #555;">(Note: 1900 লিপ ইয়ার নয়, কিন্তু 2000 লিপ ইয়ার)</span>
+                    </li>
+                </ul>
+
+                <h4>3. Odd Day বের করা:</h4>
+                <p>যেকোনো দিন সংখ্যাকে <strong>7</strong> দিয়ে ভাগ করলে যা <strong>ভাগশেষ (Remainder)</strong> থাকে।
+                <br><em>উদাহরণ:</em> 15 দিন ÷ 7 = ভাগশেষ <strong>1</strong>।</p>
+            </div>
+
+            <!-- PART 2 -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-wand-magic-sparkles"></i> PART 2: ম্যাজিক কোড ও ফর্মুলা</h3>
+                <p>যেকোনো তারিখের বার বের করার জন্য নিচের কোডগুলো মুখস্থ রাখতে হবে।</p>
+
+                <h4>1. মাসের কোড (Month Code)</h4>
+                <p>ফোন নম্বরের মতো মুখস্থ করো: <strong>033 — 614 — 625 — 035</strong></p>
+                
+                <div style="overflow-x:auto;">
+                    <table class="code-table">
+                        <tr>
+                            <th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th>
+                            <th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th>
+                        </tr>
+                        <tr>
+                            <td>0</td><td>3</td><td>3</td><td>6</td><td>1</td><td>4</td>
+                            <td>6</td><td>2</td><td>5</td><td>0</td><td>3</td><td>5</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h4>2. সেঞ্চুরি কোড (Century Code)</h4>
+                <ul>
+                    <li>1600 - 1699 = <strong>6</strong></li>
+                    <li>1700 - 1799 = <strong>4</strong></li>
+                    <li>1800 - 1899 = <strong>2</strong></li>
+                    <li>1900 - 1999 = <strong>0</strong> (সবচেয়ে বেশি আসে)</li>
+                    <li>2000 - 2099 = <strong>6</strong> (এখনকার সময়)</li>
+                </ul>
+
+                <h4>3. বারের কোড (Day Code)</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>0 = Sunday (রবি)</li>
+                    <li>1 = Monday (সোম)</li>
+                    <li>2 = Tuesday (মঙ্গল)</li>
+                    <li>3 = Wednesday (বুধ)</li>
+                    <li>4 = Thursday (বৃহস্পতি)</li>
+                    <li>5 = Friday (শুক্র)</li>
+                    <li>6 = Saturday (শনি)</li>
+                </ul>
+
+                <div class="magic-formula">
+                    <h4>🚀 সুপার ফর্মুলা (The Formula)</h4>
+                    <div class="formula-fraction">
+                        <span class="formula-numerator">Date + Month Code + Year (Last 2) + Leap Count + Century Code</span>
+                        <span>7</span>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.9em; text-align: left;">
+                        <strong>• Leap Count:</strong> সালের শেষ ২ সংখ্যাকে 4 দিয়ে ভাগ করলে যে <strong>ভাগফল</strong> পাওয়া যায়।<br>
+                        <strong>• Year:</strong> শুধুমাত্র সালের শেষ দুটি সংখ্যা (যেমন 1947 হলে 47)।
+                    </p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ স্পেশাল ওয়ার্নিং (Leap Year Rule):</strong><br>
+                    যদি সালটি <strong>Leap Year</strong> হয় এবং মাসটি <strong>January</strong> বা <strong>February</strong> হয়:<br>
+                    উত্তর (ভাগশেষ) থেকে <strong class="highlight">1 বিয়োগ</strong> করতে হবে।
+                </div>
+            </div>
+
+            <!-- Examples -->
+            <div class="question-item">
+                <h3>📝 উদাহরণ সমাধান (Example 1)</h3>
+                <p><strong>প্রশ্ন: 15 August 1947 কী বার ছিল?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <div class="explanation">
+                        <p><strong>ধাপসমূহ:</strong></p>
+                        <ol>
+                            <li>Date: <strong>15</strong></li>
+                            <li>Month Code (Aug): <strong>2</strong></li>
+                            <li>Year (Last 2): <strong>47</strong></li>
+                            <li>Leap Count (47÷4): <strong>11</strong> (ভাগফল)</li>
+                            <li>Century Code (1900s): <strong>0</strong></li>
+                        </ol>
+                        <p><strong>যোগফল:</strong> 15 + 2 + 47 + 11 + 0 = <strong>75</strong></p>
+                        <p><strong>ফাইনাল:</strong> 75 ÷ 7 = ভাগশেষ <strong>5</strong></p>
+                        <p><strong class="answer-label">উত্তর:</strong> 5 নম্বর কোড অর্থাৎ <span class="correct-answer">Friday (শুক্রবার)</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-item">
+                <h3>📝 উদাহরণ সমাধান (Example 2 - Leap Year Case)</h3>
+                <p><strong>প্রশ্ন: 1 January 2024 কী বার ছিল?</strong></p>
+                <div class="answer-section">
+                    <hr class="answer-divider" />
+                    <div class="explanation">
+                        <p><strong>ধাপসমূহ:</strong></p>
+                        <ol>
+                            <li>Date: <strong>1</strong></li>
+                            <li>Month Code (Jan): <strong>0</strong></li>
+                            <li>Year (Last 2): <strong>24</strong></li>
+                            <li>Leap Count (24÷4): <strong>6</strong></li>
+                            <li>Century Code (2000s): <strong>6</strong></li>
+                        </ol>
+                        <p><strong>যোগফল:</strong> 1 + 0 + 24 + 6 + 6 = <strong>37</strong></p>
+                        <p><strong>প্রাথমিক ভাগশেষ:</strong> 37 ÷ 7 = ভাগশেষ <strong>2</strong></p>
+                        <div class="warning-box" style="margin: 10px 0; padding: 10px;">
+                            <strong>অ্যাকশন:</strong> যেহেতু 2024 লিপ ইয়ার এবং মাসটি জানুয়ারি, তাই (2 - 1) = <strong>1</strong> হবে।
+                        </div>
+                        <p><strong class="answer-label">উত্তর:</strong> 1 নম্বর কোড অর্থাৎ <span class="correct-answer">Monday (সোমবার)</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 3 -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-lightbulb"></i> PART 3: শর্টকাট ট্রিকস (Shortcut Tricks)</h3>
+                
+                <h4>1. ক্যালেন্ডার রিপিটেশন (Calendar Repetition):</h4>
+                <p>কবে একই ক্যালেন্ডার আবার আসবে?</p>
+                <ul>
+                    <li>সালটি <strong>Leap Year</strong> হলে: <strong>+28</strong> বছর পর।</li>
+                    <li>সালটি <strong>Leap Year + 1</strong> হলে: <strong>+6</strong> বছর পর।</li>
+                    <li>সালটি <strong>Leap Year + 2/3</strong> হলে: <strong>+11</strong> বছর পর।</li>
+                </ul>
+
+                <h4>2. সামনে/পিছনে যাওয়ার নিয়ম:</h4>
+                <p>উদাহরণ: "আজ সোমবার, 61 দিন পর কী বার?"</p>
+                <ul>
+                    <li>61 ÷ 7 = ভাগশেষ <strong>5</strong></li>
+                    <li>সোম + 5 = <strong>শনিবার</strong>।</li>
+                </ul>
+
+                <h4>3. একই মাসের ক্যালেন্ডার:</h4>
+                <p>যে মাসগুলোর কোড (033...) একই, তাদের ক্যালেন্ডারও এক।</p>
+                <ul>
+                    <li><strong>Feb - Mar - Nov</strong> (সবার কোড 3) → বার একই হবে।</li>
+                    <li><strong>Apr - Jul</strong> (সবার কোড 6) → বার একই হবে।</li>
+                    <li><strong>Sep - Dec</strong> (সবার কোড 5) → বার একই হবে।</li>
+                </ul>
+                
+                <hr>
+                <p style="text-align: center; font-weight: bold; color: #2980b9;">
+                    টিপস: প্রতিদিন একবার করে শুধু কোডটা মনে করবে: "033, 614, 625, 035"।
+                </p>
+            </div>
+
+        </div>
+
+        <nav class="navigation">
+            <a href="#" class="nav-button disabled">পূর্ববর্তী</a>
+            <a href="class1.html" class="nav-button active">1</a>
+            <a href="class2.html" class="nav-button">2</a>
+            <a href="class3.html" class="nav-button">3</a>
+            <a href="class2.html" class="nav-button">পরবর্তী</a>
+            <a href="../index.html" class="nav-button home-button">Home</a>
+        </nav>
+
+        <footer>
+            <p>
+                কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব
+                সংরক্ষিত।
+            </p>
+            <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+        </footer>
+
+        <button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">
+            ↑
+        </button>
+        <button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">
+            ↓
+        </button>
+
+        <!-- External JavaScript File Link -->
+        <script src="js/script.js"></script>
+    </body>
+</html>
