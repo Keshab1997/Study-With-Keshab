@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit, Number & Divisibility - Class 02</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: Digit, Number & Divisibility</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 02</h2>
+    
+    <!-- প্রশ্ন 21 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 21</h3>
+        <p><strong>একটি সংখ্যাকে 296 দিয়ে ভাগ করলে ভাগশেষ হয় 75। সংখ্যাটিকে 29 দিয়ে ভাগ করলে ভাগশেষ কত হবে?</strong></p>
+        <ul>
+            <li>(A) 4</li>
+            <li>(B) 5</li>
+            <li>(C) 3</li>
+            <li>(D) 6</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">17 (প্রশ্নের বিকল্পে সঠিক উত্তর নেই)</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>সাধারণত এই ধরনের অঙ্কে প্রথম ভাজক (296) দ্বিতীয় ভাজক (29) দ্বারা বিভাজ্য হয়। কিন্তু এখানে তা নয়। যদি প্রশ্নটি এমন হতো যে প্রথম ভাজকটি 29 দ্বারা বিভাজ্য (যেমন 290), তাহলে শুধু ভাগশেষকে (75) 29 দিয়ে ভাগ করলেই উত্তর পাওয়া যেত। 75 ÷ 29 করলে ভাগশেষ হয় 17।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 22 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 22</h3>
+        <p><strong>কতগুলি 3 অঙ্কের সংখ্যা 6 দ্বারা বিভাজ্য?</strong></p>
+        <ul>
+            <li>(A) 149</li>
+            <li>(B) 166</li>
+            <li>(C) 150</li>
+            <li>(D) 151</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 150</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>6 দ্বারা বিভাজ্য প্রথম 3 অঙ্কের সংখ্যা 102, শেষ সংখ্যা 996।</li>
+                    <li>পদ সংখ্যা = [(996 - 102) / 6] + 1 = 149 + 1 = 150।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- প্রশ্ন 23 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 23</h3>
+        <p><strong>x এবং y এমন দুটি অঙ্ক যে 65xy সংখ্যাটি 80 দ্বারা সম্পূর্ণরূপে বিভাজ্য। (x + y) = ?</strong></p>
+        <ul>
+            <li>(A) 6</li>
+            <li>(B) 5</li>
+            <li>(C) 4</li>
+            <li>(D) 3</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 6</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>80 দ্বারা বিভাজ্য মানে 10 এবং 8 দ্বারা বিভাজ্য।</li>
+                    <li>10 দ্বারা বিভাজ্যতার জন্য y=0। সংখ্যাটি 65x0।</li>
+                    <li>8 দ্বারা বিভাজ্যতার জন্য শেষ তিন অঙ্ক (5x0) 8 দ্বারা বিভাজ্য হতে হবে। x=6 হলে 560 হয়, যা 8 দ্বারা বিভাজ্য।</li>
+                    <li>সুতরাং x=6, y=0। যোগফল = 6+0=6।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- প্রশ্ন 24 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 24</h3>
+        <p><strong>200 এবং 600-এর মধ্যে কতগুলি সংখ্যা 4, 5 এবং 6-এর দ্বারা সম্পূর্ণরূপে বিভাজ্য?</strong></p>
+        <ul>
+            <li>(A) পাঁচটি</li>
+            <li>(B) ছ'টি</li>
+            <li>(C) চারটি</li>
+            <li>(D) আটটি</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) ছ'টি</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>4, 5, 6 এর ল.সা.গু. = 60।</li>
+                    <li>200 ও 600 এর মধ্যে 60 এর গুণিতকগুলি হল 240, 300, 360, 420, 480, 540। মোট 6টি।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 25 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 25</h3>
+        <p><strong>99548-এর নিকটতম কোন্ সংখ্যাটি 687 দ্বারা সম্পূর্ণরূপে বিভাজ্য?</strong></p>
+        <ul>
+            <li>(A) 99481</li>
+            <li>(B) 99615</li>
+            <li>(C) 99550</li>
+            <li>(D) 99540</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 99615</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>99548 ÷ 687 করলে ভাগশেষ থাকে 620।</li>
+                    <li>বিভাজ্য সংখ্যাটি হতে পারে 99548 - 620 = 98928 অথবা 99548 + (687-620) = 99615।</li>
+                    <li>99548 এর নিকটতম হলো 99615 (কারণ পার্থক্য মাত্র 67)।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 26 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 26</h3>
+        <p><strong>নীচের কোনটি একটি মৌলিক সংখ্যা নয়?</strong></p>
+        <ul>
+            <li>(A) 3</li>
+            <li>(B) 4</li>
+            <li>(C) 5</li>
+            <li>(D) 7</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 4</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>4-এর উৎপাদক 1, 2, 4। এটি একটি যৌগিক সংখ্যা।</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- প্রশ্ন 27 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 27</h3>
+        <p><strong>কোন্ ক্ষুদ্রতম সংখ্যা থেকে 5 বাদ দিলে বিয়োগফল 36, 48, 21 এবং 28 দ্বারা সম্পূর্ণরূপে বিভাজ্য হবে?</strong></p>
+        <ul>
+            <li>(A) 1008</li>
+            <li>(B) 1003</li>
+            <li>(C) 1013</li>
+            <li>(D) 1018</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 1013</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>36, 48, 21, 28 এর ল.সা.গু. = 1008।</li>
+                    <li>নির্ণেয় সংখ্যা = 1008 + 5 = 1013।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 28 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 28</h3>
+        <p><strong>একটি সংখ্যার দুটি অঙ্কের যোগফল হল 13। যদি সংখ্যাটি থেকে 9 বিয়োগ করা হয় তবে সংখ্যাটির অঙ্ক দুটি পরস্পর স্থান পরিবর্তন করে। সংখ্যাটি হল—</strong></p>
+        <ul>
+            <li>(A) 76</li>
+            <li>(B) 87</li>
+            <li>(C) 78</li>
+            <li>(D) 67</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 76</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>বিকল্প (A) পরীক্ষা করে: 7+6=13। 76 - 9 = 67, যা 76-এর উল্টো।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 29 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 29</h3>
+        <p><strong>চারটি ক্রমিক পূর্ণসংখ্যার যোগফল হল 82। এই সংখ্যাগুলির মধ্যে ক্ষুদ্রতম সংখ্যাটি হল—</strong></p>
+        <ul>
+            <li>(A) 20</li>
+            <li>(B) 19</li>
+            <li>(C) 22</li>
+            <li>(D) 21</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 19</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>ধরা যাক, সংখ্যাগুলি x, x+1, x+2, x+3।</li>
+                    <li>4x + 6 = 82 => 4x = 76 => x = 19।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 30 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 30</h3>
+        <p><strong>156-এর সকল উৎপাদকের সমষ্টি হল—</strong></p>
+        <ul>
+            <li>(A) 392</li>
+            <li>(B) 235</li>
+            <li>(C) 390</li>
+            <li>(D) 379</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 392</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>156 = 2² × 3¹ × 13¹।</li>
+                    <li>সমষ্টি = (2⁰+2¹+2²) × (3⁰+3¹) × (13⁰+13¹) = (1+2+4) × (1+3) × (1+13) = 7 × 4 × 14 = 392।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 31 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 31</h3>
+        <p><strong>240-এর prime factorisation হল—</strong></p>
+        <ul>
+            <li>(A) 2³ × 3² × 5</li>
+            <li>(B) 2⁴ × 3² × 5</li>
+            <li>(C) 2⁴ × 3 × 5</li>
+            <li>(D) 2⁵ × 3 × 5</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 2⁴ × 3 × 5</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>240 = 24 × 10 = (8 × 3) × (2 × 5) = (2³ × 3) × (2 × 5) = 2⁴ × 3 × 5।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 32 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 32</h3>
+        <p><strong>একটি 12 মি দীর্ঘ রডকে 25 টি সমান টুকরোতে কাটা হলে প্রত্যেক টুকরোর দৈর্ঘ্য হবে?</strong></p>
+        <ul>
+            <li>(A) 4.8 মি</li>
+            <li>(B) 48 সেমি</li>
+            <li>(C) 48 মিমি</li>
+            <li>(D) 4.8 সেমি</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 48 সেমি</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>প্রতিটি টুকরোর দৈর্ঘ্য = 12 মি / 25 = 0.48 মি।</li>
+                    <li>0.48 মি = 0.48 × 100 সেমি = 48 সেমি।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 33 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 33</h3>
+        <p><strong>15, 25 ও 30 দ্বারা বিভাজ্য বৃহত্তম তিন অঙ্কের সংখ্যা হল—</strong></p>
+        <ul>
+            <li>(A) 900</li>
+            <li>(B) 930</li>
+            <li>(C) 960</li>
+            <li>(D) 975</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 900</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>15, 25, 30 এর ল.সা.গু. = 150।</li>
+                    <li>তিন অঙ্কের বৃহত্তম সংখ্যা 999। 999 ÷ 150 করলে ভাগশেষ 99 থাকে।</li>
+                    <li>নির্ণেয় সংখ্যা = 999 - 99 = 900।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 34 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 34</h3>
+        <p><strong>ক্ষুদ্রতম মৌলিক সংখ্যা হল—</strong></p>
+        <ul>
+            <li>(A) 0</li>
+            <li>(B) 1</li>
+            <li>(C) 2</li>
+            <li>(D) 3</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 2</span></p>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 35 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 35</h3>
+        <p><strong>A যদি 2,64,89,071 টাকায় 109 টি গাড়ি কেনে তবে একটি গাড়ির মূল্য কত?</strong></p>
+        <ul>
+            <li>(A) 2,43,109 টাকা</li>
+            <li>(B) 2,43,140 টাকা</li>
+            <li>(C) 2,43,019 টাকা</li>
+            <li>(D) 2,43,190 টাকা</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(C) 2,43,019 টাকা</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>একটি গাড়ির মূল্য = 2,64,89,071 / 109 = 2,43,019।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 36 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 36</h3>
+        <p><strong>7865321 সংখ্যাটিকে একটি নম্বর দিয়ে ভাগ করলে, ভাগফল হয় 33612 এবং ভাগশেষ হয় 113। ভাজক কত?</strong></p>
+        <ul>
+            <li>(A) 243</li>
+            <li>(B) 234</li>
+            <li>(C) 423</li>
+            <li>(D) 432</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(B) 234</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>ভাজক = (ভাজ্য - ভাগশেষ) / ভাগফল = (7865321 - 113) / 33612 = 7865208 / 33612 = 234।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 37 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 37</h3>
+        <p><strong>1156-এর উৎপাদকগুলির মোট সংখ্যা হল—</strong></p>
+        <ul>
+            <li>(A) 9</li>
+            <li>(B) 8</li>
+            <li>(C) 10</li>
+            <li>(D) 11</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 9</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>1156 = 34² = (2 × 17)² = 2² × 17²।</li>
+                    <li>উৎপাদকের সংখ্যা = (2+1)(2+1) = 3 × 3 = 9।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 38 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 38</h3>
+        <p><strong>200-এর থেকে ছোটো বৃহত্তম মৌলিক সংখ্যাটি হল—</strong></p>
+        <ul>
+            <li>(A) 199</li>
+            <li>(B) 191</li>
+            <li>(C) 197</li>
+            <li>(D) 193</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(A) 199</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <p>200 এর ঠিক আগের মৌলিক সংখ্যাটি হল 199।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন 39 -->
+    <div class="question-item">
+        <h3>প্রশ্ন 39</h3>
+        <p><strong>নীচের কোন্ সংখ্যাটি 15 দ্বারা বিভাজ্য নয়?</strong></p>
+        <ul>
+            <li>(A) 123465</li>
+            <li>(B) 234675</li>
+            <li>(C) 234570</li>
+            <li>(D) 384575</li>
+        </ul>
+        <div class="answer-section">
+            <hr class="answer-divider">
+            <p><strong class="answer-label">সঠিক উত্তর:</strong> <span class="correct-answer">(D) 384575</span></p>
+            <div class="explanation">
+                <p><strong>বিস্তারিত ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>15 দ্বারা বিভাজ্য হতে হলে 3 ও 5 উভয় দ্বারা বিভাজ্য হতে হবে।</li>
+                    <li>384575 সংখ্যাটির অঙ্কগুলির যোগফল = 3+8+4+5+7+5 = 32, যা 3 দ্বারা বিভাজ্য নয়।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<nav class="navigation">
+    <a href="class2.html" class="nav-button">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button">1</a>
+    <a href="class2.html" class="nav-button ">2</a>
+    <a href="class3.html" class="nav-button active">3</a>
+    <a href="class3.html" class="nav-button disabled">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<!-- External JavaScript File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
