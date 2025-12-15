@@ -19,9 +19,6 @@
                 visibility: hidden;
                 opacity: 0;
             }
-            /* Disabled section CSS সরিয়ে দেওয়া হয়েছে বা নিচে কমেন্ট করা হয়েছে যাতে সব সেকশন কাজ করে */
-            /* .disabled-section { opacity: 0.5; pointer-events: none; } */
-            
             /* টেবিল স্টাইল (লিডারবোর্ড ও রেজাল্টের জন্য) */
             .styled-table {
                 width: 100%;
@@ -78,48 +75,41 @@
         </div>
 
         <nav class="nav-grid">
-            <a
-                href="../../../../index.html"
-                class="nav-button color-home"
-                ><i class="fa-solid fa-house"></i><span>হোম</span></a
-            >
-            <a href="#dashboard" class="nav-button color-dashboard"
-                ><i class="fa-solid fa-chart-line"></i
-                ><span>ড্যাশবোর্ড</span></a
-            >
-            <a href="#class-notes" class="nav-button color-notes"
-                ><i class="fa-solid fa-book-open"></i><span>ক্লাস নোট</span></a
-            >
-            <a href="#pdf-notes" class="nav-button color-pdf"
-                ><i class="fa-solid fa-file-pdf"></i><span>পিডিএফ নোট</span></a
-            >
-            <a href="#quiz-sets" class="nav-button color-quiz"
-                ><i class="fa-solid fa-file-circle-question"></i
-                ><span>কুইজ সেট</span></a
-            >
-            <!-- CBT Exam Link Updated for Algebra -->
+            <a href="../../../../index.html" class="nav-button color-home">
+                <i class="fa-solid fa-house"></i><span>হোম</span>
+            </a>
+            <a href="#dashboard" class="nav-button color-dashboard">
+                <i class="fa-solid fa-chart-line"></i><span>ড্যাশবোর্ড</span>
+            </a>
+            <a href="#class-notes" class="nav-button color-notes">
+                <i class="fa-solid fa-book-open"></i><span>ক্লাস নোট</span>
+            </a>
+            <a href="#pdf-notes" class="nav-button color-pdf">
+                <i class="fa-solid fa-file-pdf"></i><span>পিডিএফ নোট</span>
+            </a>
+            <a href="#quiz-sets" class="nav-button color-quiz">
+                <i class="fa-solid fa-file-circle-question"></i><span>কুইজ সেট</span>
+            </a>
             <a
                 href="https://keshab1997.github.io/cbt-exam/index.html?exam=cbt6&chapter=Algebra"
                 class="nav-button color-cbt"
             >
-                <i class="fa-solid fa-laptop-code"></i>
-                <span>CBT</span>
+                <i class="fa-solid fa-laptop-code"></i><span>CBT</span>
             </a>
-            <a href="#result-section" class="nav-button color-result"
-                ><i class="fa-solid fa-square-poll-vertical"></i
-                ><span>রেজাল্ট</span></a
-            >
-            <a href="#leaderboard" class="nav-button color-leaderboard"
-                ><i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span></a
-            >
+            <a href="#result-section" class="nav-button color-result">
+                <i class="fa-solid fa-square-poll-vertical"></i><span>রেজাল্ট</span>
+            </a>
+            <a href="#leaderboard" class="nav-button color-leaderboard">
+                <i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span>
+            </a>
         </nav>
 
         <main>
-            <!-- Chapter Name Updated -->
             <script>
                 const CURRENT_CHAPTER_NAME = "Algebra";
             </script>
 
+            <!-- Profile Section (Data will come from Firebase) -->
             <section class="card" id="user-profile-card">
                 <div class="profile-header">
                     <img
@@ -135,11 +125,10 @@
                 </div>
             </section>
 
-            <!-- Dashboard Enabled -->
+            <!-- Dashboard Section -->
             <section class="card" id="dashboard">
                 <h2>
-                    <i class="fa-solid fa-chart-line icon-title"></i> আমার
-                    ড্যাশবোর্ড
+                    <i class="fa-solid fa-chart-line icon-title"></i> আমার ড্যাশবোর্ড
                 </h2>
                 <div style="padding: 20px; text-align: center;">
                     <canvas id="progressChart" width="400" height="200"></canvas>
@@ -147,103 +136,111 @@
                 </div>
             </section>
 
+            <!-- HTML Class Notes Links -->
             <section class="card" id="class-notes">
                 <h2>
                     <i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট
                 </h2>
                 <p>বীজগণিতের প্রতিটি অংশের বিস্তারিত আলোচনা পড়ুন।</p>
                 <div class="link-container styled-list">
-                    <a href="class/class1.html"
-                        ><i class="fa-solid fa-person-chalkboard fa-fw"></i>
-                        Class 01: Formulas</a
-                    >
-                    <a href="class/class2.html"
-                        ><i class="fa-solid fa-person-chalkboard fa-fw"></i>
-                        Class 02: Formulas</a
-                    >
-                    <a href="class/class3.html"
-                        ><i class="fa-solid fa-person-chalkboard fa-fw"></i>
-                        Class 03: Formulas</a
-                    >
-                    <a href="class/class4.html"
-                        ><i class="fa-solid fa-person-chalkboard fa-fw"></i>
-                        Class 04: Formulas</a
-                    >
+                    <a href="class/class1.html">
+                        <i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 01: Formulas
+                    </a>
+                    <a href="class/class2.html">
+                        <i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 02: Formulas
+                    </a>
+                    <a href="class/class3.html">
+                        <i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 03: Formulas
+                    </a>
+                    <a href="class/class4.html">
+                        <i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 04: Formulas
+                    </a>
                 </div>
             </section>
 
-            <!-- PDF Section Ready with Links -->
-<section class="card" id="pdf-notes">
-    <h2>
-        <i class="fa-solid fa-file-pdf icon-title"></i> পিডিএফ নোট
-    </h2>
-    <p>ক্লাসের সব পিডিএফ নোট নিচে দেওয়া হলো:</p>
-    
-    <div class="link-container styled-list">
-        <!-- Class 1 to 14 -->
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%201.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 1 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%202.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 2 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%203.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 3 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%204.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 4 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%205.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 5 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%206.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 6 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%207.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 7 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%208.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 8 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%209.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 9 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%2010.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 10 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%2011.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 11 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%2012.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 12 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%2013.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 13 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%2014.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 14 Note
-        </a>
+            <!-- PDF Notes Section (Updated with Google Drive Links) -->
+            <section class="card" id="pdf-notes">
+                <h2>
+                    <i class="fa-solid fa-file-pdf icon-title"></i> পিডিএফ নোট
+                </h2>
+                <p>ক্লাসের সব পিডিএফ নোট নিচে দেওয়া হলো:</p>
+                
+                <div class="link-container styled-list">
+                    <!-- Class 1 -->
+                    <a href="https://drive.google.com/file/d/1DrJwuYxGa2KMtavY2AoYEC8upqepCbQ_/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 01 Note
+                    </a>
+                    <!-- Class 2 -->
+                    <a href="https://drive.google.com/file/d/1ENgGdF4bASjRPrsRY_7afLHv4TjR36EV/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 02 Note
+                    </a>
+                    <!-- Class 3 -->
+                    <a href="https://drive.google.com/file/d/1E0BwPQvOUKGRA7ey2kI9jhF-_QOovPpN/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 03 Note
+                    </a>
+                    <!-- Class 4 -->
+                    <a href="https://drive.google.com/file/d/1EkSduQlX8ArAjuqSe24BoG8SoYmidCZT/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 04 Note
+                    </a>
+                    <!-- Class 5 -->
+                    <a href="https://drive.google.com/file/d/1EdO69C-oD3zmS9cMSfw_lcUU_JCPSBVR/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 05 Note
+                    </a>
+                    <!-- Class 6 -->
+                    <a href="https://drive.google.com/file/d/1E_DUmtM5akVE3YdxhEwfXm0OJ73y-l_g/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 06 Note
+                    </a>
+                    <!-- Class 7 -->
+                    <a href="https://drive.google.com/file/d/1E_AU-1aQ3RrDh36PqrC1BXCIjaGxhHMu/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 07 Note
+                    </a>
+                    <!-- Class 8 -->
+                    <a href="https://drive.google.com/file/d/1EZupU0EDonGCiGHRffVYl56NeCEY_0iw/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 08 Note
+                    </a>
+                    <!-- Class 9 -->
+                    <a href="https://drive.google.com/file/d/1ES0HZQk1o3LMjed-192smEAtvxUY8Yx6/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 09 Note
+                    </a>
+                    <!-- Class 10 -->
+                    <a href="https://drive.google.com/file/d/1EQ6rH5Wx1iDV2-TSRmWNGJCzFbqcQ6H0/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 10 Note
+                    </a>
+                    <!-- Class 11 -->
+                    <a href="https://drive.google.com/file/d/1ELs3g03I1xRK-DSvrh0w3JrN0HCNKuOQ/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 11 Note
+                    </a>
+                    <!-- Class 12 -->
+                    <a href="https://drive.google.com/file/d/1EKNkwW-gwpr60NLnRohwduoKyzw3OfLX/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 12 Note
+                    </a>
+                    <!-- Class 13 -->
+                    <a href="https://drive.google.com/file/d/1EKDQdJ6B28zgWkAgPYto1FL4foMgZrgH/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 13 Note
+                    </a>
+                    <!-- Class 14 -->
+                    <a href="https://drive.google.com/file/d/1EHi9KWTRpG8-ZLFpl9PCxgRYfVnlz5sT/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 14 Note
+                    </a>
+                    <!-- Class 15 -->
+                    <a href="https://drive.google.com/file/d/1EEe7PNo6rzTlQYJxwEoegMPPoGnI8K1R/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 15 Note
+                    </a>
+                    <!-- Class 16 -->
+                    <a href="https://drive.google.com/file/d/1E10eiL6oQ6NXeDaXzE5CAPBjJUWGi9j6/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 16 Note
+                    </a>
+                    <!-- Class 17 (or All Question Sheet) -->
+                    <a href="https://drive.google.com/file/d/1E0uiCMCqTEskfNO7sjepGsrGQsKUF_Xf/view?usp=sharing" target="_blank">
+                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 17 / All Question Sheet
+                    </a>
+                </div>
+            </section>
 
-        <!-- Class 16 & 17 (Class 15 was missing in your list) -->
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%2016.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 16 Note
-        </a>
-        <a href="https://archive.org/download/math-algebra-sujan-sir/class%2017.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> Class 17 Note
-        </a>
-
-        <!-- All Question Sheet -->
-        <a href="https://archive.org/download/math-algebra-sujan-sir/all%20question%20sheet.pdf" target="_blank">
-            <i class="fa-solid fa-file-pdf fa-fw"></i> All Question Sheet
-        </a>
-    </div>
-</section>
-
-            <!-- Quiz Section Disabled -->
+            <!-- Quiz Sets -->
             <section class="card disabled-section" id="quiz-sets">
                 <h2>
-                    <i class="fa-solid fa-file-circle-question icon-title"></i>
-                    কুইজ সেট
+                    <i class="fa-solid fa-file-circle-question icon-title"></i> কুইজ সেট
                 </h2>
                 <div class="link-container styled-list">
                     <a href="quiz/set1.html"><i class="fa-solid fa-puzzle-piece fa-fw"></i> Quiz Set 01</a>
@@ -251,7 +248,7 @@
                 </div>
             </section>
 
-            <!-- Leaderboard Enabled -->
+            <!-- Leaderboard Section (Populated by Firebase) -->
             <section class="card" id="leaderboard">
                 <h2>
                     <i class="fa-solid fa-trophy icon-title"></i> লিডারবোর্ড
@@ -264,24 +261,21 @@
                             <th>Score</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="leaderboard-body">
+                        <!-- Firebase data will load here dynamically -->
                         <tr>
-                            <td>1</td>
-                            <td>Sample Student</td>
-                            <td>100</td>
+                            <td colspan="3" style="text-align:center;">ডেটা লোড হচ্ছে...</td>
                         </tr>
-                        <!-- Firebase data will load here -->
                     </tbody>
                 </table>
             </section>
 
-            <!-- Result Section Enabled -->
+            <!-- Result Section -->
             <section class="card" id="result-section">
                 <h2>
-                    <i class="fa-solid fa-square-poll-vertical icon-title"></i>
-                    আমার রেজাল্ট
+                    <i class="fa-solid fa-square-poll-vertical icon-title"></i> আমার রেজাল্ট
                 </h2>
-                <div class="link-container styled-list">
+                <div class="link-container styled-list" id="result-container">
                      <p>আপনার কুইজের ফলাফল এখানে দেখা যাবে।</p>
                 </div>
             </section>
@@ -292,27 +286,35 @@
         <footer>
             <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
             <div class="social-links">
-                <a href="#" target="_blank"
-                    ><i class="fab fa-facebook-f"></i
-                ></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
         </footer>
 
+        <!-- Firebase & Main Scripts -->
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+        
+        <!-- Firebase Configuration File -->
         <script src="js/firebase-config.js"></script>
+        
+        <!-- Auth Check Script -->
         <script>
             (function () {
-                firebase.auth().onAuthStateChanged((user) => {
-                    if (!user) {
-                        window.location.href =
-                            "https://keshab1997.github.io/Study-With-Keshab/login.html";
-                    } else {
-                        document.body.classList.remove("auth-loading");
-                    }
-                });
+                // Firebase লোড হওয়ার পর চেক করবে ইউজার লগইন আছে কিনা
+                if (typeof firebase !== 'undefined') {
+                    firebase.auth().onAuthStateChanged((user) => {
+                        if (!user) {
+                            window.location.href = "https://keshab1997.github.io/Study-With-Keshab/login.html";
+                        } else {
+                            // লোডিং স্ক্রিন সরিয়ে বডি দেখাবে
+                            document.body.classList.remove("auth-loading");
+                        }
+                    });
+                } else {
+                    console.error("Firebase SDK not loaded correctly.");
+                }
             })();
         </script>
 
@@ -322,6 +324,7 @@
         ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
+        <!-- Main Logic Script (Handles Firebase Data Fetching) -->
         <script type="module" src="js/script.js"></script>
     </body>
 </html>
