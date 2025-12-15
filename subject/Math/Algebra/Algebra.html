@@ -170,49 +170,57 @@
 
                <!-- Advanced PDF Viewer Modal -->
 <div id="fullScreenPdfModal" class="pdf-modal" style="display: none;">
-            
-            <!-- Header Toolbar -->
-            <div class="pdf                <!-- Left: Title & Close -->
-                <div class="pdf-controls">
-                    <button class="control-btn" onclick="closePdf()" title="Back / Close (Esc)">
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </button>
-                    <span class="pdf-modal-title" id="pdfModalTitle">PDF Viewer</span>
-                </div>
-
-                <!-- Center: Advanced Tools -->
-                <div class="pdf-controls">
-                    <button class="control-btn" onclick="adjustZoom(-0.1)" title="Zoom Out (-)">
-                        <i class="fa-solid fa-minus"></i>
-                    </button>
-                    <button class="control-btn" onclick="adjustZoom(0.1)" title="Zoom In (+)">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                    <button class="control-btn" onclick="rotatePdf()" title="Rotate Page">
-                        <i class="fa-solid fa-rotate-right"></i>
-                    </button>
-                    <button class="control-btn" onclick="toggleInvert()" title="Night Mode / Invert">
-                        <i class="fa-solid fa-eye"></i>
-                    </button>
-                </div>
-
-                <!-- Right: Navigation -->
-                <div class="pdf-controls">
-                    <button class="control-btn" onclick="changePdf(-1)" title="Previous PDF (Ctrl + Left)">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button class="control-btn" onclick="changePdf(1)" title="Next PDF (Ctrl + Right)">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Frame Container (Hidden overflow for zoom) -->
-            <div class="frame-container">
-                <div class="pdf-loader">লোড হচ্ছে...</div>
-                <iframe id="pdfViewerFrame" class="pdf-viewer-frame" allow="autoplay; fullscreen"></iframe>
-            </div>
+    
+    <!-- Top Toolbar (Fixed Header) -->
+    <div class="pdf-toolbar">
+        
+        <!-- Left: Back & Title -->
+        <div class="toolbar-section left">
+            <button class="control-btn" onclick="closePdf()" title="Back / Close (Esc)">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <span class="pdf-modal-title" id="pdfModalTitle">PDF Viewer</span>
         </div>
+
+        <!-- Center: Zoom & View Tools -->
+        <div class="toolbar-section center">
+            <button class="control-btn" onclick="adjustZoom(-0.1)" title="Zoom Out (-)">
+                <i class="fa-solid fa-minus"></i>
+            </button>
+            <button class="control-btn" onclick="adjustZoom(0.1)" title="Zoom In (+)">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+            <button class="control-btn" onclick="rotatePdf()" title="Rotate Page">
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+            <button class="control-btn" onclick="toggleInvert()" title="Night Mode">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+
+        <!-- Right: Next/Prev Navigation -->
+        <div class="toolbar-section right">
+            <button class="control-btn" onclick="changePdf(-1)" title="Previous (Ctrl + Left)">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="control-btn" onclick="changePdf(1)" title="Next (Ctrl + Right)">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Content Area (Holds the PDF) -->
+    <div class="frame-container">
+        <!-- Loader (Matches JS ID) -->
+        <div id="pdfLoader" class="loader-overlay">
+            <div class="spinner"></div>
+            <span>লোড হচ্ছে...</span>
+        </div>
+        
+        <!-- Iframe -->
+        <iframe id="pdfViewerFrame" class="pdf-viewer-frame" allow="autoplay; fullscreen"></iframe>
+    </div>
+</div>
 
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>

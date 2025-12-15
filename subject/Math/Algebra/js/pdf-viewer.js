@@ -27,7 +27,7 @@ let zoomLevel = 1;
 let rotation = 0;
 let isInverted = false;
 
-// 2. Prevent Browser Auto-Scroll Restoration (Fix for Page Jumping)
+// 2. Prevent Browser Auto-Scroll Restoration
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
@@ -35,7 +35,8 @@ if ('scrollRestoration' in history) {
 // 3. Render Buttons in Grid
 function renderPdfButtons() {
     const container = document.getElementById("pdf-grid-container");
-    if (!container) return;
+    // Safety check: যদি HTML এ কন্টেইনার না থাকে তবে এরর দেবে না
+    if (!container) return; 
     container.innerHTML = ""; 
 
     algebraPdfList.forEach((pdf, index) => {
@@ -62,7 +63,13 @@ function openPdf(index) {
     const modal = document.getElementById("fullScreenPdfModal");
     const frame = document.getElementById("pdfViewerFrame");
     const titleSpan = document.getElementById("pdfModalTitle");
-    const loader = document.getElementById("pdfLoader"); // Updated ID to match HTML
+    const loader = document.getElementById("pdfLoader");
+
+    // Safety Check: HTML এ আইডগুলো আছে কি না
+    if (!modal || !frame) {
+        console.error("Error: Modal or Iframe not found in HTML!");
+        return;
+    }
 
     // Reset View Settings
     zoomLevel = 1;
@@ -70,20 +77,22 @@ function openPdf(index) {
     isInverted = false;
     updateFrameTransform();
 
-    // Show Loader & Hide Frame
+    // Show Loader & Hide Frame initially
     if (loader) loader.style.display = "flex";
     frame.style.opacity = "0";
 
-    // Set Data
-    // Using 'preview' for cleaner UI without Google toolbars
+    // --- IMPORTANT FIX: Using '/preview' fixes X-Frame-Options Error ---
     frame.src = `https://drive.google.com/file/d/${pdfData.id}/preview`;
-    titleSpan.innerText = `${pdfData.title} (${index + 1}/${algebraPdfList.length})`;
+    
+    if(titleSpan) {
+        titleSpan.innerText = `${pdfData.title} (${index + 1}/${algebraPdfList.length})`;
+    }
 
     // Show Modal
     modal.style.display = "flex"; 
     document.body.style.overflow = "hidden"; // Stop background scroll
 
-    // Trigger Full Screen
+    // Trigger Full Screen (Optional, remove if annoying)
     enterFullScreen(modal);
 
     // When PDF Loads
@@ -122,7 +131,10 @@ function toggleInvert() {
 
 function updateFrameTransform() {
     const frame = document.getElementById("pdfViewerFrame");
+    if (!frame) return;
+
     const invertVal = isInverted ? "invert(1) hue-rotate(180deg)" : "none";
+    // Combine filters correctly
     frame.style.filter = invertVal;
     frame.style.transform = `scale(${zoomLevel}) rotate(${rotation}deg)`;
 }
@@ -132,8 +144,9 @@ function closePdf() {
     const modal = document.getElementById("fullScreenPdfModal");
     const frame = document.getElementById("pdfViewerFrame");
     
-    modal.style.display = "none";
-    frame.src = ""; // Clear source to stop buffering
+    if (modal) modal.style.display = "none";
+    if (frame) frame.src = ""; // Clear source to stop buffering/playing
+    
     document.body.style.overflow = "auto";
     exitFullScreen();
 }
@@ -143,7 +156,7 @@ document.addEventListener('keydown', function(event) {
     const modal = document.getElementById("fullScreenPdfModal");
     
     // Only execute if modal is open
-    if (modal.style.display !== "none" && modal.style.display !== "") { 
+    if (modal && modal.style.display !== "none" && modal.style.display !== "") { 
         
         // Navigation (Ctrl + Arrow)
         if (event.key === "ArrowRight" && event.ctrlKey) { 
@@ -162,14 +175,12 @@ document.addEventListener('keydown', function(event) {
         else if (event.key === "-") {
             adjustZoom(-0.1);
         }
-        
-        // Note: Normal Up/Down arrows will work for scrolling automatically 
-        // because we focused the iframe in the openPdf function.
     }
 });
 
 // Helper: Enter Full Screen
 function enterFullScreen(element) {
+    if (!element) return;
     if(element.requestFullscreen) element.requestFullscreen().catch(()=>{});
     else if(element.webkitRequestFullscreen) element.webkitRequestFullscreen();
     else if(element.mozRequestFullScreen) element.mozRequestFullScreen();
@@ -186,12 +197,12 @@ function exitFullScreen() {
 
 // 9. Initialize Page
 document.addEventListener("DOMContentLoaded", () => {
-    // FIX: Remove hash to prevent jumping to #pdf-notes
+    // FIX: Remove hash to prevent jumping
     if (window.location.hash) {
         history.replaceState(null, null, window.location.pathname);
     }
 
-    // FIX: Force scroll to top immediately
+    // FIX: Force scroll to top
     window.scrollTo(0, 0);
 
     // Render Buttons
