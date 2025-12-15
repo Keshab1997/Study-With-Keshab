@@ -6,12 +6,10 @@
         <title>Algebra (বীজগণিত) | Study With Keshab</title>
 
         <link rel="stylesheet" href="css/style.css" />
-
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         />
-
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
         <style>
@@ -19,7 +17,8 @@
                 visibility: hidden;
                 opacity: 0;
             }
-            /* টেবিল স্টাইল (লিডারবোর্ড ও রেজাল্টের জন্য) */
+            
+            /* Table Styles */
             .styled-table {
                 width: 100%;
                 border-collapse: collapse;
@@ -38,6 +37,88 @@
             .styled-table tbody tr {
                 border-bottom: 1px solid #dddddd;
             }
+
+            /* --- PDF MODAL STYLES (NEW) --- */
+            .pdf-btn {
+                display: block;
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 10px;
+                background: #f8f9fa;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                text-align: left;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                color: #333;
+                font-size: 16px;
+                text-decoration: none;
+            }
+            .pdf-btn:hover {
+                background: #009879;
+                color: white;
+                padding-left: 20px;
+            }
+            
+            /* The Modal (background) */
+            .modal {
+                display: none; 
+                position: fixed; 
+                z-index: 9999; 
+                left: 0;
+                top: 0;
+                width: 100%; 
+                height: 100%; 
+                overflow: hidden; 
+                background-color: rgba(0,0,0,0.8); 
+                backdrop-filter: blur(5px);
+            }
+
+            /* Modal Content */
+            .modal-content {
+                position: relative;
+                background-color: #fefefe;
+                margin: 2% auto; 
+                padding: 0;
+                border: 1px solid #888;
+                width: 95%;
+                height: 90%;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* Close Button */
+            .close-modal {
+                color: white;
+                position: absolute;
+                top: 10px;
+                right: 25px;
+                font-size: 35px;
+                font-weight: bold;
+                cursor: pointer;
+                z-index: 10001;
+            }
+            .close-modal:hover {
+                color: #f1f1f1;
+            }
+
+            /* Iframe Style */
+            #pdf-frame {
+                width: 100%;
+                height: 100%;
+                border: none;
+                border-radius: 0 0 10px 10px;
+            }
+            .modal-header {
+                padding: 10px;
+                background: #009879;
+                color: white;
+                border-radius: 10px 10px 0 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
         </style>
     </head>
     <body class="day-mode homepage theme-blue auth-loading">
@@ -46,78 +127,30 @@
         </div>
 
         <header class="main-header">
-            <img
-                src="images/logo.jpg"
-                alt="লোগো"
-                class="profile-pic"
-                id="logo-easter-egg"
-            />
+            <img src="images/logo.jpg" alt="লোগো" class="profile-pic" id="logo-easter-egg" />
             <div class="header-text">
                 <h1>অধ্যায়: বীজগণিত (Algebra)</h1>
                 <p>আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী</p>
             </div>
-            <button
-                id="dark-mode-toggle"
-                class="dark-mode-button"
-                title="দিন/রাত মোড পরিবর্তন করুন"
-            >
+            <button id="dark-mode-toggle" class="dark-mode-button">
                 <i class="fa-solid fa-moon"></i>
             </button>
         </header>
 
-        <div class="search-container">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input
-                type="text"
-                id="search-bar"
-                placeholder="যেকোনো সেকশন খুঁজুন..."
-            />
-        </div>
-
         <nav class="nav-grid">
-            <a href="../../../../index.html" class="nav-button color-home">
-                <i class="fa-solid fa-house"></i><span>হোম</span>
-            </a>
-            <a href="#dashboard" class="nav-button color-dashboard">
-                <i class="fa-solid fa-chart-line"></i><span>ড্যাশবোর্ড</span>
-            </a>
-            <a href="#class-notes" class="nav-button color-notes">
-                <i class="fa-solid fa-book-open"></i><span>ক্লাস নোট</span>
-            </a>
-            <a href="#pdf-notes" class="nav-button color-pdf">
-                <i class="fa-solid fa-file-pdf"></i><span>পিডিএফ নোট</span>
-            </a>
-            <a href="#quiz-sets" class="nav-button color-quiz">
-                <i class="fa-solid fa-file-circle-question"></i><span>কুইজ সেট</span>
-            </a>
-            <a
-                href="https://keshab1997.github.io/cbt-exam/index.html?exam=cbt6&chapter=Algebra"
-                class="nav-button color-cbt"
-            >
-                <i class="fa-solid fa-laptop-code"></i><span>CBT</span>
-            </a>
-            <a href="#result-section" class="nav-button color-result">
-                <i class="fa-solid fa-square-poll-vertical"></i><span>রেজাল্ট</span>
-            </a>
-            <a href="#leaderboard" class="nav-button color-leaderboard">
-                <i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span>
-            </a>
+            <a href="../../../../index.html" class="nav-button color-home"><i class="fa-solid fa-house"></i><span>হোম</span></a>
+            <a href="#dashboard" class="nav-button color-dashboard"><i class="fa-solid fa-chart-line"></i><span>ড্যাশবোর্ড</span></a>
+            <a href="#class-notes" class="nav-button color-notes"><i class="fa-solid fa-book-open"></i><span>ক্লাস নোট</span></a>
+            <a href="#pdf-notes" class="nav-button color-pdf"><i class="fa-solid fa-file-pdf"></i><span>পিডিএফ নোট</span></a>
+            <a href="#quiz-sets" class="nav-button color-quiz"><i class="fa-solid fa-file-circle-question"></i><span>কুইজ সেট</span></a>
+            <a href="#leaderboard" class="nav-button color-leaderboard"><i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span></a>
         </nav>
 
         <main>
-            <script>
-                const CURRENT_CHAPTER_NAME = "Algebra";
-            </script>
-
-            <!-- Profile Section (Data will come from Firebase) -->
+            <!-- Profile Section -->
             <section class="card" id="user-profile-card">
                 <div class="profile-header">
-                    <img
-                        id="user-profile-pic"
-                        src="images/default-avatar.png"
-                        alt="Profile Picture"
-                        class="profile-pic-large"
-                    />
+                    <img id="user-profile-pic" src="images/default-avatar.png" class="profile-pic-large" />
                     <div class="profile-info">
                         <h2 id="user-display-name">লোড হচ্ছে...</h2>
                         <p id="user-email">লোড হচ্ছে...</p>
@@ -127,204 +160,126 @@
 
             <!-- Dashboard Section -->
             <section class="card" id="dashboard">
-                <h2>
-                    <i class="fa-solid fa-chart-line icon-title"></i> আমার ড্যাশবোর্ড
-                </h2>
+                <h2><i class="fa-solid fa-chart-line icon-title"></i> আমার ড্যাশবোর্ড</h2>
                 <div style="padding: 20px; text-align: center;">
                     <canvas id="progressChart" width="400" height="200"></canvas>
-                    <p>আপনার বীজগণিত শেখার অগ্রগতি এখানে দেখা যাবে।</p>
                 </div>
             </section>
 
-            <!-- HTML Class Notes Links -->
-            <section class="card" id="class-notes">
-                <h2>
-                    <i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট
-                </h2>
-                <p>বীজগণিতের প্রতিটি অংশের বিস্তারিত আলোচনা পড়ুন।</p>
-                <div class="link-container styled-list">
-                    <a href="class/class1.html">
-                        <i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 01: Formulas
-                    </a>
-                    <a href="class/class2.html">
-                        <i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 02: Formulas
-                    </a>
-                    <a href="class/class3.html">
-                        <i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 03: Formulas
-                    </a>
-                    <a href="class/class4.html">
-                        <i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 04: Formulas
-                    </a>
-                </div>
-            </section>
-
-            <!-- PDF Notes Section (Updated with Google Drive Links) -->
+            <!-- PDF Notes Section (UPDATED) -->
             <section class="card" id="pdf-notes">
-                <h2>
-                    <i class="fa-solid fa-file-pdf icon-title"></i> পিডিএফ নোট
-                </h2>
-                <p>ক্লাসের সব পিডিএফ নোট নিচে দেওয়া হলো:</p>
+                <h2><i class="fa-solid fa-file-pdf icon-title"></i> পিডিএফ নোট</h2>
+                <p>পিডিএফ পড়তে নিচের বাটনে ক্লিক করুন:</p>
                 
-                <div class="link-container styled-list">
-                    <!-- Class 1 -->
-                    <a href="https://drive.google.com/file/d/1DrJwuYxGa2KMtavY2AoYEC8upqepCbQ_/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 01 Note
-                    </a>
-                    <!-- Class 2 -->
-                    <a href="https://drive.google.com/file/d/1ENgGdF4bASjRPrsRY_7afLHv4TjR36EV/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 02 Note
-                    </a>
-                    <!-- Class 3 -->
-                    <a href="https://drive.google.com/file/d/1E0BwPQvOUKGRA7ey2kI9jhF-_QOovPpN/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 03 Note
-                    </a>
-                    <!-- Class 4 -->
-                    <a href="https://drive.google.com/file/d/1EkSduQlX8ArAjuqSe24BoG8SoYmidCZT/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 04 Note
-                    </a>
-                    <!-- Class 5 -->
-                    <a href="https://drive.google.com/file/d/1EdO69C-oD3zmS9cMSfw_lcUU_JCPSBVR/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 05 Note
-                    </a>
-                    <!-- Class 6 -->
-                    <a href="https://drive.google.com/file/d/1E_DUmtM5akVE3YdxhEwfXm0OJ73y-l_g/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 06 Note
-                    </a>
-                    <!-- Class 7 -->
-                    <a href="https://drive.google.com/file/d/1E_AU-1aQ3RrDh36PqrC1BXCIjaGxhHMu/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 07 Note
-                    </a>
-                    <!-- Class 8 -->
-                    <a href="https://drive.google.com/file/d/1EZupU0EDonGCiGHRffVYl56NeCEY_0iw/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 08 Note
-                    </a>
-                    <!-- Class 9 -->
-                    <a href="https://drive.google.com/file/d/1ES0HZQk1o3LMjed-192smEAtvxUY8Yx6/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 09 Note
-                    </a>
-                    <!-- Class 10 -->
-                    <a href="https://drive.google.com/file/d/1EQ6rH5Wx1iDV2-TSRmWNGJCzFbqcQ6H0/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 10 Note
-                    </a>
-                    <!-- Class 11 -->
-                    <a href="https://drive.google.com/file/d/1ELs3g03I1xRK-DSvrh0w3JrN0HCNKuOQ/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 11 Note
-                    </a>
-                    <!-- Class 12 -->
-                    <a href="https://drive.google.com/file/d/1EKNkwW-gwpr60NLnRohwduoKyzw3OfLX/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 12 Note
-                    </a>
-                    <!-- Class 13 -->
-                    <a href="https://drive.google.com/file/d/1EKDQdJ6B28zgWkAgPYto1FL4foMgZrgH/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 13 Note
-                    </a>
-                    <!-- Class 14 -->
-                    <a href="https://drive.google.com/file/d/1EHi9KWTRpG8-ZLFpl9PCxgRYfVnlz5sT/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 14 Note
-                    </a>
-                    <!-- Class 15 -->
-                    <a href="https://drive.google.com/file/d/1EEe7PNo6rzTlQYJxwEoegMPPoGnI8K1R/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 15 Note
-                    </a>
-                    <!-- Class 16 -->
-                    <a href="https://drive.google.com/file/d/1E10eiL6oQ6NXeDaXzE5CAPBjJUWGi9j6/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 16 Note
-                    </a>
-                    <!-- Class 17 (or All Question Sheet) -->
-                    <a href="https://drive.google.com/file/d/1E0uiCMCqTEskfNO7sjepGsrGQsKUF_Xf/view?usp=sharing" target="_blank">
-                        <i class="fa-solid fa-file-pdf fa-fw"></i> Class 17 / All Question Sheet
-                    </a>
+                <div class="link-container">
+                    <!-- Buttons calling JS function with File ID -->
+                    <button class="pdf-btn" onclick="openPdf('1DrJwuYxGa2KMtavY2AoYEC8upqepCbQ_', 'Class 01 Note')"><i class="fa-solid fa-file-pdf"></i> Class 01 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1ENgGdF4bASjRPrsRY_7afLHv4TjR36EV', 'Class 02 Note')"><i class="fa-solid fa-file-pdf"></i> Class 02 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1E0BwPQvOUKGRA7ey2kI9jhF-_QOovPpN', 'Class 03 Note')"><i class="fa-solid fa-file-pdf"></i> Class 03 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1EkSduQlX8ArAjuqSe24BoG8SoYmidCZT', 'Class 04 Note')"><i class="fa-solid fa-file-pdf"></i> Class 04 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1EdO69C-oD3zmS9cMSfw_lcUU_JCPSBVR', 'Class 05 Note')"><i class="fa-solid fa-file-pdf"></i> Class 05 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1E_DUmtM5akVE3YdxhEwfXm0OJ73y-l_g', 'Class 06 Note')"><i class="fa-solid fa-file-pdf"></i> Class 06 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1E_AU-1aQ3RrDh36PqrC1BXCIjaGxhHMu', 'Class 07 Note')"><i class="fa-solid fa-file-pdf"></i> Class 07 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1EZupU0EDonGCiGHRffVYl56NeCEY_0iw', 'Class 08 Note')"><i class="fa-solid fa-file-pdf"></i> Class 08 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1ES0HZQk1o3LMjed-192smEAtvxUY8Yx6', 'Class 09 Note')"><i class="fa-solid fa-file-pdf"></i> Class 09 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1EQ6rH5Wx1iDV2-TSRmWNGJCzFbqcQ6H0', 'Class 10 Note')"><i class="fa-solid fa-file-pdf"></i> Class 10 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1ELs3g03I1xRK-DSvrh0w3JrN0HCNKuOQ', 'Class 11 Note')"><i class="fa-solid fa-file-pdf"></i> Class 11 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1EKNkwW-gwpr60NLnRohwduoKyzw3OfLX', 'Class 12 Note')"><i class="fa-solid fa-file-pdf"></i> Class 12 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1EKDQdJ6B28zgWkAgPYto1FL4foMgZrgH', 'Class 13 Note')"><i class="fa-solid fa-file-pdf"></i> Class 13 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1EHi9KWTRpG8-ZLFpl9PCxgRYfVnlz5sT', 'Class 14 Note')"><i class="fa-solid fa-file-pdf"></i> Class 14 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1EEe7PNo6rzTlQYJxwEoegMPPoGnI8K1R', 'Class 15 Note')"><i class="fa-solid fa-file-pdf"></i> Class 15 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1E10eiL6oQ6NXeDaXzE5CAPBjJUWGi9j6', 'Class 16 Note')"><i class="fa-solid fa-file-pdf"></i> Class 16 Note</button>
+                    <button class="pdf-btn" onclick="openPdf('1E0uiCMCqTEskfNO7sjepGsrGQsKUF_Xf', 'All Question Sheet')"><i class="fa-solid fa-file-pdf"></i> All Question Sheet</button>
                 </div>
             </section>
 
-            <!-- Quiz Sets -->
-            <section class="card disabled-section" id="quiz-sets">
-                <h2>
-                    <i class="fa-solid fa-file-circle-question icon-title"></i> কুইজ সেট
-                </h2>
-                <div class="link-container styled-list">
-                    <a href="quiz/set1.html"><i class="fa-solid fa-puzzle-piece fa-fw"></i> Quiz Set 01</a>
-                    <a href="quiz/set2.html"><i class="fa-solid fa-puzzle-piece fa-fw"></i> Quiz Set 02</a>
-                </div>
-            </section>
-
-            <!-- Leaderboard Section (Populated by Firebase) -->
+            <!-- Leaderboard Section -->
             <section class="card" id="leaderboard">
-                <h2>
-                    <i class="fa-solid fa-trophy icon-title"></i> লিডারবোর্ড
-                </h2>
+                <h2><i class="fa-solid fa-trophy icon-title"></i> লিডারবোর্ড</h2>
                 <table class="styled-table">
                     <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Name</th>
-                            <th>Score</th>
-                        </tr>
+                        <tr><th>Rank</th><th>Name</th><th>Score</th></tr>
                     </thead>
                     <tbody id="leaderboard-body">
-                        <!-- Firebase data will load here dynamically -->
-                        <tr>
-                            <td colspan="3" style="text-align:center;">ডেটা লোড হচ্ছে...</td>
-                        </tr>
+                        <tr><td colspan="3" style="text-align:center;">ডেটা লোড হচ্ছে...</td></tr>
                     </tbody>
                 </table>
             </section>
 
-            <!-- Result Section -->
-            <section class="card" id="result-section">
-                <h2>
-                    <i class="fa-solid fa-square-poll-vertical icon-title"></i> আমার রেজাল্ট
-                </h2>
-                <div class="link-container styled-list" id="result-container">
-                     <p>আপনার কুইজের ফলাফল এখানে দেখা যাবে।</p>
-                </div>
-            </section>
         </main>
 
-        <a id="back-to-top" href="#"><i class="fas fa-arrow-up"></i></a>
+        <!-- PDF VIEWER MODAL (HIDDEN BY DEFAULT) -->
+        <div id="pdfModal" class="modal">
+            <span class="close-modal" onclick="closePdf()">&times;</span>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="pdf-title">PDF View</span>
+                </div>
+                <!-- Google Drive Embed URL format -->
+                <iframe id="pdf-frame" src="" allow="autoplay"></iframe>
+            </div>
+        </div>
 
         <footer>
             <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
-            <div class="social-links">
-                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-            </div>
         </footer>
 
-        <!-- Firebase & Main Scripts -->
+        <!-- Scripts -->
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-        
-        <!-- Firebase Configuration File -->
         <script src="js/firebase-config.js"></script>
-        
-        <!-- Auth Check Script -->
-        <script>
-            (function () {
-                // Firebase লোড হওয়ার পর চেক করবে ইউজার লগইন আছে কিনা
-                if (typeof firebase !== 'undefined') {
-                    firebase.auth().onAuthStateChanged((user) => {
-                        if (!user) {
-                            window.location.href = "https://keshab1997.github.io/Study-With-Keshab/login.html";
-                        } else {
-                            // লোডিং স্ক্রিন সরিয়ে বডি দেখাবে
-                            document.body.classList.remove("auth-loading");
-                        }
-                    });
-                } else {
-                    console.error("Firebase SDK not loaded correctly.");
-                }
-            })();
-        </script>
-
-        <script
-            type="module"
-            src="https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js"
-        ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-        <!-- Main Logic Script (Handles Firebase Data Fetching) -->
         <script type="module" src="js/script.js"></script>
+
+        <!-- Custom Script for PDF Modal -->
+        <script>
+            // Auth Loading Handler
+            if (typeof firebase !== 'undefined') {
+                firebase.auth().onAuthStateChanged((user) => {
+                    if (!user) {
+                        window.location.href = "https://keshab1997.github.io/Study-With-Keshab/login.html";
+                    } else {
+                        document.body.classList.remove("auth-loading");
+                    }
+                });
+            }
+
+            // Function to Open PDF
+            function openPdf(fileId, title) {
+                const modal = document.getElementById("pdfModal");
+                const frame = document.getElementById("pdf-frame");
+                const titleSpan = document.getElementById("pdf-title");
+
+                // Google Drive Preview URL Format
+                const url = `https://drive.google.com/file/d/${fileId}/preview`;
+                
+                frame.src = url;
+                titleSpan.innerText = title;
+                modal.style.display = "block";
+                
+                // Disable scrolling on body
+                document.body.style.overflow = "hidden";
+            }
+
+            // Function to Close PDF
+            function closePdf() {
+                const modal = document.getElementById("pdfModal");
+                const frame = document.getElementById("pdf-frame");
+                
+                modal.style.display = "none";
+                frame.src = ""; // Clear source to stop loading
+                
+                // Enable scrolling on body
+                document.body.style.overflow = "auto";
+            }
+
+            // Close modal if clicked outside
+            window.onclick = function(event) {
+                const modal = document.getElementById("pdfModal");
+                if (event.target == modal) {
+                    closePdf();
+                }
+            }
+        </script>
     </body>
 </html>
