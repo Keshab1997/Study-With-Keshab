@@ -1,0 +1,119 @@
+/* css/pdf-viewer.css */
+
+/* PDF Button Grid Layout */
+.pdf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 10px;
+}
+
+/* Modern PDF Button Card */
+.pdf-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pdf-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 152, 121, 0.2);
+    border-color: #009879;
+}
+
+.pdf-card i {
+    font-size: 32px;
+    color: #ff4747; /* PDF Icon Color */
+}
+
+.pdf-card span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* --- FULL SCREEN MODAL VIEWER --- */
+.pdf-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 10000; /* Top of everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000; /* Pure black background */
+    overflow: hidden;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Modal Header Bar */
+.pdf-modal-header {
+    height: 50px;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    color: white;
+}
+
+.pdf-modal-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e0e0e0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Close Button (X) */
+.pdf-close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.pdf-close-btn:hover {
+    background: #ff4747;
+}
+
+/* Full Screen Iframe */
+.pdf-viewer-frame {
+    width: 100%;
+    height: calc(100% - 50px); /* Subtract header height */
+    border: none;
+    background: #333; /* Loading background */
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive adjustment */
+@media (max-width: 600px) {
+    .pdf-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+    }
+}

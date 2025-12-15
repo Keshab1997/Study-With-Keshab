@@ -1,3 +1,251 @@
+দারুণ পরিকল্পনা! আপনি চাচ্ছেন **HTML ফাইলটি ক্লিন রাখতে** এবং সব ডেটা (PDF Links) **JavaScript (বা ভবিষ্যতে Firebase)** থেকে লোড করতে, সাথে আপনার তৈরি করা নতুন **CSS এবং JS** ব্যবহার করে একটি মডার্ন PDF ভিউয়ার তৈরি করতে।
+
+আমি আপনার দেওয়া সব রিকোয়ারমেন্ট অনুযায়ী কোডগুলো সাজিয়ে দিচ্ছি। এখানে ৩টি ধাপ আছে:
+
+1.  **CSS ফাইল** (`css/pdf-viewer.css`)
+2.  **JS ফাইল** (`js/pdf-viewer.js`) - এখানে আমি আপনার দেওয়া Google Drive লিংকগুলো সাজিয়ে দিয়েছি।
+3.  **HTML ফাইল** (`Algebra.html`) - যেখানে শুধু স্ট্রাকচার থাকবে।
+
+---
+
+### ধাপ ১: CSS ফাইল তৈরি করুন
+আপনার ফোল্ডারে `css` ফোল্ডারের ভেতর **`pdf-viewer.css`** নামে একটি ফাইল তৈরি করুন এবং আপনার দেওয়া কোডটি পেস্ট করুন:
+
+```css
+/* css/pdf-viewer.css */
+
+/* PDF Button Grid Layout */
+.pdf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 10px;
+}
+
+/* Modern PDF Button Card */
+.pdf-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pdf-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 152, 121, 0.2);
+    border-color: #009879;
+}
+
+.pdf-card i {
+    font-size: 32px;
+    color: #ff4747; /* PDF Icon Color */
+}
+
+.pdf-card span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* --- FULL SCREEN MODAL VIEWER --- */
+.pdf-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 10000; /* Top of everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000; /* Pure black background */
+    overflow: hidden;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Modal Header Bar */
+.pdf-modal-header {
+    height: 50px;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    color: white;
+}
+
+.pdf-modal-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e0e0e0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Close Button (X) */
+.pdf-close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.pdf-close-btn:hover {
+    background: #ff4747;
+}
+
+/* Full Screen Iframe */
+.pdf-viewer-frame {
+    width: 100%;
+    height: calc(100% - 50px); /* Subtract header height */
+    border: none;
+    background: #333; /* Loading background */
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive adjustment */
+@media (max-width: 600px) {
+    .pdf-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+    }
+}
+```
+
+---
+
+### ধাপ ২: JS ফাইল তৈরি করুন
+আপনার `js` ফোল্ডারের ভেতর **`pdf-viewer.js`** নামে একটি ফাইল তৈরি করুন।
+*এখানে আমি আপনার দেওয়া লিংকগুলো থেকে ID বের করে একটি লিস্ট বানিয়ে দিয়েছি, যাতে HTML ফাইলে বারবার লিংক লিখতে না হয়।*
+
+```javascript
+// js/pdf-viewer.js
+
+// 1. PDF Data List (Firebase থেকে ডেটা আনার আগ পর্যন্ত এটি কাজ করবে)
+const algebraPdfList = [
+    { title: "Class 01 Note", id: "1DrJwuYxGa2KMtavY2AoYEC8upqepCbQ_" },
+    { title: "Class 02 Note", id: "1ENgGdF4bASjRPrsRY_7afLHv4TjR36EV" },
+    { title: "Class 03 Note", id: "1E0BwPQvOUKGRA7ey2kI9jhF-_QOovPpN" },
+    { title: "Class 04 Note", id: "1EkSduQlX8ArAjuqSe24BoG8SoYmidCZT" },
+    { title: "Class 05 Note", id: "1EdO69C-oD3zmS9cMSfw_lcUU_JCPSBVR" },
+    { title: "Class 06 Note", id: "1E_DUmtM5akVE3YdxhEwfXm0OJ73y-l_g" },
+    { title: "Class 07 Note", id: "1E_AU-1aQ3RrDh36PqrC1BXCIjaGxhHMu" },
+    { title: "Class 08 Note", id: "1EZupU0EDonGCiGHRffVYl56NeCEY_0iw" },
+    { title: "Class 09 Note", id: "1ES0HZQk1o3LMjed-192smEAtvxUY8Yx6" },
+    { title: "Class 10 Note", id: "1EQ6rH5Wx1iDV2-TSRmWNGJCzFbqcQ6H0" },
+    { title: "Class 11 Note", id: "1ELs3g03I1xRK-DSvrh0w3JrN0HCNKuOQ" },
+    { title: "Class 12 Note", id: "1EKNkwW-gwpr60NLnRohwduoKyzw3OfLX" },
+    { title: "Class 13 Note", id: "1EKDQdJ6B28zgWkAgPYto1FL4foMgZrgH" },
+    { title: "Class 14 Note", id: "1EHi9KWTRpG8-ZLFpl9PCxgRYfVnlz5sT" },
+    { title: "Class 15 Note", id: "1EEe7PNo6rzTlQYJxwEoegMPPoGnI8K1R" },
+    { title: "Class 16 Note", id: "1E10eiL6oQ6NXeDaXzE5CAPBjJUWGi9j6" },
+    { title: "Class 17 Note", id: "1E0uiCMCqTEskfNO7sjepGsrGQsKUF_Xf" }
+];
+
+// 2. Function to Render PDF Buttons Dynamically
+function renderPdfButtons() {
+    const container = document.getElementById("pdf-grid-container");
+    
+    if (!container) return; // যদি কন্টেইনার না থাকে তবে থামুন
+
+    container.innerHTML = ""; // আগের কন্টেন্ট ক্লিয়ার করা
+
+    algebraPdfList.forEach((pdf, index) => {
+        // Create Card Div
+        const card = document.createElement("div");
+        card.className = "pdf-card";
+        card.onclick = () => openPdf(pdf.id, pdf.title);
+
+        // Icon
+        const icon = document.createElement("i");
+        icon.className = "fa-solid fa-file-pdf";
+
+        // Title
+        const span = document.createElement("span");
+        span.innerText = pdf.title;
+
+        // Append to Card
+        card.appendChild(icon);
+        card.appendChild(span);
+
+        // Append to Container
+        container.appendChild(card);
+    });
+}
+
+// 3. Function to Open PDF in Full Screen Modal
+function openPdf(fileId, title) {
+    const modal = document.getElementById("fullScreenPdfModal");
+    const frame = document.getElementById("pdfViewerFrame");
+    const titleSpan = document.getElementById("pdfModalTitle");
+
+    // Google Drive Preview URL
+    const url = `https://drive.google.com/file/d/${fileId}/preview`;
+    
+    // Set content
+    frame.src = url;
+    titleSpan.innerText = title;
+
+    // Show Modal
+    modal.style.display = "block";
+    
+    // Disable background scrolling
+    document.body.style.overflow = "hidden";
+}
+
+// 4. Function to Close PDF
+function closePdf() {
+    const modal = document.getElementById("fullScreenPdfModal");
+    const frame = document.getElementById("pdfViewerFrame");
+    
+    // Hide Modal
+    modal.style.display = "none";
+    
+    // Clear src to save memory
+    frame.src = ""; 
+    
+    // Re-enable background scrolling
+    document.body.style.overflow = "auto";
+}
+
+// Close modal if user presses 'Escape' key
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+        closePdf();
+    }
+});
+
+// Load buttons when page loads
+document.addEventListener("DOMContentLoaded", renderPdfButtons);
+```
+
+---
+
+### ধাপ ৩: HTML ফাইল আপডেট (`Algebra.html`)
+এখন আপনার মূল ফাইলে নিচের কোডটি ব্যবহার করুন। লক্ষ্য করুন `#pdf-notes` সেকশনে কোনো লিংক নেই, শুধু একটি খালি `div` আছে যেখানে JS ডেটা বসিয়ে দেবে। এবং নিচে Modal টি যোগ করা হয়েছে।
+
+```html
 <!doctype html>
 <html lang="bn">
     <head>
@@ -5,11 +253,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Algebra (বীজগণিত) | Study With Keshab</title>
 
+        <!-- Main Style -->
         <link rel="stylesheet" href="css/style.css" />
+        <!-- New PDF Viewer Style -->
+        <link rel="stylesheet" href="css/pdf-viewer.css" />
+
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         />
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
         <style>
@@ -17,8 +270,6 @@
                 visibility: hidden;
                 opacity: 0;
             }
-            
-            /* Table Styles */
             .styled-table {
                 width: 100%;
                 border-collapse: collapse;
@@ -37,88 +288,6 @@
             .styled-table tbody tr {
                 border-bottom: 1px solid #dddddd;
             }
-
-            /* --- PDF MODAL STYLES (NEW) --- */
-            .pdf-btn {
-                display: block;
-                width: 100%;
-                padding: 12px;
-                margin-bottom: 10px;
-                background: #f8f9fa;
-                border: 1px solid #ddd;
-                border-radius: 8px;
-                text-align: left;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                color: #333;
-                font-size: 16px;
-                text-decoration: none;
-            }
-            .pdf-btn:hover {
-                background: #009879;
-                color: white;
-                padding-left: 20px;
-            }
-            
-            /* The Modal (background) */
-            .modal {
-                display: none; 
-                position: fixed; 
-                z-index: 9999; 
-                left: 0;
-                top: 0;
-                width: 100%; 
-                height: 100%; 
-                overflow: hidden; 
-                background-color: rgba(0,0,0,0.8); 
-                backdrop-filter: blur(5px);
-            }
-
-            /* Modal Content */
-            .modal-content {
-                position: relative;
-                background-color: #fefefe;
-                margin: 2% auto; 
-                padding: 0;
-                border: 1px solid #888;
-                width: 95%;
-                height: 90%;
-                border-radius: 10px;
-                display: flex;
-                flex-direction: column;
-            }
-
-            /* Close Button */
-            .close-modal {
-                color: white;
-                position: absolute;
-                top: 10px;
-                right: 25px;
-                font-size: 35px;
-                font-weight: bold;
-                cursor: pointer;
-                z-index: 10001;
-            }
-            .close-modal:hover {
-                color: #f1f1f1;
-            }
-
-            /* Iframe Style */
-            #pdf-frame {
-                width: 100%;
-                height: 100%;
-                border: none;
-                border-radius: 0 0 10px 10px;
-            }
-            .modal-header {
-                padding: 10px;
-                background: #009879;
-                color: white;
-                border-radius: 10px 10px 0 0;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
         </style>
     </head>
     <body class="day-mode homepage theme-blue auth-loading">
@@ -132,10 +301,15 @@
                 <h1>অধ্যায়: বীজগণিত (Algebra)</h1>
                 <p>আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী</p>
             </div>
-            <button id="dark-mode-toggle" class="dark-mode-button">
+            <button id="dark-mode-toggle" class="dark-mode-button" title="দিন/রাত মোড পরিবর্তন করুন">
                 <i class="fa-solid fa-moon"></i>
             </button>
         </header>
+
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="search-bar" placeholder="যেকোনো সেকশন খুঁজুন..." />
+        </div>
 
         <nav class="nav-grid">
             <a href="../../../../index.html" class="nav-button color-home"><i class="fa-solid fa-house"></i><span>হোম</span></a>
@@ -143,14 +317,21 @@
             <a href="#class-notes" class="nav-button color-notes"><i class="fa-solid fa-book-open"></i><span>ক্লাস নোট</span></a>
             <a href="#pdf-notes" class="nav-button color-pdf"><i class="fa-solid fa-file-pdf"></i><span>পিডিএফ নোট</span></a>
             <a href="#quiz-sets" class="nav-button color-quiz"><i class="fa-solid fa-file-circle-question"></i><span>কুইজ সেট</span></a>
+            <a href="https://keshab1997.github.io/cbt-exam/index.html?exam=cbt6&chapter=Algebra" class="nav-button color-cbt">
+                <i class="fa-solid fa-laptop-code"></i><span>CBT</span>
+            </a>
+            <a href="#result-section" class="nav-button color-result"><i class="fa-solid fa-square-poll-vertical"></i><span>রেজাল্ট</span></a>
             <a href="#leaderboard" class="nav-button color-leaderboard"><i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span></a>
         </nav>
 
         <main>
-            <!-- Profile Section -->
+            <script>
+                const CURRENT_CHAPTER_NAME = "Algebra";
+            </script>
+
             <section class="card" id="user-profile-card">
                 <div class="profile-header">
-                    <img id="user-profile-pic" src="images/default-avatar.png" class="profile-pic-large" />
+                    <img id="user-profile-pic" src="images/default-avatar.png" alt="Profile Picture" class="profile-pic-large" />
                     <div class="profile-info">
                         <h2 id="user-display-name">লোড হচ্ছে...</h2>
                         <p id="user-email">লোড হচ্ছে...</p>
@@ -158,83 +339,101 @@
                 </div>
             </section>
 
-            <!-- Dashboard Section -->
             <section class="card" id="dashboard">
                 <h2><i class="fa-solid fa-chart-line icon-title"></i> আমার ড্যাশবোর্ড</h2>
                 <div style="padding: 20px; text-align: center;">
                     <canvas id="progressChart" width="400" height="200"></canvas>
+                    <p>আপনার বীজগণিত শেখার অগ্রগতি এখানে দেখা যাবে।</p>
                 </div>
             </section>
 
-            <!-- PDF Notes Section (UPDATED) -->
+            <section class="card" id="class-notes">
+                <h2><i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট</h2>
+                <p>বীজগণিতের প্রতিটি অংশের বিস্তারিত আলোচনা পড়ুন।</p>
+                <div class="link-container styled-list">
+                    <a href="class/class1.html"><i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 01: Formulas</a>
+                    <a href="class/class2.html"><i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 02: Formulas</a>
+                    <a href="class/class3.html"><i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 03: Formulas</a>
+                    <a href="class/class4.html"><i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 04: Formulas</a>
+                </div>
+            </section>
+
+            <!-- PDF Section Updated: Now uses JS Grid -->
             <section class="card" id="pdf-notes">
                 <h2><i class="fa-solid fa-file-pdf icon-title"></i> পিডিএফ নোট</h2>
-                <p>পিডিএফ পড়তে নিচের বাটনে ক্লিক করুন:</p>
+                <p>ক্লাসের সব পিডিএফ নোট (ক্লিক করে দেখুন):</p>
                 
-                <div class="link-container">
-                    <!-- Buttons calling JS function with File ID -->
-                    <button class="pdf-btn" onclick="openPdf('1DrJwuYxGa2KMtavY2AoYEC8upqepCbQ_', 'Class 01 Note')"><i class="fa-solid fa-file-pdf"></i> Class 01 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1ENgGdF4bASjRPrsRY_7afLHv4TjR36EV', 'Class 02 Note')"><i class="fa-solid fa-file-pdf"></i> Class 02 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1E0BwPQvOUKGRA7ey2kI9jhF-_QOovPpN', 'Class 03 Note')"><i class="fa-solid fa-file-pdf"></i> Class 03 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1EkSduQlX8ArAjuqSe24BoG8SoYmidCZT', 'Class 04 Note')"><i class="fa-solid fa-file-pdf"></i> Class 04 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1EdO69C-oD3zmS9cMSfw_lcUU_JCPSBVR', 'Class 05 Note')"><i class="fa-solid fa-file-pdf"></i> Class 05 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1E_DUmtM5akVE3YdxhEwfXm0OJ73y-l_g', 'Class 06 Note')"><i class="fa-solid fa-file-pdf"></i> Class 06 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1E_AU-1aQ3RrDh36PqrC1BXCIjaGxhHMu', 'Class 07 Note')"><i class="fa-solid fa-file-pdf"></i> Class 07 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1EZupU0EDonGCiGHRffVYl56NeCEY_0iw', 'Class 08 Note')"><i class="fa-solid fa-file-pdf"></i> Class 08 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1ES0HZQk1o3LMjed-192smEAtvxUY8Yx6', 'Class 09 Note')"><i class="fa-solid fa-file-pdf"></i> Class 09 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1EQ6rH5Wx1iDV2-TSRmWNGJCzFbqcQ6H0', 'Class 10 Note')"><i class="fa-solid fa-file-pdf"></i> Class 10 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1ELs3g03I1xRK-DSvrh0w3JrN0HCNKuOQ', 'Class 11 Note')"><i class="fa-solid fa-file-pdf"></i> Class 11 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1EKNkwW-gwpr60NLnRohwduoKyzw3OfLX', 'Class 12 Note')"><i class="fa-solid fa-file-pdf"></i> Class 12 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1EKDQdJ6B28zgWkAgPYto1FL4foMgZrgH', 'Class 13 Note')"><i class="fa-solid fa-file-pdf"></i> Class 13 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1EHi9KWTRpG8-ZLFpl9PCxgRYfVnlz5sT', 'Class 14 Note')"><i class="fa-solid fa-file-pdf"></i> Class 14 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1EEe7PNo6rzTlQYJxwEoegMPPoGnI8K1R', 'Class 15 Note')"><i class="fa-solid fa-file-pdf"></i> Class 15 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1E10eiL6oQ6NXeDaXzE5CAPBjJUWGi9j6', 'Class 16 Note')"><i class="fa-solid fa-file-pdf"></i> Class 16 Note</button>
-                    <button class="pdf-btn" onclick="openPdf('1E0uiCMCqTEskfNO7sjepGsrGQsKUF_Xf', 'All Question Sheet')"><i class="fa-solid fa-file-pdf"></i> All Question Sheet</button>
+                <!-- This container will be filled by JS -->
+                <div class="pdf-grid" id="pdf-grid-container">
+                    <!-- JS will inject buttons here -->
+                    <div style="text-align:center; width:100%;">লোড হচ্ছে...</div>
                 </div>
             </section>
 
-            <!-- Leaderboard Section -->
+            <section class="card disabled-section" id="quiz-sets">
+                <h2><i class="fa-solid fa-file-circle-question icon-title"></i> কুইজ সেট</h2>
+                <div class="link-container styled-list">
+                    <a href="quiz/set1.html"><i class="fa-solid fa-puzzle-piece fa-fw"></i> Quiz Set 01</a>
+                    <a href="quiz/set2.html"><i class="fa-solid fa-puzzle-piece fa-fw"></i> Quiz Set 02</a>
+                </div>
+            </section>
+
             <section class="card" id="leaderboard">
                 <h2><i class="fa-solid fa-trophy icon-title"></i> লিডারবোর্ড</h2>
                 <table class="styled-table">
                     <thead>
-                        <tr><th>Rank</th><th>Name</th><th>Score</th></tr>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
                     </thead>
-                    <tbody id="leaderboard-body">
-                        <tr><td colspan="3" style="text-align:center;">ডেটা লোড হচ্ছে...</td></tr>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Sample Student</td>
+                            <td>100</td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
 
+            <section class="card" id="result-section">
+                <h2><i class="fa-solid fa-square-poll-vertical icon-title"></i> আমার রেজাল্ট</h2>
+                <div class="link-container styled-list">
+                     <p>আপনার কুইজের ফলাফল এখানে দেখা যাবে।</p>
+                </div>
+            </section>
         </main>
 
-        <!-- PDF VIEWER MODAL (HIDDEN BY DEFAULT) -->
-        <div id="pdfModal" class="modal">
-            <span class="close-modal" onclick="closePdf()">&times;</span>
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span id="pdf-title">PDF View</span>
-                </div>
-                <!-- Google Drive Embed URL format -->
-                <iframe id="pdf-frame" src="" allow="autoplay"></iframe>
-            </div>
-        </div>
+        <a id="back-to-top" href="#"><i class="fas fa-arrow-up"></i></a>
 
         <footer>
             <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
         </footer>
 
-        <!-- Scripts -->
+        <!-- Hidden PDF Viewer Modal -->
+        <div id="fullScreenPdfModal" class="pdf-modal">
+            <div class="pdf-modal-header">
+                <span class="pdf-modal-title" id="pdfModalTitle">PDF Viewer</span>
+                <button class="pdf-close-btn" onclick="closePdf()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <iframe id="pdfViewerFrame" class="pdf-viewer-frame" allow="autoplay"></iframe>
+        </div>
+
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
         <script src="js/firebase-config.js"></script>
-        <script type="module" src="js/script.js"></script>
-
-        <!-- Custom Script for PDF Modal -->
+        
         <script>
-            // Auth Loading Handler
-            if (typeof firebase !== 'undefined') {
+            (function () {
                 firebase.auth().onAuthStateChanged((user) => {
                     if (!user) {
                         window.location.href = "https://keshab1997.github.io/Study-With-Keshab/login.html";
@@ -242,44 +441,16 @@
                         document.body.classList.remove("auth-loading");
                     }
                 });
-            }
-
-            // Function to Open PDF
-            function openPdf(fileId, title) {
-                const modal = document.getElementById("pdfModal");
-                const frame = document.getElementById("pdf-frame");
-                const titleSpan = document.getElementById("pdf-title");
-
-                // Google Drive Preview URL Format
-                const url = `https://drive.google.com/file/d/${fileId}/preview`;
-                
-                frame.src = url;
-                titleSpan.innerText = title;
-                modal.style.display = "block";
-                
-                // Disable scrolling on body
-                document.body.style.overflow = "hidden";
-            }
-
-            // Function to Close PDF
-            function closePdf() {
-                const modal = document.getElementById("pdfModal");
-                const frame = document.getElementById("pdf-frame");
-                
-                modal.style.display = "none";
-                frame.src = ""; // Clear source to stop loading
-                
-                // Enable scrolling on body
-                document.body.style.overflow = "auto";
-            }
-
-            // Close modal if clicked outside
-            window.onclick = function(event) {
-                const modal = document.getElementById("pdfModal");
-                if (event.target == modal) {
-                    closePdf();
-                }
-            }
+            })();
         </script>
+
+        <script type="module" src="https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+        <!-- Main Script -->
+        <script type="module" src="js/script.js"></script>
+        <!-- PDF Viewer Logic -->
+        <script src="js/pdf-viewer.js"></script>
     </body>
 </html>
+```
