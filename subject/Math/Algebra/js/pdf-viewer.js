@@ -1,6 +1,6 @@
 // js/pdf-viewer.js
 
-// 1. PDF Data List (Firebase থেকে ডেটা আনার আগ পর্যন্ত এটি কাজ করবে)
+// 1. PDF Data List
 const algebraPdfList = [
     { title: "Class 01 Note", id: "1DrJwuYxGa2KMtavY2AoYEC8upqepCbQ_" },
     { title: "Class 02 Note", id: "1ENgGdF4bASjRPrsRY_7afLHv4TjR36EV" },
@@ -21,78 +21,155 @@ const algebraPdfList = [
     { title: "Class 17 Note", id: "1E0uiCMCqTEskfNO7sjepGsrGQsKUF_Xf" }
 ];
 
-// 2. Function to Render PDF Buttons Dynamically
+// State Variables
+let currentPdfIndex = 0;
+let zoomLevel = 1;
+let rotation = 0;
+let isInverted = false;
+
+// 2. Render Buttons
 function renderPdfButtons() {
     const container = document.getElementById("pdf-grid-container");
-    
-    if (!container) return; // যদি কন্টেইনার না থাকে তবে থামুন
-
-    container.innerHTML = ""; // আগের কন্টেন্ট ক্লিয়ার করা
+    if (!container) return;
+    container.innerHTML = ""; 
 
     algebraPdfList.forEach((pdf, index) => {
-        // Create Card Div
         const card = document.createElement("div");
         card.className = "pdf-card";
-        card.onclick = () => openPdf(pdf.id, pdf.title);
-
-        // Icon
-        const icon = document.createElement("i");
-        icon.className = "fa-solid fa-file-pdf";
-
-        // Title
-        const span = document.createElement("span");
-        span.innerText = pdf.title;
-
-        // Append to Card
-        card.appendChild(icon);
-        card.appendChild(span);
-
-        // Append to Container
+        card.onclick = () => openPdf(index);
+        
+        card.innerHTML = `
+            <i class="fa-solid fa-file-pdf"></i>
+            <span>${pdf.title}</span>
+        `;
         container.appendChild(card);
     });
 }
 
-// 3. Function to Open PDF in Full Screen Modal
-function openPdf(fileId, title) {
+// 3. Open PDF
+function openPdf(index) {
+    if (index < 0 || index >= algebraPdfList.length) return;
+
+    currentPdfIndex = index;
+    const pdfData = algebraPdfList[index];
+
     const modal = document.getElementById("fullScreenPdfModal");
     const frame = document.getElementById("pdfViewerFrame");
     const titleSpan = document.getElementById("pdfModalTitle");
+    const loader = document.querySelector(".pdf-loader");
 
-    // Google Drive Preview URL
-    const url = `https://drive.google.com/file/d/${fileId}/preview`;
-    
-    // Set content
-    frame.src = url;
-    titleSpan.innerText = title;
+    // Reset View Settings
+    zoomLevel = 1;
+    rotation = 0;
+    isInverted = false;
+    updateFrameTransform();
+
+    // Show Loader
+    loader.style.display = "block";
+    frame.style.opacity = "0";
+
+    // Set URL (Preview Mode)
+    frame.src = `https://drive.google.com/file/d/${pdfData.id}/preview`;
+    titleSpan.innerText = `${pdfData.title} (${index + 1}/${algebraPdfList.length})`;
 
     // Show Modal
-    modal.style.display = "block";
-    
-    // Disable background scrolling
+    modal.style.display = "flex"; // Changed to flex for layout
     document.body.style.overflow = "hidden";
+
+    // Enter Full Screen
+    enterFullScreen(modal);
+
+    // Focus Hack for Keyboard Scrolling
+    frame.onload = function() {
+        loader.style.display = "none";
+        frame.style.opacity = "1";
+        frame.focus(); // Important: Focus iframe so arrow keys work for scrolling
+    };
 }
 
-// 4. Function to Close PDF
+// 4. Change PDF (Next/Prev)
+function changePdf(direction) {
+    const newIndex = currentPdfIndex + direction;
+    if (newIndex >= 0 && newIndex < algebraPdfList.length) {
+        openPdf(newIndex);
+    }
+}
+
+// 5. Advanced Controls (Zoom, Rotate, Invert)
+function adjustZoom(delta) {
+    zoomLevel += delta;
+    if (zoomLevel < 0.5) zoomLevel = 0.5; // Min Zoom
+    if (zoomLevel > 3.0) zoomLevel = 3.0; // Max Zoom
+    updateFrameTransform();
+}
+
+function rotatePdf() {
+    rotation = (rotation + 90) % 360;
+    updateFrameTransform();
+}
+
+function toggleInvert() {
+    isInverted = !isInverted;
+    updateFrameTransform();
+}
+
+function updateFrameTransform() {
+    const frame = document.getElementById("pdfViewerFrame");
+    const invertVal = isInverted ? "invert(1) hue-rotate(180deg)" : "none";
+    frame.style.filter = invertVal;
+    frame.style.transform = `scale(${zoomLevel}) rotate(${rotation}deg)`;
+}
+
+// 6. Close PDF
 function closePdf() {
     const modal = document.getElementById("fullScreenPdfModal");
     const frame = document.getElementById("pdfViewerFrame");
     
-    // Hide Modal
     modal.style.display = "none";
-    
-    // Clear src to save memory
     frame.src = ""; 
-    
-    // Re-enable background scrolling
     document.body.style.overflow = "auto";
+    exitFullScreen();
 }
 
-// Close modal if user presses 'Escape' key
+// 7. Keyboard Controls
 document.addEventListener('keydown', function(event) {
-    if (event.key === "Escape") {
-        closePdf();
+    const modal = document.getElementById("fullScreenPdfModal");
+    if (modal.style.display !== "none") { // If modal is open
+        
+        // Navigation
+        if (event.key === "ArrowRight" && event.ctrlKey) { 
+            // Ctrl + Right Arrow -> Next PDF (Prevent conflict with scroll)
+            changePdf(1); 
+        } 
+        else if (event.key === "ArrowLeft" && event.ctrlKey) { 
+            // Ctrl + Left Arrow -> Prev PDF
+            changePdf(-1); 
+        }
+        else if (event.key === "Escape") {
+            closePdf();
+        }
+        // Zoom
+        else if (event.key === "+" || event.key === "=") {
+            adjustZoom(0.1);
+        }
+        else if (event.key === "-") {
+            adjustZoom(-0.1);
+        }
+
+        // Note: Simple ArrowUp/ArrowDown will naturally scroll the iframe 
+        // IF the iframe has focus. We let that happen natively.
     }
 });
 
-// Load buttons when page loads
+// Helper: Full Screen
+function enterFullScreen(element) {
+    if(element.requestFullscreen) element.requestFullscreen().catch(()=>{});
+    else if(element.webkitRequestFullscreen) element.webkitRequestFullscreen();
+}
+
+function exitFullScreen() {
+    if(document.exitFullscreen) document.exitFullscreen().catch(()=>{});
+}
+
+// Init
 document.addEventListener("DOMContentLoaded", renderPdfButtons);
