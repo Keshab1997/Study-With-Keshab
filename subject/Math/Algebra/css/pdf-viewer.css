@@ -130,17 +130,49 @@
     transform-origin: center top;
 }
 
-/* Loading Indicator */
-.pdf-loader {
+/* Loading Spinner Animation */
+.pdf-loader-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
-    font-size: 18px;
-    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 5; /* Ensure it's behind the iframe but visible when iframe is transparent */
 }
 
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #009879;
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: 15px;
+}
+
+.loading-text {
+    color: #e0e0e0;
+    font-size: 14px;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* The Iframe Itself */
+.pdf-viewer-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    opacity: 0; /* Hidden initially */
+    transition: opacity 0.5s ease; /* Fade in effect */
+    background: #1a1a1a; /* Match background to avoid white flash */
+}
 /* Animation */
 @keyframes fadeIn {
     from { opacity: 0; }

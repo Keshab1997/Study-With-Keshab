@@ -27,7 +27,12 @@ let zoomLevel = 1;
 let rotation = 0;
 let isInverted = false;
 
-// 2. Render Buttons
+// 2. Prevent Browser Auto-Scroll Restoration (Fix for Page Jumping)
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// 3. Render Buttons in Grid
 function renderPdfButtons() {
     const container = document.getElementById("pdf-grid-container");
     if (!container) return;
@@ -46,17 +51,18 @@ function renderPdfButtons() {
     });
 }
 
-// 3. Open PDF
+// 4. Open PDF Logic
 function openPdf(index) {
     if (index < 0 || index >= algebraPdfList.length) return;
 
     currentPdfIndex = index;
     const pdfData = algebraPdfList[index];
 
+    // Get Elements
     const modal = document.getElementById("fullScreenPdfModal");
     const frame = document.getElementById("pdfViewerFrame");
     const titleSpan = document.getElementById("pdfModalTitle");
-    const loader = document.querySelector(".pdf-loader");
+    const loader = document.getElementById("pdfLoader"); // Updated ID to match HTML
 
     // Reset View Settings
     zoomLevel = 1;
@@ -64,30 +70,31 @@ function openPdf(index) {
     isInverted = false;
     updateFrameTransform();
 
-    // Show Loader
-    loader.style.display = "block";
+    // Show Loader & Hide Frame
+    if (loader) loader.style.display = "flex";
     frame.style.opacity = "0";
 
-    // Set URL (Preview Mode)
+    // Set Data
+    // Using 'preview' for cleaner UI without Google toolbars
     frame.src = `https://drive.google.com/file/d/${pdfData.id}/preview`;
     titleSpan.innerText = `${pdfData.title} (${index + 1}/${algebraPdfList.length})`;
 
     // Show Modal
-    modal.style.display = "flex"; // Changed to flex for layout
-    document.body.style.overflow = "hidden";
+    modal.style.display = "flex"; 
+    document.body.style.overflow = "hidden"; // Stop background scroll
 
-    // Enter Full Screen
+    // Trigger Full Screen
     enterFullScreen(modal);
 
-    // Focus Hack for Keyboard Scrolling
+    // When PDF Loads
     frame.onload = function() {
-        loader.style.display = "none";
-        frame.style.opacity = "1";
-        frame.focus(); // Important: Focus iframe so arrow keys work for scrolling
+        if (loader) loader.style.display = "none"; // Hide Loader
+        frame.style.opacity = "1"; // Show Frame
+        frame.focus(); // Focus so arrow keys scroll the iframe
     };
 }
 
-// 4. Change PDF (Next/Prev)
+// 5. Change PDF (Next/Prev)
 function changePdf(direction) {
     const newIndex = currentPdfIndex + direction;
     if (newIndex >= 0 && newIndex < algebraPdfList.length) {
@@ -95,7 +102,7 @@ function changePdf(direction) {
     }
 }
 
-// 5. Advanced Controls (Zoom, Rotate, Invert)
+// 6. Advanced Controls (Zoom, Rotate, Invert)
 function adjustZoom(delta) {
     zoomLevel += delta;
     if (zoomLevel < 0.5) zoomLevel = 0.5; // Min Zoom
@@ -120,29 +127,29 @@ function updateFrameTransform() {
     frame.style.transform = `scale(${zoomLevel}) rotate(${rotation}deg)`;
 }
 
-// 6. Close PDF
+// 7. Close PDF
 function closePdf() {
     const modal = document.getElementById("fullScreenPdfModal");
     const frame = document.getElementById("pdfViewerFrame");
     
     modal.style.display = "none";
-    frame.src = ""; 
+    frame.src = ""; // Clear source to stop buffering
     document.body.style.overflow = "auto";
     exitFullScreen();
 }
 
-// 7. Keyboard Controls
+// 8. Keyboard Shortcuts
 document.addEventListener('keydown', function(event) {
     const modal = document.getElementById("fullScreenPdfModal");
-    if (modal.style.display !== "none") { // If modal is open
+    
+    // Only execute if modal is open
+    if (modal.style.display !== "none" && modal.style.display !== "") { 
         
-        // Navigation
+        // Navigation (Ctrl + Arrow)
         if (event.key === "ArrowRight" && event.ctrlKey) { 
-            // Ctrl + Right Arrow -> Next PDF (Prevent conflict with scroll)
             changePdf(1); 
         } 
         else if (event.key === "ArrowLeft" && event.ctrlKey) { 
-            // Ctrl + Left Arrow -> Prev PDF
             changePdf(-1); 
         }
         else if (event.key === "Escape") {
@@ -155,21 +162,38 @@ document.addEventListener('keydown', function(event) {
         else if (event.key === "-") {
             adjustZoom(-0.1);
         }
-
-        // Note: Simple ArrowUp/ArrowDown will naturally scroll the iframe 
-        // IF the iframe has focus. We let that happen natively.
+        
+        // Note: Normal Up/Down arrows will work for scrolling automatically 
+        // because we focused the iframe in the openPdf function.
     }
 });
 
-// Helper: Full Screen
+// Helper: Enter Full Screen
 function enterFullScreen(element) {
     if(element.requestFullscreen) element.requestFullscreen().catch(()=>{});
     else if(element.webkitRequestFullscreen) element.webkitRequestFullscreen();
+    else if(element.mozRequestFullScreen) element.mozRequestFullScreen();
+    else if(element.msRequestFullscreen) element.msRequestFullscreen();
 }
 
+// Helper: Exit Full Screen
 function exitFullScreen() {
     if(document.exitFullscreen) document.exitFullscreen().catch(()=>{});
+    else if(document.webkitExitFullscreen) document.webkitExitFullscreen();
+    else if(document.mozCancelFullScreen) document.mozCancelFullScreen();
+    else if(document.msExitFullscreen) document.msExitFullscreen();
 }
 
-// Init
-document.addEventListener("DOMContentLoaded", renderPdfButtons);
+// 9. Initialize Page
+document.addEventListener("DOMContentLoaded", () => {
+    // FIX: Remove hash to prevent jumping to #pdf-notes
+    if (window.location.hash) {
+        history.replaceState(null, null, window.location.pathname);
+    }
+
+    // FIX: Force scroll to top immediately
+    window.scrollTo(0, 0);
+
+    // Render Buttons
+    renderPdfButtons();
+});
