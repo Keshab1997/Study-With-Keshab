@@ -544,3 +544,24 @@ footer {
     padding: 45px 15px 15px 15px;
   }
 }
+/* ভগ্নাংশের স্টাইল (Fraction Style) */
+.fraction {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 2px;
+    font-size: 0.9em; /* ফন্ট সাইজ একটু ছোট যাতে লাইনের সাথে মানানসই হয় */
+}
+
+.fraction .top {
+    display: block;
+    border-bottom: 1px solid currentColor; /* টেক্সটের রঙের সাথে মিল রেখে দাগ হবে */
+    padding: 0 2px;
+    line-height: 1.2;
+}
+
+.fraction .bottom {
+    display: block;
+    padding: 0 2px;
+    line-height: 1.2;
+}
