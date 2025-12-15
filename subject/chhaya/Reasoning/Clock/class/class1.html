@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Clock Reasoning - Class 01 | Study With Keshab</title>
+        <!-- External CSS File Link -->
+        <link rel="stylesheet" href="css/style.css" />
+        <!-- FontAwesome for Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+        
+        <style>
+            .code-table th {
+                background-color: #e9ecef !important;
+                color: #333 !important;
+            }
+            .dark-mode .code-table th {
+                background-color: #333 !important;
+                color: #fff !important;
+            }
+            /* ট্রিকস বক্সের জন্য স্টাইল */
+            .trick-box {
+                background-color: #e0f7fa;
+                padding: 15px;
+                border-radius: 8px;
+                border: 2px dashed #00bcd4;
+                text-align: center;
+                margin-top: 15px;
+            }
+            .trick-title {
+                color: #006064;
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-bottom: 5px;
+            }
+            /* টেবিল স্টাইল */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 10px 0;
+            }
+            table, th, td {
+                border: 1px solid #ddd;
+            }
+            th, td {
+                padding: 8px;
+                text-align: center;
+            }
+            .dark-mode table, .dark-mode th, .dark-mode td {
+                border-color: #555;
+            }
+            .formula-box {
+                background: #f4f4f4;
+                padding: 10px;
+                border-left: 4px solid #007bff;
+                margin: 10px 0;
+                font-family: monospace;
+                font-size: 1.1em;
+            }
+            .dark-mode .formula-box {
+                background: #333;
+                border-left-color: #4dabf7;
+            }
+        </style>
+    </head>
+    <body data-theme="default">
+        <header>
+            <img src="../images/logo.jpg" alt="Logo" class="logo" />
+            <h1>অধ্যায়: Clock (Reasoning) - পর্ব ১</h1>
+        </header>
+
+        <div class="controls-wrapper">
+            <div id="digital-clock" class="digital-clock"></div>
+            <div class="theme-buttons">
+                <button data-theme-name="default">Default</button>
+                <button data-theme-name="forest">Forest</button>
+                <button data-theme-name="ocean">Ocean</button>
+                <button data-theme-name="sunset">Sunset</button>
+            </div>
+            <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+            <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+            <div class="dark-mode-toggle">
+                <span>দিন/রাত</span>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>CLASS NO: 01 - MASTER NOTE</h2>
+
+            <!-- Section 1: Basic Concepts -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-clock"></i> 1. বেসিক ধারণা (Basic Concepts)</h3>
+                <p>একটি সম্পূর্ণ ঘড়ি হলো একটি বৃত্ত, যার মোট কোণ হলো <strong>360°</strong>।</p>
+                
+                <div class="step-box">
+                    <strong>মিনিটের কাঁটা (Minute Hand):</strong>
+                    <ul>
+                        <li>1 ঘন্টায় (60 মিনিটে) পুরো 360° ঘুরে আসে।</li>
+                        <li>তাই, <strong>1 মিনিটে</strong> মিনিটের কাঁটা সরে = <strong>6°</strong>। (360 ÷ 60)</li>
+                    </ul>
+                </div>
+
+                <div class="step-box" style="margin-top: 10px;">
+                    <strong>ঘন্টার কাঁটা (Hour Hand):</strong>
+                    <ul>
+                        <li>12 ঘন্টায় পুরো 360° ঘুরে আসে।</li>
+                        <li>1 ঘন্টায় সরে = 30°। (360 ÷ 12)</li>
+                        <li>তাই, <strong>1 মিনিটে</strong> ঘন্টার কাঁটা সরে = <strong>0.5°</strong> বা <strong>1/2°</strong>।</li>
+                    </ul>
+                </div>
+
+                <div class="trick-box" style="margin-top: 10px; background-color: #fff3cd; border-color: #ffc107;">
+                    <p style="color: #856404;"><strong>সবচেয়ে জরুরি পয়েন্ট (Relative Speed):</strong><br>
+                    প্রতি 1 মিনিটে, মিনিটের কাঁটা ঘন্টার কাঁটার চেয়ে <strong>5.5°</strong> বা <strong>11/2°</strong> বেশি দূরত্ব অতিক্রম করে।</p>
+                </div>
+            </div>
+
+            <!-- Section 2: Finding Angle -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-calculator"></i> 2. কাঁটা দুটির মাঝখানের কোণ নির্ণয়</h3>
+                <p>পরীক্ষায় কোনো নির্দিষ্ট সময়ে ঘন্টার কাঁটা ও মিনিটের কাঁটার মধ্যবর্তী কোণ বের করতে এই সূত্রটি ব্যবহার করুন:</p>
+
+                <div class="formula-box">
+                    Angle (θ) = | 30H - 5.5M |
+                </div>
+                <p><i>এখানে H = Hour (ঘন্টা) এবং M = Minute (মিনিট)।</i></p>
+
+                <div class="question-item">
+                    <h4>📝 Demo Question</h4>
+                    <p>ঘড়িতে যখন <strong>4:30</strong> বাজে, তখন কাঁটা দুটির মধ্যে কত ডিগ্রি কোণ তৈরি হবে?</p>
+                    
+                    <div class="answer-section">
+                        <hr class="answer-divider" />
+                        <div class="explanation">
+                            <p><strong>সমাধান:</strong></p>
+                            <ul>
+                                <li>এখানে H = 4 এবং M = 30</li>
+                                <li>সূত্র: | (30 × 4) - (5.5 × 30) |</li>
+                                <li>= | 120 - 165 |</li>
+                                <li>= | -45 | (মাইনাস বাদ দিতে হবে)</li>
+                            </ul>
+                            <p><strong>উত্তর:</strong> <span class="correct-answer">45°</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Special Angles Table -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-table"></i> 3. কাঁটা দুটির বিশেষ অবস্থান (Special Angles)</h3>
+                <p>ঘন্টার ও মিনিটের কাঁটা দিনে কতবার মিলিত হয় বা বিপরীত দিকে থাকে, তা মনে রাখুন:</p>
+                
+                <table>
+                    <thead>
+                        <tr class="code-table">
+                            <th>অবস্থা (Condition)</th>
+                            <th>1 ঘন্টায়</th>
+                            <th>12 ঘন্টায়</th>
+                            <th>24 ঘন্টায় (1 দিনে)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Coincide (0°)</strong><br><small>(একে অপরের উপরে)</small></td>
+                            <td>1 বার</td>
+                            <td><strong>11 বার</strong></td>
+                            <td><strong>22 বার</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Opposite (180°)</strong><br><small>(বিপরীত দিকে)</small></td>
+                            <td>1 বার</td>
+                            <td><strong>11 বার</strong></td>
+                            <td><strong>22 বার</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Right Angle (90°)</strong><br><small>(সমকোণে থাকে)</small></td>
+                            <td>2 বার</td>
+                            <td><strong>22 বার</strong></td>
+                            <td><strong>44 বার</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="font-size: 0.9em; color: #666;">*দ্রষ্টব্য: 12 ঘন্টায় 12 বার না হয়ে 11 বার হওয়ার কারণ হলো কিছু কমন সময় (যেমন 12:00)।</p>
+            </div>
+
+            <!-- Section 4: Time Finding Formula -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-hourglass-half"></i> 4. সঠিক সময় বের করার নিয়ম</h3>
+                <p>নির্দিষ্ট কোণ কখন তৈরি হবে তা বের করার সূত্র:</p>
+                <div class="formula-box">
+                    সময় = 60/11 × Time Factor
+                </div>
+
+                <div class="step-box">
+                    <strong>A. 0° (মিলিত হওয়া):</strong> <br>
+                    সূত্র: <code>60/11 × Starting Hour</code><br>
+                    <em>উদাহরণ:</em> 3টা ও 4টার মাঝে কখন মিলবে?<br>
+                    = 60/11 × 3 = 180/11 = 16 <sup>4</sup>/<sub>11</sub> মিনিট।<br>
+                    <strong>উত্তর:</strong> 3টা বেজে 16 <sup>4</sup>/<sub>11</sub> মিনিটে।
+                </div>
+                
+                <div class="step-box" style="margin-top: 10px;">
+                    <strong>B. 180° (বিপরীত হওয়া):</strong> <br>
+                    সূত্র: <code>60/11 × (Starting Hour ± 6)</code><br>
+                    <ul>
+                        <li>সময় 6-এর কম হলে <strong>+6</strong> করবেন।</li>
+                        <li>সময় 6-এর বেশি হলে <strong>-6</strong> করবেন।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 5: Mirror & Water Image -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-clone"></i> 5. আয়না ও জলের প্রতিবিম্ব</h3>
+                
+                <div class="question-item">
+                    <h4>A. Mirror Image (আয়নায় সময়)</h4>
+                    <p>আয়নার সময় বের করতে <strong>11:60</strong> (অথবা 23:60) থেকে আসল সময় বিয়োগ করুন।</p>
+                    <p><strong>প্রশ্ন:</strong> 8:20 এর মিরর ইমেজ কত?<br>
+                    <strong>সমাধান:</strong> 11:60 - 8:20 = <span class="correct-answer">3:40</span></p>
+                </div>
+
+                <div class="question-item" style="margin-top: 15px;">
+                    <h4>B. Water Image (জলে প্রতিবিম্ব)</h4>
+                    <p>জলের সময় বের করতে <strong>18:30</strong> (অথবা 17:90) থেকে বিয়োগ করুন।</p>
+                    <p><strong>প্রশ্ন:</strong> 2:15 এর ওয়াটার ইমেজ কত?<br>
+                    <strong>সমাধান:</strong> 18:30 - 2:15 = 16:15 বা <span class="correct-answer">4:15</span></p>
+                </div>
+            </div>
+
+            <!-- Section 6: Extra Rules -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-bell"></i> 6. ঘড়ির ঘন্টা বাজার শব্দ (Striking/Bell)</h3>
+                <p>ঘড়ি যদি 1টায় 1বার, 2টায় 2বার... এভাবে বাজে:</p>
+                <ul>
+                    <li><strong>12 ঘন্টায় মোট বাজে:</strong> n(n+1)/2 [এখানে n=12] <br> = (12×13)/2 = <strong>78 বার</strong>।</li>
+                    <li><strong>24 ঘন্টায় (একদিনে):</strong> 78 × 2 = <span class="correct-answer">156 বার</span>।</li>
+                </ul>
+            </div>
+
+            <!-- Section 7: Faulty Clock -->
+            <div class="note-box">
+                <h3 class="note-title"><i class="fa-solid fa-triangle-exclamation"></i> 7. ত্রুটিপূর্ণ ঘড়ি (Faulty Clock)</h3>
+                <p><strong>Type A:</strong> প্রতি ঘন্টায় 2 মিনিট ফাস্ট হলে 10 ঘন্টায় কত? <br>
+                উত্তর: 10 × 2 = 20 মিনিট ফাস্ট।</p>
+                
+                <p style="margin-top: 10px;"><strong>Type B:</strong> ভুল ঘড়ি থেকে সঠিক সময় বের করার সূত্র:</p>
+                <div class="formula-box" style="font-size: 0.9em;">
+                    True Time = (Wrong Time × 60) / (60 + Gain)
+                </div>
+                <p><em>(ঘড়ি স্লো হলে নিচে 60 - Loss হবে)</em></p>
+            </div>
+
+            <!-- Quick Facts Section -->
+            <div class="trick-box">
+                <div class="trick-title"><i class="fa-solid fa-lightbulb"></i> মনে রাখুন (Quick Facts)</div>
+                <ul style="text-align: left; display: inline-block; margin-top: 5px;">
+                    <li>24 ঘন্টায় কাঁটা দুটি মিলিত হয় (0°): <strong>22 বার</strong></li>
+                    <li>24 ঘন্টায় কাঁটা দুটি বিপরীতে থাকে (180°): <strong>22 বার</strong></li>
+                    <li>24 ঘন্টায় কাঁটা দুটি সমকোণে থাকে (90°): <strong>44 বার</strong></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <nav class="navigation">
+            <a href="#" class="nav-button disabled">পূর্ববর্তী</a>
+            <a href="class1.html" class="nav-button active">1</a>
+            <a href="class2.html" class="nav-button">2</a>
+            <a href="class2.html" class="nav-button">পরবর্তী</a>
+            <a href="../index.html" class="nav-button home-button">Home</a>
+        </nav>
+
+        <footer>
+            <p>কপিরাইট © <span id="copyright-year"></span> - কেশব সরকার</p>
+        </footer>
+
+        <button id="scrollToTopBtn" class="scroll-button">↑</button>
+        <button id="scrollToBottomBtn" class="scroll-button">↓</button>
+
+        <script src="js/script.js"></script>
+    </body>
+</html>

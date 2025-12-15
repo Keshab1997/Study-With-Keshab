@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Clock Reasoning - Class 02 | Study With Keshab</title>
+        <!-- External CSS File Link -->
+        <link rel="stylesheet" href="css/style.css" />
+        <!-- FontAwesome for Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+        
+        <style>
+            /* Class 1 এর স্টাইল ইনহেরিট করা হয়েছে */
+            .note-box {
+                margin-bottom: 20px;
+                background: #fff;
+                border-radius: 8px;
+                padding: 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .dark-mode .note-box {
+                background: #2d2d2d;
+                color: #e0e0e0;
+            }
+            .question-header {
+                font-weight: bold;
+                color: #007bff;
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .dark-mode .question-header {
+                color: #4dabf7;
+            }
+            .solution-box {
+                background-color: #f8f9fa;
+                border-left: 4px solid #28a745;
+                padding: 10px;
+                margin-top: 10px;
+                border-radius: 4px;
+            }
+            .dark-mode .solution-box {
+                background-color: #383838;
+                border-left-color: #51cf66;
+            }
+            .answer-badge {
+                display: inline-block;
+                background-color: #28a745;
+                color: white;
+                padding: 3px 8px;
+                border-radius: 12px;
+                font-size: 0.9em;
+                margin-top: 5px;
+            }
+            .rule-tag {
+                font-size: 0.85em;
+                color: #666;
+                font-style: italic;
+                margin-top: 5px;
+                display: block;
+            }
+            .dark-mode .rule-tag {
+                color: #aaa;
+            }
+        </style>
+    </head>
+    <body data-theme="default">
+        <header>
+            <img src="../images/logo.jpg" alt="Logo" class="logo" />
+            <h1>অধ্যায়: Clock (Reasoning) - পর্ব ২</h1>
+        </header>
+
+        <div class="controls-wrapper">
+            <div id="digital-clock" class="digital-clock"></div>
+            <div class="theme-buttons">
+                <button data-theme-name="default">Default</button>
+                <button data-theme-name="forest">Forest</button>
+                <button data-theme-name="ocean">Ocean</button>
+                <button data-theme-name="sunset">Sunset</button>
+            </div>
+            <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+            <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+            <div class="dark-mode-toggle">
+                <span>দিন/রাত</span>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>CLASS NO: 02 - PRACTICE QUESTIONS</h2>
+
+            <!-- Q1 -->
+            <div class="note-box">
+                <div class="question-header"><i class="fa-solid fa-bell"></i> প্রশ্ন ১</div>
+                <p>একটি ঘড়ি 1 ঘটিকায় 1 বার, 2 ঘটিকায় 2 বার ... 12 ঘটিকায় 12 বার ঘন্টা বাজায়। 24 ঘন্টায় মোট কতবার বাজবে?</p>
+                <div class="solution-box">
+                    <strong>সমাধান:</strong>
+                    <ul>
+                        <li>ঘড়িটি 1 থেকে 12 পর্যন্ত সংখ্যাগুলোর যোগফল অনুযায়ী বাজে।</li>
+                        <li>সূত্র: n(n+1)/2 [এখানে n = 12]</li>
+                        <li>12 ঘন্টায় বাজে = (12 × 13) / 2 = 78 বার।</li>
+                        <li>24 ঘন্টায় (12+12) = 78 × 2 = 156 বার।</li>
+                    </ul>
+                    <span class="rule-tag">Rule: স্বাভাবিক সংখ্যার যোগফল নির্ণয়।</span>
+                    <div class="answer-badge">সঠিক উত্তর: (C) 156</div>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="note-box">
+                <div class="question-header"><i class="fa-solid fa-bus"></i> প্রশ্ন ২</div>
+                <p>প্রতি 30 মিনিট অন্তর বাস ছাড়ে। ক্লার্ক বললেন 10 মিনিট আগে বাস ছেড়েছে। পরের বাস 9:35-এ। কখন খবরটি দেওয়া হয়েছিল?</p>
+                <div class="solution-box">
+                    <strong>সমাধান:</strong>
+                    <ul>
+                        <li>পরের বাস: 9:35</li>
+                        <li>আগের বাস ছেড়েছে: 9:35 - 30 মিনিট = 9:05-এ।</li>
+                        <li>খবর দেওয়া হয়েছে 10 মিনিট পর: 9:05 + 10 = 9:15-এ।</li>
+                    </ul>
+                    <span class="rule-tag">Rule: Reverse Time Calculation.</span>
+                    <div class="answer-badge">সঠিক উত্তর: (D) সকাল 9:15</div>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="note-box">
+                <div class="question-header"><i class="fa-solid fa-clock-rotate-left"></i> প্রশ্ন ৩</div>
+                <p>ঘড়ি প্রতি ঘন্টায় 1.5 মিনিট ফাস্ট হয়। দুপুর 12টায় ঠিক করা হলো। ভোর 4টায় (সকাল 4টে) কটা বাজবে?</p>
+                <div class="solution-box">
+                    <strong>সমাধান:</strong>
+                    <ul>
+                        <li>মোট সময় (দুপুর 12টা - ভোর 4টা) = 16 ঘন্টা।</li>
+                        <li>মোট ফাস্ট হবে = 16 × 1.5 = 24 মিনিট।</li>
+                        <li>ঘড়িতে দেখাবে = 4:00 + 24 মিনিট = 4:24 am।</li>
+                    </ul>
+                    <span class="rule-tag">Rule: Error Calculation (Total Time × Rate).</span>
+                    <div class="answer-badge">সঠিক উত্তর: (A) 4:24 am</div>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="note-box">
+                <div class="question-header"><i class="fa-solid fa-arrows-left-right"></i> প্রশ্ন ৪</div>
+                <p>3টা ও 4টার মধ্যে কাঁটা দুটির ব্যবধান 18 মিনিটের ঘর হলে, সঠিক সময় কত?</p>
+                <div class="solution-box">
+                    <strong>সমাধান:</strong>
+                    <ul>
+                        <li>3টার সময় ঘন্টার কাঁটা থাকে 15 মিনিটের ঘরে।</li>
+                        <li>সূত্র: M = 12/11 × (Minutes at Hour Hand + Gap)</li>
+                        <li>M = 12/11 × (15 + 18) = 12/11 × 33</li>
+                        <li>M = 12 × 3 = 36 মিনিট।</li>
+                    </ul>
+                    <span class="rule-tag">Rule: Relative Position Formula.</span>
+                    <div class="answer-badge">সঠিক উত্তর: (D) 3:36</div>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="note-box">
+                <div class="question-header"><i class="fa-solid fa-store"></i> প্রশ্ন ৫</div>
+                <p>দোকান থেকে বাড়ি যান প্রতি 2 ঘন্টা 40 মিনিট পরপর। 55 মিনিট আগে গেছেন। পরের বার যাবেন রাত 8:15-তে। কখন কথাটি বলা হয়েছিল?</p>
+                <div class="solution-box">
+                    <strong>সমাধান:</strong>
+                    <ul>
+                        <li>পরের বার: 8:15 PM</li>
+                        <li>আগের বার গিয়েছিলেন: 8:15 - 2h 40m = 5:35 PM।</li>
+                        <li>বর্তমান সময় (55 মিনিট পরে): 5:35 + 55 মিনিট = 5:90 = 6:30 PM।</li>
+                    </ul>
+                    <span class="rule-tag">Rule: Time Gap Calculation.</span>
+                    <div class="answer-badge">সঠিক উত্তর: (A) 6:30</div>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="note-box">
+                <div class="question-header"><i class="fa-solid fa-clone"></i> প্রশ্ন ৬</div>
+                <p>আয়নায় 3:15 দেখা গেলে সঠিক সময় কত?</p>
+                <div class="solution-box">
+                    <strong>সমাধান:</strong>
+                    <ul>
+                        <li>সূত্র: 11:60 - প্রদত্ত সময়</li>
+                        <li>হিসাব: 11:60 - 3:15 = 8:45।</li>
+                    </ul>
+                    <span class="rule-tag">Rule: Mirror Image Formula.</span>
+                    <div class="answer-badge">সঠিক উত্তর: (B) 8:45</div>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="note-box">
+                <div class="question-header"><i class="fa-solid fa-stopwatch"></i> প্রশ্ন ৭</div>
+                <p>ঘড়ি প্রতি ঘন্টায় 5 মিনিট ফাস্ট হয়। তবে প্রতি মিনিটে সেকেন্ডের কাঁটা কত ডিগ্রি ঘোরে?</p>
+                <div class="solution-box">
+                    <strong>সমাধান:</strong>
+                    <ul>
+                        <li>স্বাভাবিক ঘড়িতে 1 মিনিটে ঘোরে = 360°।</li>
+                        <li>গতি বৃদ্ধির হার = (60+5)/60 = 65/60 গুণ।</li>
+                        <li>নতুন কৌণিক দূরত্ব = 360 × (65/60) = 6 × 65 = 390°।</li>
+                    </ul>
+                    <span class="rule-tag">Rule: Angular Speed Calculation.</span>
+                    <div class="answer-badge">সঠিক উত্তর: (C) 390°</div>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="note-box">
+                <div class="question-header"><i class="fa-solid fa-users"></i> প্রশ্ন ৮</div>
+                <p>চেয়ারম্যান 12:30-এর 10 মিনিট আগে পৌঁছান। তিনি অন্যদের চেয়ে 20 মিনিট আগে এসেছেন যারা 30 মিনিট দেরিতে এসেছে। সঠিক সময় কত ছিল?</p>
+                <div class="solution-box">
+                    <strong>সমাধান:</strong>
+                    <ul>
+                        <li>চেয়ারম্যান এসেছেন: 12:30 - 10 = 12:20।</li>
+                        <li>মেম্বাররা এসেছেন: 12:20 + 20 = 12:40।</li>
+                        <li>সঠিক সময় (যেহেতু মেম্বাররা 30 মিনিট লেট): 12:40 - 30 = 12:10।</li>
+                    </ul>
+                    <span class="rule-tag">Rule: Logical Time Sequence.</span>
+                    <div class="answer-badge">সঠিক উত্তর: (A) দুপুর 12:10</div>
+                </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="note-box">
+                <div class="question-header"><i class="fa-solid fa-triangle-exclamation"></i> প্রশ্ন ৯</div>
+                <p>ঘড়ি প্রতি ঘন্টায় 5 মিনিট ফাস্ট হয়। দুপুর 12টায় ঠিক করার পর যখন সন্ধ্যা 6:30 বাজে, তখন প্রকৃত সময় কত?</p>
+                <div class="solution-box">
+                    <strong>সমাধান:</strong>
+                    <ul>
+                        <li>ভুল ঘড়িতে সময়: 6.5 ঘন্টা বা 390 মিনিট।</li>
+                        <li>সূত্র: True Time = (Shown Time × 60) / (60 + Gain)</li>
+                        <li>True Time = (390 × 60) / 65 = 360 মিনিট = 6 ঘন্টা।</li>
+                        <li>সঠিক সময়: 12:00 + 6h = 6:00 PM।</li>
+                    </ul>
+                    <span class="rule-tag">Rule: Incorrect Clock Correction Formula.</span>
+                    <div class="answer-badge">সঠিক উত্তর: (D) 6:00 PM</div>
+                </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="note-box">
+                <div class="question-header"><i class="fa-solid fa-calculator"></i> প্রশ্ন ১০</div>
+                <p>10 টার সময় ঘড়ির কাঁটা দুটির মধ্যবর্তী কোণ কত?</p>
+                <div class="solution-box">
+                    <strong>সমাধান:</strong>
+                    <ul>
+                        <li>সূত্র: θ = |30H - 5.5M|</li>
+                        <li>θ = |30×10 - 0| = 300°।</li>
+                        <li>ছোট কোণটি হবে: 360° - 300° = 60°।</li>
+                    </ul>
+                    <span class="rule-tag">Rule: Angle Formula.</span>
+                    <div class="answer-badge">সঠিক উত্তর: (C) 60°</div>
+                </div>
+            </div>
+
+            <!-- Q11 -->
+            <div class="note-box">
+                <div class="question-header"><i class="fa-solid fa-compass"></i> প্রশ্ন ১১</div>
+                <p>1:30-এর সময় ঘন্টার কাঁটা উত্তর-পূর্ব (North-East) দিকে। 30 মিনিট পর মিনিটের কাঁটা কোন দিকে থাকবে?</p>
+                <div class="solution-box">
+                    <strong>সমাধান:</strong>
+                    <ul>
+                        <li>1:30-এ ঘন্টার কাঁটা স্বাভাবিকভাবেই উত্তর-পূর্ব দিকে থাকে। অর্থাৎ ঘড়িটি সোজা আছে।</li>
+                        <li>30 মিনিট পর সময় হবে 2:00।</li>
+                        <li>2:00-এ মিনিটের কাঁটা থাকে 12-এর ঘরে (North)।</li>
+                    </ul>
+                    <span class="rule-tag">Rule: Direction Test + Clock Concept.</span>
+                    <div class="answer-badge">সঠিক উত্তর: (D) উত্তর</div>
+                </div>
+            </div>
+
+            <!-- Q12 -->
+            <div class="note-box">
+                <div class="question-header"><i class="fa-solid fa-hourglass-half"></i> প্রশ্ন ১২</div>
+                <p>দুপুর 2:12 মিনিটে কাঁটা দুটি কত ডিগ্রি কোণ সৃষ্টি করবে?</p>
+                <div class="solution-box">
+                    <strong>সমাধান:</strong>
+                    <ul>
+                        <li>সূত্র: θ = |30H - 5.5M|</li>
+                        <li>θ = |(30 × 2) - (5.5 × 12)|</li>
+                        <li>θ = |60 - 66| = |-6| = 6°</li>
+                    </ul>
+                    <span class="rule-tag">Rule: Master Formula for Angle.</span>
+                    <div class="answer-badge">সঠিক উত্তর: (B) 6°</div>
+                </div>
+            </div>
+
+        </div>
+
+        <nav class="navigation">
+            <a href="class1.html" class="nav-button">পূর্ববর্তী</a>
+            <a href="class1.html" class="nav-button">1</a>
+            <a href="#" class="nav-button active">2</a>
+            <a href="#" class="nav-button disabled">পরবর্তী</a>
+            <a href="../index.html" class="nav-button home-button">Home</a>
+        </nav>
+
+        <footer>
+            <p>কপিরাইট © <span id="copyright-year"></span> - কেশব সরকার</p>
+        </footer>
+
+        <button id="scrollToTopBtn" class="scroll-button">↑</button>
+        <button id="scrollToBottomBtn" class="scroll-button">↓</button>
+
+        <script src="js/script.js"></script>
+        <script>
+            // কপিরাইট ইয়ার আপডেট
+            document.getElementById("copyright-year").textContent = new Date().getFullYear();
+        </script>
+    </body>
+</html>
