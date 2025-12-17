@@ -1,19 +1,19 @@
 // js/pdf-viewer.js
 
 const algebraPdfList = [
-    { title: "Class 01 Note", id: "1ScBMw_gEaZsvJq7itgow2p5tZYR7JyfH" },
-    { title: "Class 02 Note", id: "1lNk_TIX72srWSZawDLpWJQOGAlp10JiD" },
-    { title: "Class 03 Note", id: "1_HHzvObXCcULKZgPpThinpBarOc3kX2U" },
-    { title: "Class 04 Note", id: "1LkVUVU3-gp_8BJL4sfJKWB6ThJhAXLN6" },
-    { title: "Class 05 Note", id: "12olizINBY6cxKp6SSw6zNJgnZZoc483p" },
-    { title: "Class 06 Note", id: "14KXNfffjpq2SAec37QxHQ-xLbThzdfWj" },
-    { title: "Class 07 Note", id: "1hkUvWZCtvTTpaWJi0XJuRf7b-vhD-UMX" },
-    { title: "Class 08 Note", id: "1XQrCd2N87Vf8twjNSlvPYTyFWgB2aNvL" },
-    { title: "Class 09 Note", id: "16bZTxRlPGoKxrdcDi2QzzckpXRwigwLB" },
-    { title: "Class 10 Note", id: "10MKrEa380LoTO6xpJHqOMqubokaQ-vxs" },
-    { title: "Class 11 Note", id: "1WaHFwqU3x66gd1HxvhE74PBHRvc0Vxda" },
-    { title: "Class 12 Note", id: "1sJVsWzRmFhbFs6oC4SaAutXLTHxwXLHu" },
-    { title: "Class 13 Note", id: "1hxblODfO2UAuDrmV6rvinPLrnz57Fm9O" }
+    { title: "all question and answer", id: "1ScBMw_gEaZsvJq7itgow2p5tZYR7JyfH" },
+    { title: "all question", id: "1lNk_TIX72srWSZawDLpWJQOGAlp10JiD" },
+    { title: "Class 01 Note", id: "1_HHzvObXCcULKZgPpThinpBarOc3kX2U" },
+    { title: "Class 02 Note", id: "1LkVUVU3-gp_8BJL4sfJKWB6ThJhAXLN6" },
+    { title: "Class 03 Note", id: "12olizINBY6cxKp6SSw6zNJgnZZoc483p" },
+    { title: "Class 04 Note", id: "14KXNfffjpq2SAec37QxHQ-xLbThzdfWj" },
+    { title: "Class 05 Note", id: "1hkUvWZCtvTTpaWJi0XJuRf7b-vhD-UMX" },
+    { title: "Class 06 Note", id: "1XQrCd2N87Vf8twjNSlvPYTyFWgB2aNvL" },
+    { title: "Class 07 Note", id: "16bZTxRlPGoKxrdcDi2QzzckpXRwigwLB" },
+    { title: "Class 08 Note", id: "10MKrEa380LoTO6xpJHqOMqubokaQ-vxs" },
+    { title: "Class 09 Note", id: "1WaHFwqU3x66gd1HxvhE74PBHRvc0Vxda" },
+    { title: "Class 10 Note", id: "1sJVsWzRmFhbFs6oC4SaAutXLTHxwXLHu" },
+    { title: "Class 11 Note", id: "1hxblODfO2UAuDrmV6rvinPLrnz57Fm9O" }
 ];
 
 // State Variables
