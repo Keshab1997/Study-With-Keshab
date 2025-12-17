@@ -1,24 +1,19 @@
 // js/pdf-viewer.js
 
-// 1. PDF Data List
 const algebraPdfList = [
-    { title: "Class 01 Note", id: "1DrJwuYxGa2KMtavY2AoYEC8upqepCbQ_" },
-    { title: "Class 02 Note", id: "1ENgGdF4bASjRPrsRY_7afLHv4TjR36EV" },
-    { title: "Class 03 Note", id: "1E0BwPQvOUKGRA7ey2kI9jhF-_QOovPpN" },
-    { title: "Class 04 Note", id: "1EkSduQlX8ArAjuqSe24BoG8SoYmidCZT" },
-    { title: "Class 05 Note", id: "1EdO69C-oD3zmS9cMSfw_lcUU_JCPSBVR" },
-    { title: "Class 06 Note", id: "1E_DUmtM5akVE3YdxhEwfXm0OJ73y-l_g" },
-    { title: "Class 07 Note", id: "1E_AU-1aQ3RrDh36PqrC1BXCIjaGxhHMu" },
-    { title: "Class 08 Note", id: "1EZupU0EDonGCiGHRffVYl56NeCEY_0iw" },
-    { title: "Class 09 Note", id: "1ES0HZQk1o3LMjed-192smEAtvxUY8Yx6" },
-    { title: "Class 10 Note", id: "1EQ6rH5Wx1iDV2-TSRmWNGJCzFbqcQ6H0" },
-    { title: "Class 11 Note", id: "1ELs3g03I1xRK-DSvrh0w3JrN0HCNKuOQ" },
-    { title: "Class 12 Note", id: "1EKNkwW-gwpr60NLnRohwduoKyzw3OfLX" },
-    { title: "Class 13 Note", id: "1EKDQdJ6B28zgWkAgPYto1FL4foMgZrgH" },
-    { title: "Class 14 Note", id: "1EHi9KWTRpG8-ZLFpl9PCxgRYfVnlz5sT" },
-    { title: "Class 15 Note", id: "1EEe7PNo6rzTlQYJxwEoegMPPoGnI8K1R" },
-    { title: "Class 16 Note", id: "1E10eiL6oQ6NXeDaXzE5CAPBjJUWGi9j6" },
-    { title: "Class 17 Note", id: "1E0uiCMCqTEskfNO7sjepGsrGQsKUF_Xf" }
+    { title: "Class 01 Note", id: "1ScBMw_gEaZsvJq7itgow2p5tZYR7JyfH" },
+    { title: "Class 02 Note", id: "1lNk_TIX72srWSZawDLpWJQOGAlp10JiD" },
+    { title: "Class 03 Note", id: "1_HHzvObXCcULKZgPpThinpBarOc3kX2U" },
+    { title: "Class 04 Note", id: "1LkVUVU3-gp_8BJL4sfJKWB6ThJhAXLN6" },
+    { title: "Class 05 Note", id: "12olizINBY6cxKp6SSw6zNJgnZZoc483p" },
+    { title: "Class 06 Note", id: "14KXNfffjpq2SAec37QxHQ-xLbThzdfWj" },
+    { title: "Class 07 Note", id: "1hkUvWZCtvTTpaWJi0XJuRf7b-vhD-UMX" },
+    { title: "Class 08 Note", id: "1XQrCd2N87Vf8twjNSlvPYTyFWgB2aNvL" },
+    { title: "Class 09 Note", id: "16bZTxRlPGoKxrdcDi2QzzckpXRwigwLB" },
+    { title: "Class 10 Note", id: "10MKrEa380LoTO6xpJHqOMqubokaQ-vxs" },
+    { title: "Class 11 Note", id: "1WaHFwqU3x66gd1HxvhE74PBHRvc0Vxda" },
+    { title: "Class 12 Note", id: "1sJVsWzRmFhbFs6oC4SaAutXLTHxwXLHu" },
+    { title: "Class 13 Note", id: "1hxblODfO2UAuDrmV6rvinPLrnz57Fm9O" }
 ];
 
 // State Variables
