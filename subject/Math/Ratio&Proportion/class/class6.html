@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ratio & Proportion - Class 06</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- ইনলাইন স্টাইল -->
+    <style>
+        .fraction {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            margin: 0 4px;
+        }
+        .fraction .top {
+            display: block;
+            border-bottom: 2px solid currentColor;
+            padding: 1px;
+        }
+        .fraction .bottom {
+            display: block;
+            padding: 1px;
+        }
+        .math-eq {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            background: #f4f4f4;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .highlight-text {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+        
+        /* প্রশ্ন এবং উত্তরের জন্য বক্স ডিজাইন */
+        .question-box {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .answer-box {
+            background-color: #fff3e0;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+        .option-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .option-list li {
+            padding: 5px 0;
+        }
+        
+        body.dark-mode .math-eq {
+            color: #fff;
+            background: #444;
+        }
+        body.dark-mode .question-box {
+            background-color: #1a237e;
+            border-left-color: #536dfe;
+            color: #e8eaf6;
+        }
+        body.dark-mode .answer-box {
+            background-color: #3e2723;
+            border-color: #5d4037;
+            color: #efebe9;
+        }
+    </style>
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: অনুপাত ও সমানুপাত (Ratio & Proportion)</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 06</h2>
+    
+    <h3><strong>অধ্যায়: অনুপাত ও সমানুপাত (Ratio & Proportion) - প্র্যাকটিস সেট</strong></h3>
+
+    <!-- প্রশ্ন ১ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ১:</strong> রবি এবং জয়-এর বর্তমান বয়সের অনুপাত 3 : 2। 4 বছর আগে রবি জয়-এর চেয়ে 6 বছর বড়ো হলে, বর্তমানে জয়-এর বয়স কত?
+        <ul class="option-list">
+            <li>(A) 6 বছর</li>
+            <li>(B) 12 বছর</li>
+            <li>(C) 18 বছর</li>
+            <li>(D) অপর্যাপ্ত তথ্য</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (B) 12 বছর
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li><strong>লজিক:</strong> মনে রাখবে, দুই ব্যক্তির বয়সের পার্থক্য (Difference) সারা জীবন একই থাকে। 4 বছর আগেও রবি 6 বছরের বড় ছিল, আজও সে 6 বছরেরই বড়।</li>
+                <li>অনুপাত অনুযায়ী: রবি (3 ইউনিট) - জয় (2 ইউনিট) = 1 ইউনিট পার্থক্য।</li>
+                <li>প্রশ্নমতে, এই 1 ইউনিট = 6 বছর।</li>
+                <li>বর্তমানে জয়-এর বয়স = 2 ইউনিট = 2 × 6 = <strong>12 বছর</strong>।</li>
+            </ul>
+            <strong>শর্টকাট:</strong> পার্থক্যের অনুপাত (3 - 2 = 1) দিয়ে বয়সের পার্থক্য (6) কে গুণ করো। জয়ের অনুপাত 2, তাই 2 × 6 = 12।
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ২ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ২:</strong> কোনো দুটি সংখ্যার প্রত্যেকটির সঙ্গে 1 যোগ করলে সংখ্যা দুটির অনুপাত হয় 3 : 4 এবং প্রত্যেকটির থেকে 5 বিয়োগ করলে অনুপাত হয় 7 : 10। সংখ্যা দুটি হল—
+        <ul class="option-list">
+            <li>(A) 8, 11</li>
+            <li>(B) 11, 15</li>
+            <li>(C) 26, 35</li>
+            <li>(D) 27, 36</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (C) 26, 35
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা (Option Test - সেরা পদ্ধতি):</strong>
+            <ul>
+                <li><strong>শর্ত ১:</strong> 1 যোগ করলে অনুপাত 3 : 4 হবে।
+                    <br>Option (C) চেক করি: 26 + 1 = 27 এবং 35 + 1 = 36।
+                    <br>অনুপাত: 27 : 36 (9 দিয়ে কাটলে) = 3 : 4। (মিলে গেছে)
+                </li>
+                <li><strong>শর্ত ২:</strong> 5 বিয়োগ করলে অনুপাত 7 : 10 হবে।
+                    <br>26 - 5 = 21 এবং 35 - 5 = 30।
+                    <br>অনুপাত: 21 : 30 (3 দিয়ে কাটলে) = 7 : 10। (মিলে গেছে)
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৩ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ৩:</strong> আকাশ, বাবলু এবং চিটুর বেতনের অনুপাত 2 : 3 : 5। যদি তাদের বেতন যথাক্রমে 15%, 10% এবং 20% হারে বৃদ্ধি করা হয়, তবে তাদের বর্ধিত বেতনের অনুপাত কত হবে?
+        <ul class="option-list">
+            <li>(A) 3 : 3 : 10</li>
+            <li>(B) 23 : 33 : 60</li>
+            <li>(C) 20 : 22 : 40</li>
+            <li>(D) কোনোটিই নয়</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (B) 23 : 33 : 60
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>হিসাবের সুবিধার জন্য ধরি তাদের বেতন যথাক্রমে 200, 300, 500 টাকা।</li>
+                <li>আকাশ: 200-এর 115% = <span class="math-eq">200 × <span class="fraction"><span class="top">115</span><span class="bottom">100</span></span> = 230</span></li>
+                <li>বাবলু: 300-এর 110% = <span class="math-eq">300 × <span class="fraction"><span class="top">110</span><span class="bottom">100</span></span> = 330</span></li>
+                <li>চিটু: 500-এর 120% = <span class="math-eq">500 × <span class="fraction"><span class="top">120</span><span class="bottom">100</span></span> = 600</span></li>
+                <li>নতুন অনুপাত = 230 : 330 : 600</li>
+                <li>10 দিয়ে কাটলে = <strong>23 : 33 : 60</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৪ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ৪:</strong> 7, 16, 43 এবং 88-এর সাথে কত যোগ করলে সংখ্যাগুলি পরস্পরের সমানুপাতী হবে?
+        <ul class="option-list">
+            <li>(A) 2</li>
+            <li>(B) 3</li>
+            <li>(C) 5</li>
+            <li>(D) 1</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (A) 2
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা (Option Test):</strong>
+            <br>সমানুপাতী হওয়ার শর্ত: <span class="math-eq"><span class="fraction"><span class="top">1st</span><span class="bottom">2nd</span></span> = <span class="fraction"><span class="top">3rd</span><span class="bottom">4th</span></span></span>
+            <ul>
+                <li>Option (A) অর্থাৎ 2 যোগ করে দেখি:
+                    <br>সংখ্যাগুলো হবে: 7 + 2 = 9, 16 + 2 = 18, 43 + 2 = 45, 88 + 2 = 90।
+                    <br>১ম ও ২য় অনুপাত: <span class="math-eq"><span class="fraction"><span class="top">9</span><span class="bottom">18</span></span> = <span class="fraction"><span class="top">1</span><span class="bottom">2</span></span></span>
+                    <br>৩য় ও ৪র্থ অনুপাত: <span class="math-eq"><span class="fraction"><span class="top">45</span><span class="bottom">90</span></span> = <span class="fraction"><span class="top">1</span><span class="bottom">2</span></span></span>
+                    <br>যেহেতু মিলে গেছে, তাই উত্তর <strong>2</strong>।
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৫ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ৫:</strong> অজয় এবং বিজয়ের বয়সের অনুপাত 3 : 4। 5 বছর পরে তাদের বয়সের অনুপাত হবে 4 : 5। বিজয়ের বর্তমান বয়স কত?
+        <ul class="option-list">
+            <li>(A) 15 বছর</li>
+            <li>(B) 18 বছর</li>
+            <li>(C) 20 বছর</li>
+            <li>(D) 24 বছর</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (C) 20 বছর
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>বর্তমান: 3 : 4</li>
+                <li>5 বছর পর: 4 : 5</li>
+                <li><strong>গ্যাপ মেথড:</strong> অজয় (3 → 4) বেড়েছে 1 ইউনিট। বিজয় (4 → 5) বেড়েছে 1 ইউনিট।</li>
+                <li>প্রশ্নমতে, 1 ইউনিট = 5 বছর।</li>
+                <li>বিজয়ের বর্তমান বয়স (4 ইউনিট) = 4 × 5 = <strong>20 বছর</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৬ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ৬:</strong> লক্ষ্মীর বয়স এবং তার মায়ের বয়সের অনুপাত 3 : 11। তাদের বয়সের পার্থক্য 24 বছর। 3 বছর বাদে তাদের বয়সের অনুপাত হবে—
+        <ul class="option-list">
+            <li>(A) 1 : 3</li>
+            <li>(B) 2 : 3</li>
+            <li>(C) 3 : 5</li>
+            <li>(D) 2 : 5</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (A) 1 : 3
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>অনুপাতের পার্থক্য: 11 - 3 = 8 ইউনিট।</li>
+                <li>প্রশ্নমতে, 8 ইউনিট = 24 বছর। <span class="math-eq">∴ 1 ইউনিট = 3 বছর</span>।</li>
+                <li>লক্ষ্মীর বর্তমান বয়স: 3 × 3 = 9 বছর।</li>
+                <li>মায়ের বর্তমান বয়স: 11 × 3 = 33 বছর।</li>
+                <li>3 বছর পর বয়স হবে: লক্ষ্মী (9 + 3 = 12), মা (33 + 3 = 36)।</li>
+                <li>অনুপাত: 12 : 36 = <strong>1 : 3</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৭ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ৭:</strong> 4500 টাকা A, B এবং C-এর মধ্যে 2 : 3 : 4 অনুপাতে বণ্টন করা হয়েছে। C কত টাকা পাবে?
+        <ul class="option-list">
+            <li>(A) 1500</li>
+            <li>(B) 1800</li>
+            <li>(C) 2000</li>
+            <li>(D) 2500</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (C) 2000
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>মোট অনুপাত = 2 + 3 + 4 = 9 ইউনিট।</li>
+                <li>9 ইউনিট = 4500 টাকা।</li>
+                <li>1 ইউনিট = 500 টাকা।</li>
+                <li>C পাবে (4 ইউনিট) = 4 × 500 = <strong>2000 টাকা</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৮ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ৮:</strong> একটি সমানুপাতির প্রথম, দ্বিতীয় এবং চতুর্থ পদটি যথাক্রমে 51, 81 এবং 108, তবে তৃতীয় পদটি হল—
+        <ul class="option-list">
+            <li>(A) 68</li>
+            <li>(B) 88</li>
+            <li>(C) 58</li>
+            <li>(D) 78</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (A) 68
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>সূত্র: ১ম পদ × ৪র্থ পদ = ২য় পদ × ৩য় পদ।</li>
+                <li><span class="math-eq">51 × 108 = 81 × ৩য় পদ</span></li>
+                <li>৩য় পদ = <span class="math-eq"><span class="fraction"><span class="top">51 × 108</span><span class="bottom">81</span></span></span></li>
+                <li>কাটাকাটি: 9 দিয়ে কাটলে 108 → 12, 81 → 9। আবার 3 দিয়ে কাটলে 12 → 4, 9 → 3। 51 কে 3 দিয়ে কাটলে 17।</li>
+                <li>17 × 4 = <strong>68</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৯ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ৯:</strong> দুটি বাসের মধ্যে প্রথম বাসটি <span class="math-eq">7<span class="fraction"><span class="top">1</span><span class="bottom">2</span></span></span> ঘণ্টায় 300 কিমি অতিক্রম করে এবং দ্বিতীয় বাসটি 9 ঘণ্টায় 450 কিমি অতিক্রম করে। বাস দুটির গতিবেগের অনুপাত হবে—
+        <ul class="option-list">
+            <li>(A) 2 : 3</li>
+            <li>(B) 4 : 3</li>
+            <li>(C) 4 : 5</li>
+            <li>(D) 8 : 9</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (C) 4 : 5
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li><span class="math-eq">7<span class="fraction"><span class="top">1</span><span class="bottom">2</span></span></span> ঘণ্টা = 7.5 ঘণ্টা।</li>
+                <li>১ম বাসের গতিবেগ = <span class="math-eq"><span class="fraction"><span class="top">300</span><span class="bottom">7.5</span></span> = 40 কিমি/ঘণ্টা</span>।</li>
+                <li>২য় বাসের গতিবেগ = <span class="math-eq"><span class="fraction"><span class="top">450</span><span class="bottom">9</span></span> = 50 কিমি/ঘণ্টা</span>।</li>
+                <li>অনুপাত: 40 : 50 = <strong>4 : 5</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ১০ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ১০:</strong> দুজন ব্যক্তির বয়সের অনুপাত 5 : 7। 16 বছর পূর্বে তাদের বয়সের অনুপাত ছিল 3 : 5। তাদের বর্তমান বয়স কত?
+        <ul class="option-list">
+            <li>(A) 30 বছর এবং 44 বছর</li>
+            <li>(B) 35 বছর এবং 52 বছর</li>
+            <li>(C) 40 বছর এবং 56 বছর</li>
+            <li>(D) 45 বছর এবং 60 বছর</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (C) 40 বছর এবং 56 বছর
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>বর্তমান: 5 : 7</li>
+                <li>16 বছর আগে: 3 : 5</li>
+                <li>গ্যাপ দেখুন: 5 → 3 (কমেছে 2), 7 → 5 (কমেছে 2)।</li>
+                <li>প্রশ্নমতে, 2 ইউনিট = 16 বছর। <span class="math-eq">∴ 1 ইউনিট = 8 বছর</span>।</li>
+                <li>বর্তমান বয়স: <span class="math-eq">1st = 5 × 8 = 40, 2nd = 7 × 8 = 56</span>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ১১ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ১১:</strong> অনিল এবং সুধীরের বর্তমান বয়সের পার্থক্য 6 বছর। 4 বছর পরে তাদের বয়সের অনুপাত হবে 3 : 4। সুধীরের বর্তমান বয়স কত?
+        <ul class="option-list">
+            <li>(A) 15 বছর</li>
+            <li>(B) 18 বছর</li>
+            <li>(C) 20 বছর</li>
+            <li>(D) 24 বছর</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (C) 20 বছর
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>বয়সের পার্থক্য সব সময় সমান থাকে। তাই 4 বছর পরেও পার্থক্য 6 বছরই থাকবে।</li>
+                <li>ভবিষ্যৎ অনুপাত 3 : 4। এখানে পার্থক্য = 4 - 3 = 1 ইউনিট।</li>
+                <li>1 ইউনিট = 6 বছর।</li>
+                <li>সুধীরের 4 বছর পর বয়স হবে (4 ইউনিট) = 4 × 6 = 24 বছর।</li>
+                <li>সুধীরের <strong>বর্তমান</strong> বয়স = 24 - 4 = <strong>20 বছর</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ১২ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ১২:</strong> A এবং B দুজনেই 4000 টাকা করে পেয়েছে এবং C 2000 টাকা পেয়েছে। তাহলে C, B এবং A কী অনুপাতে নিজেদের মধ্যে বণ্টন করেছে?
+        <ul class="option-list">
+            <li>(A) 2 : 2 : 1</li>
+            <li>(B) 2 : 1 : 2</li>
+            <li>(C) 1 : 2 : 2</li>
+            <li>(D) 1 : 4 : 4</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (C) 1 : 2 : 2
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>প্রশ্নে ক্রমটা খেয়াল করুন: <strong>C : B : A</strong> চেয়েছে।</li>
+                <li>C=2000, B=4000, A=4000</li>
+                <li>2000 : 4000 : 4000</li>
+                <li>2000 দিয়ে ভাগ করলে: <strong>1 : 2 : 2</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ১৩ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ১৩:</strong> 9 : 25 :: 27 : ?
+        <ul class="option-list">
+            <li>(A) 36</li>
+            <li>(B) 85</li>
+            <li>(C) 75</li>
+            <li>(D) 78</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (C) 75
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>9 এর 3 গুণ হলো 27 (9 × 3 = 27)।</li>
+                <li>তাই 25 এর 3 গুণ হবে উত্তর।</li>
+                <li>25 × 3 = <strong>75</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ১৪ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ১৪:</strong> লুপ্ত সংখ্যাটি নির্ণয় করুন— 12 : ? :: 9 : 15
+        <ul class="option-list">
+            <li>(A) 10</li>
+            <li>(B) 20</li>
+            <li>(C) 18</li>
+            <li>(D) 22</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (B) 20
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>ধরি সংখ্যাটি x।</li>
+                <li><span class="math-eq"><span class="fraction"><span class="top">12</span><span class="bottom">x</span></span> = <span class="fraction"><span class="top">9</span><span class="bottom">15</span></span></span></li>
+                <li>কাটাকাটি: <span class="fraction"><span class="top">9</span><span class="bottom">15</span></span> কে 3 দিয়ে কাটলে <span class="fraction"><span class="top">3</span><span class="bottom">5</span></span>।</li>
+                <li><span class="math-eq"><span class="fraction"><span class="top">12</span><span class="bottom">x</span></span> = <span class="fraction"><span class="top">3</span><span class="bottom">5</span></span> ⇒ 3x = 60 ⇒ x = 20</span>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ১৫ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ১৫:</strong> A, B এবং C-এর মধ্যে 86,700 টাকা এমনভাবে ভাগ করা হল যাতে A, 1 টাকা পেলে B, 90 পয়সা পাবে এবং B, 1 টাকা পেলে C, 110 পয়সা পাবে। B তার ভাগে কত টাকা পাবে?
+        <ul class="option-list">
+            <li>(A) 26,010</li>
+            <li>(B) 27,000</li>
+            <li>(C) 28,000</li>
+            <li>(D) 28,090</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (B) 27,000
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>সব টাকাকে পয়সায় নিয়ে অনুপাত করি।</li>
+                <li>A : B = 100 : 90 = 10 : 9</li>
+                <li>B : C = 100 : 110 = 10 : 11</li>
+                <li>A : B : C বের করার নিয়ম (দণ্ড গুণন):
+                    <div class="math-eq">
+                        10 &nbsp; 9<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; 10 &nbsp; 11
+                    </div>
+                    = (10 × 10) : (9 × 10) : (9 × 11)
+                    <br>= 100 : 90 : 99
+                </li>
+                <li>মোট অনুপাত = 100 + 90 + 99 = 289 ইউনিট।</li>
+                <li>289 ইউনিট = 86,700 টাকা। 1 ইউনিট = 300 টাকা।</li>
+                <li>B পাবে (90 ইউনিট) = 90 × 300 = <strong>27,000 টাকা</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ১৬ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ১৬:</strong> দুটি সংখ্যার অনুপাত 3 : 4। এই দুটি সংখ্যার গসাগু এবং লসাগুর গুণফল 2028। দুটি সংখ্যার যোগফল কত হবে?
+        <ul class="option-list">
+            <li>(A) 68</li>
+            <li>(B) 72</li>
+            <li>(C) 86</li>
+            <li>(D) 91</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (D) 91
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li><strong>সূত্র:</strong> সংখ্যা দুটির গুণফল = গসাগু × লসাগু।</li>
+                <li>ধরি সংখ্যা দুটি 3x এবং 4x।</li>
+                <li>প্রশ্নমতে, <span class="math-eq">3x × 4x = 2028</span></li>
+                <li><span class="math-eq">12x<sup>2</sup> = 2028 ⇒ x<sup>2</sup> = 169 ⇒ x = 13</span>।</li>
+                <li>সংখ্যা দুটির যোগফল = 3x + 4x = 7x = 7 × 13 = <strong>91</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ১৭ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ১৭:</strong> 6, 7, 15 এবং 17—এই সংখ্যাগুলির সাথে কত যোগ করলে সংখ্যাগুলি পরস্পরের সমানুপাতী হবে?
+        <ul class="option-list">
+            <li>(A) 6</li>
+            <li>(B) 5</li>
+            <li>(C) 4</li>
+            <li>(D) 3</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (D) 3
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা (Option Test):</strong>
+            <ul>
+                <li>Option (D) অর্থাৎ 3 যোগ করি:
+                    <br>সংখ্যাগুলো হবে: 6+3=9, 7+3=10, 15+3=18, 17+3=20।
+                    <br>১ম ভাগ: <span class="fraction"><span class="top">9</span><span class="bottom">10</span></span>
+                    <br>২য় ভাগ: <span class="fraction"><span class="top">18</span><span class="bottom">20</span></span> = <span class="fraction"><span class="top">9</span><span class="bottom">10</span></span> (মিলে গেছে)।
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ১৮ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ১৮:</strong> যদি A = B এর <span class="fraction"><span class="top">4</span><span class="bottom">5</span></span> অংশ এবং B = C এর <span class="fraction"><span class="top">5</span><span class="bottom">2</span></span> অংশ হয়, তবে A : C = ?
+        <ul class="option-list">
+            <li>(A) 1 : 2</li>
+            <li>(B) 2 : 1</li>
+            <li>(C) 2 : 3</li>
+            <li>(D) 1 : 3</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (B) 2 : 1
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li><span class="math-eq">A = B × <span class="fraction"><span class="top">4</span><span class="bottom">5</span></span> ⇒ <span class="fraction"><span class="top">A</span><span class="bottom">B</span></span> = <span class="fraction"><span class="top">4</span><span class="bottom">5</span></span> ⇒ A : B = 4 : 5</span></li>
+                <li><span class="math-eq">B = C × <span class="fraction"><span class="top">5</span><span class="bottom">2</span></span> ⇒ <span class="fraction"><span class="top">B</span><span class="bottom">C</span></span> = <span class="fraction"><span class="top">5</span><span class="bottom">2</span></span> ⇒ B : C = 5 : 2</span></li>
+                <li>উভয় ক্ষেত্রে B এর মান 5 সমান আছে।</li>
+                <li><span class="math-eq">∴ A : B : C = 4 : 5 : 2</span></li>
+                <li>A : C = 4 : 2 = <strong>2 : 1</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ১৯ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ১৯:</strong> যদি a : b = b : c হয়, তবে a<sup>4</sup> : b<sup>4</sup>-এর মান হবে—
+        <ul class="option-list">
+            <li>(A) ac : b<sup>2</sup></li>
+            <li>(B) a<sup>2</sup> : c<sup>2</sup></li>
+            <li>(C) c<sup>2</sup> : a<sup>2</sup></li>
+            <li>(D) b<sup>2</sup> : ac</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (B) a<sup>2</sup> : c<sup>2</sup>
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li><span class="math-eq"><span class="fraction"><span class="top">a</span><span class="bottom">b</span></span> = <span class="fraction"><span class="top">b</span><span class="bottom">c</span></span> ⇒ b<sup>2</sup> = ac</span></li>
+                <li>প্রদত্ত রাশি: a<sup>4</sup> : b<sup>4</sup></li>
+                <li>b<sup>4</sup> কে লেখা যায় <span class="math-eq">(b<sup>2</sup>)<sup>2</sup> = (ac)<sup>2</sup> = a<sup>2</sup>c<sup>2</sup></span></li>
+                <li>অনুপাত = <span class="math-eq">a<sup>4</sup> : a<sup>2</sup>c<sup>2</sup></span></li>
+                <li>উভয় পাশ থেকে a<sup>2</sup> দিয়ে ভাগ করলে = <strong>a<sup>2</sup> : c<sup>2</sup></strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ২০ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ২০:</strong> রাম এবং গোপাল-এর কাছে 7 : 17 অনুপাতে টাকা আছে। আবার গোপাল এবং কৃষ্ণ-র কাছেও একই অনুপাতে (7 : 17) টাকা আছে। রামের কাছে 490 টাকা থাকলে, কৃষ্ণ-র কাছে কত টাকা থাকবে?
+        <ul class="option-list">
+            <li>(A) 2330</li>
+            <li>(B) 2680</li>
+            <li>(C) 2890</li>
+            <li>(D) 3000</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (C) 2890
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>R : G = 7 : 17 এবং G : K = 7 : 17</li>
+                <li>রামের টাকা 490। এখানে রামের অনুপাত 7 ইউনিট।</li>
+                <li>7 ইউনিট = 490 টাকা ⇒ 1 ইউনিট = 70 টাকা।</li>
+                <li>গোপাল (17 ইউনিট) = 17 × 70 = 1190 টাকা।</li>
+                <li>এবার ২য় অনুপাতে গোপাল : কৃষ্ণ = 7 : 17।</li>
+                <li>এখানে গোপালের 7 ইউনিট = 1190 টাকা ⇒ 1 ইউনিট = 170 টাকা।</li>
+                <li>কৃষ্ণ (17 ইউনিট) = 17 × 170 = <strong>2890 টাকা</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ২১ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ২১:</strong> যদি x : y = 2 : 1 হয়, তবে (x<sup>2</sup> - y<sup>2</sup>) : (x<sup>2</sup> + y<sup>2</sup>) = ?
+        <ul class="option-list">
+            <li>(A) 3 : 5</li>
+            <li>(B) 5 : 3</li>
+            <li>(C) 1 : 3</li>
+            <li>(D) 3 : 1</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (A) 3 : 5
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>সরাসরি মান বসাও: x = 2, y = 1।</li>
+                <li>x<sup>2</sup> - y<sup>2</sup> = 2<sup>2</sup> - 1<sup>2</sup> = 4 - 1 = 3</li>
+                <li>x<sup>2</sup> + y<sup>2</sup> = 2<sup>2</sup> + 1<sup>2</sup> = 4 + 1 = 5</li>
+                <li>অনুপাত = <strong>3 : 5</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ২২ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ২২:</strong> যদি 2A = 3B এবং 4B = 5C হয়, তবে A : C = ?
+        <ul class="option-list">
+            <li>(A) 4 : 3</li>
+            <li>(B) 8 : 15</li>
+            <li>(C) 15 : 8</li>
+            <li>(D) 3 : 4</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (C) 15 : 8
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <ul>
+                <li>2A = 3B ⇒ A : B = 3 : 2</li>
+                <li>4B = 5C ⇒ B : C = 5 : 4</li>
+                <li>চেইন রুল বা গুণ করে দিই:
+                    <div class="math-eq"><span class="fraction"><span class="top">A</span><span class="bottom">C</span></span> = <span class="fraction"><span class="top">A</span><span class="bottom">B</span></span> × <span class="fraction"><span class="top">B</span><span class="bottom">C</span></span> = <span class="fraction"><span class="top">3</span><span class="bottom">2</span></span> × <span class="fraction"><span class="top">5</span><span class="bottom">4</span></span> = <span class="fraction"><span class="top">15</span><span class="bottom">8</span></span></div>
+                </li>
+                <li>∴ A : C = <strong>15 : 8</strong>।</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<nav class="navigation">
+    <a href="class5.html" class="nav-button">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button">1</a>
+    <a href="class2.html" class="nav-button">2</a>
+    <a href="class3.html" class="nav-button">3</a>
+    <a href="class4.html" class="nav-button">4</a>
+    <a href="class5.html" class="nav-button">5</a>
+    <a href="class6.html" class="nav-button active">6</a>
+    <a href="class7.html" class="nav-button">7</a>
+    <a href="class8.html" class="nav-button">8</a>
+    <a href="class7.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<!-- External JavaScript File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

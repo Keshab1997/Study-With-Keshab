@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ratio & Proportion - Class 05</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- ইনলাইন স্টাইল -->
+    <style>
+        .fraction {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            margin: 0 4px;
+        }
+        .fraction .top {
+            display: block;
+            border-bottom: 2px solid currentColor;
+            padding: 1px;
+        }
+        .fraction .bottom {
+            display: block;
+            padding: 1px;
+        }
+        .math-eq {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            background: #f4f4f4;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .highlight-text {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+        
+        /* প্রশ্ন এবং উত্তরের জন্য বক্স ডিজাইন */
+        .question-box {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .answer-box {
+            background-color: #fff3e0;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+        .option-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .option-list li {
+            padding: 5px 0;
+        }
+        
+        body.dark-mode .math-eq {
+            color: #fff;
+            background: #444;
+        }
+        body.dark-mode .question-box {
+            background-color: #1a237e;
+            border-left-color: #536dfe;
+            color: #e8eaf6;
+        }
+        body.dark-mode .answer-box {
+            background-color: #3e2723;
+            border-color: #5d4037;
+            color: #efebe9;
+        }
+    </style>
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: অনুপাত ও সমানুপাত (Ratio & Proportion)</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 05</h2>
+    
+    <h3><strong>অধ্যায়: অনুপাত ও সমানুপাত (Ratio & Proportion)</strong></h3>
+
+    <!-- অংশ ১: নিয়মাবলি -->
+    <h4><strong>📌 অংশ ১: নিয়মাবলি (10 থেকে 15)</strong></h4>
+    <p>বইয়ের ছবি অনুযায়ী 10 থেকে 15 নম্বর সূত্রগুলোর সহজ ব্যাখ্যা:</p>
+
+    <div class="content-box">
+        <strong>১০. ক্রমিক সমানুপাতের সম্পর্ক:</strong><br>
+        যদি <span class="math-eq">a, b, c, d</span> ক্রমিক সমানুপাতী হয়, তবে নিয়ম অনুযায়ী:
+        <div class="math-eq">
+            <span class="fraction"><span class="top">a</span><span class="bottom">b</span></span> = 
+            <span class="fraction"><span class="top">b</span><span class="bottom">c</span></span> = 
+            <span class="fraction"><span class="top">c</span><span class="bottom">d</span></span>
+        </div>
+        <ul>
+            <li>এর মানে হলো: <span class="math-eq">b<sup>2</sup> = ac</span> (প্রথম তিনটির জন্য),</li>
+            <li><span class="math-eq">c<sup>2</sup> = bd</span> (শেষ তিনটির জন্য) এবং</li>
+            <li><span class="math-eq">ad = bc</span> (প্রান্তীয় ও মধ্যপদ)।</li>
+        </ul>
+        
+        <hr>
+
+        <strong>১১. চেইন রুল বা ধারাবাহিক অনুপাত:</strong><br>
+        যদি <span class="math-eq">A : B = p : q</span>, <span class="math-eq">B : C = x : y</span> এবং <span class="math-eq">C : D = r : s</span> হয়, তবে প্রথম ও শেষের অনুপাত (A : D) বের করার নিয়ম:
+        <div class="math-eq">
+            A : D = 
+            <span class="fraction"><span class="top">A</span><span class="bottom">B</span></span> × 
+            <span class="fraction"><span class="top">B</span><span class="bottom">C</span></span> × 
+            <span class="fraction"><span class="top">C</span><span class="bottom">D</span></span> = 
+            <span class="fraction"><span class="top">p</span><span class="bottom">q</span></span> × 
+            <span class="fraction"><span class="top">x</span><span class="bottom">y</span></span> × 
+            <span class="fraction"><span class="top">r</span><span class="bottom">s</span></span>
+        </div>
+        <p><strong>সহজ কথা:</strong> সব ভগ্নাংশগুলো পরপর গুণ করে দিলে মাঝখানের গুলো কেটে গিয়ে শুধু প্রথম ও শেষ থাকে।</p>
+        
+        <hr>
+
+        <strong>১২. গুণফল থেকে অনুপাত নির্ণয়:</strong><br>
+        যদি <span class="math-eq">xA = yB</span> হয়, তবে <span class="math-eq">A : B = y : x</span>।
+        <ul>
+            <li><strong>উদাহরণ:</strong> <span class="math-eq">2A = 3B</span> হলে, <span class="math-eq">A : B = 3 : 2</span> (সংখ্যাগুলো উল্টে যায়)।</li>
+        </ul>
+
+        <hr>
+
+        <strong>১৩. সংখ্যা ভাগ করার নিয়ম:</strong><br>
+        দুটি সংখ্যার অনুপাত <span class="math-eq">a : b</span> এবং তাদের সমষ্টি (যোগফল) <span class="math-eq">x</span> হলে:
+        <ul>
+            <li>১ম সংখ্যা = <span class="math-eq"><span class="fraction"><span class="top">ax</span><span class="bottom">a + b</span></span></span></li>
+            <li>২য় সংখ্যা = <span class="math-eq"><span class="fraction"><span class="top">bx</span><span class="bottom">a + b</span></span></span></li>
+        </ul>
+
+        <hr>
+
+        <strong>১৪. যোগফল ও বিয়োগফল থেকে অনুপাত:</strong><br>
+        দুটি সংখ্যার যোগফল <span class="math-eq">x</span> ও বিয়োগফল <span class="math-eq">y</span> হলে, সংখ্যা দুটির অনুপাত হবে:
+        <div class="math-eq">অনুপাত = (x + y) : (x - y)</div>
+
+        <hr>
+
+        <strong>১৫. মুদ্রার (Coins) অঙ্ক করার সূত্র:</strong><br>
+        <ul>
+            <li><strong>(a) সমসংখ্যক মুদ্রা থাকলে:</strong> প্রতিটি মুদ্রার সংখ্যা = <span class="math-eq"><span class="fraction"><span class="top">মোট মূল্য</span><span class="bottom">মুদ্রাগুলির মূল্য সমষ্টি</span></span></span></li>
+            <li><strong>(b) মোট মুদ্রার সংখ্যা দেওয়া থাকলে:</strong> নির্দিষ্ট মুদ্রার সংখ্যা = <span class="math-eq"><span class="fraction"><span class="top">মোট মুদ্রা</span><span class="bottom">মুদ্রাগুলির আনুপাতিক পদের সমষ্টি</span></span> × নির্দিষ্ট অনুপাত</span></li>
+            <li><strong>(c) মোট মূল্য দেওয়া থাকলে:</strong> এই ক্ষেত্রে মুদ্রার সংখ্যাকে তাদের মান দিয়ে গুণ করে মোট টাকার হিসেবে আনতে হয়। (এটি প্রশ্নের মাধ্যমে ভালো বোঝা যায়)।</li>
+        </ul>
+    </div>
+
+    <!-- অংশ ২: স্ব-শিখন প্রশ্নাবলি -->
+    <h4><strong>📌 অংশ ২: স্ব-শিখন প্রশ্নাবলি (বিস্তারিত সমাধান)</strong></h4>
+    <p>বইয়ের 1 থেকে 4 নম্বর প্রশ্নের পুঙ্খানুপুঙ্খ সমাধান।</p>
+
+    <!-- প্রশ্ন ১ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ১:</strong> যদি A : B = 2 : 3 এবং B : C = 4 : 5 হয়, তবে A : B : C = ?
+        <ul class="option-list">
+            <li>(A) 2 : 12 : 5</li>
+            <li>(B) 8 : 12 : 15</li>
+            <li>(C) 12 : 8 : 15</li>
+            <li>(D) 15 : 12 : 8</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (B) 8 : 12 : 15
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <br>আমাদের লক্ষ্য হলো দুটি অনুপাতের মাঝখানের সংখ্যাটি (B) সমান করা।
+            <ul>
+                <li>A : B = 2 : 3 (এখানে B হলো 3)</li>
+                <li>B : C = 4 : 5 (এখানে B হলো 4)</li>
+            </ul>
+            3 এবং 4 এর লসাগু হলো 12। তাই B-কে 12 বানাতে হবে।
+            <br>১ম অনুপাতকে 4 দিয়ে গুণ: 2 × 4 : 3 × 4 = 8 : 12
+            <br>২য় অনুপাতকে 3 দিয়ে গুণ: 4 × 3 : 5 × 3 = 12 : 15
+            <br>এখন দুই জায়গাতেই B = 12, তাই জোড়া লাগালে পাই: <strong>8 : 12 : 15</strong>
+            <br><br>
+            <strong>🚀 শর্টকাট টেকনিক (দণ্ড গুণন বা দ-নিয়ম):</strong>
+            <br>সংখ্যাগুলো এভাবে সাজান:
+            <br>2 &nbsp; 3 &nbsp; <span style="color:red; font-weight:bold;">3</span> (ডানদিকের ফাঁকায় পাশের 3 বসালাম)
+            <br><span style="color:red; font-weight:bold;">4</span> &nbsp; 4 &nbsp; 5 (বামদিকের ফাঁকায় পাশের 4 বসালাম)
+            <br>----------------
+            <br>গুণ করুন: (2×4) : (3×4) : (3×5) = <strong>8 : 12 : 15</strong>
+            <br><br>
+            <strong>অপশন বিশ্লেষণ:</strong>
+            <ul>
+                <li>(A) তে 2:12 আছে যা 1:6, কিন্তু প্রশ্নে A:B = 2:3। তাই ভুল।</li>
+                <li>(C) তে A>B, কিন্তু প্রশ্নে A&lt;B (2:3)। তাই ভুল।</li>
+                <li>(B) তে 8:12 কাটাকাটি করলে 2:3 এবং 12:15 কাটাকাটি করলে 4:5 হয়। তাই এটিই সঠিক।</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ২ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ২:</strong> A এবং B-এর মাসিক আয়ের অনুপাত 5 : 4 এবং তাদের ব্যয়ের অনুপাত 3 : 2। যদি উভয়ে মাসে 800 টাকা সঞ্চয় করে, তবে A-এর মাসিক আয় কত?
+        <ul class="option-list">
+            <li>(A) 1800 টাকা</li>
+            <li>(B) 1600 টাকা</li>
+            <li>(C) 2200 টাকা</li>
+            <li>(D) 2000 টাকা</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (D) 2000 টাকা
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা (বইয়ের নিয়ম):</strong>
+            <br>ধরি, A ও B এর আয় যথাক্রমে 5x ও 4x টাকা।
+            <br>এবং তাদের ব্যয় যথাক্রমে 3y ও 2y টাকা।
+            <br>প্রশ্নানুযায়ী, আয় - ব্যয় = সঞ্চয়।
+            <br>5x - 3y = 800 ... (i)
+            <br>4x - 2y = 800 ... (ii)
+            <br>(i) ও (ii) সমাধান করলে x = 400 পাওয়া যায়।
+            <br>সুতরাং, A-এর আয় = 5x = 5 × 400 = 2000 টাকা।
+            <br><br>
+            <strong>🚀 সুপার শর্টকাট টেকনিক (গ্যাপ মেথড):</strong>
+            <br>আয়: 5 : 4
+            <br>ব্যয়: 3 : 2
+            <br>পার্থক্য: (5 - 3) = 2 ইউনিট : (4 - 2) = 2 ইউনিট।
+            <br>লক্ষ্য করুন, অনুপাতের পার্থক্য বা গ্যাপ দুই ক্ষেত্রেই সমান (2 ইউনিট)।
+            <br>এই 2 ইউনিট মানেই হলো সঞ্চয়।
+            <br>প্রশ্নমতে, 2 ইউনিট = 800 টাকা।
+            <br>তাহলে, 1 ইউনিট = 400 টাকা।
+            <br>A-এর আয় ছিল 5 ইউনিট।
+            <br>অতএব, A-এর আয় = 5 × 400 = <strong>2000 টাকা</strong>।
+            <br><br>
+            <strong>অপশন বিশ্লেষণ:</strong>
+            <br>A-এর আয়ের অনুপাত 5। তাই উত্তরটি অবশ্যই 5 দিয়ে ভাগ যাবে। সব অপশনই 5 দিয়ে ভাগ যায়, তাই এখানে অঙ্ক কষতেই হবে। শর্টকাটে করলে মাত্র 5 সেকেন্ড সময় লাগবে।
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৩ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ৩:</strong> 10 বছর আগে A-এর বয়স B-এর বয়সের অর্ধেক ছিল। যদি তাদের বয়সের অনুপাত 3 : 4 হয়, তবে তাদের বয়সের সমষ্টি কত হবে? (এখানে 'তাদের বয়সের অনুপাত' বলতে বর্তমান বোঝানো হয়েছে)।
+        <ul class="option-list">
+            <li>(A) 20 বছর</li>
+            <li>(B) 14 বছর</li>
+            <li>(C) 35 বছর</li>
+            <li>(D) 30 বছর</li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (C) 35 বছর
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <br>ধরি, বর্তমানে A ও B-এর বয়স যথাক্রমে 3x ও 4x বছর।
+            <br>10 বছর আগে তাদের বয়স ছিল: (3x - 10) এবং (4x - 10)।
+            <br>প্রশ্নমতে, 10 বছর আগে A-এর বয়স B-এর অর্ধেক ছিল।
+            <br>শর্ত: <span class="math-eq">3x - 10 = <span class="fraction"><span class="top">1</span><span class="bottom">2</span></span>(4x - 10)</span>
+            <br>বা, 2(3x - 10) = 4x - 10
+            <br>বা, 6x - 20 = 4x - 10
+            <br>বা, 6x - 4x = 20 - 10
+            <br>বা, 2x = 10
+            <br>বা, x = 5
+            <br>তাহলে বর্তমানে বয়সের সমষ্টি = 3x + 4x = 7x = 7 × 5 = <strong>35 বছর</strong>।
+            <br><br>
+            <strong>🚀 শর্টকাট টেকনিক (অপশন টেস্ট):</strong>
+            <br>বর্তমান বয়সের অনুপাত 3 : 4।
+            <br>তাহলে বয়সের সমষ্টি অবশ্যই (3 + 4) = 7 এর গুণিতক হতে হবে (অর্থাৎ 7 দিয়ে ভাগ যাবে)।
+            <br>অপশনগুলোর দিকে তাকান:
+            <ul>
+                <li>(A) 20 (7 দিয়ে ভাগ যায় না)</li>
+                <li>(B) 14 (7 দিয়ে ভাগ যায়) - হতে পারে।</li>
+                <li>(C) 35 (7 দিয়ে ভাগ যায়) - হতে পারে।</li>
+                <li>(D) 30 (7 দিয়ে ভাগ যায় না)</li>
+            </ul>
+            এবার চেক করি: যদি সমষ্টি 14 হয়, তবে বয়স 6 ও 8। 10 বছর আগে বয়স নেগেটিভ হয়ে যাবে, যা সম্ভব নয়।
+            <br>তাই সঠিক উত্তর অবশ্যই <strong>35</strong>।
+        </div>
+    </div>
+
+    <!-- প্রশ্ন ৪ -->
+    <div class="question-box">
+        <strong>প্রশ্ন ৪:</strong> <span class="math-eq">x : <span class="fraction"><span class="top">1</span><span class="bottom">27</span></span> :: <span class="fraction"><span class="top">3</span><span class="bottom">11</span></span> : <span class="fraction"><span class="top">5</span><span class="bottom">9</span></span></span> হলে, x = ?
+        <br>(চিহ্ন '::' মানে সমানুপাত বা সমান চিহ্ন)
+        <ul class="option-list">
+            <li>(A) <span class="fraction"><span class="top">1</span><span class="bottom">55</span></span></li>
+            <li>(B) 55</li>
+            <li>(C) <span class="fraction"><span class="top">3</span><span class="bottom">11</span></span></li>
+            <li>(D) <span class="fraction"><span class="top">1</span><span class="bottom">11</span></span></li>
+        </ul>
+
+        <div class="answer-box">
+            <strong>✅ সঠিক উত্তর:</strong> (A) <span class="fraction"><span class="top">1</span><span class="bottom">55</span></span>
+            <br><br>
+            <strong>বিস্তারিত ব্যাখ্যা:</strong>
+            <br>সমানুপাতের নিয়ম: <strong>প্রথম পদ × চতুর্থ পদ = দ্বিতীয় পদ × তৃতীয় পদ</strong>
+            <br>এখানে:
+            <ul>
+                <li>১ম পদ = x</li>
+                <li>২য় পদ = <span class="fraction"><span class="top">1</span><span class="bottom">27</span></span></li>
+                <li>৩য় পদ = <span class="fraction"><span class="top">3</span><span class="bottom">11</span></span></li>
+                <li>৪র্থ পদ = <span class="fraction"><span class="top">5</span><span class="bottom">9</span></span></li>
+            </ul>
+            সূত্র বসিয়ে পাই:
+            <br><span class="math-eq">x × <span class="fraction"><span class="top">5</span><span class="bottom">9</span></span> = <span class="fraction"><span class="top">1</span><span class="bottom">27</span></span> × <span class="fraction"><span class="top">3</span><span class="bottom">11</span></span></span>
+            <br>বা, <span class="math-eq">x = <span class="fraction"><span class="top">1</span><span class="bottom">27</span></span> × <span class="fraction"><span class="top">3</span><span class="bottom">11</span></span> × <span class="fraction"><span class="top">9</span><span class="bottom">5</span></span></span> (ডানদিকে গিয়ে উল্টে গেল)
+            <br><br>
+            কাটাকাটি করি:
+            <br>উপরে 3 × 9 = 27 হয়। এই 27 দিয়ে নিচের 27 কেটে গেল।
+            <br>উপরে থাকল 1।
+            <br>নিচে থাকল 11 × 5 = 55।
+            <br>অতএব, <span class="math-eq">x = <span class="fraction"><span class="top">1</span><span class="bottom">55</span></span></span>
+            <br><br>
+            <strong>অপশন বিশ্লেষণ:</strong>
+            <ul>
+                <li>এখানে খুব সাবধানে কাটাকাটি করতে হবে। সঠিক উত্তর একটি ভগ্নাংশ আসবে।</li>
+                <li>অপশন (B) 55 পূর্ণসংখ্যা, তাই ভুল।</li>
+                <li>অপশন (A) <span class="fraction"><span class="top">1</span><span class="bottom">55</span></span> সঠিক হিসাবের সাথে মিলে যায়।</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<nav class="navigation">
+    <a href="class4.html" class="nav-button">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button">1</a>
+    <a href="class2.html" class="nav-button">2</a>
+    <a href="class3.html" class="nav-button">3</a>
+    <a href="class4.html" class="nav-button">4</a>
+    <a href="class5.html" class="nav-button active">5</a>
+    <a href="class6.html" class="nav-button">6</a>
+    <a href="class7.html" class="nav-button">7</a>
+    <a href="class8.html" class="nav-button">8</a>
+    <a href="class6.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<!-- External JavaScript File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

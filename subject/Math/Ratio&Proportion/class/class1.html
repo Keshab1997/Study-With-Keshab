@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algebra Formulas & Tricks - Class 01</title>
+    <title>Ratio & Proportion - Class 01</title>
     <!-- External CSS File Link -->
     <link rel="stylesheet" href="css/style.css">
     
-    <!-- ইনলাইন স্টাইল (যদি css ফাইলে যোগ না করতে চান তবে এটি কাজ করবে) -->
+    <!-- ইনলাইন স্টাইল -->
     <style>
         .fraction {
             display: inline-block;
@@ -24,7 +24,6 @@
             display: block;
             padding: 1px;
         }
-        /* গাণিতিক ইকুয়েশনগুলো একটু বড় দেখানোর জন্য */
         .math-eq {
             font-size: 1.2rem;
             font-weight: bold;
@@ -35,7 +34,11 @@
             display: inline-block;
             margin: 10px 0;
         }
-        /* ডার্ক মোডের জন্য */
+        /* হাইলাইট করার জন্য */
+        .highlight-text {
+            color: #d32f2f;
+            font-weight: bold;
+        }
         body.dark-mode .math-eq {
             color: #fff;
             background: #444;
@@ -46,7 +49,7 @@
 
 <header>
     <img src="../images/logo.jpg" alt="Logo" class="logo"> 
-    <h1>অধ্যায়: বীজগণিতের সূত্রাবলী (Algebra Formulas)</h1>
+    <h1>অধ্যায়: অনুপাত ও সমানুপাত (Ratio & Proportion)</h1>
 </header>
 
 <div class="controls-wrapper">
@@ -71,145 +74,147 @@
 <div class="container">
     <h2>CLASS NO: 01</h2>
     
-    <h3><strong>অধ্যায়: বীজগণিতের সূত্র ও শর্টকাট টেকনিক</strong></h3>
-    <p>প্রতিযোগিতামূলক পরীক্ষার জন্য বীজগণিতের গুরুত্বপূর্ণ সূত্র এবং শর্টকাট টেকনিকসমূহ নিচে আলোচনা করা হলো।</p>
+    <h3><strong>অধ্যায়: অনুপাত ও সমানুপাত (Ratio & Proportion)</strong></h3>
 
-    <!-- Type 1 -->
-    <h4><strong>🔥 Type-1: বর্গের সূত্র (Squaring Formulas)</strong></h4>
-    <p>সবচেয়ে বেশি প্রশ্ন এখান থেকেই আসে।</p>
+    <!-- ১. মৌলিক ধারণা -->
+    <h4><strong>১. মৌলিক ধারণা (Basic Concepts)</strong></h4>
     <ul>
-        <li><strong>Formula 1:</strong> (a + b)<sup>2</sup> = a<sup>2</sup> + b<sup>2</sup> + 2ab
-            <br><em>Exam Form:</em> a<sup>2</sup> + b<sup>2</sup> = (a + b)<sup>2</sup> - 2ab
+        <li><strong>অনুপাত (Ratio):</strong> দুটি একই জাতীয় রাশির তুলনা।<br>
+            যেমন: A এবং B এর অনুপাত <span class="math-eq">A : B</span> বা <span class="math-eq"><span class="fraction"><span class="top">A</span><span class="bottom">B</span></span></span>।
+            <br><em>মনে রাখবে:</em> অনুপাতের কোনো একক (Unit) হয় না।
         </li>
-        <li><strong>Formula 2:</strong> (a - b)<sup>2</sup> = a<sup>2</sup> + b<sup>2</sup> - 2ab
-            <br><em>Exam Form:</em> a<sup>2</sup> + b<sup>2</sup> = (a - b)<sup>2</sup> + 2ab
+        <li><strong>সমানুপাত (Proportion):</strong> যখন দুটি অনুপাত পরস্পর সমান হয়।
+            <br>যেমন: <span class="math-eq">A : B :: C : D</span>
+            <br>(এর মানে হলো A : B = C : D বা <span class="fraction"><span class="top">A</span><span class="bottom">B</span></span> = <span class="fraction"><span class="top">C</span><span class="bottom">D</span></span>)
         </li>
-        <li><strong>Formula 3 (Difference of Squares):</strong> a<sup>2</sup> - b<sup>2</sup> = (a + b)(a - b)</li>
+        <li><strong>গোল্ডেন রুল (Golden Rule):</strong> প্রান্তীয় রাশি দুটির গুণফল = মধ্যরাশি দুটির গুণফল।
+            <div class="math-eq">A × D = B × C</div>
+        </li>
     </ul>
 
-    <h4><strong>🚀 Shortcut Tricks (Reciprocal System) - সবচেয়ে গুরুত্বপূর্ণ</strong></h4>
-    <p>পরীক্ষায় <span class="math-eq">x</span> এবং <span class="math-eq"><span class="fraction"><span class="top">1</span><span class="bottom">x</span></span></span> ফরম্যাটে প্রশ্ন বেশি আসে।</p>
+    <!-- ২. কিছু গুরুত্বপূর্ণ সূত্র -->
+    <h4><strong>২. কিছু গুরুত্বপূর্ণ সূত্র (যা সরাসরি পরীক্ষায় আসে)</strong></h4>
+    <p>RRB Group D-তে প্রায়ই মধ্যসমানুপাতী বা চতুর্থ সমানুপাতী বের করতে বলে। এই সূত্রগুলো ঠোঁস্থ রাখবে:</p>
+    
+    <div class="content-box">
+        <ol>
+            <li><strong>মধ্যসমানুপাতী (Mean Proportional):</strong><br>
+                A ও B এর মধ্যসমানুপাতী = <span class="math-eq">√ (A × B)</span>
+            </li>
+            <li><strong>তৃতীয় সমানুপাতী (Third Proportional):</strong><br>
+                A ও B এর তৃতীয় সমানুপাতী = <span class="math-eq"><span class="fraction"><span class="top">B<sup>2</sup></span><span class="bottom">A</span></span></span>
+            </li>
+            <li><strong>চতুর্থ সমানুপাতী (Fourth Proportional):</strong><br>
+                A, B ও C এর চতুর্থ সমানুপাতী = <span class="math-eq"><span class="fraction"><span class="top">B × C</span><span class="bottom">A</span></span></span>
+            </li>
+            <li><strong>মিশ্র অনুপাত (Compound Ratio):</strong><br>
+                A : B এবং C : D এর মিশ্র অনুপাত = <span class="math-eq">(A × C) : (B × D)</span>
+                <br>(প্রথমগুলোর গুণফল : শেষগুলোর গুণফল)।
+            </li>
+            <li><strong>ব্যস্ত অনুপাত (Inverse Ratio):</strong><br>
+                A : B এর ব্যস্ত অনুপাত = <span class="math-eq">B : A</span>।
+            </li>
+        </ol>
+    </div>
+
+    <!-- ৩. অঙ্ক করার প্রধান টেকনিক -->
+    <h4><strong>৩. অঙ্ক করার প্রধান টেকনিক (Shortcuts)</strong></h4>
+    <p>সবচেয়ে বেশি যে ধরনের অঙ্ক আসে, তা হলো একাধিক অনুপাতকে জোড়া লাগানো।</p>
 
     <div class="content-box">
-        <strong>⚡ Trick 1 (Plus to Plus Square):</strong><br>
-        যদি <span class="math-eq">x + <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = K</span> হয়, তবে:
-        <br>
-        <div class="math-eq">
-            x<sup>2</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>2</sup></span></span> = K<sup>2</sup> - 2
+        <strong>⚡ টেকনিক ১: দণ্ড গুণন বা 'দ' নিয়ম (A : B : C বের করা)</strong><br>
+        যদি A : B = 2 : 3 এবং B : C = 4 : 5 হয়, তবে A : B : C কত?
+        <br><br>
+        <strong>নিয়ম (Empty Space Method):</strong><br>
+        পাশাপাশি লিখুন এবং ফাঁকা জায়গায় পাশের সংখ্যাটি বসিয়ে দিন।<br>
+        <div class="math-eq" style="text-align: left; padding-left: 20px;">
+            A : B : C<br>
+            2 : 3 : <span style="color:red; font-weight:bold;">3</span> (এখানে ফাঁকা জায়গায় পাশের সংখ্যা 3 বসবে)<br>
+            <span style="color:red; font-weight:bold;">4</span> : 4 : 5 (এখানে ফাঁকা জায়গায় পাশের সংখ্যা 4 বসবে)<br>
+            ----------- (এখন উপর-নিচ গুণ করুন)<br>
+            8 : 12 : 15 (এটাই উত্তর)
         </div>
-        <p><strong>Example:</strong> যদি x + <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = 5 হয়, তবে x<sup>2</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>2</sup></span></span> কত?</p>
-        <p><em>Shortcut Solution:</em> K = 5; Ans = 5<sup>2</sup> - 2 = 25 - 2 = <strong>23</strong></p>
+        <p>A : B : C = 2×4 : 3×4 : 3×5 = <strong>8 : 12 : 15</strong></p>
+    </div>
+
+    <!-- ৪. প্রশ্নের ধরন অনুযায়ী সমাধান কৌশল -->
+    <h4><strong>৪. প্রশ্নের ধরন অনুযায়ী সমাধান কৌশল (Types of Problems)</strong></h4>
+
+    <div class="content-box">
+        <strong>📌 টাইপ ১: টাকা বা সংখ্যা ভাগ করা (Distribution)</strong><br>
+        <strong>প্রশ্ন:</strong> 1000 টাকাকে A ও B এর মধ্যে 3 : 2 অনুপাতে ভাগ করলে A কত পাবে?
+        <ul>
+            <li><strong>নিয়ম:</strong> মোট অনুপাত = 3 + 2 = 5</li>
+            <li>5 ইউনিট মানে 1000 টাকা।</li>
+            <li>1 ইউনিট মানে <span class="fraction"><span class="top">1000</span><span class="bottom">5</span></span> = 200 টাকা।</li>
+            <li>A পাবে (3 ইউনিট) = 3 × 200 = <strong>600 টাকা</strong>।</li>
+        </ul>
     </div>
     <br>
-    <div class="content-box">
-        <strong>⚡ Trick 2 (Minus to Plus Square):</strong><br>
-        যদি <span class="math-eq">x - <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = K</span> হয়, তবে:
-        <br>
-        <div class="math-eq">
-            x<sup>2</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>2</sup></span></span> = K<sup>2</sup> + 2
-        </div>
-        <p><strong>Example:</strong> যদি x - <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = 4 হয়, তবে x<sup>2</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>2</sup></span></span> কত?</p>
-        <p><em>Shortcut Solution:</em> K = 4; Ans = 4<sup>2</sup> + 2 = 16 + 2 = <strong>18</strong></p>
-    </div>
 
-    <!-- Type 2 -->
-    <h4><strong>🔥 Type-2: ঘন এর সূত্র (Cubic Formulas)</strong></h4>
-    <ul>
-        <li><strong>Formula 4:</strong> (a + b)<sup>3</sup> = a<sup>3</sup> + b<sup>3</sup> + 3ab(a + b)</li>
-        <li><strong>Formula 5:</strong> (a - b)<sup>3</sup> = a<sup>3</sup> - b<sup>3</sup> - 3ab(a - b)</li>
-        <li><strong>Formula 6:</strong> 
-            <br>a<sup>3</sup> + b<sup>3</sup> = (a + b)(a<sup>2</sup> - ab + b<sup>2</sup>)
-            <br>a<sup>3</sup> - b<sup>3</sup> = (a - b)(a<sup>2</sup> + ab + b<sup>2</sup>)
-        </li>
-    </ul>
-
-    <h4><strong>🚀 Shortcut Tricks (Cubes)</strong></h4>
-    
     <div class="content-box">
-        <strong>⚡ Trick 3 (Plus to Plus Cube):</strong><br>
-        যদি <span class="math-eq">x + <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = K</span> হয়, তবে:
-        <br>
-        <div class="math-eq">
-            x<sup>3</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>3</sup></span></span> = K<sup>3</sup> - 3K
-        </div>
-        <p><strong>Example:</strong> যদি x + <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = 3 হয়, তবে x<sup>3</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>3</sup></span></span> কত?</p>
-        <p><em>Shortcut Solution:</em> Ans = 3<sup>3</sup> - 3(3) = 27 - 9 = <strong>18</strong></p>
+        <strong>📌 টাইপ ২: মুদ্রার অঙ্ক (Coins Problems) - <span class="highlight-text">খুবই গুরুত্বপূর্ণ</span></strong><br>
+        ব্যাগে টাকার মান (Value) এবং মুদ্রার সংখ্যার (Number of coins) মধ্যে গুলিয়ে ফেলবে না।
+        <ul>
+            <li>যদি মুদ্রার সংখ্যার অনুপাত দেওয়া থাকে, তবে সেটাকে টাকার মানে কনভার্ট করতে হবে (যদি মোট টাকা দেওয়া থাকে)।</li>
+            <li><strong>উদাহরণ:</strong> 1 টাকা, 50 পয়সা ও 25 পয়সার সংখ্যার অনুপাত দেওয়া থাকলে:</li>
+            <li>1 টাকার কয়েন × 1</li>
+            <li>50 পয়সার কয়েন / 2 (কারণ 2-টোয় 1 টাকা)</li>
+            <li>25 পয়সার কয়েন / 4 (কারণ 4-টেয় 1 টাকা)</li>
+            <li>এইভাবে সবগুলোকে 'টাকায়' এনে যোগ করে মোট টাকার সাথে তুলনা করতে হবে।</li>
+        </ul>
     </div>
     <br>
+
     <div class="content-box">
-        <strong>⚡ Trick 4 (Minus to Minus Cube):</strong><br>
-        যদি <span class="math-eq">x - <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = K</span> হয়, তবে:
-        <br>
-        <div class="math-eq">
-            x<sup>3</sup> - <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>3</sup></span></span> = K<sup>3</sup> + 3K
-        </div>
-        <p><strong>Example:</strong> যদি x - <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = 5 হয়, তবে x<sup>3</sup> - <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>3</sup></span></span> কত?</p>
-        <p><em>Shortcut Solution:</em> Ans = 5<sup>3</sup> + 3(5) = 125 + 15 = <strong>140</strong></p>
+        <strong>📌 টাইপ ৩: আয়ের ও ব্যয়ের অনুপাত (Income & Expenditure)</strong><br>
+        <ul>
+            <li><strong>সূত্র:</strong> আয় - সঞ্চয় = ব্যয় (Income - Savings = Expenditure)</li>
+            <li>যদি দুজনের আয়ের অনুপাত এবং ব্যয়ের অনুপাত দেওয়া থাকে এবং দুজনেই সমান টাকা সঞ্চয় করে, তবে অনুপাতের পার্থক্য (Gap) সমান করে 1 ইউনিটের মান বের করতে হয়।</li>
+        </ul>
+    </div>
+    <br>
+
+    <div class="content-box">
+        <strong>📌 টাইপ ৪: সংখ্যা যোগ বা বিয়োগ করা</strong><br>
+        <strong>প্রশ্ন:</strong> 6, 7, 15, 17 এর সাথে কত যোগ করলে সংখ্যাগুলি সমানুপাতী হবে?
+        <ul>
+            <li><strong>শর্টকাট:</strong> এই অঙ্কগুলো <strong>Option Test</strong> করে করা সবচেয়ে বুদ্ধিমানের কাজ।</li>
+            <li>অপশন থেকে সংখ্যা নিয়ে যোগ করে দেখবে প্রথম দুটির অনুপাত শেষের দুটির অনুপাতের সমান হচ্ছে কিনা।</li>
+        </ul>
     </div>
 
-    <!-- Type 3 -->
-    <h4><strong>🔥 Type-3: পাওয়ার ৪ এবং ৫ (Power 4 & 5)</strong></h4>
-    <p>RRB Group D তে এখন একটু কঠিন প্রশ্নও আসছে।</p>
+    <!-- ৫. মনে রাখার টিপস -->
+    <h4><strong>৫. মনে রাখার টিপস (Tips for Exam)</strong></h4>
     <ul>
-        <li><strong>⚡ Trick 5 (Power 4):</strong> যদি <span class="math-eq">x + <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = K</span> হয়, তবে <span class="math-eq">x<sup>4</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>4</sup></span></span></span> বের করতে হলে <strong>দুইবার Square এর সূত্র</strong> ব্যবহার করতে হবে।</li>
-    </ul>
-    <p><strong>Example:</strong> x + <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = 3, find x<sup>4</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>4</sup></span></span></p>
-    <ul>
-        <li>Step 1: x<sup>2</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>2</sup></span></span> = 3<sup>2</sup> - 2 = 7</li>
-        <li>Step 2: x<sup>4</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>4</sup></span></span> = 7<sup>2</sup> - 2 = 49 - 2 = <strong>47</strong> (Ans)</li>
-    </ul>
-
-    <!-- Type 4 -->
-    <h4><strong>🔥 Type-4: বিশেষ বড় সূত্র (The Special Formula)</strong></h4>
-    <p>এটি RRB-এর ফেভারিট টপিক।</p>
-    <ul>
-        <li><strong>Formula 7:</strong> a<sup>3</sup> + b<sup>3</sup> + c<sup>3</sup> - 3abc = (a + b + c)(a<sup>2</sup> + b<sup>2</sup> + c<sup>2</sup> - ab - bc - ca)</li>
-    </ul>
-    <p><strong>⚡ Super Shortcut Condition:</strong> যদি <strong>a + b + c = 0</strong> হয়, তবে পুরো ডানপক্ষ শূন্য হয়ে যায়। তখন: <strong>a<sup>3</sup> + b<sup>3</sup> + c<sup>3</sup> = 3abc</strong></p>
-    
-    <p><strong>Example:</strong> যদি a=20, b=30, c=-50 হয়, তবে a<sup>3</sup> + b<sup>3</sup> + c<sup>3</sup> এর মান কত?</p>
-    <p><em>Check:</em> 20 + 30 - 50 = 0 (Condition Matched!)<br>
-    <em>Solution:</em> Ans = 3abc = 3 × 20 × 30 × (-50) = <strong>-90000</strong></p>
-
-    <!-- Type 5 -->
-    <h4><strong>🔥 Type-5: দ্বিঘাত সমীকরণ (Quadratic Equation)</strong></h4>
-    <p>সমীকরণ: ax<sup>2</sup> + bx + c = 0</p>
-    <ul>
-        <li><strong>মূলদ্বয়ের যোগফল (Sum of Roots):</strong> 
-            <div class="math-eq">
-                α + β = <span class="fraction"><span class="top">-b</span><span class="bottom">a</span></span>
-            </div>
-        </li>
-        <li><strong>মূলদ্বয়ের গুণফল (Product of Roots):</strong> 
-            <div class="math-eq">
-                αβ = <span class="fraction"><span class="top">c</span><span class="bottom">a</span></span>
-            </div>
+        <li><strong>১. একক সমান করা:</strong> অনুপাত বের করার সময় দুটি রাশির একক যেন একই থাকে। (যেমন: টাকা ও পয়সা থাকলে, দুটোকেই পয়সা করে নিতে হবে)।</li>
+        <li><strong>২. Fraction to Integer:</strong> যদি অনুপাত ভগ্নাংশে থাকে (যেমন <span class="fraction"><span class="top">1</span><span class="bottom">2</span></span> : <span class="fraction"><span class="top">1</span><span class="bottom">3</span></span>), তবে হরের লসাগু (LCM) দিয়ে গুণ করে পূর্ণসংখ্যায় আনবে। (3 : 2 হবে)।</li>
+        <li><strong>৩. সাধারণ ভুল:</strong> যদি <span class="math-eq">2A = 3B = 4C</span> হয়, তবে A : B : C কত?
+            <ul>
+                <li>❌ ভুল করেও 2 : 3 : 4 লিখবে না।</li>
+                <li>✅ নিয়ম হলো সংখ্যাগুলো উল্টে দেওয়া (<span class="fraction"><span class="top">1</span><span class="bottom">2</span></span> : <span class="fraction"><span class="top">1</span><span class="bottom">3</span></span> : <span class="fraction"><span class="top">1</span><span class="bottom">4</span></span>)।</li>
+                <li>অথবা <strong>'ঝাঁপ' মেথড (Hide Method)</strong> ব্যবহার করা:
+                    <br>A বের করার সময় A-কে হাত দিয়ে ঢেকে বাকি সংখ্যাগুলোর গুণ: 3 × 4 = 12
+                    <br>B এর জন্য: 2 × 4 = 8
+                    <br>C এর জন্য: 2 × 3 = 6
+                    <br>অর্থাৎ 12 : 8 : 6 বা <strong>6 : 4 : 3</strong>।
+                </li>
+            </ul>
         </li>
     </ul>
-    <p><strong>Example:</strong> 2x<sup>2</sup> - 8x + 6 = 0 সমীকরণের মূলদ্বয়ের যোগফল কত?</p>
-    <p><em>Solution:</em> এখানে a=2, b=-8, c=6<br>
-    Sum = <span class="fraction"><span class="top">-(-8)</span><span class="bottom">2</span></span> = <span class="fraction"><span class="top">8</span><span class="bottom">2</span></span> = <strong>4</strong></p>
-
-    <!-- Type 6 -->
-    <h4><strong>🔥 Type-6: Value Putting Method (Master Trick) 🧙‍♂️</strong></h4>
-    <p>যখন সাধারণ সূত্র মনে পড়বে না, তখন এই মেথড ব্যবহার করবেন।</p>
-    <p><strong>Rule:</strong> যদি একটি সমীকরণ (Equation) থাকে কিন্তু চলক (Variable) দুটি বা তার বেশি থাকে, তবে আপনি নিজের ইচ্ছামতো মান বসাতে পারেন। <em>(শর্ত: হরে বা Denominator-এ শূন্য আসা যাবে না)</em></p>
-    
-    <p><strong>Example:</strong> যদি a + b = 5 হয়, তবে a<sup>3</sup> + b<sup>3</sup> + 3ab(a + b) এর মান কত?</p>
-    <p><strong>Trick (Value Putting):</strong><br>
-    ধরি b = 0 (হিসাব সহজ করার জন্য)।<br>
-    তাহলে a + 0 = 5 => a = 5<br>
-    এখন রাশিতে মান বসাই: 5<sup>3</sup> + 0<sup>3</sup> + 3(5)(0)(5)<br>
-    = 125 + 0 + 0 = <strong>125</strong> (Ans)</p>
 
 </div>
 
 <nav class="navigation">
-    <a href="class1.html" class="nav-button disabled">পূর্ববর্তী</a>
+    <a href="#" class="nav-button disabled">পূর্ববর্তী</a>
     <a href="class1.html" class="nav-button active">1</a>
     <a href="class2.html" class="nav-button">2</a>
     <a href="class3.html" class="nav-button">3</a>
     <a href="class4.html" class="nav-button">4</a>
+    <a href="class5.html" class="nav-button">5</a>
+    <a href="class6.html" class="nav-button">6</a>
+    <a href="class7.html" class="nav-button">7</a>
+    <a href="class8.html" class="nav-button">8</a>
     <a href="class2.html" class="nav-button">পরবর্তী</a>
     <a href="../index.html" class="nav-button home-button">Home</a>
 </nav>
