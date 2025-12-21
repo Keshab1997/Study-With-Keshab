@@ -1,49 +1,24 @@
-// --- Firebase Configuration & Initialization ---
-const firebaseConfig = {
-    apiKey: "AIzaSyBEhbEWRfuch_wuXPiQdG8l5TW6L5Ssi1Y",
-    authDomain: "study-with-keshab.firebaseapp.com",
-    projectId: "study-with-keshab",
-    storageBucket: "study-with-keshab.firebasestorage.app",
-    messagingSenderId: "752692165545",
-    appId: "1:752692165545:web:219ff482874717c3ab22b8",
-    measurementId: "G-QH5ELRG2DE"
-};
+// --- Import Firebase SDK (Modular Version) ---
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { 
+    getFirestore, collection, getDocs, getDoc, doc, updateDoc, addDoc, deleteDoc, 
+    serverTimestamp, query, orderBy, limit, onSnapshot 
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js";
 
-// Initialize Firebase only if not already initialized
-if (typeof firebase !== 'undefined' && (!firebase.apps || firebase.apps.length === 0)) {
-    firebase.initializeApp(firebaseConfig);
-    console.log("Firebase initialized inside admin.js");
-}
 
+
+// --- Initialize Firebase ---
+console.log("Initializing Firebase Module...");
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const functions = getFunctions(app);
+
+// --- Main Logic ---
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Admin.js: DOM loaded, checking Firebase...");
-    
-    // Check if firebase SDK is loaded
-    if (typeof firebase === 'undefined') {
-        console.error("Firebase SDK not loaded from HTML.");
-        alert("Firebase লোড হয়নি। দয়া করে ইন্টারনেট কানেকশন চেক করুন অথবা পেজটি রিফ্রেশ করুন।");
-        return;
-    }
-
-    // Double check initialization
-    if (!firebase.apps.length) {
-        console.error("Firebase not initialized.");
-        return;
-    }
-    
-    console.log("Firebase apps:", firebase.apps.length);
-    console.log("Firebase initialized successfully, proceeding with admin panel...");
-    
-    // Initialize Services
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-    // Functions ঐচ্ছিক, যদি আপনার সেটআপ না থাকে তবে এটি এরর দিতে পারে, তাই try-catch রাখা ভালো
-    let functions;
-    try {
-        functions = firebase.functions();
-    } catch (e) {
-        console.warn("Firebase Functions not available or not configured.", e);
-    }
+    console.log("Admin.js: DOM loaded, Firebase initialized via Module.");
 
     // --- DOM Element References ---
     const adminPageContainer = document.querySelector('.admin-page-container');
@@ -77,9 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalUserName = document.getElementById('modal-user-name');
     const modalScoreTableBody = document.getElementById('modal-score-table-body');
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    let allUsersCache = []; // Caches user data for both dashboard and leaderboard
+    
+    let allUsersCache = []; // Cache
 
-    auth.onAuthStateChanged(user => {
+    // --- Auth Listener ---
+    onAuthStateChanged(auth, (user) => {
         if (user) {
             checkAdminRole(user);
         } else {
@@ -88,15 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const checkAdminRole = async (user) => {
-        console.log("checkAdminRole: Checking role for user", user.uid, user.email);
+        console.log("Checking role for:", user.email);
         try {
-            const doc = await db.collection('users').doc(user.uid).get();
-            console.log("checkAdminRole: User doc exists:", doc.exists);
-            if (doc.exists) {
-                console.log("checkAdminRole: User data:", doc.data());
-            }
-            if (doc.exists && doc.data().role === 'admin') {
-                initializeAdminPanel(user, doc.data());
+            const userRef = doc(db, 'users', user.uid);
+            const docSnap = await getDoc(userRef);
+            
+            if (docSnap.exists() && docSnap.data().role === 'admin') {
+                initializeAdminPanel(user, docSnap.data());
             } else {
                 showAccessDenied();
             }
@@ -112,60 +87,66 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const initializeAdminPanel = (user, adminData) => {
-        accessDeniedMessage.style.display = 'none';
-        adminPageContainer.style.display = 'flex';
-        adminNameSidebar.textContent = adminData.displayName || 'Admin';
-        adminProfilePicSidebar.src = adminData.photoURL || 'images/default-avatar.png';
-        adminInfoSidebar.style.display = 'flex';
+        if(accessDeniedMessage) accessDeniedMessage.style.display = 'none';
+        if(adminPageContainer) adminPageContainer.style.display = 'flex';
+        
+        if(adminNameSidebar) adminNameSidebar.textContent = adminData.displayName || 'Admin';
+        if(adminProfilePicSidebar) adminProfilePicSidebar.src = adminData.photoURL || 'images/default-avatar.png';
+        if(adminInfoSidebar) adminInfoSidebar.style.display = 'flex';
+        
         setupEventListeners();
-        loadAllUserData(); // Load all data once
+        loadAllUserData();
         loadNotificationHistory();
     };
-    
-    // --- ডেটা লোডিং এবং ক্যাশিং ---
+
+    // --- Load User Data ---
     const loadAllUserData = async () => {
-        console.log("loadAllUserData: Starting to load user data...");
         if (userListLoading) userListLoading.style.display = 'block';
         try {
-            console.log("loadAllUserData: Attempting Firestore query...");
-            const usersSnapshot = await db.collection('users').get();
-            console.log("loadAllUserData: Query successful, got", usersSnapshot.docs.length, "users");
-            allUsersCache = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            const querySnapshot = await getDocs(collection(db, 'users'));
+            allUsersCache = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             
-            // ড্যাশবোর্ড ডেটা সেট করুন
             const adminCount = allUsersCache.filter(user => user.role === 'admin').length;
             
             if(totalUsersStat) totalUsersStat.textContent = allUsersCache.length;
             if(totalAdminsStat) totalAdminsStat.textContent = adminCount;
             
-            console.log("loadAllUserData: Updated dashboard stats");
             renderUserTable(allUsersCache);
-            
-            // লিডারবোর্ডের ড্রপডাউন তৈরি করুন
             populateChapterDropdownFromCache();
 
         } catch (error) {
-            console.error("Error loading all user data:", error);
-            console.error("Error details:", error.code, error.message);
+            console.error("Error loading users:", error);
         } finally {
             if (userListLoading) userListLoading.style.display = 'none';
         }
     };
 
-
+    // --- Event Listeners ---
     const setupEventListeners = () => {
         if (navDashboard) navDashboard.addEventListener('click', (e) => { e.preventDefault(); switchTab('dashboard'); });
         if (navLeaderboard) navLeaderboard.addEventListener('click', (e) => { e.preventDefault(); switchTab('leaderboard'); });
-        if (adminLogoutBtn) adminLogoutBtn.addEventListener('click', (e) => { e.preventDefault(); auth.signOut().then(() => { window.location.href = 'index.html'; }); });
+        
+        if (adminLogoutBtn) {
+            adminLogoutBtn.addEventListener('click', (e) => { 
+                e.preventDefault(); 
+                signOut(auth).then(() => { window.location.href = 'index.html'; }); 
+            });
+        }
+
         if (userSearchInput) userSearchInput.addEventListener('input', handleUserSearch);
         if (chapterSelect) chapterSelect.addEventListener('change', () => {
             loadLeaderboardForChapter(chapterSelect.value);
         });
+        
         if (userTableBody) userTableBody.addEventListener('click', handleUserTableActions);
         if (leaderboardTableBody) leaderboardTableBody.addEventListener('click', handleLeaderboardTableActions);
+        
         if (modalCloseButton) modalCloseButton.addEventListener('click', () => scoreDetailsModal.style.display = 'none');
         if (scoreDetailsModal) window.addEventListener('click', (event) => { if (event.target === scoreDetailsModal) scoreDetailsModal.style.display = 'none'; });
+        
         if (mobileMenuToggle && sidebar) mobileMenuToggle.addEventListener('click', () => { sidebar.classList.toggle('is-visible'); });
+        
+        // Notification Listeners
         if (notificationForm) notificationForm.addEventListener('submit', handleNotificationSubmit);
         if (notificationHistoryBody) notificationHistoryBody.addEventListener('click', handleHistoryDelete);
         if (clearAllHistoryBtn) clearAllHistoryBtn.addEventListener('click', handleClearAllHistory);
@@ -186,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if(leaderboardContent) leaderboardContent.style.display = 'block';
             if(pageTitle) pageTitle.textContent = 'লিডারবোর্ড';
             updateBreadcrumb('Leaderboard');
-            // লিডারবোর্ড ডেটা লোড করুন
             loadLeaderboardForChapter(chapterSelect.value);
         }
         if (sidebar) sidebar.classList.remove('is-visible');
@@ -196,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (breadcrumbNav) breadcrumbNav.innerHTML = `<li class="breadcrumb-item"><a href="#">Admin</a></li><li class="breadcrumb-item active">${currentPage}</li>`;
     };
 
-    // --- ড্যাশবোর্ড ফাংশন (ব্যবহারকারীর তালিকা) ---
+    // --- Render User Table ---
     const renderUserTable = (users) => {
         if(!userTableBody) return;
         userTableBody.innerHTML = '';
@@ -207,19 +187,41 @@ document.addEventListener('DOMContentLoaded', () => {
             userTableBody.appendChild(tr);
         });
     };
-    
-    // --- লিডারবোর্ড ফাংশন ---
-    
+
+    const handleUserTableActions = async (e) => {
+        if (e.target.classList.contains('role-changer')) {
+            const select = e.target;
+            const newRole = select.value;
+            const userId = select.dataset.userId;
+            
+            if (newRole !== select.dataset.currentRole && confirm(`আপনি কি ভূমিকা পরিবর্তন করতে নিশ্চিত?`)) {
+                try {
+                    const userRef = doc(db, 'users', userId);
+                    await updateDoc(userRef, { role: newRole });
+                    // Update cache manually to reflect changes immediately
+                    const user = allUsersCache.find(u => u.id === userId);
+                    if(user) user.role = newRole;
+                    select.dataset.currentRole = newRole;
+                } catch(err) {
+                    console.error("Error updating role:", err);
+                    alert("আপডেট করতে সমস্যা হয়েছে।");
+                    select.value = select.dataset.currentRole;
+                }
+            } else {
+                select.value = select.dataset.currentRole;
+            }
+        }
+    };
+
+    // --- Leaderboard Logic ---
     const populateChapterDropdownFromCache = () => {
         if (!chapterSelect) return;
         const allChapters = new Set();
         
         allUsersCache.forEach(user => {
-            // "chapters" অবজেক্ট থেকে চ্যাপ্টারের নাম নিন
             if (user.chapters && typeof user.chapters === 'object') {
                 Object.keys(user.chapters).forEach(chapterName => allChapters.add(chapterName));
             }
-            // রুট লেভেলের "quiz_sets" থেকেও নাম নিন (যদি থাকে)
             if (user.quiz_sets && typeof user.quiz_sets === 'object') {
                 Object.keys(user.quiz_sets).forEach(setName => allChapters.add(setName));
             }
@@ -248,7 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (quizSets && typeof quizSets === 'object') {
                     Object.keys(quizSets).forEach(setName => {
                         const scoreData = quizSets[setName];
-                        // যদি কোনো চ্যাপ্টার সিলেক্ট করা না থাকে, অথবা বর্তমান চ্যাপ্টার/সেটটি সিলেক্টেড চ্যাপ্টারের সাথে মেলে
                         if (!selectedChapter || chapterContext === selectedChapter || setName === selectedChapter) {
                             const score = scoreData.score || scoreData.totalScore || 0;
                             totalScore += score;
@@ -262,10 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
             
-            // রুট লেভেলের quiz_sets থেকে ডেটা প্রসেস করুন
             processQuizData(user.quiz_sets, null); 
-
-            // chapters অবজেক্টের ভেতরের quiz_sets থেকে ডেটা প্রসেস করুন
             if (user.chapters && typeof user.chapters === 'object') {
                 Object.keys(user.chapters).forEach(chapterName => {
                     processQuizData(user.chapters[chapterName].quiz_sets, chapterName);
@@ -282,9 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // মোট স্কোরের ভিত্তিতে র‍্যাঙ্কিং
         leaderboardData.sort((a, b) => b.totalScore - a.totalScore);
-        
         renderLeaderboardTable(leaderboardData);
         if (leaderboardLoading) leaderboardLoading.style.display = 'none';
     };
@@ -306,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
             leaderboardTableBody.appendChild(tr);
         });
     };
-    
+
     const handleLeaderboardTableActions = (e) => {
         if (e.target.classList.contains('btn-view-details')) {
             const button = e.target;
@@ -325,36 +321,23 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDetailsModal.style.display = 'flex';
     };
 
-    // --- অন্যান্য ফাংশন ---
-
-    const handleUserTableActions = (e) => {
-        if (e.target.classList.contains('role-changer')) {
-            const select = e.target;
-            const newRole = select.value;
-            if (newRole !== select.dataset.currentRole && confirm(`আপনি কি ভূমিকা পরিবর্তন করতে নিশ্চিত?`)) {
-                db.collection('users').doc(select.dataset.userId).update({ role: newRole });
-            } else {
-                select.value = select.dataset.currentRole;
-            }
-        }
-    };
-
+    // --- Notification Logic (Modular) ---
     const handleNotificationSubmit = async (e) => {
         e.preventDefault();
         const button = e.target.querySelector('button');
         if(button) button.disabled = true;
-        
+
         try {
             const title = document.getElementById('notification-title').value;
             const body = document.getElementById('notification-body').value;
             const link = document.getElementById('notification-link').value;
 
-            // Firestore-এ নোটিফিকেশন পাঠানো
-            await db.collection('notificationQueue').add({
+            // Using addDoc for Modular SDK
+            await addDoc(collection(db, 'notificationQueue'), {
                 title: title,
                 body: body,
                 link: link,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                createdAt: serverTimestamp()
             });
 
             if(notificationStatus) {
@@ -380,42 +363,54 @@ document.addEventListener('DOMContentLoaded', () => {
         if (notificationHistoryLoading) notificationHistoryLoading.style.display = 'block';
         if (!notificationHistoryBody) return;
 
-        db.collection('notifications').orderBy('createdAt', 'desc').limit(20).onSnapshot(snapshot => {
+        const q = query(collection(db, 'notifications'), orderBy('createdAt', 'desc'), limit(20));
+
+        onSnapshot(q, (snapshot) => {
             notificationHistoryBody.innerHTML = '';
-            snapshot.forEach(doc => {
-                const notif = doc.data();
+            snapshot.forEach(docSnap => {
+                const notif = docSnap.data();
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${notif.title}</td><td>${notif.body}</td><td>${formatTimestamp(notif.createdAt)}</td><td class="action-cell"><button class="btn-danger btn-sm delete-notif-btn" data-id="${doc.id}">মুছুন</button></td>`;
+                tr.innerHTML = `<td>${notif.title}</td><td>${notif.body}</td><td>${formatTimestamp(notif.createdAt)}</td><td class="action-cell"><button class="btn-danger btn-sm delete-notif-btn" data-id="${docSnap.id}">মুছুন</button></td>`;
                 notificationHistoryBody.appendChild(tr);
             });
             if (notificationHistoryLoading) notificationHistoryLoading.style.display = 'none';
         });
     };
 
-    const handleHistoryDelete = (e) => {
+    const handleHistoryDelete = async (e) => {
         if (e.target.classList.contains('delete-notif-btn')) {
             if (confirm('আপনি কি এই বিজ্ঞপ্তিটি মুছে ফেলতে চান?')) {
-                // ফাংশন কল করার চেষ্টা করুন, যদি না থাকে তবে সরাসরি ফায়ারস্টোর থেকে মুছুন (যদি পারমিশন থাকে)
-                if(functions) {
-                    functions.httpsCallable('deleteNotification')({ docId: e.target.dataset.id });
-                } else {
-                     db.collection('notifications').doc(e.target.dataset.id).delete()
-                     .catch(err => alert("মুছতে সমস্যা হয়েছে (Functions not ready): " + err.message));
+                const docId = e.target.dataset.id;
+                try {
+                    // Try using Cloud Function
+                    const deleteFn = httpsCallable(functions, 'deleteNotification');
+                    await deleteFn({ docId: docId });
+                } catch (err) {
+                    console.warn("Function failed, trying direct delete...", err);
+                    // Fallback to direct delete if function fails
+                    try {
+                        await deleteDoc(doc(db, 'notifications', docId));
+                    } catch (directErr) {
+                        alert("মুছতে ব্যর্থ হয়েছে: " + directErr.message);
+                    }
                 }
             }
         }
     };
     
-    const handleClearAllHistory = () => {
+    const handleClearAllHistory = async () => {
         if (confirm('আপনি কি সব বিজ্ঞপ্তি মুছে ফেলতে চান?')) {
-            if(functions) {
-                functions.httpsCallable('deleteAllNotifications')();
-            } else {
-                alert("Cloud Functions কনফিগার করা নেই।");
+            try {
+                const deleteAllFn = httpsCallable(functions, 'deleteAllNotifications');
+                await deleteAllFn();
+            } catch (err) {
+                console.error(err);
+                alert("সব মুছতে সমস্যা হয়েছে। ক্লাউড ফাংশন চেক করুন।");
             }
         }
     };
 
+    // --- Helpers ---
     const formatTimestamp = (ts) => (ts?.toDate) ? ts.toDate().toLocaleString('bn-BD') : 'N/A';
     
     const handleUserSearch = () => {
