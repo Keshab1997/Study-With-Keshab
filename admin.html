@@ -295,15 +295,28 @@
             // (এটা যেমন আছে তেমনই রাখুন, হাত দেওয়ার দরকার নেই)
         </script>
 
-        <!-- ============================================ -->
-        <!-- শুধু এই অংশটুকু পরিবর্তন করুন -->
-        <!-- ============================================ -->
+        <!-- Firebase SDK (Compat Version) -->
+        <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-functions-compat.js"></script>
         
-        <!-- মডিউল ইম্পোর্ট (Firebase SDK আর আলাদা করে CDN দিয়ে লাগাতে হবে না) -->
-        <script type="module" src="js/firebase-config.js"></script>
+        <!-- Firebase Config -->
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyBEhbEWRfuCh_wuXPiQdG8l5TW6L5Ssi1Y",
+                authDomain: "study-with-keshab.firebaseapp.com",
+                projectId: "study-with-keshab",
+                storageBucket: "study-with-keshab.firebasestorage.app",
+                messagingSenderId: "752692165545",
+                appId: "1:752692165545:web:219ff482874717c3ab22b8",
+                measurementId: "G-QH5ELRG2DE"
+            };
+            firebase.initializeApp(firebaseConfig);
+        </script>
         
-        <!-- অ্যাডমিন লজিক (এটাও মডিউল হতে হবে) -->
-        <script type="module" src="js/admin.js"></script>
+        <!-- Admin Logic -->
+        <script src="js/admin.js"></script>
 
     </body>
 </html>
