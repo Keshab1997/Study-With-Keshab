@@ -1,0 +1,1138 @@
+/* --- style.css (সম্পূর্ণ আপডেটেড এবং সমাধানকৃত কোড) --- */
+:root {
+    --primary-bg: #f4f7f9;
+    --secondary-bg: #ffffff;
+    --header-bg: #2c3e50;
+    --text-color: #34495e;
+    --light-text-color: #7f8c8d;
+    --border-color: #e0e6ed;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    --answered-color: #27ae60;
+    --not-answered-color: #e74c3c;
+    --marked-color: #8e44ad;
+    --marked-answered-color: #2980b9;
+    --not-visited-color: #bdc3c7;
+    --primary-btn-color: #3498db;
+    --primary-btn-hover: #2980b9;
+    --danger-btn-color: #e74c3c;
+    --danger-btn-hover: #c0392b;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--primary-bg);
+    margin: 0;
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+}
+
+.mobile-only,
+.mobile-text {
+    display: none !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid var(--primary-btn-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.pause-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    backdrop-filter: blur(5px);
+}
+
+.pause-content {
+    text-align: center;
+}
+
+.exam-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.exam-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    background: var(--header-bg);
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    flex-shrink: 0;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 1.3em;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    flex: 1;
+}
+
+.timer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 6px 15px;
+    border-radius: 20px;
+    flex-shrink: 0;
+}
+
+#timer {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex: 1;
+}
+
+.header-icon-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.4em;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+}
+
+.header-icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#restart-btn {
+    color: #f1c40f;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1em;
+}
+
+.exam-body {
+    display: flex;
+    flex-grow: 1;
+    padding: 20px;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.question-section,
+.palette-section {
+    background: var(--secondary-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.question-section {
+    flex: 3;
+}
+
+.palette-section {
+    flex: 1;
+    min-width: 320px;
+}
+
+#question-text {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.options-container .option {
+    display: flex;
+    align-items: center;
+    padding: 12px 18px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.options-container .option.selected {
+    background-color: #eaf5ff;
+    border-color: var(--primary-btn-color);
+    font-weight: 600;
+}
+
+.options-container input[type="radio"] {
+    display: none;
+}
+
+.options-container .option::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.options-container .option.selected::before {
+    border-color: var(--primary-btn-color);
+    background-color: var(--primary-btn-color);
+    box-shadow: 0 0 0 3px white inset;
+}
+
+.question-footer {
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.question-footer button {
+    padding: 12px 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#save-next-btn.primary {
+    background: var(--answered-color);
+    color: white;
+}
+
+#mark-review-btn {
+    background-color: var(--marked-color);
+    color: white;
+}
+
+#clear-response-btn {
+    background-color: var(--light-text-color);
+    color: white;
+}
+
+.palette-legend {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.palette-legend div {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 6px;
+    background-color: var(--primary-bg);
+    font-size: 12px;
+}
+
+.palette-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-right: 8px;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.palette-dot.answered {
+    background-color: var(--answered-color);
+}
+
+.palette-dot.not-answered {
+    background-color: var(--not-answered-color);
+}
+
+.palette-dot.marked {
+    background-color: var(--marked-color);
+}
+
+.palette-dot.marked-answered {
+    background-color: var(--marked-answered-color);
+}
+
+.palette-dot.not-visited {
+    background-color: #ecf0f1;
+    border: 2px solid var(--border-color);
+    box-shadow: none;
+}
+
+.palette-divider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 15px 0;
+}
+
+.palette-header h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.1em;
+}
+
+.question-palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.palette-btn {
+    width: 40px;
+    height: 40px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.palette-btn.current {
+    border-color: var(--primary-btn-color);
+}
+
+.palette-btn.answered {
+    background: var(--answered-color);
+    color: white;
+}
+
+.palette-btn.not-answered {
+    background: var(--not-answered-color);
+    color: white;
+}
+
+.palette-btn.marked {
+    background: var(--marked-color);
+    color: white;
+}
+
+.palette-btn.marked-answered {
+    background: var(--marked-answered-color);
+    color: white;
+}
+
+.palette-btn.not-visited {
+    background: #ecf0f1;
+    border: 2px solid var(--border-color);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary-btn-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.palette-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.action-btn-secondary {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.action-btn-secondary:hover {
+    background-color: #e0e6ed;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 550px;
+    text-align: center;
+    position: relative;
+    animation: modal-pop 0.3s ease-out;
+}
+
+@keyframes modal-pop {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-content h2 {
+    margin: 0 0 20px 0;
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+#review-summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9em;
+}
+
+#review-summary-table th,
+#review-summary-table td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: center;
+}
+
+#review-summary-table th {
+    background-color: var(--primary-bg);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.warning-text {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #fffbeb;
+    border-left: 4px solid #ffc107;
+    color: #856404;
+    text-align: left;
+    font-size: 0.9em;
+    border-radius: 4px;
+}
+
+.qp-modal-content {
+    max-width: 800px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.qp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+
+.qp-view {
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+.qp-question-block {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.qp-question-text {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.qp-option {
+    display: block;
+    margin: 5px 0 5px 20px;
+}
+
+.qp-selected-option {
+    color: var(--primary-btn-color);
+    font-weight: bold;
+}
+
+.instructions-content {
+    text-align: left;
+}
+
+/* --- ## মোবাইল ভিউ (Media Query) সম্পূর্ণ আপডেট করা হয়েছে ## --- */
+@media (max-width: 992px) {
+
+    html,
+    body {
+        overflow: auto;
+        height: auto;
+    }
+
+    .exam-container {
+        height: auto;
+    }
+
+    .exam-header {
+        padding: 5px 10px;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 1.1em;
+        text-align: left;
+    }
+
+    .timer-container {
+        flex: 0 0 auto;
+    }
+
+    .header-actions {
+        justify-content: flex-end;
+    }
+
+    .desktop-only,
+    .desktop-text {
+        display: none !important;
+    }
+
+    .mobile-only,
+    .mobile-text {
+        display: inline-flex !important;
+    }
+
+    .header-icon-btn.mobile-only {
+        font-size: 1.3em;
+        width: 40px;
+        height: 40px;
+    }
+
+    .exam-body {
+        position: relative;
+        flex-direction: column;
+        overflow: visible;
+        padding: 15px;
+        gap: 0;
+    }
+
+    .question-section {
+        width: 100%;
+        box-sizing: border-box;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .palette-section {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+        box-sizing: border-box;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .exam-body.show-palette .palette-section {
+        transform: translateX(0);
+    }
+
+    .exam-body.show-palette .question-section {
+        transform: translateX(-100%);
+        overflow: hidden;
+    }
+
+    .question-footer {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .question-footer button {
+        flex-grow: 1;
+        justify-content: center;
+        padding: 10px 15px;
+        font-size: 0.85em;
+    }
+
+    .back-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        background-color: var(--header-bg);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1em;
+        margin-bottom: 15px;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    #review-summary-table {
+        border: none;
+        font-size: 1em;
+    }
+
+    #review-summary-table thead {
+        display: none;
+    }
+
+    #review-summary-table tr {
+        display: block;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+
+    #review-summary-table td {
+        display: block;
+        text-align: right;
+        padding: 8px 10px;
+        border-bottom: 1px dashed var(--border-color);
+        position: relative;
+        padding-left: 50%;
+    }
+
+    #review-summary-table td:last-child {
+        border-bottom: none;
+    }
+
+    #review-summary-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        text-align: left;
+        font-weight: bold;
+        color: var(--text-color);
+    }
+}
+
+/* --- ## পরীক্ষার ফলাফল (Result Page) এর জন্য নতুন CSS ## --- */
+.result-page {
+    background-color: var(--primary-bg);
+    padding: 20px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.result-card {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    max-width: 700px;
+    margin: 20px auto;
+    animation: fade-in 0.5s ease-out;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 2em;
+    color: var(--header-bg);
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.result-summary {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.result-score-text {
+    font-size: 1.1em;
+    color: var(--light-text-color);
+    margin: 0;
+}
+
+.result-score {
+    font-size: 3em;
+    font-weight: 700;
+    color: var(--primary-btn-color);
+    margin: 10px 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    text-align: left;
+}
+
+.stat-item {
+    background: var(--primary-bg);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 5px solid;
+}
+
+.stat-item h4 {
+    margin: 0 0 5px 0;
+    color: var(--light-text-color);
+    font-size: 0.9em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.stat-item p {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.stat-correct {
+    border-color: var(--answered-color);
+}
+
+.stat-correct p {
+    color: var(--answered-color);
+}
+
+.stat-wrong {
+    border-color: var(--not-answered-color);
+}
+
+.stat-wrong p {
+    color: var(--not-answered-color);
+}
+
+.stat-attempted {
+    border-color: var(--primary-btn-color);
+}
+
+.stat-attempted p {
+    color: var(--primary-btn-color);
+}
+
+.stat-unanswered {
+    border-color: var(--light-text-color);
+}
+
+.stat-unanswered p {
+    color: var(--light-text-color);
+}
+
+.accuracy-section {
+    margin-top: 25px;
+}
+
+.accuracy-label {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.progress-bar {
+    height: 15px;
+    background-color: #e0e6ed;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--answered-color), #58d68d);
+    border-radius: 10px;
+    transition: width 0.8s ease-in-out;
+}
+
+.result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 25px;
+}
+
+.action-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.action-btn.review {
+    background-color: #17a2b8;
+}
+
+.action-btn.retry {
+    background-color: #6c757d;
+}
+
+@media (max-width: 768px) {
+    .result-card {
+        padding: 20px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-title {
+        font-size: 1.5em;
+    }
+
+    .result-score {
+        font-size: 2.5em;
+    }
+}
+
+/* --- ## পরীক্ষা সিলেকশন পেজের স্টাইল ## --- */
+.selection-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: var(--primary-bg);
+}
+
+.selection-card {
+    background-color: var(--secondary-bg);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    animation: fade-in-up 0.6s ease-out;
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.selection-card h1 {
+    color: var(--header-bg);
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+#exam-select {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    background-color: #fff;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%;
+    background-size: 14px auto;
+    padding-right: 40px;
+}
+
+#exam-select:focus {
+    outline: none;
+    border-color: var(--primary-btn-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+#start-exam-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-btn-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#start-exam-btn:hover {
+    background-color: var(--primary-btn-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+}
+
+/* --- ## পরীক্ষার রিভিউ (Review Page) এর জন্য নতুন CSS ## --- */
+.review-page {
+    background-color: var(--primary-bg);
+    padding: 20px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.review-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 2em;
+    color: var(--header-bg);
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.review-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin: 0 auto 20px auto;
+    max-width: 900px;
+    border-left: 6px solid;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease-in-out;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+}
+
+.review-correct {
+    border-left-color: var(--answered-color);
+}
+
+.review-incorrect {
+    border-left-color: var(--not-answered-color);
+}
+
+.review-unanswered {
+    border-left-color: var(--light-text-color);
+}
+
+.review-question {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    color: var(--text-color);
+}
+
+.review-question i {
+    margin-top: 5px;
+}
+
+.review-answers-container {
+    padding-left: 10px;
+    border-left: 3px solid var(--border-color);
+}
+
+.review-answer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    font-size: 1.1em;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.correct-ans {
+    background-color: #e8f8ef;
+}
+
+.your-ans {
+    background-color: var(--primary-bg);
+}
+
+.fa-check-circle {
+    color: var(--answered-color);
+}
+
+.fa-times-circle {
+    color: var(--not-answered-color);
+}
+
+.fa-circle {
+    color: var(--light-text-color);
+}
+
+.review-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.review-footer .action-btn.dashboard {
+    background-color: var(--primary-btn-color);
+}
+
+@media (max-width: 768px) {
+    .review-page {
+        padding: 15px;
+    }
+
+    .review-card {
+        padding: 20px;
+    }
+
+    .review-title {
+        font-size: 1.5em;
+    }
+
+    .review-question {
+        font-size: 1.1em;
+    }
+
+    .review-answer {
+        font-size: 1em;
+    }
+}

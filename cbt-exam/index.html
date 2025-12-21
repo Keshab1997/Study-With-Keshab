@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="bn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CBT Exam Platform</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="selection-container" class="selection-container">
+            <div class="selection-card">
+                <h1>
+                    <i class="fas fa-tasks"></i> আপনার পরীক্ষা নির্বাচন করুন
+                </h1>
+                <select id="exam-select">
+                    <option value="" disabled selected>
+                        -- একটি পরীক্ষা বাছুন --
+                    </option>
+                    <option value="cbt1">Practice Set 1</option>
+                    <option value="cbt2">Practice Set 2</option>
+                    <option value="cbt3">Practice Set 3</option>
+                    <option value="cbt4">Previous-year-Set-1</option>
+                    <option value="cbt5">Previous-year-Set-2</option>
+                    <option value="cbt6">Previous-Year-Set-3</option>
+                    <option value="cbt7">Previous-Year-Set-4</option>
+                    <option value="cbt8">Textbook রেলওয়ে প্র্যাকটিস সেট 1</option>
+                </select>
+                <button id="start-exam-btn">পরীক্ষা শুরু করুন</button>
+            </div>
+        </div>
+
+        <div id="loading-spinner" class="loading-spinner hidden">
+            <div class="spinner"></div>
+            <p>Loading Exam...</p>
+        </div>
+
+        <div id="pause-overlay" class="pause-overlay hidden">
+            <div class="pause-content">
+                <i class="fas fa-pause-circle"></i>
+                <h2>Exam Paused</h2>
+                <p>আপনি পরীক্ষাটি বিরতি দিয়েছেন।</p>
+                <button id="resume-btn-overlay">Resume Exam</button>
+            </div>
+        </div>
+
+        <div id="exam-container" class="exam-container hidden">
+            <!-- === ## হেডারটি সম্পূর্ণভাবে ঠিক করা হয়েছে ## === -->
+            <header class="exam-header">
+                <div class="logo">RRB NTPC CBT-1</div>
+
+                <div class="timer-container">
+                    <i class="far fa-clock"></i>
+                    <span class="desktop-only">Time Left:</span>
+                    <div id="timer">00:00:00</div>
+                </div>
+
+                <div class="header-actions">
+                    <button
+                        id="pause-btn"
+                        class="header-icon-btn"
+                        title="Pause/Resume"
+                    >
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <button
+                        id="restart-btn"
+                        class="header-icon-btn"
+                        title="Restart Exam"
+                    >
+                        <i class="fas fa-redo"></i>
+                    </button>
+
+                    <div class="user-profile desktop-only">
+                        <i class="fas fa-user-circle"></i>
+                        <span id="user-display-name">Guest</span>
+                    </div>
+
+                    <button
+                        id="toggle-palette-btn"
+                        class="header-icon-btn mobile-only"
+                        title="প্রশ্ন তালিকা ও জমা দিন"
+                    >
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                </div>
+            </header>
+
+            <main id="exam-body" class="exam-body">
+                <div class="question-section">
+                    <div class="question-header">
+                        <h3 id="question-number"></h3>
+                    </div>
+                    <div class="question-content">
+                        <p id="question-text"></p>
+                    </div>
+                    <div id="options-container" class="options-container"></div>
+                    <div class="question-footer">
+                        <button id="mark-review-btn">
+                            <i class="fas fa-star"></i>
+                            <span class="desktop-text">Mark & Next</span>
+                            <span class="mobile-text">Mark</span>
+                        </button>
+                        <button id="clear-response-btn">
+                            <i class="fas fa-times"></i>
+                            <span class="desktop-text">Clear Response</span>
+                            <span class="mobile-text">Clear</span>
+                        </button>
+                        <button id="save-next-btn" class="primary">
+                            <span class="desktop-text">Save & Next</span>
+                            <span class="mobile-text">Save</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <aside class="palette-section">
+                    <button
+                        id="back-to-question-btn"
+                        class="back-btn mobile-only"
+                    >
+                        <i class="fas fa-arrow-left"></i> Back to Question
+                    </button>
+                    <div class="palette-legend">
+                        <div>
+                            <span class="palette-dot answered"></span> Answered
+                        </div>
+                        <div>
+                            <span class="palette-dot not-answered"></span> Not
+                            Answered
+                        </div>
+                        <div>
+                            <span class="palette-dot marked"></span> Marked
+                        </div>
+                        <div>
+                            <span class="palette-dot not-visited"></span> Not
+                            Visited
+                        </div>
+                        <div>
+                            <span class="palette-dot marked-answered"></span>
+                            Marked & Answered
+                        </div>
+                    </div>
+                    <hr class="palette-divider" />
+                    <div class="palette-header"><h4>Question Palette</h4></div>
+                    <div id="question-palette" class="question-palette"></div>
+
+                    <div class="palette-actions">
+                        <button
+                            id="question-paper-btn"
+                            class="action-btn-secondary"
+                        >
+                            Question Paper
+                        </button>
+                        <button
+                            id="instructions-btn"
+                            class="action-btn-secondary"
+                        >
+                            Instructions
+                        </button>
+                    </div>
+
+                    <button id="submit-btn" class="submit-btn">
+                        <i class="fas fa-check-circle"></i> Submit Test
+                    </button>
+                </aside>
+            </main>
+        </div>
+
+        <div id="submit-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-submit-modal" class="close-btn">&times;</span>
+                <h2>Review test before submit</h2>
+                <table id="review-summary-table">
+                    <thead>
+                        <tr>
+                            <th>Section</th>
+                            <th>Total</th>
+                            <th>Answered</th>
+                            <th>Not Answered</th>
+                            <th>Marked</th>
+                            <th>Not Visited</th>
+                        </tr>
+                    </thead>
+                    <tbody id="review-summary-body"></tbody>
+                </table>
+                <p class="warning-text">আপনি কি পরীক্ষাটি জমা দিতে চান?</p>
+                <div class="modal-actions">
+                    <button id="cancel-submit-btn" class="action-btn-secondary">
+                        Go Back
+                    </button>
+                    <button id="final-submit-btn" class="submit-btn">
+                        Yes, Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="question-paper-modal" class="modal">
+            <div class="modal-content qp-modal-content">
+                <div class="qp-header">
+                    <h2>Question Paper</h2>
+                    <span id="close-qp-modal" class="close-btn">&times;</span>
+                </div>
+                <div id="question-paper-view" class="qp-view"></div>
+            </div>
+        </div>
+
+        <div id="instructions-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-instructions-modal" class="close-btn"
+                    >&times;</span
+                >
+                <h2>Exam Instructions</h2>
+                <div class="instructions-content">
+                    <p>১. এই পরীক্ষায় মোট ১০০টি প্রশ্ন রয়েছে।</p>
+                    <p>২. পরীক্ষার মোট সময় ৯০ মিনিট।</p>
+                    <p>৩. প্রতিটি সঠিক উত্তরের জন্য ১ নম্বর যোগ করা হবে।</p>
+                    <p>৪. প্রতি ৩টি ভুল উত্তরের জন্য ১ নম্বর কাটা হবে।</p>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="firebase-config.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
