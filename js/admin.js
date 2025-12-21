@@ -1,12 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Admin.js: DOM loaded, checking Firebase...");
     console.log("Firebase available:", typeof firebase !== 'undefined');
-    console.log("Firebase apps:", firebase ? firebase.apps.length : 'undefined');
-
-    if (typeof firebase === 'undefined' || !firebase.apps.length) {
-        console.error("Firebase SDK not loaded or initialized.");
+    
+    // Check if firebase exists and has apps property
+    if (typeof firebase === 'undefined') {
+        console.error("Firebase SDK not loaded.");
         return;
     }
+    
+    // Check if firebase.apps exists before accessing length
+    if (!firebase.apps || firebase.apps.length === 0) {
+        console.error("Firebase not initialized.");
+        return;
+    }
+    
+    console.log("Firebase apps:", firebase.apps.length);
     console.log("Firebase initialized successfully, proceeding with admin panel...");
     const auth = firebase.auth();
     const db = firebase.firestore();
