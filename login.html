@@ -23,7 +23,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
-    <!-- চূড়ান্ত এবং আধুনিক CSS -->
+    <!-- চূড়ান্ত এবং আধুনিক CSS -->
     <link rel="stylesheet" href="css/login-style.css" />
   </head>
   <body class="login-page">
@@ -56,7 +56,7 @@
       <div class="login-form">
         <button id="google-login-btn" class="google-btn">
           <i class="fab fa-google"></i>
-          <span>Google দিয়ে লগইন করুন</span>
+          <span>Google দিয়ে লগইন করুন</span>
         </button>
       </div>
 
@@ -65,14 +65,14 @@
       </div>
     </div>
 
-    <!-- Firebase SDK (v8.10.0) -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <!-- 
+      পরিবর্তন ১: পুরনো Firebase SDK লিঙ্কগুলো (v8.10.0) মুছে ফেলা হয়েছে 
+      কারণ আমরা এখন মডিউলের ভেতরেই লেটেস্ট ভার্সন ইম্পোর্ট করছি।
+    -->
 
-    <!-- আপনার নিজস্ব স্ক্রিপ্ট -->
-    <script src="js/firebase-config.js"></script>
-    <script src="auth.js"></script>
+    <!-- পরিবর্তন ২: type="module" যোগ করা হয়েছে -->
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="auth.js"></script>
 
     <!-- PWA এর জন্য Service Worker রেজিস্ট্রেশন -->
     <script>
