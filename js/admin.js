@@ -1,24 +1,49 @@
+// --- Firebase Configuration & Initialization ---
+const firebaseConfig = {
+    apiKey: "AIzaSyBEhbEWRfuch_wuXPiQdG8l5TW6L5Ssi1Y",
+    authDomain: "study-with-keshab.firebaseapp.com",
+    projectId: "study-with-keshab",
+    storageBucket: "study-with-keshab.firebasestorage.app",
+    messagingSenderId: "752692165545",
+    appId: "1:752692165545:web:219ff482874717c3ab22b8",
+    measurementId: "G-QH5ELRG2DE"
+};
+
+// Initialize Firebase only if not already initialized
+if (typeof firebase !== 'undefined' && (!firebase.apps || firebase.apps.length === 0)) {
+    firebase.initializeApp(firebaseConfig);
+    console.log("Firebase initialized inside admin.js");
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Admin.js: DOM loaded, checking Firebase...");
-    console.log("Firebase available:", typeof firebase !== 'undefined');
     
-    // Check if firebase exists and has apps property
+    // Check if firebase SDK is loaded
     if (typeof firebase === 'undefined') {
-        console.error("Firebase SDK not loaded.");
+        console.error("Firebase SDK not loaded from HTML.");
+        alert("Firebase লোড হয়নি। দয়া করে ইন্টারনেট কানেকশন চেক করুন অথবা পেজটি রিফ্রেশ করুন।");
         return;
     }
-    
-    // Check if firebase.apps exists before accessing length
-    if (!firebase.apps || firebase.apps.length === 0) {
+
+    // Double check initialization
+    if (!firebase.apps.length) {
         console.error("Firebase not initialized.");
         return;
     }
     
     console.log("Firebase apps:", firebase.apps.length);
     console.log("Firebase initialized successfully, proceeding with admin panel...");
+    
+    // Initialize Services
     const auth = firebase.auth();
     const db = firebase.firestore();
-    const functions = firebase.functions();
+    // Functions ঐচ্ছিক, যদি আপনার সেটআপ না থাকে তবে এটি এরর দিতে পারে, তাই try-catch রাখা ভালো
+    let functions;
+    try {
+        functions = firebase.functions();
+    } catch (e) {
+        console.warn("Firebase Functions not available or not configured.", e);
+    }
 
     // --- DOM Element References ---
     const adminPageContainer = document.querySelector('.admin-page-container');
@@ -109,9 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // ড্যাশবোর্ড ডেটা সেট করুন
             const adminCount = allUsersCache.filter(user => user.role === 'admin').length;
-            console.log("loadAllUserData: Total users:", allUsersCache.length, "Admins:", adminCount);
-            totalUsersStat.textContent = allUsersCache.length;
-            totalAdminsStat.textContent = adminCount;
+            
+            if(totalUsersStat) totalUsersStat.textContent = allUsersCache.length;
+            if(totalAdminsStat) totalAdminsStat.textContent = adminCount;
+            
             console.log("loadAllUserData: Updated dashboard stats");
             renderUserTable(allUsersCache);
             
@@ -147,18 +173,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const switchTab = (tabName) => {
         document.querySelectorAll('.sidebar-nav li').forEach(li => li.classList.remove('active'));
-        dashboardContent.style.display = 'none';
-        leaderboardContent.style.display = 'none';
+        if(dashboardContent) dashboardContent.style.display = 'none';
+        if(leaderboardContent) leaderboardContent.style.display = 'none';
 
         if (tabName === 'dashboard') {
             if (navDashboard) navDashboard.classList.add('active');
-            dashboardContent.style.display = 'block';
-            pageTitle.textContent = 'ড্যাশবোর্ড';
+            if(dashboardContent) dashboardContent.style.display = 'block';
+            if(pageTitle) pageTitle.textContent = 'ড্যাশবোর্ড';
             updateBreadcrumb('Dashboard');
         } else if (tabName === 'leaderboard') {
             if (navLeaderboard) navLeaderboard.classList.add('active');
-            leaderboardContent.style.display = 'block';
-            pageTitle.textContent = 'লিডারবোর্ড';
+            if(leaderboardContent) leaderboardContent.style.display = 'block';
+            if(pageTitle) pageTitle.textContent = 'লিডারবোর্ড';
             updateBreadcrumb('Leaderboard');
             // লিডারবোর্ড ডেটা লোড করুন
             loadLeaderboardForChapter(chapterSelect.value);
@@ -172,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- ড্যাশবোর্ড ফাংশন (ব্যবহারকারীর তালিকা) ---
     const renderUserTable = (users) => {
+        if(!userTableBody) return;
         userTableBody.innerHTML = '';
         users.sort((a,b) => (a.displayName || '').localeCompare(b.displayName || ''));
         users.forEach(user => {
@@ -181,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     
-    // --- লিডারবোর্ড ফাংশন (আপনার বর্তমান ডেটা স্ট্রাকচার অনুযায়ী) ---
+    // --- লিডারবোর্ড ফাংশন ---
     
     const populateChapterDropdownFromCache = () => {
         if (!chapterSelect) return;
@@ -198,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        chapterSelect.innerHTML = '<option value="">-- সকল বিষয় --</option>';
+        chapterSelect.innerHTML = '<option value="">-- সকল বিষয় --</option>';
         [...allChapters].sort().forEach(name => {
             const option = document.createElement('option');
             option.value = name;
@@ -209,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const loadLeaderboardForChapter = (selectedChapter) => {
         if (leaderboardLoading) leaderboardLoading.style.display = 'block';
-        leaderboardTableBody.innerHTML = '';
+        if(leaderboardTableBody) leaderboardTableBody.innerHTML = '';
         
         let leaderboardData = [];
 
@@ -263,6 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const renderLeaderboardTable = (data) => {
+        if(!leaderboardTableBody) return;
         leaderboardTableBody.innerHTML = '';
         if (data.length === 0) {
             leaderboardTableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">কোনো ডেটা নেই।</td></tr>';
@@ -314,27 +342,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleNotificationSubmit = async (e) => {
         e.preventDefault();
         const button = e.target.querySelector('button');
-        button.disabled = true;
+        if(button) button.disabled = true;
+        
         try {
+            const title = document.getElementById('notification-title').value;
+            const body = document.getElementById('notification-body').value;
+            const link = document.getElementById('notification-link').value;
+
+            // Firestore-এ নোটিফিকেশন পাঠানো
             await db.collection('notificationQueue').add({
-                title: document.getElementById('notification-title').value,
-                body: document.getElementById('notification-body').value,
-                link: document.getElementById('notification-link').value
+                title: title,
+                body: body,
+                link: link,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
-            notificationStatus.className = 'status-success';
-            notificationStatus.textContent = 'নোটিফিকেশন সফলভাবে পাঠানো হয়েছে।';
+
+            if(notificationStatus) {
+                notificationStatus.className = 'status-success';
+                notificationStatus.textContent = 'নোটিফিকেশন সফলভাবে পাঠানো হয়েছে।';
+                notificationStatus.style.display = 'block';
+            }
             notificationForm.reset();
         } catch (error) {
-            notificationStatus.className = 'status-danger';
-            notificationStatus.textContent = 'ত্রুটি! আবার চেষ্টা করুন।';
+            console.error("Notification Error:", error);
+            if(notificationStatus) {
+                notificationStatus.className = 'status-danger';
+                notificationStatus.textContent = 'ত্রুটি! আবার চেষ্টা করুন।';
+                notificationStatus.style.display = 'block';
+            }
         }
-        notificationStatus.style.display = 'block';
-        button.disabled = false;
-        setTimeout(() => { notificationStatus.style.display = 'none'; }, 5000);
+        
+        if(button) button.disabled = false;
+        setTimeout(() => { if(notificationStatus) notificationStatus.style.display = 'none'; }, 5000);
     };
 
     const loadNotificationHistory = () => {
         if (notificationHistoryLoading) notificationHistoryLoading.style.display = 'block';
+        if (!notificationHistoryBody) return;
+
         db.collection('notifications').orderBy('createdAt', 'desc').limit(20).onSnapshot(snapshot => {
             notificationHistoryBody.innerHTML = '';
             snapshot.forEach(doc => {
@@ -350,14 +395,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleHistoryDelete = (e) => {
         if (e.target.classList.contains('delete-notif-btn')) {
             if (confirm('আপনি কি এই বিজ্ঞপ্তিটি মুছে ফেলতে চান?')) {
-                functions.httpsCallable('deleteNotification')({ docId: e.target.dataset.id });
+                // ফাংশন কল করার চেষ্টা করুন, যদি না থাকে তবে সরাসরি ফায়ারস্টোর থেকে মুছুন (যদি পারমিশন থাকে)
+                if(functions) {
+                    functions.httpsCallable('deleteNotification')({ docId: e.target.dataset.id });
+                } else {
+                     db.collection('notifications').doc(e.target.dataset.id).delete()
+                     .catch(err => alert("মুছতে সমস্যা হয়েছে (Functions not ready): " + err.message));
+                }
             }
         }
     };
     
     const handleClearAllHistory = () => {
         if (confirm('আপনি কি সব বিজ্ঞপ্তি মুছে ফেলতে চান?')) {
-            functions.httpsCallable('deleteAllNotifications')();
+            if(functions) {
+                functions.httpsCallable('deleteAllNotifications')();
+            } else {
+                alert("Cloud Functions কনফিগার করা নেই।");
+            }
         }
     };
 
