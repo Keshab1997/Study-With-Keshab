@@ -126,40 +126,42 @@
                         </div>
                     </section>
 
+                    <!-- বিজ্ঞপ্তির সেকশন (আপডেট করা হয়েছে) -->
                     <section class="send-notification-section">
                         <div class="section-header">
                             <h2>বিজ্ঞপ্তি পাঠান</h2>
                         </div>
+                        <!-- আগের আইডিগুলো ব্যবহার করা হচ্ছে -->
                         <form id="notification-form">
                             <div class="form-group">
-                                <label for="notification-title">শিরোনাম</label
-                                ><input
+                                <label for="notification-title">শিরোনাম</label>
+                                <input
                                     type="text"
                                     id="notification-title"
+                                    placeholder="নোটিফিকেশনের শিরোনাম দিন"
                                     required
                                 />
                             </div>
                             <div class="form-group">
-                                <label for="notification-body">বার্তা</label
-                                ><textarea
+                                <label for="notification-body">বার্তা</label>
+                                <textarea
                                     id="notification-body"
                                     rows="3"
+                                    placeholder="বিস্তারিত বার্তা লিখুন"
                                     required
                                 ></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="notification-link"
                                     >লিঙ্ক (ঐচ্ছিক)</label
-                                ><input type="text" id="notification-link" />
+                                >
+                                <input type="text" id="notification-link" placeholder="যেমন: index.html বা কোনো URL" />
                             </div>
                             <button type="submit" class="send-btn">
                                 <i class="fas fa-paper-plane"></i> পাঠান
                             </button>
                         </form>
-                        <div
-                            id="notification-status"
-                            style="display: none"
-                        ></div>
+                        <div id="notification-status"></div>
                     </section>
 
                     <section class="user-list-section">
@@ -211,7 +213,7 @@
                                     <tr>
                                         <th>শিরোনাম</th>
                                         <th>বার্তা</th>
-                                        <th>সময়</th>
+                                        <th>সময়</th>
                                         <th>অ্যাকশন</th>
                                     </tr>
                                 </thead>
@@ -235,9 +237,9 @@
                         <div class="section-header"><h2>লিডারবোর্ড</h2></div>
                         <div class="leaderboard-controls">
                             <label for="chapter-select"
-                                >বিষয় নির্বাচন করুন:</label
+                                >বিষয় নির্বাচন করুন:</label
                             ><select id="chapter-select">
-                                <option value="">-- বিষয় বাছুন --</option>
+                                <option value="">-- বিষয় বাছুন --</option>
                             </select>
                         </div>
                         <div class="table-container">
@@ -287,14 +289,65 @@
             <a href="index.html">হোম পেজে ফিরে যান</a>
         </div>
 
+        <!-- Firebase SDK (পুরনো admin.js এর জন্য রাখা হলো) -->
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-functions.js"></script>
+        
         <script src="js/firebase-config.js"></script>
         <script src="js/admin.js"></script>
+
+        <!-- === নোটিফিকেশন পাঠানোর লজিক (Existing Form এর সাথে যুক্ত) === -->
+        <script type="module">
+            import { db } from './js/firebase-config.js';
+            import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+            const notificationForm = document.getElementById('notification-form');
+            
+            if(notificationForm){
+                notificationForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const title = document.getElementById('notification-title').value;
+                    const message = document.getElementById('notification-body').value;
+                    const link = document.getElementById('notification-link').value || '#';
+                    const submitBtn = notificationForm.querySelector('.send-btn');
+
+                    if(!title || !message) {
+                        alert("দয়া করে শিরোনাম এবং বার্তা লিখুন!");
+                        return;
+                    }
+
+                    // বাটন ডিসেবল করা যাতে ডাবল ক্লিক না হয়
+                    const originalBtnText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> পাঠানো হচ্ছে...';
+                    submitBtn.disabled = true;
+
+                    try {
+                        await addDoc(collection(db, "notifications"), {
+                            title: title,
+                            message: message,
+                            link: link,
+                            date: new Date().toLocaleDateString('bn-BD'),
+                            timestamp: serverTimestamp(),
+                            icon: "fa-solid fa-bell"
+                        });
+                        
+                        alert("✅ বিজ্ঞপ্তি সফলভাবে পাঠানো হয়েছে!");
+                        notificationForm.reset(); // ফর্ম ক্লিয়ার করা
+                    } catch (e) {
+                        console.error("Error adding document: ", e);
+                        alert("❌ ভুল হয়েছে: " + e.message);
+                    } finally {
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+        </script>
+
         <!-- === নতুন যোগ করা PWA এবং ডেস্কটপ মোড বাটন কোড === -->
-        <!-- Desktop/Mobile Mode Toggle Button -->
         <button
             id="toggleViewBtn"
             style="
@@ -322,15 +375,10 @@
                     navigator.serviceWorker
                         .register("sw.js")
                         .then((registration) => {
-                            console.log(
-                                "ServiceWorker registration successful!",
-                            );
+                            console.log("ServiceWorker registration successful!");
                         })
                         .catch((err) => {
-                            console.log(
-                                "ServiceWorker registration failed: ",
-                                err,
-                            );
+                            console.log("ServiceWorker registration failed: ", err);
                         });
                 });
             }
@@ -339,26 +387,20 @@
             const toggleBtn = document.getElementById("toggleViewBtn");
             const viewportMeta = document.getElementById("viewportMeta");
 
-            // Check if a view mode is already saved in localStorage
             let isDesktopView = localStorage.getItem("viewMode") === "desktop";
 
-            // Function to apply the current view mode
             function applyViewMode() {
                 if (isDesktopView) {
                     viewportMeta.setAttribute("content", "width=1280");
                     toggleBtn.textContent = "মোবাইল মোড";
                 } else {
-                    viewportMeta.setAttribute(
-                        "content",
-                        "width=device-width, initial-scale=1.0",
-                    );
+                    viewportMeta.setAttribute("content", "width=device-width, initial-scale=1.0");
                     toggleBtn.textContent = "ডেস্কটপ মোড";
                 }
             }
 
-            // Event listener for the button click
             toggleBtn.addEventListener("click", () => {
-                isDesktopView = !isDesktopView; // Toggle the state
+                isDesktopView = !isDesktopView;
                 if (isDesktopView) {
                     localStorage.setItem("viewMode", "desktop");
                 } else {
@@ -367,9 +409,7 @@
                 applyViewMode();
             });
 
-            // Apply the saved mode when the page loads
             applyViewMode();
         </script>
-        <!-- === PWA কোড শেষ === -->
     </body>
 </html>
