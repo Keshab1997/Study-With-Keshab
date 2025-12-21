@@ -7,7 +7,16 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js";
 
-
+// --- Firebase Configuration ---
+const firebaseConfig = {
+    apiKey: "AIzaSyBEhbEWRfuch_wuXPiQdG8l5TW6L5Ssi1Y",
+    authDomain: "study-with-keshab.firebaseapp.com",
+    projectId: "study-with-keshab",
+    storageBucket: "study-with-keshab.firebasestorage.app",
+    messagingSenderId: "752692165545",
+    appId: "1:752692165545:web:219ff482874717c3ab22b8",
+    measurementId: "G-QH5ELRG2DE"
+};
 
 // --- Initialize Firebase ---
 console.log("Initializing Firebase Module...");
