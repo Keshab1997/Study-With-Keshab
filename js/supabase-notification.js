@@ -27,26 +27,30 @@ async function fetchNotifications() {
     renderNotifications(data);
 }
 
-// ৩. রেন্ডার ফাংশন
+// ৩. রেন্ডার ফাংশন (আপডেটেড ডেট ফরম্যাট: English)
 function renderNotifications(notifications) {
     const readNotifications = JSON.parse(localStorage.getItem('read_notifications')) || [];
     let unreadCount = 0;
 
+    // কন্টেইনার ক্লিয়ার করা
     if (feedContainer) feedContainer.innerHTML = '';
     if (notificationList) notificationList.innerHTML = '';
 
+    // যদি কোনো নোটিফিকেশন না থাকে
     if (notifications.length === 0) {
-        if (feedContainer) feedContainer.innerHTML = '<p class="text-center">কোনো নতুন বিজ্ঞপ্তি নেই।</p>';
-        if (notificationList) notificationList.innerHTML = '<li class="no-notification-message">কোনো বিজ্ঞপ্তি নেই</li>';
+        if (feedContainer) feedContainer.innerHTML = '<p class="text-center">No new notifications.</p>';
+        if (notificationList) notificationList.innerHTML = '<li class="no-notification-message">No notifications</li>';
         if (badge) badge.style.display = 'none';
         return;
     }
 
+    // লুপ শুরু
     notifications.forEach(notif => {
         const isRead = readNotifications.includes(notif.id);
         if (!isRead) unreadCount++;
 
-        const dateStr = new Date(notif.created_at).toLocaleDateString('bn-BD', {
+        // === পরিবর্তন: তারিখ ইংরেজিতে দেখানোর জন্য 'en-US' করা হয়েছে ===
+        const dateStr = new Date(notif.created_at).toLocaleDateString('en-US', {
             day: 'numeric', month: 'long', year: 'numeric'
         });
 
@@ -87,6 +91,7 @@ function renderNotifications(notifications) {
         }
     });
 
+    // ব্যাজ আপডেট করা
     if (badge) {
         if (unreadCount > 0) {
             badge.style.display = 'flex';
@@ -104,12 +109,14 @@ window.markAsRead = function(id, element) {
         readNotifications.push(id);
         localStorage.setItem('read_notifications', JSON.stringify(readNotifications));
         
+        // তাৎক্ষণিক UI আপডেট
         const container = element.closest('.notification-feed-item') || element.closest('.notification-list-item');
         if (container) {
             container.classList.remove('unread');
             container.classList.add('read');
         }
         
+        // ব্যাজ কমানো
         let currentCount = parseInt(badge.innerText);
         if (currentCount > 0) {
             badge.innerText = currentCount - 1;
@@ -119,7 +126,6 @@ window.markAsRead = function(id, element) {
 };
 
 // ৫. রিয়েলটাইম লিসেনার
-// এখানেও supabaseClient ব্যবহার করা হয়েছে
 supabaseClient
     .channel('public:notifications')
     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notifications' }, () => {
@@ -135,7 +141,7 @@ const bellBtn = document.getElementById('show-notification-btn');
 const modal = document.getElementById('notification-modal');
 const closeBtn = document.getElementById('close-notification-modal');
 const closeFooterBtn = document.getElementById('close-notification-btn-footer');
-const clearBtn = document.getElementById('clear-read-notifications-btn'); // নতুন যোগ করা বাটনের লজিক যদি লাগে
+const clearBtn = document.getElementById('clear-read-notifications-btn'); 
 
 if(bellBtn && modal) {
     bellBtn.addEventListener('click', () => {
@@ -147,11 +153,12 @@ const closeModal = () => { if(modal) modal.style.display = 'none'; };
 if(closeBtn) closeBtn.addEventListener('click', closeModal);
 if(closeFooterBtn) closeFooterBtn.addEventListener('click', closeModal);
 
-// অতিরিক্ত: পঠিত সব মুছুন বাটন (যদি প্রয়োজন হয়)
+// অতিরিক্ত: পঠিত সব মুছুন বাটন
 if(clearBtn) {
     clearBtn.addEventListener('click', () => {
-        // এখানে আপনি চাইলে লোকাল স্টোরেজ ক্লিয়ার করতে পারেন অথবা UI থেকে সরাতে পারেন
-        // উদাহরণ: localStorage.removeItem('read_notifications'); fetchNotifications();
+        // আপনি চাইলে এখানে পঠিত লিস্ট ক্লিয়ার করার কোড লিখতে পারেন
+        // localStorage.removeItem('read_notifications'); 
+        // fetchNotifications();
         alert('ফিচারটি শীঘ্রই আসছে!'); 
     });
 }
