@@ -1,16 +1,19 @@
 // ১. Supabase কনফিগারেশন
-const supabaseUrl = 'https://yofmaciyxrwvqyzyltml.supabase.co'; // আপনার URL বসান
-const supabaseKey = 'sb_publishable_g1eUh3i6hpDQX8w_1-hrvw_ChYrhkc3'; // আপনার KEY বসান
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+const supabaseUrl = 'https://yofmaciyxrwvqyzyltml.supabase.co'; 
+const supabaseKey = 'sb_publishable_g1eUh3i6hpDQX8w_1-hrvw_ChYrhkc3'; 
+
+// [SOLVED] 'supabase' এর বদলে 'supabaseClient' ব্যবহার করা হয়েছে যাতে লাইব্রেরির সাথে সংঘর্ষ না হয়
+const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 // HTML এলিমেন্ট সিলেক্ট করা
-const feedContainer = document.getElementById('realtime-notification-feed'); // হোম পেজের ফিড
-const notificationList = document.getElementById('notification-list'); // মডালের লিস্ট
-const badge = document.getElementById('notification-badge'); // বেল আইকনের ব্যাজ
+const feedContainer = document.getElementById('realtime-notification-feed'); 
+const notificationList = document.getElementById('notification-list'); 
+const badge = document.getElementById('notification-badge'); 
 
 // ২. নোটিফিকেশন লোড করার ফাংশন
 async function fetchNotifications() {
-    const { data, error } = await supabase
+    // এখানেও supabaseClient ব্যবহার করা হয়েছে
+    const { data, error } = await supabaseClient
         .from('notifications')
         .select('*')
         .eq('is_active', true)
@@ -24,13 +27,11 @@ async function fetchNotifications() {
     renderNotifications(data);
 }
 
-// ৩. রেন্ডার ফাংশন (ফিড এবং মডাল দুই জায়গাতেই দেখাবে)
+// ৩. রেন্ডার ফাংশন
 function renderNotifications(notifications) {
-    // লোকাল স্টোরেজ থেকে পঠিত (Read) নোটিফিকেশনের লিস্ট নেওয়া
     const readNotifications = JSON.parse(localStorage.getItem('read_notifications')) || [];
     let unreadCount = 0;
 
-    // ক্লিয়ার করা
     if (feedContainer) feedContainer.innerHTML = '';
     if (notificationList) notificationList.innerHTML = '';
 
@@ -49,10 +50,9 @@ function renderNotifications(notifications) {
             day: 'numeric', month: 'long', year: 'numeric'
         });
 
-        // --- ক) হোম পেজের ফিড তৈরি ---
+        // --- ক) হোম পেজের ফিড ---
         if (feedContainer) {
             const feedItem = document.createElement('div');
-            // CSS ক্লাস: read অথবা unread যোগ করা হচ্ছে
             feedItem.className = `notification-feed-item ${isRead ? 'read' : 'unread'}`;
             feedItem.innerHTML = `
                 <a href="#" onclick="markAsRead(${notif.id}, this)">
@@ -69,7 +69,7 @@ function renderNotifications(notifications) {
             feedContainer.appendChild(feedItem);
         }
 
-        // --- খ) মডালের লিস্ট তৈরি ---
+        // --- খ) মডালের লিস্ট ---
         if (notificationList) {
             const listItem = document.createElement('li');
             listItem.className = `notification-list-item ${isRead ? 'read' : ''}`;
@@ -87,7 +87,6 @@ function renderNotifications(notifications) {
         }
     });
 
-    // ব্যাজ আপডেট করা
     if (badge) {
         if (unreadCount > 0) {
             badge.style.display = 'flex';
@@ -98,22 +97,19 @@ function renderNotifications(notifications) {
     }
 }
 
-// ৪. নোটিফিকেশন "পঠিত" (Read) মার্ক করার ফাংশন
+// ৪. নোটিফিকেশন "পঠিত" মার্ক করা
 window.markAsRead = function(id, element) {
-    // লোকাল স্টোরেজে আইডি সেভ করা
     let readNotifications = JSON.parse(localStorage.getItem('read_notifications')) || [];
     if (!readNotifications.includes(id)) {
         readNotifications.push(id);
         localStorage.setItem('read_notifications', JSON.stringify(readNotifications));
         
-        // তাৎক্ষণিক UI আপডেট করা (পুরো পেজ রিলোড না করে)
         const container = element.closest('.notification-feed-item') || element.closest('.notification-list-item');
         if (container) {
             container.classList.remove('unread');
             container.classList.add('read');
         }
         
-        // ব্যাজ কমানো
         let currentCount = parseInt(badge.innerText);
         if (currentCount > 0) {
             badge.innerText = currentCount - 1;
@@ -123,7 +119,8 @@ window.markAsRead = function(id, element) {
 };
 
 // ৫. রিয়েলটাইম লিসেনার
-supabase
+// এখানেও supabaseClient ব্যবহার করা হয়েছে
+supabaseClient
     .channel('public:notifications')
     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notifications' }, () => {
         fetchNotifications();
@@ -133,11 +130,12 @@ supabase
 // পেজ লোড হলে রান হবে
 document.addEventListener('DOMContentLoaded', fetchNotifications);
 
-// ৬. মডাল ওপেন/ক্লোজ লজিক (আপনার HTML এ থাকা আইডি অনুযায়ী)
+// ৬. মডাল ওপেন/ক্লোজ লজিক
 const bellBtn = document.getElementById('show-notification-btn');
 const modal = document.getElementById('notification-modal');
 const closeBtn = document.getElementById('close-notification-modal');
 const closeFooterBtn = document.getElementById('close-notification-btn-footer');
+const clearBtn = document.getElementById('clear-read-notifications-btn'); // নতুন যোগ করা বাটনের লজিক যদি লাগে
 
 if(bellBtn && modal) {
     bellBtn.addEventListener('click', () => {
@@ -148,3 +146,12 @@ if(bellBtn && modal) {
 const closeModal = () => { if(modal) modal.style.display = 'none'; };
 if(closeBtn) closeBtn.addEventListener('click', closeModal);
 if(closeFooterBtn) closeFooterBtn.addEventListener('click', closeModal);
+
+// অতিরিক্ত: পঠিত সব মুছুন বাটন (যদি প্রয়োজন হয়)
+if(clearBtn) {
+    clearBtn.addEventListener('click', () => {
+        // এখানে আপনি চাইলে লোকাল স্টোরেজ ক্লিয়ার করতে পারেন অথবা UI থেকে সরাতে পারেন
+        // উদাহরণ: localStorage.removeItem('read_notifications'); fetchNotifications();
+        alert('ফিচারটি শীঘ্রই আসছে!'); 
+    });
+}
