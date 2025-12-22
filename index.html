@@ -495,14 +495,23 @@
       </div>
     </footer>
 
-    <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট (সঠিক এবং নির্ভরযোগ্য ক্রমে) -->
+        <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <!-- Supabase SDK (নতুন যুক্ত করা হয়েছে) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- কনফিগারেশন এবং অথেন্টিকেশন -->
     <script src="js/firebase-config.js"></script>
     <script src="auth.js"></script>
-    <script src="js/notification-data.js"></script>
-    <script src="js/notification.js"></script>
+
+    <!-- আগের নোটিফিকেশন স্ক্রিপ্টগুলো বাদ দেওয়া হয়েছে -->
+    <!-- এখন Supabase দিয়ে নোটিফিকেশন লোড হবে -->
+    <script src="js/supabase-notification.js"></script>
+
+    <!-- সাধারণ স্ক্রিপ্ট -->
     <script src="js/script.js"></script>
     <script src="js/orientation.js"></script>
 
