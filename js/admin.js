@@ -1,13 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // === ১. Supabase কনফিগারেশন ===
+    const supabaseUrl = 'https://yofmaciyxrwvqyzyltml.supabase.co'; 
+    const supabaseKey = 'sb_publishable_g1eUh3i6hpDQX8w_1-hrvw_ChYrhkc3'; 
+    // 'supabase' নামটির সংঘর্ষ এড়াতে 'supabaseClient' ব্যবহার করা হয়েছে
+    const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
     console.log("Admin.js: DOM loaded, checking Firebase...");
-    console.log("Firebase available:", typeof firebase !== 'undefined');
-    console.log("Firebase apps:", firebase ? firebase.apps.length : 'undefined');
 
     if (typeof firebase === 'undefined' || !firebase.apps.length) {
         console.error("Firebase SDK not loaded or initialized.");
         return;
     }
-    console.log("Firebase initialized successfully, proceeding with admin panel...");
+    
     const auth = firebase.auth();
     const db = firebase.firestore();
     const functions = firebase.functions();
@@ -31,11 +35,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const userTableBody = document.getElementById('user-table-body');
     const userSearchInput = document.getElementById('user-search-input');
     const userListLoading = document.getElementById('user-list-loading');
-    const notificationForm = document.getElementById('notification-form');
-    const notificationStatus = document.getElementById('notification-status');
-    const notificationHistoryBody = document.getElementById('notification-history-body');
-    const clearAllHistoryBtn = document.getElementById('clear-all-history-btn');
-    const notificationHistoryLoading = document.getElementById('notification-history-loading');
+    
+    // Supabase Elements
+    const openSbModalBtn = document.getElementById('open-supabase-modal-btn');
+    const sbModal = document.getElementById('supabaseNotificationModal');
+    const closeSbModal = document.getElementById('close-sb-modal');
+    const sbForm = document.getElementById('sb-notification-form');
+    const sbHistoryBody = document.getElementById('supabase-history-body');
+    const sbHistoryLoading = document.getElementById('sb-history-loading');
+    const refreshHistoryBtn = document.getElementById('refresh-history-btn');
+
     const chapterSelect = document.getElementById('chapter-select');
     const leaderboardTableBody = document.getElementById('leaderboard-table-body');
     const leaderboardLoading = document.getElementById('leaderboard-loading');
@@ -44,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalUserName = document.getElementById('modal-user-name');
     const modalScoreTableBody = document.getElementById('modal-score-table-body');
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    let allUsersCache = []; // Caches user data for both dashboard and leaderboard
+    let allUsersCache = []; 
 
     auth.onAuthStateChanged(user => {
         if (user) {
@@ -55,13 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const checkAdminRole = async (user) => {
-        console.log("checkAdminRole: Checking role for user", user.uid, user.email);
         try {
             const doc = await db.collection('users').doc(user.uid).get();
-            console.log("checkAdminRole: User doc exists:", doc.exists);
-            if (doc.exists) {
-                console.log("checkAdminRole: User data:", doc.data());
-            }
             if (doc.exists && doc.data().role === 'admin') {
                 initializeAdminPanel(user, doc.data());
             } else {
@@ -85,39 +89,31 @@ document.addEventListener('DOMContentLoaded', () => {
         adminProfilePicSidebar.src = adminData.photoURL || 'images/default-avatar.png';
         adminInfoSidebar.style.display = 'flex';
         setupEventListeners();
-        loadAllUserData(); // Load all data once
-        loadNotificationHistory();
+        loadAllUserData(); 
+        
+        // Supabase History Load
+        fetchSupabaseHistory();
     };
     
     // --- ডেটা লোডিং এবং ক্যাশিং ---
     const loadAllUserData = async () => {
-        console.log("loadAllUserData: Starting to load user data...");
         if (userListLoading) userListLoading.style.display = 'block';
         try {
-            console.log("loadAllUserData: Attempting Firestore query...");
             const usersSnapshot = await db.collection('users').get();
-            console.log("loadAllUserData: Query successful, got", usersSnapshot.docs.length, "users");
             allUsersCache = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             
-            // ড্যাশবোর্ড ডেটা সেট করুন
             const adminCount = allUsersCache.filter(user => user.role === 'admin').length;
-            console.log("loadAllUserData: Total users:", allUsersCache.length, "Admins:", adminCount);
             totalUsersStat.textContent = allUsersCache.length;
             totalAdminsStat.textContent = adminCount;
-            console.log("loadAllUserData: Updated dashboard stats");
             renderUserTable(allUsersCache);
-            
-            // লিডারবোর্ডের ড্রপডাউন তৈরি করুন
             populateChapterDropdownFromCache();
 
         } catch (error) {
             console.error("Error loading all user data:", error);
-            console.error("Error details:", error.code, error.message);
         } finally {
             if (userListLoading) userListLoading.style.display = 'none';
         }
     };
-
 
     const setupEventListeners = () => {
         if (navDashboard) navDashboard.addEventListener('click', (e) => { e.preventDefault(); switchTab('dashboard'); });
@@ -129,13 +125,134 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         if (userTableBody) userTableBody.addEventListener('click', handleUserTableActions);
         if (leaderboardTableBody) leaderboardTableBody.addEventListener('click', handleLeaderboardTableActions);
+        
+        // Score Modal
         if (modalCloseButton) modalCloseButton.addEventListener('click', () => scoreDetailsModal.style.display = 'none');
         if (scoreDetailsModal) window.addEventListener('click', (event) => { if (event.target === scoreDetailsModal) scoreDetailsModal.style.display = 'none'; });
+        
+        // Mobile Menu
         if (mobileMenuToggle && sidebar) mobileMenuToggle.addEventListener('click', () => { sidebar.classList.toggle('is-visible'); });
-        if (notificationForm) notificationForm.addEventListener('submit', handleNotificationSubmit);
-        if (notificationHistoryBody) notificationHistoryBody.addEventListener('click', handleHistoryDelete);
-        if (clearAllHistoryBtn) clearAllHistoryBtn.addEventListener('click', handleClearAllHistory);
+
+        // === Supabase Notification Event Listeners ===
+        if(openSbModalBtn) openSbModalBtn.addEventListener('click', () => { sbModal.style.display = 'flex'; });
+        if(closeSbModal) closeSbModal.addEventListener('click', () => { sbModal.style.display = 'none'; });
+        if(sbModal) window.addEventListener('click', (e) => { if(e.target === sbModal) sbModal.style.display = 'none'; });
+        if(sbForm) sbForm.addEventListener('submit', handleSupabaseSubmit);
+        if(refreshHistoryBtn) refreshHistoryBtn.addEventListener('click', fetchSupabaseHistory);
+        if(sbHistoryBody) sbHistoryBody.addEventListener('click', handleSupabaseDelete);
     };
+
+    // === Supabase Notification Functions ===
+
+    // ১. নোটিফিকেশন সাবমিট করা
+    async function handleSupabaseSubmit(e) {
+        e.preventDefault();
+        const title = document.getElementById('sb-title').value;
+        const message = document.getElementById('sb-message').value;
+        const expiryDays = parseInt(document.getElementById('sb-expiry').value) || 7;
+        
+        const btn = e.target.querySelector('button');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> পাঠানো হচ্ছে...';
+        btn.disabled = true;
+
+        try {
+            // ইনসার্ট করা
+            const { data, error } = await supabaseClient
+                .from('notifications')
+                .insert([
+                    { 
+                        title: title, 
+                        message: message, 
+                        is_active: true,
+                        // created_at অটোম্যাটিক হবে যদি DB তে ডিফল্ট সেট করা থাকে, না হলে এখানে new Date() দিতে পারেন
+                    }
+                ]);
+
+            if (error) throw error;
+
+            alert('নোটিফিকেশন সফলভাবে পাঠানো হয়েছে!');
+            sbForm.reset();
+            sbModal.style.display = 'none';
+            fetchSupabaseHistory(); // লিস্ট আপডেট করুন
+
+        } catch (err) {
+            console.error('Supabase Error:', err);
+            alert('নোটিফিকেশন পাঠাতে সমস্যা হয়েছে: ' + err.message);
+        } finally {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }
+    }
+
+    // ২. নোটিফিকেশন হিস্ট্রি লোড করা
+    async function fetchSupabaseHistory() {
+        if(sbHistoryLoading) sbHistoryLoading.style.display = 'block';
+        sbHistoryBody.innerHTML = '';
+
+        const { data, error } = await supabaseClient
+            .from('notifications')
+            .select('*')
+            .order('created_at', { ascending: false })
+            .limit(10); // লেটেস্ট ১০টি
+
+        if(sbHistoryLoading) sbHistoryLoading.style.display = 'none';
+
+        if (error) {
+            console.error('Error fetching history:', error);
+            sbHistoryBody.innerHTML = '<tr><td colspan="5">ডাটা লোড করতে সমস্যা হয়েছে।</td></tr>';
+            return;
+        }
+
+        if(!data || data.length === 0) {
+            sbHistoryBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">কোনো বিজ্ঞপ্তি পাওয়া যায়নি।</td></tr>';
+            return;
+        }
+
+        data.forEach(notif => {
+            const date = new Date(notif.created_at).toLocaleDateString('bn-BD');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${notif.title}</td>
+                <td>${notif.message.substring(0, 30)}...</td>
+                <td>${date}</td>
+                <td>
+                    <span class="role-badge" style="background:${notif.is_active ? '#2ecc71' : '#e74c3c'}; color:white;">
+                        ${notif.is_active ? 'Active' : 'Inactive'}
+                    </span>
+                </td>
+                <td class="action-cell">
+                    <button class="btn-danger btn-sm sb-delete-btn" data-id="${notif.id}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            `;
+            sbHistoryBody.appendChild(tr);
+        });
+    }
+
+    // ৩. নোটিফিকেশন ডিলিট করা
+    async function handleSupabaseDelete(e) {
+        if (e.target.closest('.sb-delete-btn')) {
+            const btn = e.target.closest('.sb-delete-btn');
+            const id = btn.dataset.id;
+            
+            if(confirm('আপনি কি নিশ্চিত এই বিজ্ঞপ্তিটি মুছে ফেলতে চান?')) {
+                const { error } = await supabaseClient
+                    .from('notifications')
+                    .delete()
+                    .eq('id', id);
+                
+                if(error) {
+                    alert('মুছে ফেলতে সমস্যা হয়েছে: ' + error.message);
+                } else {
+                    fetchSupabaseHistory(); // রিফ্রেশ
+                }
+            }
+        }
+    }
+
+    // --- অন্যান্য সাধারণ ফাংশন (ট্যাব সুইচ, ব্রেডক্রাম্ব ইত্যাদি) ---
 
     const switchTab = (tabName) => {
         document.querySelectorAll('.sidebar-nav li').forEach(li => li.classList.remove('active'));
@@ -152,7 +269,6 @@ document.addEventListener('DOMContentLoaded', () => {
             leaderboardContent.style.display = 'block';
             pageTitle.textContent = 'লিডারবোর্ড';
             updateBreadcrumb('Leaderboard');
-            // লিডারবোর্ড ডেটা লোড করুন
             loadLeaderboardForChapter(chapterSelect.value);
         }
         if (sidebar) sidebar.classList.remove('is-visible');
@@ -162,7 +278,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (breadcrumbNav) breadcrumbNav.innerHTML = `<li class="breadcrumb-item"><a href="#">Admin</a></li><li class="breadcrumb-item active">${currentPage}</li>`;
     };
 
-    // --- ড্যাশবোর্ড ফাংশন (ব্যবহারকারীর তালিকা) ---
     const renderUserTable = (users) => {
         userTableBody.innerHTML = '';
         users.sort((a,b) => (a.displayName || '').localeCompare(b.displayName || ''));
@@ -173,23 +288,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     
-    // --- লিডারবোর্ড ফাংশন (আপনার বর্তমান ডেটা স্ট্রাকচার অনুযায়ী) ---
-    
+    // --- লিডারবোর্ড ফাংশনালিটি ---
     const populateChapterDropdownFromCache = () => {
         if (!chapterSelect) return;
         const allChapters = new Set();
-        
         allUsersCache.forEach(user => {
-            // "chapters" অবজেক্ট থেকে চ্যাপ্টারের নাম নিন
             if (user.chapters && typeof user.chapters === 'object') {
                 Object.keys(user.chapters).forEach(chapterName => allChapters.add(chapterName));
             }
-            // রুট লেভেলের "quiz_sets" থেকেও নাম নিন (যদি থাকে)
             if (user.quiz_sets && typeof user.quiz_sets === 'object') {
                 Object.keys(user.quiz_sets).forEach(setName => allChapters.add(setName));
             }
         });
-
         chapterSelect.innerHTML = '<option value="">-- সকল বিষয় --</option>';
         [...allChapters].sort().forEach(name => {
             const option = document.createElement('option');
@@ -202,18 +312,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadLeaderboardForChapter = (selectedChapter) => {
         if (leaderboardLoading) leaderboardLoading.style.display = 'block';
         leaderboardTableBody.innerHTML = '';
-        
         let leaderboardData = [];
-
         allUsersCache.forEach(user => {
             let totalScore = 0;
             let detailedScores = [];
-
             const processQuizData = (quizSets, chapterContext) => {
                 if (quizSets && typeof quizSets === 'object') {
                     Object.keys(quizSets).forEach(setName => {
                         const scoreData = quizSets[setName];
-                        // যদি কোনো চ্যাপ্টার সিলেক্ট করা না থাকে, অথবা বর্তমান চ্যাপ্টার/সেটটি সিলেক্টেড চ্যাপ্টারের সাথে মেলে
                         if (!selectedChapter || chapterContext === selectedChapter || setName === selectedChapter) {
                             const score = scoreData.score || scoreData.totalScore || 0;
                             totalScore += score;
@@ -226,17 +332,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             };
-            
-            // রুট লেভেলের quiz_sets থেকে ডেটা প্রসেস করুন
             processQuizData(user.quiz_sets, null); 
-
-            // chapters অবজেক্টের ভেতরের quiz_sets থেকে ডেটা প্রসেস করুন
             if (user.chapters && typeof user.chapters === 'object') {
                 Object.keys(user.chapters).forEach(chapterName => {
                     processQuizData(user.chapters[chapterName].quiz_sets, chapterName);
                 });
             }
-
             if (totalScore > 0) {
                 leaderboardData.push({
                     userName: user.displayName,
@@ -246,10 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
-
-        // মোট স্কোরের ভিত্তিতে র‍্যাঙ্কিং
         leaderboardData.sort((a, b) => b.totalScore - a.totalScore);
-        
         renderLeaderboardTable(leaderboardData);
         if (leaderboardLoading) leaderboardLoading.style.display = 'none';
     };
@@ -289,8 +387,6 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDetailsModal.style.display = 'flex';
     };
 
-    // --- অন্যান্য ফাংশন ---
-
     const handleUserTableActions = (e) => {
         if (e.target.classList.contains('role-changer')) {
             const select = e.target;
@@ -300,56 +396,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 select.value = select.dataset.currentRole;
             }
-        }
-    };
-
-    const handleNotificationSubmit = async (e) => {
-        e.preventDefault();
-        const button = e.target.querySelector('button');
-        button.disabled = true;
-        try {
-            await db.collection('notificationQueue').add({
-                title: document.getElementById('notification-title').value,
-                body: document.getElementById('notification-body').value,
-                link: document.getElementById('notification-link').value
-            });
-            notificationStatus.className = 'status-success';
-            notificationStatus.textContent = 'নোটিফিকেশন সফলভাবে পাঠানো হয়েছে।';
-            notificationForm.reset();
-        } catch (error) {
-            notificationStatus.className = 'status-danger';
-            notificationStatus.textContent = 'ত্রুটি! আবার চেষ্টা করুন।';
-        }
-        notificationStatus.style.display = 'block';
-        button.disabled = false;
-        setTimeout(() => { notificationStatus.style.display = 'none'; }, 5000);
-    };
-
-    const loadNotificationHistory = () => {
-        if (notificationHistoryLoading) notificationHistoryLoading.style.display = 'block';
-        db.collection('notifications').orderBy('createdAt', 'desc').limit(20).onSnapshot(snapshot => {
-            notificationHistoryBody.innerHTML = '';
-            snapshot.forEach(doc => {
-                const notif = doc.data();
-                const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${notif.title}</td><td>${notif.body}</td><td>${formatTimestamp(notif.createdAt)}</td><td class="action-cell"><button class="btn-danger btn-sm delete-notif-btn" data-id="${doc.id}">মুছুন</button></td>`;
-                notificationHistoryBody.appendChild(tr);
-            });
-            if (notificationHistoryLoading) notificationHistoryLoading.style.display = 'none';
-        });
-    };
-
-    const handleHistoryDelete = (e) => {
-        if (e.target.classList.contains('delete-notif-btn')) {
-            if (confirm('আপনি কি এই বিজ্ঞপ্তিটি মুছে ফেলতে চান?')) {
-                functions.httpsCallable('deleteNotification')({ docId: e.target.dataset.id });
-            }
-        }
-    };
-    
-    const handleClearAllHistory = () => {
-        if (confirm('আপনি কি সব বিজ্ঞপ্তি মুছে ফেলতে চান?')) {
-            functions.httpsCallable('deleteAllNotifications')();
         }
     };
 

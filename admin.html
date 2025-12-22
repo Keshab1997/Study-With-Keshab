@@ -23,6 +23,62 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
         <link rel="stylesheet" href="css/admin.css" />
+        
+        <!-- Supabase নোটিফিকেশন মডালের জন্য কিছু অতিরিক্ত CSS -->
+        <style>
+            .supabase-modal {
+                display: none; 
+                position: fixed; 
+                z-index: 2000; 
+                left: 0;
+                top: 0;
+                width: 100%; 
+                height: 100%; 
+                overflow: auto; 
+                background-color: rgba(0,0,0,0.5);
+                align-items: center;
+                justify-content: center;
+            }
+            .sb-modal-content {
+                background-color: #fff;
+                padding: 25px;
+                border-radius: 10px;
+                width: 90%;
+                max-width: 500px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                position: relative;
+                animation: slideDown 0.3s ease-out;
+            }
+            @keyframes slideDown {
+                from {transform: translateY(-50px); opacity: 0;}
+                to {transform: translateY(0); opacity: 1;}
+            }
+            .sb-close {
+                position: absolute;
+                right: 20px;
+                top: 15px;
+                font-size: 24px;
+                font-weight: bold;
+                color: #aaa;
+                cursor: pointer;
+            }
+            .sb-close:hover { color: #000; }
+            .sb-form-group { margin-bottom: 15px; }
+            .sb-form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
+            .sb-form-group input, .sb-form-group textarea {
+                width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-family: 'Hind Siliguri', sans-serif;
+            }
+            .sb-btn-submit {
+                background-color: #4a90e2; color: white; border: none; padding: 10px 20px;
+                border-radius: 5px; cursor: pointer; width: 100%; font-size: 16px;
+            }
+            .sb-btn-submit:hover { background-color: #357abd; }
+            .create-notif-btn {
+                background: linear-gradient(135deg, #2ecc71, #27ae60);
+                color: white; border: none; padding: 12px 20px; border-radius: 8px;
+                cursor: pointer; font-size: 16px; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 8px;
+            }
+        </style>
     </head>
     <body>
         <div class="admin-page-container">
@@ -126,40 +182,39 @@
                         </div>
                     </section>
 
+                    <!-- Supabase Notification Section (Updated) -->
                     <section class="send-notification-section">
                         <div class="section-header">
-                            <h2>বিজ্ঞপ্তি পাঠান</h2>
+                            <h2>নোটিফিকেশন ম্যানেজমেন্ট</h2>
                         </div>
-                        <form id="notification-form">
-                            <div class="form-group">
-                                <label for="notification-title">শিরোনাম</label
-                                ><input
-                                    type="text"
-                                    id="notification-title"
-                                    required
-                                />
-                            </div>
-                            <div class="form-group">
-                                <label for="notification-body">বার্তা</label
-                                ><textarea
-                                    id="notification-body"
-                                    rows="3"
-                                    required
-                                ></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="notification-link"
-                                    >লিঙ্ক (ঐচ্ছিক)</label
-                                ><input type="text" id="notification-link" />
-                            </div>
-                            <button type="submit" class="send-btn">
-                                <i class="fas fa-paper-plane"></i> পাঠান
+                        <!-- নতুন বাটন যা মডাল ওপেন করবে -->
+                        <button id="open-supabase-modal-btn" class="create-notif-btn">
+                            <i class="fas fa-bell"></i> নতুন বিজ্ঞপ্তি তৈরি করুন
+                        </button>
+
+                        <div class="section-header" style="margin-top: 20px;">
+                            <h3>বিজ্ঞপ্তির ইতিহাস (Supabase)</h3>
+                            <button id="refresh-history-btn" class="btn-sm" style="background:#666; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">
+                                <i class="fas fa-sync"></i> রিফ্রেশ
                             </button>
-                        </form>
-                        <div
-                            id="notification-status"
-                            style="display: none"
-                        ></div>
+                        </div>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>শিরোনাম</th>
+                                        <th>বার্তা</th>
+                                        <th>তারিখ</th>
+                                        <th>স্ট্যাটাস</th>
+                                        <th>অ্যাকশন</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="supabase-history-body">
+                                    <!-- JS দিয়ে এখানে ডাটা আসবে -->
+                                </tbody>
+                            </table>
+                            <div class="loading-spinner" id="sb-history-loading" style="display:none;"></div>
+                        </div>
                     </section>
 
                     <section class="user-list-section">
@@ -191,35 +246,6 @@
                             <div
                                 class="loading-spinner"
                                 id="user-list-loading"
-                            ></div>
-                        </div>
-                    </section>
-
-                    <section class="notification-history-section">
-                        <div class="section-header">
-                            <h2>বিজ্ঞপ্তির ইতিহাস</h2>
-                            <button
-                                id="clear-all-history-btn"
-                                class="btn-danger"
-                            >
-                                <i class="fas fa-trash-alt"></i> সব মুছুন
-                            </button>
-                        </div>
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>শিরোনাম</th>
-                                        <th>বার্তা</th>
-                                        <th>সময়</th>
-                                        <th>অ্যাকশন</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="notification-history-body"></tbody>
-                            </table>
-                            <div
-                                class="loading-spinner"
-                                id="notification-history-loading"
                             ></div>
                         </div>
                     </section>
@@ -262,6 +288,7 @@
             </main>
         </div>
 
+        <!-- Firebase Score Modal -->
         <div id="score-details-modal" class="modal">
             <div class="modal-content">
                 <span class="close-button">&times;</span>
@@ -279,6 +306,31 @@
             </div>
         </div>
 
+        <!-- === নতুন Supabase নোটিফিকেশন মডাল === -->
+        <div id="supabaseNotificationModal" class="supabase-modal" style="display: none;">
+            <div class="sb-modal-content">
+                <span class="sb-close" id="close-sb-modal">&times;</span>
+                <h2 style="text-align: center; color: #333; margin-bottom: 20px;">নতুন বিজ্ঞপ্তি পাঠান</h2>
+                <form id="sb-notification-form">
+                    <div class="sb-form-group">
+                        <label for="sb-title">শিরোনাম</label>
+                        <input type="text" id="sb-title" placeholder="নোটিফিকেশনের শিরোনাম দিন" required>
+                    </div>
+                    <div class="sb-form-group">
+                        <label for="sb-message">বার্তা</label>
+                        <textarea id="sb-message" rows="4" placeholder="মূল বার্তা লিখুন..." required></textarea>
+                    </div>
+                    <div class="sb-form-group">
+                        <label for="sb-expiry">কতদিন দেখাবে? (দিন)</label>
+                        <input type="number" id="sb-expiry" value="7" min="1">
+                    </div>
+                    <button type="submit" class="sb-btn-submit">
+                        <i class="fas fa-paper-plane"></i> প্রকাশ করুন
+                    </button>
+                </form>
+            </div>
+        </div>
+
         <div id="access-denied" style="display: none">
             <h1>
                 <i class="fas fa-exclamation-triangle"></i> প্রবেশাধিকার নেই
@@ -287,13 +339,18 @@
             <a href="index.html">হোম পেজে ফিরে যান</a>
         </div>
 
+        <!-- Firebase SDKs -->
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-functions.js"></script>
+        
+        <!-- Supabase SDK (নতুন যুক্ত করা হয়েছে) -->
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
         <script src="js/firebase-config.js"></script>
         <script src="js/admin.js"></script>
-        <!-- === নতুন যোগ করা PWA এবং ডেস্কটপ মোড বাটন কোড === -->
+
         <!-- Desktop/Mobile Mode Toggle Button -->
         <button
             id="toggleViewBtn"
@@ -316,60 +373,33 @@
         </button>
 
         <script>
-            // --- 1. Service Worker Registration ---
+            // --- Service Worker & View Mode Logic ---
             if ("serviceWorker" in navigator) {
                 window.addEventListener("load", () => {
-                    navigator.serviceWorker
-                        .register("sw.js")
-                        .then((registration) => {
-                            console.log(
-                                "ServiceWorker registration successful!",
-                            );
-                        })
-                        .catch((err) => {
-                            console.log(
-                                "ServiceWorker registration failed: ",
-                                err,
-                            );
-                        });
+                    navigator.serviceWorker.register("sw.js").catch(err => console.log("SW failed: ", err));
                 });
             }
 
-            // --- 2. Desktop/Mobile Mode Toggle Logic ---
             const toggleBtn = document.getElementById("toggleViewBtn");
             const viewportMeta = document.getElementById("viewportMeta");
-
-            // Check if a view mode is already saved in localStorage
             let isDesktopView = localStorage.getItem("viewMode") === "desktop";
 
-            // Function to apply the current view mode
             function applyViewMode() {
                 if (isDesktopView) {
                     viewportMeta.setAttribute("content", "width=1280");
                     toggleBtn.textContent = "মোবাইল মোড";
                 } else {
-                    viewportMeta.setAttribute(
-                        "content",
-                        "width=device-width, initial-scale=1.0",
-                    );
+                    viewportMeta.setAttribute("content", "width=device-width, initial-scale=1.0");
                     toggleBtn.textContent = "ডেস্কটপ মোড";
                 }
             }
 
-            // Event listener for the button click
             toggleBtn.addEventListener("click", () => {
-                isDesktopView = !isDesktopView; // Toggle the state
-                if (isDesktopView) {
-                    localStorage.setItem("viewMode", "desktop");
-                } else {
-                    localStorage.setItem("viewMode", "mobile");
-                }
+                isDesktopView = !isDesktopView;
+                localStorage.setItem("viewMode", isDesktopView ? "desktop" : "mobile");
                 applyViewMode();
             });
-
-            // Apply the saved mode when the page loads
             applyViewMode();
         </script>
-        <!-- === PWA কোড শেষ === -->
     </body>
 </html>
