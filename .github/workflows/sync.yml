@@ -3,7 +3,7 @@ name: Mirror to GitLab
 on:
   push:
     branches:
-      - main  # আপনার মেইন ব্রাঞ্চের নাম যদি 'master' হয় তবে সেটি লিখুন
+      - main  # আপনার মেইন ব্রাঞ্চের নাম master হলে সেটি দিন
 
 jobs:
   git-mirror:
@@ -15,11 +15,13 @@ jobs:
           fetch-depth: 0
 
       - name: Mirror to GitLab
-        uses: wearerequired/git-mirror-action@v1
-        env:
-          GITLAB_HOSTNAME: gitlab.com
-          GITLAB_USERNAME: Keshab1997  # আপনার GitLab ইউজারনেম
-          GITLAB_PASSWORD: ${{ secrets.GITLAB_TOKEN }}
-          GITLAB_PROJECT_PATH: keshab1997-group/Study-With-Keshab # আপনার GitLab প্রোজেক্ট পাথ
-        with:
-          args: https://gitlab.com/${{ env.GITLAB_PROJECT_PATH }}.git
+        run: |
+          # ১. গিট সিকিউরিটি এরর ফিক্স করা
+          git config --global --add safe.directory /github/workspace
+          
+          # ২. গিটল্যাব রিমোট অ্যাড করা (টোকেন সহ)
+          # এখানে Keshab1997 আপনার ইউজারনেম এবং সিক্রেট থেকে টোকেন নেওয়া হচ্ছে
+          git remote add gitlab https://Keshab1997:${{ secrets.GITLAB_TOKEN }}@gitlab.com/keshab1997-group/Study-With-Keshab.git
+          
+          # ৩. গিটল্যাবে পুশ করা (সব ব্রাঞ্চ এবং ট্যাগ সহ)
+          git push --force --prune gitlab "+refs/heads/*:refs/heads/*" "+refs/tags/*:refs/tags/*"
