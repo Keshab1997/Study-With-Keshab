@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Admin Dashboard | Study With Keshab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --dark: #212529;
+            --light: #f8f9fa;
+            --glass: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: #e9ecef;
+            margin: 0;
+            display: flex;
+        }
+
+        /* Sidebar Style */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background: var(--dark);
+            color: white;
+            position: fixed;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .sidebar h2 {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--success);
+        }
+
+        .nav-link {
+            display: block;
+            color: #adb5bd;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .back-home {
+            margin-top: 50px;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        label { font-weight: 600; display: block; margin: 15px 0 5px; color: var(--dark); }
+        input, select, button { width: 100%; padding: 12px; border: 1px solid #dee2e6; border-radius: 8px; font-size: 15px; }
+        
+        .btn { cursor: pointer; font-weight: bold; border: none; transition: 0.3s; color: white; display: inline-block; width: auto; padding: 12px 25px; }
+        .btn-save { background: var(--primary); }
+        .btn-delete { background: var(--danger); }
+        .btn-add { background: var(--success); margin-top: 10px; }
+
+        .item-row { display: flex; gap: 10px; margin-bottom: 10px; background: #fff; padding: 10px; border-radius: 8px; border: 1px solid #eee; }
+        #editor { height: 350px; background: white; }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>SWK ADMIN</h2>
+    <a href="#" class="nav-link active" onclick="switchTab('class-tab', this)"><i class="fa-solid fa-book"></i> ক্লাস এডিটর</a>
+    <a href="#" class="nav-link" onclick="switchTab('nav-tab', this)"><i class="fa-solid fa-bars"></i> নেভিগেশন সেটিংস</a>
+    <a href="#" class="nav-link" onclick="switchTab('settings-tab', this)"><i class="fa-solid fa-gears"></i> চ্যাপ্টার সেটিংস</a>
+    
+    <div class="back-home">
+        <a href="index.html" class="nav-link" style="color: var(--success);"><i class="fa-solid fa-house"></i> হোমপেজে ফিরে যান</a>
+    </div>
+</div>
+
+<div class="main-content">
+    <!-- Tab 1: Class Content -->
+    <div id="class-tab" class="tab-content active">
+        <div class="card">
+            <h3><i class="fa-solid fa-pen-to-square"></i> ক্লাস কন্টেন্ট ম্যানেজমেন্ট</h3>
+            <label>পুরনো ক্লাস সিলেক্ট করুন:</label>
+            <select id="existingClasses" onchange="loadSelectedClass()">
+                <option value="">-- নতুন ক্লাস তৈরি করুন --</option>
+            </select>
+            <label>Unique ID:</label>
+            <input type="text" id="docId" placeholder="e.g. algebra_class1">
+            <label>শিরোনাম:</label>
+            <input type="text" id="classTitle" placeholder="ক্লাসের নাম লিখুন">
+            <label>কন্টেন্ট:</label>
+            <div id="editor"></div>
+            <div style="margin-top: 20px;">
+                <button class="btn btn-save" onclick="saveClassData()">💾 সেভ করুন</button>
+                <button id="deleteBtn" class="btn btn-delete" style="display:none;" onclick="deleteClassData()">🗑️ ডিলিট</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab 2: Navigation Settings -->
+    <div id="nav-tab" class="tab-content">
+        <div class="card">
+            <h3><i class="fa-solid fa-compass"></i> হোমপেজ বাটন সেটিংস</h3>
+            <p>হোমপেজের নেভিগেশন বাটনগুলো এখান থেকে কন্ট্রোল করুন।</p>
+            <div id="navButtonsContainer"></div>
+            <button class="btn btn-add" onclick="addNavRow()">+ নতুন বাটন যোগ করুন</button>
+            <hr>
+            <button class="btn btn-save" onclick="saveNavSettings()">🚀 নেভিগেশন আপডেট করুন</button>
+        </div>
+    </div>
+
+    <!-- Tab 3: Chapter Settings -->
+    <div id="settings-tab" class="tab-content">
+        <div class="card">
+            <h3><i class="fa-solid fa-sliders"></i> চ্যাপ্টার ইনফরমেশন</h3>
+            <label>চ্যাপ্টারের নাম:</label>
+            <input type="text" id="chapterName">
+            <label>সাবটাইটেল:</label>
+            <input type="text" id="chapterSubtitle">
+            
+            <label>পিডিএফ লিস্ট (Drive IDs):</label>
+            <div id="pdfListContainer"></div>
+            <button class="btn btn-add" onclick="addRow('pdfListContainer')">+ নতুন পিডিএফ</button>
+            
+            <button class="btn btn-save" style="margin-top: 20px; width: 100%;" onclick="saveChapterSettings()">💾 সেটিংস সেভ করুন</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/admin-logic.js"></script>
+
+<script>
+    // ট্যাব সুইচিং ফাংশন
+    function switchTab(tabId, el) {
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        el.classList.add('active');
+    }
+</script>
+</body>
+</html>

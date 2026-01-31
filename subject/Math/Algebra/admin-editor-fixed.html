@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Admin Panel | SWK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+    <style>
+        :root { --primary: #3498db; --secondary: #2ecc71; --danger: #e74c3c; --dark: #2c3e50; --bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        
+        h2 { text-align: center; color: var(--dark); margin-bottom: 30px; font-weight: 700; }
+        
+        /* Tabs */
+        .tabs { display: flex; background: #eee; padding: 5px; border-radius: 12px; margin-bottom: 30px; }
+        .tab-btn { flex: 1; padding: 12px; border: none; background: none; cursor: pointer; border-radius: 10px; font-weight: 600; transition: 0.3s; }
+        .tab-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); }
+
+        .tab-content { display: none; animation: fadeIn 0.4s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Form Elements */
+        label { font-weight: 600; display: block; margin: 20px 0 8px; color: #555; }
+        input, select { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 10px; font-size: 15px; transition: 0.3s; outline: none; }
+        input:focus { border-color: var(--primary); }
+        
+        .item-row { display: flex; gap: 10px; margin-bottom: 12px; align-items: center; background: #fafafa; padding: 10px; border-radius: 10px; }
+        .item-row input { flex: 1; border: 1px solid #ddd; }
+        
+        .btn { cursor: pointer; font-weight: bold; border: none; border-radius: 10px; transition: 0.3s; color: white; padding: 12px 20px; }
+        .btn-save { background: var(--secondary); width: 100%; margin-top: 25px; font-size: 16px; }
+        .btn-save:hover { background: #27ae60; transform: translateY(-2px); }
+        .btn-add { background: var(--primary); font-size: 14px; margin-top: 10px; }
+        .btn-remove { background: var(--danger); padding: 8px 15px; }
+
+        #editor { height: 300px; border-radius: 0 0 10px 10px; }
+        .status-msg { text-align: center; margin-top: 15px; font-weight: bold; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2><i class="fa-solid fa-user-shield"></i> মাস্টার অ্যাডমিন প্যানেল</h2>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('class-tab', this)">ক্লাস কন্টেন্ট এডিটর</button>
+        <button class="tab-btn" onclick="openTab('settings-tab', this)">হোমপেজ সেটিংস</button>
+    </div>
+
+    <!-- Tab 1: Class Editor -->
+    <div id="class-tab" class="tab-content active">
+        <label>ক্লাস সিলেক্ট করুন:</label>
+        <select id="existingClasses" onchange="loadSelectedClass()">
+            <option value="">-- নতুন ক্লাস তৈরি করুন --</option>
+        </select>
+        <label>ক্লাস আইডি (Unique ID):</label>
+        <input type="text" id="docId" placeholder="যেমন: class1">
+        <label>শিরোনাম:</label>
+        <input type="text" id="classTitle" placeholder="যেমন: লাভ ও ক্ষতি - পার্ট ১">
+        <label>কন্টেন্ট:</label>
+        <div id="editor"></div>
+        <button class="btn btn-save" onclick="saveClassData()">💾 ক্লাস সেভ করুন</button>
+    </div>
+
+    <!-- Tab 2: Homepage Settings -->
+    <div id="settings-tab" class="tab-content">
+        <label>চ্যাপ্টারের নাম:</label>
+        <input type="text" id="chapterName" placeholder="যেমন: Profit and Loss">
+        <label>সাবটাইটেল:</label>
+        <input type="text" id="chapterSubtitle" placeholder="আপনার পড়ার ডিজিটাল সঙ্গী">
+
+        <label>CBT পরীক্ষার লিংক (URL):</label>
+        <input type="text" id="cbtLink" placeholder="https://exam-link.com">
+
+        <label>ক্লাস লিস্ট (হোমপেজের জন্য):</label>
+        <div id="classListContainer"></div>
+        <button class="btn btn-add" onclick="addRow('classListContainer')">+ নতুন ক্লাস রো</button>
+
+        <label>কুইজ লিস্ট (হোমপেজের জন্য):</label>
+        <div id="quizListContainer"></div>
+        <button class="btn btn-add" onclick="addRow('quizListContainer')">+ নতুন কুইজ রো</button>
+
+        <button class="btn btn-save" onclick="saveChapterSettings()">🚀 হোমপেজ আপডেট করুন</button>
+    </div>
+
+    <div id="status" class="status-msg"></div>
+</div>
+
+<!-- Scripts -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+<script src="js/firebase-config.js"></script>
+
+<script>
+    const db = firebase.firestore();
+    const chapterId = "Algebra"; // নিশ্চিত করুন আপনার index.html এও এই ID ব্যবহার করা হয়েছে
+    var quill = new Quill('#editor', { theme: 'snow' });
+
+    function openTab(tabId, btn) {
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    function addRow(containerId, idVal = "", titleVal = "") {
+        const container = document.getElementById(containerId);
+        const div = document.createElement('div');
+        div.className = 'item-row';
+        div.innerHTML = `
+            <input type="text" placeholder="ID" value="${idVal}" class="item-id">
+            <input type="text" placeholder="Title" value="${titleVal}" class="item-title">
+            <button class="btn btn-remove" onclick="this.parentElement.remove()">X</button>
+        `;
+        container.appendChild(div);
+    }
+
+    // হোমপেজ সেটিংস সেভ করার ফাংশন (FIXED)
+    async function saveChapterSettings() {
+        const status = document.getElementById('status');
+        status.innerText = "আপডেট হচ্ছে... দয়া করে অপেক্ষা করুন।";
+
+        const name = document.getElementById('chapterName').value;
+        const subtitle = document.getElementById('chapterSubtitle').value;
+        const cbtLink = document.getElementById('cbtLink').value;
+
+        const classes = [];
+        document.querySelectorAll('#classListContainer .item-row').forEach(row => {
+            const id = row.querySelector('.item-id').value;
+            const title = row.querySelector('.item-title').value;
+            if(id && title) classes.push({id, title});
+        });
+
+        const quizzes = [];
+        document.querySelectorAll('#quizListContainer .item-row').forEach(row => {
+            const id = row.querySelector('.item-id').value;
+            const title = row.querySelector('.item-title').value;
+            if(id && title) quizzes.push({id, title});
+        });
+
+        try {
+            await db.collection("chapters").doc(chapterId).set({
+                name,
+                subtitle,
+                cbtLink,
+                classes,
+                quizzes,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+
+            status.style.color = "green";
+            status.innerText = "✅ হোমপেজ সফলভাবে আপডেট হয়েছে!";
+            alert("CBT লিংকসহ সব আপডেট হয়েছে!");
+        } catch (error) {
+            console.error("Error updating document: ", error);
+            status.style.color = "red";
+            status.innerText = "❌ এরর: " + error.message;
+            alert("আপডেট ব্যর্থ হয়েছে! কনসোল চেক করুন।");
+        }
+    }
+
+    // ক্লাস সেভ করার ফাংশন
+    async function saveClassData() {
+        const id = document.getElementById('docId').value;
+        const title = document.getElementById('classTitle').value;
+        const content = quill.root.innerHTML;
+        
+        if (!id || !title) return alert("ID এবং Title দিন");
+        
+        try {
+            await db.collection("class_notes").doc(id).set({
+                title: title,
+                content: content,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            alert("ক্লাস সেভ হয়েছে!");
+            loadClassList();
+        } catch (error) {
+            alert("এরর: " + error.message);
+        }
+    }
+
+    // ক্লাস লিস্ট লোড
+    function loadClassList() {
+        const select = document.getElementById('existingClasses');
+        select.innerHTML = '<option value="">-- নতুন ক্লাস তৈরি করুন --</option>';
+        db.collection("class_notes").get().then(snap => {
+            snap.forEach(doc => {
+                const opt = document.createElement('option');
+                opt.value = doc.id;
+                opt.text = `${doc.data().title} (${doc.id})`;
+                select.appendChild(opt);
+            });
+        });
+    }
+
+    // ক্লাস সিলেক্ট
+    function loadSelectedClass() {
+        const id = document.getElementById('existingClasses').value;
+        if (!id) {
+            document.getElementById('docId').value = '';
+            document.getElementById('classTitle').value = '';
+            quill.root.innerHTML = '';
+            return;
+        }
+        
+        db.collection("class_notes").doc(id).get().then(doc => {
+            if (doc.exists) {
+                document.getElementById('docId').value = doc.id;
+                document.getElementById('classTitle').value = doc.data().title;
+                quill.root.innerHTML = doc.data().content;
+            }
+        });
+    }
+
+    // পেজ লোড হলে ডেটা আনা
+    async function loadInitialData() {
+        const doc = await db.collection("chapters").doc(chapterId).get();
+        if(doc.exists) {
+            const data = doc.data();
+            document.getElementById('chapterName').value = data.name || "";
+            document.getElementById('chapterSubtitle').value = data.subtitle || "";
+            document.getElementById('cbtLink').value = data.cbtLink || "";
+            if(data.classes) data.classes.forEach(c => addRow('classListContainer', c.id, c.title));
+            if(data.quizzes) data.quizzes.forEach(q => addRow('quizListContainer', q.id, q.title));
+        }
+        loadClassList();
+    }
+
+    firebase.auth().onAuthStateChanged(user => {
+        if(user) { loadInitialData(); }
+        else { window.location.href = "../../../../login.html"; }
+    });
+</script>
+</body>
+</html>

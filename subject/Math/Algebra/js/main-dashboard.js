@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderDashboard(chapterData);
     }
 
+    // ডাইনামিক নেভিগেশন রেন্ডার
+    await renderDynamicNav();
+
     // বুকমার্ক চেক
     const lastRead = localStorage.getItem("last_read_algebra");
     if (lastRead) {
@@ -46,6 +49,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 });
+
+// ডাইনামিক নেভিগেশন রেন্ডার
+async function renderDynamicNav() {
+    const db = firebase.firestore();
+    const chapterId = "Algebra";
+    const navContainer = document.querySelector('.nav-grid');
+    if (!navContainer) return;
+
+    try {
+        const doc = await db.collection("settings").doc(chapterId + "_nav").get();
+        if (doc.exists) {
+            const buttons = doc.data().buttons;
+            navContainer.innerHTML = buttons.map(btn => `
+                <a href="${btn.link}" class="nav-button ${btn.color}">
+                    <i class="fa-solid ${btn.icon}"></i>
+                    <span>${btn.title}</span>
+                </a>
+            `).join('');
+        }
+    } catch (error) {
+        console.log("Navigation settings not found, using default");
+    }
+}
 
 function renderDashboard(data) {
     // চ্যাপ্টার নাম আপডেট
