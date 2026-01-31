@@ -2,19 +2,21 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const db = firebase.firestore();
     const chapterId = "Algebra";
-    let chapterData = null;
 
-    // ডেটা লোড
-    const doc = await db.collection("chapters").doc(chapterId).get();
-    if (doc.exists) {
-        chapterData = doc.data();
-        renderDashboard(chapterData);
+    // ১. চ্যাপ্টারের সাধারণ তথ্য লোড করা (নাম, সাবটাইটেল, পিডিএফ)
+    const chapterDoc = await db.collection("chapters").doc(chapterId).get();
+    if (chapterDoc.exists) {
+        const data = chapterDoc.data();
+        renderChapterInfo(data);
+        // পিডিএফ এবং কুইজ আগের মতোই চ্যাপ্টার সেটিংস থেকে আসবে
+        if (data.pdfs) renderList("pdf-grid-container", data.pdfs, "pdf");
+        if (data.quizzes) renderList("dynamic-quiz-list", data.quizzes, "quiz");
     }
 
-    // ডাইনামিক নেভিগেশন রেন্ডার
-    await renderDynamicNav();
+    // ২. ক্লাস লিস্ট অটোমেটিক লোড করা (সরাসরি class_notes কালেকশন থেকে)
+    loadAutomaticClassList();
 
-    // বুকমার্ক চেক
+    // ৩. বুকমার্ক চেক (আগের মতোই)
     const lastRead = localStorage.getItem("last_read_algebra");
     if (lastRead) {
         const continueBtn = document.getElementById("continue-reading");
@@ -24,30 +26,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // সার্চ লজিক
-    const searchBar = document.getElementById("search-bar");
-    if (searchBar) {
-        searchBar.addEventListener("input", (e) => {
-            const term = e.target.value.toLowerCase();
-            if (!chapterData) return;
-
-            // ক্লাস ফিল্টার
-            if (chapterData.classes) {
-                const filteredClasses = chapterData.classes.filter(c => 
-                    c.title.toLowerCase().includes(term)
-                );
-                renderList("dynamic-class-list", filteredClasses, "class");
-            }
-
-            // পিডিএফ ফিল্টার
-            if (chapterData.pdfs) {
-                const filteredPdfs = chapterData.pdfs.filter(p => 
-                    p.title.toLowerCase().includes(term)
-                );
-                renderList("pdf-grid-container", filteredPdfs, "pdf");
-            }
-        });
-    }
+    // ডাইনামিক নেভিগেশন রেন্ডার
+    await renderDynamicNav();
 });
 
 // ডাইনামিক নেভিগেশন রেন্ডার
@@ -73,38 +53,61 @@ async function renderDynamicNav() {
     }
 }
 
-function renderDashboard(data) {
-    // চ্যাপ্টার নাম আপডেট
-    const titleElement = document.querySelector('.header-text h1');
-    if (titleElement && data.name) {
-        titleElement.innerText = `অধ্যায়: ${data.name}`;
-    }
+// সরাসরি কালেকশন থেকে ক্লাস লিস্ট আনার ফাংশন
+async function loadAutomaticClassList() {
+    const db = firebase.firestore();
+    const classContainer = document.getElementById("dynamic-class-list");
+    
+    if (!classContainer) return;
 
-    // CBT লিংক আপডেট
-    const cbtBtn = document.querySelector('.nav-button.color-cbt');
-    if (cbtBtn && data.cbtLink) {
-        cbtBtn.href = data.cbtLink;
-    }
+    try {
+        // class_notes কালেকশন থেকে সব ডকুমেন্ট আনা (আপডেট টাইম অনুযায়ী সাজানো)
+        const snapshot = await db.collection("class_notes").orderBy("updatedAt", "desc").get();
+        
+        if (snapshot.empty) {
+            classContainer.innerHTML = "<p>কোনো ক্লাস নোট পাওয়া যায়নি।</p>";
+            return;
+        }
 
-    // লিস্ট রেন্ডার
-    if (data.classes) renderList("dynamic-class-list", data.classes, "class");
-    if (data.pdfs) renderList("pdf-grid-container", data.pdfs, "pdf");
+        let html = "";
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            // অটোমেটিক লিঙ্ক তৈরি
+            html += `
+                <a href="class/template.html?id=${doc.id}" class="class-link">
+                    <i class="fa-solid fa-person-chalkboard fa-fw"></i> ${data.title}
+                </a>
+            `;
+        });
+        classContainer.innerHTML = html;
+    } catch (error) {
+        console.error("Error loading classes:", error);
+        classContainer.innerHTML = "<p>ক্লাস লোড করতে সমস্যা হয়েছে।</p>";
+    }
 }
 
+function renderChapterInfo(data) {
+    const titleElement = document.querySelector('.header-text h1');
+    const subtitleElement = document.querySelector('.header-text p');
+    if (titleElement && data.name) titleElement.innerText = `অধ্যায়: ${data.name}`;
+    if (subtitleElement && data.subtitle) subtitleElement.innerText = data.subtitle;
+}
+
+// অন্যান্য লিস্টের জন্য রেন্ডার ফাংশন
 function renderList(containerId, list, type) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
     container.innerHTML = list.map(item => {
-        if (type === 'class') {
-            return `<a href="class/template.html?id=${item.id}">
-                <i class="fa-solid fa-person-chalkboard fa-fw"></i> ${item.title}
-            </a>`;
-        } else if (type === 'pdf') {
+        if (type === 'pdf') {
             return `<div class="pdf-card" onclick="openPdf('${item.id}')">
                 <i class="fa-solid fa-file-pdf"></i>
                 <span>${item.title}</span>
             </div>`;
+        } else if (type === 'quiz') {
+            return `<a href="quiz/${item.id}.html">
+                <i class="fa-solid fa-circle-question fa-fw"></i> ${item.title}
+            </a>`;
         }
     }).join('');
 }

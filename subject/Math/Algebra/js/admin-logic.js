@@ -97,21 +97,26 @@ function loadSelectedClass() {
     });
 }
 
-function saveClassData() {
+async function saveClassData() {
     const id = document.getElementById('docId').value;
     const title = document.getElementById('classTitle').value;
     const content = quill.root.innerHTML;
     
     if (!id || !title) return alert("ID এবং Title দিন");
     
-    db.collection("class_notes").doc(id).set({
-        title: title,
-        content: content,
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(() => {
-        alert("সেভ হয়েছে!");
+    try {
+        // ক্লাস ডেটা সেভ
+        await db.collection("class_notes").doc(id).set({
+            title: title,
+            content: content,
+            updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        
+        alert("সেভ হয়েছে! হোমপেজ অটোমেটিক আপডেট হবে।");
         loadClassList();
-    });
+    } catch (error) {
+        alert("Error: " + error.message);
+    }
 }
 
 function deleteClassData() {
@@ -160,6 +165,7 @@ async function saveChapterSettings() {
     const name = document.getElementById('chapterName').value;
     const subtitle = document.getElementById('chapterSubtitle').value;
     
+    // PDFs সংগ্রহ
     const pdfs = [];
     document.querySelectorAll('#pdfListContainer .item-row').forEach(row => {
         const id = row.querySelector('.item-id').value;
@@ -167,14 +173,71 @@ async function saveChapterSettings() {
         if (id && title) pdfs.push({id, title});
     });
     
-    await db.collection("chapters").doc(chapterId).set({
-        name: name,
-        subtitle: subtitle,
-        pdfs: pdfs,
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
+    try {
+        await db.collection("chapters").doc(chapterId).set({
+            name: name,
+            subtitle: subtitle,
+            pdfs: pdfs,
+            updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true });
+        
+        alert("চ্যাপ্টার সেটিংস সেভ হয়েছে!");
+    } catch (e) {
+        alert("Error: " + e.message);
+    }
+}
+
+// হোমপেজ ক্লাস লিস্ট অটোমেটিক আপডেট ফাংশন (আর দরকার নেই)
+// async function updateHomepageClassList() { ... }
+
+// প্রিভিউ ফাংশন
+function previewContent() {
+    const content = quill.root.innerHTML;
+    const formattedContent = formatMath(content);
     
-    alert("সেটিংস সেভ হয়েছে!");
+    // নতুন উইন্ডোতে প্রিভিউ দেখান
+    const previewWindow = window.open('', '_blank', 'width=800,height=600');
+    previewWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Content Preview</title>
+            <link rel="stylesheet" href="../css/class-view.css">
+            <style>
+                body { padding: 20px; font-family: 'Hind Siliguri', sans-serif; }
+                .preview-header { background: #3498db; color: white; padding: 15px; margin: -20px -20px 20px; }
+            </style>
+        </head>
+        <body>
+            <div class="preview-header">
+                <h2>📖 Content Preview</h2>
+                <p>এটি দেখতে হবে যেমন স্টুডেন্টরা দেখবে</p>
+            </div>
+            <div class="ql-editor">
+                ${formattedContent}
+            </div>
+        </body>
+        </html>
+    `);
+}
+
+// ম্যাথ ফরম্যাটিং ফাংশন
+function formatMath(html) {
+    // ভগ্নাংশ ফরম্যাট: \frac{a}{b} -> <div class="fraction">...</div>
+    html = html.replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, 
+        '<div class="fraction"><span class="numerator">$1</span><span class="denominator">$2</span></div>');
+    
+    // পাওয়ার ফরম্যাট: x^2 -> x<sup>2</sup>
+    html = html.replace(/(\w+)\^\{([^}]+)\}/g, '$1<sup>$2</sup>');
+    html = html.replace(/(\w+)\^(\d+)/g, '$1<sup>$2</sup>');
+    
+    // স্কয়ার রুট: \sqrt{x} -> √x
+    html = html.replace(/\\sqrt\{([^}]+)\}/g, '√$1');
+    
+    // ম্যাথ বক্স: $$...$$
+    html = html.replace(/\$\$([^$]+)\$\$/g, '<div class="math-box">$1</div>');
+    
+    return html;
 }
 
 // অথ চেক

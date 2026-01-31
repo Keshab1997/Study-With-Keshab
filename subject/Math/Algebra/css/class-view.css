@@ -189,6 +189,290 @@ hr {
     color: #8e44ad;
 }
 
+/* ম্যাথ ফরম্যাটিং স্টাইল */
+.fraction {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 5px;
+    font-size: 1.1em;
+}
+
+.numerator {
+    display: block;
+    border-bottom: 2px solid #333;
+    padding-bottom: 2px;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+.denominator {
+    display: block;
+    padding-top: 2px;
+    font-weight: bold;
+}
+
+.math-box {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2c3e50;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+sup {
+    font-size: 0.8em;
+    vertical-align: super;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Smart MCQ Card Styles */
+.question-item {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+    color: white;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.question-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+.question-item h3 {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    text-align: center;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 15px;
+    border-radius: 25px;
+    display: inline-block;
+}
+
+.question-item p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.question-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.question-item li {
+    background: rgba(255,255,255,0.15);
+    margin: 10px 0;
+    padding: 12px 18px;
+    border-radius: 10px;
+    border-left: 4px solid #fff;
+    transition: all 0.3s ease;
+}
+
+.question-item li:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateX(5px);
+}
+
+.answer-section {
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.answer-divider {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.5), transparent);
+    margin: 15px 0;
+}
+
+.answer-label {
+    font-weight: bold;
+    color: #fff;
+}
+
+.correct-answer {
+    background: #27ae60;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.explanation {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
+    border-left: 4px solid #f39c12;
+}
+
+.explanation p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Master Parser Styles - Fixed Version */
+/* --- টেবিল ডিজাইন (Fixed) --- */
+.table-container { 
+    overflow-x: auto; 
+    margin: 25px 0; 
+    border-radius: 10px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+}
+.styled-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    background: white; 
+    font-size: 15px; 
+}
+.styled-table th { 
+    background: #2c3e50; 
+    color: #ffffff; 
+    padding: 15px; 
+    text-align: left; 
+    font-weight: 600; 
+}
+.styled-table td { 
+    padding: 12px 15px; 
+    border-bottom: 1px solid #edf2f7; 
+    color: #2d3748; 
+}
+.styled-table tr:nth-child(even) { 
+    background: #f8fafc; 
+}
+.styled-table tr:hover { 
+    background: #f1f5f9; 
+}
+
+/* --- MCQ কার্ড ডিজাইন (No Overlap) --- */
+.question-card { 
+    background: #ffffff; 
+    border: 1px solid #e2e8f0; 
+    border-radius: 12px; 
+    margin-bottom: 30px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+}
+.q-header { 
+    background: #3498db; 
+    color: white; 
+    padding: 8px 20px; 
+    font-weight: bold; 
+    font-size: 14px; 
+    display: inline-block; 
+    border-radius: 0 0 10px 0; 
+}
+.q-body { 
+    padding: 20px; 
+    font-size: 1.1rem; 
+    font-weight: 600; 
+    color: #1a202c; 
+    line-height: 1.6; 
+}
+.opt-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; 
+    padding: 0 20px 20px; 
+}
+.opt-item { 
+    background: #f8fafc; 
+    border: 1px solid #e2e8f0; 
+    padding: 12px; 
+    border-radius: 8px; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    transition: 0.2s; 
+}
+.opt-item span { 
+    background: #3498db; 
+    color: white; 
+    width: 24px; 
+    height: 24px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 12px; 
+    font-weight: bold; 
+    flex-shrink: 0; 
+}
+.opt-item:hover { 
+    border-color: #3498db; 
+    background: #ebf8ff; 
+}
+
+.ans-footer { 
+    padding: 20px; 
+    background: #fdfdfd; 
+    border-top: 1px dashed #e2e8f0; 
+}
+.ans-badge { 
+    display: inline-block; 
+    background: #27ae60; 
+    color: white; 
+    padding: 6px 16px; 
+    border-radius: 20px; 
+    font-weight: bold; 
+    font-size: 14px; 
+    margin-bottom: 10px; 
+}
+.exp-box { 
+    background: #fffaf0; 
+    border-left: 4px solid #f6ad55; 
+    padding: 12px; 
+    border-radius: 4px; 
+    font-size: 14px; 
+    color: #744210; 
+}
+
+/* --- নোট এবং ওয়ার্নিং কালার --- */
+.info-note { 
+    background: #ebf8ff; 
+    border-left: 5px solid #3182ce; 
+    padding: 15px; 
+    margin: 20px 0; 
+    border-radius: 6px; 
+    color: #2a4365; 
+    font-weight: 500; 
+}
+.warn-note { 
+    background: #fff5f5; 
+    border-left: 5px solid #e53e3e; 
+    padding: 15px; 
+    margin: 20px 0; 
+    border-radius: 6px; 
+    color: #742a2a; 
+    font-weight: 500; 
+}
+
+/* মোবাইল রেসপন্সিভ */
+@media (max-width: 600px) {
+    .opt-grid { 
+        grid-template-columns: 1fr; 
+    }
+    .styled-table th, .styled-table td { 
+        padding: 10px; 
+        font-size: 13px; 
+    }
+}
+
 /* রেসপন্সিভ */
 @media (max-width: 768px) {
     .container {
@@ -215,5 +499,14 @@ hr {
     
     h1 {
         font-size: 1.5rem;
+    }
+    
+    .fraction {
+        font-size: 1em;
+    }
+    
+    .math-box {
+        font-size: 1.1em;
+        padding: 12px;
     }
 }

@@ -1298,3 +1298,82 @@ img, .card {
     margin-top: 15px;
     justify-content: center;
 }
+/* অতিরিক্ত স্পেস কমানো */
+.ql-editor p, .ql-editor br {
+    margin-bottom: 5px !important;
+    display: block;
+    content: "";
+}
+
+/* ম্যাথ বক্সের ভেতর স্পেসিং ঠিক করা */
+.math-box {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    background: #f1f5f9;
+    border-radius: 4px;
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+}
+
+/* MCQ কার্ডের ভেতর টাইট স্পেসিং */
+.question-card {
+    margin: 15px 0 !important;
+}
+.q-body {
+    padding: 15px 20px 10px !important;
+}
+.opt-grid {
+    padding: 0 20px 15px !important;
+    gap: 8px !important;
+}
+/* টেবিল ফিক্স */
+.table-container { overflow-x: auto; margin: 20px 0; }
+.styled-table th, .styled-table td { 
+    min-width: 100px; 
+    text-align: center !important; 
+    vertical-align: middle;
+}
+.styled-table .math-box {
+    display: inline-block;
+    margin: 5px;
+    white-space: nowrap; /* টেবিলের ভেতর যাতে ভেঙে না যায় */
+}
+
+/* MCQ কার্ড ফিক্স */
+.question-card {
+    display: block !important;
+    clear: both;
+    margin-top: 20px !important;
+}
+
+/* হেডিং ফিক্স */
+.ql-editor h2 { color: #d81b60; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-top: 25px; }
+.ql-editor h3 { color: #004d40; margin-top: 20px; }
+/* অতিরিক্ত স্পেস কমানো */
+.ql-editor br {
+    display: block;
+    margin-bottom: 2px;
+    content: "";
+}
+
+/* MCQ কার্ড উন্নত স্টাইল */
+.question-card {
+    background: #fff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05) !important;
+    margin: 25px 0 !important;
+}
+
+/* হেডিং স্টাইল উন্নত */
+h2 { 
+    color: #d81b60 !important; 
+    border-bottom: 2px solid #eee !important; 
+    padding-bottom: 5px !important; 
+    margin-top: 30px !important; 
+}
+h3 { 
+    color: #004d40 !important; 
+    margin-top: 20px !important; 
+}
