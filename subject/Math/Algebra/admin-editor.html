@@ -425,25 +425,4 @@
     });
 </script>
 </body>
-</html> title = row.querySelector('.item-title').value;
-            if(id && title) classes.push({id, title});
-        });
-        const quizzes = [];
-        document.querySelectorAll('#quizListContainer .item-row').forEach(row => {
-            const id = row.querySelector('.item-id').value;
-            const title = row.querySelector('.item-title').value;
-            if(id && title) quizzes.push({id, title});
-        });
-
-        await db.collection("chapters").doc(chapterId).set({ name, subtitle, classes, quizzes, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
-        alert("Homepage Updated!");
-    }
-
-    // ইনিশিয়ালাইজ
-    firebase.auth().onAuthStateChanged(user => {
-        if(user) { loadClassList(); loadChapterSettings(); }
-        else { window.location.href = "../../../../login.html"; }
-    });
-</script>
-</body>
 </html>
