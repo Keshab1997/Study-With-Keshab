@@ -746,10 +746,10 @@ firebase.auth().onAuthStateChanged((user) => {
         console.log("Logged in user:", user.email);
         
         if (user.email === ADMIN_EMAIL) {
-            const adminBtn = document.getElementById('admin-floating-btn');
+            const adminBtn = document.getElementById('admin-btn-top');
             if (adminBtn) {
-                adminBtn.style.setProperty('display', 'flex', 'important');
-                console.log("Admin button should be visible now.");
+                adminBtn.style.display = 'flex';
+                console.log("Admin button visible in header.");
             }
         }
     }

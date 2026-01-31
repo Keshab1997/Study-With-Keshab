@@ -53,9 +53,18 @@
                 <h1>অধ্যায়: বীজগণিত (Algebra)</h1>
                 <p>আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী</p>
             </div>
-            <button id="dark-mode-toggle" class="dark-mode-button" title="দিন/রাত মোড পরিবর্তন করুন">
-                <i class="fa-solid fa-moon"></i>
-            </button>
+            
+            <!-- নতুন অ্যাডমিন বাটন এবং ডার্ক মোড বাটন এর কন্টেইনার -->
+            <div class="header-actions">
+                <!-- শুধুমাত্র অ্যাডমিন এই বাটনটি দেখবে -->
+                <a href="admin-editor.html" id="admin-btn-top" class="admin-btn-premium" style="display: none;">
+                    <i class="fa-solid fa-user-shield"></i> <span>Admin</span>
+                </a>
+                
+                <button id="dark-mode-toggle" class="dark-mode-button" title="দিন/রাত মোড পরিবর্তন করুন">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
         </header>
 
         <div class="search-container">
@@ -204,11 +213,7 @@
 
         <a id="back-to-top" href="#"><i class="fas fa-arrow-up"></i></a>
 
-        <!-- Admin Floating Button (লুকানো থাকবে) -->
-        <a href="admin-editor.html" id="admin-floating-btn" class="admin-float-btn" style="display: none;">
-            <i class="fa-solid fa-pen-nib"></i>
-            <span>Admin Panel</span>
-        </a>
+
 
         <footer>
             <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>

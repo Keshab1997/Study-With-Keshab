@@ -1198,3 +1198,103 @@ footer {
 .admin-float-btn i {
     font-size: 1.2rem !important;
 }
+/* হেডার অ্যাকশন কন্টেইনার */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+/* প্রিমিয়াম অ্যাডমিন বাটন স্টাইল */
+.admin-btn-premium {
+    background: linear-gradient(45deg, #FF512F, #DD2476); /* প্রিমিয়াম গ্রেডিয়েন্ট */
+    color: white !important;
+    padding: 8px 16px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(221, 36, 118, 0.3);
+    transition: 0.3s all ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-btn-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(221, 36, 118, 0.5);
+    filter: brightness(1.1);
+}
+
+.admin-btn-premium i {
+    font-size: 16px;
+}
+
+/* মোবাইল রেসপন্সিভনেস */
+@media (max-width: 600px) {
+    .header-actions {
+        position: static;
+        margin-top: 10px;
+        justify-content: center;
+    }
+    .admin-btn-premium span {
+        display: none; /* মোবাইলে শুধু আইকন দেখাবে জায়গা বাঁচাতে */
+    }
+}
+/* গ্লোবাল ফিক্স: সাইড স্ক্রলিং বন্ধ করা */
+html, body {
+    overflow-x: hidden; /* ডানে-বামে স্ক্রল বন্ধ করবে */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* কন্টেইনার ফিক্স */
+main {
+    max-width: 100%;
+    padding: 10px; /* মোবাইলে অল্প প্যাডিং */
+    overflow-x: hidden;
+}
+
+/* গ্রিড লেআউট ফিক্স (মোবাইলের জন্য) */
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* অটোমেটিক অ্যাডজাস্ট হবে */
+    gap: 10px;
+    width: 100%;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* মোবাইলে একটির নিচে একটি থাকবে */
+    gap: 15px;
+}
+
+/* ইমেজ এবং কার্ড ফিক্স */
+img, .card {
+    max-width: 100%;
+    height: auto;
+}
+
+/* হেডার ফিক্স */
+.main-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.header-actions {
+    position: static; /* মোবাইলে ফিক্সড পজিশন সরিয়ে দেওয়া */
+    margin-top: 15px;
+    justify-content: center;
+}

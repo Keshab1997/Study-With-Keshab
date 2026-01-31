@@ -3,7 +3,7 @@
 // ===============================
 
 // সংস্করণ নম্বর বদলালেই নতুন cache তৈরি হবে
-const CACHE_NAME = "study-with-keshab-cache-v9";
+const CACHE_NAME = "study-with-keshab-cache-v11";
 
 // যেসব ফাইল আগেই ক্যাশে রাখা দরকার
 const urlsToCache = [
