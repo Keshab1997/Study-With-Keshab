@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter Settings Editor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        
+        .section { margin-bottom: 30px; padding: 15px; border: 1px solid #eee; border-radius: 8px; }
+        .section h3 { margin-top: 0; color: #3498db; font-size: 1.2rem; }
+        
+        label { display: block; margin: 10px 0 5px; font-weight: bold; }
+        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        
+        .item-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+        .item-row input { flex: 1; }
+        
+        .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-add { background: #2ecc71; color: white; margin-top: 10px; }
+        .btn-remove { background: #e74c3c; color: white; padding: 10px; }
+        .btn-save { background: #3498db; color: white; width: 100%; font-size: 1.1rem; margin-top: 20px; }
+        .btn:hover { opacity: 0.8; }
+        
+        #status { text-align: center; margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2><i class="fa-solid fa-gears"></i> চ্যাপ্টার সেটিংস এডিটর</h2>
+    
+    <!-- ১. সাধারণ তথ্য -->
+    <div class="section">
+        <h3><i class="fa-solid fa-circle-info"></i> সাধারণ তথ্য</h3>
+        <label>চ্যাপ্টারের নাম:</label>
+        <input type="text" id="chapterName" placeholder="যেমন: বীজগণিত (Algebra)">
+        <label>সাবটাইটেল:</label>
+        <input type="text" id="chapterSubtitle" placeholder="যেমন: আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী">
+    </div>
+
+    <!-- ২. ক্লাস লিস্ট ম্যানেজমেন্ট -->
+    <div class="section">
+        <h3><i class="fa-solid fa-book"></i> ক্লাস লিস্ট</h3>
+        <div id="classListContainer">
+            <!-- Rows will be added here -->
+        </div>
+        <button class="btn btn-add" onclick="addRow('classListContainer')"><i class="fa-solid fa-plus"></i> নতুন ক্লাস যোগ করুন</button>
+    </div>
+
+    <!-- ৩. কুইজ লিস্ট ম্যানেজমেন্ট -->
+    <div class="section">
+        <h3><i class="fa-solid fa-circle-question"></i> কুইজ লিস্ট</h3>
+        <div id="quizListContainer">
+            <!-- Rows will be added here -->
+        </div>
+        <button class="btn btn-add" onclick="addRow('quizListContainer')"><i class="fa-solid fa-plus"></i> নতুন কুইজ যোগ করুন</button>
+    </div>
+
+    <button class="btn btn-save" onclick="saveSettings()"><i class="fa-solid fa-cloud-arrow-up"></i> সেটিংস সেভ করুন</button>
+    <div id="status"></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+
+<script>
+    const db = firebase.firestore();
+    const chapterId = "Algebra"; // আপনার চ্যাপ্টার আইডি
+
+    // ১. পেজ লোড হলে বর্তমান সেটিংস আনা
+    async function loadSettings() {
+        document.getElementById('status').innerText = "লোড হচ্ছে...";
+        try {
+            const doc = await db.collection("chapters").doc(chapterId).get();
+            if (doc.exists) {
+                const data = doc.data();
+                document.getElementById('chapterName').value = data.name || "";
+                document.getElementById('chapterSubtitle').value = data.subtitle || "";
+                
+                // ক্লাস এবং কুইজ লিস্ট রেন্ডার করা
+                if(data.classes) data.classes.forEach(item => addRow('classListContainer', item.id, item.title));
+                if(data.quizzes) data.quizzes.forEach(item => addRow('quizListContainer', item.id, item.title));
+                
+                document.getElementById('status').innerText = "সেটিংস লোড হয়েছে।";
+            } else {
+                document.getElementById('status').innerText = "কোনো সেটিংস পাওয়া যায়নি। নতুন তৈরি করুন।";
+            }
+        } catch (error) {
+            console.error(error);
+            document.getElementById('status').innerText = "এরর: " + error.message;
+        }
+    }
+
+    // ২. নতুন রো (Row) যোগ করার ফাংশন
+    function addRow(containerId, idVal = "", titleVal = "") {
+        const container = document.getElementById(containerId);
+        const div = document.createElement('div');
+        div.className = 'item-row';
+        div.innerHTML = `
+            <input type="text" placeholder="ID (যেমন: class1)" value="${idVal}" class="item-id">
+            <input type="text" placeholder="Title (যেমন: Class 01: Formulas)" value="${titleVal}" class="item-title">
+            <button class="btn btn-remove" onclick="this.parentElement.remove()"><i class="fa-solid fa-trash"></i></button>
+        `;
+        container.appendChild(div);
+    }
+
+    // ৩. সেটিংস সেভ করার ফাংশন
+    async function saveSettings() {
+        const status = document.getElementById('status');
+        status.innerText = "সেভ হচ্ছে...";
+
+        const name = document.getElementById('chapterName').value;
+        const subtitle = document.getElementById('chapterSubtitle').value;
+
+        // ক্লাস লিস্ট সংগ্রহ
+        const classes = [];
+        document.querySelectorAll('#classListContainer .item-row').forEach(row => {
+            const id = row.querySelector('.item-id').value;
+            const title = row.querySelector('.item-title').value;
+            if(id && title) classes.push({ id, title });
+        });
+
+        // কুইজ লিস্ট সংগ্রহ
+        const quizzes = [];
+        document.querySelectorAll('#quizListContainer .item-row').forEach(row => {
+            const id = row.querySelector('.item-id').value;
+            const title = row.querySelector('.item-title').value;
+            if(id && title) quizzes.push({ id, title });
+        });
+
+        try {
+            await db.collection("chapters").doc(chapterId).set({
+                name,
+                subtitle,
+                classes,
+                quizzes,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            status.innerText = "✅ সেটিংস সফলভাবে সেভ হয়েছে!";
+            status.style.color = "green";
+        } catch (error) {
+            status.innerText = "❌ সেভ হয়নি: " + error.message;
+            status.style.color = "red";
+        }
+    }
+
+    // অথেন্টিকেশন চেক এবং লোড
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) loadSettings();
+        else window.location.href = "../../../login.html";
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class View | Study With Keshab</title>
+    <link rel="stylesheet" href="../css/class-view.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="../index.html" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> হোমে ফিরুন
+            </a>
+            <h1 id="class-title">লোড হচ্ছে...</h1>
+        </div>
+
+        <div id="class-content" class="ql-editor content-area">
+            <div class="loading">
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                কন্টেন্ট লোড হচ্ছে...
+            </div>
+        </div>
+
+        <hr>
+        
+        <div class="comments-section">
+            <h3><i class="fa-solid fa-comments"></i> আলোচনা ও প্রশ্ন</h3>
+            
+            <div class="comment-box">
+                <input type="text" id="comment-input" placeholder="আপনার প্রশ্ন বা মন্তব্য লিখুন..." maxlength="500">
+                <button onclick="postComment()" class="post-btn">
+                    <i class="fa-solid fa-paper-plane"></i> পাঠান
+                </button>
+            </div>
+
+            <div id="comments-list" class="comments-list">
+                <div class="loading">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    কমেন্ট লোড হচ্ছে...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/class-loader.js"></script>
+</body>
+</html>

@@ -3,22 +3,22 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // Users কালেকশনের নিয়ম
+    // Users কালেকশনের নিয়ম
     match /users/{userId} {
-      // একজন অথেন্টিকেটেড ব্যবহারকারী নিজের ডকুমেন্ট পড়তে এবং আপডেট করতে পারবে।
+      // একজন অথেন্টিকেটেড ব্যবহারকারী নিজের ডকুমেন্ট পড়তে এবং আপডেট করতে পারবে।
       allow get, update: if request.auth.uid == userId;
 
-      // শুধুমাত্র অ্যাডমিনরা সব ব্যবহারকারীর তালিকা পড়তে পারবে।
-      // এটি অ্যাডমিন প্যানেলের জন্য প্রয়োজন।
+      // শুধুমাত্র অ্যাডমিনরা সব ব্যবহারকারীর তালিকা পড়তে পারবে।
+      // এটি অ্যাডমিন প্যানেলের জন্য প্রয়োজন।
       allow list: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
       
       // নতুন ব্যবহারকারী তৈরি করার অনুমতি।
       allow create: if request.auth != null;
     }
 
-    // === লিডারবোর্ডের জন্য নতুন নিয়ম ===
+    // === লিডারবোর্ডের জন্য নতুন নিয়ম ===
     match /quiz_scores/{scoreId} {
-      // শুধুমাত্র অ্যাডমিনরা লিডারবোর্ডের জন্য সব স্কোর পড়তে পারবে।
+      // শুধুমাত্র অ্যাডমিনরা লিডারবোর্ডের জন্য সব স্কোর পড়তে পারবে।
       // আপনার JS কোড এই কালেকশন থেকে ডেটা 'list' (get) করছে।
       allow read: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
 
@@ -26,26 +26,46 @@ service cloud.firestore {
       // এখানে আমরা চেক করছি যে ডকুমেন্টের userId এবং লগইন করা ব্যবহারকারীর আইডি একই কি না।
       allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
       
-      // ক্লায়েন্ট থেকে স্কোর আপডেট বা ডিলিট করা যাবে না।
+      // ক্লায়েন্ট থেকে স্কোর আপডেট বা ডিলিট করা যাবে না।
       allow update, delete: if false;
     }
 
-    // NotificationQueue কালেকশনের নিয়ম
+    // NotificationQueue কালেকশনের নিয়ম
     match /notificationQueue/{docId} {
       // শুধুমাত্র অ্যাডমিনরাই এই কালেকশনে লিখতে পারবে।
       allow create: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
       
-      // অন্য কোনো অপারেশন ক্লায়েন্ট থেকে করা যাবে না।
+      // অন্য কোনো অপারেশন ক্লায়েন্ট থেকে করা যাবে না।
       allow read, update, delete: if false;
     }
 
-    // Notifications কালেকশনের নিয়ম
+    // Notifications কালেকশনের নিয়ম
     match /notifications/{notificationId} {
-      // যে কোনো অথেন্টিকেটেড ব্যবহারকারী নোটিফিকেশন পড়তে পারবে।
+      // যে কোনো অথেন্টিকেটেড ব্যবহারকারী নোটিফিকেশন পড়তে পারবে।
       allow read: if request.auth != null;
       
-      // ক্লায়েন্ট থেকে নোটিফিকেশন লেখা যাবে না।
+      // ক্লায়েন্ট থেকে নোটিফিকেশন লেখা যাবে না।
       allow write: if false;
+    }
+
+    // Class Notes কালেকশনের নিয়ম (Dynamic Content System)
+    match /class_notes/{noteId} {
+      // সবাই ক্লাস নোট পড়তে পারবে
+      allow read: if true;
+      
+      // শুধুমাত্র অ্যাডমিনরা ক্লাস নোট লিখতে পারবে
+      allow write: if request.auth != null && 
+                   get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Chapters কালেকশনের নিয়ম (Chapter Settings)
+    match /chapters/{chapterId} {
+      // সবাই চ্যাপ্টার সেটিংস পড়তে পারবে
+      allow read: if true;
+      
+      // শুধুমাত্র অ্যাডমিনরা চ্যাপ্টার সেটিংস লিখতে পারবে
+      allow write: if request.auth != null && 
+                   get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
     }
   }
 }

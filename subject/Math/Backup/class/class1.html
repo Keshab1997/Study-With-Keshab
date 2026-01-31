@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra Formulas & Tricks - Class 01</title>
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- ইনলাইন স্টাইল (যদি css ফাইলে যোগ না করতে চান তবে এটি কাজ করবে) -->
+    <style>
+        .fraction {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            margin: 0 4px;
+        }
+        .fraction .top {
+            display: block;
+            border-bottom: 2px solid currentColor;
+            padding: 1px;
+        }
+        .fraction .bottom {
+            display: block;
+            padding: 1px;
+        }
+        /* গাণিতিক ইকুয়েশনগুলো একটু বড় দেখানোর জন্য */
+        .math-eq {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        /* ডার্ক মোডের জন্য */
+        body.dark-mode .math-eq {
+            color: #fff;
+            background: #444;
+        }
+    </style>
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1>অধ্যায়: বীজগণিতের সূত্রাবলী (Algebra Formulas)</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <div class="theme-buttons">
+        <button data-theme-name="default">Default</button>
+        <button data-theme-name="forest">Forest</button>
+        <button data-theme-name="ocean">Ocean</button>
+        <button data-theme-name="sunset">Sunset</button>
+    </div>
+    <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    <button id="rotateScreenToggle">স্ক্রিন ঘোরান</button>
+    <div class="dark-mode-toggle">
+        <span>দিন/রাত</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2>CLASS NO: 01</h2>
+    
+    <h3><strong>অধ্যায়: বীজগণিতের সূত্র ও শর্টকাট টেকনিক</strong></h3>
+    <p>প্রতিযোগিতামূলক পরীক্ষার জন্য বীজগণিতের গুরুত্বপূর্ণ সূত্র এবং শর্টকাট টেকনিকসমূহ নিচে আলোচনা করা হলো।</p>
+
+    <!-- Type 1 -->
+    <h4><strong>🔥 Type-1: বর্গের সূত্র (Squaring Formulas)</strong></h4>
+    <p>সবচেয়ে বেশি প্রশ্ন এখান থেকেই আসে।</p>
+    <ul>
+        <li><strong>Formula 1:</strong> (a + b)<sup>2</sup> = a<sup>2</sup> + b<sup>2</sup> + 2ab
+            <br><em>Exam Form:</em> a<sup>2</sup> + b<sup>2</sup> = (a + b)<sup>2</sup> - 2ab
+        </li>
+        <li><strong>Formula 2:</strong> (a - b)<sup>2</sup> = a<sup>2</sup> + b<sup>2</sup> - 2ab
+            <br><em>Exam Form:</em> a<sup>2</sup> + b<sup>2</sup> = (a - b)<sup>2</sup> + 2ab
+        </li>
+        <li><strong>Formula 3 (Difference of Squares):</strong> a<sup>2</sup> - b<sup>2</sup> = (a + b)(a - b)</li>
+    </ul>
+
+    <h4><strong>🚀 Shortcut Tricks (Reciprocal System) - সবচেয়ে গুরুত্বপূর্ণ</strong></h4>
+    <p>পরীক্ষায় <span class="math-eq">x</span> এবং <span class="math-eq"><span class="fraction"><span class="top">1</span><span class="bottom">x</span></span></span> ফরম্যাটে প্রশ্ন বেশি আসে।</p>
+
+    <div class="content-box">
+        <strong>⚡ Trick 1 (Plus to Plus Square):</strong><br>
+        যদি <span class="math-eq">x + <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = K</span> হয়, তবে:
+        <br>
+        <div class="math-eq">
+            x<sup>2</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>2</sup></span></span> = K<sup>2</sup> - 2
+        </div>
+        <p><strong>Example:</strong> যদি x + <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = 5 হয়, তবে x<sup>2</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>2</sup></span></span> কত?</p>
+        <p><em>Shortcut Solution:</em> K = 5; Ans = 5<sup>2</sup> - 2 = 25 - 2 = <strong>23</strong></p>
+    </div>
+    <br>
+    <div class="content-box">
+        <strong>⚡ Trick 2 (Minus to Plus Square):</strong><br>
+        যদি <span class="math-eq">x - <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = K</span> হয়, তবে:
+        <br>
+        <div class="math-eq">
+            x<sup>2</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>2</sup></span></span> = K<sup>2</sup> + 2
+        </div>
+        <p><strong>Example:</strong> যদি x - <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = 4 হয়, তবে x<sup>2</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>2</sup></span></span> কত?</p>
+        <p><em>Shortcut Solution:</em> K = 4; Ans = 4<sup>2</sup> + 2 = 16 + 2 = <strong>18</strong></p>
+    </div>
+
+    <!-- Type 2 -->
+    <h4><strong>🔥 Type-2: ঘন এর সূত্র (Cubic Formulas)</strong></h4>
+    <ul>
+        <li><strong>Formula 4:</strong> (a + b)<sup>3</sup> = a<sup>3</sup> + b<sup>3</sup> + 3ab(a + b)</li>
+        <li><strong>Formula 5:</strong> (a - b)<sup>3</sup> = a<sup>3</sup> - b<sup>3</sup> - 3ab(a - b)</li>
+        <li><strong>Formula 6:</strong> 
+            <br>a<sup>3</sup> + b<sup>3</sup> = (a + b)(a<sup>2</sup> - ab + b<sup>2</sup>)
+            <br>a<sup>3</sup> - b<sup>3</sup> = (a - b)(a<sup>2</sup> + ab + b<sup>2</sup>)
+        </li>
+    </ul>
+
+    <h4><strong>🚀 Shortcut Tricks (Cubes)</strong></h4>
+    
+    <div class="content-box">
+        <strong>⚡ Trick 3 (Plus to Plus Cube):</strong><br>
+        যদি <span class="math-eq">x + <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = K</span> হয়, তবে:
+        <br>
+        <div class="math-eq">
+            x<sup>3</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>3</sup></span></span> = K<sup>3</sup> - 3K
+        </div>
+        <p><strong>Example:</strong> যদি x + <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = 3 হয়, তবে x<sup>3</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>3</sup></span></span> কত?</p>
+        <p><em>Shortcut Solution:</em> Ans = 3<sup>3</sup> - 3(3) = 27 - 9 = <strong>18</strong></p>
+    </div>
+    <br>
+    <div class="content-box">
+        <strong>⚡ Trick 4 (Minus to Minus Cube):</strong><br>
+        যদি <span class="math-eq">x - <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = K</span> হয়, তবে:
+        <br>
+        <div class="math-eq">
+            x<sup>3</sup> - <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>3</sup></span></span> = K<sup>3</sup> + 3K
+        </div>
+        <p><strong>Example:</strong> যদি x - <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = 5 হয়, তবে x<sup>3</sup> - <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>3</sup></span></span> কত?</p>
+        <p><em>Shortcut Solution:</em> Ans = 5<sup>3</sup> + 3(5) = 125 + 15 = <strong>140</strong></p>
+    </div>
+
+    <!-- Type 3 -->
+    <h4><strong>🔥 Type-3: পাওয়ার ৪ এবং ৫ (Power 4 & 5)</strong></h4>
+    <p>RRB Group D তে এখন একটু কঠিন প্রশ্নও আসছে।</p>
+    <ul>
+        <li><strong>⚡ Trick 5 (Power 4):</strong> যদি <span class="math-eq">x + <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = K</span> হয়, তবে <span class="math-eq">x<sup>4</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>4</sup></span></span></span> বের করতে হলে <strong>দুইবার Square এর সূত্র</strong> ব্যবহার করতে হবে।</li>
+    </ul>
+    <p><strong>Example:</strong> x + <span class="fraction"><span class="top">1</span><span class="bottom">x</span></span> = 3, find x<sup>4</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>4</sup></span></span></p>
+    <ul>
+        <li>Step 1: x<sup>2</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>2</sup></span></span> = 3<sup>2</sup> - 2 = 7</li>
+        <li>Step 2: x<sup>4</sup> + <span class="fraction"><span class="top">1</span><span class="bottom">x<sup>4</sup></span></span> = 7<sup>2</sup> - 2 = 49 - 2 = <strong>47</strong> (Ans)</li>
+    </ul>
+
+    <!-- Type 4 -->
+    <h4><strong>🔥 Type-4: বিশেষ বড় সূত্র (The Special Formula)</strong></h4>
+    <p>এটি RRB-এর ফেভারিট টপিক।</p>
+    <ul>
+        <li><strong>Formula 7:</strong> a<sup>3</sup> + b<sup>3</sup> + c<sup>3</sup> - 3abc = (a + b + c)(a<sup>2</sup> + b<sup>2</sup> + c<sup>2</sup> - ab - bc - ca)</li>
+    </ul>
+    <p><strong>⚡ Super Shortcut Condition:</strong> যদি <strong>a + b + c = 0</strong> হয়, তবে পুরো ডানপক্ষ শূন্য হয়ে যায়। তখন: <strong>a<sup>3</sup> + b<sup>3</sup> + c<sup>3</sup> = 3abc</strong></p>
+    
+    <p><strong>Example:</strong> যদি a=20, b=30, c=-50 হয়, তবে a<sup>3</sup> + b<sup>3</sup> + c<sup>3</sup> এর মান কত?</p>
+    <p><em>Check:</em> 20 + 30 - 50 = 0 (Condition Matched!)<br>
+    <em>Solution:</em> Ans = 3abc = 3 × 20 × 30 × (-50) = <strong>-90000</strong></p>
+
+    <!-- Type 5 -->
+    <h4><strong>🔥 Type-5: দ্বিঘাত সমীকরণ (Quadratic Equation)</strong></h4>
+    <p>সমীকরণ: ax<sup>2</sup> + bx + c = 0</p>
+    <ul>
+        <li><strong>মূলদ্বয়ের যোগফল (Sum of Roots):</strong> 
+            <div class="math-eq">
+                α + β = <span class="fraction"><span class="top">-b</span><span class="bottom">a</span></span>
+            </div>
+        </li>
+        <li><strong>মূলদ্বয়ের গুণফল (Product of Roots):</strong> 
+            <div class="math-eq">
+                αβ = <span class="fraction"><span class="top">c</span><span class="bottom">a</span></span>
+            </div>
+        </li>
+    </ul>
+    <p><strong>Example:</strong> 2x<sup>2</sup> - 8x + 6 = 0 সমীকরণের মূলদ্বয়ের যোগফল কত?</p>
+    <p><em>Solution:</em> এখানে a=2, b=-8, c=6<br>
+    Sum = <span class="fraction"><span class="top">-(-8)</span><span class="bottom">2</span></span> = <span class="fraction"><span class="top">8</span><span class="bottom">2</span></span> = <strong>4</strong></p>
+
+    <!-- Type 6 -->
+    <h4><strong>🔥 Type-6: Value Putting Method (Master Trick) 🧙‍♂️</strong></h4>
+    <p>যখন সাধারণ সূত্র মনে পড়বে না, তখন এই মেথড ব্যবহার করবেন।</p>
+    <p><strong>Rule:</strong> যদি একটি সমীকরণ (Equation) থাকে কিন্তু চলক (Variable) দুটি বা তার বেশি থাকে, তবে আপনি নিজের ইচ্ছামতো মান বসাতে পারেন। <em>(শর্ত: হরে বা Denominator-এ শূন্য আসা যাবে না)</em></p>
+    
+    <p><strong>Example:</strong> যদি a + b = 5 হয়, তবে a<sup>3</sup> + b<sup>3</sup> + 3ab(a + b) এর মান কত?</p>
+    <p><strong>Trick (Value Putting):</strong><br>
+    ধরি b = 0 (হিসাব সহজ করার জন্য)।<br>
+    তাহলে a + 0 = 5 => a = 5<br>
+    এখন রাশিতে মান বসাই: 5<sup>3</sup> + 0<sup>3</sup> + 3(5)(0)(5)<br>
+    = 125 + 0 + 0 = <strong>125</strong> (Ans)</p>
+
+</div>
+
+<nav class="navigation">
+    <a href="class1.html" class="nav-button disabled">পূর্ববর্তী</a>
+    <a href="class1.html" class="nav-button active">1</a>
+    <a href="class2.html" class="nav-button">2</a>
+    <a href="class3.html" class="nav-button">3</a>
+    <a href="class4.html" class="nav-button">4</a>
+    <a href="class2.html" class="nav-button">পরবর্তী</a>
+    <a href="../index.html" class="nav-button home-button">Home</a>
+</nav>
+
+<footer>
+    <p>কপিরাইট © <span id="copyright-year"></span> - সর্বস্বত্ব সংরক্ষিত।</p>
+    <p>ডিজাইন ও ডেভেলপমেন্ট: <strong>কেশব সরকার</strong></p>
+</footer>
+
+<button id="scrollToTopBtn" class="scroll-button" title="উপরে যান">↑</button>
+<button id="scrollToBottomBtn" class="scroll-button" title="নিচে যান">↓</button>
+
+<!-- External JavaScript File Link -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

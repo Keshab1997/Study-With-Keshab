@@ -26,16 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function applyDesktopMode(isDesktop) {
-        if (desktopModeToggle) { // Null check যোগ করা হয়েছে
-            if (isDesktop) {
-                body.classList.add('desktop-view');
-                viewportMeta.setAttribute('content', desktopViewport);
-                desktopModeToggle.textContent = 'মোবাইল মোড';
-            } else {
-                body.classList.remove('desktop-view');
-                viewportMeta.setAttribute('content', mobileViewport);
-                desktopModeToggle.textContent = 'ডেস্কটপ মোড';
-            }
+        if (isDesktop) {
+            body.classList.add('desktop-view');
+            viewportMeta.setAttribute('content', desktopViewport);
+            desktopModeToggle.textContent = 'মোবাইল মোড';
+        } else {
+            body.classList.remove('desktop-view');
+            viewportMeta.setAttribute('content', mobileViewport);
+            desktopModeToggle.textContent = 'ডেস্কটপ মোড';
         }
         localStorage.setItem('desktop_mode_enabled', isDesktop);
     }
@@ -56,18 +54,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    if (darkModeToggle) { // Null check যোগ করা হয়েছে
-        darkModeToggle.addEventListener('change', () => {
-            applyMode(darkModeToggle.checked ? 'dark' : 'light');
-        });
-    }
+    darkModeToggle.addEventListener('change', () => {
+        applyMode(darkModeToggle.checked ? 'dark' : 'light');
+    });
     
-    if (desktopModeToggle) { // Null check যোগ করা হয়েছে
-        desktopModeToggle.addEventListener('click', () => {
-            const isCurrentlyDesktop = body.classList.contains('desktop-view');
-            applyDesktopMode(!isCurrentlyDesktop);
-        });
-    }
+    desktopModeToggle.addEventListener('click', () => {
+        const isCurrentlyDesktop = body.classList.contains('desktop-view');
+        applyDesktopMode(!isCurrentlyDesktop);
+    });
     
     if(rotateScreenToggle) {
         rotateScreenToggle.addEventListener('click', function() {

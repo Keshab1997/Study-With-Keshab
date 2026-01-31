@@ -74,9 +74,6 @@
             </a>
             <a href="#result-section" class="nav-button color-result"><i class="fa-solid fa-square-poll-vertical"></i><span>রেজাল্ট</span></a>
             <a href="#leaderboard" class="nav-button color-leaderboard"><i class="fa-solid fa-trophy"></i><span>লিডারবোর্ড</span></a>
-            <a href="#" id="continue-reading" class="nav-button" style="display:none; background: linear-gradient(45deg, #ff6b6b, #ee5a24);">
-                <i class="fa-solid fa-bookmark"></i><span>পড়া চালিয়ে যান</span>
-            </a>
         </nav>
 
         <main>
@@ -134,8 +131,11 @@
             <section class="card" id="class-notes">
                 <h2><i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট</h2>
                 <p>বীজগণিতের প্রতিটি অংশের বিস্তারিত আলোচনা পড়ুন।</p>
-                <div class="link-container styled-list" id="dynamic-class-list">
-                    <!-- এখানে অটোমেটিক ডেটা আসবে -->
+                <div class="link-container styled-list">
+                    <a href="class/class1.html"><i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 01: Formulas</a>
+                    <a href="class/class2.html"><i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 02: Formulas</a>
+                    <a href="class/class3.html"><i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 03: Formulas</a>
+                    <a href="class/class4.html"><i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 04: Formulas</a>
                 </div>
             </section>
 
@@ -153,8 +153,9 @@
 
             <section class="card disabled-section" id="quiz-sets">
                 <h2><i class="fa-solid fa-file-circle-question icon-title"></i> কুইজ সেট</h2>
-                <div class="link-container styled-list" id="dynamic-quiz-list">
-                    <!-- এখানে অটোমেটিক ডেটা আসবে -->
+                <div class="link-container styled-list">
+                    <a href="#"><i class="fa-solid fa-puzzle-piece fa-fw"></i> Quiz Set 01</a>
+                    <a href="#"><i class="fa-solid fa-puzzle-piece fa-fw"></i> Quiz Set 02</a>
                 </div>
             </section>
 
@@ -203,12 +204,6 @@
         </main>
 
         <a id="back-to-top" href="#"><i class="fas fa-arrow-up"></i></a>
-
-        <!-- Admin Floating Button (লুকানো থাকবে) -->
-        <a href="admin-editor.html" id="admin-floating-btn" class="admin-float-btn" style="display: none;">
-            <i class="fa-solid fa-pen-nib"></i>
-            <span>Admin Panel</span>
-        </a>
 
         <footer>
             <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
@@ -294,7 +289,6 @@
 
         <!-- Main Script -->
         <script type="module" src="js/script.js"></script>
-        <script src="js/main-dashboard.js"></script>
         <!-- PDF Viewer Logic -->
         <script src="js/pdf-viewer.js"></script>
     </body>
