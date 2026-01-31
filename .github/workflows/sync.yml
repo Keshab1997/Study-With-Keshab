@@ -1,0 +1,25 @@
+name: Mirror to GitLab
+
+on:
+  push:
+    branches:
+      - main  # আপনার মেইন ব্রাঞ্চের নাম যদি 'master' হয় তবে সেটি লিখুন
+
+jobs:
+  git-mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Mirror to GitLab
+        uses: wearerequired/git-mirror-action@v1
+        env:
+          GITLAB_HOSTNAME: gitlab.com
+          GITLAB_USERNAME: Keshab1997  # আপনার GitLab ইউজারনেম
+          GITLAB_PASSWORD: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB_PROJECT_PATH: keshab1997-group/Study-With-Keshab # আপনার GitLab প্রোজেক্ট পাথ
+        with:
+          args: https://gitlab.com/${{ env.GITLAB_PROJECT_PATH }}.git
