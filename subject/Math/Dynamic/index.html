@@ -53,6 +53,12 @@
                 <h1>অধ্যায়: বীজগণিত (Algebra)</h1>
                 <p>আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী</p>
             </div>
+
+            <!-- অ্যাডমিন বাটন (শুরুতে লুকানো থাকবে) -->
+            <a href="admin-editor.html" id="admin-btn-top" class="admin-button" style="display: none;" title="অ্যাডমিন প্যানেল">
+                <i class="fa-solid fa-user-gear"></i>
+            </a>
+
             <button id="dark-mode-toggle" class="dark-mode-button" title="দিন/রাত মোড পরিবর্তন করুন">
                 <i class="fa-solid fa-moon"></i>
             </button>
@@ -131,11 +137,9 @@
             <section class="card" id="class-notes">
                 <h2><i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট</h2>
                 <p>বীজগণিতের প্রতিটি অংশের বিস্তারিত আলোচনা পড়ুন।</p>
-                <div class="link-container styled-list">
-                    <a href="class/class1.html"><i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 01: Formulas</a>
-                    <a href="class/class2.html"><i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 02: Formulas</a>
-                    <a href="class/class3.html"><i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 03: Formulas</a>
-                    <a href="class/class4.html"><i class="fa-solid fa-person-chalkboard fa-fw"></i> Class 04: Formulas</a>
+                <!-- ডাইনামিক কন্টেইনার -->
+                <div id="dynamic-class-list" class="link-container styled-list">
+                    <div style="text-align:center;">লোড হচ্ছে... <i class="fa-solid fa-spinner fa-spin"></i></div>
                 </div>
             </section>
 
@@ -151,11 +155,11 @@
                 </div>
             </section>
 
-            <section class="card disabled-section" id="quiz-sets">
+            <section class="card" id="quiz-sets">
                 <h2><i class="fa-solid fa-file-circle-question icon-title"></i> কুইজ সেট</h2>
-                <div class="link-container styled-list">
-                    <a href="#"><i class="fa-solid fa-puzzle-piece fa-fw"></i> Quiz Set 01</a>
-                    <a href="#"><i class="fa-solid fa-puzzle-piece fa-fw"></i> Quiz Set 02</a>
+                <!-- ডাইনামিক কন্টেইনার -->
+                <div id="dynamic-quiz-list" class="link-container styled-list">
+                    <div style="text-align:center;">লোড হচ্ছে... <i class="fa-solid fa-spinner fa-spin"></i></div>
                 </div>
             </section>
 
@@ -287,9 +291,10 @@
         <script type="module" src="https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-        <!-- Main Script -->
-        <script type="module" src="js/script.js"></script>
-        <!-- PDF Viewer Logic -->
+        <!-- PDF Viewer Logic (আগে লোড হবে) -->
         <script src="js/pdf-viewer.js"></script>
+        
+        <!-- Main Script (সবশেষে লোড হবে) -->
+        <script type="module" src="js/script.js"></script>
     </body>
 </html>

@@ -1,7 +1,7 @@
 // js/pdf-viewer.js
 
-// 1. PDF Data List
-const algebraPdfList = [
+// 1. PDF Data List (will be updated dynamically)
+let algebraPdfList = [
     { title: "Class 01 Note", id: "1DrJwuYxGa2KMtavY2AoYEC8upqepCbQ_" },
     { title: "Class 02 Note", id: "1ENgGdF4bASjRPrsRY_7afLHv4TjR36EV" },
     { title: "Class 03 Note", id: "1E0BwPQvOUKGRA7ey2kI9jhF-_QOovPpN" },
@@ -20,6 +20,14 @@ const algebraPdfList = [
     { title: "Class 16 Note", id: "1E10eiL6oQ6NXeDaXzE5CAPBjJUWGi9j6" },
     { title: "Class 17 Note", id: "1E0uiCMCqTEskfNO7sjepGsrGQsKUF_Xf" }
 ];
+
+// Function to update PDF list from Firestore
+window.updatePdfList = function(newPdfList) {
+    if (Array.isArray(newPdfList) && newPdfList.length > 0) {
+        algebraPdfList = newPdfList;
+        renderPdfButtons();
+    }
+};
 
 // State Variables
 let currentPdfIndex = 0;

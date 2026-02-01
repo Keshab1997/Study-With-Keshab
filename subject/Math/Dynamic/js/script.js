@@ -659,7 +659,7 @@ function updatePieChart(correct, wrong) {
         data: chartData,
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: false, // চার্ট সাইজ ফিক্স
             legend: {
                 position: "bottom",
                 labels: {
@@ -732,3 +732,80 @@ function loadDailyChallenge() {
     );
     challengeText.textContent = challenges[dayOfYear % challenges.length];
 }
+
+// ===============================================
+// --- Admin Button Control ---
+// ===============================================
+
+// Admin Button Control - আপনার অ্যাডমিন ইমেইল এখানে লিখুন
+const ADMIN_EMAIL = "keshabsarkar2018@gmail.com"; // আপনার সঠিক ইমেইল
+
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        // চেক করার জন্য কনসোলে প্রিন্ট করি
+        console.log("Logged in user:", user.email);
+        
+        if (user.email === ADMIN_EMAIL) {
+            const adminBtn = document.getElementById('admin-btn-top');
+            if (adminBtn) {
+                adminBtn.style.display = 'flex';
+                console.log("Admin button visible in header.");
+            }
+        }
+    }
+});
+// ===============================================
+// --- Dynamic Chapter Settings Loader ---
+// ===============================================
+
+async function loadChapterSettings() {
+    const db = firebase.firestore();
+    const chapterId = "Algebra";
+
+    try {
+        const doc = await db.collection("chapters").doc(chapterId).get();
+        if (doc.exists) {
+            const data = doc.data();
+
+            // ১. নাম ও সাবটাইটেল আপডেট
+            if(data.name) document.querySelector('.header-text h1').innerText = `অধ্যায়: ${data.name}`;
+            if(data.subtitle) document.querySelector('.header-text p').innerText = data.subtitle;
+
+            // ২. ক্লাস লিস্ট রেন্ডার
+            const classList = document.getElementById('dynamic-class-list');
+            if(classList && data.classes) {
+                classList.innerHTML = data.classes.map(cls => `
+                    <a href="class/template.html?id=${cls.id}" class="styled-link">
+                        <i class="fa-solid fa-book-open-reader"></i> ${cls.title}
+                    </a>
+                `).join('');
+            }
+
+            // ৩. কুইজ লিস্ট রেন্ডার
+            const quizList = document.getElementById('dynamic-quiz-list');
+            if(quizList && data.quizzes) {
+                quizList.innerHTML = data.quizzes.map(qz => `
+                    <a href="quiz/${qz.id}.html" class="styled-link">
+                        <i class="fa-solid fa-vial"></i> ${qz.title}
+                    </a>
+                `).join('');
+            }
+
+            // ৪. পিডিএফ লিস্ট আপডেট (pdf-viewer.js এর জন্য)
+            if(data.pdfs && window.updatePdfList) {
+                window.updatePdfList(data.pdfs);
+            }
+
+            // ৫. CBT লিংক আপডেট
+            if(data.cbtLink) {
+                const cbtBtn = document.querySelector('.color-cbt');
+                if(cbtBtn) cbtBtn.href = data.cbtLink;
+            }
+        }
+    } catch (error) {
+        console.error("Error loading dynamic settings:", error);
+    }
+}
+
+// পেজ লোড হলে কল করুন
+document.addEventListener('DOMContentLoaded', loadChapterSettings);

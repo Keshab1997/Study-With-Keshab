@@ -1082,3 +1082,298 @@ footer {
     transform: translateY(-4px); /* বাটনটি সামান্য উপরে উঠবে */
     box-shadow: 0 6px 12px rgba(229, 57, 53, 0.4); /* একটি সুন্দর লালচে শ্যাডো */
 }
+
+/* =================================
+   Admin Floating Button Style
+   ================================= */
+
+.admin-float-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px; /* বাম দিকে নিচে থাকবে */
+    background-color: #2c3e50; /* গাঢ় রঙ */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s;
+}
+
+.admin-float-btn:hover {
+    transform: scale(1.1);
+    background-color: #1a252f;
+}
+
+.admin-float-btn i {
+    font-size: 1.2rem;
+}
+/* --- ড্যাশবোর্ড লেআউট ফিক্স --- */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* আইটেমগুলো পাশাপাশি থাকবে */
+    gap: 20px;
+    align-items: start; /* আইটেমগুলো যাতে অকারণে লম্বা না হয় */
+    margin-top: 20px;
+}
+
+.dashboard-item {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 300px; /* একটি নির্দিষ্ট উচ্চতা দেওয়া হলো */
+    justify-content: space-between;
+}
+
+/* --- চার্ট ফিক্স (সবচেয়ে গুরুত্বপূর্ণ) --- */
+.dashboard-item canvas {
+    max-width: 100% !important;
+    max-height: 220px !important; /* চার্ট যাতে লম্বা না হয় তার জন্য লিমিট */
+    margin: 0 auto;
+}
+
+/* প্রোগ্রেস বার কন্টেইনার ফিক্স */
+.progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    height: 15px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+/* অ্যাচিভমেন্ট ব্যাজ ফিক্স */
+.achievements-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+
+.achievement-badge i {
+    font-size: 1.8rem;
+}
+
+/* রেসপন্সিভ: মোবাইলে যাতে একটি করে দেখায় */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* Admin Floating Button - Updated Style */
+.admin-float-btn {
+    position: fixed !important;
+    bottom: 30px !important;
+    left: 30px !important;
+    background-color: #2c3e50 !important;
+    color: white !important;
+    padding: 15px 20px !important;
+    border-radius: 50px !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    z-index: 99999 !important;
+    display: flex !important; /* টেস্টের জন্য সবার জন্য দেখানো হচ্ছে */
+    align-items: center !important;
+    gap: 10px !important;
+    transition: transform 0.3s !important;
+}
+
+.admin-float-btn:hover {
+    transform: scale(1.1) !important;
+    background-color: #1a252f !important;
+}
+
+.admin-float-btn i {
+    font-size: 1.2rem !important;
+}
+/* হেডার অ্যাকশন কন্টেইনার */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+/* প্রিমিয়াম অ্যাডমিন বাটন স্টাইল */
+.admin-btn-premium {
+    background: linear-gradient(45deg, #FF512F, #DD2476); /* প্রিমিয়াম গ্রেডিয়েন্ট */
+    color: white !important;
+    padding: 8px 16px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(221, 36, 118, 0.3);
+    transition: 0.3s all ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-btn-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(221, 36, 118, 0.5);
+    filter: brightness(1.1);
+}
+
+.admin-btn-premium i {
+    font-size: 16px;
+}
+
+/* মোবাইল রেসপন্সিভনেস */
+@media (max-width: 600px) {
+    .header-actions {
+        position: static;
+        margin-top: 10px;
+        justify-content: center;
+    }
+    .admin-btn-premium span {
+        display: none; /* মোবাইলে শুধু আইকন দেখাবে জায়গা বাঁচাতে */
+    }
+}
+/* গ্লোবাল ফিক্স: সাইড স্ক্রলিং বন্ধ করা */
+html, body {
+    overflow-x: hidden; /* ডানে-বামে স্ক্রল বন্ধ করবে */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* কন্টেইনার ফিক্স */
+main {
+    max-width: 100%;
+    padding: 10px; /* মোবাইলে অল্প প্যাডিং */
+    overflow-x: hidden;
+}
+
+/* গ্রিড লেআউট ফিক্স (মোবাইলের জন্য) */
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* অটোমেটিক অ্যাডজাস্ট হবে */
+    gap: 10px;
+    width: 100%;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* মোবাইলে একটির নিচে একটি থাকবে */
+    gap: 15px;
+}
+
+/* ইমেজ এবং কার্ড ফিক্স */
+img, .card {
+    max-width: 100%;
+    height: auto;
+}
+
+/* হেডার ফিক্স */
+.main-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.header-actions {
+    position: static; /* মোবাইলে ফিক্সড পজিশন সরিয়ে দেওয়া */
+    margin-top: 15px;
+    justify-content: center;
+}
+/* অতিরিক্ত স্পেস কমানো */
+.ql-editor p, .ql-editor br {
+    margin-bottom: 5px !important;
+    display: block;
+    content: "";
+}
+
+/* ম্যাথ বক্সের ভেতর স্পেসিং ঠিক করা */
+.math-box {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    background: #f1f5f9;
+    border-radius: 4px;
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+}
+
+/* MCQ কার্ডের ভেতর টাইট স্পেসিং */
+.question-card {
+    margin: 15px 0 !important;
+}
+.q-body {
+    padding: 15px 20px 10px !important;
+}
+.opt-grid {
+    padding: 0 20px 15px !important;
+    gap: 8px !important;
+}
+/* টেবিল ফিক্স */
+.table-container { overflow-x: auto; margin: 20px 0; }
+.styled-table th, .styled-table td { 
+    min-width: 100px; 
+    text-align: center !important; 
+    vertical-align: middle;
+}
+.styled-table .math-box {
+    display: inline-block;
+    margin: 5px;
+    white-space: nowrap; /* টেবিলের ভেতর যাতে ভেঙে না যায় */
+}
+
+/* MCQ কার্ড ফিক্স */
+.question-card {
+    display: block !important;
+    clear: both;
+    margin-top: 20px !important;
+}
+
+/* হেডিং ফিক্স */
+.ql-editor h2 { color: #d81b60; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-top: 25px; }
+.ql-editor h3 { color: #004d40; margin-top: 20px; }
+/* অতিরিক্ত স্পেস কমানো */
+.ql-editor br {
+    display: block;
+    margin-bottom: 2px;
+    content: "";
+}
+
+/* MCQ কার্ড উন্নত স্টাইল */
+.question-card {
+    background: #fff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05) !important;
+    margin: 25px 0 !important;
+}
+
+/* হেডিং স্টাইল উন্নত */
+h2 { 
+    color: #d81b60 !important; 
+    border-bottom: 2px solid #eee !important; 
+    padding-bottom: 5px !important; 
+    margin-top: 30px !important; 
+}
+h3 { 
+    color: #004d40 !important; 
+    margin-top: 20px !important; 
+}

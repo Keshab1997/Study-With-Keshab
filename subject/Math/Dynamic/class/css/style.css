@@ -1,0 +1,168 @@
+/* =========================================
+   FILE: subject/Math/Algebra/class/css/style.css
+   (Merged Advanced Theme System)
+   ========================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600&display=swap');
+
+:root {
+  --bg-color: #f0f2f5;
+  --container-bg: #ffffff;
+  --text-color: #333333;
+  --heading-color-1: #d81b60;
+  --heading-color-2: #004d40;
+  --heading-color-3: #1a237e;
+  --accent-color: #c2185b;
+  --blockquote-bg: #e3f2fd;
+  --blockquote-border: #2196f3;
+  --table-header-bg: #004d40;
+  --table-header-text: #ffffff;
+  --nav-button-bg: #fff;
+  --nav-button-text: #333;
+  --nav-button-border: #ccc;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
+  --card-border-color: #e0e0e0;
+  --mcq-tag-bg: #007bff;
+  --mcq-tag-text: #ffffff;
+  --success-color: #28a745;
+}
+
+[data-theme="forest"] {
+  --bg-color: #f0f4f0; --container-bg: #ffffff; --text-color: #2c3e50;
+  --heading-color-1: #27ae60; --heading-color-2: #16a085; --heading-color-3: #2c3e50;
+  --accent-color: #e67e22; --blockquote-bg: #e8f5e9; --blockquote-border: #27ae60;
+  --table-header-bg: #27ae60; --mcq-tag-bg: #27ae60;
+}
+[data-theme="ocean"] {
+  --bg-color: #eef5ff; --container-bg: #ffffff; --text-color: #34495e;
+  --heading-color-1: #2980b9; --heading-color-2: #3498db; --heading-color-3: #1f618d;
+  --accent-color: #e74c3c; --blockquote-bg: #e4f1fe; --blockquote-border: #3498db;
+  --table-header-bg: #2980b9; --mcq-tag-bg: #2980b9;
+}
+[data-theme="sunset"] {
+  --bg-color: #fff3e0; --container-bg: #ffffff; --text-color: #4e342e;
+  --heading-color-1: #e65100; --heading-color-2: #f57c00; --heading-color-3: #d84315;
+  --accent-color: #bf360c; --blockquote-bg: #fff8e1; --blockquote-border: #f57c00;
+  --table-header-bg: #e65100; --mcq-tag-bg: #e65100;
+}
+[data-theme="book"] {
+  --bg-color: #f9f9f9;
+  --container-bg: #ffffff;
+  --text-color: #212121;
+  --heading-color-1: #000000;
+  --heading-color-2: #000000;
+  --heading-color-3: #333333;
+  --accent-color: #555555;
+  --blockquote-bg: #f5f5f5;
+  --blockquote-border: #cccccc;
+  --table-header-bg: #f5f5f5;
+  --table-header-text: #000000;
+  --nav-button-border: #e0e0e0;
+  --card-border-color: #e0e0e0;
+  --mcq-tag-bg: #333333;
+  --mcq-tag-text: #ffffff;
+  --success-color: #000000;
+}
+.dark-mode {
+  --bg-color: #121212; --container-bg: #1e1e1e; --text-color: #e0e0e0;
+  --heading-color-1: #bb86fc; --heading-color-2: #03dac6; --heading-color-3: #cf6679;
+  --accent-color: #f48fb1; --blockquote-bg: #2a2a2a; --blockquote-border: #03dac6;
+  --table-header-bg: #3700b3; --nav-button-bg: #2c2c2c; --nav-button-text: #e0e0e0;
+  --nav-button-border: #555; --box-shadow-color: rgba(255, 255, 255, 0.05);
+  --card-border-color: #444; --mcq-tag-bg: var(--heading-color-1); --success-color: #4caf50;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Hind Siliguri", sans-serif; background-color: var(--bg-color);
+  color: var(--text-color); line-height: 1.8; margin: 0; padding: 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+body.desktop-view .container, body.desktop-view header, body.desktop-view .controls-wrapper { max-width: 1200px; }
+
+header { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 20px 0; transition: max-width 0.4s ease-in-out; }
+.logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; box-shadow: 0 4px 12px var(--box-shadow-color); }
+.controls-wrapper { max-width: 900px; margin: 20px auto; padding: 15px; background-color: var(--container-bg); border-radius: 10px; box-shadow: 0 4px 12px var(--box-shadow-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; transition: max-width 0.4s ease-in-out; }
+.theme-buttons button, #desktopModeToggle { padding: 8px 15px; border: 1px solid var(--nav-button-border); background-color: var(--nav-button-bg); color: var(--nav-button-text); border-radius: 5px; cursor: pointer; font-family: "Hind Siliguri", sans-serif; font-weight: 600; transition: all 0.2s; }
+.dark-mode-toggle { display: flex; align-items: center; gap: 10px; }
+.switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: 0.4s; border-radius: 34px; }
+.slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: 0.4s; border-radius: 50%; }
+input:checked + .slider { background-color: var(--heading-color-1); }
+input:checked + .slider:before { transform: translateX(26px); }
+.digital-clock { font-family: "Courier New", Courier, monospace; font-size: 1.2em; font-weight: bold; padding: 8px 15px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); border-radius: 5px; color: var(--heading-color-1); }
+
+.container { max-width: 900px; margin: 20px auto; background-color: var(--container-bg); padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px var(--box-shadow-color); transition: background-color 0.3s, max-width 0.4s ease-in-out; }
+
+h1 { text-align: center; font-size: 2.2em; color: var(--heading-color-1); border-bottom: none; margin: 0; }
+h2 { font-size: 2em; color: var(--heading-color-2); border-bottom: 2px solid var(--card-border-color); padding-bottom: 10px; margin-top: 30px; }
+p { font-size: 1.1em; }
+strong { color: var(--accent-color); font-weight: 600; }
+
+.note-box { padding: 20px; margin: 25px 0; border-radius: 12px; border-left: 5px solid; display: flex; gap: 15px; align-items: flex-start; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.note-box.info { border-color: var(--blockquote-border); background-color: var(--blockquote-bg); }
+.note-box.warning { border-color: #F5A623; background-color: #fff8e1; }
+.dark-mode .note-box.warning { background-color: #2a210a; }
+.box-icon { font-size: 1.5rem; margin-top: 3px; color: var(--blockquote-border); }
+.note-box.warning .box-icon { color: #F5A623; }
+
+.table-wrapper { overflow-x: auto; margin: 25px 0; }
+.styled-table { width: 100%; border-collapse: collapse; background: var(--container-bg); border: 1px solid var(--card-border-color); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px var(--box-shadow-color); }
+.styled-table th { background-color: var(--table-header-bg); color: var(--table-header-text); padding: 15px; text-align: left; }
+.styled-table td { padding: 15px; border-top: 1px solid var(--card-border-color); }
+
+.mcq-card { background: var(--container-bg); border: 1px solid var(--card-border-color); border-radius: 12px; padding: 30px; margin: 40px 0; box-shadow: 0 4px 12px var(--box-shadow-color); position: relative; overflow: hidden; }
+.mcq-badge { position: absolute; top: 0; left: 0; background-color: var(--mcq-tag-bg); color: var(--mcq-tag-text); padding: 6px 18px; border-bottom-right-radius: 12px; font-weight: bold; font-size: 0.9rem; }
+.mcq-question { font-size: 1.3rem; font-weight: 600; margin-top: 20px; margin-bottom: 25px; line-height: 1.6; }
+.mcq-options { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+    width: 100%;
+    box-sizing: border-box;
+}
+.mcq-option {
+    flex: 1 1 calc(50% - 7.5px);
+    min-width: calc(50% - 7.5px);
+    padding: 15px 20px; 
+    border-radius: 10px; 
+    border: 1px solid var(--card-border-color); 
+    background-color: var(--bg-color); 
+    font-size: 1.1rem; 
+    transition: all 0.2s ease; 
+    display: flex; 
+    align-items: center;
+    box-sizing: border-box;
+}
+.mcq-option:hover { border-color: var(--heading-color-1); background-color: var(--blockquote-bg); transform: translateY(-2px); }
+.mcq-option span { font-weight: bold; color: var(--heading-color-2); margin-right: 10px; }
+.mcq-answer-box { margin-top: 25px; padding: 15px; border-radius: 10px; background-color: var(--blockquote-bg); border: 1px solid var(--blockquote-border); }
+.mcq-answer-box strong { color: var(--success-color); }
+
+.math-block { background: var(--blockquote-bg); color: var(--accent-color); padding: 8px 12px; border-radius: 8px; font-family: 'Times New Roman', serif; font-size: 1.2em; display: inline-block; margin: 0 5px; vertical-align: middle; border: 1px solid var(--card-border-color); }
+sup { font-size: 0.75em; vertical-align: super; line-height: 0; }
+.fraction { display: inline-block; vertical-align: middle; text-align: center; margin: 0 2px; }
+.numerator { display: block; padding: 0 4px; border-bottom: 1.5px solid currentColor; }
+.denominator { display: block; padding: 0 4px; }
+
+.navigation { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+.dark-mode .navigation { border-top-color: #333; }
+.class-navigation { display: flex; gap: 10px; }
+.nav-button { display: inline-block; padding: 10px 15px; border: 1px solid var(--nav-button-border); border-radius: 5px; text-decoration: none; color: var(--nav-button-text); background-color: var(--nav-button-bg); transition: background-color 0.3s, color 0.3s; font-weight: 500; cursor: pointer; font-family: "Hind Siliguri", sans-serif; }
+.home-button { background-color: #1e88e5; color: white; border-color: #1e88e5; }
+footer { text-align: center; margin-top: 40px; padding: 20px; font-size: 0.9em; color: var(--text-color); opacity: 0.8; }
+.scroll-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--heading-color-1); color: white; border: none; font-size: 24px; cursor: pointer; display: none; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000; }
+#scrollToBottomBtn { bottom: 80px; background-color: var(--heading-color-2); }
+
+@media (max-width: 768px) {
+  body { padding: 10px; }
+  .container, header, .controls-wrapper { width: 100%; max-width: 100%; padding-left: 15px; padding-right: 15px; box-sizing: border-box; }
+  h1 { font-size: 1.8em; } h2 { font-size: 1.6em; } p { font-size: 1em; }
+  .controls-wrapper { flex-direction: column; gap: 10px; }
+  .mcq-option {
+    flex: 1 1 100% !important;
+    min-width: 100% !important;
+  }
+}
