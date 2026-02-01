@@ -775,8 +775,8 @@ async function loadChapterSettings() {
             const classList = document.getElementById('dynamic-class-list');
             if(classList && data.classes) {
                 classList.innerHTML = data.classes.map(cls => `
-                    <a href="class/${cls.id}.html">
-                        <i class="fa-solid fa-person-chalkboard fa-fw"></i> ${cls.title}
+                    <a href="class/template.html?id=${cls.id}" class="styled-link">
+                        <i class="fa-solid fa-book-open-reader"></i> ${cls.title}
                     </a>
                 `).join('');
             }
@@ -785,10 +785,21 @@ async function loadChapterSettings() {
             const quizList = document.getElementById('dynamic-quiz-list');
             if(quizList && data.quizzes) {
                 quizList.innerHTML = data.quizzes.map(qz => `
-                    <a href="quiz/${qz.id}.html">
-                        <i class="fa-solid fa-puzzle-piece fa-fw"></i> ${qz.title}
+                    <a href="quiz/${qz.id}.html" class="styled-link">
+                        <i class="fa-solid fa-vial"></i> ${qz.title}
                     </a>
                 `).join('');
+            }
+
+            // ৪. পিডিএফ লিস্ট আপডেট (pdf-viewer.js এর জন্য)
+            if(data.pdfs && window.updatePdfList) {
+                window.updatePdfList(data.pdfs);
+            }
+
+            // ৫. CBT লিংক আপডেট
+            if(data.cbtLink) {
+                const cbtBtn = document.querySelector('.color-cbt');
+                if(cbtBtn) cbtBtn.href = data.cbtLink;
             }
         }
     } catch (error) {
