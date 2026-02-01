@@ -217,7 +217,65 @@
 
         <footer>
             <p>&copy; 2025 কেশব সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
-            <div class="social-links">
+        </footer>
+
+        <!-- PDF Viewer Modal -->
+        <div id="pdf-modal" class="pdf-modal">
+            <div class="pdf-modal-content">
+                <div class="pdf-modal-header">
+                    <h3 id="pdf-modal-title">PDF ভিউয়ার</h3>
+                    <button class="pdf-close-btn" onclick="closePDFModal()">&times;</button>
+                </div>
+                <div class="pdf-modal-body">
+                    <iframe id="pdf-iframe" src="" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Firebase Scripts -->
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+        <script src="../../js/firebase-config.js"></script>
+        
+        <!-- Main Scripts -->
+        <script src="js/script.js"></script>
+        <script src="js/pdf-viewer.js"></script>
+        <script src="js/auth.js"></script>
+        <script src="js/dashboard.js"></script>
+        <script src="js/leaderboard.js"></script>
+        <script src="js/result.js"></script>
+    </body>
+</html>r>
+
+        <!-- PDF Viewer Modal -->
+        <div id="pdf-modal" class="pdf-modal">
+            <div class="pdf-modal-content">
+                <div class="pdf-modal-header">
+                    <h3 id="pdf-modal-title">PDF ভিউয়ার</h3>
+                    <button class="pdf-close-btn" onclick="closePDFModal()">&times;</button>
+                </div>
+                <div class="pdf-modal-body">
+                    <iframe id="pdf-iframe" src="" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Firebase Scripts -->
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+        <script src="../../js/firebase-config.js"></script>
+        
+        <!-- Main Scripts -->
+        <script src="js/script.js"></script>
+        <script src="js/pdf-viewer.js"></script>
+        <script src="js/auth.js"></script>
+        <script src="js/dashboard.js"></script>
+        <script src="js/leaderboard.js"></script>
+        <script src="js/result.js"></script>
+    </body>
+</html>v class="social-links">
                 <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Content | Study With Keshab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="default">
+
+    <header>
+        <img src="../images/logo.jpg" alt="Logo" class="logo">
+        <h1>টেস্ট কন্টেন্ট - নতুন ফিচার</h1>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="theme-buttons">
+            <button data-theme-name="default">Default</button>
+            <button data-theme-name="forest">Forest</button>
+            <button data-theme-name="ocean">Ocean</button>
+            <button data-theme-name="sunset">Sunset</button>
+            <button data-theme-name="book">Book</button>
+        </div>
+
+        <div class="dark-mode-toggle">
+            <span id="digital-clock" class="digital-clock">00:00:00</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <button id="desktopModeToggle">ডেস্কটপ মোড</button>
+    </div>
+
+    <div class="container">
+        <div id="class-content">
+            <h2>নতুন ফিচার টেস্ট</h2>
+            
+            <p>এই পেজে আমাদের নতুন ফিচারগুলো টেস্ট করা হচ্ছে:</p>
+
+            <div class="note-box info">
+                <div class="box-icon"><i class="fas fa-info-circle"></i></div>
+                <div>এটি একটি তথ্য বক্স। এখানে গুরুত্বপূর্ণ তথ্য দেওয়া হয়।</div>
+            </div>
+
+            <div class="note-box warning">
+                <div class="box-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <div>এটি একটি সতর্কতা বক্স। এখানে সতর্কতামূলক তথ্য দেওয়া হয়।</div>
+            </div>
+
+            <h2>গণিত ফরম্যাটিং টেস্ট</h2>
+            <p>এখানে কিছু গণিতের উদাহরণ: <span class="math-block">x^2 + <span class="fraction"><span class="numerator">3</span><span class="denominator">4</span></span> = 5</span></p>
+
+            <h2>MCQ টেস্ট</h2>
+            
+            <div class="mcq-card">
+                <div class="mcq-badge">প্রশ্ন ১</div>
+                <p class="mcq-question">২ + ২ = কত?</p>
+                <div class="mcq-options" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="mcq-option"><span>A.</span> ৩</div>
+                    <div class="mcq-option"><span>B.</span> ৪</div>
+                    <div class="mcq-option"><span>C.</span> ৫</div>
+                    <div class="mcq-option"><span>D.</span> ৬</div>
+                </div>
+                <div class="mcq-answer-box">
+                    <strong>সঠিক উত্তর: B</strong>
+                    <br><small><b>ব্যাখ্যা:</b> ২ + ২ = ৪</small>
+                </div>
+            </div>
+
+            <div class="mcq-card">
+                <div class="mcq-badge">প্রশ্ন ২</div>
+                <p class="mcq-question">৫ × ৩ = কত?</p>
+                <div class="mcq-options">
+                    <div class="mcq-option"><span>A.</span> ১২</div>
+                    <div class="mcq-option"><span>B.</span> ১৫</div>
+                    <div class="mcq-option"><span>C.</span> ১৮</div>
+                    <div class="mcq-option"><span>D.</span> ২০</div>
+                </div>
+                <div class="mcq-answer-box">
+                    <strong>সঠিক উত্তর: B</strong>
+                    <br><small><b>ব্যাখ্যা:</b> ৫ × ৩ = ১৫</small>
+                </div>
+            </div>
+
+            <h2>টেবিল টেস্ট</h2>
+            <div class="table-wrapper">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>নাম</th>
+                            <th>বয়স</th>
+                            <th>শহর</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>রহিম</td>
+                            <td>২৫</td>
+                            <td>ঢাকা</td>
+                        </tr>
+                        <tr>
+                            <td>করিম</td>
+                            <td>৩০</td>
+                            <td>চট্টগ্রাম</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="../index.html" class="nav-button home-button"><i class="fa-solid fa-house"></i> হোমপেজ</a>
+        </div>
+    </div>
+
+    <button class="scroll-button" id="scrollToTopBtn"><i class="fa-solid fa-arrow-up"></i></button>
+    <button class="scroll-button" id="scrollToBottomBtn"><i class="fa-solid fa-arrow-down"></i></button>
+
+    <footer>
+        <p>&copy; <span id="copyright-year"></span> Study With Keshab | সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
