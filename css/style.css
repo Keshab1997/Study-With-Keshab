@@ -41,8 +41,26 @@ main {
     padding: 0;
     overflow-x: hidden;
 }
-.section-title { font-family: var(--heading-font); font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: var(--secondary-dark); position: relative; padding-bottom: 15px; display: inline-block; }
-.section-title::after { content: ''; position: absolute; width: 80px; height: 4px; background: var(--primary-blue); bottom: 0; left: 50%; transform: translateX(-50%); border-radius: 2px; }
+.section-title { 
+    font-family: var(--heading-font); 
+    font-size: 2.5rem; 
+    text-align: center; 
+    margin-bottom: 3rem; 
+    color: var(--secondary-dark); 
+    position: relative; 
+    padding-bottom: 15px; 
+    display: block;
+    width: 100%;
+}
+.section-title::after { 
+    content: ''; 
+    display: block;
+    width: 80px; 
+    height: 4px; 
+    background: linear-gradient(90deg, #4a90e2, #357abd);
+    margin: 12px auto 0;
+    border-radius: 10px;
+}
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 /* --- ২. হেডার ডিজাইন --- */
@@ -256,65 +274,98 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 .feedback-note { margin-top: 20px; font-size: 0.9em; color: var(--grey-text); }
 
 
-/* --- ৭. ফুটার --- */
+/* --- ৭. Premium Footer Design --- */
 footer { 
-    background: linear-gradient(135deg, #0b172a 0%, #1a2332 100%); 
-    color: #c5d6f1; 
-    padding: 4rem 1rem 2rem; 
+    background-color: #0f172a;
+    color: #e2e8f0; 
+    padding: 60px 0 30px; 
 }
+
 .footer-top { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 2.5rem; 
-    padding-bottom: 2.5rem; 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
-    margin-bottom: 2rem; 
+    gap: 40px; 
+    margin-bottom: 40px;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 15px;
 }
+
+.footer-logo-section img,
 .footer-logo { 
-    max-height: 60px; 
-    margin-bottom: 1rem; 
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
+    border: 3px solid #3b82f6;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
-.footer-links h4, .footer-social h4 { 
-    color: var(--white-color); 
-    margin-bottom: 1.2rem; 
+
+.footer-logo-section p {
+    line-height: 1.6;
+    color: #94a3b8;
+}
+
+footer h4,
+.footer-links h4, 
+.footer-social h4 { 
+    color: #ffffff; 
     font-size: 1.2rem; 
-    font-weight: 700; 
-    border-left: 4px solid #4a90e2; 
-    padding-left: 1rem; 
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+    border-left: none;
+    padding-left: 0;
 }
-.footer-links ul, .social-icons { 
+
+footer h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: #3b82f6;
+    border-radius: 2px;
+}
+
+.footer-links ul, 
+.social-icons { 
     list-style: none; 
     padding: 0; 
 }
-.footer-links a { 
-    color: #c5d6f1; 
-    text-decoration: none; 
-    line-height: 2.2; 
-    transition: all 0.3s ease; 
-    display: inline-flex; 
-    align-items: center; 
-    gap: 8px; 
-    font-size: 0.95rem;
+
+.footer-links ul li {
+    margin-bottom: 12px;
 }
+
+.footer-links a { 
+    color: #94a3b8; 
+    text-decoration: none; 
+    transition: all 0.3s ease; 
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+}
+
 .footer-links a:hover { 
-    color: #4a90e2; 
+    color: #3b82f6; 
     transform: translateX(5px); 
 }
+
 .footer-social .social-icons { 
     display: flex; 
-    gap: 1rem; 
-    margin-top: 1rem; 
+    gap: 15px; 
+    margin-top: 0;
     flex-wrap: wrap;
 }
+
 .footer-social .social-icons a { 
-    background: rgba(74, 144, 226, 0.1); 
-    color: var(--white-color); 
-    width: 42px; 
-    height: 42px; 
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff; 
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -322,20 +373,28 @@ footer {
     font-size: 1.2rem; 
     text-decoration: none; 
     transition: all 0.3s ease; 
-    border: 1px solid rgba(74, 144, 226, 0.3);
+    border: none;
 }
-.footer-social .social-icons a:hover { 
-    background: #4a90e2; 
-    transform: translateY(-3px); 
-    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4); 
+
+.social-icons a.facebook:hover { background: #1877F2; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4); }
+.social-icons a.youtube:hover { background: #FF0000; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4); }
+.social-icons a.twitter:hover { background: #1DA1F2; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(29, 161, 242, 0.4); }
+.social-icons a.instagram:hover { 
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(214, 36, 159, 0.4);
 }
+
 .footer-bottom { 
-    padding-top: 2rem; 
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 25px; 
     text-align: center; 
+    color: #64748b; 
     font-size: 0.9rem; 
-    color: #a7bbdd; 
     max-width: 1200px;
     margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /* --- ৮. ইউটিলিটি ও অ্যানিমেশন --- */
@@ -359,7 +418,8 @@ footer {
 
 /* মোবাইল ভিউ (768px বা তার কম) */
 @media (max-width: 768px) {
-    .section-title { font-size: 2rem; }
+    .section-title { font-size: 1.6rem; margin-bottom: 2rem; }
+    .section-title::after { width: 60px; }
     
     /* হেডার ও নেভিগেশন */
     .header-grid { padding: 0 10px; height: 70px; }
@@ -390,32 +450,13 @@ footer {
     .timeline-item::after { left: 10px; }
 
     /* ফুটার রেসপনসিভনেস */
-    .footer-top { grid-template-columns: 1fr; text-align: center; }
-    .footer-top > div:first-child p { margin-left: auto; margin-right: auto; }
-    .footer-links h4, .footer-social h4 { border-left: none; padding-left: 0; }
+    .footer-top { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+    .footer-logo-section p { margin-left: auto; margin-right: auto; max-width: 300px; }
     .footer-social .social-icons { justify-content: center; }
 }
 /* =================================== */
 /*  নতুন এবং উন্নত নোটিফিকেশন ফিড স্টাইল  */
 /* =================================== */
-
-/* সেকশনের টাইটেলটিকে সেন্টারে আনার জন্য (যদি আগে থেকে না থাকে) */
-.section-title {
-    text-align: center;
-    margin-bottom: 40px;
-    position: relative;
-}
-.section-title::after {
-    content: '';
-    width: 80px;
-    height: 4px;
-    background: #007bff; /* আপনার সাইটের প্রাইমারি রঙ */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -10px;
-    border-radius: 2px;
-}
 
 /* মূল কন্টেইনার */
 .notification-feed-container {

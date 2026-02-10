@@ -172,3 +172,18 @@
   }
   .notification-actions { opacity: 1; }
 }
+
+
+/* Enhanced Badge Animation */
+.notification-bell-btn:hover {
+  transform: scale(1.1);
+}
+
+#notification-badge {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
