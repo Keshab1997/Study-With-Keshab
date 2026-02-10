@@ -29,6 +29,8 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/navigation.css" />
+        <script src="js/navigation.js"></script>
 
         <style>
             /* পদার্থবিজ্ঞান পেজের জন্য নির্দিষ্ট থিম */
@@ -148,49 +150,6 @@
         </style>
     </head>
     <body>
-        <header class="site-header">
-            <div class="header-grid container">
-                <a href="index.html" class="logo-link">
-                    <img src="images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
-                </a>
-                <nav class="primary-navigation">
-                    <ul>
-                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
-                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
-                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-                        <li class="auth-link" id="guest-link-desktop"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login / Sign up</a></li>
-                        <li class="auth-link" id="logout-link-desktop" style="display: none;"><a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                    </ul>
-                </nav>
-                <div class="header-actions">
-                    <span id="user-name-display" class="nav-user-name"></span>
-                    <button class="toggle-view-btn header-action-btn" title="ডেস্কটপ মোড">
-                        <i class="fas fa-desktop"></i>
-                    </button>
-                    <button class="mobile-nav-toggle" aria-controls="mobile-navigation-menu" aria-expanded="false">
-                        <span class="sr-only">Menu</span>
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <nav id="mobile-navigation-menu" class="mobile-navigation-menu" data-visible="false">
-            <ul>
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="index.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
-                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-                <li class="auth-link" id="guest-link-mobile"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login / Sign up</a></li>
-                <li class="auth-link" id="logout-link-mobile" style="display: none;"><a href="#" id="logout-btn-mobile"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                <li>
-                    <a href="#" class="toggle-view-btn">
-                        <i class="fas fa-desktop"></i>
-                        <span class="toggle-view-text">ডেস্কটপ মোড</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
 
         <main class="chapter-page">
             <div class="container">
@@ -224,7 +183,9 @@
         <!-- Firebase এবং অন্যান্য স্ক্রিপ্ট -->
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
         <script src="js/firebase-config.js"></script>
+        <script src="auth.js"></script>
         <script src="js/script.js"></script>
 
         <!-- এই পেজের জন্য নির্দিষ্ট এবং একত্রিত স্ক্রিপ্ট -->

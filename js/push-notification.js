@@ -52,15 +52,6 @@ async function subscribeToPush() {
         applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
       });
       console.log('Push subscription:', subscription);
-
-      console.log('Sending subscription to server...');
-      // Send subscription to server
-      await fetch('/api/subscribe', {
-        method: 'POST',
-        body: JSON.stringify(subscription),
-        headers: { 'Content-Type': 'application/json' }
-      }).catch(err => console.warn('Server subscribe failed:', err));
-
       console.log('Push notification subscribed successfully!');
       alert('নোটিফিকেশন চালু হয়েছে!');
     } catch (error) {

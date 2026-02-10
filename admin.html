@@ -23,6 +23,8 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
         <link rel="stylesheet" href="css/admin.css" />
+        <link rel="stylesheet" href="css/navigation.css" />
+        <script src="js/navigation.js"></script>
         
         <!-- Supabase নোটিফিকেশন মডালের জন্য কিছু অতিরিক্ত CSS -->
         <style>
@@ -82,71 +84,9 @@
     </head>
     <body>
         <div class="admin-page-container">
-            <!-- সাইডবার (বাম পাশের মেনু) -->
-            <aside class="sidebar">
-                <div>
-                    <div class="sidebar-header">
-                        <img
-                            src="images/logo.jpg"
-                            alt="Logo"
-                            class="sidebar-logo"
-                        />
-                        <h2>Admin Panel</h2>
-                    </div>
-                    <nav class="sidebar-nav">
-                        <ul>
-                            <li class="active">
-                                <a href="#" id="nav-dashboard"
-                                    ><i class="fas fa-tachometer-alt fa-fw"></i>
-                                    Dashboard</a
-                                >
-                            </li>
-                            <li>
-                                <a href="#" id="nav-leaderboard"
-                                    ><i class="fas fa-trophy fa-fw"></i>
-                                    Leaderboard</a
-                                >
-                            </li>
-                            <li>
-                                <a href="index.html"
-                                    ><i class="fas fa-home fa-fw"></i> Go to Home</a
-                                >
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div
-                    class="sidebar-footer"
-                    id="admin-info-sidebar"
-                    style="display: none"
-                >
-                    <img
-                        src=""
-                        alt="Admin Profile"
-                        id="admin-profile-pic-sidebar"
-                        class="admin-pic"
-                    />
-                    <div class="admin-details">
-                        <span id="admin-name-sidebar"></span>
-                        <small>Administrator</small>
-                    </div>
-                    <a href="#" id="admin-logout-btn" title="Logout"
-                        ><i class="fas fa-sign-out-alt"></i
-                    ></a>
-                </div>
-            </aside>
-
-                        <!-- মূল কন্টেন্ট (ডান পাশের অংশ) -->
-            <main class="main-content">
-                <header class="main-header">
-                    <div>
-                        <h1 id="page-title">Dashboard</h1>
-                        <!-- ব্রেডক্রাম্ব (Breadcrumb) অংশটি এখান থেকে মুছে ফেলা হয়েছে -->
-                    </div>
-                    <button class="mobile-menu-toggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </header>
+            <main class="main-content" style="margin-left: 0; width: 100%;">
+                <div style="padding: 2rem 1rem;">
+                    <h1 id="page-title" style="margin-bottom: 2rem; color: #333;">Dashboard</h1>
 
                 <!-- ড্যাশবোর্ড সেকশন -->
                 <div id="dashboard-content" class="content-section">
@@ -336,6 +276,8 @@
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
         <script src="js/firebase-config.js"></script>
+        <script src="firestore.js"></script>
+        <script src="auth.js"></script>
         <script src="js/admin.js"></script>
 
         <!-- Desktop/Mobile Mode Toggle Button -->

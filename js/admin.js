@@ -20,14 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminPageContainer = document.querySelector('.admin-page-container');
     const accessDeniedMessage = document.getElementById('access-denied');
     const pageTitle = document.getElementById('page-title');
-    const breadcrumbNav = document.getElementById('breadcrumb-nav');
-    const sidebar = document.querySelector('.sidebar');
-    const navDashboard = document.querySelector('#nav-dashboard')?.parentElement;
-    const navLeaderboard = document.querySelector('#nav-leaderboard')?.parentElement;
-    const adminInfoSidebar = document.getElementById('admin-info-sidebar');
-    const adminProfilePicSidebar = document.getElementById('admin-profile-pic-sidebar');
-    const adminNameSidebar = document.getElementById('admin-name-sidebar');
-    const adminLogoutBtn = document.getElementById('admin-logout-btn');
     const dashboardContent = document.getElementById('dashboard-content');
     const leaderboardContent = document.getElementById('leaderboard-content');
     const totalUsersStat = document.getElementById('total-users');
@@ -84,14 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const initializeAdminPanel = (user, adminData) => {
         accessDeniedMessage.style.display = 'none';
-        adminPageContainer.style.display = 'flex';
-        adminNameSidebar.textContent = adminData.displayName || 'Admin';
-        adminProfilePicSidebar.src = adminData.photoURL || 'images/default-avatar.png';
-        adminInfoSidebar.style.display = 'flex';
+        adminPageContainer.style.display = 'block';
         setupEventListeners();
-        loadAllUserData(); 
-        
-        // Supabase History Load
+        loadAllUserData();
         fetchSupabaseHistory();
     };
     
@@ -116,9 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const setupEventListeners = () => {
-        if (navDashboard) navDashboard.addEventListener('click', (e) => { e.preventDefault(); switchTab('dashboard'); });
-        if (navLeaderboard) navLeaderboard.addEventListener('click', (e) => { e.preventDefault(); switchTab('leaderboard'); });
-        if (adminLogoutBtn) adminLogoutBtn.addEventListener('click', (e) => { e.preventDefault(); auth.signOut().then(() => { window.location.href = 'index.html'; }); });
         if (userSearchInput) userSearchInput.addEventListener('input', handleUserSearch);
         if (chapterSelect) chapterSelect.addEventListener('change', () => {
             loadLeaderboardForChapter(chapterSelect.value);
@@ -170,6 +154,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]);
 
             if (error) throw error;
+
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification(title, { body: message, icon: '/images/logo.jpg' });
+            }
 
             alert('নোটিফিকেশন সফলভাবে পাঠানো হয়েছে!');
             sbForm.reset();
@@ -255,28 +243,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- অন্যান্য সাধারণ ফাংশন (ট্যাব সুইচ, ব্রেডক্রাম্ব ইত্যাদি) ---
 
     const switchTab = (tabName) => {
-        document.querySelectorAll('.sidebar-nav li').forEach(li => li.classList.remove('active'));
         dashboardContent.style.display = 'none';
         leaderboardContent.style.display = 'none';
 
         if (tabName === 'dashboard') {
-            if (navDashboard) navDashboard.classList.add('active');
             dashboardContent.style.display = 'block';
             pageTitle.textContent = 'Dashboard';
-            updateBreadcrumb('Dashboard');
         } else if (tabName === 'leaderboard') {
-            if (navLeaderboard) navLeaderboard.classList.add('active');
             leaderboardContent.style.display = 'block';
             pageTitle.textContent = 'Leaderboard';
-            updateBreadcrumb('Leaderboard');
             loadLeaderboardForChapter(chapterSelect.value);
         }
-        if (sidebar) sidebar.classList.remove('is-visible');
     };
 
-    const updateBreadcrumb = (currentPage) => {
-        if (breadcrumbNav) breadcrumbNav.innerHTML = `<li class="breadcrumb-item"><a href="#">Admin</a></li><li class="breadcrumb-item active">${currentPage}</li>`;
-    };
+    const updateBreadcrumb = (currentPage) => {};
 
     const renderUserTable = (users) => {
         userTableBody.innerHTML = '';
