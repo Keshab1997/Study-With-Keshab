@@ -40,6 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (userInfoCluster) userInfoCluster.style.display = 'flex';
             if (userNameDisplay) userNameDisplay.textContent = user.displayName || 'ব্যবহারকারী';
             
+            // Header profile picture update
+            const headerProfilePic = document.getElementById('header-profile-pic');
+            if (headerProfilePic) {
+                headerProfilePic.src = user.photoURL || 'images/default-avatar.png';
+            }
+            
             // হিরো সেকশন আপডেট
             if (heroTitle && heroDescription) {
                 heroTitle.innerHTML = `স্বাগতম, <span class="highlight">${user.displayName || 'বন্ধু'}</span>!`;
