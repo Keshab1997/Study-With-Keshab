@@ -124,6 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if(sbForm) sbForm.addEventListener('submit', handleSupabaseSubmit);
         if(refreshHistoryBtn) refreshHistoryBtn.addEventListener('click', fetchSupabaseHistory);
         if(sbHistoryBody) sbHistoryBody.addEventListener('click', handleSupabaseDelete);
+        
+        // Android App Notification
+        const androidBtn = document.getElementById('send-android-btn');
+        if(androidBtn) androidBtn.addEventListener('click', sendAndroidNotification);
     };
 
     // === Supabase Notification Functions ===
@@ -365,4 +369,56 @@ document.addEventListener('DOMContentLoaded', () => {
         const term = userSearchInput.value.toLowerCase();
         renderUserTable(allUsersCache.filter(u => (u.displayName || '').toLowerCase().includes(term) || (u.email || '').toLowerCase().includes(term)));
     };
+
+    // === Android App Notification Function ===
+    async function sendAndroidNotification() {
+        const title = document.getElementById('android-title').value;
+        const message = document.getElementById('android-message').value;
+        const btn = document.getElementById('send-android-btn');
+
+        if (!title || !message) {
+            alert('দয়া করে টাইটেল এবং মেসেজ লিখুন।');
+            return;
+        }
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> পাঠানো হচ্ছে...';
+
+        const FIREBASE_SERVER_KEY = 'AIzaSyA_s7CWYwcKkcNIPoSJ5riuMwkixViHt-o';
+
+        try {
+            const response = await fetch('https://corsproxy.io/?https://fcm.googleapis.com/fcm/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'key=' + FIREBASE_SERVER_KEY
+                },
+                body: JSON.stringify({
+                    "to": "/topics/all_android_users",
+                    "notification": {
+                        "title": title,
+                        "body": message,
+                        "icon": "ic_notification",
+                        "sound": "default"
+                    },
+                    "priority": "high"
+                })
+            });
+
+            const result = await response.json();
+            if (result.message_id || result.success) {
+                alert('অ্যান্ড্রয়েড অ্যাপে সফলভাবে পাঠানো হয়েছে!');
+                document.getElementById('android-title').value = '';
+                document.getElementById('android-message').value = '';
+            } else {
+                alert('পাঠাতে সমস্যা হয়েছে: ' + JSON.stringify(result));
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Error: ' + err.message);
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send to Android App';
+        }
+    }
 });

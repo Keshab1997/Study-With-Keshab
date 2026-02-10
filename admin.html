@@ -117,6 +117,26 @@
                             <i class="fas fa-bell"></i> Create New Notification
                         </button>
 
+                        <!-- Android App Notification Section -->
+                        <div style="margin-top: 30px; border-top: 2px solid #3DDC84; padding-top: 20px;">
+                            <div class="section-header">
+                                <h2><i class="fab fa-android" style="color: #3DDC84;"></i> Android App Notification</h2>
+                            </div>
+                            <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">এই মেসেজটি শুধুমাত্র যারা APK ব্যবহার করছে তাদের মোবাইলে যাবে (অ্যাপ বন্ধ থাকলেও)।</p>
+                            
+                            <div class="sb-form-group">
+                                <label>Message Title</label>
+                                <input type="text" id="android-title" placeholder="যেমন: নতুন ক্লাস আপলোড হয়েছে">
+                            </div>
+                            <div class="sb-form-group">
+                                <label>Message Body</label>
+                                <textarea id="android-message" rows="3" placeholder="আপনার বার্তাটি লিখুন..."></textarea>
+                            </div>
+                            <button id="send-android-btn" class="create-notif-btn" style="background: linear-gradient(135deg, #3DDC84, #27ae60);">
+                                <i class="fas fa-paper-plane"></i> Send to Android App
+                            </button>
+                        </div>
+
                         <div class="section-header" style="margin-top: 20px;">
                             <h3>Notification History (Supabase)</h3>
                             <button id="refresh-history-btn" class="btn-sm" style="background:#666; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">
