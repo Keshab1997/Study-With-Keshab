@@ -133,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const title = document.getElementById('sb-title').value;
         const message = document.getElementById('sb-message').value;
-        const FIREBASE_SERVER_KEY = "AIzaSyA_s7CWYwcKkcNIPoSJ5riuMwkixViHt-o";
         
         const btn = e.target.querySelector('button');
         const originalText = btn.innerHTML;
@@ -141,28 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.disabled = true;
 
         try {
-            const { data, error } = await supabaseClient.from('notifications').insert([{ title: title, message: message, is_active: true }]);
+            const { data, error } = await supabaseClient.from('notifications').insert([{ title: title, message: message, is_active: true }]).select();
             if (error) throw error;
 
-            const usersSnapshot = await db.collection('users').get();
-            let tokens = [];
-            usersSnapshot.forEach(doc => {
-                const userData = doc.data();
-                if (userData.fcmToken) tokens.push(userData.fcmToken);
-            });
-            tokens = [...new Set(tokens)];
-
-            if (tokens.length > 0) {
-                const response = await fetch('https://corsproxy.io/?https://fcm.googleapis.com/fcm/send', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Authorization': 'key=' + FIREBASE_SERVER_KEY },
-                    body: JSON.stringify({ registration_ids: tokens, notification: { title: title, body: message, icon: '/images/logo.jpg', click_action: window.location.origin } })
-                });
-                const result = await response.json();
-                if (result.success > 0) alert(`সফলভাবে ${result.success} জনের কাছে পাঠানো হয়েছে!`);
-                else alert('পাঠানো যায়নি।');
-            } else alert('কোনো টোকেন পাওয়া যায়নি।');
-
+            alert('নোটিফিকেশন সফলভাবে পাঠানো হয়েছে! Users homepage এ দেখতে পাবে।');
             sbForm.reset();
             sbModal.style.display = 'none';
             fetchSupabaseHistory();
@@ -173,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.disabled = false;
         }
     }
-    // ২. নোটিফিকেশন হিস্ট্রি লোড করা
     async function fetchSupabaseHistory() {
         if(sbHistoryLoading) sbHistoryLoading.style.display = 'block';
         sbHistoryBody.innerHTML = '';
