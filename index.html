@@ -2,11 +2,13 @@
 <html lang="bn">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-      id="viewportMeta"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" id="viewportMeta" />
+    <meta name="description" content="Study With Keshab - বাংলায় সেরা অনলাইন শিক্ষা প্ল্যাটফর্ম। Physics, Chemistry, Math, GK সহ সকল বিষয়ে ইন্টারেক্টিভ কুইজ, নোট এবং CBT পরীক্ষা।" />
+    <meta name="keywords" content="অনলাইন শিক্ষা, বাংলা পড়াশোনা, কুইজ, CBT পরীক্ষা, Physics, Chemistry, Math" />
+    <meta property="og:title" content="Study With Keshab - Learn Smart. Grow Strong." />
+    <meta property="og:description" content="ডিজিটাল শিক্ষার নতুন দিগন্ত - একই প্ল্যাটফর্মে পড়া, প্র্যাকটিস আর প্রস্তুতি" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="images/logo.jpg" />
     <title>Study With Keshab - Learn Smart. Grow Strong.</title>
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#4a90e2" />
@@ -201,6 +203,7 @@
               <img
                 src="https://images.news18.com/static-bengali/uploads/2024/11/child-thinking-2024-11-a893b797ce3a82916201c999759c21f0.jpg"
                 alt="Happy Student"
+                loading="lazy"
               />
             </div>
           </div>
@@ -244,6 +247,34 @@
         </div>
       </section>
 
+
+      <!-- Stats Counter Section -->
+      <section class="stats-section">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <i class="fas fa-users"></i>
+              <h3 class="stat-number" data-target="1000">0</h3>
+              <p>শিক্ষার্থী</p>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-book"></i>
+              <h3 class="stat-number" data-target="10">0</h3>
+              <p>বিষয়</p>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-question-circle"></i>
+              <h3 class="stat-number" data-target="500">0</h3>
+              <p>কুইজ</p>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-trophy"></i>
+              <h3 class="stat-number" data-target="5000">0</h3>
+              <p>পরীক্ষা সম্পন্ন</p>
+            </div>
+          </div>
+        </div>
+      </section>
       <section id="subjects" class="subjects-section">
         <div class="container">
           <h2 class="section-title">আপনার পছন্দের বিষয় বেছে নিন</h2>
@@ -513,6 +544,8 @@
 
     <!-- সাধারণ স্ক্রিপ্ট -->
     <script src="js/script.js"></script>
+    <script src="js/stats-counter.js"></script>
+    <script src="js/push-notification.js"></script>
     
 
     <!-- PWA Install Button -->

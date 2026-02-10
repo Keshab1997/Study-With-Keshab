@@ -97,3 +97,31 @@ self.addEventListener("fetch", (event) => {
       })
   );
 });
+
+
+// ===============================
+// Push Notification Handlers
+// ===============================
+self.addEventListener('push', function(event) {
+  const data = event.data ? event.data.json() : {};
+  const title = data.title || 'Study With Keshab';
+  const options = {
+    body: data.body || 'নতুন বিজ্ঞপ্তি এসেছে',
+    icon: '/images/logo.jpg',
+    badge: '/images/logo.jpg',
+    vibrate: [200, 100, 200],
+    data: { url: data.url || '/' },
+    requireInteraction: false
+  };
+  
+  event.waitUntil(
+    self.registration.showNotification(title, options)
+  );
+});
+
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
+  event.waitUntil(
+    clients.openWindow(event.notification.data.url)
+  );
+});
