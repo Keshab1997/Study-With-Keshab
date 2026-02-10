@@ -80,33 +80,72 @@ document.addEventListener('DOMContentLoaded', function() {
             const db = firebase.firestore();
             const provider = new firebase.auth.GoogleAuthProvider();
             
-            auth.signInWithPopup(provider).then(result => {
-                const user = result.user;
-                const userRef = db.collection('users').doc(user.uid);
-                
-                return userRef.get().then(doc => {
-                    const userData = {
-                        uid: user.uid,
-                        displayName: user.displayName,
-                        email: user.email,
-                        photoURL: user.photoURL,
-                        lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
-                    };
+            // Android App এর জন্য signInWithRedirect ব্যবহার করুন
+            const isAndroidApp = /wv/.test(navigator.userAgent.toLowerCase());
+            
+            if (isAndroidApp) {
+                // Android WebView-এর জন্য Redirect মেথড
+                auth.signInWithRedirect(provider);
+            } else {
+                // Browser-এর জন্য Popup মেথড
+                auth.signInWithPopup(provider).then(result => {
+                    const user = result.user;
+                    const userRef = db.collection('users').doc(user.uid);
                     
-                    if (!doc.exists) {
-                        userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'user';
-                    }
-                    
-                    return userRef.set(userData, { merge: true });
+                    return userRef.get().then(doc => {
+                        const userData = {
+                            uid: user.uid,
+                            displayName: user.displayName,
+                            email: user.email,
+                            photoURL: user.photoURL,
+                            lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+                        };
+                        
+                        if (!doc.exists) {
+                            userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'user';
+                        }
+                        
+                        return userRef.set(userData, { merge: true });
+                    });
+                }).then(() => {
+                    window.location.href = 'index.html';
+                }).catch(error => {
+                    console.error("Google সাইন-ইন এর সময় সমস্যা:", error);
+                    alert("লঙ7ইন করার সময় একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
                 });
-            }).then(() => {
-                window.location.href = 'index.html';
-            }).catch(error => {
-                console.error("Google সাইন-ইন এর সময় সমস্যা:", error);
-                alert("লগইন করার সময় একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
-            });
+            }
         });
     }
+    
+    // Redirect রিজাল্ট হ্যান্ডল করা (অ্যান্ড্রয়েড অ্যাপের জন্য)
+    firebase.auth().getRedirectResult().then(result => {
+        if (result.user) {
+            const user = result.user;
+            const db = firebase.firestore();
+            const userRef = db.collection('users').doc(user.uid);
+            const ADMIN_EMAIL = "keshabsarkar2018@gmail.com";
+            
+            return userRef.get().then(doc => {
+                const userData = {
+                    uid: user.uid,
+                    displayName: user.displayName,
+                    email: user.email,
+                    photoURL: user.photoURL,
+                    lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+                };
+                
+                if (!doc.exists) {
+                    userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'user';
+                }
+                
+                return userRef.set(userData, { merge: true });
+            }).then(() => {
+                window.location.href = 'index.html';
+            });
+        }
+    }).catch(error => {
+        console.error("Redirect রিজাল্ট এরর:", error);
+    });
 
     document.body.addEventListener('click', function(e) {
         if (e.target.id === 'mobile-logout' || e.target.closest('#mobile-logout')) {
