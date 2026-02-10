@@ -141,48 +141,131 @@
   transform: rotate(-45deg) translate(7px, -7px);
 }
 
+/* Modern Mobile Navigation Menu */
 .mobile-nav {
   position: fixed;
-  top: 70px;
+  top: 0;
   right: -100%;
   width: 280px;
-  height: calc(100vh - 70px);
-  background: white;
-  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-  transition: right 0.3s;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2000;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  gap: 5px;
+  padding: 0;
   overflow-y: auto;
-  z-index: 999;
+  visibility: hidden;
 }
 
 .mobile-nav.active {
   right: 0;
+  visibility: visible;
+}
+
+/* User Profile Header in Mobile Menu */
+.nav-user-header {
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  padding: 30px 20px;
+  color: white;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.nav-user-header img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.nav-user-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Mobile Menu Links Container */
+.mobile-nav-links {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .mobile-link {
-  padding: 12px 16px;
-  color: #333;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  padding: 12px 15px;
+  color: #444;
   text-decoration: none;
-  border-radius: 8px;
-  transition: all 0.3s;
+  font-size: 1rem;
   font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 15px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .mobile-link i {
-  font-size: 18px;
-  width: 20px;
+  width: 35px;
+  min-width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f4f8;
+  border-radius: 8px;
+  margin-right: 15px;
+  color: #4a90e2;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .mobile-link:hover {
-  background: #f0f4f8;
-  color: #0052cc;
+  background: #f0f7ff;
+  color: #4a90e2;
+  transform: translateX(5px);
+}
+
+.mobile-link:hover i {
+  background: #4a90e2;
+  color: white;
+}
+
+/* Logout Button Special Style */
+#mobile-logout {
+  color: #e74c3c !important;
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  border-radius: 0;
+}
+
+#mobile-logout i {
+  background: #fdeaea !important;
+  color: #e74c3c !important;
+}
+
+#mobile-logout:hover {
+  background: #fff5f5 !important;
+  color: #c0392b !important;
+}
+
+#mobile-logout:hover i {
+  background: #e74c3c !important;
+  color: white !important;
+}
+
+/* Admin Link Specific Fix */
+#mobile-admin {
+  display: flex !important;
+  align-items: center !important;
 }
 
 .overlay {
@@ -192,7 +275,7 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s;
-  z-index: 998;
+  z-index: 1999;
 }
 
 .overlay.active {

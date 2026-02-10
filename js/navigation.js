@@ -35,14 +35,22 @@ function loadNavigation() {
     </header>
 
     <nav class="mobile-nav" id="mobile-nav">
-      <a href="index.html" class="mobile-link"><i class="fas fa-home"></i> Home</a>
-      <a href="index.html#subjects" class="mobile-link"><i class="fas fa-book-open"></i> Subjects</a>
-      <a href="about.html" class="mobile-link"><i class="fas fa-info-circle"></i> About</a>
-      <a href="contact.html" class="mobile-link"><i class="fas fa-envelope"></i> Contact</a>
-      <a href="#cbt-exam-section" class="mobile-link"><i class="fas fa-laptop-code"></i> CBT Exam</a>
-      <a href="login.html" id="mobile-login" class="mobile-link"><i class="fas fa-sign-in-alt"></i> Login</a>
-      <a href="admin.html" id="mobile-admin" class="mobile-link" style="display:none"><i class="fas fa-user-shield"></i> Admin</a>
-      <a href="#" id="mobile-logout" class="mobile-link" style="display:none"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      <!-- User Profile Header -->
+      <div class="nav-user-header" id="nav-user-header" style="display: none">
+        <img id="nav-profile-img" src="images/default-avatar.png" alt="User" />
+        <h4 id="nav-user-name">Guest</h4>
+      </div>
+      
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-link"><i class="fas fa-home"></i> Home</a>
+        <a href="index.html#subjects" class="mobile-link"><i class="fas fa-book-open"></i> Subjects</a>
+        <a href="about.html" class="mobile-link"><i class="fas fa-info-circle"></i> About</a>
+        <a href="contact.html" class="mobile-link"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="#cbt-exam-section" class="mobile-link"><i class="fas fa-laptop-code"></i> CBT Exam</a>
+        <a href="login.html" id="mobile-login" class="mobile-link"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="admin.html" id="mobile-admin" class="mobile-link" style="display:none"><i class="fas fa-user-shield"></i> Admin</a>
+        <a href="#" id="mobile-logout" class="mobile-link" style="display:none"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
     </nav>
 
     <div class="overlay" id="overlay"></div>
@@ -65,6 +73,16 @@ function loadNavigation() {
     hamburger.classList.remove('active');
     mobileNav.classList.remove('active');
     overlay.classList.remove('active');
+  });
+  
+  // Auto-close mobile menu when clicking any link
+  const mobileLinks = mobileNav.querySelectorAll('.mobile-link');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('active');
+      overlay.classList.remove('active');
+    });
   });
 }
 

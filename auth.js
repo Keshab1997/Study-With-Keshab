@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const heroTitle = document.getElementById('hero-main-title');
         const heroDescription = document.getElementById('hero-main-description');
+        
+        // Mobile Navigation Profile Elements
+        const navUserHeader = document.getElementById('nav-user-header');
+        const navUserName = document.getElementById('nav-user-name');
+        const navProfileImg = document.getElementById('nav-profile-img');
 
         if (user) {
             if (loginBtn) loginBtn.style.display = 'none';
@@ -18,6 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mobileLogout) mobileLogout.style.display = 'block';
             if (userInfo) userInfo.style.display = 'flex';
             if (headerProfilePic) headerProfilePic.src = user.photoURL || 'images/default-avatar.png';
+            
+            // Update Mobile Nav Profile
+            if (navUserHeader) navUserHeader.style.display = 'block';
+            if (navUserName) navUserName.textContent = user.displayName || 'User';
+            if (navProfileImg) navProfileImg.src = user.photoURL || 'images/default-avatar.png';
             
             if (heroTitle && heroDescription) {
                 heroTitle.innerHTML = `স্বাগতম, <span class="highlight">${user.displayName || 'বন্ধু'}</span>!`;
@@ -46,6 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (desktopAdmin) desktopAdmin.style.display = 'none';
             if (mobileLogout) mobileLogout.style.display = 'none';
             if (userInfo) userInfo.style.display = 'none';
+            
+            // Hide Mobile Nav Profile
+            if (navUserHeader) navUserHeader.style.display = 'none';
 
             if (heroTitle && heroDescription) {
                 heroTitle.innerHTML = "শিক্ষা হোক সহজ, প্রযুক্তিতে সমৃদ্ধ";
