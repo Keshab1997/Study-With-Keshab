@@ -46,9 +46,9 @@ main {
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 /* --- ২. হেডার ডিজাইন --- */
-.site-header { position: relative; top: 0; left: 0; width: 100%; z-index: 1000; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); transition: box-shadow 0.3s ease;}
+.site-header { position: relative; top: 0; left: 0; width: 100%; z-index: 1000; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); transition: box-shadow 0.3s ease; padding-top: 0 !important; margin-top: 0 !important;}
 .site-header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07); }
-.header-grid { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 15px; height: 80px; }
+.header-grid { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 10px 15px; min-height: 60px; }
 
 /* ৫. হেডার ফিক্স */
 @media (max-width: 768px) {
@@ -65,7 +65,7 @@ main {
     }
 }
 .logo-link { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
-.logo-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--white-color); box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.3s ease; }
+.logo-img { width: 50px; height: 50px; max-height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--white-color); box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.3s ease; }
 .logo-img:hover { transform: scale(1.08) rotate(-5deg); }
 
 /* ডেস্কটপ নেভিগেশন */
