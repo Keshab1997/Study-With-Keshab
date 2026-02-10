@@ -3,7 +3,7 @@
 // ===============================
 
 // সংস্করণ নম্বর বদলালেই নতুন cache তৈরি হবে
-const CACHE_NAME = "study-with-keshab-cache-v14";
+const CACHE_NAME = "study-with-keshab-cache-v15";
 
 // যেসব ফাইল আগেই ক্যাশে রাখা দরকার
 const urlsToCache = [
@@ -42,9 +42,19 @@ self.addEventListener("install", (event) => {
       console.log("Cache opened, adding files...");
       return cache.addAll(urlsToCache);
     }).then(() => {
-      return self.skipWaiting(); // সাথে সাথে activate
+      return self.skipWaiting();
     })
   );
+  
+  // নতুন আপডেট এসেছে notification পাঠানো
+  self.clients.matchAll().then(clients => {
+    clients.forEach(client => {
+      client.postMessage({
+        type: 'UPDATE_AVAILABLE',
+        message: 'নতুন আপডেট এসেছে!'
+      });
+    });
+  });
 });
 
 // ===============================
@@ -124,4 +134,14 @@ self.addEventListener('notificationclick', function(event) {
   event.waitUntil(
     clients.openWindow(event.notification.data.url)
   );
+});
+
+
+// ===============================
+// Skip Waiting Handler
+// ===============================
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
