@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tokens = [...new Set(tokens)];
 
             if (tokens.length > 0) {
-                const response = await fetch('https://fcm.googleapis.com/fcm/send', {
+                const response = await fetch('https://corsproxy.io/?https://fcm.googleapis.com/fcm/send', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Authorization': 'key=' + FIREBASE_SERVER_KEY },
                     body: JSON.stringify({ registration_ids: tokens, notification: { title: title, body: message, icon: '/images/logo.jpg', click_action: window.location.origin } })
