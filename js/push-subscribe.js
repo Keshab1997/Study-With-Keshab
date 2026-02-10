@@ -1,52 +1,41 @@
-const VAPID_KEY = 'BFXBN-Bic5LmU0JT7g_REhog_O_FVtSJotQUIMhN-l4W7udrXsk9UiR3bwP_ANgDU18SByPg7NQFBx0qRTCwRYQ';
+document.addEventListener('DOMContentLoaded', function() {
+    const messaging = firebase.messaging();
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+    const vapidKey = "BFXBN-Bic5LmU0JT7g_REhog_O_FVtSJotQUIMhN-l4W7udrXsk9UiR3bwP_ANgDU18SByPg7NQFBx0qRTCwRYQ";
 
-async function subscribeToPush() {
-  console.log('=== SUBSCRIBE TO PUSH START ===');
-  
-  if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
-    console.log('Push not supported');
-    return;
-  }
-
-  try {
-    const permission = await Notification.requestPermission();
-    console.log('Permission:', permission);
-    
-    if (permission !== 'granted') {
-      console.log('Permission denied');
-      return;
+    function requestPermission() {
+        console.log('Requesting permission...');
+        Notification.requestPermission().then((permission) => {
+            if (permission === 'granted') {
+                console.log('Notification permission granted.');
+                return messaging.getToken({ vapidKey: vapidKey });
+            } else {
+                console.log('Unable to get permission to notify.');
+            }
+        }).then((currentToken) => {
+            if (currentToken) {
+                console.log('FCM Token:', currentToken);
+                saveTokenToFirestore(currentToken);
+            } else {
+                console.log('No registration token available.');
+            }
+        }).catch((err) => {
+            console.log('An error occurred while retrieving token. ', err);
+        });
     }
 
-    const registration = await navigator.serviceWorker.ready;
-    console.log('Service Worker ready');
-    
-    const subscription = await registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(VAPID_KEY)
-    });
+    function saveTokenToFirestore(token) {
+        auth.onAuthStateChanged(function(user) {
+            if (user) {
+                const userRef = db.collection('users').doc(user.uid);
+                userRef.set({
+                    fcmToken: token
+                }, { merge: true })
+                .catch(err => console.error("Error updating token:", err));
+            }
+        });
+    }
 
-    console.log('Subscribed successfully:', subscription);
-    localStorage.setItem('push_subscribed', 'true');
-  } catch (error) {
-    console.error('Subscribe error:', error);
-  }
-}
-
-function urlBase64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
-}
-
-window.addEventListener('load', () => {
-  if (localStorage.getItem('push_subscribed') !== 'true') {
-    setTimeout(() => subscribeToPush(), 3000);
-  } else {
-    console.log('Already subscribed');
-  }
+    requestPermission();
 });
