@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         data.forEach(notif => {
-            const date = new Date(notif.created_at).toLocaleDateString('bn-BD');
+            const date = new Date(notif.created_at).toLocaleDateString('en-US');
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${notif.title}</td>
@@ -262,12 +262,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (tabName === 'dashboard') {
             if (navDashboard) navDashboard.classList.add('active');
             dashboardContent.style.display = 'block';
-            pageTitle.textContent = 'ড্যাশবোর্ড';
+            pageTitle.textContent = 'Dashboard';
             updateBreadcrumb('Dashboard');
         } else if (tabName === 'leaderboard') {
             if (navLeaderboard) navLeaderboard.classList.add('active');
             leaderboardContent.style.display = 'block';
-            pageTitle.textContent = 'লিডারবোর্ড';
+            pageTitle.textContent = 'Leaderboard';
             updateBreadcrumb('Leaderboard');
             loadLeaderboardForChapter(chapterSelect.value);
         }
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const formatTimestamp = (ts) => (ts?.toDate) ? ts.toDate().toLocaleString('bn-BD') : 'N/A';
+    const formatTimestamp = (ts) => (ts?.toDate) ? ts.toDate().toLocaleString('en-US') : 'N/A';
     
     const handleUserSearch = () => {
         const term = userSearchInput.value.toLowerCase();

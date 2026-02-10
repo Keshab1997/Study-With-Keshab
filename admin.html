@@ -98,19 +98,18 @@
                             <li class="active">
                                 <a href="#" id="nav-dashboard"
                                     ><i class="fas fa-tachometer-alt fa-fw"></i>
-                                    ড্যাশবোর্ড</a
+                                    Dashboard</a
                                 >
                             </li>
                             <li>
                                 <a href="#" id="nav-leaderboard"
                                     ><i class="fas fa-trophy fa-fw"></i>
-                                    লিডারবোর্ড</a
+                                    Leaderboard</a
                                 >
                             </li>
                             <li>
                                 <a href="index.html"
-                                    ><i class="fas fa-home fa-fw"></i> হোম পেজে
-                                    যান</a
+                                    ><i class="fas fa-home fa-fw"></i> Go to Home</a
                                 >
                             </li>
                         </ul>
@@ -131,7 +130,7 @@
                         <span id="admin-name-sidebar"></span>
                         <small>Administrator</small>
                     </div>
-                    <a href="#" id="admin-logout-btn" title="লগ আউট"
+                    <a href="#" id="admin-logout-btn" title="Logout"
                         ><i class="fas fa-sign-out-alt"></i
                     ></a>
                 </div>
@@ -141,7 +140,7 @@
             <main class="main-content">
                 <header class="main-header">
                     <div>
-                        <h1 id="page-title">ড্যাশবোর্ড</h1>
+                        <h1 id="page-title">Dashboard</h1>
                         <!-- ব্রেডক্রাম্ব (Breadcrumb) অংশটি এখান থেকে মুছে ফেলা হয়েছে -->
                     </div>
                     <button class="mobile-menu-toggle">
@@ -155,17 +154,15 @@
                         <div class="stat-card">
                             <i class="fas fa-users"></i>
                             <div>
-                                <span class="stat-value" id="total-users"
-                                    >0</span
-                                ><span class="stat-label">মোট ব্যবহারকারী</span>
+                                <span class="stat-value" id="total-users">0</span>
+                                <span class="stat-label">Total Users</span>
                             </div>
                         </div>
                         <div class="stat-card">
                             <i class="fas fa-user-shield"></i>
                             <div>
-                                <span class="stat-value" id="total-admins"
-                                    >0</span
-                                ><span class="stat-label">মোট অ্যাডমিন</span>
+                                <span class="stat-value" id="total-admins">0</span>
+                                <span class="stat-label">Total Admins</span>
                             </div>
                         </div>
                     </section>
@@ -173,28 +170,28 @@
                     <!-- Supabase Notification Section (Updated) -->
                     <section class="send-notification-section">
                         <div class="section-header">
-                            <h2>নোটিফিকেশন ম্যানেজমেন্ট</h2>
+                            <h2>Notification Management</h2>
                         </div>
                         <!-- নতুন বাটন যা মডাল ওপেন করবে -->
                         <button id="open-supabase-modal-btn" class="create-notif-btn">
-                            <i class="fas fa-bell"></i> নতুন বিজ্ঞপ্তি তৈরি করুন
+                            <i class="fas fa-bell"></i> Create New Notification
                         </button>
 
                         <div class="section-header" style="margin-top: 20px;">
-                            <h3>বিজ্ঞপ্তির ইতিহাস (Supabase)</h3>
+                            <h3>Notification History (Supabase)</h3>
                             <button id="refresh-history-btn" class="btn-sm" style="background:#666; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">
-                                <i class="fas fa-sync"></i> রিফ্রেশ
+                                <i class="fas fa-sync"></i> Refresh
                             </button>
                         </div>
                         <div class="table-container">
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>শিরোনাম</th>
-                                        <th>বার্তা</th>
-                                        <th>তারিখ</th>
-                                        <th>স্ট্যাটাস</th>
-                                        <th>অ্যাকশন</th>
+                                        <th>Title</th>
+                                        <th>Message</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="supabase-history-body">
@@ -205,51 +202,17 @@
                         </div>
                     </section>
 
-                    <!-- ক্লাস ম্যানেজমেন্ট সেকশন -->
-                    <section class="class-management-section">
-                        <div class="section-header">
-                            <h2>ক্লাস ম্যানেজমেন্ট</h2>
-                        </div>
-                        
-                        <div class="class-editor-container">
-                            <div class="form-group">
-                                <label>পুরনো ক্লাস এডিট করতে সিলেক্ট করুন:</label>
-                                <select id="existingClasses" onchange="loadSelectedClass()" style="border: 2px solid #4a90e2; padding: 8px; border-radius: 5px; width: 100%;">
-                                    <option value="">-- নতুন ক্লাস তৈরি করুন --</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>ক্লাস আইডি (Unique ID):</label>
-                                <input type="text" id="docId" placeholder="যেমন: class1" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>ক্লাসের শিরোনাম:</label>
-                                <input type="text" id="classTitle" placeholder="যেমন: Class 01: Formulas" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>কন্টেন্ট:</label>
-                                <div id="editor" style="height: 300px; border: 1px solid #ddd; border-radius: 5px;"></div>
-                            </div>
-
-                            <div style="display: flex; gap: 10px; margin-top: 20px;">
-                                <button class="btn btn-save" style="flex: 2; background: #28a745; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer;" onclick="saveClassData()">💾 ক্লাস সেভ করুন</button>
-                                <button id="deleteBtn" class="btn" style="flex: 1; background: #dc3545; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; display: none;" onclick="deleteClassData()">🗑️ ডিলিট</button>
-                            </div>
-                        </div>
-                    </section>
+                    <!-- ক্লাস ম্যানেজমেন্ট সেকশন - DELETED -->
 
                     <section class="user-list-section">
                         <div class="section-header">
-                            <h2>ব্যবহারকারীদের তালিকা</h2>
+                            <h2>User List</h2>
                             <div class="search-box">
                                 <i class="fas fa-search"></i
                                 ><input
                                     type="text"
                                     id="user-search-input"
-                                    placeholder="খুঁজুন..."
+                                    placeholder="Search..."
                                 />
                             </div>
                         </div>
@@ -257,12 +220,12 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>ছবি</th>
-                                        <th>নাম</th>
-                                        <th>ইমেইল</th>
-                                        <th>ভূমিকা</th>
-                                        <th>শেষ লগইন</th>
-                                        <th>অ্যাকশন</th>
+                                        <th>Photo</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Last Login</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="user-table-body"></tbody>
@@ -282,7 +245,7 @@
                     style="display: none"
                 >
                     <section class="leaderboard-section-inner">
-                        <div class="section-header"><h2>লিডারবোর্ড</h2></div>
+                        <div class="section-header"><h2>Leaderboard</h2></div>
                         <div class="leaderboard-controls">
                             <label for="chapter-select"
                                 >বিষয় নির্বাচন করুন:</label
@@ -295,9 +258,9 @@
                                 <thead>
                                     <tr>
                                         <th>Rank</th>
-                                        <th>ব্যবহারকারী</th>
-                                        <th>মোট স্কোর</th>
-                                        <th>অ্যাকশন</th>
+                                        <th>User</th>
+                                        <th>Total Score</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="leaderboard-table-body"></tbody>
@@ -334,22 +297,22 @@
         <div id="supabaseNotificationModal" class="supabase-modal" style="display: none;">
             <div class="sb-modal-content">
                 <span class="sb-close" id="close-sb-modal">&times;</span>
-                <h2 style="text-align: center; color: #333; margin-bottom: 20px;">নতুন বিজ্ঞপ্তি পাঠান</h2>
+                <h2 style="text-align: center; color: #333; margin-bottom: 20px;">Send New Notification</h2>
                 <form id="sb-notification-form">
                     <div class="sb-form-group">
-                        <label for="sb-title">শিরোনাম</label>
-                        <input type="text" id="sb-title" placeholder="নোটিফিকেশনের শিরোনাম দিন" required>
+                        <label for="sb-title">Title</label>
+                        <input type="text" id="sb-title" placeholder="Enter notification title" required>
                     </div>
                     <div class="sb-form-group">
-                        <label for="sb-message">বার্তা</label>
-                        <textarea id="sb-message" rows="4" placeholder="মূল বার্তা লিখুন..." required></textarea>
+                        <label for="sb-message">Message</label>
+                        <textarea id="sb-message" rows="4" placeholder="Write your message..." required></textarea>
                     </div>
                     <div class="sb-form-group">
-                        <label for="sb-expiry">কতদিন দেখাবে? (দিন)</label>
+                        <label for="sb-expiry">Show for how many days?</label>
                         <input type="number" id="sb-expiry" value="7" min="1">
                     </div>
                     <button type="submit" class="sb-btn-submit">
-                        <i class="fas fa-paper-plane"></i> প্রকাশ করুন
+                        <i class="fas fa-paper-plane"></i> Publish
                     </button>
                 </form>
             </div>
@@ -357,10 +320,10 @@
 
         <div id="access-denied" style="display: none">
             <h1>
-                <i class="fas fa-exclamation-triangle"></i> প্রবেশাধিকার নেই
+                <i class="fas fa-exclamation-triangle"></i> Access Denied
             </h1>
-            <p>এই পেজটি দেখার জন্য আপনার অনুমতি নেই।</p>
-            <a href="index.html">হোম পেজে ফিরে যান</a>
+            <p>You don't have permission to view this page.</p>
+            <a href="index.html">Go to Home</a>
         </div>
 
         <!-- Firebase SDKs -->
@@ -374,116 +337,6 @@
 
         <script src="js/firebase-config.js"></script>
         <script src="js/admin.js"></script>
-
-        <!-- Quill Editor for Class Management -->
-        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-        <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
-
-        <script>
-            // Quill Editor initialization
-            let quill;
-            document.addEventListener('DOMContentLoaded', function() {
-                quill = new Quill('#editor', {
-                    theme: 'snow',
-                    modules: {
-                        toolbar: [
-                            ['bold', 'italic', 'underline'],
-                            ['blockquote', 'code-block'],
-                            [{ 'header': 1 }, { 'header': 2 }],
-                            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                            ['link', 'image'],
-                            ['clean']
-                        ]
-                    }
-                });
-                loadClassList();
-            });
-
-            // ১. ক্লাস সিলেক্ট করলে ডিলিট বাটন দেখানো
-            function loadSelectedClass() {
-                const id = document.getElementById('existingClasses').value;
-                const deleteBtn = document.getElementById('deleteBtn');
-
-                if(!id) { 
-                    resetClassForm(); 
-                    deleteBtn.style.display = "none"; // নতুন ক্লাস হলে ডিলিট বাটন লুকানো
-                    return; 
-                }
-
-                deleteBtn.style.display = "inline-block"; // পুরনো ক্লাস হলে ডিলিট বাটন দেখানো
-                
-                db.collection("class_notes").doc(id).get().then(doc => {
-                    if(doc.exists) {
-                        document.getElementById('docId').value = doc.id;
-                        document.getElementById('classTitle').value = doc.data().title;
-                        quill.root.innerHTML = doc.data().content;
-                    }
-                });
-            }
-
-            // ২. ক্লাস ডিলিট করার ফাংশন
-            async function deleteClassData() {
-                const id = document.getElementById('docId').value;
-                if(!id) return;
-
-                if(confirm("আপনি কি নিশ্চিত যে এই ক্লাসটি ডিলিট করতে চান? এটি আর ফিরে পাওয়া যাবে না।")) {
-                    try {
-                        await db.collection("class_notes").doc(id).delete();
-                        alert("ক্লাসটি সফলভাবে ডিলিট হয়েছে।");
-                        resetClassForm();
-                        loadClassList(); // ড্রপডাউন লিস্ট আপডেট করা
-                    } catch (error) {
-                        alert("ডিলিট করতে সমস্যা হয়েছে: " + error.message);
-                    }
-                }
-            }
-
-            // ৩. ফর্ম রিসেট করা
-            function resetClassForm() {
-                document.getElementById('docId').value = "";
-                document.getElementById('classTitle').value = "";
-                if(quill) quill.root.innerHTML = "";
-                document.getElementById('deleteBtn').style.display = "none";
-            }
-
-            // ৪. ক্লাস লিস্ট লোড করা
-            function loadClassList() {
-                const select = document.getElementById('existingClasses');
-                db.collection("class_notes").get().then(querySnapshot => {
-                    select.innerHTML = '<option value="">-- নতুন ক্লাস তৈরি করুন --</option>';
-                    querySnapshot.forEach(doc => {
-                        const option = document.createElement('option');
-                        option.value = doc.id;
-                        option.textContent = doc.data().title || doc.id;
-                        select.appendChild(option);
-                    });
-                });
-            }
-
-            // ৫. ক্লাস সেভ করা
-            async function saveClassData() {
-                const id = document.getElementById('docId').value;
-                const title = document.getElementById('classTitle').value;
-                const content = quill.root.innerHTML;
-
-                if(!id || !title) {
-                    alert('ক্লাস আইডি এবং শিরোনাম দিতে হবে');
-                    return;
-                }
-
-                try {
-                    await db.collection("class_notes").doc(id).set({
-                        title: title,
-                        content: content,
-                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                    alert('ক্লাস সফলভাবে সেভ হয়েছে!');
-                    loadClassList();
-                } catch (error) {
-                    alert('সেভ করতে সমস্যা: ' + error.message);
-                }
-            }
-        </script>
 
         <!-- Desktop/Mobile Mode Toggle Button -->
         <button

@@ -3,34 +3,13 @@
 // ===============================
 
 // সংস্করণ নম্বর বদলালেই নতুন cache তৈরি হবে
-const CACHE_NAME = "study-with-keshab-cache-v15";
+const CACHE_NAME = "study-with-keshab-cache-v16";
 
 // যেসব ফাইল আগেই ক্যাশে রাখা দরকার
 const urlsToCache = [
   "./",
   "index.html",
-  "about.html",
-  "contact.html",
-  "login.html",
-  "signup.html",
-  "notifications.html",
-  "admin.html",
-  // CSS Files
-  "css/style.css",
-  "css/notification.css",
-  "css/cbt-styles.css",
-  "css/login-style.css",
-  "css/admin.css",
-  // JS Files
-  "js/script.js",
-  "js/firebase-config.js",
-  "js/notification.js",
-  "js/notification-data.js",
-  "auth.js",
-  // Images / Icons
-  "images/icons/icon-192x192.png",
-  "images/icons/icon-512x512.png",
-  "images/logo.jpg",
+  "images/logo.jpg"
 ];
 
 // ===============================

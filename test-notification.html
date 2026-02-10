@@ -52,43 +52,61 @@
 
         // Check permission
         function checkPermission() {
+            console.log('=== CHECK PERMISSION ===');
             const permission = Notification.permission;
+            console.log('Permission status:', permission);
+            console.log('Notification supported:', 'Notification' in window);
             showStatus(`Current Permission: ${permission}`, permission === 'granted' ? 'success' : 'error');
         }
 
         // Request permission
         async function requestPermission() {
+            console.log('=== REQUEST PERMISSION ===');
             try {
+                console.log('Requesting notification permission...');
                 const permission = await Notification.requestPermission();
+                console.log('Permission result:', permission);
                 showStatus(`Permission: ${permission}`, permission === 'granted' ? 'success' : 'error');
             } catch (error) {
+                console.error('Permission error:', error);
                 showStatus(`Error: ${error.message}`, 'error');
             }
         }
 
         // Send test notification (foreground)
         function sendTestNotification() {
+            console.log('=== SEND TEST NOTIFICATION ===');
+            console.log('Permission:', Notification.permission);
+            
             if (Notification.permission === 'granted') {
-                new Notification('Test Notification', {
+                console.log('Creating notification...');
+                const notification = new Notification('Test Notification', {
                     body: 'এটি একটি টেস্ট নোটিফিকেশন!',
                     icon: '/images/logo.jpg',
                     badge: '/images/logo.jpg',
                     vibrate: [200, 100, 200]
                 });
+                console.log('Notification created:', notification);
                 showStatus('Test notification sent!', 'success');
             } else {
+                console.error('Permission not granted!');
                 showStatus('Permission not granted!', 'error');
             }
         }
 
         // Send test push (background)
         async function sendTestPush() {
+            console.log('=== SEND TEST PUSH ===');
+            console.log('Service Worker supported:', 'serviceWorker' in navigator);
+            
             if ('serviceWorker' in navigator) {
                 try {
+                    console.log('Getting service worker registration...');
                     const registration = await navigator.serviceWorker.ready;
+                    console.log('Registration:', registration);
                     
-                    // Simulate push event
-                    registration.showNotification('Test Push Notification', {
+                    console.log('Showing notification...');
+                    await registration.showNotification('Test Push Notification', {
                         body: 'Background notification test',
                         icon: '/images/logo.jpg',
                         badge: '/images/logo.jpg',
@@ -96,11 +114,14 @@
                         data: { url: '/' }
                     });
                     
+                    console.log('Push notification sent successfully!');
                     showStatus('Test push sent!', 'success');
                 } catch (error) {
+                    console.error('Push error:', error);
                     showStatus(`Error: ${error.message}`, 'error');
                 }
             } else {
+                console.error('Service Worker not supported!');
                 showStatus('Service Worker not supported!', 'error');
             }
         }
@@ -146,13 +167,29 @@
 
         // Auto check on load
         window.onload = () => {
+            console.log('=== PAGE LOADED ===');
+            console.log('User Agent:', navigator.userAgent);
+            console.log('HTTPS:', window.location.protocol === 'https:');
+            console.log('Notification API:', 'Notification' in window);
+            console.log('Service Worker API:', 'serviceWorker' in navigator);
+            console.log('Push Manager:', 'PushManager' in window);
+            
             checkPermission();
             
             // Register service worker
             if ('serviceWorker' in navigator) {
+                console.log('Registering service worker...');
                 navigator.serviceWorker.register('/sw.js')
-                    .then(() => showStatus('Service Worker registered', 'success'))
-                    .catch(err => showStatus(`SW Error: ${err}`, 'error'));
+                    .then(reg => {
+                        console.log('Service Worker registered:', reg);
+                        showStatus('Service Worker registered', 'success');
+                    })
+                    .catch(err => {
+                        console.error('SW registration error:', err);
+                        showStatus(`SW Error: ${err}`, 'error');
+                    });
+            } else {
+                console.error('Service Worker not supported!');
             }
         };
     </script>
