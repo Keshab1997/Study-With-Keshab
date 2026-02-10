@@ -3,7 +3,7 @@
 // ===============================
 
 // সংস্করণ নম্বর বদলালেই নতুন cache তৈরি হবে
-const CACHE_NAME = "study-with-keshab-cache-v18";
+const CACHE_NAME = "study-with-keshab-cache-v20";
 
 // যেসব ফাইল আগেই ক্যাশে রাখা দরকার
 const urlsToCache = [
@@ -92,6 +92,7 @@ self.addEventListener("fetch", (event) => {
 // Push Notification Handlers
 // ===============================
 self.addEventListener('push', function(event) {
+  console.log('Push received:', event);
   const data = event.data ? event.data.json() : {};
   const title = data.title || 'Study With Keshab';
   const options = {
@@ -100,7 +101,8 @@ self.addEventListener('push', function(event) {
     badge: '/images/logo.jpg',
     vibrate: [200, 100, 200],
     data: { url: data.url || '/' },
-    requireInteraction: false
+    requireInteraction: false,
+    tag: 'notification-' + Date.now()
   };
   
   event.waitUntil(
