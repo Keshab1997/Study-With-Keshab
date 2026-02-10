@@ -48,7 +48,7 @@ main {
 /* --- ২. হেডার ডিজাইন --- */
 .site-header { position: relative; top: 0; left: 0; width: 100%; z-index: 1000; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); transition: box-shadow 0.3s ease;}
 .site-header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07); }
-.header-grid { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 24px; height: 80px; }
+.header-grid { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 15px; height: 80px; }
 
 /* ৫. হেডার ফিক্স */
 @media (max-width: 768px) {
@@ -72,7 +72,7 @@ main {
 .primary-navigation { display: none; }
 
 /* Header Actions & Auth Links */
-.header-actions { display: flex; align-items: center; gap: 15px; margin-left: 1.5rem; }
+.header-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 .nav-user-name { font-weight: 600; color: var(--secondary-dark); white-space: nowrap; }
 .auth-link a.login { background: var(--primary-blue); color: var(--white-color); padding: 8px 16px; border-radius: 20px; transition: background-color 0.3s; }
 .auth-link a.login:hover { background: #0041a3; color: var(--white-color); }
@@ -83,12 +83,13 @@ main {
     position: relative;
     background: transparent;
     border: 0;
-    width: 2rem;
-    aspect-ratio: 1;
+    width: 32px;
+    height: 32px;
     background-repeat: no-repeat;
+    background-size: contain;
     cursor: pointer;
     z-index: 9999;
-    margin-left: 10px;
+    flex-shrink: 0;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(25, 35, 53)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 .mobile-nav-toggle[aria-expanded="true"] {
@@ -101,7 +102,7 @@ main {
     inset: 0 0 0 60%;
     background: var(--white-color);
     box-shadow: -10px 0 25px rgba(0,0,0,0.1);
-    z-index: 999;
+    z-index: 9999;
     transform: translateX(100%);
     transition: transform 350ms ease-out;
     padding: min(20vh, 8rem) 2em;
@@ -292,9 +293,11 @@ footer { background-color: #0b172a; color: #c5d6f1; padding: 5rem 2rem 3rem; }
     .section-title { font-size: 2rem; }
     
     /* হেডার ও নেভিগেশন */
-    .header-grid { padding: 0 15px; height: 70px; }
-    .header-actions { margin-left: auto; }
+    .header-grid { padding: 0 10px; height: 70px; }
+    .header-actions { margin-left: auto; gap: 8px; }
     .nav-user-name { display: none; }
+    
+    .mobile-nav-toggle { width: 30px; height: 30px; margin-right: 5px; }
     
     /* অন্যান্য সেকশনের রেসপনসিভ স্টাইল */
     .hero-section-new { padding: 4rem 0; }
@@ -587,4 +590,60 @@ html, body {
 #header-profile-pic:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+}
+
+
+/* Mobile Header Fix - Screen Top */
+@media (max-width: 768px) {
+    body {
+        padding-top: 0 !important;
+    }
+    
+    .site-header {
+        margin-top: 0;
+        position: relative;
+    }
+    
+    .header-grid {
+        padding: 15px 15px;
+        min-height: 60px;
+    }
+    
+    .logo-img {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Safe area for notched devices */
+@supports (padding: max(0px)) {
+    .site-header {
+        padding-top: env(safe-area-inset-top);
+    }
+}
+
+
+/* Sidebar Dark Overlay */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 350ms ease-out;
+}
+
+.menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Ensure sidebar is above everything */
+.mobile-navigation-menu {
+    background: #ffffff !important;
+}
+
+.site-header {
+    z-index: 1000;
 }

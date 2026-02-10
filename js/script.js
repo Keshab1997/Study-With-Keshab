@@ -36,8 +36,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!mobileNavMenu || !navToggle) return;
         
         const isVisible = show;
+        const overlay = document.getElementById('menu-overlay');
+        
         mobileNavMenu.setAttribute('data-visible', isVisible);
         navToggle.setAttribute('aria-expanded', isVisible);
+        
+        // Overlay toggle
+        if (overlay) {
+            overlay.classList.toggle('active', isVisible);
+        }
         
         // স্ক্রলিং লক করা বা আনলক করা
         document.body.style.overflow = isVisible ? 'hidden' : '';
@@ -48,6 +55,14 @@ document.addEventListener('DOMContentLoaded', function () {
         navToggle.addEventListener('click', () => {
             const isVisible = mobileNavMenu.getAttribute('data-visible') === 'true';
             toggleMobileMenu(!isVisible);
+        });
+    }
+
+    // Overlay click করলে menu বন্ধ
+    const menuOverlay = document.getElementById('menu-overlay');
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', () => {
+            toggleMobileMenu(false);
         });
     }
 
