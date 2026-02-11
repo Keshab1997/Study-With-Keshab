@@ -13,6 +13,7 @@ function loadNavigation() {
           <a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a>
           <a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
           <a href="#cbt-exam-section" class="nav-link"><i class="fas fa-laptop-code"></i> CBT Exam</a>
+          <a href="profile.html" id="desktop-profile" class="nav-link" style="display:none"><i class="fas fa-user"></i> Profile</a>
           <a href="admin.html" id="desktop-admin" class="nav-link" style="display:none"><i class="fas fa-user-shield"></i> Admin</a>
         </nav>
         
@@ -48,6 +49,7 @@ function loadNavigation() {
         <a href="contact.html" class="mobile-link"><i class="fas fa-envelope"></i> Contact</a>
         <a href="#cbt-exam-section" class="mobile-link"><i class="fas fa-laptop-code"></i> CBT Exam</a>
         <a href="login.html" id="mobile-login" class="mobile-link"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="profile.html" id="mobile-profile" class="mobile-link" style="display:none"><i class="fas fa-user"></i> Profile</a>
         <a href="admin.html" id="mobile-admin" class="mobile-link" style="display:none"><i class="fas fa-user-shield"></i> Admin</a>
         <a href="#" id="mobile-logout" class="mobile-link" style="display:none"><i class="fas fa-sign-out-alt"></i> Logout</a>
       </div>

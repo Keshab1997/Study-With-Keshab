@@ -1,8 +1,47 @@
 document.addEventListener('DOMContentLoaded', function() {
     
+    // Email/Password Login
+    const loginBtn = document.getElementById('login-btn');
+    if (loginBtn) {
+        loginBtn.addEventListener('click', () => {
+            const email = document.getElementById('email-input').value.trim();
+            const password = document.getElementById('password-input').value;
+            const errorMessage = document.getElementById('error-message');
+            
+            if (!email || !password) {
+                errorMessage.textContent = 'দয়া করে ইমেল এবং পাসওয়ার্ড দিন।';
+                return;
+            }
+            
+            errorMessage.textContent = '';
+            loginBtn.classList.add('loading');
+            
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    window.location.href = 'index.html';
+                })
+                .catch((error) => {
+                    if (error.code === 'auth/user-not-found') {
+                        errorMessage.textContent = 'এই ইমেল দিয়ে কোনো অ্যাকাউন্ট নেই।';
+                    } else if (error.code === 'auth/wrong-password') {
+                        errorMessage.textContent = 'ভুল পাসওয়ার্ড।';
+                    } else if (error.code === 'auth/invalid-email') {
+                        errorMessage.textContent = 'সঠিক ইমেল দিন।';
+                    } else {
+                        errorMessage.textContent = 'লগইন করতে সমস্যা হয়েছে।';
+                    }
+                })
+                .finally(() => {
+                    loginBtn.classList.remove('loading');
+                });
+        });
+    }
+    
     firebase.auth().onAuthStateChanged(function(user) {
         const loginBtn = document.getElementById('login-btn');
         const mobileLogin = document.getElementById('mobile-login');
+        const mobileProfile = document.getElementById('mobile-profile');
+        const desktopProfile = document.getElementById('desktop-profile');
         const mobileAdmin = document.getElementById('mobile-admin');
         const desktopAdmin = document.getElementById('desktop-admin');
         const mobileLogout = document.getElementById('mobile-logout');
@@ -20,6 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (user) {
             if (loginBtn) loginBtn.style.display = 'none';
             if (mobileLogin) mobileLogin.style.display = 'none';
+            if (mobileProfile) mobileProfile.style.display = 'block';
+            if (desktopProfile) desktopProfile.style.display = 'block';
             if (mobileLogout) mobileLogout.style.display = 'block';
             if (userInfo) userInfo.style.display = 'flex';
             if (headerProfilePic) headerProfilePic.src = user.photoURL || 'images/default-avatar.png';
@@ -52,6 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             if (loginBtn) loginBtn.style.display = 'block';
             if (mobileLogin) mobileLogin.style.display = 'block';
+            if (mobileProfile) mobileProfile.style.display = 'none';
+            if (desktopProfile) desktopProfile.style.display = 'none';
             if (mobileAdmin) mobileAdmin.style.display = 'none';
             if (desktopAdmin) desktopAdmin.style.display = 'none';
             if (mobileLogout) mobileLogout.style.display = 'none';
@@ -73,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const googleLoginBtn = document.getElementById('google-login-btn');
     if (googleLoginBtn) { 
-        const ADMIN_EMAIL = "keshabsarkar2018@gmail.com"; 
+        const ADMIN_EMAIL = "keshabsarkar2018@gmail.com";
         
         googleLoginBtn.addEventListener('click', () => {
             const auth = firebase.auth();
@@ -102,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         };
                         
                         if (!doc.exists) {
-                            userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'user';
+                            userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'student';
                         }
                         
                         return userRef.set(userData, { merge: true });
@@ -111,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.location.href = 'index.html';
                 }).catch(error => {
                     console.error("Google সাইন-ইন এর সময় সমস্যা:", error);
-                    alert("লঙ7ইন করার সময় একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
+                    alert("লগইন করার সময় একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
                 });
             }
         });
@@ -135,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
                 
                 if (!doc.exists) {
-                    userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'user';
+                    userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'student';
                 }
                 
                 return userRef.set(userData, { merge: true });

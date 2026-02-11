@@ -1,9 +1,9 @@
-/* css/login-style.css (চূড়ান্ত সংস্করণ) */
+/* css/login-style.css (চূড়ান্ত সংস্করণ) */
 
 /* === বেসিক স্টাইল এবং ভ্যারিয়েবল === */
 :root {
     --primary-color: #4a90e2; /* ব্র্যান্ডের প্রধান রঙ */
-    --primary-color-dark: #3a7bc8; /* হোভারের জন্য গাঢ় রঙ */
+    --primary-color-dark: #3a7bc8; /* হোভারের জন্য গাঢ় রঙ */
     --white-color: #ffffff;
     --dark-text: #2c3e50; /* টেক্সটের জন্য গভীর রঙ */
     --light-text: #7f8c8d;
@@ -129,8 +129,41 @@ body.login-page {
     margin-bottom: 30px;
 }
 
-/* === গুগল লগইন বাটন === */
-.google-btn {
+/* === Input Group === */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #90a4ae;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 14px 14px 45px;
+    background-color: #eceff1;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--dark-text);
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    background-color: var(--white-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+/* === Login Button === */
+.login-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -145,17 +178,96 @@ body.login-page {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    margin-bottom: 10px;
+}
+
+.login-btn:hover {
+    background-color: var(--primary-color-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+}
+
+.login-btn .spinner {
+    display: none;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--white-color);
+    width: 20px;
+    height: 20px;
+    animation: rotate 1s linear infinite;
+}
+
+.login-btn.loading .btn-text {
+    display: none;
+}
+
+.login-btn.loading .spinner {
+    display: block;
+}
+
+@keyframes rotate {
+    to { transform: rotate(360deg); }
+}
+
+/* === Error Message === */
+#error-message {
+    color: #d32f2f;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 20px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* === Divider === */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: var(--light-text);
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #cfd8dc;
+}
+
+.divider span {
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+/* === গুগল লগইন বাটন === */
+.google-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px 20px;
+    background-color: var(--white-color);
+    color: var(--dark-text);
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .google-btn:hover {
-    background-color: var(--primary-color-dark);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+    background-color: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .google-btn i.fab.fa-google {
     font-size: 20px;
     margin-right: 12px;
+    color: #4285f4;
 }
 
 /* === ফুটার === */
@@ -163,15 +275,22 @@ body.login-page {
     margin-top: 30px;
 }
 
-.login-footer a {
+.login-footer p {
+    margin-bottom: 10px;
+    font-size: 14px;
     color: var(--light-text);
+}
+
+.login-footer a {
+    color: var(--primary-color);
     text-decoration: none;
     font-size: 14px;
+    font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .login-footer a:hover {
-    color: var(--primary-color);
+    color: var(--primary-color-dark);
     text-decoration: underline;
 }
 

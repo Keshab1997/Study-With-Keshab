@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>প্রোফাইল - Study With Keshab</title>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#4a90e2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/navigation.css" />
+    <link rel="stylesheet" href="css/profile.css" />
+    <script src="js/navigation.js"></script>
+  </head>
+  <body>
+    <main>
+      <div class="profile-container">
+        <div class="profile-header">
+          <div class="profile-avatar">
+            <img id="profile-pic" src="images/default-avatar.png" alt="Profile" />
+            <button id="edit-avatar-btn" class="edit-avatar-btn">
+              <i class="fas fa-camera"></i>
+            </button>
+          </div>
+          <div class="profile-info">
+            <h1 id="profile-name">লোড হচ্ছে...</h1>
+            <p id="profile-email">email@example.com</p>
+            <span id="profile-role" class="role-badge">Student</span>
+          </div>
+        </div>
+
+        <div class="profile-stats">
+          <div class="stat-card">
+            <i class="fas fa-check-circle"></i>
+            <h3 id="completed-exams">0</h3>
+            <p>সম্পন্ন কুইজ</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-trophy"></i>
+            <h3 id="total-score">0</h3>
+            <p>মোট স্কোর</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-calendar-alt"></i>
+            <h3 id="member-since">0</h3>
+            <p>সদস্য হয়েছেন</p>
+          </div>
+        </div>
+
+        <div class="profile-details">
+          <div class="detail-section">
+            <h2><i class="fas fa-user"></i> ব্যক্তিগত তথ্য</h2>
+            <div class="detail-item">
+              <label>নাম:</label>
+              <input type="text" id="edit-name" disabled />
+            </div>
+            <div class="detail-item">
+              <label>ইমেল:</label>
+              <input type="email" id="edit-email" disabled />
+            </div>
+            <div class="detail-item">
+              <label>ফোন:</label>
+              <input type="tel" id="edit-phone" placeholder="ফোন নম্বর যোগ করুন" disabled />
+            </div>
+            <div class="detail-item">
+              <label>ঠিকানা:</label>
+              <input type="text" id="edit-address" placeholder="ঠিকানা যোগ করুন" disabled />
+            </div>
+            <div class="profile-actions">
+              <button id="edit-profile-btn" class="btn btn-primary">
+                <i class="fas fa-edit"></i> প্রোফাইল এডিট করুন
+              </button>
+              <button id="save-profile-btn" class="btn btn-success" style="display: none;">
+                <i class="fas fa-save"></i> সংরক্ষণ করুন
+              </button>
+              <button id="cancel-edit-btn" class="btn btn-secondary" style="display: none;">
+                <i class="fas fa-times"></i> বাতিল করুন
+              </button>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <h2><i class="fas fa-history"></i> সাম্প্রতিক কার্যক্রম</h2>
+            <div id="recent-activity" class="activity-list">
+              <p>কোনো কার্যক্রম নেই</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-footer">
+          <a href="index.html" class="btn btn-secondary">
+            <i class="fas fa-home"></i> হোম পেজে ফিরে যান
+          </a>
+          <button id="logout-btn" class="btn btn-danger">
+            <i class="fas fa-sign-out-alt"></i> লগআউট
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/profile.js"></script>
+  </body>
+</html>

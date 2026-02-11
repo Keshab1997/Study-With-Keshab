@@ -23,7 +23,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
-    <!-- চূড়ান্ত এবং আধুনিক CSS -->
+    <!-- চূড়ান্ত এবং আধুনিক CSS -->
     <link rel="stylesheet" href="css/login-style.css" />
   </head>
   <body class="login-page">
@@ -54,13 +54,30 @@
       </div>
 
       <div class="login-form">
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email-input" placeholder="ইমেল" required />
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password-input" placeholder="পাসওয়ার্ড" required />
+        </div>
+        <button id="login-btn" class="login-btn">
+          <span class="btn-text">লগইন করুন</span>
+          <div class="spinner"></div>
+        </button>
+        <p id="error-message"></p>
+        
+        <div class="divider"><span>অথবা</span></div>
+        
         <button id="google-login-btn" class="google-btn">
           <i class="fab fa-google"></i>
-          <span>Google দিয়ে লগইন করুন</span>
+          <span>Google দিয়ে লগইন করুন</span>
         </button>
       </div>
 
       <div class="login-footer">
+        <p>নতুন ব্যবহারকারী? <a href="signup.html">সাইন আপ করুন</a></p>
         <a href="index.html">হোম পেজে ফিরে যান</a>
       </div>
     </div>
