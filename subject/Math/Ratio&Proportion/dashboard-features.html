@@ -1,0 +1,115 @@
+<!-- এই HTML code টি আপনার index.html এর dashboard section এ যোগ করুন -->
+
+<!-- Quick Stats Cards -->
+<div class="quick-stats-grid">
+    <div class="stat-card">
+        <div class="stat-label">মোট কুইজ</div>
+        <div class="stat-number" id="total-quizzes">0</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">মোট স্কোর</div>
+        <div class="stat-number" id="total-score">0</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">গড় নম্বর</div>
+        <div class="stat-number" id="average-score">0</div>
+    </div>
+</div>
+
+<!-- Study Streak -->
+<div class="streak-container">
+    <div class="streak-icon">🔥</div>
+    <div class="streak-info">
+        <h3 id="streak-days">0 দিন</h3>
+        <p>পড়াশোনার ধারাবাহিকতা</p>
+    </div>
+</div>
+
+<!-- Weekly Activity Chart -->
+<div class="dashboard-item">
+    <h3>সাপ্তাহিক কার্যকলাপ</h3>
+    <div class="weekly-chart">
+        <div class="day-bar">
+            <div class="bar" style="height: 0%" data-day="sun"></div>
+            <div class="day-label">রবি</div>
+        </div>
+        <div class="day-bar">
+            <div class="bar" style="height: 0%" data-day="mon"></div>
+            <div class="day-label">সোম</div>
+        </div>
+        <div class="day-bar">
+            <div class="bar" style="height: 0%" data-day="tue"></div>
+            <div class="day-label">মঙ্গল</div>
+        </div>
+        <div class="day-bar">
+            <div class="bar" style="height: 0%" data-day="wed"></div>
+            <div class="day-label">বুধ</div>
+        </div>
+        <div class="day-bar">
+            <div class="bar" style="height: 0%" data-day="thu"></div>
+            <div class="day-label">বৃহঃ</div>
+        </div>
+        <div class="day-bar">
+            <div class="bar" style="height: 0%" data-day="fri"></div>
+            <div class="day-label">শুক্র</div>
+        </div>
+        <div class="day-bar">
+            <div class="bar" style="height: 0%" data-day="sat"></div>
+            <div class="day-label">শনি</div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activity -->
+<div class="dashboard-item">
+    <h3>সাম্প্রতিক কার্যকলাপ</h3>
+    <ul class="recent-activity-list" id="recent-activity">
+        <li class="activity-item">
+            <div class="activity-icon"><i class="fas fa-clock"></i></div>
+            <div class="activity-details">
+                <h4>কোনো কার্যকলাপ নেই</h4>
+                <p>এখনও কোনো কুইজ দেওয়া হয়নি</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!-- Study Time Tracker -->
+<div class="time-tracker">
+    <div class="time-info">
+        <div class="time-icon">⏱️</div>
+        <div class="time-details">
+            <h3 id="study-time">0 মিনিট</h3>
+            <p>আজকের পড়াশোনার সময়</p>
+        </div>
+    </div>
+</div>
+
+<!-- Rank Badge -->
+<div class="rank-badge-display">
+    <div class="rank-icon">🏆</div>
+    <div class="rank-info">
+        <h3 id="chapter-rank">#-</h3>
+        <p>এই অধ্যায়ে আপনার র্যাঙ্ক</p>
+    </div>
+</div>
+
+<!-- Motivational Quote -->
+<div class="motivational-quote-box">
+    <p id="daily-quote">"সফলতা হলো ছোট ছোট প্রচেষ্টার সমষ্টি, যা প্রতিদিন পুনরাবৃত্তি হয়।"</p>
+    <div class="quote-author">- রবার্ট কলিয়ার</div>
+</div>
+
+<!-- Target Progress -->
+<div class="target-progress-container">
+    <div class="target-header">
+        <h4>মাসিক লক্ষ্য</h4>
+        <span class="target-percentage" id="target-percentage">0%</span>
+    </div>
+    <div class="target-bar">
+        <div class="target-fill" id="target-fill" style="width: 0%"></div>
+    </div>
+    <p style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--text-color); opacity: 0.8;">
+        <span id="completed-target">0</span> / <span id="total-target">10</span> কুইজ সম্পন্ন
+    </p>
+</div>
