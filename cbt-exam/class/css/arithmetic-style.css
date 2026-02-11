@@ -49,3 +49,36 @@ body.dark-mode .answer-box {
 body.dark-mode .question-box {
     background: #5d4a2e;
 }
+/* ভগ্নাংশ বা Fraction স্টাইল */
+.math-eq {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 12px 0;
+    font-family: 'Times New Roman', serif;
+    font-size: 1.15rem;
+    line-height: 2; /* ভগ্নাংশের জন্য লাইনের মাঝে গ্যাপ */
+}
+
+.fraction {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 6px;
+}
+
+.fraction .top {
+    display: block;
+    border-bottom: 1.5px solid #333; /* মাঝখানের দাগ */
+    padding: 0 5px;
+}
+
+.fraction .bottom {
+    display: block;
+    padding: 0 5px;
+}
+
+/* ডার্ক মোডের জন্য দাগের রঙ সাদা করা */
+body.dark-mode .fraction .top {
+    border-bottom-color: #fff;
+}
