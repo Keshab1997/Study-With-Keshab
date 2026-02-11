@@ -68,7 +68,29 @@ document.addEventListener("DOMContentLoaded", () => {
             script.onerror = () =>
                 reject(`Could not load script at path: ${script.src}`);
             document.body.appendChild(script);
+        
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
         });
+    };
+});
     }
 
     // --- মূল লজিক (চূড়ান্ত এবং ডায়নামিক ভার্সন) ---
@@ -90,7 +112,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("এই পরীক্ষা দিতে হলে আপনাকে লগইন করতে হবে!");
                 window.location.href = `../login.html?redirect=${encodeURIComponent(window.location.href)}`;
             }
+        
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
         });
+    };
+});
     } else {
         selectionContainer.style.display = "flex";
         loadingSpinner.classList.add("hidden");
@@ -109,7 +153,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     alert("অনুগ্রহ করে একটি পরীক্ষা নির্বাচন করুন।");
                 }
-            });
+            
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
+        });
+    };
+});
     }
 
     function initializeApp() {
@@ -146,8 +212,52 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("clear-response-btn").addEventListener("click", () => handleButtonClick("clear"));
         document.getElementById("submit-btn").addEventListener("click", () => handleButtonClick("submit"));
         finalSubmitBtn.addEventListener("click", showFinalResult);
-        closeSubmitModalBtn.addEventListener("click", () => { submitModal.style.display = "none"; });
-        cancelSubmitBtn.addEventListener("click", () => { submitModal.style.display = "none"; });
+        closeSubmitModalBtn.addEventListener("click", () => { submitModal.style.display = "none"; 
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
+        });
+    };
+});
+        cancelSubmitBtn.addEventListener("click", () => { submitModal.style.display = "none"; 
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
+        });
+    };
+});
         document.getElementById("pause-btn").addEventListener("click", togglePause);
         document.getElementById("resume-btn-overlay").addEventListener("click", togglePause);
         document.getElementById("restart-btn").addEventListener("click", () => {
@@ -155,7 +265,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 resetExamState();
                 location.reload();
             }
+        
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
         });
+    };
+});
         const togglePaletteBtn = document.getElementById("toggle-palette-btn"),
             backToQuestionBtn = document.getElementById("back-to-question-btn"),
             examBody = document.getElementById("exam-body");
@@ -163,15 +295,125 @@ document.addEventListener("DOMContentLoaded", () => {
             togglePaletteBtn.addEventListener("click", () => examBody.classList.add("show-palette"));
             backToQuestionBtn.addEventListener("click", () => examBody.classList.remove("show-palette"));
         }
-        questionPaperBtn.addEventListener("click", () => { displayQuestionPaper(); qpModal.style.display = "flex"; });
-        instructionsBtn.addEventListener("click", () => { instructionsModal.style.display = "flex"; });
-        closeQpModalBtn.addEventListener("click", () => { qpModal.style.display = "none"; });
-        closeInstructionsModalBtn.addEventListener("click", () => { instructionsModal.style.display = "none"; });
+        questionPaperBtn.addEventListener("click", () => { displayQuestionPaper(); qpModal.style.display = "flex"; 
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
+        });
+    };
+});
+        instructionsBtn.addEventListener("click", () => { instructionsModal.style.display = "flex"; 
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
+        });
+    };
+});
+        closeQpModalBtn.addEventListener("click", () => { qpModal.style.display = "none"; 
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
+        });
+    };
+});
+        closeInstructionsModalBtn.addEventListener("click", () => { instructionsModal.style.display = "none"; 
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
+        });
+    };
+});
         window.addEventListener("click", (event) => {
             if (event.target == qpModal) qpModal.style.display = "none";
             if (event.target == instructionsModal) instructionsModal.style.display = "none";
             if (event.target == submitModal) submitModal.style.display = "none";
+        
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
         });
+    };
+});
         document.addEventListener("keydown", handleKeyPress);
     }
 
@@ -221,15 +463,81 @@ document.addEventListener("DOMContentLoaded", () => {
             const isChecked = currentAnswer.selectedOption === index;
             const optionId = `option-${index}`;
             optionsContainerEl.innerHTML += `<label for="${optionId}" class="option ${isChecked ? "selected" : ""}"><input type="radio" id="${optionId}" name="option" value="${index}" ${isChecked ? "checked" : ""}>${option}</label>`;
+        
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
         });
+    };
+});
         document.querySelectorAll('input[name="option"]').forEach((radio) => {
             radio.addEventListener("change", (e) => {
                 userAnswers[currentQuestionIndex].selectedOption = parseInt(e.target.value);
                 document.querySelectorAll(".option").forEach((l) => l.classList.remove("selected"));
                 e.target.closest("label").classList.add("selected");
                 saveProgress();
-            });
+            
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
         });
+    };
+});
+        
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
+        });
+    };
+});
         updatePalette();
     }
 
@@ -246,9 +554,53 @@ document.addEventListener("DOMContentLoaded", () => {
                 renderQuestion();
                 saveProgress();
                 if (window.innerWidth <= 992) { examBody.classList.remove("show-palette"); }
-            });
-            questionPaletteEl.appendChild(btn);
+            
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
         });
+    };
+});
+            questionPaletteEl.appendChild(btn);
+        
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
+        });
+    };
+});
     }
 
     function updatePalette() {
@@ -256,7 +608,29 @@ document.addEventListener("DOMContentLoaded", () => {
             const index = parseInt(btn.dataset.index);
             btn.className = "palette-btn " + userAnswers[index].status;
             if (index === currentQuestionIndex) btn.classList.add("current");
+        
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
         });
+    };
+});
     }
 
     function startTimer(duration) {
@@ -286,7 +660,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (ans.selectedOption === questions[index].answer) correctCount++;
                 else wrongCount++;
             }
+        
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
         });
+    };
+});
 
         const totalQuestions = questions.length;
         // === পরিবর্তন: nonCorrectCount সঠিকভাবে গণনা করা হচ্ছে ===
@@ -302,7 +698,7 @@ document.addEventListener("DOMContentLoaded", () => {
         saveQuizResult(SET_NAME, correctCount, nonCorrectCount, totalQuestions);
 
         const container = document.getElementById("exam-container");
-        container.innerHTML = `<div class="result-page"><div class="result-card"><h2 class="result-title"><i class="fas fa-poll"></i> পরীক্ষার ফলাফল</h2><div class="result-summary"><p class="result-score-text">আপনার চূড়ান্ত স্কোর</p><p class="result-score">${finalScore.toFixed(2)} / ${totalQuestions}</p></div><div class="stats-grid"><div class="stat-item stat-attempted"><h4>Attempted</h4><p>${attemptedCount}</p></div><div class="stat-item stat-unanswered"><h4>Unanswered</h4><p>${unansweredCount}</p></div><div class="stat-item stat-correct"><h4>Correct</h4><p>${correctCount} (+${positiveMarks.toFixed(2)})</p></div><div class="stat-item stat-wrong"><h4>Wrong</h4><p>${wrongCount} (-${negativeMarks.toFixed(2)})</p></div></div><div class="accuracy-section"><div class="accuracy-label"><span>Accuracy</span><span>${accuracy.toFixed(1)}%</span></div><div class="progress-bar"><div class="progress-fill" style="width: ${accuracy.toFixed(1)}%;"></div></div></div><div class="result-actions"><button onclick="showReview()" class="action-btn review"><i class="fas fa-search"></i> রিভিউ দেখুন</button><button onclick="location.reload()" class="action-btn retry"><i class="fas fa-redo"></i> আবার দিন</button></div></div></div>`;
+        container.innerHTML = `<div class="result-page"><div class="result-card"><h2 class="result-title"><i class="fas fa-poll"></i> পরীক্ষার ফলাফল</h2><div class="result-summary"><p class="result-score-text">আপনার চূড়ান্ত স্কোর</p><p class="result-score">${finalScore.toFixed(2)} / ${totalQuestions}</p></div><div class="stats-grid"><div class="stat-item stat-attempted"><h4>Attempted</h4><p>${attemptedCount}</p></div><div class="stat-item stat-unanswered"><h4>Unanswered</h4><p>${unansweredCount}</p></div><div class="stat-item stat-correct"><h4>Correct</h4><p>${correctCount} (+${positiveMarks.toFixed(2)})</p></div><div class="stat-item stat-wrong"><h4>Wrong</h4><p>${wrongCount} (-${negativeMarks.toFixed(2)})</p></div></div><div class="accuracy-section"><div class="accuracy-label"><span>Accuracy</span><span>${accuracy.toFixed(1)}%</span></div><div class="progress-bar"><div class="progress-fill" style="width: ${accuracy.toFixed(1)}%;"></div></div></div><div class="result-actions"><button onclick="window.generateCertificateFromResult()" class="action-btn certificate"><i class="fas fa-certificate"></i> সার্টিফিকেট ডাউনলোড</button><button onclick="showReview()" class="action-btn review"><i class="fas fa-search"></i> রিভিউ দেখুন</button><button onclick="location.reload()" class="action-btn retry"><i class="fas fa-redo"></i> আবার দিন</button><button onclick="window.location.href=\'../index.html\'" class="action-btn home"><i class="fas fa-home"></i> হোম পেজ</button></div></div></div>`;
     }
 
     window.showReview = function () {
@@ -316,7 +712,29 @@ document.addEventListener("DOMContentLoaded", () => {
             if (isAttempted) { cardClass = isCorrect ? "review-correct" : "review-incorrect"; yourAnswerIcon = isCorrect ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>'; } 
             else { cardClass = "review-unanswered"; yourAnswerIcon = '<i class="far fa-circle"></i>'; }
             reviewHTML += `<div class="review-card ${cardClass}"><h3 class="review-question"><i class="fas fa-question-circle"></i> প্রশ্ন ${i + 1}: ${q.questionText}</h3><div class="review-answers-container"><p class="review-answer correct-ans"><strong><i class="fas fa-check-circle"></i> সঠিক উত্তর:</strong> <span>${q.options[q.answer]}</span></p><p class="review-answer your-ans"><strong>${yourAnswerIcon} আপনার উত্তর:</strong> <span>${userAnswer.selectedOption !== null ? q.options[userAnswer.selectedOption] : "উত্তর দেননি"}</span></p></div></div>`;
+        
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
         });
+    };
+});
         const dashboardUrl = "../index.html";
         reviewHTML += `<div class="review-footer"><a href="${dashboardUrl}" class="action-btn dashboard"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ডে যান</a><button onclick="location.reload()" class="action-btn retry"><i class="fas fa-redo"></i> আবার দিন</button></div></div>`;
         container.innerHTML = reviewHTML;
@@ -370,13 +788,57 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
                 const updateData = { [`chapters.${chapterKey}`]: chapterData };
                 transaction.update(userDocRef, updateData);
-            });
+            
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
+        });
+    };
+});
         }).then(() => {
             console.log(`'${chapterName}' অধ্যায়ে ফলাফল সফলভাবে সেভ হয়েছে!`);
         }).catch((error) => {
             console.error("CBT স্কোর সেভ করতে সমস্যা হয়েছে: ", error);
             alert("দুঃখিত, আপনার ফলাফল সেভ করা যায়নি।");
+        
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
         });
+    };
+});
     }
 
     function displayQuestionPaper() {
@@ -389,10 +851,54 @@ document.addEventListener("DOMContentLoaded", () => {
                 let optionClass = "qp-option";
                 if (userAnswer && userAnswer.selectedOption === optionIndex) { optionClass += " qp-selected-option"; }
                 questionBlockHTML += `<span class="${optionClass}">(${String.fromCharCode(65 + optionIndex)}) ${option}</span>`;
-            });
+            
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
+        });
+    };
+});
             questionBlockHTML += `</div>`;
             qpViewContainer.innerHTML += questionBlockHTML;
+        
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
         });
+    };
+});
     }
 
     function handleKeyPress(event) {
@@ -406,4 +912,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (key === "Enter") { event.preventDefault(); document.getElementById("save-next-btn").click(); }
     }
+
+    window.generateCertificateFromResult = function() {
+        const user = firebase.auth().currentUser;
+        const userName = user ? (user.displayName || 'Student') : 'Student';
+        const urlParams = new URLSearchParams(window.location.search);
+        const examName = urlParams.get('chapter') || 'CBT Exam';
+        
+        const scoreText = document.querySelector('.result-score').textContent;
+        const score = parseInt(scoreText.split('/')[0].trim());
+        const total = parseInt(scoreText.split('/')[1].trim());
+        const percentage = ((score / total) * 100).toFixed(1);
+        const examDate = new Date().toLocaleDateString('en-GB');
+        
+        generateCertificate({
+            userName: userName,
+            examName: examName,
+            score: score,
+            totalQuestions: total,
+            percentage: percentage,
+            date: examDate
+        });
+    };
 });

@@ -93,6 +93,32 @@
 
 
       <!-- Stats Counter Section -->
+      <section class="stats-section">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <i class="fas fa-users"></i>
+              <h3 class="stat-number" data-target="1000">0</h3>
+              <p>শিক্ষার্থী</p>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-book"></i>
+              <h3 class="stat-number" data-target="10">0</h3>
+              <p>বিষয়</p>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-question-circle"></i>
+              <h3 class="stat-number" data-target="500">0</h3>
+              <p>কুইজ</p>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-trophy"></i>
+              <h3 class="stat-number" data-target="5000">0</h3>
+              <p>পরীক্ষা সম্পন্ন</p>
+            </div>
+          </div>
+        </div>
+      </section>
       <section id="subjects" class="subjects-section">
         <div class="container">
           <h2 class="section-title">আপনার পছন্দের বিষয় বেছে নিন</h2>
