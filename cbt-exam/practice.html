@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্র্যাকটিস সেশন</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .card-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .card-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .card-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> পরীক্ষা পেজে ফিরে যান
+        </a>
+        
+        <div class="header">
+            <h1><i class="fas fa-book-reader"></i> প্র্যাকটিস সেশন</h1>
+            <p>আপনার পছন্দের বিষয় নির্বাচন করুন এবং অনুশীলন শুরু করুন</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h3>পাটিগণিত</h3>
+                <p>সংখ্যা, HCF, LCM, শতাংশ, লাভ-ক্ষতি, সুদ এবং আরও অনেক কিছু শিখুন</p>
+                <a href="class/arithmetic-practice-part1.html" class="card-btn">
+                    <i class="fas fa-play"></i> শুরু করুন
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <h3>অনুপাত ও সমানুপাত</h3>
+                <p>অনুপাত, সমানুপাত, মিশ্রণ এবং সংক্রান্ত সমস্যা সমাধান</p>
+                <a href="class/class1.html" class="card-btn">
+                    <i class="fas fa-play"></i> শুরু করুন
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-square-root-alt"></i>
+                </div>
+                <h3>বীজগণিত</h3>
+                <p>সমীকরণ, অসমতা এবং বীজগাণিতিক সূত্র অনুশীলন করুন</p>
+                <a href="#" class="card-btn">
+                    <i class="fas fa-lock"></i> শীঘ্রই আসছে
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-shapes"></i>
+                </div>
+                <h3>জ্যামিতি</h3>
+                <p>ত্রিভুজ, বৃত্ত, ক্ষেত্রফল এবং পরিমাপ সম্পর্কিত প্রশ্ন</p>
+                <a href="#" class="card-btn">
+                    <i class="fas fa-lock"></i> শীঘ্রই আসছে
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>সময় ও কাজ</h3>
+                <p>কাজ, সময়, দক্ষতা এবং পাইপ সংক্রান্ত সমস্যা</p>
+                <a href="#" class="card-btn">
+                    <i class="fas fa-lock"></i> শীঘ্রই আসছে
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-train"></i>
+                </div>
+                <h3>গতি, দূরত্ব ও সময়</h3>
+                <p>ট্রেন, নৌকা এবং গতিবেগ সংক্রান্ত প্রশ্ন</p>
+                <a href="#" class="card-btn">
+                    <i class="fas fa-lock"></i> শীঘ্রই আসছে
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>তথ্য বিশ্লেষণ</h3>
+                <p>গড়, মধ্যক, প্রচুরক এবং গ্রাফ বিশ্লেষণ</p>
+                <a href="#" class="card-btn">
+                    <i class="fas fa-lock"></i> শীঘ্রই আসছে
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>যুক্তি ও বিচার</h3>
+                <p>লজিক্যাল রিজনিং এবং সমস্যা সমাধান দক্ষতা</p>
+                <a href="#" class="card-btn">
+                    <i class="fas fa-lock"></i> শীঘ্রই আসছে
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-language"></i>
+                </div>
+                <h3>সাধারণ জ্ঞান</h3>
+                <p>ইতিহাস, ভূগোল, বিজ্ঞান এবং কারেন্ট অ্যাফেয়ার্স</p>
+                <a href="#" class="card-btn">
+                    <i class="fas fa-lock"></i> শীঘ্রই আসছে
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

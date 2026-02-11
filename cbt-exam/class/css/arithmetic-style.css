@@ -1,0 +1,51 @@
+.fraction {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 4px;
+}
+.fraction .top {
+    display: block;
+    border-bottom: 2px solid currentColor;
+    padding: 1px;
+}
+.fraction .bottom {
+    display: block;
+    padding: 1px;
+}
+.math-eq {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 10px 0;
+}
+.highlight-text {
+    color: #d32f2f;
+    font-weight: bold;
+}
+.answer-box {
+    background: #e8f5e9;
+    padding: 15px;
+    border-left: 4px solid #4caf50;
+    margin: 15px 0;
+}
+.question-box {
+    background: #fff3e0;
+    padding: 15px;
+    border-left: 4px solid #ff9800;
+    margin: 15px 0;
+}
+body.dark-mode .math-eq {
+    color: #fff;
+    background: #444;
+}
+body.dark-mode .answer-box {
+    background: #2e5d3e;
+}
+body.dark-mode .question-box {
+    background: #5d4a2e;
+}
