@@ -384,35 +384,22 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.disabled = true;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> পাঠানো হচ্ছে...';
 
-        const FIREBASE_SERVER_KEY = 'AIzaSyA_s7CWYwcKkcNIPoSJ5riuMwkixViHt-o';
-
         try {
-            const response = await fetch('https://corsproxy.io/?https://fcm.googleapis.com/fcm/send', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'key=' + FIREBASE_SERVER_KEY
-                },
-                body: JSON.stringify({
-                    "to": "/topics/all_android_users",
-                    "notification": {
-                        "title": title,
-                        "body": message,
-                        "icon": "ic_notification",
-                        "sound": "default"
-                    },
-                    "priority": "high"
-                })
-            });
+            // Supabase তে save করুন - Android app সেখান থেকে fetch করবে
+            const { data, error } = await supabaseClient
+                .from('android_notifications')
+                .insert([{ 
+                    title: title, 
+                    message: message, 
+                    created_at: new Date().toISOString(),
+                    is_read: false 
+                }]);
 
-            const result = await response.json();
-            if (result.message_id || result.success) {
-                alert('অ্যান্ড্রয়েড অ্যাপে সফলভাবে পাঠানো হয়েছে!');
-                document.getElementById('android-title').value = '';
-                document.getElementById('android-message').value = '';
-            } else {
-                alert('পাঠাতে সমস্যা হয়েছে: ' + JSON.stringify(result));
-            }
+            if (error) throw error;
+
+            alert('অ্যান্ড্রয়েড অ্যাপে সফলভাবে পাঠানো হয়েছে!');
+            document.getElementById('android-title').value = '';
+            document.getElementById('android-message').value = '';
         } catch (err) {
             console.error(err);
             alert('Error: ' + err.message);
