@@ -2,7 +2,7 @@
 <html lang="bn">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" id="viewportMeta" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" id="viewportMeta" />
     <meta name="description" content="Study With Keshab - বাংলায় সেরা অনলাইন শিক্ষা প্ল্যাটফর্ম। Physics, Chemistry, Math, GK সহ সকল বিষয়ে ইন্টারেক্টিভ কুইজ, নোট এবং CBT পরীক্ষা।" />
     <meta name="keywords" content="অনলাইন শিক্ষা, বাংলা পড়াশোনা, কুইজ, CBT পরীক্ষা, Physics, Chemistry, Math" />
     <meta property="og:title" content="Study With Keshab - Learn Smart. Grow Strong." />
@@ -518,10 +518,7 @@
             icon.classList.add("fa-mobile-alt");
           });
         } else {
-          viewportMeta.setAttribute(
-            "content",
-            "width=device-width, initial-scale=1.0",
-          );
+          viewportMeta.setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no");
           if (desktopBtn) desktopBtn.title = "ডেস্কটপ মোড";
           if (mobileMenuText) mobileMenuText.textContent = "ডেস্কটপ মোড";
           allIcons.forEach((icon) => {
