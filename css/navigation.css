@@ -1,7 +1,7 @@
 /* Modern Navigation Styles */
 .site-header {
   position: relative;
-  background: #fff;
+  background: #4a90e2;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   z-index: 1000;
 }
@@ -30,7 +30,7 @@
 
 .nav-link {
   padding: 8px 16px;
-  color: #333;
+  color: #fff;
   text-decoration: none;
   border-radius: 8px;
   transition: all 0.3s;
@@ -45,8 +45,8 @@
 }
 
 .nav-link:hover {
-  background: #f0f4f8;
-  color: #0052cc;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
 }
 
 .header-right {
@@ -74,7 +74,7 @@
   background: transparent;
   border: none;
   font-size: 20px;
-  color: #333;
+  color: #fff;
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
@@ -82,7 +82,7 @@
 }
 
 .icon-btn:hover {
-  background: #f0f4f8;
+  background: rgba(255,255,255,0.2);
 }
 
 .badge {
@@ -124,7 +124,7 @@
 .hamburger span {
   width: 25px;
   height: 3px;
-  background: #333;
+  background: #fff;
   border-radius: 3px;
   transition: all 0.3s;
 }
