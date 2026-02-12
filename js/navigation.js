@@ -4,7 +4,7 @@ function loadNavigation() {
     <header class="site-header">
       <div class="header-container">
         <a href="index.html" class="logo-link">
-          <img src="images/logo.jpg" alt="Study With Keshab Logo" class="logo-img" />
+          <img src="images/icons/icon-512x512.png" alt="Study With Keshab Logo" class="logo-img" />
         </a>
         
         <nav class="desktop-nav">

@@ -82,8 +82,8 @@
                 console.log('Creating notification...');
                 const notification = new Notification('Test Notification', {
                     body: 'এটি একটি টেস্ট নোটিফিকেশন!',
-                    icon: '/images/logo.jpg',
-                    badge: '/images/logo.jpg',
+                    icon: '/images/icons/icon-512x512.png',
+                    badge: '/images/icons/icon-512x512.png',
                     vibrate: [200, 100, 200]
                 });
                 console.log('Notification created:', notification);
@@ -108,8 +108,8 @@
                     console.log('Showing notification...');
                     await registration.showNotification('Test Push Notification', {
                         body: 'Background notification test',
-                        icon: '/images/logo.jpg',
-                        badge: '/images/logo.jpg',
+                        icon: '/images/icons/icon-512x512.png',
+                        badge: '/images/icons/icon-512x512.png',
                         vibrate: [200, 100, 200],
                         data: { url: '/' }
                     });

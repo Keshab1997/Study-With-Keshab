@@ -9,7 +9,7 @@ const CACHE_NAME = "study-with-keshab-cache-v25";
 const urlsToCache = [
   "./",
   "index.html",
-  "images/logo.jpg"
+  "images/icons/icon-512x512.png"
 ];
 
 // ===============================
@@ -97,8 +97,8 @@ self.addEventListener('push', function(event) {
   const title = data.title || 'Study With Keshab';
   const options = {
     body: data.body || 'নতুন বিজ্ঞপ্তি এসেছে',
-    icon: '/images/logo.jpg',
-    badge: '/images/logo.jpg',
+    icon: '/images/icons/icon-512x512.png',
+    badge: '/images/icons/icon-192x192.png',
     vibrate: [200, 100, 200],
     data: { url: data.url || '/' },
     requireInteraction: false,
