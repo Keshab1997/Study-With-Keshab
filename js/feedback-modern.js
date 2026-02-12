@@ -25,13 +25,27 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> পাঠানো হচ্ছে...';
             
             try {
+                // Check if user is logged in
+                const user = firebase.auth().currentUser;
+                if (!user) {
+                    alert('মতামত পাঠাতে প্রথমে লগইন করুন।');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>মতামত পাঠান</span> <i class="fas fa-paper-plane"></i>';
+                    return;
+                }
+                
                 // Save to Firestore
                 const db = firebase.firestore();
-                await db.collection('feedbacks').add(formData);
+                await db.collection('feedbacks').add({
+                    ...formData,
+                    userId: user.uid,
+                    userEmail: user.email
+                });
                 
                 // Show success message
                 this.style.display = 'none';
                 successMessage.style.display = 'block';
+                showToast('মতামত সফলভাবে পাঠানো হয়েছে!', 'success');
                 
                 // Reset form after 3 seconds
                 setTimeout(() => {
@@ -44,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
             } catch (error) {
                 console.error('Error submitting feedback:', error);
-                alert('মতামত পাঠাতে সমস্যা হয়েছে। আবার চেষ্টা করুন।');
+                showToast('মতামত পাঠাতে সমস্যা হয়েছে।', 'error');
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<span>মতামত পাঠান</span> <i class="fas fa-paper-plane"></i>';
             }

@@ -1,6 +1,8 @@
 // Typing Animation Effect
 document.addEventListener('DOMContentLoaded', function() {
     const typingText = document.querySelector('.typing-text');
+    if (!typingText) return;
+    
     const texts = [
         'শিক্ষা হোক সহজ, প্রযুক্তিতে সমৃদ্ধ',
         'Learn Smart. Grow Strong.',

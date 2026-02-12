@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const sbHistoryBody = document.getElementById('supabase-history-body');
     const sbHistoryLoading = document.getElementById('sb-history-loading');
     const refreshHistoryBtn = document.getElementById('refresh-history-btn');
+    const feedbackTableBody = document.getElementById('feedback-table-body');
+    const feedbackLoading = document.getElementById('feedback-loading');
+    const refreshFeedbackBtn = document.getElementById('refresh-feedback-btn');
 
     const chapterSelect = document.getElementById('chapter-select');
     const leaderboardTableBody = document.getElementById('leaderboard-table-body');
@@ -80,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setupEventListeners();
         loadAllUserData();
         fetchSupabaseHistory();
+        fetchFeedbacks();
     };
     
     // --- ডেটা লোডিং এবং ক্যাশিং ---
@@ -124,10 +128,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if(sbForm) sbForm.addEventListener('submit', handleSupabaseSubmit);
         if(refreshHistoryBtn) refreshHistoryBtn.addEventListener('click', fetchSupabaseHistory);
         if(sbHistoryBody) sbHistoryBody.addEventListener('click', handleSupabaseDelete);
+        if(refreshFeedbackBtn) refreshFeedbackBtn.addEventListener('click', fetchFeedbacks);
+        if(feedbackTableBody) feedbackTableBody.addEventListener('click', handleFeedbackDelete);
         
         // Android App Notification
         const androidBtn = document.getElementById('send-android-btn');
         if(androidBtn) androidBtn.addEventListener('click', sendAndroidNotification);
+        
+        // OneSignal Notification
+        const onesignalBtn = document.getElementById('send-onesignal-btn');
+        if(onesignalBtn) onesignalBtn.addEventListener('click', sendOneSignalNotification);
     };
 
     // === Supabase Notification Functions ===
@@ -147,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const { data, error } = await supabaseClient.from('notifications').insert([{ title: title, message: message, is_active: true }]).select();
             if (error) throw error;
 
-            alert('নোটিফিকেশন সফলভাবে পাঠানো হয়েছে! Users homepage এ দেখতে পাবে।');
+            if(window.showToast) showToast('নোটিফিকেশন সফলভাবে পাঠানো হয়েছে!', 'success');
             sbForm.reset();
             sbModal.style.display = 'none';
             fetchSupabaseHistory();
@@ -369,6 +379,78 @@ document.addEventListener('DOMContentLoaded', () => {
         const term = userSearchInput.value.toLowerCase();
         renderUserTable(allUsersCache.filter(u => (u.displayName || '').toLowerCase().includes(term) || (u.email || '').toLowerCase().includes(term)));
     };
+
+    // === Feedback Functions ===
+    async function fetchFeedbacks() {
+        if(feedbackLoading) feedbackLoading.style.display = 'block';
+        feedbackTableBody.innerHTML = '';
+
+        try {
+            const snapshot = await db.collection('feedbacks').orderBy('timestamp', 'desc').limit(50).get();
+            
+            if(feedbackLoading) feedbackLoading.style.display = 'none';
+
+            if(snapshot.empty) {
+                feedbackTableBody.innerHTML = '<tr><td colspan="7" style="text-align:center;">কোনো feedback পাওয়া যায়নি।</td></tr>';
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                const feedback = doc.data();
+                const date = feedback.timestamp ? new Date(feedback.timestamp).toLocaleDateString('en-US') : 'N/A';
+                const stars = '⭐'.repeat(parseInt(feedback.rating) || 0);
+                const shortMsg = (feedback.message || '').substring(0, 50);
+                const fullMsg = feedback.message || '';
+                
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${feedback.name || 'N/A'}</td>
+                    <td>${feedback.email || 'N/A'}</td>
+                    <td>${stars}</td>
+                    <td>${feedback.category || 'N/A'}</td>
+                    <td>
+                        <span class="short-msg">${shortMsg}${fullMsg.length > 50 ? '...' : ''}</span>
+                        <button class="btn-sm" style="background:#4a90e2; color:white; border:none; padding:3px 8px; border-radius:4px; cursor:pointer; margin-left:5px;" onclick="alert('${fullMsg.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </td>
+                    <td>${date}</td>
+                    <td class="action-cell">
+                        <button class="btn-danger btn-sm feedback-delete-btn" data-id="${doc.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                feedbackTableBody.appendChild(tr);
+            });
+        } catch (error) {
+            console.error('Error fetching feedbacks:', error);
+            if(feedbackLoading) feedbackLoading.style.display = 'none';
+            feedbackTableBody.innerHTML = '<tr><td colspan="7" style="text-align:center;">ডাটা লোড করতে সমস্যা হয়েছে।</td></tr>';
+        }
+    }
+
+    async function handleFeedbackDelete(e) {
+        if (e.target.closest('.feedback-delete-btn')) {
+            const btn = e.target.closest('.feedback-delete-btn');
+            const id = btn.dataset.id;
+            
+            if(confirm('আপনি কি নিশ্চিত এই feedback টি মুছে ফেলতে চান?')) {
+                try {
+                    await db.collection('feedbacks').doc(id).delete();
+                    if(window.showToast) showToast('Feedback মুছে ফেলা হয়েছে!', 'success');
+                    fetchFeedbacks();
+                } catch (error) {
+                    if(window.showToast) showToast('মুছে ফেলতে সমস্যা!', 'error');
+                }
+            }
+        }
+    }
+
+    // === OneSignal Notification Function ===
+    async function sendOneSignalNotification() {
+        window.open('https://dashboard.onesignal.com/apps/610e57c7-37f0-4dc5-9c67-7718ed094a9b/push/compose', '_blank');
+    }
 
     // === Android App Notification Function ===
     async function sendAndroidNotification() {

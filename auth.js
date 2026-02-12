@@ -17,8 +17,16 @@ document.addEventListener('DOMContentLoaded', function() {
             loginBtn.classList.add('loading');
             
             firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((result) => {
+                    const user = result.user;
+                    const db = firebase.firestore();
+                    return db.collection('users').doc(user.uid).set({
+                        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                    }, { merge: true });
+                })
                 .then(() => {
-                    window.location.href = 'index.html';
+                    if(window.showToast) showToast('সফলভাবে লগইন হয়েছে!', 'success');
+                    setTimeout(() => window.location.href = 'index.html', 500);
                 })
                 .catch((error) => {
                     if (error.code === 'auth/user-not-found') {
@@ -151,7 +159,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         return userRef.set(userData, { merge: true });
                     });
                 }).then(() => {
-                    window.location.href = 'index.html';
+                    if(window.showToast) showToast('সফলভাবে লগইন হয়েছে!', 'success');
+                    setTimeout(() => window.location.href = 'index.html', 500);
                 }).catch(error => {
                     console.error("Google সাইন-ইন এর সময় সমস্যা:", error);
                     alert("লগইন করার সময় একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
@@ -183,7 +192,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 return userRef.set(userData, { merge: true });
             }).then(() => {
-                window.location.href = 'index.html';
+                if(window.showToast) showToast('সফলভাবে লগইন হয়েছে!', 'success');
+                setTimeout(() => window.location.href = 'index.html', 500);
             });
         }
     }).catch(error => {
@@ -194,7 +204,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.id === 'mobile-logout' || e.target.closest('#mobile-logout')) {
             e.preventDefault();
             firebase.auth().signOut().then(() => {
-                window.location.href = 'index.html';
+                if(window.showToast) showToast('সফলভাবে লগআউট হয়েছে!', 'success');
+                setTimeout(() => window.location.href = 'index.html', 500);
             }).catch(error => console.error("লগআউট করার সময় সমস্যা:", error));
         }
     });

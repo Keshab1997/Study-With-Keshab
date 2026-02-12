@@ -24,6 +24,8 @@
         />
         <link rel="stylesheet" href="css/admin.css" />
         <link rel="stylesheet" href="css/navigation.css" />
+        <link rel="stylesheet" href="css/toast.css" />
+        <script src="js/toast.js"></script>
         <script src="js/navigation.js"></script>
         
         <!-- Supabase নোটিফিকেশন মডালের জন্য কিছু অতিরিক্ত CSS -->
@@ -79,6 +81,12 @@
                 background: linear-gradient(135deg, #2ecc71, #27ae60);
                 color: white; border: none; padding: 12px 20px; border-radius: 8px;
                 cursor: pointer; font-size: 16px; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 8px;
+                font-family: 'Hind Siliguri', sans-serif;
+                transition: transform 0.2s;
+            }
+            .create-notif-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             }
         </style>
     </head>
@@ -107,6 +115,18 @@
                         </div>
                     </section>
 
+                    <!-- OneSignal Notification Section -->
+                    <section class="send-notification-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-bell"></i> OneSignal Notification</h2>
+                        </div>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Web + Mobile App উভয়েই notification পাঠান</p>
+                        
+                        <button id="send-onesignal-btn" class="create-notif-btn" style="background: linear-gradient(135deg, #E54B4D, #c0392b);">
+                            <i class="fas fa-paper-plane"></i> Send Notification
+                        </button>
+                    </section>
+
                     <!-- Supabase Notification Section (Updated) -->
                     <section class="send-notification-section">
                         <div class="section-header">
@@ -116,26 +136,6 @@
                         <button id="open-supabase-modal-btn" class="create-notif-btn">
                             <i class="fas fa-bell"></i> Create New Notification
                         </button>
-
-                        <!-- Android App Notification Section -->
-                        <div style="margin-top: 30px; border-top: 2px solid #3DDC84; padding-top: 20px;">
-                            <div class="section-header">
-                                <h2><i class="fab fa-android" style="color: #3DDC84;"></i> Android App Notification</h2>
-                            </div>
-                            <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">এই মেসেজটি শুধুমাত্র যারা APK ব্যবহার করছে তাদের মোবাইলে যাবে (অ্যাপ বন্ধ থাকলেও)।</p>
-                            
-                            <div class="sb-form-group">
-                                <label>Message Title</label>
-                                <input type="text" id="android-title" placeholder="যেমন: নতুন ক্লাস আপলোড হয়েছে">
-                            </div>
-                            <div class="sb-form-group">
-                                <label>Message Body</label>
-                                <textarea id="android-message" rows="3" placeholder="আপনার বার্তাটি লিখুন..."></textarea>
-                            </div>
-                            <button id="send-android-btn" class="create-notif-btn" style="background: linear-gradient(135deg, #3DDC84, #27ae60);">
-                                <i class="fas fa-paper-plane"></i> Send to Android App
-                            </button>
-                        </div>
 
                         <div class="section-header" style="margin-top: 20px;">
                             <h3>Notification History (Supabase)</h3>
@@ -163,6 +163,35 @@
                     </section>
 
                     <!-- ক্লাস ম্যানেজমেন্ট সেকশন - DELETED -->
+
+                    <!-- Feedback Section -->
+                    <section class="user-list-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-comments"></i> User Feedback</h2>
+                            <button id="refresh-feedback-btn" class="btn-sm" style="background:#666; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">
+                                <i class="fas fa-sync"></i> Refresh
+                            </button>
+                        </div>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Rating</th>
+                                        <th>Category</th>
+                                        <th>Message</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="feedback-table-body">
+                                    <!-- JS দিয়ে এখানে ডাটা আসবে -->
+                                </tbody>
+                            </table>
+                            <div class="loading-spinner" id="feedback-loading" style="display:none;"></div>
+                        </div>
+                    </section>
 
                     <section class="user-list-section">
                         <div class="section-header">

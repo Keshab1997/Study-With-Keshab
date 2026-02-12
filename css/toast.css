@@ -1,0 +1,57 @@
+/* Toast Notification Styles */
+.toast {
+    position: fixed;
+    bottom: -100px;
+    right: 20px;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    transition: bottom 0.3s ease;
+    font-family: 'Hind Siliguri', sans-serif;
+    min-width: 250px;
+}
+
+.toast.show {
+    bottom: 20px;
+}
+
+.toast i {
+    font-size: 20px;
+}
+
+.toast-success {
+    border-left: 4px solid #2ecc71;
+}
+
+.toast-success i {
+    color: #2ecc71;
+}
+
+.toast-error {
+    border-left: 4px solid #e74c3c;
+}
+
+.toast-error i {
+    color: #e74c3c;
+}
+
+.toast-info {
+    border-left: 4px solid #4a90e2;
+}
+
+.toast-info i {
+    color: #4a90e2;
+}
+
+@media (max-width: 768px) {
+    .toast {
+        right: 10px;
+        left: 10px;
+        min-width: auto;
+    }
+}
