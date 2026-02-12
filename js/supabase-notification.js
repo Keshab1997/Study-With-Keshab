@@ -2,17 +2,16 @@
 const supabaseUrl = 'https://yofmaciyxrwvqyzyltml.supabase.co'; 
 const supabaseKey = 'sb_publishable_g1eUh3i6hpDQX8w_1-hrvw_ChYrhkc3'; 
 
-// [SOLVED] 'supabase' এর বদলে 'supabaseClient' ব্যবহার করা হয়েছে যাতে লাইব্রেরির সাথে সংঘর্ষ না হয়
+// [SOLVED] 'supabase' এর বদলে 'supabaseClient' ব্যবহার করা হয়েছে যাতে লাইব্রেরির সাথে সংঘর্ষ না হয়
 const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 // HTML এলিমেন্ট সিলেক্ট করা
 const feedContainer = document.getElementById('realtime-notification-feed'); 
-const notificationList = document.getElementById('notification-list'); 
-const badge = document.getElementById('notification-badge'); 
+const notificationList = document.getElementById('notification-list');
 
 // ২. নোটিফিকেশন লোড করার ফাংশন
 async function fetchNotifications() {
-    // এখানেও supabaseClient ব্যবহার করা হয়েছে
+    // এখানেও supabaseClient ব্যবহার করা হয়েছে
     const { data, error } = await supabaseClient
         .from('notifications')
         .select('*')
@@ -32,7 +31,7 @@ function renderNotifications(notifications) {
     const readNotifications = JSON.parse(localStorage.getItem('read_notifications')) || [];
     let unreadCount = 0;
 
-    // কন্টেইনার ক্লিয়ার করা
+    // কন্টেইনার ক্লিয়ার করা
     if (feedContainer) feedContainer.innerHTML = '';
     if (notificationList) notificationList.innerHTML = '';
 
@@ -40,6 +39,7 @@ function renderNotifications(notifications) {
     if (notifications.length === 0) {
         if (feedContainer) feedContainer.innerHTML = '<p class="text-center">No new notifications.</p>';
         if (notificationList) notificationList.innerHTML = '<li class="no-notification-message">No notifications</li>';
+        const badge = document.getElementById('notification-badge');
         if (badge) badge.style.display = 'none';
         return;
     }
@@ -49,7 +49,7 @@ function renderNotifications(notifications) {
         const isRead = readNotifications.includes(notif.id);
         if (!isRead) unreadCount++;
 
-        // === পরিবর্তন: তারিখ ইংরেজিতে দেখানোর জন্য 'en-US' করা হয়েছে ===
+        // === পরিবর্তন: তারিখ ইংরেজিতে দেখানোর জন্য 'en-US' করা হয়েছে ===
         const dateStr = new Date(notif.created_at).toLocaleDateString('en-US', {
             day: 'numeric', month: 'long', year: 'numeric'
         });
@@ -92,9 +92,10 @@ function renderNotifications(notifications) {
     });
 
     // ব্যাজ আপডেট করা
+    const badge = document.getElementById('notification-badge');
     if (badge) {
         if (unreadCount > 0) {
-            badge.style.display = 'flex';
+            badge.style.display = 'inline-block';
             badge.innerText = unreadCount;
         } else {
             badge.style.display = 'none';
@@ -117,48 +118,60 @@ window.markAsRead = function(id, element) {
         }
         
         // ব্যাজ কমানো
-        let currentCount = parseInt(badge.innerText);
-        if (currentCount > 0) {
-            badge.innerText = currentCount - 1;
-            if (badge.innerText == '0') badge.style.display = 'none';
+        const badge = document.getElementById('notification-badge');
+        if (badge) {
+            let currentCount = parseInt(badge.innerText);
+            if (currentCount > 0) {
+                badge.innerText = currentCount - 1;
+                if (badge.innerText == '0') badge.style.display = 'none';
+            }
         }
     }
 };
 
 // ৫. রিয়েলটাইম লিসেনার
+let lastNotificationCount = 0;
+
 supabaseClient
     .channel('public:notifications')
-    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notifications' }, () => {
+    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notifications' }, (payload) => {
+        // নতুন notification এলে audio play করা
+        const audio = new Audio('audio/notification.wav');
+        audio.play().catch(err => console.log('Audio play failed:', err));
+        
+        // Notification fetch করা
         fetchNotifications();
+        
+        // Badge update করা
+        const badge = document.getElementById('notification-badge');
+        if (badge) {
+            const currentCount = parseInt(badge.innerText) || 0;
+            badge.style.display = 'inline-block';
+            badge.innerText = currentCount + 1;
+        }
     })
     .subscribe();
 
-// পেজ লোড হলে রান হবে
-document.addEventListener('DOMContentLoaded', fetchNotifications);
-
 // ৬. মডাল ওপেন/ক্লোজ লজিক
-const bellBtn = document.getElementById('show-notification-btn');
-const modal = document.getElementById('notification-modal');
-const closeBtn = document.getElementById('close-notification-modal');
-const closeFooterBtn = document.getElementById('close-notification-btn-footer');
-const clearBtn = document.getElementById('clear-read-notifications-btn'); 
+function setupModalListeners() {
+    const bellBtn = document.getElementById('show-notification-btn');
+    const modal = document.getElementById('notification-modal');
+    const closeBtn = document.getElementById('close-notification-modal');
+    const closeFooterBtn = document.getElementById('close-notification-btn-footer');
 
-if(bellBtn && modal) {
-    bellBtn.addEventListener('click', () => {
-        modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
-    });
+    if(bellBtn && modal) {
+        bellBtn.addEventListener('click', () => {
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        });
+    }
+
+    const closeModal = () => { if(modal) modal.style.display = 'none'; };
+    if(closeBtn) closeBtn.addEventListener('click', closeModal);
+    if(closeFooterBtn) closeFooterBtn.addEventListener('click', closeModal);
 }
 
-const closeModal = () => { if(modal) modal.style.display = 'none'; };
-if(closeBtn) closeBtn.addEventListener('click', closeModal);
-if(closeFooterBtn) closeFooterBtn.addEventListener('click', closeModal);
-
-// অতিরিক্ত: পঠিত সব মুছুন বাটন
-if(clearBtn) {
-    clearBtn.addEventListener('click', () => {
-        // আপনি চাইলে এখানে পঠিত লিস্ট ক্লিয়ার করার কোড লিখতে পারেন
-        // localStorage.removeItem('read_notifications'); 
-        // fetchNotifications();
-        alert('ফিচারটি শীঘ্রই আসছে!'); 
-    });
-}
+// পেজ লোড হলে রান হবে
+setTimeout(() => {
+    setupModalListeners();
+    fetchNotifications();
+}, 1000);

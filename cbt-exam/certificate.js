@@ -181,6 +181,8 @@ function generateCertificate(examData) {
             .title { font-size: 28px; }
             .recipient-name { font-size: 32px; }
             .score-section { gap: 20px; }
+            .footer { flex-direction: column; gap: 30px; align-items: center; }
+            .signature-line { width: 150px; }
         }
     </style>
 </head>
