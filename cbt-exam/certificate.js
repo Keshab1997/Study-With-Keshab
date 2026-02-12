@@ -8,7 +8,7 @@ function generateCertificate(examData) {
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Certificate - ${userName}</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,226 +16,104 @@ function generateCertificate(examData) {
             font-family: 'Georgia', serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: flex-start;
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
+            overflow-x: hidden;
+        }
+        .certificate-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
         }
         .certificate {
             background: white;
             width: 100%;
-            max-width: 900px;
-            padding: 60px;
-            border: 15px solid #667eea;
-            border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            padding: 40px 20px;
+            border: 10px solid #667eea;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             position: relative;
+            text-align: center;
         }
         .certificate::before {
             content: '';
             position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
             border: 2px solid #764ba2;
             pointer-events: none;
         }
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .logo {
-            font-size: 48px;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-        .title {
-            font-size: 42px;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-        .subtitle {
-            font-size: 18px;
-            color: #7f8c8d;
-            font-style: italic;
-        }
-        .content {
-            text-align: center;
-            margin: 40px 0;
-        }
-        .awarded-to {
-            font-size: 20px;
-            color: #7f8c8d;
-            margin-bottom: 15px;
-        }
-        .recipient-name {
-            font-size: 48px;
-            color: #2c3e50;
-            font-weight: bold;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #667eea;
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-        .description {
-            font-size: 18px;
-            color: #34495e;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-        .exam-name {
-            font-size: 24px;
-            color: #667eea;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-        .score-section {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-        .score-item {
-            text-align: center;
-        }
-        .score-label {
-            font-size: 14px;
-            color: #7f8c8d;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-        .score-value {
-            font-size: 32px;
-            color: #27ae60;
-            font-weight: bold;
-        }
-        .footer {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 2px solid #ecf0f1;
-        }
-        .signature {
-            text-align: center;
-        }
-        .signature-line {
-            width: 200px;
-            border-top: 2px solid #2c3e50;
-            margin-bottom: 10px;
-        }
-        .signature-name {
-            font-size: 16px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        .signature-title {
-            font-size: 14px;
-            color: #7f8c8d;
-        }
-        .date {
-            text-align: center;
-        }
-        .date-label {
-            font-size: 14px;
-            color: #7f8c8d;
-            margin-bottom: 5px;
-        }
-        .date-value {
-            font-size: 16px;
-            color: #2c3e50;
-            font-weight: bold;
-        }
-        .actions {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .btn {
-            padding: 12px 30px;
-            margin: 0 10px;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .btn-print {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-        }
-        .btn-download {
-            background: linear-gradient(135deg, #28a745, #218838);
-        }
-        @media print {
-            body { background: white; padding: 0; }
-            .actions { display: none; }
-        }
-        @media (max-width: 768px) {
-            .certificate { padding: 30px 20px; border-width: 10px; }
-            .title { font-size: 28px; }
-            .recipient-name { font-size: 32px; }
-            .score-section { gap: 20px; }
-            .footer { flex-direction: column; gap: 30px; align-items: center; }
-            .signature-line { width: 150px; }
-        }
+        .header { text-align: center; margin-bottom: 30px; }
+        .logo { font-size: 40px; margin-bottom: 10px; }
+        .title { font-size: 28px; color: #2c3e50; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
+        .subtitle { font-size: 16px; color: #7f8c8d; font-style: italic; }
+        .awarded-to { font-size: 16px; color: #7f8c8d; margin: 20px 0 10px; }
+        .recipient-name { font-size: 32px; color: #2c3e50; font-weight: bold; border-bottom: 2px solid #667eea; display: inline-block; margin-bottom: 20px; padding: 0 10px; }
+        .description { font-size: 14px; color: #34495e; line-height: 1.5; }
+        .exam-name { font-size: 20px; color: #667eea; font-weight: bold; margin: 15px 0; }
+        .score-section { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
+        .score-item .score-label { font-size: 12px; color: #7f8c8d; text-transform: uppercase; }
+        .score-value { font-size: 24px; color: #27ae60; font-weight: bold; }
+        .footer { display: flex; justify-content: space-between; margin-top: 40px; padding: 0 20px; text-align: center; }
+        .handwritten-signature { font-family: 'Brush Script MT', 'Lucida Handwriting', cursive; font-size: 28px; color: #2c3e50; font-weight: normal; font-style: italic; margin-bottom: 5px; }
+        .signature-name { font-size: 14px; font-weight: bold; border-top: 1px solid #2c3e50; padding-top: 5px; margin-top: 5px; }
+        .date-value { font-size: 14px; font-weight: bold; border-top: 1px solid #2c3e50; padding-top: 5px; }
+        .actions { margin: 20px 0; display: flex; gap: 10px; justify-content: center; width: 100%; }
+        .btn { padding: 10px 20px; border: none; border-radius: 25px; font-size: 14px; font-weight: bold; cursor: pointer; color: white; }
+        .btn-print { background: #27ae60; }
+        .btn-download { background: #e74c3c; }
+        @media print { body { background: white; padding: 0; } .actions { display: none; } .certificate { border: 15px solid #667eea !important; box-shadow: none; } }
+        @media (max-width: 480px) { .title { font-size: 22px; } .recipient-name { font-size: 24px; } .footer { flex-direction: row; font-size: 12px; } .certificate { padding: 30px 10px; } .handwritten-signature { font-size: 22px; } }
     </style>
 </head>
 <body>
-    <div class="certificate">
-        <div class="header">
-            <div class="logo">🏆</div>
-            <h1 class="title">Certificate of Achievement</h1>
-            <p class="subtitle">Study With Keshab</p>
-        </div>
-        
-        <div class="content">
-            <p class="awarded-to">This certificate is proudly presented to</p>
-            <h2 class="recipient-name">${userName}</h2>
-            <p class="description">
-                For successfully completing the examination and demonstrating
-                excellent knowledge and skills in
-            </p>
-            <div class="exam-name">${examName}</div>
-            
-            <div class="score-section">
-                <div class="score-item">
-                    <div class="score-label">Score</div>
-                    <div class="score-value">${score}/${totalQuestions}</div>
-                </div>
-                <div class="score-item">
-                    <div class="score-label">Percentage</div>
-                    <div class="score-value">${percentage}%</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <div class="signature">
-                <div class="signature-line" style="font-family: 'Brush Script MT', cursive; font-size: 24px; color: #2c3e50; border: none; margin-bottom: 5px;">Keshab Sarkar</div>
-                <div class="signature-name" style="font-size: 14px;">Keshab Sarkar</div>
-                <div class="signature-title">Founder & Instructor</div>
+    <div class="certificate-wrapper">
+        <div class="certificate">
+            <div class="header">
+                <div class="logo">🏆</div>
+                <h1 class="title">Certificate of Achievement</h1>
+                <p class="subtitle">Study With Keshab</p>
             </div>
             
-            <div class="date">
-                <div class="date-label">Date of Issue</div>
-                <div class="date-value">${date}</div>
+            <div class="content">
+                <p class="awarded-to">This certificate is proudly presented to</p>
+                <h2 class="recipient-name">${userName}</h2>
+                <p class="description">For successfully completing the examination in</p>
+                <div class="exam-name">${examName}</div>
+                
+                <div class="score-section">
+                    <div class="score-item">
+                        <div class="score-label">Score</div>
+                        <div class="score-value">${score}/${totalQuestions}</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-label">Percentage</div>
+                        <div class="score-value">${percentage}%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <div class="date-box">
+                    <div class="date-value">${date}</div>
+                    <div class="score-label">Date</div>
+                </div>
+                <div class="sig-box">
+                    <div class="handwritten-signature">Keshab Sarkar</div>
+                    <div class="signature-name">Keshab Sarkar</div>
+                    <div class="score-label">Instructor</div>
+                </div>
             </div>
         </div>
     </div>
     
     <div class="actions">
-        <button class="btn btn-print" onclick="window.print()">
-            🖨️ Print Certificate
-        </button>
-        <button class="btn btn-download" onclick="window.close()">
-            ✖️ Close
-        </button>
+        <button class="btn btn-print" onclick="window.print()">🖨️ Print</button>
+        <button class="btn btn-download" onclick="window.close()">✖ Close</button>
     </div>
 </body>
 </html>
