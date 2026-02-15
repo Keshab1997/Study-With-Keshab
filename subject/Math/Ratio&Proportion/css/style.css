@@ -32,12 +32,29 @@
 /* --- 2. Global & Body Styles (গ্লোবাল ও বডি স্টাইল) --- */
 
 body {
+    overflow-x: hidden;
+    position: relative;
+    max-width: 100%;
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+
     font-family: 'Hind Siliguri', sans-serif;
     margin: 0;
     padding: 20px;
     transition: background-color 0.4s, color 0.4s;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* Allow text selection in inputs and search bar */
+input,
+textarea,
+[contenteditable="true"] {
+    -webkit-user-select: auto;
+    user-select: auto;
 }
 
 /* Day & Dark Mode Theming */
@@ -504,6 +521,16 @@ main {
     background-color: var(--card-bg-day);
     border: 1px solid var(--border-color);
     border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 250px;
+}
+
+.dashboard-chart-container {
+    position: relative;
+    height: 200px;
+    width: 100%;
 }
 
 body.dark-mode .dashboard-item {
@@ -1175,22 +1202,29 @@ footer {
     }
 
 }
+
 /* =================================
    Custom Button Color for PDF Note
    ================================= */
 
 /* পিডিএফ নোট বাটনের ডিফল্ট স্টাইল */
 .nav-button.color-pdf {
-    background: linear-gradient(135deg, #e53935, #c62828); /* সুন্দর লাল গ্র্যাডিয়েন্ট */
-    color: #ffffff; /* সাদা টেক্সট */
-    transition: all 0.3s ease-in-out; /* হোভারের জন্য মসৃণ অ্যানিমেশন */
+    background: linear-gradient(135deg, #e53935, #c62828);
+    /* সুন্দর লাল গ্র্যাডিয়েন্ট */
+    color: #ffffff;
+    /* সাদা টেক্সট */
+    transition: all 0.3s ease-in-out;
+    /* হোভারের জন্য মসৃণ অ্যানিমেশন */
 }
 
 /* মাউস হোভার করলে বাটনের স্টাইল */
 .nav-button.color-pdf:hover {
-    background: linear-gradient(135deg, #c62828, #b71c1c); /* গাঢ় লাল গ্র্যাডিয়েন্ট */
-    transform: translateY(-4px); /* বাটনটি সামান্য উপরে উঠবে */
-    box-shadow: 0 6px 12px rgba(229, 57, 53, 0.4); /* একটি সুন্দর লালচে শ্যাডো */
+    background: linear-gradient(135deg, #c62828, #b71c1c);
+    /* গাঢ় লাল গ্র্যাডিয়েন্ট */
+    transform: translateY(-4px);
+    /* বাটনটি সামান্য উপরে উঠবে */
+    box-shadow: 0 6px 12px rgba(229, 57, 53, 0.4);
+    /* একটি সুন্দর লালচে শ্যাডো */
 }
 
 
@@ -1207,13 +1241,11 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(52, 152, 219, 0.03) 10px,
-        rgba(52, 152, 219, 0.03) 20px
-    );
+    background: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 10px,
+            rgba(52, 152, 219, 0.03) 10px,
+            rgba(52, 152, 219, 0.03) 20px);
     pointer-events: none;
 }
 

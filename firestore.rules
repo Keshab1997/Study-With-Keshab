@@ -8,22 +8,19 @@ service cloud.firestore {
       // একজন অথেন্টিকেটেড ব্যবহারকারী নিজের ডকুমেন্ট পড়তে এবং আপডেট করতে পারবে।
       allow get, update: if request.auth.uid == userId;
 
-      // শুধুমাত্র অ্যাডমিনরা সব ব্যবহারকারীর তালিকা পড়তে পারবে।
-      // এটি অ্যাডমিন প্যানেলের জন্য প্রয়োজন।
-      allow list: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      // অথেন্টিকেটেড ব্যবহারকারীরা লিডারবোর্ডের জন্য তালিকা পড়তে পারবে।
+      allow list: if request.auth != null;
       
       // নতুন ব্যবহারকারী তৈরি করার অনুমতি।
       allow create: if request.auth != null;
     }
 
-    // === লিডারবোর্ডের জন্য নতুন নিয়ম ===
+    // === লিডারবোর্ডের জন্য নিয়ম ===
     match /quiz_scores/{scoreId} {
-      // শুধুমাত্র অ্যাডমিনরা লিডারবোর্ডের জন্য সব স্কোর পড়তে পারবে।
-      // আপনার JS কোড এই কালেকশন থেকে ডেটা 'list' (get) করছে।
-      allow read: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      // সব অথেন্টিকেটেড ব্যবহারকারী স্কোর পড়তে পারবে (লিডারবোর্ড এবং র‍্যাঙ্কের জন্য)
+      allow read: if request.auth != null;
 
       // ব্যবহারকারীরা নিজেদের স্কোর তৈরি করতে পারবে।
-      // এখানে আমরা চেক করছি যে ডকুমেন্টের userId এবং লগইন করা ব্যবহারকারীর আইডি একই কি না।
       allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
       
       // ক্লায়েন্ট থেকে স্কোর আপডেট বা ডিলিট করা যাবে না।
@@ -48,7 +45,7 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    // Class Notes কালেকশনের নিয়ম (Dynamic Content System)
+    // Class Notes কালেকশনের নিয়ম
     match /class_notes/{noteId} {
       // সবাই ক্লাস নোট পড়তে পারবে
       allow read: if true;
@@ -58,7 +55,7 @@ service cloud.firestore {
                    get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
     }
 
-    // Chapters কালেকশনের নিয়ম (Chapter Settings)
+    // Chapters কালেকশনের নিয়ম
     match /chapters/{chapterId} {
       // সবাই চ্যাপ্টার সেটিংস পড়তে পারবে
       allow read: if true;
@@ -78,6 +75,18 @@ service cloud.firestore {
       
       // অ্যাডমিনরা সব রেজাল্ট দেখতে পারবে
       allow list: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Feedbacks কালেকশনের নিয়ম
+    match /feedbacks/{feedbackId} {
+      // শুধুমাত্র অ্যাডমিনরা ফিডব্যাক দেখতে পারবে
+      allow read: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      
+      // ব্যবহারকারী নিজের ফিডব্যাক তৈরি করতে পারবে
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      
+      // ক্লায়েন্ট থেকে ফিডব্যাক আপডেট বা ডিলিট করা যাবে না
+      allow update, delete: if false;
     }
   }
 }
