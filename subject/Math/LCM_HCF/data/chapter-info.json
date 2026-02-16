@@ -2,6 +2,7 @@
   "chapterID": "LCM-HCF",
   "chapterName": "LCM & HCF (লসাগু ও গসাগু)",
   "description": "প্রতিযোগিতামূলক পরীক্ষার জন্য লসাগু ও গসাগু এর সম্পূর্ণ গাইড।",
+  "logoURL": "https://cdn-icons-png.flaticon.com/512/993/993872.png",
   "classes": [
     { "title": "Basic Concepts of LCM & HCF", "id": "1" },
     { "title": "Advanced Shortcut Tricks", "id": "2" },
@@ -12,6 +13,6 @@
     { "title": "Quiz Set 02: Advanced", "set": "Qset2" }
   ],
   "pdfs": [
-    { "title": "Full Chapter Hand-note", "driveID": "YOUR_DRIVE_ID_HERE" }
+    { "title": "all question and answer", "driveID": "1ScBMw_gEaZsvJq7itgow2p5tZYR7JyfH" }
   ]
 }

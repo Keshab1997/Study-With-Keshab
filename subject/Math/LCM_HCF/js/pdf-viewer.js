@@ -47,6 +47,48 @@ function renderPdfButtons() {
     });
 }
 
+// 4. Open PDF by DriveID (for dynamic PDFs from JSON)
+function openPdfByDriveId(driveId, title) {
+    const modal = document.getElementById("fullScreenPdfModal");
+    const frame = document.getElementById("pdfViewerFrame");
+    const titleSpan = document.getElementById("pdfModalTitle");
+    const loader = document.getElementById("pdfLoader");
+
+    if (!modal || !frame) {
+        console.error("Error: Modal or Iframe not found in HTML!");
+        return;
+    }
+
+    // Reset View Settings
+    zoomLevel = 1;
+    rotation = 0;
+    isInverted = false;
+    updateFrameTransform();
+
+    // Show Loader & Hide Frame initially
+    if (loader) loader.style.display = "flex";
+    frame.style.opacity = "0";
+
+    frame.src = `https://drive.google.com/file/d/${driveId}/preview`;
+    
+    if(titleSpan) {
+        titleSpan.innerText = title;
+    }
+
+    // Show Modal
+    modal.style.display = "flex"; 
+    document.body.style.overflow = "hidden";
+
+    enterFullScreen(modal);
+
+    // When PDF Loads
+    frame.onload = function() {
+        if (loader) loader.style.display = "none";
+        frame.style.opacity = "1";
+        frame.focus();
+    };
+}
+
 // 4. Open PDF Logic
 function openPdf(index) {
     if (index < 0 || index >= algebraPdfList.length) return;

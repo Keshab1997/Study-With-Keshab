@@ -43,6 +43,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             `).join('');
         }
 
+        // ৪. পিডিএফ লিস্ট রেন্ডার
+        const pdfContainer = document.getElementById('pdf-grid-container');
+        if (pdfContainer && data.pdfs) {
+            pdfContainer.innerHTML = data.pdfs.map((pdf, index) => `
+                <div class="pdf-card" style="animation: fadeInUp 0.4s ease forwards ${index * 0.1}s; opacity: 0;">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <h3>${pdf.title}</h3>
+                    <button onclick="openPdfByDriveId('${pdf.driveID}', '${pdf.title}')" class="pdf-btn">দেখুন</button>
+                </div>
+            `).join('');
+        }
+
         // ৪. ড্যাশবোর্ড ডাটা লোড
         loadDashboardData(data.chapterID);
         

@@ -3,6 +3,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     const classId = urlParams.get('id') || '1';
 
     try {
+        // Load chapter info for logo and navigation
+        const chapterInfoResponse = await fetch('../data/chapter-info.json');
+        const chapterInfo = await chapterInfoResponse.json();
+        
+        // Set logo if available
+        if (chapterInfo.logoURL) {
+            const logoImg = document.querySelector('header .logo');
+            if (logoImg) logoImg.src = chapterInfo.logoURL;
+        }
+        
+        // Create navigation buttons
+        const navContainer = document.getElementById('class-navigation');
+        if (navContainer && chapterInfo.classes) {
+            navContainer.innerHTML = chapterInfo.classes.map(cls => {
+                const isActive = cls.id === classId;
+                return `<a href="class.html?id=${cls.id}" style="padding: 10px 20px; background: ${isActive ? '#667eea' : '#f0f0f0'}; color: ${isActive ? 'white' : '#333'}; border-radius: 8px; text-decoration: none; font-weight: ${isActive ? 'bold' : 'normal'};">Class ${cls.id}</a>`;
+            }).join('');
+        }
+        
+        // Load class content
         const response = await fetch(`../data/class${classId}.json`);
         const data = await response.json();
 

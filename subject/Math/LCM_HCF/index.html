@@ -207,11 +207,30 @@
         <!-- PDF Modal & Scripts -->
         <div id="fullScreenPdfModal" class="pdf-modal" style="display: none;">
             <div class="pdf-toolbar">
-                <button onclick="closePdf()"><i class="fa-solid fa-arrow-left"></i></button>
-                <span id="pdfModalTitle">Viewer</span>
+                <div class="toolbar-section">
+                    <button class="control-btn" onclick="closePdf()" title="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <span class="pdf-modal-title" id="pdfModalTitle">PDF Viewer</span>
+                </div>
+                <div class="toolbar-section">
+                    <button class="control-btn" onclick="adjustZoom(-0.1)" title="Zoom Out">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+                    <button class="control-btn" onclick="adjustZoom(0.1)" title="Zoom In">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <button class="control-btn" onclick="rotatePdf()" title="Rotate">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                </div>
             </div>
             <div class="frame-container">
-                <iframe id="pdfViewerFrame"></iframe>
+                <div class="loader-overlay" id="pdfLoader">
+                    <div class="spinner"></div>
+                    <span>Loading PDF...</span>
+                </div>
+                <iframe id="pdfViewerFrame" class="pdf-viewer-frame"></iframe>
             </div>
         </div>
 

@@ -29,11 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isDesktop) {
             body.classList.add('desktop-view');
             viewportMeta.setAttribute('content', desktopViewport);
-            desktopModeToggle.textContent = 'মোবাইল মোড';
+            desktopModeToggle.innerHTML = '<i class="fa-solid fa-mobile"></i>';
         } else {
             body.classList.remove('desktop-view');
             viewportMeta.setAttribute('content', mobileViewport);
-            desktopModeToggle.textContent = 'ডেস্কটপ মোড';
+            desktopModeToggle.innerHTML = '<i class="fa-solid fa-desktop"></i>';
         }
         localStorage.setItem('desktop_mode_enabled', isDesktop);
     }
