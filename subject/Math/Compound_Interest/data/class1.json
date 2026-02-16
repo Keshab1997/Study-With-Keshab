@@ -1,0 +1,93 @@
+{
+  "chapterName": "চক্রবৃদ্ধি সুদ (Compound Interest)",
+  "classNumber": "01",
+  "sections": [
+    {
+      "type": "title",
+      "content": "🎯 MASTER GUIDE: COMPOUND INTEREST"
+    },
+    {
+      "type": "box",
+      "content": "<strong>Sujan Karmakar Sir's Method:</strong> এই গাইডটি অনুসরণ করলে আপনি চক্রবৃদ্ধি সুদের যেকোনো অংক খুব সহজে সমাধান করতে পারবেন। (Class 1 to 82)"
+    },
+    {
+      "type": "header",
+      "content": "1. মেথড সিলেকশন (Method Selection)"
+    },
+    {
+      "type": "text",
+      "content": "অঙ্কের ডেটা অনুযায়ী সঠিক মেথড বেছে নেওয়া খুব জরুরি:"
+    },
+    {
+      "type": "math",
+      "content": "Ratio Method: যখন সুদের হার (Rate) ভগ্নাংশে থাকে। যেমন:<br>12.5% = <span class='fraction'><span class='top'>1</span><span class='bottom'>8</span></span> &rarr; Principal (8) : Amount (9)<br>16.66% = <span class='fraction'><span class='top'>1</span><span class='bottom'>6</span></span> &rarr; Principal (6) : Amount (7)<br>14.28% = <span class='fraction'><span class='top'>1</span><span class='bottom'>7</span></span> &rarr; Principal (7) : Amount (8)"
+    },
+    {
+      "type": "math",
+      "content": "Successive % Method: যখন সুদের হার সহজ পূর্ণসংখ্যায় থাকে (যেমন: 2%, 5%, 10%)।<br>2 Years Formula: x + y + <span class='fraction'><span class='top'>xy</span><span class='bottom'>100</span></span>"
+    },
+    {
+      "type": "header",
+      "content": "2. সময় ভিত্তিক হিসাব (2 & 3 Years)"
+    },
+    {
+      "type": "math",
+      "content": "For 2 Years (Ratio): P : A = (Rate)² : (Rate+1)²<br>For 3 Years (Ratio): P : A = (Rate)³ : (Rate+1)³"
+    },
+    {
+      "type": "list",
+      "items": [
+        "সাকসেসিভ চার্ট (3 Years): 5% &rarr; 15.7625%",
+        "সাকসেসিভ চার্ট (3 Years): 10% &rarr; 33.1%"
+      ]
+    },
+    {
+      "type": "header",
+      "content": "3. ভগ্নাংশ সময় (Fractional Time)"
+    },
+    {
+      "type": "math",
+      "content": "উদাহরণ: 1 year 6 months @ 10% p.a. হারে।<br>1st Year (10%): <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span> &rarr; 10:11<br>Next 6 Months (5%): <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span> &rarr; 20:21<br>Total Ratio: (10 × 20) : (11 × 21) = 200 : 231"
+    },
+    {
+      "type": "header",
+      "content": "4. সুদের পর্ব (Compounding Periods)"
+    },
+    {
+      "type": "math",
+      "content": "যেকোনো 'x' মাস অন্তর সুদের হার: New Rate = (<span class='fraction'><span class='top'>Annual Rate</span><span class='bottom'>12</span></span>) × x"
+    },
+    {
+      "type": "header",
+      "content": "5. CI ও SI এর পার্থক্য (Difference)"
+    },
+    {
+      "type": "math",
+      "content": "2 Years Difference Formula: D = P × (<span class='fraction'><span class='top'>R</span><span class='bottom'>100</span></span>)²<br>Short Method: Difference % = (<span class='fraction'><span class='top'>R²</span><span class='bottom'>100</span></span>)%"
+    },
+    {
+      "type": "header",
+      "content": "6. সুদের হার বের করা (Finding the Rate)"
+    },
+    {
+      "type": "list",
+      "items": [
+        "2 বছর গ্যাপ হলে: Principal ও Amount এর বর্গমূল (√P : √A) করুন।",
+        "3 বছর গ্যাপ হলে: Principal ও Amount এর ঘনমূল (∛P : ∛A) করুন।"
+      ]
+    },
+    {
+      "type": "header",
+      "content": "7. গুণ হওয়ার নিয়ম (Doubling/Tripling Rules)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>লজিক:</strong> পাওয়ার (Power) যত বাড়বে, সময় তত গুণ হবে।<br>টাকা 2 গুণ (2¹) হয় 10 বছরে, তবে 8 গুণ (2³) হবে (10 × 3) = 30 বছরে।"
+    },
+    {
+      "type": "question",
+      "qText": "যদি আসল 1000 টাকা, সুদের হার 10% এবং সময় 2 বছর হয়, তবে চক্রবৃদ্ধি সুদ কত?",
+      "explanation": "সাকসেসিভ মেথডে 10% হারে 2 বছরের সুদ 21%। সুতরাং, 1000 এর 21% = (1000 × 21 / 100) = 210 টাকা।"
+    }
+  ]
+}

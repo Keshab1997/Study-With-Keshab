@@ -1,0 +1,74 @@
+{
+  "chapterName": "চক্রবৃদ্ধি সুদ (Compound Interest)",
+  "classNumber": "06",
+  "sections": [
+    {
+      "type": "title",
+      "content": "🎯 গাণিতিক সমস্যা ও সমাধান - সেট 05 (Difference & Rate Calculation)"
+    },
+    {
+      "type": "box",
+      "content": "এই ক্লাসে আমরা চক্রবৃদ্ধি ও সরল সুদের পার্থক্য (Difference) এবং সুদের হার (Rate) নির্ণয় সংক্রান্ত গুরুত্বপূর্ণ অংকগুলো আপনার দেওয়া বিস্তারিত পদ্ধতিতে সমাধান করব।"
+    },
+    {
+      "type": "question",
+      "qText": "56. 5 মাস অন্তর চক্রবৃদ্ধি সুদ দেওয়া হলে 1<span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> বছরের জন্য 15% হারে 8192 টাকার চক্রবৃদ্ধি সুদ কত? (SSC CGL 2021)",
+      "explanation": "<strong>5-Monthly Conversion:</strong><br>Time = 1<span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> years = 15 months.<br>Number of cycles = <span class='fraction'><span class='top'>15</span><span class='bottom'>5</span></span> = 3 cycles.<br>Rate = <span class='fraction'><span class='top'>15</span><span class='bottom'>12</span></span> &times; 5 = 6.25% = <span class='fraction'><span class='top'>1</span><span class='bottom'>16</span></span><br><strong>Calculation:</strong><br>Ratio = (16)³ : (17)³ = 4096 : 4913<br>Interest = 4913 - 4096 = 817 unit<br>Principal (4096 unit) = 8192 &there4; 1 unit = 2<br>Interest = 817 &times; 2 = <strong>1,634</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "57. একটি রাশির 2 বছরের জন্য বার্ষিক 30 শতাংশ হারে চক্রবৃদ্ধি সুদ এবং সাধারণ সুদের মধ্যে পার্থক্য 5400 টাকা হলে, মূলধন কত? (SSC GD 2024)",
+      "explanation": "<strong>Percentage Method:</strong><br>SI Rate (2 yrs, 30%) = 60%<br>CI Rate (2 yrs, 30%) = 30 + 30 + <span class='fraction'><span class='top'>900</span><span class='bottom'>100</span></span> = 69%<br>Difference = 9%<br>9% = 5400 &there4; 1% = 600<br>Principal (100%) = 600 &times; 100 = <strong>60,000</strong> টাকা。<br><br><strong>Formula Method:</strong><br>D = P(<span class='fraction'><span class='top'>R</span><span class='bottom'>100</span></span>)²<br>5400 = P(<span class='fraction'><span class='top'>30</span><span class='bottom'>100</span></span>)² = P &times; <span class='fraction'><span class='top'>9</span><span class='bottom'>100</span></span><br>P = <span class='fraction'><span class='top'>5400 &times; 100</span><span class='bottom'>9</span></span> = 60,000 টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "58. যদি 2 বছরের জন্য 10% বার্ষিক চক্রবৃদ্ধি সুদের হারে একটি নির্দিষ্ট রাশির চক্রবৃদ্ধি এবং সাধারণ সুদের মধ্যে পার্থক্য ₹464 হয়, তাহলে আসল কত? (SSC GD 2023)",
+      "explanation": "<strong>Percentage Method:</strong><br>SI Rate = 20%<br>CI Rate = 21%<br>Difference = 1%<br>1% = 464<br>Principal (100%) = 464 &times; 100 = <strong>46,400</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "59. কত টাকার 2 বছরের 4% হারে সরল সুদ ও 4% হারে চক্রবৃদ্ধি সুদের অন্তর 110 টাকা হবে? (ANM & GNM 2022)",
+      "explanation": "<strong>Percentage Method:</strong><br>Difference for 2 years = (<span class='fraction'><span class='top'>R²</span><span class='bottom'>100</span></span>)% = <span class='fraction'><span class='top'>16</span><span class='bottom'>100</span></span>% = 0.16%<br>0.16% = 110<br>100% = <span class='fraction'><span class='top'>110</span><span class='bottom'>0.16</span></span> &times; 100 = <span class='fraction'><span class='top'>1100000</span><span class='bottom'>16</span></span> = <strong>68,750</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "60. ₹6,400-এর উপর 1 বছরের জন্য বার্ষিক 5% সুদের হারে বার্ষিক এবং অর্ধবার্ষিক রূপে সংযুক্ত চক্রবৃদ্ধি সুদের মধ্যে পার্থক্য কত? (SSC CHSL 2023)",
+      "explanation": "<strong>Yearly Compounding:</strong><br>Rate = 5%<br>Interest = 6400 &times; 5% = 320<br><strong>Half-yearly Compounding:</strong><br>Rate = 2.5% per half-year.<br>Effective Rate = 2.5 + 2.5 + <span class='fraction'><span class='top'>6.25</span><span class='bottom'>100</span></span> = 5.0625%<br><strong>Difference:</strong><br>Difference in Rate = 0.0625%<br>Difference Amount = 6400 &times; 0.0625% = 6400 &times; <span class='fraction'><span class='top'>625</span><span class='bottom'>10000 &times; 100</span></span> = <strong>4</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "61. যদি বার্ষিক 17% হারে 2 বছরের জন্য চক্রবৃদ্ধি সুদ এবং সরল সুদের পার্থক্য ₹433.50 হয়, তবে চক্রবৃদ্ধি সুদ কত? (SSC CHSL 2019)",
+      "explanation": "<strong>Percentage Method:</strong><br>SI Rate = 34%<br>CI Rate = 17 + 17 + <span class='fraction'><span class='top'>289</span><span class='bottom'>100</span></span> = 36.89%<br>Difference = 2.89%<br>2.89% = 433.50 &there4; 1% = <span class='fraction'><span class='top'>433.50</span><span class='bottom'>2.89</span></span> = 150<br>CI (36.89%) = 36.89 &times; 150 = <strong>5,533.50</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "62. A, 2 বছরের জন্য বার্ষিক 8% সরল সুদের হারে ₹1,56,250 জমা করলেন। যদি একই সুদের হারে টাকাটি বার্ষিক চক্রবৃদ্ধি সুদে বিনিয়োগ করা হয়, তবে দুই বছর শেষে A কত বেশি টাকা পাবেন? (SSC CHSL 2023)",
+      "explanation": "<strong>Concept:</strong> Difference between CI and SI for 2 years is asked.<br><strong>Calculation:</strong><br>Difference Rate = (<span class='fraction'><span class='top'>8²</span><span class='bottom'>100</span></span>)% = 0.64%<br>Difference Amount = 1,56,250 &times; 0.64% = 1,56,250 &times; <span class='fraction'><span class='top'>64</span><span class='bottom'>10000</span></span> = <strong>1,000</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "63. 10,000 টাকা 2 বছরে 12,100 টাকা হলে, বার্ষিক চক্রবৃদ্ধি সুদের হার কত? (WBP SI 2021)",
+      "explanation": "<strong>Ratio Method:</strong><br>P : A = 10000 : 12100 = 100 : 121<br>Time = 2 years, so take square root.<br>&radic;100 : &radic;121 = 10 : 11<br>Interest = 1 on 10.<br>Rate = <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span> &times; 100 = <strong>10%</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "64. 400 টাকার দুই বছরে সমূল চক্রবৃদ্ধি 441 টাকা হলে বার্ষিক শতকরা চক্রবৃদ্ধি সুদের হার কত? (ANM & GNM 2021)",
+      "explanation": "<strong>Ratio Method:</strong><br>P : A = 400 : 441<br>Time = 2 years, take square root.<br>&radic;400 : &radic;441 = 20 : 21<br>Interest = 1 on 20.<br>Rate = <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span> &times; 100 = <strong>5%</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "65. বার্ষিক চক্রবৃদ্ধি সুদের হারে কিছু পরিমাণ টাকা 3 বছরে 4,900 টাকায় এবং 5 বছরে 6,400 টাকায় পরিণত হয়, বার্ষিক সুদের হার কত? (SSC GD 2023)",
+      "explanation": "<strong>Gap Analysis:</strong> Gap is 2 years (5 - 3).<br><strong>Ratio Method:</strong><br>Amount (3rd yr) : Amount (5th yr) = 4900 : 6400 = 49 : 64<br>Take square root for 1 year gap.<br>&radic;49 : &radic;64 = 7 : 8<br>Interest = 1 on 7.<br>Rate = <span class='fraction'><span class='top'>1</span><span class='bottom'>7</span></span> &times; 100 = <strong>14<span class='fraction'><span class='top'>2</span><span class='bottom'>7</span></span>%</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "66. বার্ষিক চক্রবৃদ্ধি সুদের হারে কিছু পরিমাণ টাকা 2 বছরে 2,809 টাকায় এবং 3 বছরে 2,977.54 টাকায় পরিণত হয়, সুদের হার নির্ণয় কর। (SSC GD 2023)",
+      "explanation": "<strong>Gap Analysis:</strong> Gap is 1 year (3 - 2).<br><strong>Calculation:</strong><br>Interest = 2977.54 - 2809 = 168.54<br>Rate = <span class='fraction'><span class='top'>168.54</span><span class='bottom'>2809</span></span> &times; 100 = <strong>6%</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "67. একটি নির্দিষ্ট অর্থের উপর 2 বছর পর চক্রবৃদ্ধি সুদ এবং সুদ-আসল যথাক্রমে 820 টাকা এবং 8,820 টাকা। সুদের হার কত? (SSC CHSL 2020)",
+      "explanation": "<strong>Principal Calculation:</strong><br>Amount = 8820, CI = 820<br>Principal = 8820 - 820 = 8000<br><strong>Rate Calculation:</strong><br>P : A = 8000 : 8820 = 400 : 441<br>Time = 2 years, take square root.<br>&radic;400 : &radic;441 = 20 : 21<br>Interest = 1 on 20.<br>Rate = <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span> &times; 100 = <strong>5%</strong>"
+    }
+  ]
+}

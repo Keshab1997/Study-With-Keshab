@@ -1,0 +1,31 @@
+{
+  "chapterID": "Compound-Interest",
+  "chapterName": "চক্রবৃদ্ধি সুদ (Compound Interest)",
+  "description": "চক্রবৃদ্ধি সুদের প্রাথমিক ধারণা, সূত্রাবলি এবং বিভিন্ন জটিল গাণিতিক সমস্যার সহজ সমাধান নিয়ে এই অধ্যায়টি সাজানো হয়েছে।",
+  "logoURL": "https://cdn-icons-png.flaticon.com/512/3771/3771278.png",
+  "classes": [
+    { "title": "Class 1: চক্রবৃদ্ধি সুদের মাস্টার গাইড ও সকল সূত্রাবলি", "id": "1" },
+    { "title": "Class 2: 2 বছরের চক্রবৃদ্ধি সুদ সংক্রান্ত গাণিতিক সমস্যা", "id": "2" },
+    { "title": "Class 3: 3 বছর ও ভিন্ন ভিন্ন সুদের হার সংক্রান্ত সমস্যা", "id": "3" },
+    { "title": "Class 4: ভগ্নাংশ সময় এবং চক্রবৃদ্ধি ও সরল সুদের সম্পর্ক", "id": "4" },
+    { "title": "Class 5: সুদের পর্ব: অর্ধবার্ষিক, ত্রৈমাসিক ও মাসিক কিস্তি", "id": "5" },
+    { "title": "Class 6: চক্রবৃদ্ধি ও সরল সুদের পার্থক্য এবং সুদের হার নির্ণয়", "id": "6" },
+    { "title": "Class 7: সুদের হার (অ্যাডভান্সড) এবং টাকা গুণ হওয়ার নিয়ম", "id": "7" }
+],
+  "quizzes": [
+    { "title": "Quiz Set 01: প্রাথমিক ধারণা ও সহজ সমস্যা", "set": "Qset1" },
+    { "title": "Quiz Set 02: বার্ষিক চক্রবৃদ্ধি সুদের অংক", "set": "Qset2" },
+    { "title": "Quiz Set 03: সুদের পর্ব ও কিস্তি সংক্রান্ত কুইজ", "set": "Qset3" },
+    { "title": "Quiz Set 04: জনসংখ্যা ও সমাহার হ্রাস-বৃদ্ধি", "set": "Qset4" },
+    { "title": "Quiz Set 05: সুদ ও আসলের পার্থক্য নির্ণয়", "set": "Qset5" },
+    { "title": "Quiz Set 06: অ্যাডভান্সড লেভেল প্র্যাকটিস সেট", "set": "Qset6" }
+  ],
+  "pdfs": [
+    { "title": "চক্রবৃদ্ধি সুদ: ক্লাস নোট ও সমাধান (Part 1)", "driveID": "16MWVfQH7g3C7_8y7_uWjhWFySzqB_42z" },
+    { "title": "চক্রবৃদ্ধি সুদ: ক্লাস নোট ও সমাধান (Part 2)", "driveID": "1zcPt86rQW6R1ypWUIQ_NTW9DVbLjrcvc" },
+    { "title": "চক্রবৃদ্ধি সুদ: 82টি গুরুত্বপূর্ণ প্রশ্নের প্র্যাকটিস শিট", "driveID": "1ShQI1P2KaVToVzUyisQzcA2Sr8qGSyIF" },
+    { "title": "চক্রবৃদ্ধি সুদ: বিগত বছরের পরীক্ষার প্রশ্ন (PYQ)", "driveID": "18mMGHl_P2rcA3J3tolFSY2abt6q14rlz" },
+    { "title": "চক্রবৃদ্ধি সুদ: অ্যাডভান্সড লেভেল প্র্যাকটিস সেট", "driveID": "1Vwub2UYnyZK1tgBmUG1gFag-d9VO9LJ6" },
+    { "title": "চক্রবৃদ্ধি সুদ: শর্টকাট মেথড ও ফর্মুলা শিট", "driveID": "1ciuSvJMjnPyh0oVUq-bWjzOaPqBNSZXu" }
+]
+}

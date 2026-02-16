@@ -1,0 +1,94 @@
+{
+  "chapterName": "চক্রবৃদ্ধি সুদ (Compound Interest)",
+  "classNumber": "07",
+  "sections": [
+    {
+      "type": "title",
+      "content": "🎯 গাণিতিক সমস্যা ও সমাধান - সেট 06 (Rate Calculation & Doubling Rules)"
+    },
+    {
+      "type": "box",
+      "content": "এই সমাপনী ক্লাসে আমরা সুদের হার নির্ণয়ের অ্যাডভান্সড অংক এবং টাকা কত বছরে কত গুণ হবে (Doubling/Tripling) সংক্রান্ত গুরুত্বপূর্ণ অংকগুলো বিস্তারিতভাবে সমাধান করব।"
+    },
+    {
+      "type": "question",
+      "qText": "67. একটি নির্দিষ্ট অর্থের উপর 2 বছর পর চক্রবৃদ্ধি সুদ এবং সুদ-আসল যথাক্রমে 820 টাকা এবং 8,820 টাকা। সুদের হার কত? (SSC CHSL 2020)",
+      "explanation": "<strong>Principal Calculation:</strong><br>Amount (A) = 8820<br>Interest (CI) = 820<br>Principal (P) = A - CI = 8820 - 820 = 8000<br><strong>Rate Calculation:</strong><br>P : A = 8000 : 8820 = 400 : 441<br>Time = 2 years, take square root.<br>&radic;400 : &radic;441 = 20 : 21<br>Interest = 1 on 20.<br>Rate = <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span> &times; 100 = <strong>5%</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "68. বার্ষিক চক্রবৃদ্ধি সুদের হারে 10,000 টাকা 2 বছরে সুদ-আসলে 11,025 টাকা হয়। বার্ষিক সুদের হার কত? (RRB GROUP D 2020)",
+      "explanation": "<strong>Ratio Method:</strong><br>P : A = 10000 : 11025 = 400 : 441 (উভয়কে 25 দিয়ে ভাগ করে)<br>Time = 2 years, take square root.<br>&radic;400 : &radic;441 = 20 : 21<br>Interest = 1 on 20.<br>Rate = <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span> &times; 100 = <strong>5%</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "69. চক্রবৃদ্ধি সুদে ধার করা 6,000 টাকা 3 বছরে সুদ-আসলে 7,986 টাকা হয়। সুদের হার কত? (RRB NTPC 2020)",
+      "explanation": "<strong>Ratio Method:</strong><br>P : A = 6000 : 7986 = 1000 : 1331 (উভয়কে 6 দিয়ে ভাগ করে)<br>Time = 3 years, take cube root.<br>∛1000 : ∛1331 = 10 : 11<br>Interest = 1 on 10.<br>Rate = <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span> &times; 100 = <strong>10%</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "70. রাজু 5000 টাকা বার্ষিক চক্রবৃদ্ধি সুদের হারে 3 বছরের জন্য বিনিয়োগ করেছে। 3 বছর পর সে আরও 1655 টাকা বেশি পেয়েছে, তাহলে সুদের হার কত? (RRB GROUP D 2018)",
+      "explanation": "<strong>Amount Calculation:</strong><br>Principal = 5000<br>Interest = 1655<br>Amount = 5000 + 1655 = 6655<br><strong>Rate Calculation:</strong><br>P : A = 5000 : 6655 = 1000 : 1331 (উভয়কে 5 দিয়ে ভাগ করে)<br>Time = 3 years, take cube root.<br>∛1000 : ∛1331 = 10 : 11<br>Rate = <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span> &times; 100 = <strong>10%</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "71. 65,000 টাকায় তিন বছরের চক্রবৃদ্ধি সুদ পাওয়া যায় 21,515 টাকা, বার্ষিক সুদের হার কী হবে? (SSC GD 2023)",
+      "explanation": "<strong>Amount Calculation:</strong><br>P = 65000<br>A = 65000 + 21515 = 86515<br><strong>Rate Calculation:</strong><br>P : A = 65000 : 86515 = 1000 : 1331 (উভয়কে 65 দিয়ে ভাগ করে)<br>Time = 3 years, take cube root.<br>∛1000 : ∛1331 = 10 : 11<br>Rate = <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span> &times; 100 = <strong>10%</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "72. 3 বছর পর 4,000 টাকার চক্রবৃদ্ধি সুদ হল 630.50 টাকা, তাহলে বার্ষিক চক্রবৃদ্ধি সুদের হার কত? (SSC CHSL 2020)",
+      "explanation": "<strong>Amount Calculation:</strong><br>P = 4000<br>A = 4000 + 630.50 = 4630.50<br><strong>Rate Calculation:</strong><br>P : A = 4000 : 4630.50 = 40000 : 46305 = 8000 : 9261 (উভয়কে 5 দিয়ে ভাগ করে)<br>Time = 3 years, take cube root.<br>∛8000 : ∛9261 = 20 : 21<br>Interest = 1 on 20.<br>Rate = <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span> &times; 100 = <strong>5%</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "73. 18 মাস পর 8,000 টাকার চক্রবৃদ্ধি সুদ হল 1,261 টাকা (অর্ধবার্ষিক চক্রবৃদ্ধি), তাহলে বার্ষিক সুদের হার কত? (SSC DELHI POLICE 2023)",
+      "explanation": "<strong>Time Conversion:</strong> 18 months = 3 half-years.<br><strong>Amount Calculation:</strong><br>P = 8000<br>A = 8000 + 1261 = 9261<br><strong>Rate Calculation:</strong><br>P : A = 8000 : 9261<br>Time = 3 cycles, take cube root.<br>∛8000 : ∛9261 = 20 : 21<br>Half-yearly Rate = <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span> &times; 100 = 5%<br>Annual Rate = 5% &times; 2 = <strong>10%</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "74. ₹60,000 একটি নির্দিষ্ট সময়ের জন্য বিনিয়োগ করে বৃদ্ধি পেয়ে হয় ₹63,654। যদি অর্ধেক সময়ের জন্য বিনিয়োগ করা হত, তবে তা কত হতো? (SSC CHSL)",
+      "explanation": "<strong>Concept:</strong> যদি সময় অর্ধেক হয় (2t &rarr; t), তবে সুদ-আসলের অনুপাত বর্গমূল (Square Root) হবে।<br><strong>Calculation:</strong><br>P : A (Full Time) = 60000 : 63654 = 10000 : 10609 (উভয়কে 6 দিয়ে ভাগ করে)<br>P : A (Half Time) = &radic;10000 : &radic;10609 = 100 : 103<br>Principal = 60000 (100 unit &times; 600)<br>New Amount = 103 &times; 600 = <strong>61,800</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "75. চক্রবৃদ্ধি সুদে একটি নির্দিষ্ট অর্থ 10 বছরে দ্বিগুণ হয়ে যায়। কত বছরে একই সুদের হারে চারগুণ হবে? (SSC GD 2023)",
+      "explanation": "<strong>Concept:</strong> 2¹ &rarr; 10 years.<br><strong>Target:</strong> 4 times = 2².<br><strong>Time:</strong> 10 &times; 2 = <strong>20</strong> years."
+    },
+    {
+      "type": "question",
+      "qText": "76. যদি 12 বছরে চক্রবৃদ্ধি সুদে একটি নির্দিষ্ট অর্থ দ্বিগুণ হয়, কত বছরে চারগুণ হবে? (WBCS MAIN 2020)",
+      "explanation": "<strong>Concept:</strong> 2¹ &rarr; 12 years.<br><strong>Target:</strong> 4 times = 2².<br><strong>Time:</strong> 12 &times; 2 = <strong>24</strong> years."
+    },
+    {
+      "type": "question",
+      "qText": "77. যদি একটি নির্দিষ্ট অর্থ n বছরে বার্ষিক চক্রবৃদ্ধি হারে দ্বিগুণ হয়, তাহলে কত বছরে তা চারগুণ হবে? (WBCS MAIN 2019)",
+      "explanation": "<strong>Concept:</strong> 2¹ &rarr; n years.<br><strong>Target:</strong> 4 times = 2².<br><strong>Time:</strong> n &times; 2 = <strong>2n</strong> years."
+    },
+    {
+      "type": "question",
+      "qText": "78. চক্রবৃদ্ধি সুদে একটি নির্দিষ্ট অর্থ 5 বছরে দ্বিগুণ হয়ে যায়। একই অর্থ 4 গুণ হয়ে উঠতে কত সময় লাগবে? (SSC GD 2024)",
+      "explanation": "<strong>Concept:</strong> 2¹ &rarr; 5 years.<br><strong>Target:</strong> 4 times = 2².<br><strong>Time:</strong> 5 &times; 2 = <strong>10</strong> years."
+    },
+    {
+      "type": "question",
+      "qText": "79. যদি একটি নির্দিষ্ট অর্থ 4 বছরে তিনগুণ হয়, তাহলে একই সুদের হারে কত বছরে তা 27 গুণ হবে? (SSC CGL 2019)",
+      "explanation": "<strong>Concept:</strong> 3¹ &rarr; 4 years.<br><strong>Target:</strong> 27 times = 3³.<br><strong>Time:</strong> 4 &times; 3 = <strong>12</strong> years."
+    },
+    {
+      "type": "question",
+      "qText": "80. যদি একটি নির্দিষ্ট অর্থ 4 বছরে তিনগুণ হয়, তাহলে একই সুদের হারে কত বছরে তা 81 গুণ হবে? (SSC CHSL 2022)",
+      "explanation": "<strong>Concept:</strong> 3¹ &rarr; 4 years.<br><strong>Target:</strong> 81 times = 3⁴.<br><strong>Time:</strong> 4 &times; 4 = <strong>16</strong> years."
+    },
+    {
+      "type": "question",
+      "qText": "81. যদি একটি নির্দিষ্ট অর্থ 10 বছরে বার্ষিক চক্রবৃদ্ধি হারে দ্বিগুণ হয়, তাহলে কত বছরে তা আটগুণ হবে? (SSC MTS 2021)",
+      "explanation": "<strong>Concept:</strong> 2¹ &rarr; 10 years.<br><strong>Target:</strong> 8 times = 2³.<br><strong>Time:</strong> 10 &times; 3 = <strong>30</strong> years."
+    },
+    {
+      "type": "question",
+      "qText": "82. যদি একটি নির্দিষ্ট অর্থ 6 বছরে বার্ষিক চক্রবৃদ্ধি হারে 2.5 গুণ হয়, তাহলে ওই একই পরিমাণ টাকা 18 বছরে কতগুণ হবে? (WBP SI 2021)",
+      "explanation": "<strong>Concept:</strong> 2.5 = <span class='fraction'><span class='top'>5</span><span class='bottom'>2</span></span> গুণ হয় 6 বছরে।<br><strong>Target Time:</strong> 18 years = 6 &times; 3 years (অর্থাৎ 3টি সাইকেল)।<br><strong>Result:</strong> টাকা হবে (<span class='fraction'><span class='top'>5</span><span class='bottom'>2</span></span>)³ গুণ।<br><strong>Calculation:</strong> (<span class='fraction'><span class='top'>5</span><span class='bottom'>2</span></span>)³ = <strong><span class='fraction'><span class='top'>125</span><span class='bottom'>8</span></span></strong> গুণ।"
+    }
+  ]
+}

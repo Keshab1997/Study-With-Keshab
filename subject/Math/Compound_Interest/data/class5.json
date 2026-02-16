@@ -1,0 +1,104 @@
+{
+  "chapterName": "চক্রবৃদ্ধি সুদ (Compound Interest)",
+  "classNumber": "05",
+  "sections": [
+    {
+      "type": "title",
+      "content": "🎯 গাণিতিক সমস্যা ও সমাধান - সেট 04 (Half-yearly, Quarterly & Monthly)"
+    },
+    {
+      "type": "box",
+      "content": "এই ক্লাসে আমরা সুদের পর্ব (Compounding Periods) যেমন: অর্ধবার্ষিক, ত্রৈমাসিক এবং মাসিক কিস্তি সংক্রান্ত অংকগুলো আপনার দেওয়া বিস্তারিত পদ্ধতিতে সমাধান করব।"
+    },
+    {
+      "type": "question",
+      "qText": "39. একটি মূলধন চক্রবৃদ্ধি সুদে 2 বছরে 21% বৃদ্ধি পায়। একই সুদের হারে 1000 টাকার 4 বছরের সরল সুদ কত হবে? (SSC MTS 2019)",
+      "explanation": "<strong>Rate Calculation:</strong><br>2 বছরে 21% বৃদ্ধি মানে সুদের হার (Rate) = 10% (কারণ 10 + 10 + <span class='fraction'><span class='top'>100</span><span class='bottom'>100</span></span> = 21%)<br><strong>SI Calculation:</strong><br>P = 1000, R = 10%, T = 4 years.<br>SI = <span class='fraction'><span class='top'>1000 &times; 10 &times; 4</span><span class='bottom'>100</span></span> = <strong>400</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "40. বার্ষিক 10% চক্রবৃদ্ধি সুদে বিনিয়োগ করা অর্থ 3 বছরে 19,965 টাকা হয়। সেই পরিমাণ অর্থ 2<span class='fraction'><span class='top'>2</span><span class='bottom'>5</span></span> বছরে x হবে। x এর মান নির্ণয় করো। (SSC MTS 2019)",
+      "explanation": "<strong>Step 1 (Find Principal):</strong><br>Rate = 10% = <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span> &rarr; 10:11<br>3 Years Ratio = 1000 : 1331<br>1331 unit = 19965 &there4; 1 unit = 15<br>Principal = 1000 &times; 15 = 15000 টাকা。<br><strong>Step 2 (Find Amount for 2<span class='fraction'><span class='top'>2</span><span class='bottom'>5</span></span> years):</strong><br>Time = 2 years + <span class='fraction'><span class='top'>2</span><span class='bottom'>5</span></span> year.<br>Rate for <span class='fraction'><span class='top'>2</span><span class='bottom'>5</span></span> year = 10 &times; <span class='fraction'><span class='top'>2</span><span class='bottom'>5</span></span> = 4%<br>Ratio: 10:11 (1st yr), 10:11 (2nd yr), 25:26 (last part).<br>Total Ratio = (100 &times; 25) : (121 &times; 26) = 2500 : 3146<br>Principal (2500 unit) = 15000 &there4; 1 unit = 6<br>Amount (x) = 3146 &times; 6 = <strong>18,876</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "41. যদি বার্ষিক 20% সুদের হারে অর্ধ-বার্ষিকভাবে চক্রবৃদ্ধি সুদ দেওয়া হয়, তাহলে 1 বছরে 16000 টাকার সুদ-আসল কত হবে? (SSC MTS 2019)",
+      "explanation": "<strong>Half-yearly Conversion:</strong><br>Rate = <span class='fraction'><span class='top'>20</span><span class='bottom'>2</span></span> = 10% per half-year.<br>Time = 1 &times; 2 = 2 half-years.<br><strong>Calculation:</strong><br>Effective Rate = 10 + 10 + 1 = 21%<br>Amount = 121%<br>Amount = 16000 &times; 121% = <strong>19,360</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "42. রাম তার সেভিংস অ্যাকাউন্টে ₹2000 জমা করে, যার উপর সে অর্ধবার্ষিকভাবে 20% বার্ষিক সুদ পায়। এক বছর পর তার অ্যাকাউন্টে কত টাকা জমা হবে? (RRB NTPC 2017)",
+      "explanation": "<strong>Half-yearly Conversion:</strong><br>Rate = 10% per half-year.<br>Time = 2 half-years.<br><strong>Calculation:</strong><br>Effective Rate = 21%<br>Amount = 121%<br>Amount = 2000 &times; 121% = <strong>2,420</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "43. ₹10000 বার্ষিক 20% হারে চক্রবৃদ্ধি করা হচ্ছে। অর্ধ-বার্ষিক সুদের হারে 2 বছর পর সুদ-আসল গণনা করো। (RRB NTPC 2016)",
+      "explanation": "<strong>Half-yearly Conversion:</strong><br>Rate = 10% per half-year.<br>Time = 2 &times; 2 = 4 half-years.<br><strong>Calculation:</strong><br>Ratio = (10)⁴ : (11)⁴ = 10000 : 14641<br>Principal = 10000, so Amount = <strong>14,641</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "44. লারা একটি ব্যাংকে 8,000 টাকা জমা রেখেছে, যা তাকে 10% অর্ধ-বার্ষিক চক্রবৃদ্ধি সুদের হারে সুদ প্রদান করে। 18 মাস পর সে সুদ-আসলে কত টাকা পাবে? (SSC GD 2023)",
+      "explanation": "<strong>Half-yearly Conversion:</strong><br>Rate = 5% per half-year.<br>Time = 18 months = 3 half-years.<br><strong>Calculation:</strong><br>Ratio = (20)³ : (21)³ = 8000 : 9261<br>Principal = 8000, so Amount = <strong>9,261</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "45. যদি বার্ষিক 20% হারে ₹2000 বিনিয়োগ করা হয়, তাহলে অর্ধবার্ষিক চক্রবৃদ্ধি হারে 18 মাস পর সুদ-আসল হবে: (RRB ALP 2018)",
+      "explanation": "<strong>Half-yearly Conversion:</strong><br>Rate = 10% per half-year.<br>Time = 3 half-years.<br><strong>Calculation:</strong><br>Ratio = 1000 : 1331<br>Principal (1000 unit) = 2000 &there4; 1 unit = 2<br>Amount = 1331 &times; 2 = <strong>2,662</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "46. 7000 টাকার 1.5 বছরের জন্য বার্ষিক 20% সুদের হারে চক্রবৃদ্ধি সুদ নির্ণয় কর, যদি সুদ অর্ধবার্ষিক চক্রবৃদ্ধি দেওয়া হয়? (SSC GD 2024)",
+      "explanation": "<strong>Half-yearly Conversion:</strong><br>Rate = 10% per half-year.<br>Time = 3 half-years.<br><strong>Calculation:</strong><br>Ratio = 1000 : 1331<br>Interest = 331 unit<br>Principal (1000 unit) = 7000 &there4; 1 unit = 7<br>Interest = 331 &times; 7 = <strong>2,317</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "47. ₹8000 এর উপর 10% বার্ষিক চক্রবৃদ্ধি হারে 1<span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span> বছরের জন্য অর্ধ-বার্ষিক সুদ নির্ণয় করো। (RRB NTPC 2021)",
+      "explanation": "<strong>Half-yearly Conversion:</strong><br>Rate = 5% per half-year.<br>Time = 3 half-years.<br><strong>Calculation:</strong><br>Effective Rate (3 cycles @ 5%) = 15.7625%<br>Interest = 8000 &times; 15.7625% = <strong>1,261</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "48. বার্ষিক 10% হারে অর্ধবার্ষিক চক্রবৃদ্ধি সুদ দেওয়া হলে কার্যকরী বার্ষিক সুদের হার কত? (SSC MTS 2019)",
+      "explanation": "<strong>Half-yearly Conversion:</strong><br>Rate = 5% per half-year.<br>Time = 2 half-years (for 1 year).<br><strong>Calculation:</strong><br>Effective Rate = 5 + 5 + <span class='fraction'><span class='top'>25</span><span class='bottom'>100</span></span> = <strong>10.25%</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "49. সুদের পর্ব ত্রৈমাসিক হলে বার্ষিক 8% হারে 30000 টাকার 9 মাসের চক্রবৃদ্ধি সুদ নির্ণয় করো। (RRB NTPC 2021)",
+      "explanation": "<strong>Quarterly Conversion:</strong><br>Rate = <span class='fraction'><span class='top'>8</span><span class='bottom'>4</span></span> = 2% per quarter.<br>Time = 9 months = 3 quarters.<br><strong>Calculation:</strong><br>Effective Rate (3 cycles @ 2%) = 6.1208%<br>Interest = 30000 &times; 6.1208% = <strong>1,836.24</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "50. সুদের পর্ব ত্রৈমাসিক হলে বার্ষিক 20% হারে 8100 টাকার 6 মাসের চক্রবৃদ্ধি সুদ নির্ণয় করো। (SSC GD 2024)",
+      "explanation": "<strong>Quarterly Conversion:</strong><br>Rate = <span class='fraction'><span class='top'>20</span><span class='bottom'>4</span></span> = 5% per quarter.<br>Time = 6 months = 2 quarters.<br><strong>Calculation:</strong><br>Effective Rate = 5 + 5 + 0.25 = 10.25%<br>Interest = 8100 &times; 10.25% = <strong>830.25</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "51. ত্রৈমাসিক চক্রবৃদ্ধিতে 9 মাসের জন্য বার্ষিক 20% হারে 32,000 টাকার সুদ-আসল কত? (SSC GD 2023)",
+      "explanation": "<strong>Quarterly Conversion:</strong><br>Rate = 5% per quarter.<br>Time = 3 quarters.<br><strong>Calculation:</strong><br>Ratio = 8000 : 9261<br>Principal (8000 unit) = 32000 &there4; 1 unit = 4<br>Amount = 9261 &times; 4 = <strong>37,044</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "52. বার্ষিক 20% চক্রবৃদ্ধি সুদের হারে 6 মাসের জন্য ₹4500 বিনিয়োগ করলে এবং সুদ ত্রৈমাসিক চক্রবৃদ্ধি করা হলে ম্যাচিউরিটিতে কত টাকা পাবেন? (RRB NTPC 2016)",
+      "explanation": "<strong>Quarterly Conversion:</strong><br>Rate = 5% per quarter.<br>Time = 2 quarters.<br><strong>Calculation:</strong><br>Effective Rate = 10.25%<br>Amount = 110.25%<br>Amount = 4500 &times; 110.25% = <strong>4,961.25</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "53. ত্রৈমাসিক চক্রবৃদ্ধিতে 3 মাসের জন্য বার্ষিক 16% হারে 12,000 টাকার চক্রবৃদ্ধি সুদ নির্ণয় করো। (RRB NTPC 2021)",
+      "explanation": "<strong>Quarterly Conversion:</strong><br>Rate = <span class='fraction'><span class='top'>16</span><span class='bottom'>4</span></span> = 4% per quarter.<br>Time = 1 quarter.<br><strong>Calculation:</strong><br>Interest = 12000 &times; 4% = <strong>480</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "54. 10 মাস অন্তর চক্রবৃদ্ধি সুদ দেওয়া হলে 2<span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span> বছরের জন্য 15% হারে ₹4096 এর চক্রবৃদ্ধি সুদ কত? (SSC CHSL)",
+      "explanation": "<strong>10-Monthly Conversion:</strong><br>Total Time = 30 months = 3 cycles (of 10 months).<br>Rate = <span class='fraction'><span class='top'>15</span><span class='bottom'>12</span></span> &times; 10 = 12.5% = <span class='fraction'><span class='top'>1</span><span class='bottom'>8</span></span><br><strong>Calculation:</strong><br>Ratio = (8)³ : (9)³ = 512 : 729<br>Interest = 217 unit<br>Principal (512 unit) = 4096 &there4; 1 unit = 8<br>Interest = 217 &times; 8 = <strong>1,736</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "55. 8 মাস অন্তর চক্রবৃদ্ধি সুদ দেওয়া হলে 1<span class='fraction'><span class='top'>1</span><span class='bottom'>3</span></span> বছরের জন্য 18% হারে ₹12,000 এর চক্রবৃদ্ধি সুদ কত? (SSC CGL)",
+      "explanation": "<strong>8-Monthly Conversion:</strong><br>Total Time = 16 months = 2 cycles (of 8 months).<br>Rate = <span class='fraction'><span class='top'>18</span><span class='bottom'>12</span></span> &times; 8 = 12%<br><strong>Calculation:</strong><br>Effective Rate = 12 + 12 + 1.44 = 25.44%<br>Interest = 12000 &times; 25.44% = <strong>3,052.80</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "56. 5 মাস অন্তর চক্রবৃদ্ধি সুদ দেওয়া হলে 1<span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> বছরের জন্য 15% হারে 8192 টাকার চক্রবৃদ্ধি সুদ কত? (SSC CGL 2021)",
+      "explanation": "<strong>5-Monthly Conversion:</strong><br>Total Time = 15 months = 3 cycles.<br>Rate = <span class='fraction'><span class='top'>15</span><span class='bottom'>12</span></span> &times; 5 = 6.25% = <span class='fraction'><span class='top'>1</span><span class='bottom'>16</span></span><br><strong>Calculation:</strong><br>Ratio = (16)³ : (17)³ = 4096 : 4913<br>Interest = 817 unit<br>Principal (4096 unit) = 8192 &there4; 1 unit = 2<br>Interest = 817 &times; 2 = <strong>1,634</strong> টাকা।"
+    }
+  ]
+}

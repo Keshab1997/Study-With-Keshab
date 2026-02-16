@@ -1,0 +1,150 @@
+{
+  "chapterName": "চক্রবৃদ্ধি সুদ (Compound Interest)",
+  "setName": "Quiz Set 01: ২ বছরের প্রাথমিক সমস্যা",
+  "questions": [
+    {
+      "id": 1,
+      "question": "এক ব্যক্তি 2 বছরে 8% চক্রবৃদ্ধি হারে 83.2 টাকা সুদ পেল। তার আসলের (Principal) পরিমাণ কত টাকা?",
+      "options": [
+        "600",
+        "503.2",
+        "500",
+        "540"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Rate = 8% = <span class='fraction'><span class='top'>2</span><span class='bottom'>25</span></span><br>Ratio Method (2 Years): P : A = 25² : 27² = 625 : 729<br>সুদ (CI) = 729 - 625 = 104 unit<br>প্রশ্নানুসারে, 104 unit = 83.2 টাকা &there4; 1 unit = 0.8 টাকা<br>আসল = 625 &times; 0.8 = 500 টাকা। (Exam: WBP LADY CONSTABLE 2024)"
+    },
+    {
+      "id": 2,
+      "question": "কিছু পরিমাণ অর্থ বার্ষিক 10% চক্রবৃদ্ধি সুদে বিনিয়োগ করা হলে, 2 বছর পর সুদ-আসল ₹10,164 হয়, বিনিয়োগের পরিমাণ কত ছিল?",
+      "options": [
+        "₹8,300",
+        "₹8,400",
+        "₹8,200",
+        "₹8,800"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Rate = 10% = <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span><br>P : A = 10 : 11 (1st year) &rarr; 100 : 121 (2 years)<br>প্রশ্নানুসারে, 121 unit = 10164 &there4; 1 unit = 84 টাকা<br>আসল = 100 &times; 84 = 8400 টাকা। (Exam: RRB NTPC 2022)"
+    },
+    {
+      "id": 3,
+      "question": "রাহুল একটি নির্দিষ্ট পরিমাণ অর্থ দুই বছরের জন্য প্রতিবছর 60% চক্রবৃদ্ধি সুদের হারে বিনিয়োগ করেছেন। যদি দুই বছর শেষে তিনি ₹11,700 সুদ পান, তাহলে তিনি প্রাথমিকভাবে কত বিনিয়োগ করেছিল?",
+      "options": [
+        "₹8,000",
+        "₹7,250",
+        "₹7,750",
+        "₹7,500"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Successive Rate = 60 + 60 + <span class='fraction'><span class='top'>60 &times; 60</span><span class='bottom'>100</span></span> = 156%<br>সুদ 156% = 11700 টাকা<br>আসল (100%) = <span class='fraction'><span class='top'>11700</span><span class='bottom'>156</span></span> &times; 100 = 7500 টাকা। (Exam: RRB NTPC 2022)"
+    },
+    {
+      "id": 4,
+      "question": "বার্ষিক 12% সুদের হারে দুই বছরের চক্রবৃদ্ধি সুদ হয় ₹477 টাকা। বিনিয়োগ করা আসলের পরিমাণ কত?",
+      "options": [
+        "1875",
+        "1500",
+        "2000",
+        "1650"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Total Successive Rate = 12 + 12 + <span class='fraction'><span class='top'>144</span><span class='bottom'>100</span></span> = 25.44%<br>প্রশ্নানুসারে, 25.44% = 477 টাকা<br>আসল (100%) = <span class='fraction'><span class='top'>477</span><span class='bottom'>25.44</span></span> &times; 100 = 1875 টাকা। (Exam: SSC MTS 2019)"
+    },
+    {
+      "id": 5,
+      "question": "কি পরিমাণ টাকা বার্ষিক 12.5% হারে চক্রবৃদ্ধি সুদে 2 বছরের জন্য বিনিয়োগ করা হলে ₹6,800 সুদ পাওয়া যাবে?",
+      "options": [
+        "₹27,200",
+        "₹27,260",
+        "₹54,400",
+        "₹25,600"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Rate = 12.5% = <span class='fraction'><span class='top'>1</span><span class='bottom'>8</span></span><br>P : A = 8 : 9 (1st year) &rarr; 64 : 81 (2 years)<br>সুদ (CI) = 81 - 64 = 17 unit<br>প্রশ্নানুসারে, 17 unit = 6800 &there4; 1 unit = 400 টাকা<br>আসল = 64 &times; 400 = 25,600 টাকা। (Exam: RRB NTPC 2021)"
+    },
+    {
+      "id": 6,
+      "question": "বার্ষিক 20% সুদের হারে 2 বছরের জন্য 1200 টাকার চক্রবৃদ্ধি সুদ কত হবে, যখন সুদ বার্ষিক হারে গণনা করা হয়?",
+      "options": [
+        "₹624",
+        "₹504",
+        "₹576",
+        "₹528"
+      ],
+      "correctAnswer": 3,
+      "explanation": "20% হারে 2 বছরের Successive Rate = 20 + 20 + 4 = 44%<br>সুদ = 1200 এর 44% = 1200 &times; <span class='fraction'><span class='top'>44</span><span class='bottom'>100</span></span> = 528 টাকা। (Exam: SSC MTS 2019)"
+    },
+    {
+      "id": 7,
+      "question": "বার্ষিক 5% হারে 4,800 টাকার 2 বছরে চক্রবৃদ্ধি সুদ কত হবে?",
+      "options": [
+        "492 টাকা",
+        "5,292 টাকা",
+        "229 টাকা",
+        "5,390 টাকা"
+      ],
+      "correctAnswer": 0,
+      "explanation": "5% হারে 2 বছরের Successive Rate = 5 + 5 + 0.25 = 10.25%<br>সুদ = 4800 &times; 10.25% = 492 টাকা। (Exam: FOOD SI 2024)"
+    },
+    {
+      "id": 8,
+      "question": "বার্ষিক 8% হারে দুই বছরের জন্য 6,250 টাকার চক্রবৃদ্ধি সুদ কত হবে?",
+      "options": [
+        "Rs. 1,040",
+        "Rs. 1,500",
+        "Rs. 1,450",
+        "Rs. 1,020"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Rate = 8% = <span class='fraction'><span class='top'>2</span><span class='bottom'>25</span></span><br>P : A = 25 : 27 &rarr; 625 : 729 (2 years)<br>CI = 104 unit. এখানে 625 unit = 6250 &there4; 1 unit = 10<br>সুদ = 104 &times; 10 = 1040 টাকা। (Exam: SSC GD 2023)"
+    },
+    {
+      "id": 9,
+      "question": "বার্ষিক 15% চক্রবৃদ্ধি হারে ₹2,800 এর 2 বছরের চক্রবৃদ্ধি সুদ হল:",
+      "options": [
+        "₹875",
+        "₹903",
+        "₹1,000",
+        "₹956"
+      ],
+      "correctAnswer": 1,
+      "explanation": "15% হারে 2 বছরের Successive Rate = 15 + 15 + 2.25 = 32.25%<br>সুদ = 2800 &times; 32.25% = 903 টাকা। (Exam: SSC MTS 2020)"
+    },
+    {
+      "id": 10,
+      "question": "কল্যাণ দুই বছর যথাক্রমে 5% এবং 10% হারে 12,000 টাকা বিনিয়োগ করলেন। দুই বছর শেষে চক্রবৃদ্ধি সুদ কত হবে?",
+      "options": [
+        "1920",
+        "1860",
+        "1900",
+        "1880"
+      ],
+      "correctAnswer": 1,
+      "explanation": "বিভিন্ন হার থাকলে Successive Rate = 5 + 10 + <span class='fraction'><span class='top'>5 &times; 10</span><span class='bottom'>100</span></span> = 15.5%<br>সুদ = 12000 &times; 15.5% = 1860 টাকা। (Exam: SSC CHSL 2023)"
+    },
+    {
+      "id": 11,
+      "question": "বার্ষিক 9% হারে চক্রবৃদ্ধি সুদ দেওয়া হলে, 2 বছর পর ₹5000 এর সুদ-আসল (Amount) কত হবে?",
+      "options": [
+        "₹5,940",
+        "₹9,950",
+        "₹5,970",
+        "₹5,936"
+      ],
+      "correctAnswer": 0,
+      "explanation": "9% হারে 2 বছরের সুদ = 9 + 9 + 0.81 = 18.81%<br>সুদ-আসল = 100% + 18.81% = 118.81%<br>Amount = 5000 &times; 118.81% = 5940.5 টাকা (নিকটতম উত্তর 5940)। (Exam: RRB GROUP-D 2018)"
+    },
+    {
+      "id": 12,
+      "question": "625 টাকার বার্ষিক 4% চক্রবৃদ্ধি হারে 2 বছরের সুদ-আসল কত হবে?",
+      "options": [
+        "756 টাকা",
+        "676 টাকা",
+        "767 টাকা",
+        "675 টাকা"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Rate = 4% = <span class='fraction'><span class='top'>1</span><span class='bottom'>25</span></span><br>P : A = 25 : 26 &rarr; 625 : 676 (2 years)<br>এখানে আসল 625 unit = 625 টাকা দেওয়া আছে।<br>সুদ-আসল = 676 unit = 676 টাকা। (Exam: CLERKSHIP 2019)"
+    }
+  ]
+}

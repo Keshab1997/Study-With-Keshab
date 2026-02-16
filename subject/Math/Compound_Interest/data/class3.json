@@ -1,0 +1,84 @@
+{
+  "chapterName": "চক্রবৃদ্ধি সুদ (Compound Interest)",
+  "classNumber": "03",
+  "sections": [
+    {
+      "type": "title",
+      "content": "🎯 গাণিতিক সমস্যা ও সমাধান - সেট 02 (3 Years & Different Rates)"
+    },
+    {
+      "type": "box",
+      "content": "এই ক্লাসে আমরা 3 বছর সময়কাল এবং বিভিন্ন বছরের জন্য ভিন্ন ভিন্ন সুদের হার সংক্রান্ত জটিল অংকগুলো আপনার দেওয়া বিস্তারিত পদ্ধতিতে সমাধান করব।"
+    },
+    {
+      "type": "question",
+      "qText": "13. বার্ষিক 6.25% চক্রবৃদ্ধি সুদের হারে 3 বছর পর ₹14,739 টাকার বর্তমান মূল্য (Present Value/Principal) কত? (SSC MTS 21/08/2019)",
+      "explanation": "<strong>Ratio Method:</strong><br>Rate = 6.25% = <span class='fraction'><span class='top'>1</span><span class='bottom'>16</span></span><br>Time = 3 years<br>Principal (P) : Amount (A)<br>Ratio = (16)³ : (17)³<br>Ratio = 4096 : 4913<br>প্রশ্নানুসারে, Amount (4913 unit) = 14,739<br>1 unit = <span class='fraction'><span class='top'>14739</span><span class='bottom'>4913</span></span> = 3<br>Principal = 4096 &times; 3 = <strong>12,288</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "14. গণেশ ₹14,000 এর ঋণ নিয়েছিল যা বার্ষিক 10% চক্রবৃদ্ধি সুদের হারে তিন বছর পর পরিশোধ করতে হবে। তিন বছর পর তাকে মোট কত টাকা দিতে হবে? (RRB JE 2019)",
+      "explanation": "<strong>Ratio Method:</strong><br>Rate = 10% = <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span><br>Time = 3 years<br>P : A = (10)³ : (11)³<br>P : A = 1000 : 1331<br>Principal (1000 unit) = 14,000 &there4; 1 unit = 14<br>Amount = 1331 &times; 14 = <strong>18,634</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "15. 2,000 টাকা বার্ষিক 10% চক্রবৃদ্ধি সুদের হারে 3 বছর পর সুদ-আসলে আনুমানিক কত টাকায় পরিণত হবে? (RRB GROUP D 2018)",
+      "explanation": "<strong>Successive % Method:</strong><br>10% হারে 3 বছরের চক্রবৃদ্ধি সুদ = 33.1%<br>Amount = 100% + 33.1% = 133.1%<br>Total Amount = 2000 &times; 133.1% = <strong>2,662</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "16. মনোজ একটি ফিক্সড ডিপোজিট স্কিমে বার্ষিক 5% চক্রবৃদ্ধি সুদের হারে 3 বছরের জন্য ₹15,000 বিনিয়োগ করেছেন। মেয়াদপূর্তিতে মনোজ কত টাকা পাবে? (RRB GROUP D 2018)",
+      "explanation": "<strong>Ratio Method:</strong><br>Rate = 5% = <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span><br>P : A = (20)³ : (21)³<br>P : A = 8000 : 9261<br>Principal (8000 unit) = 15,000<br>1 unit = <span class='fraction'><span class='top'>15000</span><span class='bottom'>8000</span></span> = 1.875<br>Amount = 9261 &times; 1.875 = <strong>17,364.375</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "17. মনীশ বার্ষিক 5% চক্রবৃদ্ধি সুদের হারে একটি নির্দিষ্ট অর্থ জমা করেছিলেন। 3 বছর শেষে মনীশ মোট ₹92,610 পেয়েছেন। মণীশের জমাকৃত অর্থের পরিমাণ কত ছিল? (RRB GROUP D 2022)",
+      "explanation": "<strong>Ratio Method:</strong><br>Rate = 5% = <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span><br>P : A = (20)³ : (21)³<br>P : A = 8000 : 9261<br>Amount (9261 unit) = 92,610<br>1 unit = 10<br>Principal = 8000 &times; 10 = <strong>80,000</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "18. যদি একটি নির্দিষ্ট পরিমাণ আসল 3 বছরে 10% চক্রবৃদ্ধি সুদের হারে ₹6,655 হয়ে যায়, তবে আসল নির্ণয় করো। (RRB NTPC 2016)",
+      "explanation": "<strong>Ratio Method:</strong><br>Rate = 10% = <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span><br>P : A = (10)³ : (11)³<br>P : A = 1000 : 1331<br>Amount (1331 unit) = 6655<br>1 unit = 5<br>Principal = 1000 &times; 5 = <strong>5,000</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "19. বার্ষিক 12.5% চক্রবৃদ্ধি হারে ₹5,120-এর 3 বছরের চক্রবৃদ্ধি সুদ কত হবে? (SSC MTS 2019)",
+      "explanation": "<strong>Ratio Method:</strong><br>Rate = 12.5% = <span class='fraction'><span class='top'>1</span><span class='bottom'>8</span></span><br>P : A = (8)³ : (9)³<br>P : A = 512 : 729<br>Interest (CI) = 729 - 512 = 217 unit<br>Principal (512 unit) = 5120 &there4; 1 unit = 10<br>Interest = 217 &times; 10 = <strong>2,170</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "20. প্রথম, দ্বিতীয় এবং তৃতীয় বছরের জন্য যথাক্রমে 4%, 5% এবং 6% হারে ₹25,000 এর বার্ষিক চক্রবৃদ্ধি সুদ কত হবে? (RRB NTPC 2021)",
+      "explanation": "<strong>Successive % Formula:</strong> a + b + c + <span class='fraction'><span class='top'>ab + bc + ca</span><span class='bottom'>100</span></span> + <span class='fraction'><span class='top'>abc</span><span class='bottom'>10000</span></span><br>Sum = 4 + 5 + 6 = 15<br>Product pairs = <span class='fraction'><span class='top'>20 + 30 + 24</span><span class='bottom'>100</span></span> = 0.74<br>Product all = <span class='fraction'><span class='top'>120</span><span class='bottom'>10000</span></span> = 0.012<br>Total Rate = 15 + 0.74 + 0.012 = 15.752%<br>Interest = 25000 &times; 15.752% = <strong>3,938</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "21. এক ব্যক্তি 20,000 টাকা ব্যাংকে রাখলেন যেখানে পর পর তিন বছর সুদের হার যথাক্রমে 5%, 10% এবং 20%। তিন বছর পর ওই ব্যক্তি কত টাকা পাবেন? (SSC GD 2024)",
+      "explanation": "<strong>Ratio Method:</strong><br>1st Year (5%) = <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span> &rarr; 20:21<br>2nd Year (10%) = <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span> &rarr; 10:11<br>3rd Year (20%) = <span class='fraction'><span class='top'>1</span><span class='bottom'>5</span></span> &rarr; 5:6<br>Total Ratio (P:A) = (20 &times; 10 &times; 5) : (21 &times; 11 &times; 6)<br>P : A = 1000 : 1386<br>Principal (1000 unit) = 20,000 &there4; 1 unit = 20<br>Amount = 1386 &times; 20 = <strong>27,720</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "22. চক্রবৃদ্ধি সুদে বিনিয়োগ করা একটি রাশি তিন বছরে বেড়ে ₹5,040 হয়। যদি সুদের হার যথাক্রমে 20%, 40% এবং 50% হয়, তবে আসল কত? (SSC MTS 2019)",
+      "explanation": "<strong>Ratio Method:</strong><br>20% = <span class='fraction'><span class='top'>1</span><span class='bottom'>5</span></span> &rarr; 5:6<br>40% = <span class='fraction'><span class='top'>2</span><span class='bottom'>5</span></span> &rarr; 5:7<br>50% = <span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span> &rarr; 2:3<br>P : A = (5 &times; 5 &times; 2) : (6 &times; 7 &times; 3)<br>P : A = 50 : 126 = 25 : 63<br>Amount (63 unit) = 5040<br>1 unit = 80<br>Principal = 25 &times; 80 = <strong>2,000</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "23. পরপর তিন বছর 4%, 5% ও 10% হারে সুদ দেওয়া হলে, 50,000 টাকা 3 বছর পরে সুদে-আসলে কত টাকা হবে? (SSC GD 2021)",
+      "explanation": "<strong>Ratio Method:</strong><br>4% = <span class='fraction'><span class='top'>1</span><span class='bottom'>25</span></span> &rarr; 25:26<br>5% = <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span> &rarr; 20:21<br>10% = <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span> &rarr; 10:11<br>P : A = (25 &times; 20 &times; 10) : (26 &times; 21 &times; 11)<br>P : A = 5000 : 6006<br>Principal (5000 unit) = 50,000 &there4; 1 unit = 10<br>Amount = 6006 &times; 10 = <strong>60,060</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "24. একটি শেয়ারের দাম প্রথম বছর 10% বৃদ্ধি এবং তারপর দুবছর যথাক্রমে 5% ও 4% হ্রাস পায়। বর্তমান দাম 10,000 টাকা হলে তিন বছর পর দাম কত হবে? (RRB GROUP D 2022)",
+      "explanation": "<strong>Ratio Method:</strong><br>10% Inc = <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span> &rarr; 10:11<br>5% Dec = <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span> &rarr; 20:19<br>4% Dec = <span class='fraction'><span class='top'>1</span><span class='bottom'>25</span></span> &rarr; 25:24<br>Initial : Final = (10 &times; 20 &times; 25) : (11 &times; 19 &times; 24)<br>Initial : Final = 5000 : 5016<br>Initial (5000 unit) = 10,000 &there4; 1 unit = 2<br>Final Price = 5016 &times; 2 = <strong>10,032</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "25. বার্ষিক 12 শতাংশ চক্রবৃদ্ধি সুদের হারে তিন বছর পর 25,000 টাকার চক্রবৃদ্ধি সুদ কত হবে? (SSC CPO 03/10/2023)",
+      "explanation": "<strong>Successive % Method (3 Years):</strong><br>Formula: 3r . 3r² . r³<br>r = 12<br>r³ = 1728 (লিখব 28, হাতে 17)<br>3r² = 3 &times; 144 = 432 + 17 = 449 (লিখব 49, হাতে 4)<br>3r = 36 + 4 = 40<br>Effective Rate = 40.4928%<br>Interest = 25000 &times; 40.4928% = <strong>10,123.20</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "26. 7,500 টাকার উপর 4 বছরের চক্রবৃদ্ধি সুদ নির্ণয় করুন, যদি সুদের হার প্রথম দুই বছর বার্ষিক 20% এবং পরবর্তী দুই বছর বার্ষিক 10% হয়। (SSC CHSL 2021)",
+      "explanation": "<strong>Successive % Method:</strong><br>20% for 2 years = 20 + 20 + <span class='fraction'><span class='top'>400</span><span class='bottom'>100</span></span> = 44%<br>10% for 2 years = 10 + 10 + <span class='fraction'><span class='top'>100</span><span class='bottom'>100</span></span> = 21%<br>Total Rate = 44 + 21 + <span class='fraction'><span class='top'>44 &times; 21</span><span class='bottom'>100</span></span> = 65 + 9.24 = 74.24%<br>Interest = 7500 &times; 74.24% = <strong>5,568</strong> টাকা।"
+    }
+  ]
+}

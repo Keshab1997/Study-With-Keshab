@@ -1,0 +1,74 @@
+{
+  "chapterName": "চক্রবৃদ্ধি সুদ (Compound Interest)",
+  "classNumber": "04",
+  "sections": [
+    {
+      "type": "title",
+      "content": "🎯 গাণিতিক সমস্যা ও সমাধান - সেট 03 (Fractional Time & CI vs SI)"
+    },
+    {
+      "type": "box",
+      "content": "এই ক্লাসে আমরা ভগ্নাংশ সময় (যেমন: 1 বছর 9 মাস) এবং চক্রবৃদ্ধি ও সরল সুদের পারস্পরিক সম্পর্ক ভিত্তিক অংকগুলো আপনার দেওয়া বিস্তারিত পদ্ধতিতে সমাধান করব।"
+    },
+    {
+      "type": "question",
+      "qText": "27. বার্ষিক 10% চক্রবৃদ্ধি সুদের হারে 1<span class='fraction'><span class='top'>2</span><span class='bottom'>5</span></span> বছরের জন্য 19,500 টাকার চক্রবৃদ্ধি সুদ কত? (RRB NTPC 2022)",
+      "explanation": "<strong>Time Analysis:</strong> 1<span class='fraction'><span class='top'>2</span><span class='bottom'>5</span></span> বছর = 1 বছর + <span class='fraction'><span class='top'>2</span><span class='bottom'>5</span></span> বছর।<br><strong>Rate Analysis:</strong><br>১ম বছরের জন্য সুদের হার = 10%<br>পরবর্তী <span class='fraction'><span class='top'>2</span><span class='bottom'>5</span></span> বছরের জন্য সুদের হার = 10 &times; <span class='fraction'><span class='top'>2</span><span class='bottom'>5</span></span> = 4%<br><br><strong>পদ্ধতি 1 (Ratio Method):</strong><br>10% = <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span> &rarr; 10 : 11<br>4% = <span class='fraction'><span class='top'>1</span><span class='bottom'>25</span></span> &rarr; 25 : 26<br>Total Ratio (P:A) = (10 &times; 25) : (11 &times; 26) = 250 : 286<br>Interest (CI) = 286 - 250 = 36 unit<br>Principal (250 unit) = 19,500 &there4; 1 unit = 78<br>CI = 36 &times; 78 = <strong>2,808</strong> টাকা。<br><br><strong>পদ্ধতি 2 (Successive %):</strong><br>Total Rate = 10 + 4 + <span class='fraction'><span class='top'>10 &times; 4</span><span class='bottom'>100</span></span> = 14.4%<br>CI = 19500 &times; 14.4% = <strong>2,808</strong> টাকা。"
+    },
+    {
+      "type": "question",
+      "qText": "28. বার্ষিক 10% চক্রবৃদ্ধি সুদের হারে 2<span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span> বছরে একটি নির্দিষ্ট অর্থের চক্রবৃদ্ধি সুদ হল 1,623 টাকা, তবে আসল কত? (SSC CGL 2019)",
+      "explanation": "<strong>Rate Analysis:</strong><br>১ম বছর = 10%<br>২য় বছর = 10%<br>শেষ <span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span> বছর = 10 &times; <span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span> = 5%<br><br><strong>Ratio Method:</strong><br>10% &rarr; 10 : 11<br>10% &rarr; 10 : 11<br>5% &rarr; 20 : 21<br>Total Ratio (P:A) = (10 &times; 10 &times; 20) : (11 &times; 11 &times; 21)<br>P : A = 2000 : 2541<br>Interest = 541 unit<br>প্রশ্নানুসারে, 541 unit = 1623 &there4; 1 unit = 3<br>Principal = 2000 &times; 3 = <strong>6,000</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "29. বার্ষিক 20% চক্রবৃদ্ধি সুদের হারে 100,000 টাকার 3 বছর 3 মাসের জন্য চক্রবৃদ্ধি সুদ নির্ণয় কর। (RRB NTPC 2022)",
+      "explanation": "<strong>Time Analysis:</strong> 3 বছর 3 মাস = 3 বছর + <span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> বছর।<br><strong>Rate Analysis:</strong><br>১ম, ২য়, ৩য় বছর = 20%<br>শেষ 3 মাস (<span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> বছর) = 20 &times; <span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> = 5%<br><br><strong>Ratio Method:</strong><br>20% (<span class='fraction'><span class='top'>1</span><span class='bottom'>5</span></span>) &rarr; 5:6 (তিনবার)<br>5% (<span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span>) &rarr; 20:21<br>P : A = (5 &times; 5 &times; 5 &times; 20) : (6 &times; 6 &times; 6 &times; 21)<br>P : A = 2500 : 4536<br>Interest = 4536 - 2500 = 2036 unit<br>Principal (2500 unit) = 1,00,000 &there4; 1 unit = 40<br>CI = 2036 &times; 40 = <strong>81,440</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "30. 2000 টাকা বার্ষিক 10% সুদের হারে 30 মাস পর সুদ-আসল কত টাকা হবে? (SSC MTS 2019)",
+      "explanation": "<strong>Time Analysis:</strong> 30 মাস = 2 বছর 6 মাস = 2<span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span> বছর।<br><strong>Rate Analysis:</strong> 10%, 10%, এবং শেষ অর্ধাংশের জন্য 5%।<br><br><strong>Ratio Method:</strong><br>10% &rarr; 10:11<br>10% &rarr; 10:11<br>5% &rarr; 20:21<br>P : A = 2000 : 2541<br>Principal দেওয়া আছে 2000 টাকা, তাই Amount হবে <strong>2541</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "31. একটি নির্দিষ্ট পরিমাণ অর্থ 1 বছর 9 মাসের জন্য বার্ষিক 10% চক্রবৃদ্ধি সুদের হারে ধার দেওয়া হয়েছিল। যদি চক্রবৃদ্ধি সুদের পরিমাণ 1,460 টাকা হয়, তবে আসল কত? (SSC CHSL 2023)",
+      "explanation": "<strong>Time Analysis:</strong> 1 বছর 9 মাস = 1 বছর + <span class='fraction'><span class='top'>3</span><span class='bottom'>4</span></span> বছর।<br><strong>Rate Analysis:</strong><br>১ম বছর = 10%<br>পরবর্তী 9 মাস = 10 &times; <span class='fraction'><span class='top'>3</span><span class='bottom'>4</span></span> = 7.5% = <span class='fraction'><span class='top'>3</span><span class='bottom'>40</span></span><br><br><strong>Ratio Method:</strong><br>10% &rarr; 10 : 11<br>7.5% &rarr; 40 : 43<br>P : A = (10 &times; 40) : (11 &times; 43) = 400 : 473<br>Interest = 73 unit<br>73 unit = 1460 &there4; 1 unit = 20<br>Principal = 400 &times; 20 = <strong>8,000</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "32. 10% হারে 2 বছরের জন্য একটি নির্দিষ্ট রাশির চক্রবৃদ্ধি সুদ হল ₹2100। একই হারে এবং একই সময়ের জন্য একই রাশির সরল সুদ কী হবে? (RRB JE 2019)",
+      "explanation": "<strong>Percentage Method:</strong><br>CI Rate (2 years, 10%) = 10+10+1 = 21%<br>SI Rate (2 years, 10%) = 10 &times; 2 = 20%<br>প্রশ্নানুসারে, 21% = 2100 &there4; 1% = 100<br>SI (20%) = 20 &times; 100 = <strong>2,000</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "33. বার্ষিক 10% হারে 2 বছরের জন্য একটি রাশির সরল সুদ হল ₹500। একই সময়ের জন্য একই হারে একই রাশির চক্রবৃদ্ধি সুদ কত? (RRB NTPC 2020)",
+      "explanation": "<strong>Percentage Method:</strong><br>SI Rate (2 years, 10%) = 20%<br>CI Rate (2 years, 10%) = 21%<br>20% = 500 &there4; 1% = 25<br>CI (21%) = 21 &times; 25 = <strong>525</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "34. বার্ষিক 11% হারে 2 বছরের জন্য নির্দিষ্ট অর্থের চক্রবৃদ্ধি সুদ ₹4642। একই হারে এবং একই সময়ের জন্য সরল সুদ নির্ণয় কর। (RRB NTPC 2021)",
+      "explanation": "<strong>Percentage Method:</strong><br>CI Rate (2 years, 11%) = 11+11+<span class='fraction'><span class='top'>121</span><span class='bottom'>100</span></span> = 23.21%<br>SI Rate (2 years, 11%) = 22%<br>23.21% = 4642 &there4; 1% = <span class='fraction'><span class='top'>4642</span><span class='bottom'>23.21</span></span> = 200<br>SI (22%) = 22 &times; 200 = <strong>4,400</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "35. 3 বছরের জন্য 8% হারে ‘x’ পরিমাণ অর্থের সরল সুদ, 2 বছরের জন্য 10% হারে ₹4,000 এর চক্রবৃদ্ধি সুদের অর্ধেকের সমান হলে ‘x’ এর মান কত? (RRB JE 2019)",
+      "explanation": "<strong>Step 1 (CI Calculation):</strong><br>P = 4000, R = 10%, T = 2 years.<br>CI Rate = 21%.<br>CI = 4000 &times; 21% = 840 টাকা。<br><strong>Step 2 (SI Condition):</strong><br>SI = CI এর অর্ধেক = <span class='fraction'><span class='top'>840</span><span class='bottom'>2</span></span> = 420 টাকা。<br><strong>Step 3 (Find x):</strong><br>SI Formula: I = <span class='fraction'><span class='top'>PRT</span><span class='bottom'>100</span></span><br>420 = <span class='fraction'><span class='top'>x &times; 8 &times; 3</span><span class='bottom'>100</span></span><br>420 = <span class='fraction'><span class='top'>24x</span><span class='bottom'>100</span></span><br>x = <span class='fraction'><span class='top'>420 &times; 100</span><span class='bottom'>24</span></span> = <strong>1,750</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "36. বার্ষিক 5% হারে 3 বছরের জন্য একটি নির্দিষ্ট অর্থের চক্রবৃদ্ধি সুদ ₹3783 হলে, একই সময়ের সরল সুদ কত? (RRB NTPC 2021)",
+      "explanation": "<strong>Percentage Method:</strong><br>CI Rate (3 years, 5%) = 15.7625%<br>SI Rate (3 years, 5%) = 15%<br>15.7625% = 3783 &there4; 1% = <span class='fraction'><span class='top'>3783</span><span class='bottom'>15.7625</span></span> = 240<br>SI (15%) = 15 &times; 240 = <strong>3,600</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "37. নির্দিষ্ট পরিমাণ অর্থ সরল সুদে 6 বছরে 60% বৃদ্ধি পেয়েছে। একই হারে 3 বছর পর ₹10000 এর চক্রবৃদ্ধি সুদ কত হবে? (RRB NTPC 2021)",
+      "explanation": "<strong>Rate Calculation:</strong><br>6 বছরে বাড়ে 60% (সরল সুদ)।<br>1 বছরে বাড়ে <span class='fraction'><span class='top'>60</span><span class='bottom'>6</span></span> = 10% (Rate)।<br><strong>CI Calculation:</strong><br>P = 10000, R = 10%, T = 3 years.<br>Effective Rate for 3 years @ 10% = 33.1%<br>CI = 10000 &times; 33.1% = <strong>3,310</strong> টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "38. 3 বছরের জন্য বার্ষিক 12% হারে সরল সুদ হল ₹4,140। 2 বছরের জন্য একই অর্থের 8% হারে চক্রবৃদ্ধি সুদ কত? (RRB ALP 2018)",
+      "explanation": "<strong>Step 1 (Find Principal/1% Value):</strong><br>SI Rate (3 years, 12%) = 36%<br>36% = 4140 &there4; 1% = <span class='fraction'><span class='top'>4140</span><span class='bottom'>36</span></span> = 115<br><strong>Step 2 (Find CI):</strong><br>CI Rate (2 years, 8%) = 8+8+0.64 = 16.64%<br>CI = 16.64 &times; 115 = <strong>1,913.60</strong> টাকা।"
+    }
+  ]
+}
