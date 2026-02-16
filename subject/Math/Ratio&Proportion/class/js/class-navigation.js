@@ -16,7 +16,7 @@ function createClassNavigation() {
     const currentClass = getCurrentClassNumber();
     
     let navHTML = '<div class="class-navigation" style="margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">';
-    navHTML += '<h3 style="margin-bottom: 20px; color: white; text-align: center; font-size: 1.5rem;">📚 Class Navigation</h3>';
+    navHTML += '<h3 style="margin-bottom: 20px; color: white; text-align: center; font-size: 1.5rem;">📚 ক্লাস নেভিগেশন</h3>';
     navHTML += '<div class="class-nav-buttons" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px;">';
     
     for (let i = 1; i <= TOTAL_CLASSES; i++) {
@@ -29,7 +29,7 @@ function createClassNavigation() {
             <button style="${buttonStyle} padding: 12px 20px; border: none; border-radius: 10px; cursor: pointer; font-size: 16px; transition: all 0.3s; min-width: 60px;" 
                 onmouseover="if(${!isActive}) { this.style.background='rgba(255,255,255,0.3)'; this.style.transform='scale(1.1)'; }" 
                 onmouseout="if(${!isActive}) { this.style.background='rgba(255,255,255,0.2)'; this.style.transform='scale(1)'; }">
-                ${isActive ? 'Class ' + i + ' ✓' : 'Class ' + i}
+                ${isActive ? '✓ ' + i : i}
             </button>
         </a>`;
     }
@@ -44,16 +44,16 @@ function createClassNavigation() {
             <button style="padding: 12px 30px; background: white; color: #667eea; border: none; border-radius: 10px; cursor: pointer; font-size: 16px; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" 
                 onmouseover="this.style.transform='translateX(-5px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.3)';" 
                 onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.2)';">
-                ← পূর্ববর্তী Class
+                ← আগের
             </button>
         </a>`;
     }
     
     navHTML += `<a href="../index.html" style="text-decoration: none;">
-        <button style="padding: 12px 30px; background: #FFD700; color: #333; border: none; border-radius: 10px; cursor: pointer; font-size: 16px; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" 
+        <button style="padding: 12px 20px; background: #FFD700; color: #333; border: none; border-radius: 10px; cursor: pointer; font-size: 20px; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" 
             onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(255,215,0,0.5)';" 
             onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.2)';">
-            🏠 Home
+            🏠
         </button>
     </a>`;
     
@@ -62,7 +62,7 @@ function createClassNavigation() {
             <button style="padding: 12px 30px; background: white; color: #667eea; border: none; border-radius: 10px; cursor: pointer; font-size: 16px; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" 
                 onmouseover="this.style.transform='translateX(5px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.3)';" 
                 onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.2)';">
-                পরবর্তী Class →
+                পরের →
             </button>
         </a>`;
     }
@@ -105,6 +105,10 @@ style.textContent = `
         .prev-next-buttons button {
             padding: 10px 20px !important;
             font-size: 14px !important;
+        }
+        .prev-next-buttons a:nth-child(2) button {
+            padding: 10px 15px !important;
+            font-size: 18px !important;
         }
     }
 `;

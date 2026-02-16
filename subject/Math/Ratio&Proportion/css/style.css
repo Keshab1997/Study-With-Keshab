@@ -284,17 +284,17 @@ body.dark-mode #search-bar:focus {
 
 .nav-grid {
     display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 12px !important;
-    padding: 15px !important;
-    margin: 10px 0 0 0 !important;
+    grid-template-columns: repeat(8, 1fr) !important;
+    gap: 8px !important;
+    padding: 10px !important;
+    margin: 0 !important;
 }
 
 .nav-button {
     color: white;
     text-decoration: none !important;
-    padding: 15px 5px !important;
-    border-radius: 20px !important;
+    padding: 12px 5px !important;
+    border-radius: 12px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -304,7 +304,7 @@ body.dark-mode #search-bar:focus {
     border: none !important;
     font-size: 1rem;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
     position: relative;
     overflow: hidden;
 }
@@ -325,8 +325,8 @@ body.dark-mode #search-bar:focus {
 }
 
 .nav-button:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15) !important;
 }
 
 .nav-button:active {
@@ -334,15 +334,14 @@ body.dark-mode #search-bar:focus {
 }
 
 .nav-button i {
-    font-size: 1.6rem !important;
-    margin-bottom: 8px !important;
+    font-size: 1.2rem !important;
+    margin-bottom: 5px !important;
 }
 
 .nav-button span {
-    font-weight: 600 !important;
-    font-size: 0.75rem !important;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    letter-spacing: 0;
 }
 
 /* Navigation Button Colors */
@@ -1228,22 +1227,22 @@ footer {
     }
 
     .nav-grid {
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 12px !important;
-        padding: 15px !important;
+        grid-template-columns: repeat(8, 1fr) !important;
+        gap: 8px !important;
+        padding: 10px !important;
     }
 
     .nav-button {
-        padding: 15px 5px !important;
-        border-radius: 20px !important;
+        padding: 10px 3px !important;
+        border-radius: 10px !important;
     }
 
     .nav-button i {
-        font-size: 1.6rem !important;
+        font-size: 1rem !important;
     }
 
     .nav-button span {
-        font-size: 0.75rem !important;
+        font-size: 0.95rem !important;
     }
 
     .main-header {
@@ -1264,11 +1263,11 @@ footer {
 
 @media (max-width: 400px) {
     .nav-grid {
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 8px !important;
+        grid-template-columns: repeat(8, 1fr) !important;
+        gap: 6px !important;
     }
     .nav-button span {
-        font-size: 0.65rem !important;
+        font-size: 0.85rem !important;
     }
 }
 

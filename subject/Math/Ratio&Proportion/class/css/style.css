@@ -68,6 +68,30 @@
   --mcq-tag-bg: #e65100;
 }
 
+[data-theme="book"] {
+  --bg-color: #f8f8f8;
+  --container-bg: #ffffff;
+  --text-color: #000000;
+  --heading-color-1: #000000;
+  --heading-color-2: #000000;
+  --heading-color-3: #000000;
+  --accent-color: #000000;
+  --blockquote-bg: #f5f5f5;
+  --blockquote-border: #000000;
+  --table-header-bg: #000000;
+  --table-header-text: #ffffff;
+  --nav-button-bg: #ffffff;
+  --nav-button-text: #000000;
+  --nav-button-border: #cccccc;
+  --nav-active-bg: #000000;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
+  --card-border-color: #dddddd;
+  --card-shadow-color: rgba(0, 0, 0, 0.05);
+  --mcq-tag-bg: #000000;
+  --mcq-tag-text: #ffffff;
+  --success-color: #000000;
+}
+
 .dark-mode {
   --bg-color: #121212;
   --container-bg: #1e1e1e;
@@ -99,10 +123,28 @@ body {
   font-family: "Hind Siliguri", sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
-  line-height: 1.8;
+  line-height: 1.6;
   margin: 0;
-  padding: 20px;
+  padding: 0;
   transition: background-color 0.3s, color 0.3s;
+}
+
+body[data-theme="book"] {
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 31px,
+      rgba(0, 0, 0, 0.05) 31px,
+      rgba(0, 0, 0, 0.05) 32px
+    );
+  background-size: 100% 32px;
+}
+
+body[data-theme="book"] .container {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dddddd;
+  border-radius: 0;
 }
 body.desktop-view .container,
 body.desktop-view header,
@@ -110,30 +152,30 @@ body.desktop-view .controls-wrapper {
   max-width: 1200px;
 }
 header {
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 20px 0;
+  padding: 10px;
   transition: max-width 0.4s ease-in-out;
 }
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   box-shadow: 0 4px 12px var(--box-shadow-color);
 }
 .container {
-  max-width: 900px;
-  margin: 20px auto;
+  max-width: 100%;
+  margin: 0;
   background-color: var(--container-bg);
-  padding: 30px 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px var(--box-shadow-color);
+  padding: 10px;
+  border-radius: 0;
+  box-shadow: none;
   transition: background-color 0.3s, max-width 0.4s ease-in-out;
 }
 h1,
@@ -146,18 +188,18 @@ h4 {
 }
 h1 {
   text-align: center;
-  font-size: 2.2em;
+  font-size: 1.3em;
   color: var(--heading-color-1);
   border-bottom: none;
   margin: 0;
 }
 h2 {
-  font-size: 2em;
+  font-size: 1.4em;
   color: var(--heading-color-2);
 }
 h3,
 h4 {
-  font-size: 1.6em;
+  font-size: 1.2em;
   color: var(--heading-color-3);
 }
 h4 {
@@ -189,11 +231,12 @@ img {
 }
 ol,
 ul {
-  padding-left: 20px;
+  padding-left: 15px;
+  margin: 10px 0;
 }
 li {
-  margin-bottom: 10px;
-  padding-left: 10px;
+  margin-bottom: 6px;
+  padding-left: 5px;
 }
 table {
   width: 100%;
@@ -216,23 +259,23 @@ table tr:nth-of-type(even) {
   background-color: var(--blockquote-bg);
 }
 .controls-wrapper {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 15px;
+  max-width: 100%;
+  margin: 0;
+  padding: 8px;
   background-color: var(--container-bg);
-  border-radius: 10px;
-  box-shadow: 0 4px 12px var(--box-shadow-color);
+  border-radius: 0;
+  box-shadow: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 6px;
   transition: max-width 0.4s ease-in-out;
 }
 .theme-buttons button,
 #desktopModeToggle,
 #rotateScreenToggle {
-  padding: 8px 15px;
+  padding: 6px 12px;
   border: 1px solid var(--nav-button-border);
   background-color: var(--nav-button-bg);
   color: var(--nav-button-text);
@@ -240,7 +283,21 @@ table tr:nth-of-type(even) {
   cursor: pointer;
   font-family: "Hind Siliguri", sans-serif;
   font-weight: 600;
+  font-size: 0.9em;
   transition: all 0.2s;
+}
+
+.theme-buttons button[data-theme-name="book"] {
+  background: #ffffff;
+  border: 1px solid #000000;
+  color: #000000;
+}
+
+body[data-theme="book"] p,
+body[data-theme="book"] li {
+  text-align: justify;
+  line-height: 1.8;
+  font-size: 1.05em;
 }
 .theme-buttons button:hover,
 #desktopModeToggle:hover,
@@ -564,4 +621,93 @@ footer {
     display: block;
     padding: 0 2px;
     line-height: 1.2;
+}
+
+
+/* Content Box Styling */
+.content-box {
+  background: var(--blockquote-bg);
+  border-left: 3px solid var(--blockquote-border);
+  padding: 10px 12px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-size: 0.95em;
+}
+
+/* Math Equation Compact */
+.math-eq {
+  font-size: 1em !important;
+  padding: 6px 8px !important;
+  margin: 5px 0 !important;
+}
+
+/* Blockquote Compact */
+blockquote {
+  padding: 10px 15px !important;
+  margin: 15px 0 !important;
+  font-size: 0.95em !important;
+}
+
+/* Table Compact */
+table th,
+table td {
+  padding: 8px 10px !important;
+  font-size: 0.9em !important;
+}
+
+
+/* Native App Mobile Override */
+@media (max-width: 768px) {
+  html {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  body {
+    padding: 0 !important;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+  }
+
+  .container,
+  header,
+  .controls-wrapper {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .container {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+
+  h1 {
+    font-size: 1.2em !important;
+  }
+  h2 {
+    font-size: 1.3em !important;
+  }
+  h3,
+  h4 {
+    font-size: 1.1em !important;
+  }
+  p {
+    font-size: 0.95em !important;
+  }
+
+  .controls-wrapper {
+    flex-direction: row !important;
+    gap: 4px !important;
+    padding: 5px !important;
+  }
+
+  .question-item {
+    padding: 40px 8px 8px 8px !important;
+  }
 }
