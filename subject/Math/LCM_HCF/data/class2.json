@@ -1,16 +1,14 @@
 {
-  "classNumber": 2,
-  "title": "সূত্র ও কৌশল (Formulas & Tricks)",
-  "content": [
+  "classNumber": "02",
+  "chapterName": "LCM & HCF",
+  "sections": [
     {
-      "type": "heading",
-      "level": 2,
-      "text": "CLASS NO: 02"
+      "type": "title",
+      "content": "সূত্র ও কৌশল (Formulas & Tricks)"
     },
     {
-      "type": "heading",
-      "level": 4,
-      "text": "২. গুরুত্বপূর্ণ সূত্র"
+      "type": "text",
+      "content": "গুরুত্বপূর্ণ সূত্র"
     },
     {
       "type": "list",

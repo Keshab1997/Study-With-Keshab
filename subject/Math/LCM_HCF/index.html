@@ -1,45 +1,245 @@
 <!doctype html>
 <html lang="bn">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LCM & HCF | Study With Keshab</title>
-    <link rel="stylesheet" href="../../../css/style.css" />
-    <link rel="stylesheet" href="../../../css/navigation.css" />
-    <link rel="stylesheet" href="css/pdf-viewer.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-</head>
-<body class="day-mode auth-loading">
-    <main>
-        <!-- Banner (JS দিয়ে লোড হবে) -->
-        <div id="chapter-banner-placeholder"></div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title id="dynamic-title">Loading... | Study With Keshab</title>
+        
+        <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/993/993872.png" />
 
-        <!-- Dashboard Section -->
-        <section class="card" id="dashboard">
-            <h2><i class="fa-solid fa-chart-line icon-title"></i> আমার ড্যাশবোর্ড</h2>
-            <div id="dashboard-content"></div> <!-- dashboard-features.html এখানে ইনজেক্ট হবে -->
-        </section>
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="../../../css/style.css" />
+        <link rel="stylesheet" href="../../../css/navigation.css" />
+        <link rel="stylesheet" href="../../../css/notification.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/pdf-viewer.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
-        <!-- Class Notes Section -->
-        <section class="card" id="class-notes">
-            <h2><i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট</h2>
-            <div class="link-container styled-list" id="class-list-container">
-                <p>লোড হচ্ছে...</p>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+        <style>
+            body.auth-loading { visibility: hidden; opacity: 0; }
+            .main-header { display: none; } /* navigation.js লোড হলে এটি হাইড হবে */
+            
+            /* Chapter Banner Styling */
+            .chapter-banner {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+                color: white; padding: 40px 30px !important; text-align: center;
+                margin: 0 0 40px 0 !important; border-bottom: 3px solid rgba(255, 255, 255, 0.2) !important;
+            }
+            .chapter-banner h1 { margin: 0 !important; font-size: 1.8rem !important; font-weight: 700 !important; }
+            .chapter-banner p { margin: 0.5rem 0 0 0 !important; font-size: 1.1rem !important; opacity: 0.95 !important; }
+            
+            /* Dashboard Grid Fix */
+            .quick-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+            .stat-card { background: #fff; padding: 25px; border-radius: 16px; text-align: center; border: 1px solid #eee; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+            .stat-label { font-size: 0.9rem; color: #666; margin-bottom: 10px; }
+            .stat-number { font-size: 2rem; font-weight: bold; color: #667eea; }
+            
+            .streak-container { display: flex; align-items: center; background: #fff5f5; padding: 25px; border-radius: 16px; margin-bottom: 30px; border-left: 5px solid #ff4d4d; }
+            .streak-icon { font-size: 2.5rem; margin-right: 20px; }
+            
+            .motivational-quote-box { background: #f0f9ff; padding: 25px; border-radius: 16px; border-left: 5px solid #3b82f6; margin-bottom: 30px; font-size: 1rem; line-height: 1.6; }
+            
+            .card { margin-bottom: 30px !important; padding: 30px !important; }
+            
+            /* Dashboard Grid & Items */
+            .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+            .dashboard-item { background: #fff; padding: 25px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden; }
+            .dashboard-item h3 { font-size: 1.1rem; margin: 0 0 15px 0; border: none; color: #333; }
+            .dashboard-item canvas { max-width: 100% !important; height: auto !important; }
+            
+            /* Progress Bar */
+            .progress-bar-container { width: 100%; height: 20px; background: #e9ecef; border-radius: 10px; overflow: hidden; margin: 15px 0; }
+            .progress-bar { height: 100%; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 10px; transition: width 0.5s ease; }
+            
+            /* Leaderboard Table */
+            .leaderboard-container { overflow-x: auto; }
+            .leaderboard-container table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 20px; }
+            .leaderboard-container thead th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 18px; font-size: 1.1rem; font-weight: 700; text-align: center; border: none; }
+            .leaderboard-container thead th:first-child { border-radius: 12px 0 0 0; }
+            .leaderboard-container thead th:last-child { border-radius: 0 12px 0 0; }
+            .leaderboard-container tbody td { padding: 18px; font-size: 1.05rem; text-align: center; border-bottom: 1px solid #e9ecef; background: white; }
+            .leaderboard-container tbody tr:hover td { background: #f8f9fa; }
+            .leaderboard-container tbody tr:first-child td { font-weight: 700; color: #667eea; background: #f0f4ff; }
+            .leaderboard-container tbody tr:last-child td { border-bottom: none; }
+            
+            /* Navigation Grid Premium */
+            .nav-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; padding: 20px; margin: 20px 0 30px 0; max-width: 1200px; margin-left: auto; margin-right: auto; }
+            .nav-button { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 25px 15px; background: white; border-radius: 16px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 2px solid transparent; min-height: 100px; }
+            .nav-button i { font-size: 2rem; margin-bottom: 10px; }
+            .nav-button span { font-size: 0.9rem; font-weight: 600; text-align: center; line-height: 1.3; }
+            .nav-button:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+            
+            .color-home { border-color: #10b981; } .color-home i { color: #10b981; } .color-home span { color: #10b981; } .color-home:hover { background: #ecfdf5; }
+            .color-dashboard { border-color: #3b82f6; } .color-dashboard i { color: #3b82f6; } .color-dashboard span { color: #3b82f6; } .color-dashboard:hover { background: #eff6ff; }
+            .color-notes { border-color: #f59e0b; } .color-notes i { color: #f59e0b; } .color-notes span { color: #f59e0b; } .color-notes:hover { background: #fffbeb; }
+            .color-pdf { border-color: #ef4444; } .color-pdf i { color: #ef4444; } .color-pdf span { color: #ef4444; } .color-pdf:hover { background: #fef2f2; }
+            .color-quiz { border-color: #8b5cf6; } .color-quiz i { color: #8b5cf6; } .color-quiz span { color: #8b5cf6; } .color-quiz:hover { background: #faf5ff; }
+            .color-leaderboard { border-color: #f97316; } .color-leaderboard i { color: #f97316; } .color-leaderboard span { color: #f97316; } .color-leaderboard:hover { background: #fff7ed; }
+            
+            @media (max-width: 768px) {
+                .dashboard-grid { grid-template-columns: 1fr; }
+                .dashboard-item { padding: 20px; }
+                .leaderboard-container thead th { font-size: 1rem; padding: 15px; }
+                .leaderboard-container tbody td { font-size: 0.95rem; padding: 15px; }
+                .nav-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 15px; margin: 15px 0 25px 0; }
+                .nav-button { padding: 20px 10px; min-height: 90px; }
+                .nav-button i { font-size: 1.6rem; margin-bottom: 8px; }
+                .nav-button span { font-size: 0.8rem; }
+                body, main { overflow-x: hidden; }
+                .card { padding: 20px !important; }
+            }
+            
+            @media (max-width: 480px) {
+                .nav-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px; }
+                .nav-button { padding: 18px 8px; min-height: 85px; }
+                .nav-button i { font-size: 1.5rem; }
+                .nav-button span { font-size: 0.75rem; }
+            }
+        </style>
+    </head>
+    <body class="day-mode homepage theme-blue auth-loading">
+        <div id="preloader"><div class="loader"></div></div>
+
+        <!-- Navigation Grid -->
+        <nav class="nav-grid">
+            <a href="../../../../index.html" class="nav-button color-home">
+                <i class="fa-solid fa-house"></i>
+                <span>হোম</span>
+            </a>
+            <a href="#dashboard" class="nav-button color-dashboard">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>ড্যাশবোর্ড</span>
+            </a>
+            <a href="#class-notes" class="nav-button color-notes">
+                <i class="fa-solid fa-book-open"></i>
+                <span>ক্লাস নোট</span>
+            </a>
+            <a href="#pdf-notes" class="nav-button color-pdf">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span>পিডিএফ</span>
+            </a>
+            <a href="#quiz-sets" class="nav-button color-quiz">
+                <i class="fa-solid fa-file-circle-question"></i>
+                <span>কুইজ</span>
+            </a>
+            <a href="#leaderboard" class="nav-button color-leaderboard">
+                <i class="fa-solid fa-trophy"></i>
+                <span>লিডারবোর্ড</span>
+            </a>
+        </nav>
+
+        <main>
+            <script>
+                // এই আইডিটি আপনার chapter-info.json এর chapterID এর সাথে মিল থাকতে হবে
+                const CURRENT_CHAPTER_NAME = "LCM-HCF"; 
+            </script>
+
+            <!-- ড্যাশবোর্ড সেকশন -->
+            <section class="card" id="dashboard">
+                <h2><i class="fa-solid fa-chart-line icon-title"></i> আমার ড্যাশবোর্ড</h2>
+                
+                <div class="quick-stats-grid">
+                    <div class="stat-card"><div class="stat-label">মোট কুইজ</div><div class="stat-number" id="total-quizzes">0</div></div>
+                    <div class="stat-card"><div class="stat-label">মোট স্কোর</div><div class="stat-number" id="total-score">0</div></div>
+                    <div class="stat-card"><div class="stat-label">গড় নম্বর</div><div class="stat-number" id="average-score">0</div></div>
+                </div>
+
+                <div class="streak-container">
+                    <div class="streak-icon">🔥</div>
+                    <div class="streak-info"><h3 id="streak-days">0 দিন</h3><p>ধারাবাহিকতা</p></div>
+                </div>
+
+                <div class="motivational-quote-box">
+                    <p id="daily-quote">"সফলতা হলো প্রতিদিনের ছোট ছোট প্রচেষ্টার ফল।"</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-item">
+                        <h3>অধ্যায়ের অগ্রগতি</h3>
+                        <div class="progress-bar-container"><div class="progress-bar" id="chapter-progress-bar" style="width: 0%"></div></div>
+                        <p id="chapter-progress-text">0% সম্পন্ন</p>
+                    </div>
+                    <div class="dashboard-item">
+                        <h3>পারফরম্যান্স চার্ট</h3>
+                        <canvas id="quiz-pie-chart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ক্লাস নোট (JS দিয়ে লোড হবে) -->
+            <section class="card" id="class-notes">
+                <h2><i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট</h2>
+                <div class="link-container styled-list" id="class-list-container">
+                    <p>লোড হচ্ছে...</p>
+                </div>
+            </section>
+
+            <!-- পিডিএফ নোট -->
+            <section class="card" id="pdf-notes">
+                <h2><i class="fa-solid fa-file-pdf icon-title"></i> পিডিএফ নোট</h2>
+                <div class="pdf-grid" id="pdf-grid-container">
+                    <div style="text-align:center; width:100%;">লোড হচ্ছে...</div>
+                </div>
+            </section>
+
+            <!-- কুইজ সেট (JS দিয়ে লোড হবে) -->
+            <section class="card" id="quiz-sets">
+                <h2><i class="fa-solid fa-file-circle-question icon-title"></i> কুইজ সেট</h2>
+                <div class="link-container styled-list" id="quiz-list-container">
+                    <p>লোড হচ্ছে...</p>
+                </div>
+            </section>
+
+            <!-- লিডারবোর্ড -->
+            <section class="card" id="leaderboard">
+                <h2><i class="fa-solid fa-trophy icon-title"></i> লিডারবোর্ড</h2>
+                <div class="leaderboard-container">
+                    <table>
+                        <thead><tr><th>#</th><th>নাম</th><th>স্কোর</th></tr></thead>
+                        <tbody id="leaderboard-body"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <!-- PDF Modal & Scripts -->
+        <div id="fullScreenPdfModal" class="pdf-modal" style="display: none;">
+            <div class="pdf-toolbar">
+                <button onclick="closePdf()"><i class="fa-solid fa-arrow-left"></i></button>
+                <span id="pdfModalTitle">Viewer</span>
             </div>
-        </section>
-
-        <!-- Quiz Section -->
-        <section class="card" id="quiz-sets">
-            <h2><i class="fa-solid fa-file-circle-question icon-title"></i> কুইজ সেট</h2>
-            <div class="link-container styled-list" id="quiz-list-container">
-                <p>লোড হচ্ছে...</p>
+            <div class="frame-container">
+                <iframe id="pdfViewerFrame"></iframe>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-    <script src="../../../js/firebase-config.js"></script>
-    <script src="js/main-renderer.js"></script>
-</body>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+        <script src="../../../js/firebase-config.js"></script>
+        
+        <script>
+            window.__MANUAL_ROOT_PATH__ = '../../../';
+            window.__CHAPTER_BANNER__ = `
+                <div class="chapter-banner">
+                    <h1>📐 LCM & HCF (লসাগু ও গসাগু)</h1>
+                    <p>প্রতিযোগিতামূলক পরীক্ষার জন্য সম্পূর্ণ গাইড</p>
+                </div>
+            `;
+        </script>
+        
+        <script src="../../../js/navigation.js"></script>
+        <script src="../../../auth.js"></script>
+        <script src="js/main-renderer.js"></script>
+        <script src="js/pdf-viewer.js"></script>
+        
+        <script>
+            // Fallback: 5 সেকেন্ডের মধ্যে লোড না হলে জোর করে দেখাও
+            setTimeout(() => {
+                document.body.classList.remove("auth-loading");
+            }, 5000);
+        </script> 
+    </body>
 </html>

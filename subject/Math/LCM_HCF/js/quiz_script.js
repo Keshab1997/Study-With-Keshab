@@ -14,30 +14,39 @@ let shuffledOptionsPerQuestion = [];
 let timerInterval;
 let currentCorrectAnswerIndex;
 
-// Sound effects
+// Sound effects - Disable if files not found
 const correctSound = new Audio("../sounds/correct.mp3");
 const wrongSound = new Audio("../sounds/wrong.mp3");
 
+// Prevent error if sound files don't exist
+correctSound.onerror = () => console.warn('Correct sound file not found');
+wrongSound.onerror = () => console.warn('Wrong sound file not found');
+
 // Main entry point
-document.addEventListener("DOMContentLoaded", () => {
+// Note: loadQuizData() quiz-renderer.js থেকে কল হবে
+function checkAuthAndInit() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            initializeApp();
+            // User logged in, quiz-renderer.js থেকে initializeApp() কল হবে
         } else {
             alert("এই কুইজ দিতে হলে আপনাকে লগইন করতে হবে!");
-            window.location.href = "../login.html";
+            window.location.href = "../../../login.html";
         }
     });
-});
+}
+
+// DOMContentLoaded এ auth চেক করুন
+document.addEventListener("DOMContentLoaded", checkAuthAndInit);
 
 function initializeApp() {
     setupModeToggle();
     if (
         typeof quizSet !== "undefined" &&
+        quizSet &&
         quizSet.questions &&
         quizSet.questions.length > 0
     ) {
-        document.getElementById("quiz-title").textContent = quizSet.name;
+        document.getElementById("quiz-title").textContent = quizSet.setName || quizSet.chapterName;
         shuffleArray(quizSet.questions);
         showQuestion();
         setupKeyboard();
@@ -147,10 +156,10 @@ window.selectAnswer = function (selectedIndex, correctBtnIndex) {
         );
         if (selectedBtn) selectedBtn.classList.add("incorrect");
         wrongCount++;
-        wrongSound.play();
+        wrongSound.play().catch(e => console.warn('Sound play failed'));
     } else {
         correctCount++;
-        correctSound.play();
+        correctSound.play().catch(e => console.warn('Sound play failed'));
     }
     userAnswers[currentQuestionIndex] = selectedIndex;
     document.getElementById("correct-count").textContent = `✔️ ${correctCount}`;

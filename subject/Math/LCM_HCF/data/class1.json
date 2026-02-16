@@ -1,25 +1,29 @@
 {
   "classNumber": "01",
-  "chapterName": "LCM & HCF",
+  "chapterName": "লসাগু ও গসাগু (LCM & HCF)",
   "sections": [
     {
       "type": "title",
       "content": "মৌলিক ধারণা (Basic Concepts)"
     },
     {
-      "type": "math",
-      "content": "LCM × HCF = Product of Two Numbers"
+      "type": "box",
+      "content": "<strong>সূত্র:</strong> লসাগু × গসাগু = সংখ্যা দুটির গুণফল"
     },
     {
-      "type": "box",
-      "title": "মনে রাখবে",
-      "content": "গসাগু সর্বদা লসাগু এর একটি উৎপাদক হয়।"
+      "type": "text",
+      "content": "ভগ্নাংশের লসাগু বের করার নিয়ম নিচে দেওয়া হলো:"
+    },
+    {
+      "type": "math",
+      "content": "লসাগু = <span class='fraction'><span class='top'>লবগুলির লসাগু</span><span class='bottom'>হরগুলির গসাগু</span></span>"
     },
     {
       "type": "list",
       "items": [
-        "দুটি মৌলিক সংখ্যার গসাগু সর্বদা ১ হয়।",
-        "ভগ্নাংশের লসাগু = (লবগুলির লসাগু) / (হরগুলির গসাগু)"
+        "দুটি মৌলিক সংখ্যার গসাগু সর্বদা ১ হয়।",
+        "দুটি মৌলিক সংখ্যার লসাগু = তাদের গুণফল।",
+        "গসাগু সর্বদা লসাগু এর একটি উৎপাদক হয়।"
       ]
     }
   ]

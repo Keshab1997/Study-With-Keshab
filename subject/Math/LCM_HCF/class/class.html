@@ -2,26 +2,60 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LCM & HCF - Class</title>
-    <link rel="stylesheet" href="../../Ratio&Proportion/class/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .fraction {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            margin: 0 4px;
+        }
+        .fraction .top {
+            display: block;
+            border-bottom: 2px solid currentColor;
+            padding: 1px;
+        }
+        .fraction .bottom {
+            display: block;
+            padding: 1px;
+        }
+        .math-eq {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        body.dark-mode .math-eq {
+            color: #fff;
+            background: #444;
+        }
+        .content-box {
+            background: #f0f8ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        body.dark-mode .content-box {
+            background: #1a2332;
+            border-left-color: #64b5f6;
+        }
+    </style>
 </head>
-<body data-theme="default">
+<body class="day-mode">
 
 <header>
-    <img src="../../Ratio&Proportion/images/logo.jpg" alt="Logo" class="logo"> 
-    <h1>অধ্যায়: লসাগু ও গসাগু (LCM & HCF)</h1>
+    <h1 id="dynamic-chapter-name">অধ্যায় লোড হচ্ছে...</h1>
+    <p id="dynamic-class-no"></p>
 </header>
 
 <div class="controls-wrapper">
-    <div id="digital-clock" class="digital-clock"></div>
-    <div class="theme-buttons">
-        <button data-theme-name="default">Default</button>
-        <button data-theme-name="forest">Forest</button>
-        <button data-theme-name="ocean">Ocean</button>
-        <button data-theme-name="sunset">Sunset</button>
-        <button data-theme-name="book">📖 Book</button>
-    </div>
     <div class="dark-mode-toggle">
         <span>দিন/রাত</span>
         <label class="switch">
@@ -31,12 +65,12 @@
     </div>
 </div>
 
-<div class="container" id="content">
-    <!-- Content will be loaded here by JavaScript -->
+<div class="container" id="class-content-area">
+    <!-- JS দিয়ে কন্টেন্ট এখানে আসবে -->
 </div>
 
 <script src="../js/class-renderer.js"></script>
-<script src="../../Ratio&Proportion/class/js/script.js"></script>
+<script src="js/script.js"></script>
 
 </body>
 </html>
