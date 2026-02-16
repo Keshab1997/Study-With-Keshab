@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LCM & HCF | Study With Keshab</title>
+    <link rel="stylesheet" href="../../../css/style.css" />
+    <link rel="stylesheet" href="../../../css/navigation.css" />
+    <link rel="stylesheet" href="css/pdf-viewer.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+<body class="day-mode auth-loading">
+    <main>
+        <!-- Banner (JS দিয়ে লোড হবে) -->
+        <div id="chapter-banner-placeholder"></div>
+
+        <!-- Dashboard Section -->
+        <section class="card" id="dashboard">
+            <h2><i class="fa-solid fa-chart-line icon-title"></i> আমার ড্যাশবোর্ড</h2>
+            <div id="dashboard-content"></div> <!-- dashboard-features.html এখানে ইনজেক্ট হবে -->
+        </section>
+
+        <!-- Class Notes Section -->
+        <section class="card" id="class-notes">
+            <h2><i class="fa-solid fa-book-open icon-title"></i> ক্লাস নোট</h2>
+            <div class="link-container styled-list" id="class-list-container">
+                <p>লোড হচ্ছে...</p>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="card" id="quiz-sets">
+            <h2><i class="fa-solid fa-file-circle-question icon-title"></i> কুইজ সেট</h2>
+            <div class="link-container styled-list" id="quiz-list-container">
+                <p>লোড হচ্ছে...</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="../../../js/firebase-config.js"></script>
+    <script src="js/main-renderer.js"></script>
+</body>
+</html>

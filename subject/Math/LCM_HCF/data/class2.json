@@ -1,0 +1,23 @@
+{
+  "classNumber": 2,
+  "title": "সূত্র ও কৌশল (Formulas & Tricks)",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "CLASS NO: 02"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "২. গুরুত্বপূর্ণ সূত্র"
+    },
+    {
+      "type": "list",
+      "items": [
+        "<strong>সূত্র:</strong> দুটি সংখ্যার গুণফল = তাদের লসাগু × গসাগু",
+        "<strong>উদাহরণ:</strong> যদি a × b = LCM × HCF হয়"
+      ]
+    }
+  ]
+}
