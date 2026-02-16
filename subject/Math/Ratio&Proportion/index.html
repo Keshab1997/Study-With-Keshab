@@ -10,8 +10,10 @@
 
         <!-- Main Style -->
         <link rel="stylesheet" href="css/style.css" />
+        <!-- Global Style -->
+        <link rel="stylesheet" href="../../../css/style.css" />
         <!-- Navigation Style -->
-        <link rel="stylesheet" href="../../../../css/navigation.css" />
+        <link rel="stylesheet" href="../../../css/navigation.css" />
         <!-- New PDF Viewer Style -->
         <link rel="stylesheet" href="css/pdf-viewer.css" />
 
@@ -26,6 +28,52 @@
             body.auth-loading {
                 visibility: hidden;
                 opacity: 0;
+            }
+            /* Hide old header when navigation.js loads */
+            .main-header {
+                display: none;
+            }
+            /* Chapter title banner */
+            .chapter-banner {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 2rem 1rem;
+                text-align: center;
+                margin-bottom: 2rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+                position: relative;
+            }
+            body.night-mode .chapter-banner {
+                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            }
+            .chapter-banner .theme-toggle {
+                position: static;
+                margin: 1rem auto 0;
+                display: block;
+                background: rgba(255, 255, 255, 0.2);
+                border: none;
+                color: white;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 1.2rem;
+                transition: all 0.3s;
+            }
+            .chapter-banner .theme-toggle:hover {
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1.1);
+            }
+            .chapter-banner h1 {
+                margin: 0;
+                font-size: 2rem;
+                font-weight: 700;
+            }
+            .chapter-banner p {
+                margin: 0.5rem 0 0 0;
+                opacity: 0.9;
             }
             .styled-table {
                 width: 100%;
@@ -370,7 +418,27 @@
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-        <script src="js/firebase-config.js"></script>
+        <script src="../../../js/firebase-config.js"></script>
+        
+        <!-- Fix path detection for navigation -->
+        <script>
+            window.__MANUAL_ROOT_PATH__ = '../../../';
+            window.__CHAPTER_BANNER__ = `
+                <div class="chapter-banner">
+                    <h1>📐 Ratio & Proportion (অনুপাত ও সমানুপাত)</h1>
+                    <p>আপনার পড়াশোনার সেরা ডিজিটাল সঙ্গী</p>
+                    <button class="theme-toggle" id="dark-mode-toggle" title="থিম পরিবর্তন">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+            `;
+        </script>
+        
+        <!-- Load Navigation First -->
+        <script src="../../../js/navigation.js"></script>
+        
+        <!-- Then Auth -->
+        <script src="../../../auth.js"></script>
         
         <script>
             (function () {
@@ -393,5 +461,7 @@
         <script src="dashboard-features.js"></script>
         <!-- PDF Viewer Logic -->
         <script src="js/pdf-viewer.js"></script>
+        <!-- Global Script -->
+        <script src="../../../js/script.js"></script>
     </body>
 </html>

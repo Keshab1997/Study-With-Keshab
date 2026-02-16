@@ -3,7 +3,7 @@
 // ===============================
 
 // সংস্করণ নম্বর বদলালেই নতুন cache তৈরি হবে
-const CACHE_NAME = "study-with-keshab-cache-v29";
+const CACHE_NAME = "study-with-keshab-cache-v30";
 
 // যেসব ফাইল আগেই ক্যাশে রাখা দরকার
 const urlsToCache = [
@@ -30,7 +30,7 @@ self.addEventListener("install", (event) => {
     clients.forEach(client => {
       client.postMessage({
         type: 'UPDATE_AVAILABLE',
-        message: 'নতুন আপডেট এসেছে!'
+        message: 'নতুন ফিচার: Page Transition, Chapter Banner, Navigation Update!'
       });
     });
   });

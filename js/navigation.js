@@ -1,8 +1,10 @@
 // Navigation HTML Generator
 function loadNavigation() {
-  // Detect depth level based on current path
-  const pathDepth = window.location.pathname.split('/').filter(p => p && p !== 'index.html').length;
-  const rootPath = pathDepth > 1 ? '../../' : pathDepth === 1 ? '../' : '';
+  // Check for manual override first
+  const rootPath = window.__MANUAL_ROOT_PATH__ || (() => {
+    const pathDepth = window.location.pathname.split('/').filter(p => p && p !== 'index.html').length;
+    return pathDepth > 1 ? '../../' : pathDepth === 1 ? '../' : '';
+  })();
   
   const navHTML = `
     <header class="site-header">
@@ -38,6 +40,8 @@ function loadNavigation() {
         </div>
       </div>
     </header>
+
+    ${window.__CHAPTER_BANNER__ || ''}
 
     <nav class="mobile-nav" id="mobile-nav">
       <!-- User Profile Header -->
@@ -100,8 +104,10 @@ if (document.readyState === 'loading') {
 
 // Page Transition Animation
 document.addEventListener('DOMContentLoaded', () => {
-  const pathDepth = window.location.pathname.split('/').filter(p => p && p !== 'index.html').length;
-  const rootPath = pathDepth > 1 ? '../../' : pathDepth === 1 ? '../' : '';
+  const rootPath = window.__MANUAL_ROOT_PATH__ || (() => {
+    const pathDepth = window.location.pathname.split('/').filter(p => p && p !== 'index.html').length;
+    return pathDepth > 1 ? '../../' : pathDepth === 1 ? '../' : '';
+  })();
   
   const overlay = document.createElement('div');
   overlay.className = 'page-transition';
