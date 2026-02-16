@@ -221,7 +221,21 @@
 
     /* Adjust Toolbar for small screens */
     .pdf-toolbar {
-        padding: 0 10px;
+        position: fixed !important;
+        bottom: 30px !important;
+        top: auto !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        height: auto !important;
+        width: auto !important;
+        padding: 10px 20px !important;
+        border-radius: 50px !important;
+        background: rgba(0, 0, 0, 0.8) !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+        z-index: 10001 !important;
+        flex-direction: row !important;
+        gap: 15px !important;
+        border: none !important;
     }
 
     .pdf-modal-title {
@@ -232,5 +246,14 @@
         width: 35px;
         height: 35px;
         font-size: 14px;
+        background: transparent !important;
+        color: white !important;
+        border: 1px solid rgba(255,255,255,0.3) !important;
+        padding: 8px !important;
+        border-radius: 5px !important;
+    }
+    
+    .frame-container {
+        height: 100vh !important;
     }
 }
