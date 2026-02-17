@@ -1,292 +1,348 @@
-# নতুন Chapter Setup Guide
+# নতুন Chapter Setup Guide - AI দিয়ে সহজে তৈরি করুন
 
-এই guide অনুসরণ করে আপনি সহজেই নতুন chapter তৈরি করতে পারবেন। শুধুমাত্র JSON files এ content add করলেই সব কিছু automatic হয়ে যাবে।
-
----
-
-## 📁 Folder Structure
-
-```
-subject/Math/YOUR_CHAPTER_NAME/
-├── data/
-│   ├── chapter-info.json    (Chapter এর main info)
-│   ├── class1.json          (Class 1 এর content)
-│   ├── class2.json          (Class 2 এর content)
-│   ├── Qset1.json           (Quiz Set 1)
-│   └── Qset2.json           (Quiz Set 2)
-├── class/
-│   └── class.html           (Class page - copy from LCM_HCF)
-├── quiz/
-│   └── quiz.html            (Quiz page - copy from LCM_HCF)
-├── css/                     (Copy all CSS files from LCM_HCF)
-├── js/                      (Copy all JS files from LCM_HCF)
-└── index.html               (Main chapter page - copy from LCM_HCF)
-```
+এই guide অনুসরণ করে আপনি AI কে দিয়ে সহজেই নতুন chapter তৈরি করতে পারবেন। শুধু নিচের commands copy-paste করুন এবং content দিন।
 
 ---
 
-## 🎯 Step 1: Chapter Info Setup (chapter-info.json)
+## 🤖 AI Setup (প্রথমে এটি করুন)
 
-**File Location:** `data/chapter-info.json`
+### Google Studio / ChatGPT তে এই System Instruction দিন:
 
-```json
-{
-  "chapterID": "YOUR-CHAPTER-ID",
-  "chapterName": "Chapter Name (বাংলা নাম)",
-  "description": "Chapter এর সংক্ষিপ্ত বর্ণনা",
-  "logoURL": "https://cdn-icons-png.flaticon.com/512/993/993872.png",
-  "classes": [
-    { "title": "Class 1 Title", "id": "1" },
-    { "title": "Class 2 Title", "id": "2" },
-    { "title": "Class 3 Title", "id": "3" }
-  ],
-  "quizzes": [
-    { "title": "Quiz Set 01: Topic Name", "set": "Qset1" },
-    { "title": "Quiz Set 02: Topic Name", "set": "Qset2" }
-  ],
-  "pdfs": [
-    { "title": "PDF Title", "driveID": "GOOGLE_DRIVE_FILE_ID" }
-  ]
-}
 ```
+You are an educational content creator for "Study With Keshab" platform. Your task is to create JSON files for Bengali educational content.
 
-**Important Notes:**
-- `chapterID`: Unique ID (use hyphen, e.g., "Algebra-Basics")
-- `logoURL`: Image URL for logo
-- `driveID`: Google Drive file ID থেকে নিন (share link এর মধ্যে থাকে)
+IMPORTANT RULES:
+1. Always output ONLY valid JSON - no extra text, no markdown code blocks
+2. Use Bengali language for all educational content
+3. Follow the exact JSON structure provided
+4. For class titles in chapter-info.json, DO NOT include "Class 1:", "Class 2:" prefix - just write the topic name
+5. For quiz correctAnswer, use 0-based index (0=first option, 1=second, 2=third, 3=fourth)
+6. Always provide detailed Bengali explanations for quiz answers
+7. Use HTML tags in explanations: <span class='fraction'><span class='top'>numerator</span><span class='bottom'>denominator</span></span> for fractions
+8. Use &times; for multiplication, &there4; for therefore, &rarr; for arrow
+
+When user requests a file, generate complete valid JSON immediately.
+```
 
 ---
 
-## 📚 Step 2: Class Content Setup (class1.json, class2.json)
+## 📋 Step-by-Step Commands (AI কে এগুলো দিন)
 
-**File Location:** `data/class1.json`
+### STEP 1: Chapter Info তৈরি করুন
 
-```json
-{
-  "chapterName": "Chapter Name (বাংলা নাম)",
-  "classNumber": "01",
-  "sections": [
-    {
-      "type": "title",
-      "content": "Section Title"
-    },
-    {
-      "type": "header",
-      "content": "Sub-heading"
-    },
-    {
-      "type": "text",
-      "content": "Normal paragraph text here."
-    },
-    {
-      "type": "math",
-      "content": "Mathematical equation: x² + y² = z²"
-    },
-    {
-      "type": "box",
-      "content": "<strong>Important Note:</strong> This will appear in a colored box."
-    },
-    {
-      "type": "list",
-      "items": [
-        "List item 1",
-        "List item 2",
-        "List item 3"
-      ]
-    },
-    {
-      "type": "question",
-      "qText": "Question text here?",
-      "explanation": "Detailed explanation and solution here."
-    }
-  ]
-}
+**AI কে এই command দিন:**
+
 ```
+Create chapter-info.json file with this information:
 
-**Content Types:**
-- `title`: Main section heading (h3)
-- `header`: Sub-heading (h4)
-- `text`: Normal paragraph
-- `math`: Mathematical equations (styled box)
-- `box`: Highlighted content box
-- `list`: Bullet point list
-- `question`: Question with explanation
+Chapter ID: [আপনার chapter ID, যেমন: "Algebra-Basics"]
+Chapter Name: [বাংলা নাম (English Name), যেমন: "বীজগণিত (Algebra)"]
+Description: [chapter এর সংক্ষিপ্ত বর্ণনা বাংলায়]
+Logo URL: https://cdn-icons-png.flaticon.com/512/993/993872.png
 
----
+Classes (শুধু topic name লিখুন, "Class 1:" লিখবেন না):
+1. [Class 1 এর topic]
+2. [Class 2 এর topic]
+3. [Class 3 এর topic]
+[আরো class থাকলে যোগ করুন]
 
-## ❓ Step 3: Quiz Setup (Qset1.json, Qset2.json)
+Quizzes:
+1. Quiz Set 01: [topic name]
+2. Quiz Set 02: [topic name]
+[আরো quiz থাকলে যোগ করুন]
 
-**File Location:** `data/Qset1.json`
+PDFs:
+1. [PDF title] - Drive ID: [Google Drive file ID]
+2. [PDF title] - Drive ID: [Google Drive file ID]
+[আরো PDF থাকলে যোগ করুন]
 
-```json
-{
-  "chapterName": "Chapter Name",
-  "setName": "Quiz Set 01: Topic Name",
-  "questions": [
-    {
-      "id": 1,
-      "question": "প্রশ্ন এখানে লিখুন?",
-      "options": [
-        "Option A",
-        "Option B",
-        "Option C",
-        "Option D"
-      ],
-      "correctAnswer": 0,
-      "explanation": "সঠিক উত্তরের ব্যাখ্যা এখানে লিখুন।"
-    },
-    {
-      "id": 2,
-      "question": "দ্বিতীয় প্রশ্ন?",
-      "options": [
-        "Option A",
-        "Option B",
-        "Option C",
-        "Option D"
-      ],
-      "correctAnswer": 2,
-      "explanation": "ব্যাখ্যা..."
-    }
-  ]
-}
+Generate complete chapter-info.json now.
 ```
-
-**Important Notes:**
-- `correctAnswer`: 0-based index (0 = first option, 1 = second, etc.)
-- `explanation`: প্রতিটি প্রশ্নের জন্য বিস্তারিত ব্যাখ্যা দিন
-
----
-
-## 📄 Step 4: PDF Setup
-
-**Google Drive থেকে File ID নেওয়ার নিয়ম:**
-
-1. Google Drive এ PDF upload করুন
-2. File এ right-click করে "Get link" select করুন
-3. Link এর format হবে: `https://drive.google.com/file/d/FILE_ID_HERE/view`
-4. `FILE_ID_HERE` অংশটি copy করে `chapter-info.json` এ paste করুন
 
 **Example:**
 ```
-Link: https://drive.google.com/file/d/1ScBMw_gEaZsvJq7itgow2p5tZYR7JyfH/view
-File ID: 1ScBMw_gEaZsvJq7itgow2p5tZYR7JyfH
+Create chapter-info.json file with this information:
+
+Chapter ID: "Compound-Interest"
+Chapter Name: "চক্রবৃদ্ধি সুদ (Compound Interest)"
+Description: "চক্রবৃদ্ধি সুদের প্রাথমিক ধারণা, সূত্রাবলি এবং বিভিন্ন জটিল গাণিতিক সমস্যার সহজ সমাধান নিয়ে এই অধ্যায়টি সাজানো হয়েছে।"
+Logo URL: https://cdn-icons-png.flaticon.com/512/3771/3771278.png
+
+Classes:
+1. চক্রবৃদ্ধি সুদের মাস্টার গাইড ও সকল সূত্রাবলি
+2. 2 বছরের চক্রবৃদ্ধি সুদ সংক্রান্ত গাণিতিক সমস্যা
+3. 3 বছর ও ভিন্ন ভিন্ন সুদের হার সংক্রান্ত সমস্যা
+
+Quizzes:
+1. Quiz Set 01: প্রাথমিক ধারণা ও সহজ সমস্যা
+2. Quiz Set 02: বার্ষিক চক্রবৃদ্ধি সুদের অংক
+
+PDFs:
+1. চক্রবৃদ্ধি সুদ: ক্লাস নোট ও সমাধান - Drive ID: 16MWVfQH7g3C7_8y7_uWjhWFySzqB_42z
+
+Generate complete chapter-info.json now.
 ```
 
 ---
 
-## 🚀 Step 5: Files Copy করুন
+### STEP 2: Class Content তৈরি করুন (প্রতিটি class এর জন্য)
 
-**LCM_HCF folder থেকে এই files copy করুন:**
+**AI কে এই command দিন:**
 
-1. **index.html** - Main chapter page
-2. **class/class.html** - Class page
-3. **quiz/quiz.html** - Quiz page
-4. **All CSS files** from `css/` folder
-5. **All JS files** from `js/` folder
+```
+Create class[NUMBER].json file with this information:
 
-**শুধু এই files এ chapter name update করুন:**
-- `index.html` - Line 6: Update title
-- `class/class.html` - Line 9: Update title
+Chapter Name: [বাংলা নাম (English Name)]
+Class Number: [01, 02, 03, etc.]
+
+Content:
+[এখানে আপনার class এর পুরো content paste করুন - notes, formulas, examples, questions সব]
+
+Use these content types appropriately:
+- "title" for main headings
+- "header" for sub-headings
+- "text" for paragraphs
+- "math" for mathematical equations
+- "box" for important notes/formulas
+- "list" for bullet points
+- "question" for practice questions with explanations
+
+Generate complete class[NUMBER].json now.
+```
+
+**Example:**
+```
+Create class1.json file with this information:
+
+Chapter Name: চক্রবৃদ্ধি সুদ (Compound Interest)
+Class Number: 01
+
+Content:
+চক্রবৃদ্ধি সুদ কী?
+চক্রবৃদ্ধি সুদ হল এমন একটি পদ্ধতি যেখানে প্রতি নির্দিষ্ট সময় পর সুদকে মূলধনের সাথে যোগ করা হয়।
+
+মূল সূত্র:
+A = P(1 + r/100)^n
+যেখানে:
+A = সুদ-আসল
+P = মূলধন
+r = সুদের হার
+n = সময়
+
+গুরুত্বপূর্ণ নোট:
+চক্রবৃদ্ধি সুদে প্রতি বছর সুদ বাড়তে থাকে কারণ সুদের উপরও সুদ যোগ হয়।
+
+প্রশ্ন: 1000 টাকার 10% হারে 2 বছরের চক্রবৃদ্ধি সুদ কত?
+সমাধান: A = 1000(1 + 10/100)^2 = 1000 × 1.21 = 1210 টাকা
+সুদ = 1210 - 1000 = 210 টাকা
+
+Generate complete class1.json now.
+```
 
 ---
 
-## ✅ Checklist
+### STEP 3: Quiz Content তৈরি করুন (প্রতিটি quiz set এর জন্য)
 
-নতুন chapter তৈরি করার আগে এই checklist follow করুন:
+**AI কে এই command দিন:**
 
-- [ ] Folder structure তৈরি করেছেন
+```
+Create Qset[NUMBER].json file with this information:
+
+Chapter Name: [বাংলা নাম (English Name)]
+Set Name: Quiz Set [NUMBER]: [topic name]
+
+Questions:
+[এখানে আপনার quiz questions paste করুন - প্রতিটি প্রশ্নের সাথে 4টি option এবং সঠিক উত্তর দিন]
+
+IMPORTANT:
+- correctAnswer must be 0 for first option, 1 for second, 2 for third, 3 for fourth
+- Provide detailed explanation in Bengali for each answer
+- Use HTML formatting for mathematical expressions
+
+Generate complete Qset[NUMBER].json now.
+```
+
+**Example:**
+```
+Create Qset1.json file with this information:
+
+Chapter Name: চক্রবৃদ্ধি সুদ (Compound Interest)
+Set Name: Quiz Set 01: প্রাথমিক ধারণা ও সহজ সমস্যা
+
+Questions:
+
+1. এক ব্যক্তি 2 বছরে 8% চক্রবৃদ্ধি হারে 83.2 টাকা সুদ পেল। তার আসলের পরিমাণ কত টাকা?
+A) 600
+B) 503.2
+C) 500 ✓
+D) 540
+ব্যাখ্যা: Rate = 8% = 2/25. Ratio Method (2 Years): P : A = 625 : 729. সুদ = 104 unit = 83.2 টাকা। আসল = 625 × 0.8 = 500 টাকা।
+
+2. বার্ষিক 10% চক্রবৃদ্ধি সুদে 2 বছর পর সুদ-আসল ₹10,164 হয়, বিনিয়োগের পরিমাণ কত ছিল?
+A) ₹8,300
+B) ₹8,400 ✓
+C) ₹8,200
+D) ₹8,800
+ব্যাখ্যা: P : A = 100 : 121 (2 years). 121 unit = 10164, তাই আসল = 100 × 84 = 8400 টাকা।
+
+Generate complete Qset1.json now.
+```
+
+---
+
+## 📁 File Structure Setup
+
+### নতুন Chapter Folder তৈরি করুন:
+
+```bash
+subject/Math/YOUR_CHAPTER_NAME/
+├── data/
+│   ├── chapter-info.json
+│   ├── class1.json
+│   ├── class2.json
+│   ├── Qset1.json
+│   └── Qset2.json
+├── class/
+├── quiz/
+├── css/
+├── js/
+└── index.html
+```
+
+### Files Copy করার Command:
+
+**Terminal এ এই commands run করুন:**
+
+```bash
+# Replace YOUR_CHAPTER_NAME with your actual chapter folder name
+cd "Study-With-Keshab/subject/Math"
+cp -r Compound_Interest YOUR_CHAPTER_NAME
+cd YOUR_CHAPTER_NAME/data
+rm -f *.json
+# এখন AI থেকে generated JSON files এখানে paste করুন
+```
+
+---
+
+## 🎯 Quick Workflow (পুরো Process)
+
+### 1. AI Setup করুন (একবার)
+- Google Studio / ChatGPT খুলুন
+- উপরের System Instruction paste করুন
+
+### 2. Chapter Info তৈরি করুন
+- STEP 1 এর command copy করুন
+- আপনার chapter details fill করুন
+- AI কে দিন
+- Output JSON copy করে `data/chapter-info.json` এ save করুন
+
+### 3. প্রতিটি Class Content তৈরি করুন
+- STEP 2 এর command copy করুন
+- Class content paste করুন
+- AI কে দিন
+- Output JSON copy করে `data/class1.json` এ save করুন
+- সব class এর জন্য repeat করুন
+
+### 4. প্রতিটি Quiz তৈরি করুন
+- STEP 3 এর command copy করুন
+- Quiz questions paste করুন
+- AI কে দিন
+- Output JSON copy করে `data/Qset1.json` এ save করুন
+- সব quiz এর জন্য repeat করুন
+
+### 5. Test করুন
+- Browser এ chapter page খুলুন
+- Console check করুন (F12)
+- সব content ঠিকমতো load হচ্ছে কিনা verify করুন
+
+---
+
+## 📄 Google Drive PDF Setup
+
+### PDF File ID নেওয়ার নিয়ম:
+
+1. Google Drive এ PDF upload করুন
+2. File এ right-click → "Share" → "Anyone with the link"
+3. "Copy link" click করুন
+4. Link format: `https://drive.google.com/file/d/FILE_ID_HERE/view`
+5. `FILE_ID_HERE` অংশটি copy করুন
+
+**Example:**
+```
+Full Link: https://drive.google.com/file/d/16MWVfQH7g3C7_8y7_uWjhWFySzqB_42z/view
+File ID: 16MWVfQH7g3C7_8y7_uWjhWFySzqB_42z
+```
+
+---
+
+## ✅ Final Checklist
+
+- [ ] AI তে System Instruction দিয়েছেন
+- [ ] Chapter folder তৈরি করেছেন
 - [ ] `chapter-info.json` তৈরি করেছেন
-- [ ] সব class এর JSON files তৈরি করেছেন (class1.json, class2.json, etc.)
-- [ ] সব quiz এর JSON files তৈরি করেছেন (Qset1.json, Qset2.json, etc.)
-- [ ] PDF files Google Drive এ upload করেছেন এবং File ID নিয়েছেন
-- [ ] LCM_HCF থেকে HTML, CSS, JS files copy করেছেন
-- [ ] Title update করেছেন
+- [ ] সব class JSON files তৈরি করেছেন
+- [ ] সব quiz JSON files তৈরি করেছেন
+- [ ] PDF files upload করে File ID নিয়েছেন
+- [ ] Browser এ test করেছেন
+- [ ] Console এ কোনো error নেই
 
 ---
 
-## 🤖 Google Studio System Instruction
+## 🆘 Common Issues & Solutions
 
-নিচের instruction Google Studio তে paste করুন:
-
-```
-You are a content creator for an educational platform. Your task is to create JSON files for chapters, classes, and quizzes based on the content provided by the user.
-
-IMPORTANT RULES:
-1. Always follow the exact JSON structure provided in the examples
-2. Use Bengali language for all content
-3. For class content, use appropriate content types: title, header, text, math, box, list, question
-4. For quizzes, correctAnswer must be 0-based index (0, 1, 2, or 3)
-5. Always provide detailed explanations for quiz answers
-6. Keep content clear, concise, and educational
-
-When user provides content, ask which file they want to create:
-- chapter-info.json
-- class1.json, class2.json, etc.
-- Qset1.json, Qset2.json, etc.
-
-Then generate the complete JSON file based on their content.
-```
-
----
-
-## 📝 Example Usage
-
-**User বলবে:**
-"আমি Algebra chapter এর জন্য class 1 এর content তৈরি করতে চাই। Topic: Basic Equations"
-
-**AI Response করবে:**
-```json
-{
-  "chapterName": "Algebra (বীজগণিত)",
-  "classNumber": "01",
-  "sections": [
-    {
-      "type": "title",
-      "content": "মৌলিক সমীকরণ (Basic Equations)"
-    },
-    ...
-  ]
-}
-```
-
----
-
-## 🎨 Design Features
-
-এই system এ automatic features:
-- ✅ Dynamic chapter loading
-- ✅ Automatic navigation buttons
-- ✅ Premium gradient design
-- ✅ Mobile responsive
-- ✅ Dark mode support
-- ✅ Theme customization
-- ✅ Progress tracking
-- ✅ Leaderboard
-- ✅ PDF viewer with zoom/rotate
-- ✅ Quiz with timer and scoring
-
----
-
-## 🆘 Troubleshooting
+**Problem:** JSON syntax error
+**Solution:** https://jsonlint.com/ এ paste করে validate করুন
 
 **Problem:** Content দেখাচ্ছে না
-**Solution:** Browser console check করুন, JSON syntax error আছে কিনা
+**Solution:** Browser console (F12) check করুন, file path ঠিক আছে কিনা
+
+**Problem:** Quiz এ সঠিক উত্তর highlight হচ্ছে না
+**Solution:** correctAnswer value 0-based index কিনা check করুন (0, 1, 2, 3)
 
 **Problem:** PDF খুলছে না
-**Solution:** Google Drive file এর sharing setting "Anyone with the link" করুন
+**Solution:** Google Drive file sharing "Anyone with the link" করুন
 
-**Problem:** Quiz score save হচ্ছে না
-**Solution:** Firebase configuration ঠিক আছে কিনা check করুন
-
----
-
-## 📞 Support
-
-কোনো সমস্যা হলে:
-1. Console error check করুন
-2. JSON syntax validator দিয়ে check করুন
-3. File paths ঠিক আছে কিনা verify করুন
+**Problem:** Dashboard এ data দেখাচ্ছে না
+**Solution:** একবার quiz complete করুন, তারপর data show হবে
 
 ---
 
-**Happy Teaching! 🎓**
+## 🎨 Content Types Reference
+
+### Class Content Types:
+
+```json
+{"type": "title", "content": "Main Heading"}
+{"type": "header", "content": "Sub Heading"}
+{"type": "text", "content": "Paragraph text"}
+{"type": "math", "content": "x² + y² = z²"}
+{"type": "box", "content": "<strong>Important:</strong> Note"}
+{"type": "list", "items": ["Item 1", "Item 2"]}
+{"type": "question", "qText": "Question?", "explanation": "Answer"}
+```
+
+### Quiz HTML Formatting:
+
+```html
+<!-- Fraction -->
+<span class='fraction'><span class='top'>2</span><span class='bottom'>25</span></span>
+
+<!-- Symbols -->
+&times; (multiplication)
+&there4; (therefore)
+&rarr; (arrow)
+```
+
+---
+
+## 📞 Need Help?
+
+1. Check console errors (F12)
+2. Validate JSON syntax
+3. Verify file paths
+4. Check Firebase connection
+5. Review this guide again
+
+---
+
+**Happy Teaching! 🎓 AI দিয়ে সহজে Content তৈরি করুন!**

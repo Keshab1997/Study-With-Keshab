@@ -119,7 +119,7 @@ function showQuestion() {
     let shuffledOptions = [...q.options];
     shuffleArray(shuffledOptions);
     shuffledOptionsPerQuestion[currentQuestionIndex] = shuffledOptions;
-    currentCorrectAnswerIndex = shuffledOptions.indexOf(q.options[q.answer]);
+    currentCorrectAnswerIndex = shuffledOptions.indexOf(q.options[q.correctAnswer]);
     container.innerHTML = `
         <div class="mb-4">
             <h2 class="text-xl md:text-2xl font-semibold mb-6 text-center">প্রশ্ন ${currentQuestionIndex + 1}: ${q.question}</h2>
@@ -224,9 +224,9 @@ function showReview() {
     quizSet.questions.forEach((q, i) => {
         const userAnswerIndex = userAnswers[i];
         const shuffledOptions = shuffledOptionsPerQuestion[i];
-        const correctAnswerIndex = shuffledOptions.indexOf(q.options[q.answer]);
+        const correctAnswerIndex = shuffledOptions.indexOf(q.options[q.correctAnswer]);
         const isCorrect = userAnswerIndex === correctAnswerIndex;
-        reviewHTML += `<div class="review-card text-left ${isCorrect ? "review-correct" : "review-incorrect"}"><h3 class="font-semibold mb-2">📝 প্রশ্ন ${i + 1}: ${q.question}</h3><p><strong>সঠিক উত্তর:</strong> ${q.options[q.answer]}</p><p><strong>আপনার উত্তর:</strong> <span class="font-bold ${isCorrect ? "text-green-700" : "text-red-700"}">${shuffledOptions[userAnswerIndex] ?? "উত্তর দেননি"}</span></p><p class="mt-2"><strong>ব্যাখ্যা:</strong> ${q.explanation || "কোনো ব্যাখ্যা নেই"}</p></div>`;
+        reviewHTML += `<div class="review-card text-left ${isCorrect ? "review-correct" : "review-incorrect"}"><h3 class="font-semibold mb-2">📝 প্রশ্ন ${i + 1}: ${q.question}</h3><p><strong>সঠিক উত্তর:</strong> ${q.options[q.correctAnswer]}</p><p><strong>আপনার উত্তর:</strong> <span class="font-bold ${isCorrect ? "text-green-700" : "text-red-700"}">${shuffledOptions[userAnswerIndex] ?? "উত্তর দেননি"}</span></p><p class="mt-2"><strong>ব্যাখ্যা:</strong> ${q.explanation || "কোনো ব্যাখ্যা নেই"}</p></div>`;
     });
     reviewHTML += `<div class="text-center mt-6"><button onclick="location.reload()" class="action-btn gray">🔁 আবার দিন</button></div></div>`;
     container.innerHTML = reviewHTML;
@@ -255,7 +255,8 @@ function saveQuizResult(chapterName, setName, score, wrong, totalQuestions) {
     const userDocRef = db.collection("users").doc(user.uid);
 
     // অধ্যায়ের নাম এবং সেটের নামকে Firestore-এর জন্য নিরাপদ কী-তে রূপান্তর করি
-    const chapterKey = chapterName.replace(/\s/g, "_"); // "কার্য, ক্ষমতা ও শক্তি" -> "কার্য,_ক্ষমতা_ও_শক্তি"
+    const match = chapterName.match(/\(([^)]+)\)/);
+    const chapterKey = match ? match[1].replace(/\s+/g, "-") : chapterName.replace(/\s/g, "_");
     const setKey = setName.replace(/\s/g, "_"); // "Quiz Set 1" -> "Quiz_Set_1"
 
     db.runTransaction((transaction) => {
