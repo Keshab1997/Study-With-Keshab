@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             switch(section.type) {
                 case "title": return `<h3><strong>${section.content}</strong></h3>`;
                 case "header": return `<h4><strong>${section.content}</strong></h4>`;
-                case "text": return `<p>${section.content}</p>`;
-                case "math": return `<div class="math-eq">${section.content}</div>`;
+                case "text": return `<p>${renderFractions(section.content)}</p>`;
+                case "math": return `<div class="math-formula">$$${section.content}$$</div>`;
                 case "box": return `<div class="content-box">${section.content}</div>`;
-                case "list": return `<ul>${section.items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+                case "list": return `<ul>${section.items.map(i => `<li>${renderFractions(i)}</li>`).join('')}</ul>`;
                 case "question": return `
                     <div class="question-item">
                         <h3>প্রশ্ন</h3>
@@ -47,13 +47,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>`;
                 case "calculation": return `
                     <div class="calculation-box">
-                        <pre>${section.content}</pre>
+                        <pre>${renderFractions(section.content)}</pre>
                     </div>`;
                 default: return '';
             }
         }).join('');
 
-        // Add CSS for calculation box
+        // Add CSS for calculation box and math formula
         const style = document.createElement('style');
         style.textContent = `
             .calculation-box {
@@ -74,8 +74,64 @@ document.addEventListener('DOMContentLoaded', async () => {
                 -moz-tab-size: 4;
                 letter-spacing: 0.05em;
             }
+            .math-formula {
+                background: #fff9e6;
+                border: 2px solid #ffd700;
+                padding: 20px;
+                margin: 20px 0;
+                border-radius: 12px;
+                text-align: center;
+                font-size: 1.3rem;
+            }
+            .fraction {
+                display: inline-flex;
+                flex-direction: column;
+                vertical-align: middle;
+                text-align: center;
+                margin: 0 3px;
+                font-size: 0.9em;
+            }
+            .fraction .numerator {
+                border-bottom: 1.5px solid currentColor;
+                padding: 0 4px 2px;
+            }
+            .fraction .denominator {
+                padding: 2px 4px 0;
+            }
         `;
         document.head.appendChild(style);
+
+        // Function to render fractions
+        function renderFractions(text) {
+            // First handle superscripts like 10^K, 10^6, 10^-3
+            text = text.replace(/(\d+)\^([A-Za-z]|\-?\d+|\([^)]+\))/g, (match, base, exponent) => {
+                return `${base}<sup>${exponent}</sup>`;
+            });
+            
+            // Match patterns like 3/(2 × 6) or 4/8 or 1/16
+            return text.replace(/(\d+)\/(\d+|\([^)]+\))/g, (match, numerator, denominator) => {
+                // Remove parentheses from denominator if present
+                const cleanDenom = denominator.replace(/[()]/g, '');
+                return `<span class="fraction"><span class="numerator">${numerator}</span><span class="denominator">${cleanDenom}</span></span>`;
+            });
+        }
+
+        // Load MathJax for rendering LaTeX formulas
+        if (!window.MathJax) {
+            window.MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']],
+                    displayMath: [['$$', '$$']]
+                },
+                svg: { fontCache: 'global' }
+            };
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+            script.async = true;
+            document.head.appendChild(script);
+        } else {
+            MathJax.typesetPromise();
+        }
 
     } catch (error) {
         console.error("Error:", error);

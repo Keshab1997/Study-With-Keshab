@@ -1,47 +1,119 @@
 {
   "chapterName": "ক্যালকুলেশন ট্রিক্স (Calculation Tricks)",
-  "classNum": "06",
-  "content": [
+  "classNumber": "06",
+  "sections": [
     {
       "type": "title",
-      "content": "ভগ্নাংশ (FRACTION)"
+      "content": "FRACTION (ভগ্নাংশ)"
     },
     {
       "type": "header",
-      "content": "১. ভগ্নাংশের যোগ শর্টকাট"
-    },
-    {
-      "type": "text",
-      "content": "পূর্ণসংখ্যার সাথে মিশ্র ভগ্নাংশ যোগ করা খুব সহজ। আলাদা করে লসাগু করার প্রয়োজন নেই।"
-    },
-    {
-      "type": "box",
-      "content": "<strong>12 + 5/19</strong> = 12<span class='fraction'><span class='top'>5</span><span class='bottom'>19</span></span><br><strong>5 + 23/3</strong><br>= 5 + 7<span class='fraction'><span class='top'>2</span><span class='bottom'>3</span></span> (23/3 কে ভাঙলাম)<br>= 12<span class='fraction'><span class='top'>2</span><span class='bottom'>3</span></span>"
-    },
-    {
-      "type": "header",
-      "content": "২. ভগ্নাংশের বিয়োগ শর্টকাট"
-    },
-    {
-      "type": "text",
-      "content": "পূর্ণসংখ্যা থেকে ভগ্নাংশ বিয়োগ করার জাদুকরী নিয়ম।"
+      "content": "1. প্রকারভেদ (TYPES OF FRACTION)"
     },
     {
       "type": "list",
       "items": [
-        "পূর্ণসংখ্যা থেকে 1 কমিয়ে দিন।",
-        "ভগ্নাংশের হর ও লবের পার্থক্য লব হিসেবে লিখুন।"
+        "<strong>Proper Fraction (প্রকৃত ভগ্নাংশ):</strong> লব ছোট, হর বড়। (যেমন: 5/8, 19/20, 1/3)",
+        "<strong>Improper Fraction (অপ্রকৃত ভগ্নাংশ):</strong> লব বড়, হর ছোট। (যেমন: 8/5, 20/19, 13/2)",
+        "<strong>Mixed Fraction (মিশ্র ভগ্নাংশ):</strong> একটি পূর্ণসংখ্যা ও একটি প্রকৃত ভগ্নাংশ থাকে। (যেমন: 2 1/5, 3 5/12, 12 5/19)"
       ]
     },
     {
-      "type": "question",
-      "qText": "5 - 3/7 = ?",
-      "explanation": "১. 5 থেকে 1 কমলে হয় 4।<br>২. হর ও লবের পার্থক্য (7-3) = 4।<br>৩. উত্তর: 4<span class='fraction'><span class='top'>4</span><span class='bottom'>7</span></span>"
+      "type": "header",
+      "content": "2. FRACTION VS DECIMAL (ভগ্নাংশ বনাম দশমিক)"
     },
     {
-      "type": "question",
-      "qText": "153 - 27/32 = ?",
-      "explanation": "১. 153 &rarr; 152<br>২. পার্থক্য (32-27) = 5<br>৩. উত্তর: 152<span class='fraction'><span class='top'>5</span><span class='bottom'>32</span></span>"
+      "type": "calculation",
+      "content": "10 / 3\n= 3) 10 (3.33...\n= 9\n------\n  1\nResult: 3.33..."
+    },
+    {
+      "type": "calculation",
+      "content": "3 1/3 + 3 1/3 + 3 1/3\n= (3 + 3 + 3) + (1/3 + 1/3 + 1/3)\n= 9 + 3/3\n= 9 + 1\n= 10"
+    },
+    {
+      "type": "text",
+      "content": "<strong>নোট:</strong> দশমিকে যোগ করলে এটি 3.33 + 3.33 + 3.33 = 9.99 আসত, যা প্রায় 10 এর সমান। তাই ফ্র্যাকশন পদ্ধতিতে মান নিখুঁত আসে।"
+    },
+    {
+      "type": "header",
+      "content": "3. FRACTION CONVERSION (রূপান্তর)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>পদ্ধতি:</strong> মিশ্র ভগ্নাংশকে (পূর্ণসংখ্যা + প্রকৃত ভগ্নাংশ) আকারে ভেঙে লেখা যায়। যেমন: 5 3/8 = 5 + 3/8"
+    },
+    {
+      "type": "calculation",
+      "content": "5 + 23/3\n= 5 + 7 2/3 (যেহেতু 23/3 = 7 2/3)\n= (5 + 7) + 2/3\n= 12 + 2/3\n= 12 2/3"
+    },
+    {
+      "type": "list",
+      "items": [
+        "12 + 15/4 = 12 + 3 3/4 = <strong>15 3/4</strong>",
+        "8 + 11/2 = 8 + 5 1/2 = <strong>13 1/2</strong>"
+      ]
+    },
+    {
+      "type": "header",
+      "content": "4. FRACTION SUBTRACTION (বিয়োগের শর্টকাট ট্রিক)"
+    },
+    {
+      "type": "header",
+      "content": "Type 1: পূর্ণসংখ্যা থেকে প্রকৃত ভগ্নাংশ বিয়োগ"
+    },
+    {
+      "type": "box",
+      "content": "<strong>ট্রিক:</strong> পূর্ণসংখ্যা থেকে 1 কমান এবং ভগ্নাংশের (হর - লব) উপরে বসান।"
+    },
+    {
+      "type": "calculation",
+      "content": "5 - 3/7\n= (5 - 1) এবং (7 - 3) / 7\n= 4 4/7"
+    },
+    {
+      "type": "list",
+      "items": [
+        "15 - 2/11 = (15-1) 9/11 = <strong>14 9/11</strong>",
+        "153 - 27/32 = (153-1) 5/32 = <strong>152 5/32</strong>"
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Type 2 & 3: পূর্ণসংখ্যা থেকে মিশ্র বা অপ্রকৃত ভগ্নাংশ বিয়োগ"
+    },
+    {
+      "type": "box",
+      "content": "<strong>ট্রিক:</strong> পূর্ণসংখ্যা থেকে (ভগ্নাংশের পূর্ণ অংশ + 1) বিয়োগ করুন।"
+    },
+    {
+      "type": "calculation",
+      "content": "5 - 3 2/3\n= 5 - (3 + 1) = 1\n= (3 - 2) / 3 = 1/3\nResult: 1 1/3"
+    },
+    {
+      "type": "calculation",
+      "content": "15 - 4 2/3\n= 15 - (4 + 1) = 10\n= (3 - 2) / 3 = 1/3\nResult: 10 1/3"
+    },
+    {
+      "type": "list",
+      "items": [
+        "525 - 125 3/5 = (525-126) 2/5 = <strong>399 2/5</strong>",
+        "15 - 43/3 = 15 - 14 1/3 = (15-15) 2/3 = <strong>2/3</strong>"
+      ]
+    },
+    {
+      "type": "calculation",
+      "content": "65 - 9 12/5\n= 65 - (9 + 2 2/5)\n= 65 - 11 2/5\n= 65 - 12 = 53\n= (5 - 2) / 5 = 3/5\nResult: 53 3/5"
+    },
+    {
+      "type": "header",
+      "content": "কিভাবে কি হলো (সহজ টিপস):"
+    },
+    {
+      "type": "box",
+      "content": "A - B c/d এই আকারে থাকলে:<br>1. পূর্ণসংখ্যা হবে = A - (B + 1)<br>2. ভগ্নাংশ হবে = (d - c) / d"
+    },
+    {
+      "type": "text",
+      "content": "<strong>উদাহরণ:</strong> 10 - 2 3/5। এখানে 10 - 3 = 7। আর ভগ্নাংশ (5-3)/5 = 2/5। উত্তর: 7 2/5।"
     }
   ]
 }
