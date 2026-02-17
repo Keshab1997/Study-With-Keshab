@@ -5,18 +5,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         const data = await response.json();
 
-        // Update page title
+        // Update page title and favicon
         document.getElementById('dynamic-title').innerText = `${data.chapterName} | Study With Keshab`;
+        document.getElementById('dynamic-favicon').href = data.logoURL;
 
-        // ১. ব্যানার ইনজেকশন
-        const bannerPlaceholder = document.getElementById('chapter-banner-placeholder');
-        if (bannerPlaceholder) {
-            bannerPlaceholder.innerHTML = `
-                <div class="chapter-banner">
-                    <h1>📐 ${data.chapterName}</h1>
-                    <p>${data.description}</p>
-                </div>
+        // ১. ব্যানার ইনজেকশন - main এর শুরুতে
+        const main = document.querySelector('main');
+        if (main) {
+            const banner = document.createElement('div');
+            banner.className = 'chapter-banner';
+            banner.innerHTML = `
+                <h1>📐 ${data.chapterName}</h1>
+                <p>${data.description}</p>
             `;
+            main.insertBefore(banner, main.firstChild);
         }
 
         // ২. ক্লাস লিস্ট রেন্ডার
@@ -136,7 +138,11 @@ async function loadDashboardData(chapterID) {
                         }
                     }
                 } else {
-                    console.warn('⚠️ No chapter data found. Available keys:', Object.keys(userData.chapters || {}));
+                    console.warn('⚠️ No chapter data found. Start a quiz to see your progress!');
+                    // Show 0 values - user hasn't started any quiz yet
+                    document.getElementById('total-quizzes').innerText = '0';
+                    document.getElementById('total-score').innerText = '0';
+                    document.getElementById('average-score').innerText = '0';
                 }
             } else {
                 console.error('❌ User document does not exist');

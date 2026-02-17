@@ -16,5 +16,13 @@
     { "title": "Quiz Set 01: বর্গ ও গুণের ধারণা", "set": "Qset1" },
     { "title": "Quiz Set 02: বর্গমূল ও ভগ্নাংশ", "set": "Qset2" }
   ],
-  "pdfs": []
+  "pdfs": [
+    { "title": "Class 1 PDF", "driveID": "1EUymsiCyanGn2AldAsv5M3f-tSUUB2lu" },
+    { "title": "Class 2 PDF", "driveID": "1-KxiST7F1DO1sT46f_dcHDDV2A4cdDSY" },
+    { "title": "Class 3 PDF", "driveID": "1pJWSHUsE7QW7knvQJSFwn2xKPFqx-rZE" },
+    { "title": "Class 4 PDF", "driveID": "1EnM7P0kzfwvbBf-rwQDax0_HEzjrJ_1b" },
+    { "title": "Class 5 PDF", "driveID": "1Cd0C8tJqUHw4DlZKXPkYVqn9ls7_VKVy" },
+    { "title": "Class 6 PDF", "driveID": "1564HZSi6bu_KAVfupgrbGV86cCBhB7dR" },
+    { "title": "Class 7 PDF", "driveID": "1ltjCMbY3KVkz8IeMp1_qTX9txwmU3dFy" }
+  ]
 }
