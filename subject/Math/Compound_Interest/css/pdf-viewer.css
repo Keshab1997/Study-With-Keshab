@@ -136,21 +136,22 @@
     /* Important: Calculates remaining height */
     height: calc(100vh - 60px); 
     background: #525659; /* Standard PDF Viewer Grey */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: auto !important; /* Enable scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 /* The Iframe */
 .pdf-viewer-frame {
-    width: 100%;
-    height: 100%;
+    width: auto; /* Changed from 100% to auto */
+    min-width: 100%; /* Minimum width */
+    height: auto; /* Changed from 100% to auto */
+    min-height: calc(100vh - 60px); /* Minimum height */
     border: none;
     background: #fff;
     opacity: 0; /* Hidden until loaded */
-    transition: opacity 0.4s ease, transform 0.2s ease;
-    transform-origin: center top; /* Zooms from top center */
+    transition: opacity 0.4s ease;
+    display: block;
+    max-width: none; /* Allow to grow beyond container */
 }
 
 /* =========================================
