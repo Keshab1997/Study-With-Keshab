@@ -10,10 +10,16 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
   height: 70px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.logo-link {
+  flex-shrink: 0;
 }
 
 .logo-img {
@@ -53,6 +59,8 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .user-info {
