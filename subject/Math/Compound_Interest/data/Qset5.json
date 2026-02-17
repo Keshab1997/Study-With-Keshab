@@ -1,0 +1,150 @@
+{
+  "chapterName": "চক্রবৃদ্ধি সুদ (Compound Interest)",
+  "setName": "Quiz Set 05: চক্রবৃদ্ধি ও সরল সুদের পার্থক্য এবং সুদের হার নির্ণয়",
+  "questions": [
+    {
+      "id": 56,
+      "question": "5 মাস অন্তর চক্রবৃদ্ধি সুদ দেওয়া হলে 1<span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> বছরের জন্য 15% হারে 8192 টাকার চক্রবৃদ্ধি সুদ কত?",
+      "options": [
+        "1,640",
+        "1,740",
+        "1,634",
+        "1,735"
+      ],
+      "correctAnswer": 2,
+      "explanation": "5-মাস অন্তর: সময় = 15 মাস = 3 সাইকেল।<br>হার = <span class='fraction'><span class='top'>15</span><span class='bottom'>12</span></span> &times; 5 = 6.25% = <span class='fraction'><span class='top'>1</span><span class='bottom'>16</span></span><br>Ratio: 16³ : 17³ = 4096 : 4913 &rarr; সুদ = 817 unit<br>4096 unit = 8192 &there4; 1 unit = 2<br>সুদ = 817 &times; 2 = 1,634 টাকা। (Exam: SSC CGL 2021)"
+    },
+    {
+      "id": 57,
+      "question": "একটি রাশির 2 বছরের জন্য বার্ষিক 30 শতাংশ হারে চক্রবৃদ্ধি সুদ এবং সাধারণ সুদের মধ্যে পার্থক্য 5400 টাকা হলে, মূলধন কত?",
+      "options": [
+        "Rs. 70000",
+        "Rs. 60000",
+        "Rs. 65000",
+        "Rs. 68000"
+      ],
+      "correctAnswer": 1,
+      "explanation": "2 বছরের পার্থক্যের সূত্র: D = P(<span class='fraction'><span class='top'>R</span><span class='bottom'>100</span></span>)²<br>5400 = P &times; (<span class='fraction'><span class='top'>30</span><span class='bottom'>100</span></span>)² = P &times; <span class='fraction'><span class='top'>9</span><span class='bottom'>100</span></span><br>&there4; P = <span class='fraction'><span class='top'>5400 &times; 100</span><span class='bottom'>9</span></span> = 60,000 টাকা। (Exam: SSC GD 2024)"
+    },
+    {
+      "id": 58,
+      "question": "যদি 2 বছরের জন্য 10% বার্ষিক চক্রবৃদ্ধি সুদের হারে একটি নির্দিষ্ট রাশির চক্রবৃদ্ধি এবং সাধারণ সুদের মধ্যে পার্থক্য ₹464 হয়, তাহলে বিনিয়োগকৃত অর্থ নির্ণয় কর।",
+      "options": [
+        "46,040",
+        "46,400",
+        "44,006",
+        "44,600"
+      ],
+      "correctAnswer": 1,
+      "explanation": "10% হারে 2 বছরের SI = 20% এবং CI = 21%<br>পার্থক্য = 1%। প্রশ্নানুসারে, 1% = 464 টাকা<br>আসল (100%) = 464 &times; 100 = 46,400 টাকা। (Exam: SSC GD 2023)"
+    },
+    {
+      "id": 59,
+      "question": "কত টাকার 2 বছরের 4% হারে সরল সুদ ও 4% হারে চক্রবৃদ্ধি সুদের অন্তর 110 টাকা হবে?",
+      "options": [
+        "60000 টাকা",
+        "68000 টাকা",
+        "68250 টাকা",
+        "68750 টাকা"
+      ],
+      "correctAnswer": 3,
+      "explanation": "2 বছরের পার্থক্যের হার = (<span class='fraction'><span class='top'>R²</span><span class='bottom'>100</span></span>)% = <span class='fraction'><span class='top'>16</span><span class='bottom'>100</span></span>% = 0.16%<br>প্রশ্নানুসারে, 0.16% = 110 টাকা<br>আসল (100%) = <span class='fraction'><span class='top'>110</span><span class='bottom'>0.16</span></span> &times; 100 = 68,750 টাকা। (Exam: ANM & GNM 2022)"
+    },
+    {
+      "id": 60,
+      "question": "₹6,400-এর উপর 1 বছরের জন্য বার্ষিক 5% সুদের হারে বার্ষিক এবং অর্ধবার্ষিক রূপে সংযুক্ত চক্রবৃদ্ধি সুদের মধ্যে পার্থক্য কত?",
+      "options": [
+        "38",
+        "39",
+        "4",
+        "37"
+      ],
+      "correctAnswer": 2,
+      "explanation": "বার্ষিক হার = 5%। অর্ধবার্ষিক হলে হার = 2.5% এবং সময় = 2 সাইকেল।<br>অর্ধবার্ষিক কার্যকরী হার = 2.5 + 2.5 + <span class='fraction'><span class='top'>6.25</span><span class='bottom'>100</span></span> = 5.0625%<br>হারের পার্থক্য = 0.0625%<br>টাকার পার্থক্য = 6400 &times; 0.0625% = 4 টাকা। (Exam: SSC CHSL 2023)"
+    },
+    {
+      "id": 61,
+      "question": "যদি একটি নির্দিষ্ট পরিমাণ টাকার উপর বার্ষিক 17% হারে 2 বছরের জন্য চক্রবৃদ্ধি সুদ এবং সরল সুদের পার্থক্য ₹433.50 হয়, তবে চক্রবৃদ্ধি সুদ (₹-এ) কত:",
+      "options": [
+        "₹5,533.50",
+        "₹2,735.50",
+        "₹5,100",
+        "₹2,500"
+      ],
+      "correctAnswer": 0,
+      "explanation": "পার্থক্য হার = <span class='fraction'><span class='top'>17 &times; 17</span><span class='bottom'>100</span></span>% = 2.89%<br>2.89% = 433.50 &there4; 1% = 150 টাকা<br>CI Rate = 17 + 17 + 2.89 = 36.89%<br>চক্রবৃদ্ধি সুদ = 150 &times; 36.89 = 5,533.50 টাকা। (Exam: SSC CHSL 2019)"
+    },
+    {
+      "id": 62,
+      "question": "A, 2 বছরের জন্য বার্ষিক 8% সরল সুদের হারে ₹1,56,250 জমা করলেন। যদি একই সুদের হারে টাকাটি বার্ষিক চক্রবৃদ্ধি সুদে বিনিয়োগ করা হয়, তবে দুই বছর শেষে A তার অ্যাকাউন্টে কত বেশি টাকা পাবেন?",
+      "options": [
+        "1,740.90",
+        "1,540.40",
+        "2,000",
+        "1,000"
+      ],
+      "correctAnswer": 3,
+      "explanation": "বেশি টাকা পাওয়া মানেই সুদের পার্থক্য চাওয়া হয়েছে।<br>পার্থক্য হার = <span class='fraction'><span class='top'>8 &times; 8</span><span class='bottom'>100</span></span>% = 0.64%<br>পার্থক্য = 1,56,250 &times; 0.64% = 1,000 টাকা। (Exam: SSC CHSL 2023)"
+    },
+    {
+      "id": 63,
+      "question": "10,000 টাকা 2 বছরে 12,100 টাকা হলে, বার্ষিক চক্রবৃদ্ধি সুদের হার কত?",
+      "options": [
+        "11%",
+        "10%",
+        "5%",
+        "20%"
+      ],
+      "correctAnswer": 1,
+      "explanation": "P : A = 10000 : 12100 = 100 : 121<br>2 বছরের জন্য বর্গমূল করে পাই: &radic;100 : &radic;121 = 10 : 11<br>সুদ = 1 unit (10 এর ওপর)<br>হার = <span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span> &times; 100% = 10%। (Exam: WBP SI 2021)"
+    },
+    {
+      "id": 64,
+      "question": "400 টাকার দুই বছরে সমূল চক্রবৃদ্ধি 441 টাকা হলে বার্ষিক শতকরা চক্রবৃদ্ধি সুদের হার কত?",
+      "options": [
+        "7%",
+        "5%",
+        "10%",
+        "11%"
+      ],
+      "correctAnswer": 1,
+      "explanation": "P : A = 400 : 441<br>2 বছরের জন্য বর্গমূল করে পাই: &radic;400 : &radic;441 = 20 : 21<br>সুদ = 1 unit (20 এর ওপর)<br>হার = <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span> &times; 100% = 5%। (Exam: ANM & GNM 2021)"
+    },
+    {
+      "id": 65,
+      "question": "বার্ষিক চক্রবৃদ্ধি সুদের হারে কিছু পরিমাণ টাকা 3 বছরে 4,900 টাকায় পরিণত হয় এবং 5 বছরে 6,400 টাকায় পরিণত হয়, বার্ষিক চক্রবৃদ্ধি সুদের হার নির্ণয় করো।",
+      "options": [
+        "11<span class='fraction'><span class='top'>3</span><span class='bottom'>7</span></span>%",
+        "12<span class='fraction'><span class='top'>2</span><span class='bottom'>7</span></span>%",
+        "14<span class='fraction'><span class='top'>2</span><span class='bottom'>7</span></span>%",
+        "13<span class='fraction'><span class='top'>1</span><span class='bottom'>7</span></span>%"
+      ],
+      "correctAnswer": 2,
+      "explanation": "সময়ের পার্থক্য = 5 - 3 = 2 বছর।<br>Ratio (2 বছরে) = 4900 : 6400 = 49 : 64<br>1 বছরের অনুপাত = &radic;49 : &radic;64 = 7 : 8<br>সুদ = 1 unit (7 এর ওপর)<br>হার = <span class='fraction'><span class='top'>1</span><span class='bottom'>7</span></span> &times; 100% = 14<span class='fraction'><span class='top'>2</span><span class='bottom'>7</span></span>%। (Exam: SSC GD 2023)"
+    },
+    {
+      "id": 66,
+      "question": "বার্ষিক চক্রবৃদ্ধি সুদের হারে কিছু পরিমাণ টাকা 2 বছরে 2,809 টাকায় এবং 3 বছরে 2,977.54 টাকায় পরিণত হয়, সুদের হার নির্ণয় কর।",
+      "options": [
+        "12%",
+        "6%",
+        "10%",
+        "8%"
+      ],
+      "correctAnswer": 1,
+      "explanation": "সময়ের পার্থক্য = 1 বছর।<br>1 বছরের সুদ = 2977.54 - 2809 = 168.54 টাকা।<br>হার = <span class='fraction'><span class='top'>168.54</span><span class='bottom'>2809</span></span> &times; 100% = 6%। (Exam: SSC GD 2023)"
+    },
+    {
+      "id": 67,
+      "question": "একটি নির্দিষ্ট অর্থের উপর 2 বছর পর চক্রবৃদ্ধি সুদ এবং সুদ-আসল এর পরিমাণ যথাক্রমে 820 টাকা এবং 8,820 টাকা। সুদের হার কত?",
+      "options": [
+        "8%",
+        "7%",
+        "6%",
+        "5%"
+      ],
+      "correctAnswer": 3,
+      "explanation": "আসল (P) = সুদ-আসল - সুদ = 8820 - 820 = 8000 টাকা।<br>P : A = 8000 : 8820 = 400 : 441<br>2 বছরের জন্য বর্গমূল করে পাই: &radic;400 : &radic;441 = 20 : 21<br>সুদ = 1 unit (20 এর ওপর)<br>হার = <span class='fraction'><span class='top'>1</span><span class='bottom'>20</span></span> &times; 100% = 5%। (Exam: SSC CHSL 2020)"
+    }
+  ]
+}
