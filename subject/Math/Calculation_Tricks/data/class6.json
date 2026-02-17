@@ -1,0 +1,47 @@
+{
+  "chapterName": "ক্যালকুলেশন ট্রিক্স (Calculation Tricks)",
+  "classNum": "06",
+  "content": [
+    {
+      "type": "title",
+      "content": "ভগ্নাংশ (FRACTION)"
+    },
+    {
+      "type": "header",
+      "content": "১. ভগ্নাংশের যোগ শর্টকাট"
+    },
+    {
+      "type": "text",
+      "content": "পূর্ণসংখ্যার সাথে মিশ্র ভগ্নাংশ যোগ করা খুব সহজ। আলাদা করে লসাগু করার প্রয়োজন নেই।"
+    },
+    {
+      "type": "box",
+      "content": "<strong>12 + 5/19</strong> = 12<span class='fraction'><span class='top'>5</span><span class='bottom'>19</span></span><br><strong>5 + 23/3</strong><br>= 5 + 7<span class='fraction'><span class='top'>2</span><span class='bottom'>3</span></span> (23/3 কে ভাঙলাম)<br>= 12<span class='fraction'><span class='top'>2</span><span class='bottom'>3</span></span>"
+    },
+    {
+      "type": "header",
+      "content": "২. ভগ্নাংশের বিয়োগ শর্টকাট"
+    },
+    {
+      "type": "text",
+      "content": "পূর্ণসংখ্যা থেকে ভগ্নাংশ বিয়োগ করার জাদুকরী নিয়ম।"
+    },
+    {
+      "type": "list",
+      "items": [
+        "পূর্ণসংখ্যা থেকে 1 কমিয়ে দিন।",
+        "ভগ্নাংশের হর ও লবের পার্থক্য লব হিসেবে লিখুন।"
+      ]
+    },
+    {
+      "type": "question",
+      "qText": "5 - 3/7 = ?",
+      "explanation": "১. 5 থেকে 1 কমলে হয় 4।<br>২. হর ও লবের পার্থক্য (7-3) = 4।<br>৩. উত্তর: 4<span class='fraction'><span class='top'>4</span><span class='bottom'>7</span></span>"
+    },
+    {
+      "type": "question",
+      "qText": "153 - 27/32 = ?",
+      "explanation": "১. 153 &rarr; 152<br>২. পার্থক্য (32-27) = 5<br>৩. উত্তর: 152<span class='fraction'><span class='top'>5</span><span class='bottom'>32</span></span>"
+    }
+  ]
+}

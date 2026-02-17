@@ -1,0 +1,57 @@
+{
+  "chapterName": "ক্যালকুলেশন ট্রিক্স (Calculation Tricks)",
+  "classNum": "03",
+  "content": [
+    {
+      "type": "title",
+      "content": "গুণের বিশেষ পদ্ধতি (Special Multiplication)"
+    },
+    {
+      "type": "header",
+      "content": "১. Average Method (গড় পদ্ধতি)"
+    },
+    {
+      "type": "text",
+      "content": "যখন দুটি সংখ্যার মাঝখানের ব্যবধান সমান হয়, তখন আমরা মাঝখানের সংখ্যাটি বের করে (a² - b²) সূত্র ব্যবহার করতে পারি।"
+    },
+    {
+      "type": "math",
+      "content": "\\text{Formula: } (\\text{Middle Number})^2 - (\\text{Gap})^2"
+    },
+    {
+      "type": "question",
+      "qText": "48 &times; 52 = ?",
+      "explanation": "১. মাঝখানের সংখ্যা 50। ব্যবধান 2।<br>২. সূত্র: 50² - 2²<br>৩. 2500 - 4 = 2496"
+    },
+    {
+      "type": "question",
+      "qText": "29 &times; 31 = ?",
+      "explanation": "১. মাঝখানের সংখ্যা 30। ব্যবধান 1।<br>২. সূত্র: 30² - 1²<br>৩. 900 - 1 = 899"
+    },
+    {
+      "type": "header",
+      "content": "২. Base Method / Splitting (ভেঙে গুণ)"
+    },
+    {
+      "type": "text",
+      "content": "একটি সংখ্যাকে সুবিধাজনক অংশে ভেঙে গুণ করা।"
+    },
+    {
+      "type": "box",
+      "content": "<strong>25 &times; 18:</strong><br>18 কে ভাঙি (20 - 2) হিসেবে।<br>25 &times; 20 = 500<br>25 &times; 2 = 50<br>বিয়োগ করলে: 500 - 50 = 450"
+    },
+    {
+      "type": "header",
+      "content": "৩. 11 এবং 22 দিয়ে গুণ"
+    },
+    {
+      "type": "text",
+      "content": "22 দিয়ে গুণ করার সহজ উপায় হলো সংখ্যাটিকে আগে 2 দিয়ে গুণ করা, তারপর 11 এর নিয়ম প্রয়োগ করা।"
+    },
+    {
+      "type": "question",
+      "qText": "35 &times; 22 = ?",
+      "explanation": "ধাপ ১: 35 &times; 2 = 70<br>ধাপ ২: 70 &times; 11 = 770"
+    }
+  ]
+}

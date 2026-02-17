@@ -1,0 +1,47 @@
+{
+  "chapterName": "ক্যালকুলেশন ট্রিক্স (Calculation Tricks)",
+  "classNum": "02",
+  "content": [
+    {
+      "type": "title",
+      "content": "গুণ (MULTIPLICATION) শর্টকাট"
+    },
+    {
+      "type": "header",
+      "content": "১. 100 এবং 1000 এর কাছাকাছি সংখ্যার গুণ"
+    },
+    {
+      "type": "text",
+      "content": "এই পদ্ধতিতে আমরা দেখব সংখ্যাগুলো তাদের বেস (100 বা 1000) থেকে কত কম বা বেশি।"
+    },
+    {
+      "type": "box",
+      "content": "<strong>(104 &times; 105):</strong><br>104 (+4)<br>105 (+5)<br>----------------<br>১. কোণাকুণি যোগ: 104+5 = 109<br>২. গুণফল: 4&times;5 = 20<br><strong>উত্তর: 10920</strong>"
+    },
+    {
+      "type": "text",
+      "content": "যদি সংখ্যা 100 এর কম হয়:"
+    },
+    {
+      "type": "box",
+      "content": "<strong>(96 &times; 95):</strong><br>96 (-4)<br>95 (-5)<br>----------------<br>১. বিয়োগ: 96-5 = 91<br>২. গুণফল: 4&times;5 = 20<br><strong>উত্তর: 9120</strong>"
+    },
+    {
+      "type": "header",
+      "content": "২. 5, 25 এবং 125 দ্বারা গুণের জাদুকরী ট্রিক"
+    },
+    {
+      "type": "list",
+      "items": [
+        "<strong>x 5:</strong> সংখ্যাকে 2 দিয়ে ভাগ করে 10 দিয়ে গুণ (0 বসানো)।<br>Example: 152 &times; 5 &rarr; 76 &rarr; 760",
+        "<strong>x 25:</strong> সংখ্যাকে 4 দিয়ে ভাগ করে 100 দিয়ে গুণ (00 বসানো)।<br>Example: 48 &times; 25 &rarr; 12 &rarr; 1200",
+        "<strong>x 125:</strong> সংখ্যাকে 8 দিয়ে ভাগ করে 1000 দিয়ে গুণ (000 বসানো)।<br>Example: 888 &times; 125 &rarr; 111 &rarr; 111000"
+      ]
+    },
+    {
+      "type": "question",
+      "qText": "4486 &times; 5 = ?",
+      "explanation": "4486 কে 2 দিয়ে ভাগ করলে হয় 2243। শেষে একটি 0 বসালে উত্তর: 22430"
+    }
+  ]
+}

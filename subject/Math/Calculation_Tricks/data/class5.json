@@ -1,0 +1,41 @@
+{
+  "chapterName": "ক্যালকুলেশন ট্রিক্স (Calculation Tricks)",
+  "classNum": "05",
+  "content": [
+    {
+      "type": "title",
+      "content": "বর্গমূল (SQUARE ROOT) নির্ণয়"
+    },
+    {
+      "type": "header",
+      "content": "১. পূর্ণবর্গ সংখ্যার বর্গমূল"
+    },
+    {
+      "type": "text",
+      "content": "শেষ ডিজিট দেখে সিদ্ধান্ত নিতে হয়।<br>1 &rarr; 1 বা 9<br>4 &rarr; 2 বা 8<br>6 &rarr; 4 বা 6<br>9 &rarr; 3 বা 7<br>5 &rarr; 5"
+    },
+    {
+      "type": "question",
+      "qText": "√2304 = ?",
+      "explanation": "১. শেষে 4 আছে, তাই উত্তর 2 বা 8 দিয়ে শেষ হবে।<br>২. 23 এর আগের বর্গ 16 (4²)। তাই প্রথম সংখ্যা 4। (উত্তর 42 বা 48)।<br>৩. 4 &times; 5 = 20। যেহেতু 23 > 20, তাই বড় সংখ্যাটি হবে।<br>৪. উত্তর: 48"
+    },
+    {
+      "type": "header",
+      "content": "২. অপূর্ণবর্গ (Non-Perfect) সংখ্যার বর্গমূল"
+    },
+    {
+      "type": "math",
+      "content": "\\text{Formula: } \\sqrt{x \\pm y} = \\sqrt{x} \\pm \\frac{y}{2\\sqrt{x}}"
+    },
+    {
+      "type": "question",
+      "qText": "√24 = ?",
+      "explanation": "আমরা 24 কে লিখতে পারি (25 - 1)।<br>= 5 - 1/(2&times;5)<br>= 5 - 0.1<br>= 4.9"
+    },
+    {
+      "type": "question",
+      "qText": "√39 = ?",
+      "explanation": "আমরা 39 কে লিখতে পারি (36 + 3)।<br>= 6 + 3/(2&times;6)<br>= 6 + 0.25<br>= 6.25"
+    }
+  ]
+}

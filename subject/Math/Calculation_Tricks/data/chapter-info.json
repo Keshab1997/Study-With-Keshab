@@ -1,0 +1,20 @@
+{
+  "chapterID": "Calculation-Tricks",
+  "chapterName": "ক্যালকুলেশন ট্রিক্স (Calculation Tricks)",
+  "description": "গণিতের জটিল হিসেব নিকেশ মুহূর্তে করার জাদুকরী সব কৌশল। বর্গ, বর্গমূল, ঘন, গুণ, ভাগ এবং ভগ্নাংশের শর্টকাট টেকনিক।",
+  "logoURL": "https://cdn-icons-png.flaticon.com/512/10109/10109852.png",
+  "classes": [
+    { "title": "বর্গ নির্ণয়ের জাদুকরী কৌশল (1-999)", "id": "1" },
+    { "title": "গুণ করার শর্টকাট টেকনিক (Near 100/1000 & 5/25/125)", "id": "2" },
+    { "title": "গুণ করার স্পেশাল মেথড (Average & Base Method)", "id": "3" },
+    { "title": "ঘন এবং ঘনমূল নির্ণয় (Cube & Cube Roots)", "id": "4" },
+    { "title": "বর্গমূল নির্ণয় (Perfect & Non-Perfect)", "id": "5" },
+    { "title": "ভগ্নাংশের ভীতি দূর করার কৌশল (Fractions)", "id": "6" },
+    { "title": "দশমিকের অংক ও পাওয়ার নির্ণয় (Decimals)", "id": "7" }
+  ],
+  "quizzes": [
+    { "title": "Quiz Set 01: বর্গ ও গুণের ধারণা", "set": "Qset1" },
+    { "title": "Quiz Set 02: বর্গমূল ও ভগ্নাংশ", "set": "Qset2" }
+  ],
+  "pdfs": []
+}

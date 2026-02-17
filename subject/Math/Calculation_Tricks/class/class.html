@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>LCM & HCF - Class</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            touch-action: pan-y;
+            -ms-touch-action: pan-y;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: fixed;
+            overscroll-behavior: none;
+            touch-action: pan-y;
+        }
+        body {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .fraction {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            margin: 0 4px;
+        }
+        .fraction .top {
+            display: block;
+            border-bottom: 2px solid currentColor;
+            padding: 1px;
+        }
+        .fraction .bottom {
+            display: block;
+            padding: 1px;
+        }
+        .math-eq {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .highlight-text {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+        body.dark-mode .math-eq {
+            color: #fff;
+            background: #444;
+        }
+        #desktopModeToggle, #rotateScreenToggle {
+            font-size: 1.2rem;
+        }
+        .dark-mode-toggle i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body data-theme="default">
+
+<header>
+    <img src="../images/logo.jpg" alt="Logo" class="logo"> 
+    <h1 id="dynamic-chapter-name">অধ্যায় লোড হচ্ছে...</h1>
+</header>
+
+<div class="controls-wrapper">
+    <div id="digital-clock" class="digital-clock"></div>
+    <a href="../index.html" style="padding: 10px 14px; background: #667eea; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; min-width: 40px;">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
+    <div class="theme-buttons">
+        <button data-theme-name="default"><i class="fa-solid fa-palette"></i></button>
+        <button data-theme-name="forest"><i class="fa-solid fa-tree"></i></button>
+        <button data-theme-name="ocean"><i class="fa-solid fa-water"></i></button>
+        <button data-theme-name="sunset"><i class="fa-solid fa-sun"></i></button>
+        <button data-theme-name="book"><i class="fa-solid fa-book"></i></button>
+    </div>
+    <button id="desktopModeToggle"><i class="fa-solid fa-desktop"></i></button>
+    <button id="rotateScreenToggle"><i class="fa-solid fa-rotate"></i></button>
+    <div class="dark-mode-toggle">
+        <i class="fa-solid fa-moon"></i>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <h2 id="dynamic-class-no">CLASS NO: 01</h2>
+    
+    <!-- Navigation Buttons -->
+    <div id="class-navigation" style="display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap;"></div>
+    
+    <div id="class-content-area">
+        <!-- JS দিয়ে কন্টেন্ট এখানে আসবে -->
+    </div>
+</div>
+
+<script src="../js/class-renderer.js"></script>
+<script src="js/script.js"></script>
+<script>
+// Digital Clock
+function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const clockElement = document.getElementById('digital-clock');
+    if (clockElement) {
+        clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+    }
+}
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+</body>
+</html>

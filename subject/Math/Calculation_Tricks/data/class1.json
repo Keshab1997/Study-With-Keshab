@@ -1,0 +1,161 @@
+{
+  "chapterName": "ক্যালকুলেশন ট্রিক্স (Calculation Tricks)",
+  "classNumber": "01",
+  "sections": [
+    {
+      "type": "title",
+      "content": "বর্গ (SQUARE) নির্ণয় (1-999 পর্যন্ত)"
+    },
+    {
+      "type": "header",
+      "content": "● 2 DIGIT SQUARE (1-99)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>পদ্ধতি:</strong> প্রথমে প্রতিটি সংখ্যার বর্গ পাশাপাশি লিখুন। তারপর (সংখ্যা × সংখ্যা × 2) বের করে ডানদিক থেকে এক ঘর বাদ দিয়ে যোগ করুন।"
+    },
+    {
+      "type": "calculation",
+      "content": "(45)²\n= 1625\n+  40\n------\n= 2025"
+    },
+    {
+      "type": "text",
+      "content": "<strong>কিভাবে হলো:</strong> প্রথমে 4 এর বর্গ 16 এবং 5 এর বর্গ 25 পাশাপাশি লিখলাম (1625)। তারপর (4 × 5 × 2) = 40 বের করে ডানদিক থেকে এক ঘর বাদ দিয়ে যোগ করলাম।"
+    },
+    {
+      "type": "calculation",
+      "content": "(36)²\n= 0936\n+  36\n------\n= 1296"
+    },
+    {
+      "type": "text",
+      "content": "<strong>কিভাবে হলো:</strong> 3²=09, 6²=36। তারপর (3 × 6 × 2) = 36 যোগ করলাম এক ঘর বাদ দিয়ে।"
+    },
+    {
+      "type": "calculation",
+      "content": "(83)²\n= 6409\n+  48\n------\n= 6889"
+    },
+    {
+      "type": "calculation",
+      "content": "(62)²\n= 3604\n+  24\n------\n= 3844"
+    },
+    {
+      "type": "calculation",
+      "content": "(98)²\n= 8164\n+ 144\n------\n= 9604"
+    },
+    {
+      "type": "calculation",
+      "content": "(99)²\n= 8181\n+ 162\n------\n= 9801"
+    },
+    {
+      "type": "header",
+      "content": "● SPECIAL TRICKS (Ending with 5)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>পদ্ধতি:</strong> শেষে 5 থাকলে উত্তর সবসময় 25 দিয়ে শেষ হবে। আর সামনের সংখ্যার সাথে তার পরের সংখ্যা গুণ করতে হবে।"
+    },
+    {
+      "type": "list",
+      "items": [
+        "(45)² = (4 × 5) | 25 = <strong>2025</strong>",
+        "(15)² = (1 × 2) | 25 = <strong>225</strong>",
+        "(55)² = (5 × 6) | 25 = <strong>3025</strong>",
+        "(25)² = (2 × 3) | 25 = <strong>625</strong>",
+        "(65)² = (6 × 7) | 25 = <strong>4225</strong>",
+        "(35)² = (3 × 4) | 25 = <strong>1225</strong>",
+        "(105)² = (10 × 11) | 25 = <strong>11025</strong>",
+        "(75)² = (7 × 8) | 25 = <strong>5625</strong>",
+        "(85)² = (8 × 9) | 25 = <strong>7225</strong>",
+        "(95)² = (9 × 10) | 25 = <strong>9025</strong>"
+      ]
+    },
+    {
+      "type": "header",
+      "content": "● NEAR 50 (Base 25)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>পদ্ধতি:</strong> 50 থেকে যত কম বা বেশি, তা 25 এর সাথে যোগ বা বিয়োগ করতে হবে।"
+    },
+    {
+      "type": "list",
+      "items": [
+        "(49)² = (25 - 1) | 01² = <strong>2401</strong> (50 থেকে 1 কম)",
+        "(52)² = (25 + 2) | 02² = <strong>2704</strong> (50 থেকে 2 বেশি)",
+        "(47)² = (25 - 3) | 03² = <strong>2209</strong>",
+        "(44)² = (25 - 6) | 06² = <strong>1936</strong>",
+        "(58)² = (25 + 8) | 08² = <strong>3364</strong>",
+        "(54)² = (25 + 4) | 04² = <strong>2916</strong>",
+        "(56)² = (25 + 6) | 06² = <strong>3136</strong>"
+      ]
+    },
+    {
+      "type": "header",
+      "content": "● 3 DIGIT SQUARE (Base Method)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>পদ্ধতি:</strong> সংখ্যাটি 100 বা 200 এর থেকে কত দূরে তা দেখতে হবে।"
+    },
+    {
+      "type": "calculation",
+      "content": "(106)² (Base 100, Diff +6)\n= (106 + 6) | 6²\n= 112 | 36\n= 11236"
+    },
+    {
+      "type": "text",
+      "content": "<strong>কিভাবে হলো:</strong> 106 এর সাথে 6 যোগ করে 112 হলো। আর 6 এর বর্গ 36 পাশে বসলো।"
+    },
+    {
+      "type": "calculation",
+      "content": "(115)² (Base 100, Diff +15)\n= (115 + 15) | 15²\n= 130 | 225 (2 হাতে থাকবে)\n= 13225"
+    },
+    {
+      "type": "text",
+      "content": "<strong>কিভাবে হলো:</strong> 15² = 225, এখানে শুধু 25 বসবে আর 2 আগের 130 এর সাথে যোগ হয়ে 132 হবে।"
+    },
+    {
+      "type": "calculation",
+      "content": "(103)²\n= (103 + 3) | 3²\n= 106 | 09\n= 10609"
+    },
+    {
+      "type": "calculation",
+      "content": "(105)²\n= (105 + 5) | 5²\n= 110 | 25\n= 11025"
+    },
+    {
+      "type": "calculation",
+      "content": "(104)²\n= (104 + 4) | 4²\n= 108 | 16\n= 10816"
+    },
+    {
+      "type": "calculation",
+      "content": "(205)² (Base 200, Diff +5)\n= (205 + 5) × 2 | 5²\n= 210 × 2 | 25\n= 420 | 25\n= 42025"
+    },
+    {
+      "type": "text",
+      "content": "<strong>কিভাবে হলো:</strong> বেস 200 তাই যোগফলের সাথে 2 গুণ করতে হয়েছে।"
+    },
+    {
+      "type": "calculation",
+      "content": "(825)² (Base 800, Diff +25)\n= (825 + 25) × 8 | 25²\n= 850 × 8 | 625\n= 6800 | 625 (6 হাতে থাকবে)\n= 680625"
+    },
+    {
+      "type": "calculation",
+      "content": "(315)² (Base 300, Diff +15)\n= (315 + 15) × 3 | 15²\n= 330 × 3 | 225\n= 990 | 225 (2 হাতে থাকবে)\n= 99225"
+    },
+    {
+      "type": "calculation",
+      "content": "(155)² (Base 150, Diff +5)\n= (155 + 5) × 1.5 | 5²\n= 160 × 1.5 | 25\n= 240 | 25\n= 24025"
+    },
+    {
+      "type": "calculation",
+      "content": "(989)² (Base 1000, Diff -11)\n= (989 - 11) | 11²\n= 978 | 121\n= 978121"
+    },
+    {
+      "type": "calculation",
+      "content": "(362)² (Base 350, Diff +12)\n= (362 + 12) × 3.5 | 12²\n= 374 × 3.5 | 144\n= 1309 | 144 (1 হাতে থাকবে)\n= 131044"
+    },
+    {
+      "type": "box",
+      "content": "<strong>পরামর্শ:</strong> 3-ডিজিটের ক্ষেত্রে বেস 100 হলে 1 দিয়ে গুণ, 200 হলে 2 দিয়ে, 300 হলে 3 দিয়ে গুণ করতে হয়। আর শেষে সবসময় 2 ঘর রাখতে হয়, বেশি হলে তা আগের সংখ্যার সাথে যোগ হয়।"
+    }
+  ]
+}

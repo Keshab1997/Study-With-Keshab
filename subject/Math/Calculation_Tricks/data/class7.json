@@ -1,0 +1,44 @@
+{
+  "chapterName": "ক্যালকুলেশন ট্রিক্স (Calculation Tricks)",
+  "classNum": "07",
+  "content": [
+    {
+      "type": "title",
+      "content": "দশমিক (DECIMAL)"
+    },
+    {
+      "type": "header",
+      "content": "১. দশমিকের গুণ"
+    },
+    {
+      "type": "text",
+      "content": "প্রথমে দশমিক ভুলে সাধারণ গুণ করুন। শেষে মোট দশমিক ঘর গুণে বসিয়ে দিন।"
+    },
+    {
+      "type": "box",
+      "content": "<strong>1.2 &times; 0.005 &times; 1.25</strong><br>সাধারণ গুণ: 12 &times; 5 &times; 125 = 7500<br>মোট দশমিক ঘর: 1 + 3 + 2 = 6<br>উত্তর: 0.007500"
+    },
+    {
+      "type": "header",
+      "content": "২. দশমিকের বর্গ ও ঘন"
+    },
+    {
+      "type": "list",
+      "items": [
+        "বর্গ (Square): দশমিক ঘর দ্বিগুণ (&times;2) হয়।<br>(0.2)² = 0.04 (1 ঘর &rarr; 2 ঘর)",
+        "ঘন (Cube): দশমিক ঘর তিনগুণ (&times;3) হয়।<br>(0.2)³ = 0.008 (1 ঘর &rarr; 3 ঘর)"
+      ]
+    },
+    {
+      "type": "header",
+      "content": "৩. দশমিকের বর্গমূল ও ঘনমূল"
+    },
+    {
+      "type": "list",
+      "items": [
+        "বর্গমূল (Square Root): দশমিক ঘর অর্ধেক (&divide;2) হয়।<br>√0.0064 = 0.08 (4 ঘর &rarr; 2 ঘর)",
+        "ঘনমূল (Cube Root): দশমিক ঘর এক-তৃতীয়াংশ (&divide;3) হয়।<br>³√0.000064 = 0.04 (6 ঘর &rarr; 2 ঘর)"
+      ]
+    }
+  ]
+}
