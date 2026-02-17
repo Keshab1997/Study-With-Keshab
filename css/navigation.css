@@ -16,6 +16,7 @@
   height: 70px;
   width: 100%;
   box-sizing: border-box;
+  gap: 20px;
 }
 
 .logo-link {
@@ -32,6 +33,9 @@
 .desktop-nav {
   display: none;
   gap: 5px;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-link {

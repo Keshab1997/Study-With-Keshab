@@ -127,74 +127,62 @@
     <body class="day-mode homepage theme-blue auth-loading">
         <div id="preloader"><div class="loader"></div></div>
 
-        <!-- Navigation Grid -->
-        <nav class="nav-grid">
-            <a href="../../../../index.html" class="nav-button color-home">
-                <i class="fa-solid fa-house"></i>
-                <span>হোম</span>
-            </a>
-            <a href="#dashboard" class="nav-button color-dashboard">
-                <i class="fa-solid fa-chart-line"></i>
-                <span>ড্যাশবোর্ড</span>
-            </a>
-            <a href="#class-notes" class="nav-button color-notes">
-                <i class="fa-solid fa-book-open"></i>
-                <span>ক্লাস নোট</span>
-            </a>
-            <a href="#pdf-notes" class="nav-button color-pdf">
-                <i class="fa-solid fa-file-pdf"></i>
-                <span>পিডিএফ</span>
-            </a>
-            <a href="#quiz-sets" class="nav-button color-quiz">
-                <i class="fa-solid fa-file-circle-question"></i>
-                <span>কুইজ</span>
-            </a>
-            <a href="#leaderboard" class="nav-button color-leaderboard">
-                <i class="fa-solid fa-trophy"></i>
-                <span>লিডারবোর্ড</span>
-            </a>
-        </nav>
+        <script>
+            let CURRENT_CHAPTER_NAME = "";
+
+            async function loadChapterData() {
+                try {
+                    const response = await fetch('data/chapter-info.json');
+                    const data = await response.json();
+                    
+                    CURRENT_CHAPTER_NAME = data.chapterID;
+                    document.getElementById('dynamic-title').innerText = data.chapterName + " | Study With Keshab";
+                    document.getElementById('dynamic-favicon').href = data.logoURL;
+                    
+                    window.__CHAPTER_BANNER__ = `
+                        <div class="chapter-banner">
+                            <h1>${data.chapterName}</h1>
+                            <p>${data.description}</p>
+                        </div>
+                    `;
+
+                    if (typeof init === 'function') init();
+                } catch (error) {
+                    console.error("Error loading chapter info:", error);
+                }
+            }
+
+            loadChapterData();
+        </script>
 
         <main>
-            <script>
-                // গ্লোবাল ভেরিয়েবল
-                let CURRENT_CHAPTER_NAME = "";
-
-                // chapter-info.json থেকে ডাইনামিকভাবে তথ্য লোড করা
-                async function loadChapterData() {
-                    try {
-                        const response = await fetch('data/chapter-info.json');
-                        const data = await response.json();
-                        
-                        // ১. চ্যাপ্টার আইডি সেট করা
-                        CURRENT_CHAPTER_NAME = data.chapterID;
-                        
-                        // ২. ব্রাউজার টাইটেল আপডেট করা
-                        document.getElementById('dynamic-title').innerText = data.chapterName + " | Study With Keshab";
-                        
-                        // ৩. ফেভিকন আপডেট করা
-                        document.getElementById('dynamic-favicon').href = data.logoURL;
-                        
-                        // ৪. ব্যানার ডাইনামিক করা
-                        window.__CHAPTER_BANNER__ = `
-                            <div class="chapter-banner">
-                                <h1>${data.chapterName}</h1>
-                                <p>${data.description}</p>
-                            </div>
-                        `;
-
-                        // ৫. রেন্ডারার ফাংশন কল করা (যদি প্রয়োজন হয়)
-                        if (typeof init === 'function') init(); 
-                        
-                        console.log("Chapter Loaded:", CURRENT_CHAPTER_NAME);
-                    } catch (error) {
-                        console.error("Error loading chapter info:", error);
-                    }
-                }
-
-                // পেজ লোড হলে ফাংশনটি রান করবে
-                loadChapterData();
-            </script>
+            <!-- Navigation Grid -->
+            <nav class="nav-grid">
+                <a href="../../../../index.html" class="nav-button color-home">
+                    <i class="fa-solid fa-house"></i>
+                    <span>হোম</span>
+                </a>
+                <a href="#dashboard" class="nav-button color-dashboard">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>ড্যাশবোর্ড</span>
+                </a>
+                <a href="#class-notes" class="nav-button color-notes">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>ক্লাস নোট</span>
+                </a>
+                <a href="#pdf-notes" class="nav-button color-pdf">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>পিডিএফ</span>
+                </a>
+                <a href="#quiz-sets" class="nav-button color-quiz">
+                    <i class="fa-solid fa-file-circle-question"></i>
+                    <span>কুইজ</span>
+                </a>
+                <a href="#leaderboard" class="nav-button color-leaderboard">
+                    <i class="fa-solid fa-trophy"></i>
+                    <span>লিডারবোর্ড</span>
+                </a>
+            </nav>
 
             <!-- ড্যাশবোর্ড সেকশন -->
             <section class="card" id="dashboard">
