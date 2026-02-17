@@ -350,13 +350,18 @@ input:checked + .slider:before {
 }
 .digital-clock {
   font-family: "Courier New", Courier, monospace;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: bold;
-  padding: 8px 15px;
+  padding: 6px 12px;
   background-color: var(--blockquote-bg);
   border: 1px solid var(--blockquote-border);
   border-radius: 5px;
   color: var(--heading-color-1);
+  display: inline-block;
+  min-width: 120px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 .navigation {
   text-align: center;

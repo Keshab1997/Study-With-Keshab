@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const response = await fetch(`../data/class${classId}.json`);
         const data = await response.json();
 
+        // Update browser title dynamically
+        document.title = `${data.chapterName} - Class ${data.classNumber} | Study With Keshab`;
+
         document.getElementById('dynamic-chapter-name').innerText = data.chapterName;
         document.getElementById('dynamic-class-no').innerText = `CLASS NO: ${data.classNumber}`;
 
