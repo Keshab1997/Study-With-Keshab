@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <title id="dynamic-title">Loading... | Study With Keshab</title>
         
-        <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/993/993872.png" />
+        <link rel="icon" type="image/png" id="dynamic-favicon" href="https://cdn-icons-png.flaticon.com/512/993/993872.png" />
 
         <!-- Stylesheets -->
         <link rel="stylesheet" href="../../../css/style.css" />
@@ -147,7 +147,10 @@
                         // ২. ব্রাউজার টাইটেল আপডেট করা
                         document.getElementById('dynamic-title').innerText = data.chapterName + " | Study With Keshab";
                         
-                        // ৩. ব্যানার ডাইনামিক করা
+                        // ৩. ফেভিকন আপডেট করা
+                        document.getElementById('dynamic-favicon').href = data.logoURL;
+                        
+                        // ৪. ব্যানার ডাইনামিক করা
                         window.__CHAPTER_BANNER__ = `
                             <div class="chapter-banner">
                                 <h1>${data.chapterName}</h1>
@@ -155,7 +158,7 @@
                             </div>
                         `;
 
-                        // ৪. রেন্ডারার ফাংশন কল করা (যদি প্রয়োজন হয়)
+                        // ৫. রেন্ডারার ফাংশন কল করা (যদি প্রয়োজন হয়)
                         if (typeof init === 'function') init(); 
                         
                         console.log("Chapter Loaded:", CURRENT_CHAPTER_NAME);
@@ -184,8 +187,23 @@
                 </div>
 
                 <div class="motivational-quote-box">
-                    <p id="daily-quote">"সফলতা হলো প্রতিদিনের ছোট ছোট প্রচেষ্টার ফল।"</p>
+                    <p id="daily-quote">লোড হচ্ছে...</p>
                 </div>
+
+                <script>
+                    // প্রতিদিন নতুন quote API থেকে লোড করা
+                    async function loadDailyQuote() {
+                        try {
+                            const response = await fetch('https://zenquotes.io/api/random');
+                            const data = await response.json();
+                            const quoteElement = document.getElementById('daily-quote');
+                            quoteElement.innerHTML = `"${data[0].q}" <br><small style="opacity: 0.8;">— ${data[0].a}</small>`;
+                        } catch (error) {
+                            document.getElementById('daily-quote').innerText = '"সফলতা হলো প্রতিদিনের ছোট ছোট প্রচেষ্টার ফল।"';
+                        }
+                    }
+                    loadDailyQuote();
+                </script>
 
                 <div class="dashboard-grid">
                     <div class="dashboard-item">
