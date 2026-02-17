@@ -2,10 +2,17 @@
 <html lang="bn">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+        <meta name="description" content="গণিতের জটিল হিসেব নিকেশ মুহূর্তে করার জাদুকরী সব কৌশল। বর্গ, বর্গমূল, ঘন, গুণ, ভাগ এবং ভগ্নাংশের শর্টকাট টেকনিক শিখুন।" />
         <title id="dynamic-title">Loading... | Study With Keshab</title>
         
+        <!-- Preconnect to external domains -->
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+        <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+        
         <link rel="icon" type="image/png" id="dynamic-favicon" href="https://cdn-icons-png.flaticon.com/512/993/993872.png" />
+        <link rel="manifest" href="../../../manifest.json" />
 
         <!-- Stylesheets -->
         <link rel="stylesheet" href="../../../css/style.css" />
@@ -13,9 +20,9 @@
         <link rel="stylesheet" href="../../../css/notification.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/pdf-viewer.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'" />
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" defer></script>
 
         <style>
             body.auth-loading { visibility: hidden; opacity: 0; }
@@ -309,22 +316,30 @@
             </div>
         </div>
 
-        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-        <script src="../../../js/firebase-config.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js" defer></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js" defer></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js" defer></script>
+        <script src="../../../js/firebase-config.js" defer></script>
         
         <script>
             window.__MANUAL_ROOT_PATH__ = '../../../';
-            // ব্যানারটি এখন উপরের loadChapterData() ফাংশন থেকে ডাইনামিকভাবে সেট হবে
         </script>
         
-        <script src="../../../js/navigation.js"></script>
-        <script src="../../../auth.js"></script>
-        <script src="js/main-renderer.js"></script>
-        <script src="js/pdf-viewer.js"></script>
+        <script src="../../../js/navigation.js" defer></script>
+        <script src="../../../auth.js" defer></script>
+        <script src="js/main-renderer.js" defer></script>
+        <script src="js/pdf-viewer.js" defer></script>
         
         <script>
+            // Service Worker Registration
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('../../../sw.js')
+                        .then(reg => console.log('✅ SW Registered:', reg.scope))
+                        .catch(err => console.log('❌ SW Registration failed:', err));
+                });
+            }
+            
             // Fallback: 5 সেকেন্ডের মধ্যে লোড না হলে জোর করে দেখাও
             setTimeout(() => {
                 document.body.classList.remove("auth-loading");

@@ -3,13 +3,18 @@
 // ===============================
 
 // সংস্করণ নম্বর বদলালেই নতুন cache তৈরি হবে
-const CACHE_NAME = "study-with-keshab-cache-v38";
+const CACHE_NAME = "study-with-keshab-cache-v40";
 
-// যেসব ফাইল আগেই ক্যাশে রাখা দরকার
+// যেসব ফাইল আগেই ক্যাশে রাখা দরকার (শুধু core files)
 const urlsToCache = [
   "./",
   "index.html",
-  "images/icons/icon-512x512.png"
+  "images/icons/icon-512x512.png",
+  "manifest.json",
+  "css/style.css",
+  "css/navigation.css",
+  "js/navigation.js"
+  // Note: Chapter files automatically cache হবে যখন visit করবে
 ];
 
 // ===============================
@@ -30,7 +35,7 @@ self.addEventListener("install", (event) => {
     clients.forEach(client => {
       client.postMessage({
         type: 'UPDATE_AVAILABLE',
-        message: 'নতুন ফিচার: Chapter Page Full Screen, Dark Mode Improved, Profile Section!'
+        message: 'নতুন ফিচার: Smart Offline Caching - সব Chapter Automatically Cache হবে!'
       });
     });
   });

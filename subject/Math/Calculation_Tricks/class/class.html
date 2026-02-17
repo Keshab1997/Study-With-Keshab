@@ -6,7 +6,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="description" content="ক্যালকুলেশন ট্রিক্স - ক্লাস নোট অফলাইনে পড়ুন" />
     <title>LCM & HCF - Class</title>
+    <link rel="manifest" href="../../../../manifest.json" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="css/style.css">
     
@@ -116,6 +118,15 @@
 <script src="../js/class-renderer.js"></script>
 <script src="js/script.js"></script>
 <script>
+// Service Worker Registration
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('../../../../sw.js')
+            .then(reg => console.log('✅ SW Registered:', reg.scope))
+            .catch(err => console.log('❌ SW Registration failed:', err));
+    });
+}
+
 // Digital Clock
 function updateClock() {
     const now = new Date();
