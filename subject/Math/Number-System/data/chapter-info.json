@@ -1,0 +1,45 @@
+{
+  "chapterID": "Number-System",
+  "chapterName": "সংখ্যা তত্ত্ব (Number System)",
+  "description": "বাস্তব সংখ্যা, একক অঙ্ক (Unit Digit), বিভাজ্যতার নিয়ম (Divisibility), ভাগশেষ উপপাদ্য (Remainder), গুণনীয়ক (Factor) এবং শূন্যের সংখ্যা (Zeros) নির্ণয়ের সম্পূর্ণ গাইড।",
+  "logoURL": "https://i.supaimg.com/5237f467-606d-4fb1-a523-b829abfd9527/6040ec9f-7615-4537-808d-cb8d1f542936.png",
+  "classes": [
+    { "title": "বাস্তব সংখ্যাতত্ত্ব (Real Numbers, Prime, Composite)", "id": "1" },
+    { "title": "মূলদ, নিখুঁত সংখ্যা ও জোড়-বিজোড়ের ধর্ম", "id": "2" },
+    { "title": "একক স্থানীয় অঙ্ক নির্ণয় (Unit Digit) - পর্ব 1", "id": "3" },
+    { "title": "একক স্থানীয় অঙ্ক নির্ণয় (Unit Digit) - পর্ব 2", "id": "4" },
+    { "title": "ফ্যাক্টোরিয়াল (Factorial) ও একক অঙ্ক নির্ণয়", "id": "5" },
+    { "title": "বিভাজ্যতার নিয়ম (Divisibility Rules) - পর্ব 1", "id": "6" },
+    { "title": "বিভাজ্যতার নিয়ম (Divisibility Rules) - পর্ব 2", "id": "7" },
+    { "title": "বিভাজ্যতার নিয়ম (Divisibility Rules) - পর্ব 3", "id": "8" },
+    { "title": "বিভাজ্যতার নিয়ম (Divisibility Rules) - পর্ব 4", "id": "9" },
+    { "title": "বিভাজ্যতার নিয়ম (Divisibility Rules) - পর্ব 5", "id": "10" },
+    { "title": "ভাগশেষ উপপাদ্য (Remainder Theorem) - পর্ব 1", "id": "11" },
+    { "title": "ভাগশেষ উপপাদ্য (Remainder Theorem) - পর্ব 2", "id": "12" },
+    { "title": "গুণনীয়ক নির্ণয় (Factors) - পর্ব 1", "id": "13" },
+    { "title": "গুণনীয়কের যোগফল ও গুণফল (Sum & Product of Factors)", "id": "14" },
+    { "title": "পূর্ণবর্গ/পূর্ণঘন গুণনীয়ক ও শূন্যের সংখ্যা নির্ণয় শুরু", "id": "15" },
+    { "title": "শূন্যের সংখ্যা নির্ণয় (Number of Zeros) - পর্ব 2", "id": "16" }
+  ],
+  "quizzes": [
+    { "title": "⏳ কুইজ সেট খুব তাড়াতাড়ি আপডেট করা হবে!", "set": "Qset_ComingSoon" }
+  ],
+  "pdfs": [
+    { "title": "Class 1 PDF", "driveID": "1uGV3xrJcuEdJNTO4uDZvtfZFjFU4jp0X" },
+    { "title": "Class 2 PDF", "driveID": "1GCucDIqn4ee0WhDD1iKWgSLAuciJB3YP" },
+    { "title": "Class 3 PDF", "driveID": "1TLMwMAzoK7d1_yrpfJ-mo6fS9LxAm9lh" },
+    { "title": "Class 4 PDF", "driveID": "1luZGVXJKmjkr_K7kVQowmmt2YVG9LF9d" },
+    { "title": "Class 5 PDF", "driveID": "1ybyhOATKntIkrkEhQMaG8SBJfz5QzbWq" },
+    { "title": "Class 6 PDF", "driveID": "1OktXIgJMRpMVm4M4PEF4heFxMGq2HJ8F" },
+    { "title": "Class 7 PDF", "driveID": "1snxllqxkamk9ncBajQ6N4_3DFqmjGico" },
+    { "title": "Class 8 PDF", "driveID": "1lBrpFlp0G432yzxxBEBdOTuYAjl-0JGV" },
+    { "title": "Class 9 PDF", "driveID": "1msVGHWxHZp9sjajyyy4zjKEM_DOQ9f16" },
+    { "title": "Class 10 PDF", "driveID": "1NFYh5fPy8DyScpDPZpWtC5Fdee0TP9SV" },
+    { "title": "Class 11 PDF", "driveID": "10xN4a5nLZ_VnarOiPD9Vbz38cg3Z48H3" },
+    { "title": "Class 12 PDF", "driveID": "1f9mg5iG-9PgxYj1q-mesCzyzEhUkcQ2Y" },
+    { "title": "Class 13 PDF", "driveID": "1lm-xVGVI9O5TF1ZxMUX51pi7D6aVMhZD" },
+    { "title": "Class 14 PDF", "driveID": "1zdUzqeWex9SSBkdYshEIjR44H-9rZrdh" },
+    { "title": "Class 15 PDF", "driveID": "1oEsmIRGGDK63k_XiZ0NEjPHZ7-OhVVdo" },
+    { "title": "Class 16 PDF", "driveID": "1DAYty6_uQ9REbBd_WxaG0B6ZCCNziXsw" }
+  ]
+}

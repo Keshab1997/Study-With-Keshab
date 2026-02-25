@@ -1,0 +1,85 @@
+{
+  "chapterName": "সংখ্যা তত্ত্ব (Number System)",
+  "classNumber": "14",
+  "sections": [
+    {
+      "type": "title",
+      "content": "NUMBER SYSTEM CLASS - 14 (FACTOR / গুণনীয়ক - যোগফল ও গুণফল)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>গুণনীয়কের যোগফল (Sum of Factors) নির্ণয়ের সূত্র:</strong><br>যদি N = a<sup>p</sup> &times; b<sup>q</sup> হয়, তবে:<br>1. মোট গুণনীয়কের যোগফল (S.O.T.F) = (a<sup>0</sup>+a<sup>1</sup>...+a<sup>p</sup>)(b<sup>0</sup>+b<sup>1</sup>...+b<sup>q</sup>)<br>2. জোড় গুণনীয়কের যোগফল (S.O.E.F) = (a<sup>1</sup>+a<sup>2</sup>...+a<sup>p</sup>)(b<sup>0</sup>+b<sup>1</sup>...+b<sup>q</sup>) [এখানে a=2]<br>3. বিজোড় গুণনীয়কের যোগফল (S.O.O.F) = (b<sup>0</sup>+b<sup>1</sup>...+b<sup>q</sup>) [2-এর অংশ বাদ দিয়ে]"
+    },
+    {
+      "type": "question",
+      "qText": "149. Find the sum of factors of 2450? <br> 2450-এর গুণনীয়কগুলোর যোগফল নির্ণয় কর। <ul><li>(A) 5301</li><li>(B) 5013</li><li>(C) 5312</li><li>(D) 5310</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রথমে 2450 কে মৌলিক উৎপাদকে বিশ্লেষণ করি:<br>   2450 = 2<sup>1</sup> &times; 5<sup>2</sup> &times; 7<sup>2</sup>।<br>2. মোট গুণনীয়কের যোগফল (S.O.T.F) এর সূত্র প্রয়োগ করি:<br>   = (2<sup>0</sup> + 2<sup>1</sup>) &times; (5<sup>0</sup> + 5<sup>1</sup> + 5<sup>2</sup>) &times; (7<sup>0</sup> + 7<sup>1</sup> + 7<sup>2</sup>)<br>3. মান বসিয়ে পাই: (1 + 2) &times; (1 + 5 + 25) &times; (1 + 7 + 49)<br>4. হিসাব: 3 &times; 31 &times; 57 = 5301।<br><strong>সঠিক উত্তর: (A) 5301</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "150. Find the sum of all factors of 2800. <br> 2800-এর সমস্ত গুণনীয়কের যোগফল নির্ণয় কর। <ul><li>(A) 7685</li><li>(B) 7688</li><li>(C) 7636</li><li>(D) 7671</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 2800 = 28 &times; 100 = (2<sup>2</sup> &times; 7) &times; (2<sup>2</sup> &times; 5<sup>2</sup>) = 2<sup>4</sup> &times; 5<sup>2</sup> &times; 7<sup>1</sup>।<br>2. যোগফল = (2<sup>0</sup>+2<sup>1</sup>+2<sup>2</sup>+2<sup>3</sup>+2<sup>4</sup>) &times; (5<sup>0</sup>+5<sup>1</sup>+5<sup>2</sup>) &times; (7<sup>0</sup>+7<sup>1</sup>)<br>3. মান বসিয়ে: (1+2+4+8+16) &times; (1+5+25) &times; (1+7)<br>4. হিসাব: 31 &times; 31 &times; 8 = 7688।<br><strong>সঠিক উত্তর: (B) 7688</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "151. Find the sum of even factors of 360. <br> 360-এর জোড় গুণনীয়কগুলোর যোগফল নির্ণয় কর। <ul><li>(A) 1093</li><li>(B) 1092</li><li>(C) 1094</li><li>(D) NONE</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 360 = 2<sup>3</sup> &times; 3<sup>2</sup> &times; 5<sup>1</sup>।<br>2. জোড় গুণনীয়কের যোগফলের ক্ষেত্রে 2-এর পাওয়ার 2<sup>0</sup> থেকে শুরু না করে 2<sup>1</sup> থেকে শুরু করতে হয়।<br>3. যোগফল = (2<sup>1</sup>+2<sup>2</sup>+2<sup>3</sup>) &times; (3<sup>0</sup>+3<sup>1</sup>+3<sup>2</sup>) &times; (5<sup>0</sup>+5<sup>1</sup>)<br>4. মান বসিয়ে: (2+4+8) &times; (1+3+9) &times; (1+5)<br>5. হিসাব: 14 &times; 13 &times; 6 = 1092।<br><strong>সঠিক উত্তর: (B) 1092</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "152. Find the sum of even factors of 544? <br> 544-এর জোড় গুণনীয়কগুলোর যোগফল নির্ণয় কর। <ul><li>(A) 1112</li><li>(B) 1116</li><li>(C) 1114</li><li>(D) 1246</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 544 = 32 &times; 17 = 2<sup>5</sup> &times; 17<sup>1</sup>।<br>2. জোড় যোগফল = (2<sup>1</sup>+2<sup>2</sup>+2<sup>3</sup>+2<sup>4</sup>+2<sup>5</sup>) &times; (17<sup>0</sup>+17<sup>1</sup>)<br>3. মান বসিয়ে: (2+4+8+16+32) &times; (1+17)<br>4. হিসাব: 62 &times; 18 = 1116।<br><strong>সঠিক উত্তর: (B) 1116</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "153. Find the sum of odd factors of 420. <br> 420-এর বিজোড় গুণনীয়কগুলোর যোগফল নির্ণয় কর। <ul><li>(A) 191</li><li>(B) 193</li><li>(C) 192</li><li>(D) 194</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 420 = 2<sup>2</sup> &times; 3<sup>1</sup> &times; 5<sup>1</sup> &times; 7<sup>1</sup>।<br>2. বিজোড় গুণনীয়কের যোগফলের সময় 2-এর পুরো অংশটি বাদ দিতে হয়।<br>3. যোগফল = (3<sup>0</sup>+3<sup>1</sup>) &times; (5<sup>0</sup>+5<sup>1</sup>) &times; (7<sup>0</sup>+7<sup>1</sup>)<br>4. মান বসিয়ে: (1+3) &times; (1+5) &times; (1+7)<br>5. হিসাব: 4 &times; 6 &times; 8 = 192।<br><strong>সঠিক উত্তর: (C) 192</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "154. Find the sum of odd factors of 2<sup>4</sup> &times; 5<sup>3</sup> &times; 7<sup>2</sup>? <ul><li>(A) 8892</li><li>(B) 9288</li><li>(C) 7829</li><li>(D) 2987</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. বিজোড় যোগফলের জন্য 2<sup>4</sup> অংশটি বাদ দেব।<br>2. বাকি থাকে: 5<sup>3</sup> &times; 7<sup>2</sup>।<br>3. যোগফল = (5<sup>0</sup>+5<sup>1</sup>+5<sup>2</sup>+5<sup>3</sup>) &times; (7<sup>0</sup>+7<sup>1</sup>+7<sup>2</sup>)<br>4. মান বসিয়ে: (1+5+25+125) &times; (1+7+49)<br>5. হিসাব: 156 &times; 57 = 8892।<br><strong>সঠিক উত্তর: (A) 8892</strong>"
+    },
+    {
+      "type": "header",
+      "content": "গুণনীয়কের গুণফল (Product of Factors)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>সূত্র:</strong> গুণনীয়কের গুণফল = N<sup>(T.F / 2)</sup><br>যেখানে N হলো মূল সংখ্যা এবং T.F হলো মোট গুণনীয়ক সংখ্যা।"
+    },
+    {
+      "type": "question",
+      "qText": "155. What is the product of all factors of 46800? <ul><li>(A) 46800<sup>45</sup></li><li>(B) 46800<sup>44</sup></li><li>(C) 46800<sup>4</sup></li><li>(D) None of these</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রথমে 46800-এর মোট গুণনীয়ক (T.F) বের করি।<br>   46800 = 468 &times; 100 = (2<sup>2</sup> &times; 3<sup>2</sup> &times; 13) &times; (2<sup>2</sup> &times; 5<sup>2</sup>) = 2<sup>4</sup> &times; 3<sup>2</sup> &times; 5<sup>2</sup> &times; 13<sup>1</sup>।<br>2. T.F = (4+1)(2+1)(2+1)(1+1) = 5 &times; 3 &times; 3 &times; 2 = 90।<br>3. গুণফল = 46800<sup>(90/2)</sup> = 46800<sup>45</sup>।<br><strong>সঠিক উত্তর: (A) 46800<sup>45</sup></strong>"
+    },
+    {
+      "type": "question",
+      "qText": "156. Find the product of the factor of 360? <ul><li>(A) (360)<sup>14</sup></li><li>(B) (360)<sup>12</sup></li><li>(C) (360)<sup>15</sup></li><li>(D) (360)<sup>13</sup></li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 360 = 2<sup>3</sup> &times; 3<sup>2</sup> &times; 5<sup>1</sup>।<br>2. T.F = (3+1)(2+1)(1+1) = 4 &times; 3 &times; 2 = 24।<br>3. গুণফল = 360<sup>(24/2)</sup> = 360<sup>12</sup>।<br><strong>সঠিক উত্তর: (B) (360)<sup>12</sup></strong>"
+    },
+    {
+      "type": "header",
+      "content": "গুণনীয়কের অনন্যকের যোগফল (Sum of Reciprocal of Factors)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>সূত্র:</strong> অনন্যকের যোগফল = <span class='fraction'><span class='top'>গুণনীয়কগুলোর যোগফল (S.O.T.F)</span><span class='bottom'>মূল সংখ্যা (N)</span></span>"
+    },
+    {
+      "type": "question",
+      "qText": "157. Find the sum of reciprocal of factors of 240? <ul><li>(A) 3.1</li><li>(B) 3.2</li><li>(C) 3.4</li><li>(D) None of these</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 240 = 2<sup>4</sup> &times; 3<sup>1</sup> &times; 5<sup>1</sup>।<br>2. S.O.T.F = (1+2+4+8+16) &times; (1+3) &times; (1+5) = 31 &times; 4 &times; 6 = 744।<br>3. অনন্যকের যোগফল = 744 &divide; 240 = 3.1।<br><strong>সঠিক উত্তর: (A) 3.1</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "158. Find the number of divisors of 544 which are greater than 3. <br> 544-এর ভাজকের সংখ্যা নির্ণয় কর যা 3-এর চেয়ে বড়। <ul><li>(A) 15</li><li>(B) 10</li><li>(C) 12</li><li>(D) NONE OF THESE</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 544 = 2<sup>5</sup> &times; 17<sup>1</sup>।<br>2. মোট গুণনীয়ক (T.F) = (5+1)(1+1) = 6 &times; 2 = 12টি।<br>3. 544-এর গুণনীয়কগুলো হলো: 1, 2, 4, 8, 16, 17, 32, 34, 68, 136, 272, 544।<br>4. এখানে 3-এর চেয়ে ছোট বা সমান গুণনীয়ক হলো: 1 এবং 2 (মোট 2টি)।<br>5. অতএব, 3-এর চেয়ে বড় গুণনীয়ক সংখ্যা = 12 - 2 = 10টি।<br><strong>সঠিক উত্তর: (B) 10</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "159. The number of divisors of 6600 which are greater than 10 is: <br> 6600-এর ভাজকের সংখ্যা যা 10-এর বেশি: <ul><li>(A) 18</li><li>(B) 12</li><li>(C) 40</li><li>(D) 36</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 6600 = 2<sup>3</sup> &times; 3<sup>1</sup> &times; 5<sup>2</sup> &times; 11<sup>1</sup>।<br>2. মোট গুণনীয়ক (T.F) = (3+1)(1+1)(2+1)(1+1) = 4 &times; 2 &times; 3 &times; 2 = 48টি।<br>3. 10 পর্যন্ত গুণনীয়কগুলো খুঁজি: 1, 2, 3, 4, 5, 6, 8, 10 (মোট 8টি)।<br>4. অতএব, 10-এর বেশি গুণনীয়ক সংখ্যা = 48 - 8 = 40টি।<br><strong>সঠিক উত্তর: (C) 40</strong>"
+    }
+  ]
+}

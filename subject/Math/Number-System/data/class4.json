@@ -1,0 +1,145 @@
+{
+  "chapterName": "সংখ্যা তত্ত্ব (Number System)",
+  "classNumber": "04",
+  "sections": [
+    {
+      "type": "title",
+      "content": "NUMBER SYSTEM CLASS - 04 (UNIT DIGIT)"
+    },
+    {
+      "type": "question",
+      "qText": "25. Find the unit digit of the no (987525 &times; 2 + 100 + 98 - 7) <ul><li>(A) 1</li><li>(B) 2</li><li>(C) 3</li><li>(D) 4</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রথমে গুণের একক অঙ্ক বের করি: 5 &times; 2 = 10, যার একক অঙ্ক 0।<br>2. এখন পুরো রাশিটির একক অঙ্কগুলো নিয়ে হিসাব করি: 0 + 0 + 8 - 7।<br>3. হিসাব করলে পাই: 8 - 7 = 1।<br><strong>সঠিক উত্তর: (A) 1</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "26. Find the unit digit of the no. (257 &times; 7 + 992 &times; 8 - 553 &times; 6 + 2) <ul><li>(A) 7</li><li>(B) 8</li><li>(C) 9</li><li>(D) None of these</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রতিটি গুণের একক অঙ্ক বের করি:<br>   • 7 &times; 7 = 49 &rarr; 9<br>   • 2 &times; 8 = 16 &rarr; 6<br>   • 3 &times; 6 = 18 &rarr; 8<br>2. এখন যোগ-বিয়োগ করি: 9 + 6 - 8 + 2 = 15 - 8 + 2 = 7 + 2 = 9।<br><strong>সঠিক উত্তর: (C) 9</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "27. Find the unit digit of the no. (3975 - 825 &times; 3 + 5287 + 9999 &times; 9) <ul><li>(A) 7</li><li>(B) 8</li><li>(C) 6</li><li>(D) 5</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. একক অঙ্কগুলো নিয়ে কাজ করি:<br>   • 5 - (5 &times; 3) + 7 + (9 &times; 9)<br>   • 5 - 15 + 7 + 81 &rarr; 5 - 5 + 7 + 1<br>2. হিসাব: 0 + 7 + 1 = 8।<br><strong>সঠিক উত্তর: (B) 8</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "28. Find the unit digit of the product (9286 &times; 521 &times; 879 &times; 7285) <ul><li>(A) 0</li><li>(B) 1</li><li>(C) 2</li><li>(D) 3</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. গুণের সিরিজে যদি একটি 5 থাকে এবং অন্তত একটি জোড় সংখ্যা থাকে, তবে একক অঙ্ক সর্বদা 0 হয়।<br>2. এখানে 7285-এর শেষে 5 আছে এবং 9286 একটি জোড় সংখ্যা।<br>3. 6 &times; 5 = 30 &rarr; 0।<br><strong>সঠিক উত্তর: (A) 0</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "29. Find the unit digit of the product (987 &times; 821 &times; 98971 &times; 8975) <ul><li>(A) 0</li><li>(B) 5</li><li>(C) 2</li><li>(D) 3</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এখানে 8975-এর শেষে 5 আছে কিন্তু সিরিজে কোনো জোড় সংখ্যা নেই।<br>2. আমরা জানি, 5 &times; বিজোড় সংখ্যা = 5।<br>3. 7 &times; 1 &times; 1 &times; 5 = 35 &rarr; 5।<br><strong>সঠিক উত্তর: (B) 5</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "30. 7801 &times; 7801 &times; ... 140 times then find unit digit <ul><li>(A) 0</li><li>(B) 1</li><li>(C) 6</li><li>(D) -5</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এটি আসলে (7801)<sup>140</sup>।<br>2. আমরা জানি, 1-এর পাওয়ার যাই হোক না কেন, একক অঙ্ক সর্বদা 1 থাকে।<br><strong>সঠিক উত্তর: (B) 1</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "31. 6185 &times; 6185 &times; ... 999 times, then find unit digit <ul><li>(A) 5</li><li>(B) 0</li><li>(C) 2</li><li>(D) 3</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এটি (6185)<sup>999</sup>।<br>2. 5-এর পাওয়ার যাই হোক, একক অঙ্ক সর্বদা 5 থাকে।<br><strong>সঠিক উত্তর: (A) 5</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "32. 126 &times; 126 &times; ... 5 times then find the unit digit <ul><li>(A) 6</li><li>(B) 1</li><li>(C) 2</li><li>(D) 3</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এটি (126)<sup>5</sup>।<br>2. 6-এর পাওয়ার যাই হোক, একক অঙ্ক সর্বদা 6 থাকে।<br><strong>সঠিক উত্তর: (A) 6</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "33. Find the unit digit of the product (999 &times; 999 &times; 999) <ul><li>(A) 6</li><li>(B) 1</li><li>(C) 8</li><li>(D) 9</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এটি (999)<sup>3</sup>।<br>2. 9-এর পাওয়ার বিজোড় (3) হলে একক অঙ্ক 9 হয়।<br><strong>সঠিক উত্তর: (D) 9</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "34. Find the unit digit of the product (879 &times; 87989 &times; 9939 &times; 84329) <ul><li>(A) 9</li><li>(B) 1</li><li>(C) 8</li><li>(D) 7</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এখানে 9 আছে 4 বার, অর্থাৎ (9)<sup>4</sup>।<br>2. 9-এর পাওয়ার জোড় (4) হলে একক অঙ্ক 1 হয়।<br><strong>সঠিক উত্তর: (B) 1</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "35. If the unit digit of 433 &times; 456 &times; 43N is (N + 2) then what is the value of N? <ul><li>(A) 1</li><li>(B) 8</li><li>(C) 2</li><li>(D) 6</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. একক অঙ্কগুলো গুণ করি: 3 &times; 6 &times; N = 18 &times; N &rarr; 8 &times; N।<br>2. শর্তমতে, 8 &times; N-এর একক অঙ্ক হতে হবে (N + 2)।<br>3. অপশন টেস্ট করি:<br>   • N = 6 হলে: 8 &times; 6 = 48 (একক অঙ্ক 8)।<br>   • আবার N + 2 = 6 + 2 = 8।<br>4. যেহেতু উভয় দিক মিলে গেছে, তাই N = 6।<br><strong>সঠিক উত্তর: (D) 6</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "36. Find the unit digit of the product (4<sup>1</sup> &times; 9<sup>2</sup> &times; 4<sup>3</sup> &times; 9<sup>4</sup> &times; ... &times; 4<sup>99</sup> &times; 9<sup>100</sup>) <ul><li>(A) 6</li><li>(B) 0</li><li>(C) 3</li><li>(D) 2</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. জোড়া তৈরি করি: (4<sup>1</sup> &times; 9<sup>2</sup>) &times; (4<sup>3</sup> &times; 9<sup>4</sup>) ...<br>2. প্রতিটি জোড়ার একক অঙ্ক: (4 &times; 1) = 4।<br>3. এরকম মোট 50টি জোড়া আছে। সুতরাং (4)<sup>50</sup>।<br>4. 4-এর পাওয়ার জোড় (50) হলে একক অঙ্ক 6 হয়।<br><strong>সঠিক উত্তর: (A) 6</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "37. Find the unit digit of the no. (4<sup>1</sup> + 9<sup>2</sup> + 4<sup>3</sup> + 9<sup>4</sup> + ... + 4<sup>99</sup> + 9<sup>100</sup>) <ul><li>(A) 6</li><li>(B) 3</li><li>(C) 5</li><li>(D) None of these</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. জোড়া তৈরি করি: (4<sup>1</sup> + 9<sup>2</sup>) + (4<sup>3</sup> + 9<sup>4</sup>) ...<br>2. প্রতিটি জোড়ার যোগফল: (4 + 1) = 5।<br>3. এরকম 50টি জোড়া আছে। সুতরাং 5 &times; 50 = 250।<br>4. 250-এর একক অঙ্ক 0।<br><strong>সঠিক উত্তর: (D) None of these (0)</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "38. Find the unit digit of the no. (87125)<sup>745</sup> <ul><li>(A) 6</li><li>(B) 0</li><li>(C) 5</li><li>(D) 1</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. আমরা জানি, 5-এর পাওয়ার যাই হোক না কেন, একক অঙ্ক সর্বদা 5 থাকে।<br><strong>সঠিক উত্তর: (C) 5</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "39. Find the unit digit of the no. (210505890)<sup>20</sup> <ul><li>(A) 6</li><li>(B) 0</li><li>(C) 5</li><li>(D) 1</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. আমরা জানি, 0-এর পাওয়ার যাই হোক না কেন, একক অঙ্ক সর্বদা 0 থাকে।<br><strong>সঠিক উত্তর: (B) 0</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "40. Find the unit digit of the no. (875926)<sup>101</sup> <ul><li>(A) 6</li><li>(B) 0</li><li>(C) 5</li><li>(D) 1</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. আমরা জানি, 6-এর পাওয়ার যাই হোক না কেন, একক অঙ্ক সর্বদা 6 থাকে।<br><strong>সঠিক উত্তর: (A) 6</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "41. Find the unit digit of the product (9459)<sup>81</sup> &times; (644)<sup>987</sup> <ul><li>(A) 7</li><li>(B) 9</li><li>(C) 4</li><li>(D) 6</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. (9459)<sup>81</sup> &rarr; 9-এর পাওয়ার বিজোড় (81), তাই একক অঙ্ক 9।<br>2. (644)<sup>987</sup> &rarr; 4-এর পাওয়ার বিজোড় (987), তাই একক অঙ্ক 4।<br>3. গুণফল: 9 &times; 4 = 36 &rarr; 6।<br><strong>সঠিক উত্তর: (D) 6</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "42. Find the unit digit of the no. (3)<sup>83</sup> <ul><li>(A) 7</li><li>(B) 9</li><li>(C) 5</li><li>(D) 8</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. পাওয়ার 83 কে 4 দিয়ে ভাগ করি: 83 &divide; 4 &rarr; ভাগশেষ (Rem) = 3।<br>2. এখন 3<sup>3</sup> = 27।<br>3. 27-এর একক অঙ্ক 7।<br><strong>সঠিক উত্তর: (A) 7</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "43. Find the unit digit of the no. (3)<sup>40</sup> <ul><li>(A) 3</li><li>(B) 4</li><li>(C) 1</li><li>(D) 2</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. পাওয়ার 40 কে 4 দিয়ে ভাগ করি: 40 &divide; 4 &rarr; ভাগশেষ (Rem) = 0।<br>2. নিয়ম অনুযায়ী, ভাগশেষ 0 হলে পাওয়ার হিসেবে 4 ধরতে হয়।<br>3. এখন 3<sup>4</sup> = 81।<br>4. 81-এর একক অঙ্ক 1।<br><strong>সঠিক উত্তর: (C) 1</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "44. Find the unit digit of the sum of the first 121 whole numbers. <ul><li>(A) 5</li><li>(B) 3</li><li>(C) 1</li><li>(D) None of these</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রথম 121টি অখণ্ড সংখ্যা (Whole numbers) হলো: 0, 1, 2, 3... 120।<br>2. এদের যোগফল = <span class='fraction'><span class='top'>n(n+1)</span><span class='bottom'>2</span></span>। এখানে n = 120।<br>3. হিসাব: <span class='fraction'><span class='top'>120 &times; 121</span><span class='bottom'>2</span></span> = 60 &times; 121 = 7260।<br>4. 7260-এর একক অঙ্ক 0।<br><strong>সঠিক উত্তর: (D) None of these (0)</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "45. Find the unit digit of the no. (287)<sup>562561</sup> <ul><li>(A) 7</li><li>(B) 8</li><li>(C) 1</li><li>(D) 9</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. পাওয়ারের শেষ দুই অঙ্ক 61 কে 4 দিয়ে ভাগ করি: 61 &divide; 4 &rarr; ভাগশেষ (Rem) = 1।<br>2. এখন 7<sup>1</sup> = 7।<br>3. অতএব, একক অঙ্ক হবে 7।<br><strong>সঠিক উত্তর: (A) 7</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "46. Find the unit digit of the product (81)<sup>101</sup> &times; (82)<sup>103</sup> &times; ... &times; (87)<sup>113</sup> <ul><li>(A) 1</li><li>(B) 0</li><li>(C) 3</li><li>(D) 2</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এই গুণের সিরিজে (85)<sup>109</sup> আছে, যার একক অঙ্ক 5।<br>2. আবার সিরিজে (82)<sup>103</sup> বা (84)<sup>107</sup> এর মতো জোড় সংখ্যা আছে।<br>3. আমরা জানি, 5 &times; জোড় সংখ্যা = 0।<br>4. অতএব, পুরো গুণফলের একক অঙ্ক হবে 0।<br><strong>সঠিক উত্তর: (B) 0</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "47. If the unit digit of 3333<sup>n</sup> is 7, then what is the unit digit of 7777<sup>n</sup>? <ul><li>(A) 7</li><li>(B) 3</li><li>(C) 1</li><li>(D) 9</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. দেওয়া আছে, 3<sup>n</sup> এর একক অঙ্ক 7। আমরা জানি, 3<sup>3</sup> = 27, তাই n = 3।<br>2. এখন আমাদের 7<sup>n</sup> অর্থাৎ 7<sup>3</sup> এর একক অঙ্ক বের করতে হবে।<br>3. 7<sup>3</sup> = 343।<br>4. 343-এর একক অঙ্ক 3।<br><strong>সঠিক উত্তর: (B) 3</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "48. Find the unit digit of the no. 1<sup>6</sup> + 2<sup>6</sup> + 3<sup>6</sup> + ... + 20<sup>6</sup> <ul><li>(A) 1</li><li>(B) 3</li><li>(C) 2</li><li>(D) 0</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. পাওয়ার 6 কে 4 দিয়ে ভাগ করলে ভাগশেষ থাকে 2।<br>2. সুতরাং সিরিজটি দাঁড়ায়: 1<sup>2</sup> + 2<sup>2</sup> + 3<sup>2</sup> + ... + 20<sup>2</sup>।<br>3. বর্গের যোগফলের সূত্র: <span class='fraction'><span class='top'>n(n+1)(2n+1)</span><span class='bottom'>6</span></span>। এখানে n = 20।<br>4. হিসাব: <span class='fraction'><span class='top'>20 &times; 21 &times; 41</span><span class='bottom'>6</span></span> = 10 &times; 7 &times; 41 = 2870।<br>5. 2870-এর একক অঙ্ক 0।<br><strong>সঠিক উত্তর: (D) 0</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "49. Find the unit digit of the no. 1<sup>5</sup> + 2<sup>5</sup> + 3<sup>5</sup> + ... + 28<sup>5</sup> <ul><li>(A) 5</li><li>(B) 6</li><li>(C) 7</li><li>(D) None of these</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. পাওয়ার 5 কে 4 দিয়ে ভাগ করলে ভাগশেষ থাকে 1।<br>2. সুতরাং সিরিজটি দাঁড়ায়: 1<sup>1</sup> + 2<sup>1</sup> + 3<sup>1</sup> + ... + 28<sup>1</sup>।<br>3. স্বাভাবিক সংখ্যার যোগফলের সূত্র: <span class='fraction'><span class='top'>n(n+1)</span><span class='bottom'>2</span></span>। এখানে n = 28।<br>4. হিসাব: <span class='fraction'><span class='top'>28 &times; 29</span><span class='bottom'>2</span></span> = 14 &times; 29 = 406।<br>5. 406-এর একক অঙ্ক 6।<br><strong>সঠিক উত্তর: (B) 6</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "50. Find the unit digit of the no. 1<sup>43</sup> + 2<sup>43</sup> + 3<sup>43</sup> + ... + 43<sup>43</sup> <ul><li>(A) 5</li><li>(B) 6</li><li>(C) 4</li><li>(D) None of these</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. পাওয়ার 43 কে 4 দিয়ে ভাগ করলে ভাগশেষ থাকে 3।<br>2. সুতরাং সিরিজটি দাঁড়ায়: 1<sup>3</sup> + 2<sup>3</sup> + 3<sup>3</sup> + ... + 43<sup>3</sup>।<br>3. ঘনের যোগফলের সূত্র: [<span class='fraction'><span class='top'>n(n+1)</span><span class='bottom'>2</span></span>]<sup>2</sup>। এখানে n = 43।<br>4. হিসাব: [<span class='fraction'><span class='top'>43 &times; 44</span><span class='bottom'>2</span></span>]<sup>2</sup> = [43 &times; 22]<sup>2</sup> = (946)<sup>2</sup>।<br>5. 6-এর বর্গের একক অঙ্ক সর্বদা 6 হয়।<br><strong>সঠিক উত্তর: (B) 6</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "51. Find the unit digit of the no. 1<sup>3</sup> + 2<sup>3</sup> + 3<sup>3</sup> + ... + 99<sup>3</sup> <ul><li>(A) 1</li><li>(B) 5</li><li>(C) 2</li><li>(D) 0</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. ঘনের যোগফলের সূত্র: [<span class='fraction'><span class='top'>n(n+1)</span><span class='bottom'>2</span></span>]<sup>2</sup>। এখানে n = 99।<br>2. হিসাব: [<span class='fraction'><span class='top'>99 &times; 100</span><span class='bottom'>2</span></span>]<sup>2</sup> = [99 &times; 50]<sup>2</sup> = (4950)<sup>2</sup>।<br>3. 0-এর বর্গের একক অঙ্ক সর্বদা 0 হয়।<br><strong>সঠিক উত্তর: (D) 0</strong>"
+    }
+  ]
+}

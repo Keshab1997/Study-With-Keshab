@@ -1,0 +1,74 @@
+{
+  "chapterName": "সংখ্যা তত্ত্ব (Number System)",
+  "classNumber": "11",
+  "sections": [
+    {
+      "type": "title",
+      "content": "NUMBER SYSTEM CLASS - 11 (REMAINDER THEOREM)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>ভাগ সংক্রান্ত মূল সূত্র:</strong><br>ভাজ্য (Dividend) = ভাজক (Divisor) &times; ভাগফল (Quotient) + ভাগশেষ (Remainder)<br>সংক্ষেপে: D = d &times; q + r"
+    },
+    {
+      "type": "question",
+      "qText": "118. When a number n is divided by 5, the remainder is 2. When n<sup>2</sup> is divided by 5, the remainder will be: <br> যখন একটি সংখ্যা n কে 5 দ্বারা ভাগ করা হয়, তখন অবশিষ্ট থাকে 2। যখন n<sup>2</sup> কে 5 দ্বারা ভাগ করা হয়, তখন অবশিষ্টাংশ হবে: <ul><li>(A) 3</li><li>(B) 1</li><li>(C) 4</li><li>(D) 0</li></ul> <small>RRB NTPC 2021</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. রিমেন্ডার থিওরেমের নিয়ম অনুযায়ী, সংখ্যার সাথে যা করা হয় (বর্গ, গুণ বা যোগ), ভাগশেষের সাথেও ঠিক তাই করতে হয়।<br>2. এখানে সংখ্যা n কে বর্গ (n<sup>2</sup>) করা হয়েছে। তাই আমরা ভাগশেষ 2 কেও বর্গ করব।<br>3. ভাগশেষের বর্গ = 2<sup>2</sup> = 4।<br>4. এখন এই 4 কে ভাজক 5 দিয়ে ভাগ করলে ভাগশেষ 4-ই থাকে (যেহেতু 4, 5-এর চেয়ে ছোট)।<br><strong>সঠিক উত্তর: (C) 4</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "119. A number when divided by 7 leaves a remainder 4. What will be the remainder when the square of the same number is divided by 7? <br> একটি সংখ্যাকে 7 দ্বারা ভাগ করলে 4 অবশিষ্ট থাকে। একই সংখ্যার বর্গকে 7 দ্বারা ভাগ করলে অবশিষ্টাংশ কত হবে? <ul><li>(A) 3</li><li>(B) 1</li><li>(C) 4</li><li>(D) 2</li></ul> <small>RRB NTPC 2021</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এখানে সংখ্যাটিকে বর্গ করা হয়েছে। তাই আমরা আগের ভাগশেষ 4 কে বর্গ করব।<br>2. ভাগশেষের বর্গ = 4<sup>2</sup> = 16।<br>3. এখন এই 16 কে মূল ভাজক 7 দিয়ে ভাগ করতে হবে।<br>4. ভাগ করলে পাই: 16 = (7 &times; 2) + 2। এখানে ভাগশেষ থাকছে 2।<br><strong>সঠিক উত্তর: (D) 2</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "120. When an integer n is divided by 8, the remainder is 3. What will be the remainder if 6n-1 is divided by 8? <br> একটি পূর্ণসংখ্যা n কে 8 দ্বারা ভাগ করা হলে অবশিষ্টাংশ 3 হয়। 6n-1 কে 8 দ্বারা ভাগ করলে অবশিষ্টাংশ কত হবে? <ul><li>(A) 0</li><li>(B) 1</li><li>(C) 4</li><li>(D) 2</li></ul> <small>SSC CGL 2019</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এখানে n-এর জায়গায় আমরা ভাগশেষ 3 বসিয়ে হিসাব করব।<br>2. রাশিটি হলো: 6n - 1।<br>3. n = 3 বসিয়ে পাই: (6 &times; 3) - 1 = 18 - 1 = 17।<br>4. এখন এই 17 কে ভাজক 8 দিয়ে ভাগ করতে হবে।<br>5. ভাগ করলে পাই: 17 = (8 &times; 2) + 1। এখানে ভাগশেষ থাকছে 1।<br><strong>সঠিক উত্তর: (B) 1</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "121. If 5 divides the integer n, the remainder is 2. What will be the remainder if 7n is divided by 5? <br> একটি পূর্ণসংখ্যা n কে 5 দ্বারা ভাগ করা হলে অবশিষ্টাংশ 2 হয়। 7n কে 5 দ্বারা ভাগ করলে অবশিষ্টাংশ কত হবে? <ul><li>(A) 3</li><li>(B) 1</li><li>(C) 4</li><li>(D) 2</li></ul> <small>SSC CGL 2020</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এখানে n-এর জায়গায় ভাগশেষ 2 বসাই।<br>2. রাশিটি হলো: 7n।<br>3. n = 2 বসিয়ে পাই: 7 &times; 2 = 14।<br>4. এখন এই 14 কে ভাজক 5 দিয়ে ভাগ করি।<br>5. ভাগ করলে পাই: 14 = (5 &times; 2) + 4। এখানে ভাগশেষ থাকছে 4।<br><strong>সঠিক উত্তর: (C) 4</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "122. If a positive integer N is divided by 7, the remainder is 3. Which of the following numbers yields a remainder of 0 when it is divided by 7? <br> যদি একটি ধনাত্মক পূর্ণসংখ্যা N কে 7 দ্বারা ভাগ করা হয়, তাহলে অবশিষ্ট 3 হয়। নিচের কোন সংখ্যাটি 7 দ্বারা ভাগ করলে অবশিষ্টাংশ 0 পাওয়া যায়? <ul><li>(A) N + 5</li><li>(B) N + 4</li><li>(C) N + 3</li><li>(D) N + 2</li></ul> <small>SSC CHSL 2022</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. N কে 7 দিয়ে ভাগ করলে 3 অবশিষ্ট থাকে।<br>2. ভাগশেষ 0 করতে হলে আমাদের এমন কিছু যোগ করতে হবে যাতে যোগফলটি 7 দ্বারা বিভাজ্য হয়।<br>3. আমাদের কাছে অবশিষ্ট আছে 3। এর সাথে আর কত যোগ করলে 7 হবে? উত্তর: 7 - 3 = 4।<br>4. অতএব, সংখ্যাটির সাথে 4 যোগ করলে (N + 4) সেটি 7 দ্বারা সম্পূর্ণ বিভাজ্য হবে এবং ভাগশেষ 0 হবে।<br><strong>সঠিক উত্তর: (B) N + 4</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "123. If a positive integer N is divided by 7, the remainder is 2. Which of the following numbers yields a remainder of 0 when it is divided by 7? <br> যদি একটি ধনাত্মক পূর্ণসংখ্যা N কে 7 দ্বারা ভাগ করা হয়, তাহলে অবশিষ্ট 2 হয়। নিচের কোন সংখ্যাটি 7 দ্বারা ভাগ করলে অবশিষ্টাংশ 0 পাওয়া যায়? <ul><li>(A) N + 5</li><li>(B) N + 4</li><li>(C) N + 3</li><li>(D) N + 2</li></ul> <small>SSC CHSL 2020</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. N কে 7 দিয়ে ভাগ করলে 2 অবশিষ্ট থাকে।<br>2. ভাগশেষ 0 করতে হলে অবশিষ্ট 2-এর সাথে আরও (7 - 2) = 5 যোগ করতে হবে।<br>3. অতএব, সংখ্যাটি যদি N + 5 হয়, তবে তা 7 দ্বারা বিভাজ্য হবে।<br><strong>সঠিক উত্তর: (A) N + 5</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "124. A number n when divided by 6, leaves a remainder 3. What will be the remainder when (n<sup>2</sup> + 5n + 8) is divided by 6? <br> যদি একটি সংখ্যা n কে 6 দ্বারা ভাগ করা হয়, তাহলে অবশিষ্ট 3 হয়। (n<sup>2</sup> + 5n + 8) কে 6 দ্বারা ভাগ করলে অবশিষ্টাংশ কত পাওয়া যায়? <ul><li>(A) 5</li><li>(B) 1</li><li>(C) 3</li><li>(D) 2</li></ul> <small>SSC CGL 2022</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এখানে n-এর জায়গায় ভাগশেষ 3 বসিয়ে রাশিটির মান বের করি।<br>2. রাশি: n<sup>2</sup> + 5n + 8<br>3. মান বসিয়ে: 3<sup>2</sup> + 5(3) + 8 = 9 + 15 + 8 = 32।<br>4. এখন এই 32 কে ভাজক 6 দিয়ে ভাগ করি।<br>5. ভাগ করলে পাই: 32 = (6 &times; 5) + 2। এখানে ভাগশেষ থাকছে 2।<br><strong>সঠিক উত্তর: (D) 2</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "125. On dividing a number by 38, the quotient is 24 and the remainder is 13, then the number is: <br> একটি সংখ্যাকে 38 দ্বারা ভাগ করলে ভাগফল হয় 24 এবং অবশিষ্টটি 13। তাহলে সংখ্যাটি হল: <ul><li>(A) 925</li><li>(B) 975</li><li>(C) 904</li><li>(D) 956</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. আমরা জানি সূত্রটি হলো: ভাজ্য = ভাজক &times; ভাগফল + ভাগশেষ।<br>2. এখানে ভাজক = 38, ভাগফল = 24 এবং ভাগশেষ = 13।<br>3. হিসাব: (38 &times; 24) + 13 = 912 + 13 = 925।<br>4. অতএব, সংখ্যাটি হলো 925।<br><strong>সঠিক উত্তর: (A) 925</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "126. On dividing 397246 by a certain number, the quotient is 865 and the remainder is 211. The divisor is: <br> একটি নির্দিষ্ট সংখ্যা দ্বারা 397246 ভাগ করলে ভাগফল হয় 865 এবং অবশিষ্ট থাকে 211। তাহলে ভাজক হল : <ul><li>(A) 435</li><li>(B) 459</li><li>(C) 432</li><li>(D) 482</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. সূত্র: ভাজ্য = ভাজক &times; ভাগফল + ভাগশেষ।<br>2. এখানে ভাজ্য = 397246, ভাগফল = 865, ভাগশেষ = 211। আমাদের ভাজক (d) বের করতে হবে।<br>3. সমীকরণ: 397246 = d &times; 865 + 211<br>4. বা, d &times; 865 = 397246 - 211 = 397035<br>5. বা, d = 397035 &divide; 865 = 459।<br><strong>সঠিক উত্তর: (B) 459</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "127. On dividing 8675123 by a certain number, the quotient is 33611 and the remainder is 3485. The divisor is: <br> 8675123 কে একটি নির্দিষ্ট সংখ্যা দ্বারা ভাগ করলে ভাগফল হয় 33611 এবং অবশিষ্টটি হয় 3485। তাহলে ভাজক হল: <ul><li>(A) 538</li><li>(B) 258</li><li>(C) 248</li><li>(D) 356</li></ul> <small>SSC CHSL 2022</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. সূত্র: ভাজ্য = ভাজক &times; ভাগফল + ভাগশেষ।<br>2. এখানে ভাজ্য = 8675123, ভাগফল = 33611, ভাগশেষ = 3485।<br>3. সমীকরণ: 8675123 = d &times; 33611 + 3485<br>4. বা, d &times; 33611 = 8675123 - 3485 = 8671638<br>5. বা, d = 8671638 &divide; 33611 = 258।<br><strong>সঠিক উত্তর: (B) 258</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "128. In a question on division, the divisor is 6 times the quotient and 3 times the remainder. If the remainder is 40, then find the dividend. <br> একটি ভাগ প্রশ্নে, ভাজক ভাগফলের 6 গুণ এবং অবশিষ্টাংশের 3 গুণ। অবশিষ্ট 40 হলে, ভাজ্য নির্ণয় কর। <ul><li>(A) 2455</li><li>(B) 2450</li><li>(C) 2440</li><li>(D) 2445</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. দেওয়া আছে, অবশিষ্ট (r) = 40।<br>2. ভাজক (d) হলো অবশিষ্টাংশের 3 গুণ। সুতরাং, d = 40 &times; 3 = 120।<br>3. আবার, ভাজক হলো ভাগফলের 6 গুণ। অর্থাৎ, 120 = q &times; 6। তাহলে ভাগফল (q) = 120 &divide; 6 = 20।<br>4. এখন ভাজ্য (D) বের করার সূত্র: D = d &times; q + r<br>5. মান বসিয়ে: D = (120 &times; 20) + 40 = 2400 + 40 = 2440।<br><strong>সঠিক উত্তর: (C) 2440</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "129. The divisor is 24 times the quotient and 8 times the remainder. If the quotient is 18, then the dividend is: <br> ভাজক ভাগফলের 24 গুণ এবং অবশিষ্টাংশের 8 গুণ। যদি ভাগফল 18 হয়, তাহলে ভাজ্য হল: <ul><li>(A) 7830</li><li>(B) 7630</li><li>(C) 7840</li><li>(D) 7450</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. দেওয়া আছে, ভাগফল (q) = 18।<br>2. ভাজক (d) হলো ভাগফলের 24 গুণ। সুতরাং, d = 18 &times; 24 = 432।<br>3. আবার, ভাজক হলো অবশিষ্টাংশের 8 গুণ। অর্থাৎ, 432 = r &times; 8। তাহলে অবশিষ্ট (r) = 432 &divide; 8 = 54।<br>4. এখন ভাজ্য (D) বের করার সূত্র: D = d &times; q + r<br>5. মান বসিয়ে: D = (432 &times; 18) + 54 = 7776 + 54 = 7830।<br><strong>সঠিক উত্তর: (A) 7830</strong>"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "chapterName": "সংখ্যা তত্ত্ব (Number System)",
+  "classNumber": "10",
+  "sections": [
+    {
+      "type": "title",
+      "content": "NUMBER SYSTEM CLASS - 10 (DIVISIBILITY)"
+    },
+    {
+      "type": "text",
+      "content": "Yourstudy <br> OUR GOAL IS YOUR SUCCESS"
+    },
+    {
+      "type": "question",
+      "qText": "105. 1 থেকে 100 পর্যন্ত 5 দ্বারা বিভাজ্য সংখ্যা কতগুলি? <ul><li>(A) 20টি</li><li>(B) 10টি</li><li>(C) 15টি</li><li>(D) 18টি</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. <strong>সহজ পদ্ধতি:</strong> 1 থেকে শুরু করে কোনো নির্দিষ্ট সংখ্যা পর্যন্ত কতগুলি সংখ্যা বিভাজ্য তা বের করতে হলে, শেষ সংখ্যাটিকে ওই ভাজক দিয়ে ভাগ করলেই হয়।<br>2. এখানে শেষ সংখ্যা 100 এবং ভাজক 5।<br>3. অতএব, মোট সংখ্যা = 100 &divide; 5 = 20টি।<br>4. <strong>বিকল্প পদ্ধতি (সূত্র):</strong> সংখ্যাগুলো হলো 5, 10, 15... 100।<br>এখানে প্রথম পদ (a) = 5, শেষ পদ (l) = 100 এবং পার্থক্য (d) = 5।<br>পদসংখ্যা নির্ণয়ের সূত্র: <span class='fraction'><span class='top'>শেষ পদ - প্রথম পদ</span><span class='bottom'>পার্থক্য</span></span> + 1<br>হিসাব: <span class='fraction'><span class='top'>100 - 5</span><span class='bottom'>5</span></span> + 1 = <span class='fraction'><span class='top'>95</span><span class='bottom'>5</span></span> + 1 = 19 + 1 = 20।<br><strong>সঠিক উত্তর: (A) 20টি</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "106. 1 থেকে 100 পর্যন্ত 7 দ্বারা বিভাজ্য সংখ্যা কতগুলি? <ul><li>(A) 13টি</li><li>(B) 16টি</li><li>(C) 15টি</li><li>(D) 14টি</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 1 থেকে 100 পর্যন্ত 7-এর গুণিতকগুলো হলো: 7, 14, 21... 98।<br>2. এখানে 100 কে 7 দিয়ে ভাগ করলে আমরা পাই: 100 = (7 &times; 14) + 2।<br>3. এখানে ভাগফল হলো 14। এর মানে হলো 1 থেকে 100-এর মধ্যে 7 মোট 14 বার পূর্ণভাবে বিভাজ্য হয়।<br>4. অবশিষ্ট 2 আমাদের গণনায় আসবে না।<br>5. অতএব, মোট সংখ্যা = 14টি।<br><strong>সঠিক উত্তর: (D) 14টি</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "107. How many positive two-digit numbers can be divided by 6? (ধনাত্মক দুই অঙ্কের সংখ্যাকে 6 দ্বারা ভাগ করা যায় এমন সংখ্যা কয়টি?) <ul><li>(A) 12টি</li><li>(B) 14টি</li><li>(C) 15টি</li><li>(D) 13টি</li></ul> <small>SSC CHSL 2022</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. দুই অঙ্কের সংখ্যা শুরু হয় 10 থেকে এবং শেষ হয় 99 এ।<br>2. 6 দ্বারা বিভাজ্য প্রথম দুই অঙ্কের সংখ্যা হলো 12 এবং শেষ সংখ্যাটি হলো 96।<br>3. এখন আমরা পদসংখ্যা নির্ণয়ের সূত্র ব্যবহার করব: <span class='fraction'><span class='top'>শেষ সংখ্যা - প্রথম সংখ্যা</span><span class='bottom'>পার্থক্য</span></span> + 1<br>4. হিসাব: <span class='fraction'><span class='top'>96 - 12</span><span class='bottom'>6</span></span> + 1 = <span class='fraction'><span class='top'>84</span><span class='bottom'>6</span></span> + 1 = 14 + 1 = 15।<br>5. অর্থাৎ, 12 থেকে 96 পর্যন্ত মোট 15টি সংখ্যা আছে যা 6 দ্বারা বিভাজ্য।<br><strong>সঠিক উত্তর: (C) 15টি</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "108. 200 থেকে 500 পর্যন্ত 20 দ্বারা বিভাজ্য সংখ্যা কতগুলি? <ul><li>(A) 17টি</li><li>(B) 16টি</li><li>(C) 15টি</li><li>(D) 14টি</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. যখন প্রশ্নে 'থেকে' (From) এবং 'পর্যন্ত' (To) বলা হয়, তখন সীমানার সংখ্যা দুটিকেও (যদি বিভাজ্য হয়) ধরতে হয়।<br>2. নিয়ম: (500 পর্যন্ত বিভাজ্য সংখ্যা) - (200-এর ঠিক আগের সংখ্যা অর্থাৎ 199 পর্যন্ত বিভাজ্য সংখ্যা)।<br>3. হিসাব: (500 &divide; 20) - (199 &divide; 20)<br>4. 25 - 9 = 16। (এখানে শুধু ভাগফল নিতে হবে)।<br>5. অতএব, 200 থেকে 500 পর্যন্ত মোট 16টি সংখ্যা 20 দ্বারা বিভাজ্য।<br><strong>সঠিক উত্তর: (B) 16টি</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "109. 200 এবং 500 এর মধ্যে 20 দ্বারা বিভাজ্য সংখ্যা কতগুলি? <ul><li>(A) 13টি</li><li>(B) 16টি</li><li>(C) 15টি</li><li>(D) 14টি</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. যখন প্রশ্নে 'মধ্যে' (Between) বলা হয়, তখন সীমানার সংখ্যা দুটি (200 এবং 500) বাদ দিয়ে হিসাব করতে হয়।<br>2. অর্থাৎ আমাদের 201 থেকে 499 পর্যন্ত সংখ্যাগুলো দেখতে হবে।<br>3. নিয়ম: (499 পর্যন্ত বিভাজ্য সংখ্যা) - (200 পর্যন্ত বিভাজ্য সংখ্যা)।<br>4. হিসাব: (499 &divide; 20) - (200 &divide; 20)<br>5. 24 - 10 = 14। (এখানে 499 কে 20 দিয়ে ভাগ করলে ভাগফল 24 এবং 200 কে ভাগ করলে 10 হয়)।<br>6. অতএব, মোট সংখ্যা = 14টি।<br><strong>সঠিক উত্তর: (D) 14টি</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "110. How many numbers between 300 and 1000 are divisible by 7? (300 এবং 1000 এর মধ্যে কয়টি সংখ্যা 7 দ্বারা বিভাজ্য?) <ul><li>(A) 994টি</li><li>(B) 101টি</li><li>(C) 301টি</li><li>(D) 100টি</li></ul> <small>RRB NTPC 2021</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 'মধ্যে' বলায় আমাদের 301 থেকে 999 পর্যন্ত হিসাব করতে হবে।<br>2. নিয়ম: (999 &divide; 7) - (300 &divide; 7)<br>3. হিসাব: 142 - 42 = 100।<br>4. <strong>বিকল্প পদ্ধতি:</strong> 300-এর পরে 7 দ্বারা বিভাজ্য প্রথম সংখ্যা 301 এবং 1000-এর আগে শেষ সংখ্যা 994।<br>5. পদসংখ্যা = <span class='fraction'><span class='top'>994 - 301</span><span class='bottom'>7</span></span> + 1 = <span class='fraction'><span class='top'>693</span><span class='bottom'>7</span></span> + 1 = 99 + 1 = 100।<br><strong>সঠিক উত্তর: (D) 100টি</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "111. How many numbers between 1 and 700 are divisible by 17? (1 এবং 700 এর মধ্যে কয়টি সংখ্যা 17 দ্বারা সম্পূর্ণভাবে বিভাজ্য?) <ul><li>(A) 42টি</li><li>(B) 41টি</li><li>(C) 45টি</li><li>(D) 46টি</li></ul> <small>RRB NTPC 2021</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 1 এবং 700 এর মধ্যে মানে 2 থেকে 699 পর্যন্ত।<br>2. নিয়ম: (699 &divide; 17) - (1 &divide; 17)<br>3. হিসাব: 41 - 0 = 41। (699 কে 17 দিয়ে ভাগ করলে ভাগফল 41 হয়)।<br>4. অতএব, মোট 41টি সংখ্যা 17 দ্বারা বিভাজ্য।<br><strong>সঠিক উত্তর: (B) 41টি</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "112. 250-1000 এর মধ্যে, কয়টি সংখ্যা 5, 6 এবং 7 দ্বারা সম্পূর্ণভাবে বিভাজ্য? <ul><li>(A) 3টি</li><li>(B) 7টি</li><li>(C) 5টি</li><li>(D) 6টি</li></ul> <small>RRB NTPC 2020</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. যখন একাধিক সংখ্যা (5, 6, 7) দিয়ে বিভাজ্যতার কথা বলা হয়, তখন তাদের লসাগু (LCM) বের করতে হয়।<br>2. 5, 6, 7 এর লসাগু = 5 &times; 6 &times; 7 = 210।<br>3. এখন আমাদের দেখতে হবে 250 থেকে 1000 এর মধ্যে 210-এর গুণিতক কতগুলি আছে।<br>4. গুণিতকগুলো হলো: 210&times;2=420, 210&times;3=630, 210&times;4=840। (210&times;5=1050 যা 1000-এর বেশি)।<br>5. অতএব, মোট সংখ্যা = 3টি।<br>6. শর্টকাট: (999 &divide; 210) - (250 &divide; 210) = 4 - 1 = 3।<br><strong>সঠিক উত্তর: (A) 3টি</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "113. How many numbers between 400 and 700 are divisible by 5, 6 and 7? <ul><li>(A) 2টি</li><li>(B) 20টি</li><li>(C) 5টি</li><li>(D) 10টি</li></ul> <small>SSC DELHI POLICE 2020</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 5, 6, 7 এর লসাগু = 210।<br>2. 400 থেকে 700 এর মধ্যে 210-এর গুণিতকগুলো খুঁজি।<br>3. 210 &times; 2 = 420 (এটি 400-এর বেশি)।<br>4. 210 &times; 3 = 630 (এটি 700-এর কম)।<br>5. 210 &times; 4 = 840 (এটি 700-এর বেশি)।<br>6. সুতরাং, শর্ত পূরণকারী সংখ্যা দুটি হলো 420 এবং 630। মোট সংখ্যা = 2টি।<br><strong>সঠিক উত্তর: (A) 2টি</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "114. 3<sup>71</sup> + 3<sup>72</sup> + 3<sup>73</sup> + 3<sup>74</sup> + 3<sup>75</sup> সংখ্যাটি নিচের কোনটি দ্বারা বিভাজ্য? <ul><li>(A) 8</li><li>(B) 5</li><li>(C) 11</li><li>(D) 7</li></ul> <small>RRB NTPC 2021</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এই ধরণের অংকে সবচেয়ে ছোট পাওয়ারটি কমন নিতে হয়।<br>2. 3<sup>71</sup> কমন নিলে থাকে: 3<sup>71</sup> (1 + 3<sup>1</sup> + 3<sup>2</sup> + 3<sup>3</sup> + 3<sup>4</sup>)<br>3. ব্র্যাকেটের ভেতরের অংশ হিসাব করি: (1 + 3 + 9 + 27 + 81) = 121।<br>4. রাশিটি দাঁড়ালো: 3<sup>71</sup> &times; 121।<br>5. আমরা জানি 121 সংখ্যাটি 11 দ্বারা বিভাজ্য (11 &times; 11 = 121)।<br>6. যেহেতু গুণফলের একটি অংশ 11 দ্বারা বিভাজ্য, তাই পুরো রাশিটিও 11 দ্বারা বিভাজ্য হবে।<br><strong>সঠিক উত্তর: (C) 11</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "115. Which of the following numbers will completely divide 7<sup>81</sup> + 7<sup>82</sup> + 7<sup>83</sup>? <ul><li>(A) 399</li><li>(B) 389</li><li>(C) 387</li><li>(D) 397</li></ul> <small>SSC CHSL 2019</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. সবচেয়ে ছোট পাওয়ার 7<sup>81</sup> কমন নেই: 7<sup>81</sup> (1 + 7<sup>1</sup> + 7<sup>2</sup>)<br>2. ব্র্যাকেটের হিসাব: (1 + 7 + 49) = 57।<br>3. রাশিটি হলো: 7<sup>81</sup> &times; 57।<br>4. এখন অপশনের সাথে মেলাতে 7<sup>81</sup> থেকে একটি 7 আলাদা করি: 7<sup>80</sup> &times; 7 &times; 57।<br>5. গুণ করি: 7 &times; 57 = 399।<br>6. রাশিটি দাঁড়ালো: 7<sup>80</sup> &times; 399। যেহেতু গুণফলে 399 আছে, তাই এটি 399 দ্বারা বিভাজ্য।<br><strong>সঠিক উত্তর: (A) 399</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "116. Which one of the following will completely divide 5<sup>71</sup> + 5<sup>72</sup> + 5<sup>73</sup>? <ul><li>(A) 150</li><li>(B) 160</li><li>(C) 155</li><li>(D) 30</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 5<sup>71</sup> কমন নেই: 5<sup>71</sup> (1 + 5 + 25) = 5<sup>71</sup> &times; 31।<br>2. অপশনের সাথে মেলাতে 5<sup>71</sup> থেকে একটি 5 আলাদা করি: 5<sup>70</sup> &times; 5 &times; 31।<br>3. গুণ করি: 5 &times; 31 = 155।<br>4. রাশিটি দাঁড়ালো: 5<sup>70</sup> &times; 155। যেহেতু গুণফলে 155 আছে, তাই এটি 155 দ্বারা বিভাজ্য।<br><strong>সঠিক উত্তর: (C) 155</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "118. If n is a natural number then n<sup>3</sup> - n is always divisible by... <ul><li>(A) 8</li><li>(B) 6</li><li>(C) 5</li><li>(D) 4</li></ul> <small>RRB NTPC 2021</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. n একটি স্বাভাবিক সংখ্যা মানে n = 1, 2, 3, 4... ইত্যাদি।<br>2. n = 1 হলে: 1<sup>3</sup> - 1 = 0 (এটি সব সংখ্যা দিয়েই বিভাজ্য)।<br>3. n = 2 হলে: 2<sup>3</sup> - 2 = 8 - 2 = 6।<br>4. n = 3 হলে: 3<sup>3</sup> - 3 = 27 - 3 = 24।<br>5. n = 4 হলে: 4<sup>3</sup> - 4 = 64 - 4 = 60।<br>6. আমরা দেখতে পাচ্ছি প্রাপ্ত সংখ্যাগুলো (6, 24, 60) সবগুলিই 6 দ্বারা বিভাজ্য।<br>7. অতএব, n<sup>3</sup> - n রাশিটি সর্বদা 6 দ্বারা বিভাজ্য হবে।<br><strong>সঠিক উত্তর: (B) 6</strong>"
+    }
+  ]
+}

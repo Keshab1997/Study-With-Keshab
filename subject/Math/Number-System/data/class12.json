@@ -1,0 +1,60 @@
+{
+  "chapterName": "সংখ্যা তত্ত্ব (Number System)",
+  "classNumber": "12",
+  "sections": [
+    {
+      "type": "title",
+      "content": "NUMBER SYSTEM CLASS - 12 (REMAINDER THEOREM)"
+    },
+    {
+      "type": "question",
+      "qText": "130. If a number is divided by 3, the remainder will be 2. If the number is added by 5 and then divided by 3, then what will be the remainder? <br> যদি একটি সংখ্যাকে 3 দ্বারা ভাগ করা হয়, তাহলে ভাগশেষ হবে 2। যদি সংখ্যাটিতে 5 যোগ করা হয় এবং তারপর 3 দ্বারা ভাগ করা হয়, তাহলে ভাগশেষ কত হবে? <ul><li>(A) 3</li><li>(B) 1</li><li>(C) 2</li><li>(D) 0</li></ul> <small>SSC CHSL 2020</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. রিমেন্ডার থিওরেমের নিয়ম অনুযায়ী, সংখ্যার সাথে যা করা হয়, ভাগশেষের সাথেও ঠিক তাই করতে হয়।<br>2. এখানে সংখ্যাটির সাথে 5 যোগ করা হয়েছে। তাই আমরা আগের ভাগশেষ 2-এর সাথে 5 যোগ করব।<br>3. নতুন ভাজ্য হবে = 2 + 5 = 7।<br>4. এখন এই 7 কে ভাজক 3 দিয়ে ভাগ করলে পাই: 7 = (3 &times; 2) + 1।<br>5. অতএব, ভাগশেষ হবে 1।<br><strong>সঠিক উত্তর: (B) 1</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "131. A number when divided by 280 leaves 73 as the remainder. When the same number is divided by 35, the remainder will be: <br> একটি সংখ্যাকে 280 দ্বারা ভাগ করলে 73 অবশিষ্ট থাকে। যখন একই সংখ্যাকে 35 দ্বারা ভাগ করা হয়, তখন ভাগশেষ হবে: <ul><li>(A) 3</li><li>(B) 4</li><li>(C) 2</li><li>(D) 7</li></ul> <small>RRB NTPC 2021</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এই ধরণের অংকে প্রথমে দেখতে হয় দ্বিতীয় ভাজক (35) দিয়ে প্রথম ভাজক (280) বিভাজ্য কি না।<br>2. এখানে 280 &divide; 35 = 8 (সম্পূর্ণ বিভাজ্য)।<br>3. যদি বিভাজ্য হয়, তবে সরাসরি প্রথম ভাগশেষকে দ্বিতীয় ভাজক দিয়ে ভাগ করলেই উত্তর পাওয়া যায়।<br>4. এখানে প্রথম ভাগশেষ 73। একে 35 দিয়ে ভাগ করলে পাই: 73 = (35 &times; 2) + 3।<br>5. অতএব, ভাগশেষ হবে 3।<br><strong>সঠিক উত্তর: (A) 3</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "132. If a number is divided by 899, the remainder is 63. If the same number is divided by 29, the remainder will be: <br> যদি একটি সংখ্যাকে 899 দ্বারা ভাগ করা হয়, তাহলে অবশিষ্ট 63 হবে। একই সংখ্যাকে 29 দ্বারা ভাগ করা হলে, ভাগশেষ হবে: <ul><li>(A) 10</li><li>(B) 4</li><li>(C) 2</li><li>(D) 5</li></ul> <small>SSC CHSL 2019</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রথমে চেক করি: 899 কি 29 দ্বারা বিভাজ্য? হ্যাঁ, 899 &divide; 29 = 31।<br>2. যেহেতু বিভাজ্য, তাই আমরা সরাসরি প্রথম ভাগশেষ 63 কে 29 দিয়ে ভাগ করব।<br>3. ভাগ করলে পাই: 63 = (29 &times; 2) + 5।<br>4. এখানে ভাগশেষ থাকছে 5।<br><strong>সঠিক উত্তর: (D) 5</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "133. The remainder when 72 &times; 73 &times; 78 &times; 76 is divided by 35 is: <br> ভাগশেষ কি হবে যখন 72 &times; 73 &times; 78 &times; 76 কে 35 দ্বারা ভাগ করা হয়: <ul><li>(A) 8</li><li>(B) 15</li><li>(C) 22</li><li>(D) 12</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. গুণের ক্ষেত্রে প্রতিটি সংখ্যাকে আলাদাভাবে 35 দিয়ে ভাগ করে তাদের ভাগশেষগুলো বের করি:<br>   • 72 &divide; 35 &rarr; ভাগশেষ 2<br>   • 73 &divide; 35 &rarr; ভাগশেষ 3<br>   • 78 &divide; 35 &rarr; ভাগশেষ 8<br>   • 76 &divide; 35 &rarr; ভাগশেষ 6<br>2. এখন এই ভাগশেষগুলোর গুণফল বের করি: 2 &times; 3 &times; 8 &times; 6 = 6 &times; 48।<br>3. 48 কে আবার 35 দিয়ে ভাগ করলে ভাগশেষ থাকে 13।<br>4. তাহলে দাঁড়ালো: 6 &times; 13 = 78।<br>5. সবশেষে 78 কে 35 দিয়ে ভাগ করলে পাই: 78 = (35 &times; 2) + 8।<br>6. অতএব, চূড়ান্ত ভাগশেষ হবে 8।<br><strong>সঠিক উত্তর: (A) 8</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "134. The remainder when 75 &times; 73 &times; 78 &times; 76 is divided by 34 is: <br> ভাগশেষ কি হবে যখন 75 &times; 73 &times; 78 &times; 76 কে 34 দ্বারা ভাগ করা হয়: <ul><li>(A) 8</li><li>(B) 15</li><li>(C) 22</li><li>(D) 12</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রতিটি সংখ্যাকে 34 দিয়ে ভাগ করে ভাগশেষ বের করি:<br>   • 75 &divide; 34 &rarr; ভাগশেষ 7<br>   • 73 &divide; 34 &rarr; ভাগশেষ 5<br>   • 78 &divide; 34 &rarr; ভাগশেষ 10<br>   • 76 &divide; 34 &rarr; ভাগশেষ 8<br>2. ভাগশেষগুলোর গুণফল: 7 &times; 5 &times; 10 &times; 8 = 35 &times; 80।<br>3. 35 কে 34 দিয়ে ভাগ করলে ভাগশেষ 1 এবং 80 কে 34 দিয়ে ভাগ করলে ভাগশেষ 12 (34 &times; 2 = 68, 80 - 68 = 12)।<br>4. চূড়ান্ত গুণফল: 1 &times; 12 = 12।<br>5. যেহেতু 12 ভাজক 34-এর চেয়ে ছোট, তাই উত্তর হবে 12।<br><strong>সঠিক উত্তর: (D) 12</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "135. When two numbers are separately divided by 44, the remainders are 11 and 38, respectively. If the sum of the two numbers is divided by 44, then the remainder will be: <br> দুটি পৃথক সংখ্যাকে 44 দ্বারা ভাগ করলে অবশিষ্ট যথাক্রমে 11 এবং 38 হয়। যদি দুটি সংখ্যার যোগফলকে 44 দ্বারা ভাগ করা হয়, তাহলে অবশিষ্টটি হবে: <ul><li>(A) 44</li><li>(B) 5</li><li>(C) 16</li><li>(D) 33</li></ul> <small>SSC CHSL 2022</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. নিয়ম অনুযায়ী, সংখ্যার যোগফলের ভাগশেষ বের করতে হলে ভাগশেষগুলোর যোগফল বের করতে হয়।<br>2. ভাগশেষ দুটির যোগফল = 11 + 38 = 49।<br>3. এখন এই 49 কে ভাজক 44 দিয়ে ভাগ করি।<br>4. ভাগ করলে পাই: 49 = (44 &times; 1) + 5।<br>5. অতএব, নির্ণেয় ভাগশেষ হবে 5।<br><strong>সঠিক উত্তর: (B) 5</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "136. When positive number a, b and c are divided by 13, the remainders are 9, 7 and 10 respectively. What will be the remainder when (a + 2b + 5c) is divided by 13? <br> যখন ধনাত্মক সংখ্যা a, b এবং c কে 13 দ্বারা ভাগ করা হয়, তখন অবশিষ্টগুলি যথাক্রমে 9, 7 এবং 10 হয়। (a + 2b + 5c) কে 13 দিয়ে ভাগ করলে অবশিষ্ট কত হবে? <ul><li>(A) 10</li><li>(B) 5</li><li>(C) 8</li><li>(D) 9</li></ul> <small>SSC CHSL 2022</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এখানে a, b, c এর জায়গায় তাদের ভাগশেষগুলো বসিয়ে হিসাব করব।<br>2. রাশিটি হলো: a + 2b + 5c<br>3. মান বসিয়ে: 9 + 2(7) + 5(10) = 9 + 14 + 50 = 73।<br>4. এখন এই 73 কে ভাজক 13 দিয়ে ভাগ করি।<br>5. আমরা জানি, 13 &times; 5 = 65।<br>6. ভাগশেষ = 73 - 65 = 8।<br><strong>সঠিক উত্তর: (C) 8</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "137. Given n is an integer, what is the remainder when (6n + 3)<sup>2</sup> is divided by 9? <br> n একটি পূর্ণসংখ্যা হলে, (6n + 3)<sup>2</sup> কে 9 দ্বারা ভাগ করলে অবশিষ্ট কত হবে? <ul><li>(A) 0</li><li>(B) 1</li><li>(C) 2</li><li>(D) 3</li></ul> <small>SSC CHSL 2019</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. n একটি পূর্ণসংখ্যা, তাই আমরা n = 1 ধরে হিসাব করতে পারি।<br>2. n = 1 হলে রাশিটির মান: (6 &times; 1 + 3)<sup>2</sup> = (6 + 3)<sup>2</sup> = 9<sup>2</sup> = 81।<br>3. এখন 81 কে 9 দিয়ে ভাগ করলে পাই: 81 = 9 &times; 9 + 0।<br>4. এখানে কোনো ভাগশেষ থাকছে না, অর্থাৎ ভাগশেষ 0।<br>5. আপনি n-এর যেকোনো মান (0, 2, 3...) বসিয়ে চেক করলে উত্তর 0-ই পাবেন।<br><strong>সঠিক উত্তর: (A) 0</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "138. If 'a' is a natural number, then (7a<sup>2</sup> + 7a) is always divisible by: <br> 'a' একটি স্বাভাবিক সংখ্যা হলে, (7a<sup>2</sup> + 7a) সর্বদা নিচের কোন সংখ্যা দ্বারা বিভাজ্য হবে? <ul><li>(A) 7 এবং 14 উভয়</li><li>(B) শুধুমাত্র 7</li><li>(C) শুধুমাত্র 14</li><li>(D) শুধুমাত্র 21</li></ul> <small>SSC CHSL 2019</small>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. রাশিটি হলো: 7a<sup>2</sup> + 7a। একে কমন নিলে লেখা যায়: 7a(a + 1)।<br>2. এখানে a এবং (a + 1) হলো দুটি পরপর স্বাভাবিক সংখ্যা।<br>3. আমরা জানি, দুটি পরপর সংখ্যার গুণফল সর্বদা জোড় সংখ্যা (অর্থাৎ 2 দ্বারা বিভাজ্য) হয়।<br>4. তাহলে রাশিটি দাঁড়ালো: 7 &times; (একটি জোড় সংখ্যা)।<br>5. যেহেতু রাশিটিতে 7 আছে, তাই এটি 7 দ্বারা বিভাজ্য। আবার যেহেতু এটি 2 দ্বারাও বিভাজ্য, তাই এটি (7 &times; 2) = 14 দ্বারাও বিভাজ্য হবে।<br>6. অতএব, এটি 7 এবং 14 উভয় দ্বারাই সর্বদা বিভাজ্য।<br><strong>সঠিক উত্তর: (A) 7 এবং 14 উভয়</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "139. Two positive numbers differ by 2001. When the larger number is divided by the smaller number, the quotient is 9 and remainder is 41. The sum of the digits of the larger number is: <br> দুটি ধনাত্মক সংখ্যার মধ্যে পার্থক্য 2001। যখন বড় সংখ্যাটিকে ছোট সংখ্যা দ্বারা ভাগ করা হয়, তখন ভাগফল হয় 9 এবং ভাগশেষ হয় 41। বড় সংখ্যার অঙ্কের যোগফল হল: <ul><li>(A) 15</li><li>(B) 11</li><li>(C) 10</li><li>(D) 14</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. ধরি, ছোট সংখ্যাটি x এবং বড় সংখ্যাটি y।<br>2. শর্ত ১: y - x = 2001 &rarr; y = x + 2001<br>3. শর্ত ২ (ভাগ সংক্রান্ত): y = 9x + 41 (ভাজ্য = ভাজক &times; ভাগফল + ভাগশেষ)<br>4. এখন y-এর মান বসিয়ে পাই: x + 2001 = 9x + 41<br>5. বা, 8x = 2001 - 41 = 1960<br>6. বা, x = 1960 &divide; 8 = 245।<br>7. তাহলে বড় সংখ্যা y = 245 + 2001 = 2246।<br>8. বড় সংখ্যার অঙ্কগুলোর যোগফল = 2 + 2 + 4 + 6 = 14।<br><strong>সঠিক উত্তর: (D) 14</strong>"
+    }
+  ]
+}

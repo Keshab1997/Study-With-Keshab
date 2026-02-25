@@ -1,0 +1,92 @@
+{
+  "chapterName": "সংখ্যা তত্ত্ব (Number System)",
+  "classNumber": "05",
+  "sections": [
+    {
+      "type": "title",
+      "content": "NUMBER SYSTEM CLASS - 05 (UNIT DIGIT)"
+    },
+    {
+      "type": "header",
+      "content": "ফ্যাক্টোরিয়াল (Factorial) সংক্রান্ত প্রাথমিক ধারণা"
+    },
+    {
+      "type": "calculation",
+      "content": "1! = 1\n2! = 2 &times; 1 = 2\n3! = 3 &times; 2 &times; 1 = 6\n4! = 4 &times; 3 &times; 2 &times; 1 = 24 (একক অঙ্ক 4)\n5! = 5 &times; 4 &times; 3 &times; 2 &times; 1 = 120 (একক অঙ্ক 0)\n6! = 6 &times; 5 &times; 4 &times; 3 &times; 2 &times; 1 = 720 (একক অঙ্ক 0)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>মনে রাখবে:</strong> 5! থেকে শুরু করে উপরের সব ফ্যাক্টোরিয়াল সংখ্যার শেষে একটি 0 আসবেই কারণ এদের মধ্যে 5 &times; 2 জোড়াটি বিদ্যমান। সুতরাং, 5! বা তার বড় সংখ্যার একক অঙ্ক সব সময় 0 হয়।"
+    },
+    {
+      "type": "question",
+      "qText": "53. Find the unit digit of expression 1! + 2! + 3! + 4! + 5! + 6! + 7! + ... + 1000!? <ul><li>(A) 1</li><li>(B) 3</li><li>(C) 4</li><li>(D) 5</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. আমরা জানি 5! থেকে শুরু করে পরবর্তী সব ফ্যাক্টোরিয়ালের একক অঙ্ক 0।<br>2. সুতরাং আমাদের শুধুমাত্র 1! থেকে 4! পর্যন্ত একক অঙ্কগুলো যোগ করলেই হবে।<br>3. হিসাব: 1! + 2! + 3! + 4! = 1 + 2 + 6 + 24।<br>4. একক অঙ্কগুলোর যোগফল: 1 + 2 + 6 + 4 = 13।<br>5. 13-এর একক অঙ্ক হলো 3।<br><strong>সঠিক উত্তর: (B) 3</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "54. If N = [1! + 2! + 3! + 4! + ... + 100!], then find the unit digit. <ul><li>(A) 3</li><li>(B) 6</li><li>(C) 7</li><li>(D) 8</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. আগের অংকের মতোই, 5! থেকে 100! পর্যন্ত সবার একক অঙ্ক 0।<br>2. তাই আমাদের হিসাব হবে: 1! + 2! + 3! + 4! = 1 + 2 + 6 + 24।<br>3. একক অঙ্কগুলোর যোগফল: 1 + 2 + 6 + 4 = 13।<br>4. 13-এর একক অঙ্ক 3।<br><strong>সঠিক উত্তর: (A) 3</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "55. N = 1! - 2! + 3! - 4! + ... + 51! হলে N<sup>n</sup> এর একক অঙ্ক কত? <ul><li>(A) 0</li><li>(B) 1</li><li>(C) 2</li><li>(D) 3</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 5! থেকে 51! পর্যন্ত সবার একক অঙ্ক 0।<br>2. সুতরাং N-এর একক অঙ্ক হবে: 1! - 2! + 3! - 4! = 1 - 2 + 6 - 24।<br>3. একক অঙ্ক নিয়ে হিসাব: 1 - 2 + 6 - 4 = 1।<br>4. যেহেতু N-এর একক অঙ্ক 1, তাই 1-এর পাওয়ার যাই হোক না কেন (1<sup>n</sup>), একক অঙ্ক সর্বদা 1-ই হবে।<br><strong>সঠিক উত্তর: (B) 1</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "56. Find the unit digit in the expression (1!)<sup>5</sup> + (2!)<sup>4</sup> + (3!)<sup>3</sup> + (4!)<sup>2</sup> + (5!)<sup>1</sup> + ... <ul><li>(A) 12</li><li>(B) 9</li><li>(C) 8</li><li>(D) 0</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 5! থেকে পরবর্তী সব পদ 0 হয়ে যাবে।<br>2. বাকি পদগুলোর একক অঙ্ক বের করি:<br>   • (1!)<sup>5</sup> = 1<sup>5</sup> = 1<br>   • (2!)<sup>4</sup> = 2<sup>4</sup> = 16 &rarr; 6<br>   • (3!)<sup>3</sup> = 6<sup>3</sup> = 216 &rarr; 6<br>   • (4!)<sup>2</sup> = (24)<sup>2</sup> &rarr; 4<sup>2</sup> = 16 &rarr; 6<br>3. যোগফল: 1 + 6 + 6 + 6 = 19।<br>4. 19-এর একক অঙ্ক 9।<br><strong>সঠিক উত্তর: (B) 9</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "57. Find the unit digit of the expression (1!)<sup>99</sup> + (2!)<sup>98</sup> + (3!)<sup>97</sup> + (4!)<sup>96</sup> + ... + (99!)<sup>1</sup> <ul><li>(A) 5</li><li>(B) 6</li><li>(C) 7</li><li>(D) 8</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 5! থেকে সব 0। বাকিগুলোর একক অঙ্ক হিসাব করি:<br>   • (1!)<sup>99</sup> = 1<sup>99</sup> = 1<br>   • (2!)<sup>98</sup> &rarr; 2<sup>(98 &divide; 4 Rem 2)</sup> = 2<sup>2</sup> = 4<br>   • (3!)<sup>97</sup> &rarr; 6<sup>97</sup> = 6 (6-এর পাওয়ারে নো চেঞ্জ)<br>   • (4!)<sup>96</sup> &rarr; (24)<sup>96</sup> &rarr; 4<sup>(Even Power)</sup> = 6<br>2. যোগফল: 1 + 4 + 6 + 6 = 17।<br>3. 17-এর একক অঙ্ক 7।<br><strong>সঠিক উত্তর: (C) 7</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "58. Find the unit digit of 35<sup>84!</sup> <ul><li>(A) 5</li><li>(B) 4</li><li>(C) 2</li><li>(D) 1</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. আমরা জানি, কোনো সংখ্যার শেষে 5 থাকলে তার পাওয়ার যাই হোক না কেন, একক অঙ্ক সর্বদা 5-ই থাকে।<br>2. এখানে বেস 35-এর শেষে 5 আছে।<br><strong>সঠিক উত্তর: (A) 5</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "59. What is the unit digit of (973<sup>234</sup> &times; 234<sup>973</sup>)? <ul><li>(A) 2</li><li>(B) 6</li><li>(C) 7</li><li>(D) 9</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 973<sup>234</sup> &rarr; 3<sup>(34 &divide; 4 Rem 2)</sup> = 3<sup>2</sup> = 9<br>2. 234<sup>973</sup> &rarr; 4<sup>(Odd Power)</sup> = 4<br>3. গুণফল: 9 &times; 4 = 36।<br>4. 36-এর একক অঙ্ক 6।<br><strong>সঠিক উত্তর: (B) 6</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "60. 121<sup>888!</sup> + 122<sup>777!</sup> + 123<sup>666!</sup> + 124<sup>555!</sup> + 125<sup>444!</sup> + 123<sup>333!</sup> এর একক অঙ্ক কত? <ul><li>(A) 0</li><li>(B) 5</li><li>(C) 3</li><li>(D) 6</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 121<sup>888!</sup> &rarr; 1<sup>any</sup> = 1<br>2. 122<sup>777!</sup> &rarr; 777! সংখ্যাটি 4 দ্বারা বিভাজ্য, তাই 2<sup>4</sup> = 16 &rarr; 6<br>3. 123<sup>666!</sup> &rarr; 666! সংখ্যাটি 4 দ্বারা বিভাজ্য, তাই 3<sup>4</sup> = 81 &rarr; 1<br>4. 124<sup>555!</sup> &rarr; 555! একটি জোড় সংখ্যা, তাই 4<sup>(Even Power)</sup> = 6<br>5. 125<sup>444!</sup> &rarr; 5<sup>any</sup> = 5<br>6. 123<sup>333!</sup> &rarr; 333! সংখ্যাটি 4 দ্বারা বিভাজ্য, তাই 3<sup>4</sup> = 81 &rarr; 1<br>7. যোগফল: 1 + 6 + 1 + 6 + 5 + 1 = 20।<br>8. 20-এর একক অঙ্ক 0।<br><strong>সঠিক উত্তর: (A) 0</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "61. Find the unit digit of (34!)<sup>6!</sup> <ul><li>(A) 0</li><li>(B) 1</li><li>(C) 5</li><li>(D) 9</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. আমরা জানি 5! বা তার বড় যেকোনো ফ্যাক্টোরিয়ালের একক অঙ্ক 0 হয়।<br>2. এখানে 34! একটি অনেক বড় সংখ্যা যার শেষে অবশ্যই 0 আছে।<br>3. 0-এর পাওয়ার যাই হোক না কেন, একক অঙ্ক সর্বদা 0-ই থাকে।<br><strong>সঠিক উত্তর: (A) 0</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "62. Find the unit digit of (135!)<sup>35!</sup> <ul><li>(A) 1</li><li>(B) 0</li><li>(C) 3</li><li>(D) 2</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 135! একটি বড় ফ্যাক্টোরিয়াল যার একক অঙ্ক 0।<br>2. 0-এর পাওয়ার যাই হোক, উত্তর সর্বদা 0 হবে।<br><strong>সঠিক উত্তর: (B) 0</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "63. Find the unit digit of expression 1(1!)<sup>1!</sup> + 2(2!)<sup>2!</sup> + 3(3!)<sup>3!</sup> + 4(4!)<sup>4!</sup> + ... + 101(101!)<sup>101!</sup> <ul><li>(A) 0</li><li>(B) 1</li><li>(C) 3</li><li>(D) 5</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 5! থেকে পরবর্তী সব পদের একক অঙ্ক 0 হবে।<br>2. প্রথম 4টি পদ হিসাব করি:<br>   • 1(1!)<sup>1!</sup> = 1(1)<sup>1</sup> = 1<br>   • 2(2!)<sup>2!</sup> = 2(2)<sup>2</sup> = 2 &times; 4 = 8<br>   • 3(3!)<sup>3!</sup> = 3(6)<sup>6</sup> = 3 &times; 6 = 18 &rarr; 8<br>   • 4(4!)<sup>4!</sup> = 4(24)<sup>24</sup> &rarr; 4 &times; 4<sup>(Even Power)</sup> = 4 &times; 6 = 24 &rarr; 4<br>3. যোগফল: 1 + 8 + 8 + 4 = 21।<br>4. 21-এর একক অঙ্ক 1।<br><strong>সঠিক উত্তর: (B) 1</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "64. What is the right most non zero digit of the no. (25780)<sup>1234</sup>? <ul><li>(A) 2</li><li>(B) 4</li><li>(C) 6</li><li>(D) 8</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. (25780)<sup>1234</sup> মানে হলো (2578 &times; 10)<sup>1234</sup>।<br>2. সবচেয়ে ডানদিকের অ-শূন্য (Non-zero) অঙ্কটি আসবে 8<sup>1234</sup> থেকে।<br>3. পাওয়ার 1234 কে 4 দিয়ে ভাগ করি: 34 &divide; 4 &rarr; ভাগশেষ (Rem) = 2।<br>4. এখন 8<sup>2</sup> = 64।<br>5. 64-এর একক অঙ্ক 4।<br><strong>সঠিক উত্তর: (B) 4</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "65. Find unit digit in the end of the product of the all prime numbers. <ul><li>(A) 0</li><li>(B) 1</li><li>(C) 2</li><li>(D) 3</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. মৌলিক সংখ্যাগুলো হলো: 2, 3, 5, 7, 11, 13...<br>2. এই গুণফলের মধ্যে 2 এবং 5 উভয়ই বিদ্যমান।<br>3. আমরা জানি, 2 &times; 5 = 10।<br>4. গুণফলের মধ্যে একবার 10 চলে আসলে, পুরো গুণফলের শেষে সর্বদা 0 থাকবে।<br><strong>সঠিক উত্তর: (A) 0</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "66. Find unit digit in the end of the product of the all odd prime numbers. <ul><li>(A) 0</li><li>(B) 1</li><li>(C) 2</li><li>(D) 5</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. বিজোড় মৌলিক সংখ্যাগুলো হলো: 3, 5, 7, 11, 13...<br>2. এই সিরিজে 5 আছে কিন্তু কোনো জোড় সংখ্যা (যেমন 2) নেই।<br>3. আমরা জানি, 5-এর সাথে যেকোনো বিজোড় সংখ্যা গুণ করলে একক অঙ্ক সর্বদা 5 থাকে।<br><strong>সঠিক উত্তর: (D) 5</strong>"
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "chapterName": "সংখ্যা তত্ত্ব (Number System)",
+  "classNumber": "03",
+  "sections": [
+    {
+      "type": "title",
+      "content": "UNIT DIGIT CLASS - 03 (একক স্থানীয় অঙ্ক)"
+    },
+    {
+      "type": "header",
+      "content": "1. যোগ, বিয়োগ ও গুণের সাধারণ নিয়ম (Rule for +, -, &times;)"
+    },
+    {
+      "type": "box",
+      "content": "একক স্থানীয় অঙ্ক বের করার সময় আমরা শুধুমাত্র সংখ্যার শেষ অঙ্কটি (Last digit) নিয়ে কাজ করব।"
+    },
+    {
+      "type": "calculation",
+      "content": "যোগ (Addition):\n5321 + 3214 &rarr; 1 + 4 = 5\n\nবিয়োগ (Subtraction):\n6425 - 3214 &rarr; 5 - 4 = 1\n975 - 876 &rarr; 5 - 6 = -1\n(যেহেতু বিয়োগফল ঋণাত্মক, তাই 10 যোগ করতে হবে) &rarr; 15 - 6 = 9\n\nগুণ (Multiplication):\n3426 &times; 7322 &rarr; 6 &times; 2 = 12 &rarr; Unit Digit = 2\n537 &times; 354 &times; 638 &times; 641 &times; 1059 &rarr; 7 &times; 4 &times; 8 &times; 1 &times; 9 = 6"
+    },
+    {
+      "type": "header",
+      "content": "2. 5-এর গুণের বিশেষ নিয়ম (Multiply by 5)"
+    },
+    {
+      "type": "box",
+      "content": "• 5 &times; Odd (বিজোড় সংখ্যা) = 5 (একক অঙ্ক)<br>• 5 &times; Even (জোড় সংখ্যা) = 0 (একক অঙ্ক)"
+    },
+    {
+      "type": "calculation",
+      "content": "উদাহরণ:\n5324 &times; 225 - 126 &times; 223\n&rarr; (4 &times; 5) - (6 &times; 3)\n&rarr; 0 - 8\n&rarr; 10 - 8 = 2"
+    },
+    {
+      "type": "header",
+      "content": "3. পাওয়ার বা ঘাতের নিয়ম (Rules for Powers)"
+    },
+    {
+      "type": "header",
+      "content": "গ্রুপ 1: {0, 1, 5, 6} (NO CHANGE)"
+    },
+    {
+      "type": "text",
+      "content": "এই সংখ্যাগুলোর পাওয়ার যাই থাকুক না কেন, একক স্থানীয় অঙ্ক পরিবর্তন হয় না।"
+    },
+    {
+      "type": "list",
+      "items": [
+        "(...0)^n = 0",
+        "(...1)^n = 1",
+        "(...5)^n = 5",
+        "(...6)^n = 6"
+      ]
+    },
+    {
+      "type": "header",
+      "content": "গ্রুপ 2: {4, 9} (Cyclicity 2)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>4-এর ক্ষেত্রে:</strong><br>• 4^Odd (বিজোড় পাওয়ার) = 4<br>• 4^Even (জোড় পাওয়ার) = 6<br><br><strong>9-এর ক্ষেত্রে:</strong><br>• 9^Odd (বিজোড় পাওয়ার) = 9<br>• 9^Even (জোড় পাওয়ার) = 1"
+    },
+    {
+      "type": "header",
+      "content": "গ্রুপ 3: {2, 3, 7, 8} (Cyclicity 4)"
+    },
+    {
+      "type": "text",
+      "content": "এই সংখ্যাগুলোর ক্ষেত্রে পাওয়ারকে 4 দিয়ে ভাগ করতে হয় এবং অবশিষ্ট (Remainder) দিয়ে হিসাব করতে হয়। যদি অবশিষ্ট 0 হয়, তবে পাওয়ার হিসেবে 4 ধরতে হবে।"
+    },
+    {
+      "type": "calculation",
+      "content": "উদাহরণ:\n(2)^20 &rarr; 20 &divide; 4 (Rem = 0) &rarr; 2^4 = 16 &rarr; 6\n(2)^325 &rarr; 25 &divide; 4 (Rem = 1) &rarr; 2^1 = 2\n(3)^2532 &rarr; 32 &divide; 4 (Rem = 0) &rarr; 3^4 = 81 &rarr; 1\n(3)^1678 &rarr; 78 &divide; 4 (Rem = 2) &rarr; 3^2 = 9"
+    },
+    {
+      "type": "header",
+      "content": "জটিল উদাহরণের সমাধান"
+    },
+    {
+      "type": "calculation",
+      "content": "(632)^415 + (517)^221 + (563)^235678\n&rarr; 2^(15 &divide; 4) + 7^(21 &divide; 4) + 3^(78 &divide; 4)\n&rarr; 2^3 + 7^1 + 3^2\n&rarr; 8 + 7 + 9 = 24\nUnit Digit = 4"
+    },
+    {
+      "type": "header",
+      "content": "SOLVED QUESTIONS (MCQ)"
+    },
+    {
+      "type": "question",
+      "qText": "1. Find the unit digit of the no (987525 &times; 2 + 100 + 98 - 7) <ul><li>(A) 1</li><li>(B) 2</li><li>(C) 3</li><li>(D) 4</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রথমে গুণের কাজ করি: 5 &times; 2 = 10, যার একক অঙ্ক 0।<br>2. এখন পুরো রাশিটি দাঁড়ালো: 0 + 0 + 8 - 7।<br>3. হিসাব করলে পাই: 8 - 7 = 1।<br><strong>সঠিক উত্তর: (A) 1</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "2. Find the unit digit of the no. (257 &times; 7 + 992 &times; 8 - 553 &times; 6 + 2) <ul><li>(A) 7</li><li>(B) 8</li><li>(C) 9</li><li>(D) None of these</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রতিটি গুণের একক অঙ্ক বের করি:<br>   • 7 &times; 7 = 49 &rarr; 9<br>   • 2 &times; 8 = 16 &rarr; 6<br>   • 3 &times; 6 = 18 &rarr; 8<br>2. এখন যোগ-বিয়োগ করি: 9 + 6 - 8 + 2 = 15 - 8 + 2 = 7 + 2 = 9।<br><strong>সঠিক উত্তর: (C) 9</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "3. Find the unit digit of the no. (3975 - 825 &times; 3 + 5287 + 9999 &times; 9) <ul><li>(A) 7</li><li>(B) 8</li><li>(C) 6</li><li>(D) 5</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. একক অঙ্কগুলো নিয়ে কাজ করি:<br>   • 5 - (5 &times; 3) + 7 + (9 &times; 9)<br>   • 5 - 15 + 7 + 81 &rarr; 5 - 5 + 7 + 1<br>2. হিসাব: 0 + 7 + 1 = 8।<br><strong>সঠিক উত্তর: (B) 8</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "4. Find the unit digit of the product (9286 &times; 521 &times; 879 &times; 7285) <ul><li>(A) 0</li><li>(B) 1</li><li>(C) 2</li><li>(D) 3</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. গুণের সিরিজে যদি একটি 5 থাকে এবং অন্তত একটি জোড় সংখ্যা থাকে, তবে একক অঙ্ক সর্বদা 0 হয়।<br>2. এখানে 7285-এর শেষে 5 আছে এবং 9286 একটি জোড় সংখ্যা।<br>3. 6 &times; 5 = 30 &rarr; 0।<br><strong>সঠিক উত্তর: (A) 0</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "5. Find the unit digit of the product (987 &times; 821 &times; 98971 &times; 8975) <ul><li>(A) 0</li><li>(B) 5</li><li>(C) 2</li><li>(D) 3</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এখানে 8975-এর শেষে 5 আছে কিন্তু সিরিজে কোনো জোড় সংখ্যা নেই।<br>2. আমরা জানি, 5 &times; বিজোড় সংখ্যা = 5।<br>3. 7 &times; 1 &times; 1 &times; 5 = 35 &rarr; 5।<br><strong>সঠিক উত্তর: (B) 5</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "6. 7801 &times; 7801 &times; ... 140 times then find unit digit <ul><li>(A) 0</li><li>(B) 1</li><li>(C) 6</li><li>(D) 5</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এটি আসলে (7801)^140।<br>2. আমরা জানি, 1-এর পাওয়ার যাই হোক না কেন, একক অঙ্ক সর্বদা 1 থাকে।<br><strong>সঠিক উত্তর: (B) 1</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "7. 6185 &times; 6185 &times; ... 999 times, then find unit digit <ul><li>(A) 5</li><li>(B) 0</li><li>(C) 2</li><li>(D) 3</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এটি (6185)^999।<br>2. 5-এর পাওয়ার যাই হোক, একক অঙ্ক সর্বদা 5 থাকে।<br><strong>সঠিক উত্তর: (A) 5</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "8. 126 &times; 126 &times; 126 &times; 126 &times; 126 then find the unit digit <ul><li>(A) 6</li><li>(B) 1</li><li>(C) 2</li><li>(D) 3</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এটি (126)^5।<br>2. 6-এর পাওয়ার যাই হোক, একক অঙ্ক সর্বদা 6 থাকে।<br><strong>সঠিক উত্তর: (A) 6</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "9. Find the unit digit of the product (999 &times; 999 &times; 999) <ul><li>(A) 9</li><li>(B) 1</li><li>(C) 8</li><li>(D) 7</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এটি (999)^3।<br>2. 9-এর পাওয়ার বিজোড় (3) হলে একক অঙ্ক 9 হয়।<br><strong>সঠিক উত্তর: (A) 9</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "10. Find the unit digit of the product (879 &times; 87989 &times; 9939 &times; 84329) <ul><li>(A) 9</li><li>(B) 1</li><li>(C) 8</li><li>(D) 7</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. এখানে 9 আছে 4 বার, অর্থাৎ (9)^4।<br>2. 9-এর পাওয়ার জোড় (4) হলে একক অঙ্ক 1 হয়।<br><strong>সঠিক উত্তর: (B) 1</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "11. If the unit digit of 433 &times; 456 &times; 43N is (N + 2) then what is the value of N? <ul><li>(A) 1</li><li>(B) 8</li><li>(C) 2</li><li>(D) 6</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. একক অঙ্কগুলো গুণ করি: 3 &times; 6 &times; N = 18 &times; N &rarr; 8 &times; N।<br>2. শর্তমতে, 8 &times; N-এর একক অঙ্ক হতে হবে (N + 2)।<br>3. অপশন টেস্ট করি:<br>   • N = 6 হলে: 8 &times; 6 = 48 (একক অঙ্ক 8)।<br>   • আবার N + 2 = 6 + 2 = 8।<br>4. যেহেতু উভয় দিক মিলে গেছে, তাই N = 6।<br><strong>সঠিক উত্তর: (D) 6</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "12. Find the unit digit of the product (4^1 &times; 9^2 &times; 4^3 &times; 9^4 &times; ... &times; 4^99 &times; 9^100) <ul><li>(A) 6</li><li>(B) 0</li><li>(C) 3</li><li>(D) 2</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. জোড়া তৈরি করি: (4^1 &times; 9^2) &times; (4^3 &times; 9^4) ...<br>2. প্রতিটি জোড়ার একক অঙ্ক: (4 &times; 1) = 4।<br>3. এরকম মোট 50টি জোড়া আছে। সুতরাং (4)^50।<br>4. 4-এর পাওয়ার জোড় (50) হলে একক অঙ্ক 6 হয়।<br><strong>সঠিক উত্তর: (A) 6</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "13. Find the unit digit of the no. (4^1 + 9^2 + 4^3 + 9^4 + ... + 4^99 + 9^100) <ul><li>(A) 6</li><li>(B) 3</li><li>(C) 5</li><li>(D) 0</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. জোড়া তৈরি করি: (4^1 + 9^2) + (4^3 + 9^4) ...<br>2. প্রতিটি জোড়ার যোগফল: (4 + 1) = 5।<br>3. এরকম 50টি জোড়া আছে। সুতরাং 5 &times; 50 = 250।<br>4. 250-এর একক অঙ্ক 0।<br><strong>সঠিক উত্তর: (D) 0</strong>"
+    }
+  ]
+}

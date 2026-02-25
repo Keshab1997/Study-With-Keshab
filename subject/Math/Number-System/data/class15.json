@@ -1,0 +1,52 @@
+{
+  "chapterName": "সংখ্যা তত্ত্ব (Number System)",
+  "classNumber": "15",
+  "sections": [
+    {
+      "type": "title",
+      "content": "NUMBER SYSTEM CLASS - 15 (FACTOR & ZEROS)"
+    },
+    {
+      "type": "question",
+      "qText": "160. How many factors of the number 30<sup>15</sup> &times; 24<sup>5</sup> are divisible by 20? <br> 30<sup>15</sup> &times; 24<sup>5</sup> এর কয়টি গুণনীয়ক 20 দ্বারা বিভাজ্য? <ul><li>(A) 9135</li><li>(B) 9163</li><li>(C) 9145</li><li>(D) 8954</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রথমে সংখ্যাটিকে মৌলিক উৎপাদকে বিশ্লেষণ করতে হবে।<br>   • 30<sup>15</sup> = (2 &times; 3 &times; 5)<sup>15</sup> = 2<sup>15</sup> &times; 3<sup>15</sup> &times; 5<sup>15</sup><br>   • 24<sup>5</sup> = (2<sup>3</sup> &times; 3)<sup>5</sup> = 2<sup>15</sup> &times; 3<sup>5</sup><br>2. এখন সবগুলোকে যোগ করলে পাই: 2<sup>(15+15)</sup> &times; 3<sup>(15+5)</sup> &times; 5<sup>15</sup> = 2<sup>30</sup> &times; 3<sup>20</sup> &times; 5<sup>15</sup>।<br>3. যেহেতু 20 দ্বারা বিভাজ্য গুণনীয়ক বের করতে হবে, তাই 20-এর মৌলিক রূপ (2<sup>2</sup> &times; 5<sup>1</sup>) কমন নিতে হবে।<br>4. কমন নেওয়ার পর বাকি থাকে: 2<sup>(30-2)</sup> &times; 3<sup>20</sup> &times; 5<sup>(15-1)</sup> = 2<sup>28</sup> &times; 3<sup>20</sup> &times; 5<sup>14</sup>।<br>5. এখন গুণনীয়ক সংখ্যা বের করার নিয়ম (পাওয়ার + 1) প্রয়োগ করি: (28+1) &times; (20+1) &times; (14+1) = 29 &times; 21 &times; 15 = 9135।<br><strong>সঠিক উত্তর: (A) 9135</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "161. Find the no. of factors of 240 which are divisible by 3. <br> 240 এর কয়টি গুণনীয়ক যা 3 দ্বারা বিভাজ্য? <ul><li>(A) 15</li><li>(B) 16</li><li>(C) 10</li><li>(D) 12</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রথমে 240 কে মৌলিক উৎপাদকে বিশ্লেষণ করি: 240 = 2<sup>4</sup> &times; 3<sup>1</sup> &times; 5<sup>1</sup>।<br>2. 3 দ্বারা বিভাজ্য গুণনীয়ক বের করতে হলে 3<sup>1</sup> কমন নিতে হবে।<br>3. কমন নেওয়ার পর বাকি থাকে: 2<sup>4</sup> &times; 5<sup>1</sup>।<br>4. গুণনীয়ক সংখ্যা = (4+1) &times; (1+1) = 5 &times; 2 = 10।<br><strong>সঠিক উত্তর: (C) 10</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "162. Find the total no. of perfect square factor of 360? <br> 360 এর মোট পূর্ণবর্গ গুণনীয়ক কয়টি? <ul><li>(A) 4</li><li>(B) 10</li><li>(C) 6</li><li>(D) 8</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 360 = 2<sup>3</sup> &times; 3<sup>2</sup> &times; 5<sup>1</sup>।<br>2. পূর্ণবর্গ গুণনীয়ক হতে হলে মৌলিক উৎপাদকের পাওয়ারগুলো জোড় (0, 2, 4...) হতে হবে।<br>3. 2-এর পাওয়ারগুলো হতে পারে: 2<sup>0</sup>, 2<sup>2</sup> (মোট 2টি)।<br>4. 3-এর পাওয়ারগুলো হতে পারে: 3<sup>0</sup>, 3<sup>2</sup> (মোট 2টি)।<br>5. 5-এর পাওয়ার হতে পারে: 5<sup>0</sup> (মোট 1টি)।<br>6. মোট পূর্ণবর্গ গুণনীয়ক = 2 &times; 2 &times; 1 = 4।<br><strong>সঠিক উত্তর: (A) 4</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "163. The sum of divisors of 10800 which are perfect square. <br> 10800 এর পূর্ণবর্গ গুণনীয়ক গুলির যোগফল কত? <ul><li>(A) 5460</li><li>(B) 5470</li><li>(C) 5465</li><li>(D) 5455</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 10800 = 2<sup>4</sup> &times; 3<sup>3</sup> &times; 5<sup>2</sup>।<br>2. পূর্ণবর্গ পাওয়ারগুলো নিয়ে যোগফল বের করি:<br>   • 2-এর জন্য: (2<sup>0</sup> + 2<sup>2</sup> + 2<sup>4</sup>) = 1 + 4 + 16 = 21<br>   • 3-এর জন্য: (3<sup>0</sup> + 3<sup>2</sup>) = 1 + 9 = 10<br>   • 5-এর জন্য: (5<sup>0</sup> + 5<sup>2</sup>) = 1 + 25 = 26<br>3. মোট যোগফল = 21 &times; 10 &times; 26 = 5460।<br><strong>সঠিক উত্তর: (A) 5460</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "164. Find the no. of perfect cube factors of 2450? <br> 2450 এর মোট পূর্ণঘন গুণনীয়ক কয়টি? <ul><li>(A) 5</li><li>(B) 1</li><li>(C) 3</li><li>(D) 2</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 2450 = 2<sup>1</sup> &times; 5<sup>2</sup> &times; 7<sup>2</sup>।<br>2. পূর্ণঘন গুণনীয়ক হতে হলে পাওয়ারগুলো 3-এর গুণিতক (0, 3, 6...) হতে হবে।<br>3. এখানে 2, 5 এবং 7-এর পাওয়ারগুলোর মধ্যে শুধুমাত্র 0 পাওয়ারটিই সম্ভব (যেহেতু সর্বোচ্চ পাওয়ার 3-এর কম)।<br>4. সুতরাং, পূর্ণঘন গুণনীয়ক হবে: 2<sup>0</sup> &times; 5<sup>0</sup> &times; 7<sup>0</sup> = 1 &times; 1 &times; 1 = 1।<br><strong>সঠিক উত্তর: (B) 1</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "165. Find the sum of divisors of 544 which are perfect cube. <br> 544 এর পূর্ণঘন গুণনীয়ক গুলির যোগফল নির্ণয় কর। <ul><li>(A) 9</li><li>(B) 64</li><li>(C) 42</li><li>(D) 21</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 544 = 2<sup>5</sup> &times; 17<sup>1</sup>।<br>2. পূর্ণঘন পাওয়ারগুলো খুঁজি:<br>   • 2-এর জন্য: 2<sup>0</sup> এবং 2<sup>3</sup> (যেহেতু 5 পর্যন্ত পাওয়ার আছে)।<br>   • 17-এর জন্য: 17<sup>0</sup>।<br>3. যোগফল = (2<sup>0</sup> + 2<sup>3</sup>) &times; (17<sup>0</sup>) = (1 + 8) &times; 1 = 9।<br><strong>সঠিক উত্তর: (A) 9</strong>"
+    },
+    {
+      "type": "header",
+      "content": "NUMBER SYSTEM CLASS - 15 (ZEROS / শূন্যের সংখ্যা নির্ণয়)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>শূন্য (Zero) তৈরির মূল নিয়ম:</strong><br>1. একটি শূন্য তৈরি হতে একটি 2 এবং একটি 5-এর প্রয়োজন (2 &times; 5 = 10)।<br>2. গুণফলের শেষে কতগুলো শূন্য থাকবে তা নির্ভর করে ওই গুণফলে 2 এবং 5-এর কতগুলো জোড়া (Pair) আছে তার ওপর।<br>3. জোড়া সংখ্যা = 2 এবং 5-এর মধ্যে যার পাওয়ার কম, সেই সংখ্যাটি।"
+    },
+    {
+      "type": "calculation",
+      "content": "উদাহরণ:\n2^1 &times; 5^1 = 10 (1টি শূন্য)\n2^2 &times; 5^2 = 100 (2টি শূন্য)\n2^3 &times; 5^3 = 1000 (3টি শূন্য)\n\nজটিল উদাহরণ:\n2^2 &times; 3^1 &times; 5^3 &times; 7^1\nএখানে 2 আছে 2টি এবং 5 আছে 3টি।\nজোড়া হবে 2টি। তাই শেষে শূন্য থাকবে 2টি।"
+    }
+  ]
+}

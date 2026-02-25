@@ -1,0 +1,72 @@
+{
+  "chapterName": "সংখ্যা তত্ত্ব (Number System)",
+  "classNumber": "13",
+  "sections": [
+    {
+      "type": "title",
+      "content": "NUMBER SYSTEM CLASS - 13 (FACTOR / গুণনীয়ক)"
+    },
+    {
+      "type": "box",
+      "content": "<strong>গুণনীয়ক (Factor) নির্ণয়ের মূল সূত্র:</strong><br>যদি কোনো সংখ্যা N কে মৌলিক উৎপাদকে বিশ্লেষণ করলে N = a<sup>p</sup> &times; b<sup>q</sup> &times; c<sup>r</sup> হয়, তবে:<br>1. মোট গুণনীয়ক (Total Factors) = (p+1)(q+1)(r+1)<br>2. জোড় গুণনীয়ক (Even Factors) = p(q+1)(r+1) [যেখানে a=2]<br>3. বিজোড় গুণনীয়ক (Odd Factors) = (q+1)(r+1) [2-এর পাওয়ার বাদ দিয়ে]"
+    },
+    {
+      "type": "question",
+      "qText": "139. Two positive numbers differ by 2001. When the larger number is divided by the smaller number, the quotient is 9 and remainder is 41. The sum of the digits of the larger number is: <br> দুটি ধনাত্মক সংখ্যার মধ্যে পার্থক্য 2001। যখন বড় সংখ্যাটিকে ছোট সংখ্যা দ্বারা ভাগ করা হয়, তখন ভাগফল হয় 9 এবং ভাগশেষ হয় 41। বড় সংখ্যার অঙ্কের যোগফল হল: <ul><li>(A) 15</li><li>(B) 11</li><li>(C) 10</li><li>(D) 14</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. ধরি, ছোট সংখ্যাটি b এবং বড় সংখ্যাটি a।<br>2. প্রশ্নমতে, a - b = 2001 &rarr; a = b + 2001।<br>3. আবার ভাগের নিয়ম অনুযায়ী, ভাজ্য = ভাজক &times; ভাগফল + ভাগশেষ।<br>4. সুতরাং, a = 9b + 41।<br>5. এখন a-এর মান বসিয়ে পাই: 9b + 41 - b = 2001<br>6. বা, 8b = 2001 - 41 = 1960<br>7. বা, b = 1960 &divide; 8 = 245।<br>8. তাহলে বড় সংখ্যা a = 9(245) + 41 = 2205 + 41 = 2246।<br>9. বড় সংখ্যার অঙ্কগুলোর যোগফল = 2 + 2 + 4 + 6 = 14।<br><strong>সঠিক উত্তর: (D) 14</strong>"
+    },
+    {
+      "type": "header",
+      "content": "গুণনীয়ক (Factor) সংক্রান্ত উদাহরণ"
+    },
+    {
+      "type": "calculation",
+      "content": "24-এর গুণনীয়ক বিশ্লেষণ:\n24 = 1, 2, 3, 4, 6, 8, 12, 24\nমোট গুণনীয়ক (T.F) = 8টি\nজোড় গুণনীয়ক (E.F) = 6টি (2, 4, 6, 8, 12, 24)\nবিজোড় গুণনীয়ক (O.F) = 2টি (1, 3)\n\nশর্টকাট পদ্ধতি:\n24 = 2^3 &times; 3^1\nT.F = (3+1)(1+1) = 4 &times; 2 = 8\nE.F = 3 &times; (1+1) = 3 &times; 2 = 6\nO.F = (1+1) = 2"
+    },
+    {
+      "type": "question",
+      "qText": "140. Total number of factors of 3600? <br> 3600-এর মোট গুণনীয়ক সংখ্যা কত? <ul><li>(A) 36</li><li>(B) 45</li><li>(C) 90</li><li>(D) 24</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রথমে 3600 কে মৌলিক উৎপাদকে বিশ্লেষণ করি:<br>   3600 = 36 &times; 100 = (2<sup>2</sup> &times; 3<sup>2</sup>) &times; (2<sup>2</sup> &times; 5<sup>2</sup>) = 2<sup>4</sup> &times; 3<sup>2</sup> &times; 5<sup>2</sup>।<br>2. এখানে পাওয়ারগুলো হলো: p=4, q=2, r=2।<br>3. মোট গুণনীয়ক (T.F) = (4+1)(2+1)(2+1) = 5 &times; 3 &times; 3 = 45।<br><strong>সঠিক উত্তর: (B) 45</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "141. Find the total number of factors of 720? <br> 720-এর মোট গুণনীয়ক সংখ্যা নির্ণয় কর। <ul><li>(A) 10</li><li>(B) 20</li><li>(C) 25</li><li>(D) 30</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 720 = 72 &times; 10 = (2<sup>3</sup> &times; 3<sup>2</sup>) &times; (2 &times; 5) = 2<sup>4</sup> &times; 3<sup>2</sup> &times; 5<sup>1</sup>।<br>2. মোট গুণনীয়ক (T.F) = (4+1)(2+1)(1+1) = 5 &times; 3 &times; 2 = 30।<br><strong>সঠিক উত্তর: (D) 30</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "142. Find the number of factors of 21600. <br> 21600-এর গুণনীয়ক সংখ্যা নির্ণয় কর। <ul><li>(A) 70</li><li>(B) 72</li><li>(C) 75</li><li>(D) 80</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 21600 = 216 &times; 100 = 6<sup>3</sup> &times; 10<sup>2</sup> = (2 &times; 3)<sup>3</sup> &times; (2 &times; 5)<sup>2</sup> = 2<sup>3</sup> &times; 3<sup>3</sup> &times; 2<sup>2</sup> &times; 5<sup>2</sup> = 2<sup>5</sup> &times; 3<sup>3</sup> &times; 5<sup>2</sup>।<br>2. মোট গুণনীয়ক (T.F) = (5+1)(3+1)(2+1) = 6 &times; 4 &times; 3 = 72।<br><strong>সঠিক উত্তর: (B) 72</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "143. Find the number of proper factors of 21600. <br> 21600-এর প্রকৃত গুণনীয়ক (Proper Factors) সংখ্যা নির্ণয় কর। <ul><li>(A) 70</li><li>(B) 72</li><li>(C) 75</li><li>(D) 80</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রকৃত গুণনীয়ক বের করার নিয়ম হলো মোট গুণনীয়ক থেকে 2 বিয়োগ করা (1 এবং সংখ্যাটি নিজে বাদ যায়)।<br>2. আমরা আগের প্রশ্নে দেখেছি 21600-এর মোট গুণনীয়ক 72টি।<br>3. অতএব, প্রকৃত গুণনীয়ক = 72 - 2 = 70টি।<br><strong>সঠিক উত্তর: (A) 70</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "144. The number of even factors of N = 2<sup>2</sup> &times; 3<sup>2</sup> &times; 5<sup>4</sup> will be? <br> N = 2<sup>2</sup> &times; 3<sup>2</sup> &times; 5<sup>4</sup> সংখ্যাটির জোড় গুণনীয়ক সংখ্যা কত? <ul><li>(A) 30</li><li>(B) 20</li><li>(C) 50</li><li>(D) 40</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. জোড় গুণনীয়ক বের করার সময় 2-এর পাওয়ারকে (p) সরাসরি নিতে হয় (p+1 করা হয় না)।<br>2. এখানে 2-এর পাওয়ার 2, 3-এর পাওয়ার 2 এবং 5-এর পাওয়ার 4।<br>3. জোড় গুণনীয়ক (E.F) = 2 &times; (2+1) &times; (4+1) = 2 &times; 3 &times; 5 = 30।<br><strong>সঠিক উত্তর: (A) 30</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "145. Find the total number of factors of 8<sup>3</sup> &times; 12<sup>4</sup> &times; 15<sup>6</sup> &times; 18<sup>8</sup>. <ul><li>(A) 4,194</li><li>(B) 4,914</li><li>(C) 4,149</li><li>(D) 4,094</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. প্রথমে সবগুলোকে মৌলিক ভিত্তিতে আনি:<br>   • 8<sup>3</sup> = (2<sup>3</sup>)<sup>3</sup> = 2<sup>9</sup><br>   • 12<sup>4</sup> = (2<sup>2</sup> &times; 3)<sup>4</sup> = 2<sup>8</sup> &times; 3<sup>4</sup><br>   • 15<sup>6</sup> = (3 &times; 5)<sup>6</sup> = 3<sup>6</sup> &times; 5<sup>6</sup><br>   • 18<sup>8</sup> = (2 &times; 3<sup>2</sup>)<sup>8</sup> = 2<sup>8</sup> &times; 3<sup>16</sup><br>2. এখন সবগুলোকে যোগ করি: 2<sup>(9+8+8)</sup> &times; 3<sup>(4+6+16)</sup> &times; 5<sup>6</sup> = 2<sup>25</sup> &times; 3<sup>26</sup> &times; 5<sup>6</sup>।<br>3. মোট গুণনীয়ক = (25+1)(26+1)(6+1) = 26 &times; 27 &times; 7 = 4914।<br><strong>সঠিক উত্তর: (B) 4,914</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "146. Find the total no. of even factor of 360? <br> 360-এর মোট জোড় গুণনীয়ক সংখ্যা কত? <ul><li>(A) 15</li><li>(B) 17</li><li>(C) 18</li><li>(D) 16</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 360 = 36 &times; 10 = (2<sup>2</sup> &times; 3<sup>2</sup>) &times; (2 &times; 5) = 2<sup>3</sup> &times; 3<sup>2</sup> &times; 5<sup>1</sup>।<br>2. জোড় গুণনীয়ক (E.F) = 3 &times; (2+1) &times; (1+1) = 3 &times; 3 &times; 2 = 18।<br><strong>সঠিক উত্তর: (C) 18</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "147. Find the total no. of odd factor of 420? <br> 420-এর মোট বিজোড় গুণনীয়ক সংখ্যা কত? <ul><li>(A) 9</li><li>(B) 8</li><li>(C) 10</li><li>(D) 15</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. 420 = 42 &times; 10 = (2 &times; 3 &times; 7) &times; (2 &times; 5) = 2<sup>2</sup> &times; 3<sup>1</sup> &times; 5<sup>1</sup> &times; 7<sup>1</sup>।<br>2. বিজোড় গুণনীয়ক বের করার সময় 2-এর পাওয়ার সম্পূর্ণ বাদ দিতে হয়।<br>3. বিজোড় গুণনীয়ক (O.F) = (1+1)(1+1)(1+1) = 2 &times; 2 &times; 2 = 8।<br><strong>সঠিক উত্তর: (B) 8</strong>"
+    },
+    {
+      "type": "question",
+      "qText": "148. How many factors of 2<sup>4</sup> &times; 5<sup>3</sup> &times; 7<sup>4</sup> are odd numbers? <br> 2<sup>4</sup> &times; 5<sup>3</sup> &times; 7<sup>4</sup>-এর কতগুলি গুণনীয়ক বিজোড় সংখ্যা? <ul><li>(A) 99</li><li>(B) 20</li><li>(C) 100</li><li>(D) 29</li></ul>",
+      "explanation": "<strong>বিস্তারিত ব্যাখ্যা:</strong><br>1. বিজোড় গুণনীয়কের জন্য 2-এর পাওয়ার (2<sup>4</sup>) বাদ দেব।<br>2. বাকি থাকে 5<sup>3</sup> &times; 7<sup>4</sup>।<br>3. বিজোড় গুণনীয়ক = (3+1)(4+1) = 4 &times; 5 = 20।<br><strong>সঠিক উত্তর: (B) 20</strong>"
+    }
+  ]
+}
