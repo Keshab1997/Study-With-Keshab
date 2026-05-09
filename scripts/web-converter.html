@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content to JSON Converter</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 400px;
+      padding: 15px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Noto Sans Bengali', sans-serif;
+      font-size: 14px;
+      resize: vertical;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: #4CAF50;
+    }
+    .output {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      overflow: auto;
+      min-height: 400px;
+    }
+    .json-key { color: #9CDCFE; }
+    .json-string { color: #CE9178; }
+    .json-number { color: #B5CEA8; }
+    .json-boolean { color: #569CD6; }
+    .json-null { color: #569CD6; }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 10px 5px;
+    }
+    button:hover { background: #45a049; }
+    button.download { background: #2196F3; }
+    button.download:hover { background: #1976D2; }
+    button.primary { background: #4CAF50; }
+    button.primary:hover { background: #45a049; }
+    button.copy { background: #FF9800; }
+    button.copy:hover { background: #F57C00; }
+    .pretty-btn { background: #9C27B0; padding: 12px 24px; border: none; color: white; border-radius: 6px; cursor: pointer; margin: 10px 5px; font-size: 16px; }
+    .pretty-btn:hover { background: #7B1FA2; }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      color: #333;
+      margin: 0;
+    }
+    .header p {
+      color: #666;
+    }
+    .actions {
+      text-align: center;
+      margin: 15px 0;
+    }
+    .success { color: #4CAF50; }
+    .error { color: #f44336; }
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>📚 Content to JSON Converter</h1>
+    <p>বাংলা ম্যাথ কন্টেন্টকে সহজে JSON-এ কনভার্ট করুন</p>
+  </div>
+
+  <div class="actions">
+    <button onclick="convert()" class="primary">🔄 Convert</button>
+    <button onclick="copyToClipboard()" class="copy">📋 Copy</button>
+    <button class="download" onclick="downloadJSON()">💾 Download</button>
+    <button onclick="downloadPrettified()" style="background:#9C27B0">✨ Pretty Download</button>
+    <button onclick="clearAll()">🗑️ Clear</button>
+  </div>
+  <div id="copyStatus" style="text-align:center;margin-top:10px;color:#4CAF50;display:none">✓ Copied to clipboard!</div>
+
+  <div class="container">
+    <div>
+      <h3>📝 ইনপুট (Markdown Format)</h3>
+      <textarea id="input" placeholder="# Class 4: অধ্যায়ের নাম (Chapter Name)
+
+## Rule 1: Rule Name (বাংলা নাম)
+**রুলের বর্ণনা...
+
+**উদাহরণ:** উদাহরণ দেওয়া হবে...
+• পয়েন্ট ১
+• পয়েন্ট ২"></textarea>
+    </div>
+    <div>
+      <h3>📋 আউটপুট (JSON)</h3>
+      <div class="output" id="output">{}</div>
+    </div>
+  </div>
+
+  <script>
+    function parseContent(content) {
+      const lines = content.split('\n');
+      const result = {
+        chapterName: '',
+        classNumber: '',
+        sections: []
+      };
+
+      let currentSection = null;
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        // Parse class header
+        if (line.startsWith('# ')) {
+          const headerMatch = line.match(/#\s*(Class\s*\d+)[:\s]+(.+?)\s*(?:\((.+?)\))?$/);
+          if (headerMatch) {
+            result.classNumber = headerMatch[1].trim();
+            result.chapterName = headerMatch[3] ? headerMatch[3].trim() : headerMatch[2].trim();
+            if (headerMatch[3]) {
+              result.chapterNameBengali = headerMatch[2].trim();
+            }
+          }
+          continue;
+        }
+
+        // Parse rule headers
+        if (line.startsWith('## ')) {
+          const ruleLine = line.substring(3);
+          const ruleContent = `<strong>${ruleLine}</strong>`;
+          currentSection = { type: 'box', content: ruleContent };
+          result.sections.push(currentSection);
+          continue;
+        }
+
+        // Parse bullet points
+        if (line.startsWith('- ') || line.startsWith('• ')) {
+          const processedLine = processInlineFormatting(line.substring(2));
+          if (currentSection) {
+            currentSection.content += `<br>• ${processedLine}`;
+          }
+          continue;
+        }
+
+        // Process inline formatting
+        let processedLine = line
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.+?)\*/g, '<em>$1</em>')
+          .replace(/&rarr;/g, '→');
+
+        // Add to current section
+        if (currentSection) {
+          currentSection.content += `<br>${processedLine}`;
+        } else {
+          currentSection = { type: 'box', content: processedLine };
+          result.sections.push(currentSection);
+        }
+      }
+
+      return result;
+    }
+
+    function convert() {
+      const input = document.getElementById('input').value;
+      try {
+        const result = parseContent(input);
+        const jsonStr = JSON.stringify(result, null, 2);
+        document.getElementById('output').textContent = jsonStr;
+        highlightJSON(jsonStr);
+      } catch (error) {
+        document.getElementById('output').textContent = 'Error: ' + error.message;
+      }
+    }
+
+    function highlightJSON(jsonStr) {
+      const highlighted = jsonStr
+        .replace(/("(\\u[a-zA-Z0-9]{4}|\\[^\\]|[^\\"])*"(\s*:)?)/g, function(match, p1) {
+          let cls = 'json-key';
+          if (/^"/.test(match) && !/:/.test(match)) cls = 'json-string';
+          return `<span class="${cls}">${match}</span>`;
+        })
+        .replace(/\b(true|false)\b/g, '<span class="json-boolean">$1</span>')
+        .replace(/\b(null)\b/g, '<span class="json-null">$1</span>')
+        .replace(/\b(\d+)/g, '<span class="json-number">$1</span>');
+      document.getElementById('output').innerHTML = highlighted;
+    }
+
+    function downloadJSON() {
+      const output = document.getElementById('output').textContent;
+      if (!output || output === '{}') {
+        alert('কোনো JSON ডেটা নেই!');
+        return;
+      }
+      const blob = new Blob([output], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'output.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function clearAll() {
+      document.getElementById('input').value = '';
+      document.getElementById('output').textContent = '{}';
+    }
+
+    function copyToClipboard() {
+      const output = document.getElementById('output').textContent;
+      if (!output || output === '{}') {
+        alert('কোনো JSON ডেটা নেই!');
+        return;
+      }
+      navigator.clipboard.writeText(output).then(() => {
+        const status = document.getElementById('copyStatus');
+        status.style.display = 'block';
+        setTimeout(() => status.style.display = 'none', 2000);
+      }).catch(err => {
+        alert('Copy failed: ' + err);
+      });
+    }
+
+    function downloadPrettified() {
+      const output = document.getElementById('output').textContent;
+      if (!output || output === '{}') {
+        alert('কোনো JSON ডেটা নেই!');
+        return;
+      }
+      try {
+        const parsed = JSON.parse(output);
+        const prettified = JSON.stringify(parsed, null, 2);
+        downloadFile(prettified, 'output-prettified.json');
+      } catch (e) {
+        alert('Invalid JSON!');
+      }
+    }
+
+    function downloadFile(content, filename) {
+      const blob = new Blob([content], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // Auto-convert on input
+    document.getElementById('input').addEventListener('input', () => {
+      if (document.getElementById('input').value.trim()) {
+        convert();
+      }
+    });
+  </script>
+</body>
+</html>

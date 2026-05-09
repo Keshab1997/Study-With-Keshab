@@ -1,0 +1,10 @@
+{
+  "name": "study-with-keshab",
+  "version": "1.0.0",
+  "description": "Local server for Study-With-Keshab",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "convert": "node scripts/content-to-json.js"
+  }
+}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Class JSON Converter</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif; background: #f0f2f5; padding: 16px; }
+  h1 { text-align: center; margin-bottom: 10px; font-size: 1.2rem; color: #333; }
+  .help { background: #fff3cd; border: 1px solid #ffc107; border-radius: 6px; padding: 10px 14px; margin-bottom: 10px; font-size: 0.8rem; line-height: 1.9; }
+  .help code { background: #eee; padding: 1px 5px; border-radius: 3px; }
+  .meta { display: flex; gap: 10px; margin-bottom: 10px; }
+  .meta input { flex: 1; padding: 8px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem; }
+  .panels { display: flex; gap: 12px; height: calc(100vh - 200px); }
+  textarea, #output {
+    flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 8px;
+    font-size: 0.85rem; font-family: monospace; resize: none;
+  }
+  #output { overflow-y: auto; white-space: pre-wrap; background: #fafafa; }
+  .actions { display: flex; gap: 10px; margin-top: 10px; justify-content: center; }
+  button { padding: 9px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.95rem; font-weight: bold; }
+  #btnConvert { background: #667eea; color: #fff; }
+  #btnCopy { background: #28a745; color: #fff; }
+  #btnAI { background: #e67e22; color: #fff; }
+</style>
+</head>
+<body>
+
+<h1>📝 Class JSON Converter</h1>
+
+<div class="help">
+  <b>Tags:</b> <code>TITLE:</code> <code>HEADER:</code> <code>TEXT:</code> <code>BOX:</code> <code>MATH:</code> <code>LIST: a | b | c</code> <code>Q:</code> <code>A:</code><br>
+  Content can be <b>multi-line</b> — next tag shuru hole age er content shesh.<br>
+  <b>Inline:</b> <code>FRAC(1/8)</code> = fraction &nbsp;|&nbsp; <code>**bold**</code> &nbsp;|&nbsp; <code>-&gt;</code> = → &nbsp;|&nbsp; <code>=&gt;</code> = ∴ &nbsp;|&nbsp; blank line = line break
+</div>
+
+<div class="meta">
+  <input id="chapterName" value="চক্রবৃদ্ধি সুদ (Compound Interest)" placeholder="Chapter Name" />
+  <input id="classNumber" placeholder="Class No (e.g. 03)" style="max-width:150px" />
+</div>
+
+<div class="panels">
+  <textarea id="inp" placeholder="Ekhane content likho..."></textarea>
+  <textarea id="output" readonly placeholder="JSON output ekhane ashbe..."></textarea>
+</div>
+
+<div class="actions">
+  <button id="btnAI" onclick="openAIStudio()">🤖 AI Studio</button>
+  <button id="btnConvert" onclick="convert()">⚡ Convert</button>
+  <button id="btnCopy" onclick="copyOut()">📋 Copy JSON</button>
+</div>
+
+<script>
+function processInline(t) {
+  t = t.replace(/FRAC\(([^\/]+)\/([^\)]+)\)/g, "<span class='fraction'><span class='top'>$1</span><span class='bottom'>$2</span></span>");
+  t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  t = t.replace(/->/g, '&rarr;');
+  t = t.replace(/=>/g, '&there4;');
+  t = t.replace(/(\d)\s*[xX]\s*(\d)/g, '$1 &times; $2');
+  return t;
+}
+
+var TAGS = ['TITLE','HEADER','TEXT','BOX','MATH','LIST','Q','A'];
+
+function getTag(line) {
+  for (var i = 0; i < TAGS.length; i++) {
+    var t = TAGS[i];
+    if (line.toUpperCase().startsWith(t + ':')) {
+      return { tag: t, rest: line.slice(t.length + 1).trim() };
+    }
+  }
+  return null;
+}
+
+function convert() {
+  var raw = document.getElementById('inp').value;
+  var chapterName = document.getElementById('chapterName').value.trim();
+  var cn = document.getElementById('classNumber').value.trim();
+  var classNumber = cn.length === 1 ? '0' + cn : (cn || '01');
+
+  var lines = raw.split('\n');
+
+  // Group into blocks [{tag, lines[]}]
+  var blocks = [];
+  var cur = null;
+  for (var i = 0; i < lines.length; i++) {
+    var parsed = getTag(lines[i].trim());
+    if (parsed) {
+      if (cur) blocks.push(cur);
+      cur = { tag: parsed.tag, lines: [parsed.rest] };
+    } else {
+      if (cur) cur.lines.push(lines[i]);
+    }
+  }
+  if (cur) blocks.push(cur);
+
+  function blockToHTML(b) {
+    var out = [];
+    var chunk = [];
+    for (var j = 0; j < b.lines.length; j++) {
+      var l = b.lines[j].trim();
+      if (l === '') {
+        if (chunk.length) { out.push(chunk.join(' ')); chunk = []; }
+      } else {
+        chunk.push(l);
+      }
+    }
+    if (chunk.length) out.push(chunk.join(' '));
+    return processInline(out.join('<br>'));
+  }
+
+  var sections = [];
+  for (var i = 0; i < blocks.length; i++) {
+    var b = blocks[i];
+    var content = blockToHTML(b);
+    if (b.tag === 'TITLE')  { sections.push({ type: 'title', content: content }); }
+    else if (b.tag === 'HEADER') { sections.push({ type: 'header', content: content }); }
+    else if (b.tag === 'TEXT')   { sections.push({ type: 'text', content: content }); }
+    else if (b.tag === 'BOX')    { sections.push({ type: 'box', content: content }); }
+    else if (b.tag === 'MATH')   { sections.push({ type: 'math', content: content }); }
+    else if (b.tag === 'LIST') {
+      var items = b.lines.join(' ').split('|').map(function(s){ return processInline(s.trim()); }).filter(function(s){ return s; });
+      sections.push({ type: 'list', items: items });
+    }
+    else if (b.tag === 'Q') {
+      var explanation = '';
+      if (i + 1 < blocks.length && blocks[i+1].tag === 'A') {
+        explanation = blockToHTML(blocks[i+1]);
+        i++;
+      }
+      sections.push({ type: 'question', qText: content, explanation: explanation });
+    }
+  }
+
+  var result = { chapterName: chapterName, classNumber: classNumber, sections: sections };
+  document.getElementById('output').value = JSON.stringify(result, null, 2);
+}
+
+function copyOut() {
+  var el = document.getElementById('output');
+  el.select();
+  document.execCommand('copy');
+  var btn = document.getElementById('btnCopy');
+  btn.textContent = '✅ Copied!';
+  setTimeout(function(){ btn.textContent = '📋 Copy JSON'; }, 2000);
+}
+
+document.getElementById('inp').addEventListener('input', convert);
+
+function openAIStudio() {
+  var text = document.getElementById('inp').value.trim();
+  if (!text) { alert('Aage raw text paste koro!'); return; }
+
+  var prompt = `আমি নিচে তোমাকে নতুন একটি ক্লাসের কন্টেন্ট (চ্যাপ্টারের নাম, ক্লাস নম্বর, পরিচিতি এবং কিছু প্রশ্ন-সমাধান) দিচ্ছি। তোমাকে এই কন্টেন্টগুলো ব্যবহার করে একটি নির্দিষ্ট JSON ফরম্যাটে আউটপুট দিতে হবে। 
+
+**শর্তসমূহ (Strict Guidelines):**
+১. কন্টেন্ট হুবহু রাখতে হবে: আমার দেওয়া কোনো প্রশ্ন, অপশন, সমাধান বা একটি শব্দও বাদ দেওয়া যাবে না। আমি ঠিক যেভাবে বাংলা ও ইংরেজি মিশিয়ে দেব, আউটপুটেও ঠিক সেটাই থাকবে।
+২. HTML ফরম্যাটিং: Explanation বা সমাধানের অংশে আগের মতোই HTML ট্যাগ ব্যবহার করতে হবে। যেমন:
+   - লাইন ব্রেকের জন্য <br>
+   - বোল্ড করার জন্য <strong>...</strong>
+   - ভগ্নাংশ (Fraction) লেখার জন্য <span class='fraction'><span class='top'>লব</span><span class='bottom'>হর</span></span>
+   - গাণিতিক চিহ্নের জন্য &times; (গুণ), &there4; (সুতরাং), &rarr; (তীর চিহ্ন) ইত্যাদি ব্যবহার করবে।
+৩. JSON Structure: তোমার আউটপুটটি হুবহু নিচের স্ট্রাকচার অনুযায়ী হতে হবে। অন্য কোনো অতিরিক্ত কথা বা ব্যাখ্যা দেবে না, শুধু Valid JSON কোড দেবে।
+
+**JSON Template Structure:**
+{
+  "chapterName": "...",
+  "classNumber": "...",
+  "sections": [
+    {
+      "type": "title",
+      "content": "..."
+    },
+    {
+      "type": "box",
+      "content": "..."
+    },
+    {
+      "type": "question",
+      "qText": "...",
+      "explanation": "..."
+    }
+  ]
+}
+
+এখন নিচে কন্টেন্ট দিচ্ছি:
+${text}`;
+
+  navigator.clipboard.writeText(prompt).then(function() {
+    var btn = document.getElementById('btnAI');
+    btn.textContent = '✅ Prompt Copied!';
+    setTimeout(function(){ btn.textContent = '🤖 AI Studio'; }, 3000);
+    window.open('https://aistudio.google.com/prompts/new_chat', '_blank');
+  });
+}
+</script>
+</body>
+</html>
