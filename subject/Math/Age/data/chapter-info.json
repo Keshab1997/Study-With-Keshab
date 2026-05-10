@@ -1,32 +1,21 @@
 {
-  "chapterID": "Compound-Interest",
-  "chapterName": "চক্রবৃদ্ধি সুদ (Compound Interest)",
-  "description": "চক্রবৃদ্ধি সুদের প্রাথমিক ধারণা, সূত্রাবলি এবং বিভিন্ন জটিল গাণিতিক সমস্যার সহজ সমাধান নিয়ে এই অধ্যায়টি সাজানো হয়েছে।",
+  "chapterID": "Age",
+  "chapterName": "বয়স সংক্রান্ত সমস্যা (Age Related Problems)",
+  "description": "বয়স সংক্রান্ত বিভিন্ন গাণিতিক সমস্যার সহজ সমাধান এবং শর্টকাট টেকনিক নিয়ে এই অধ্যায়টি সাজানো হয়েছে।",
   "logoURL": "https://cdn-icons-png.flaticon.com/512/3771/3771278.png",
   "classes": [
-    { "title": "চক্রবৃদ্ধি সুদের মাস্টার গাইড ও সকল সূত্রাবলি", "id": "1" },
-    { "title": "2 বছরের চক্রবৃদ্ধি সুদ সংক্রান্ত গাণিতিক সমস্যা", "id": "2" },
-    { "title": "3 বছর ও ভিন্ন ভিন্ন সুদের হার সংক্রান্ত সমস্যা", "id": "3" },
-    { "title": "ভগ্নাংশ সময় এবং চক্রবৃদ্ধি ও সরল সুদের সম্পর্ক", "id": "4" },
-    { "title": "সুদের পর্ব: অর্ধবার্ষিক, ত্রৈমাসিক ও মাসিক কিস্তি", "id": "5" },
-    { "title": "চক্রবৃদ্ধি ও সরল সুদের পার্থক্য এবং সুদের হার নির্ণয়", "id": "6" },
-    { "title": "সুদের হার (অ্যাডভান্সড) এবং টাকা গুণ হওয়ার নিয়ম", "id": "7" },
-    { "title": "সুদের হার (অ্যাডভান্সড) এবং টাকা গুণ হওয়ার নিয়ম", "id": "8" }
+    { "title": "বয়স সংক্রান্ত সমস্যা - ক্লাস 1", "id": "1" },
+    { "title": "বয়স সংক্রান্ত সমস্যা - ক্লাস 2", "id": "2" },
+    { "title": "বয়স সংক্রান্ত সমস্যা - ক্লাস 3", "id": "3" },
+    { "title": "বয়স সংক্রান্ত সমস্যা - ক্লাস 4", "id": "4" }
   ],
   "quizzes": [
-    { "title": "Quiz Set 01: ২ বছরের প্রাথমিক সমস্যা", "set": "Qset1" },
-    { "title": "Quiz Set 02: ৩ বছরের সমস্যা ও বিভিন্ন হার", "set": "Qset2" },
-    { "title": "Quiz Set 03: ভগ্নাংশ সময় ও সরল সুদের সাথে তুলনা", "set": "Qset3" },
-    { "title": "Quiz Set 04: অর্ধবার্ষিক, ত্রৈমাসিক ও মাসিক সুদের সমস্যা", "set": "Qset4" },
-    { "title": "Quiz Set 05: চক্রবৃদ্ধি ও সরল সুদের পার্থক্য এবং সুদের হার নির্ণয়", "set": "Qset5" },
-    { "title": "Quiz Set 06: সুদের হার ও গুণিতক সংক্রান্ত সমস্যা", "set": "Qset6" }
+    { "title": "⏳ কুইজ সেট খুব তাড়াতাড়ি আপডেট করা হবে!", "set": "Qset_ComingSoon" }
   ],
   "pdfs": [
-    { "title": "চক্রবৃদ্ধি সুদ: ক্লাস নোট ও সমাধান (Part 1)", "driveID": "16MWVfQH7g3C7_8y7_uWjhWFySzqB_42z" },
-    { "title": "চক্রবৃদ্ধি সুদ: ক্লাস নোট ও সমাধান (Part 2)", "driveID": "1zcPt86rQW6R1ypWUIQ_NTW9DVbLjrcvc" },
-    { "title": "চক্রবৃদ্ধি সুদ: 82টি গুরুত্বপূর্ণ প্রশ্নের প্র্যাকটিস শিট", "driveID": "1ShQI1P2KaVToVzUyisQzcA2Sr8qGSyIF" },
-    { "title": "চক্রবৃদ্ধি সুদ: বিগত বছরের পরীক্ষার প্রশ্ন (PYQ)", "driveID": "18mMGHl_P2rcA3J3tolFSY2abt6q14rlz" },
-    { "title": "চক্রবৃদ্ধি সুদ: অ্যাডভান্সড লেভেল প্র্যাকটিস সেট", "driveID": "1Vwub2UYnyZK1tgBmUG1gFag-d9VO9LJ6" },
-    { "title": "চক্রবৃদ্ধি সুদ: শর্টকাট মেথড ও ফর্মুলা শিট", "driveID": "1ciuSvJMjnPyh0oVUq-bWjzOaPqBNSZXu" }
+    { "title": "বয়স সংক্রান্ত সমস্যা - PDF 1", "driveID": "1p0B0mUmmUMn04Jjasm2m_pX50B2NvMRQ" },
+    { "title": "বয়স সংক্রান্ত সমস্যা - PDF 2", "driveID": "14AZuFvwTNYqHWPmqwhSxJOWqlkqiRrXm" },
+    { "title": "বয়স সংক্রান্ত সমস্যা - PDF 3", "driveID": "1rHo8EsK-JhdncgNQ1wlWHBbHR-wsUN71" },
+    { "title": "বয়স সংক্রান্ত সমস্যা - PDF 4", "driveID": "1F53FPq2ZjWVBjaALL2XiMM1wLDP6if4h" }
   ]
 }
