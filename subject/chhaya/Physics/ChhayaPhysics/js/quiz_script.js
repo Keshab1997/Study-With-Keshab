@@ -121,22 +121,208 @@ function showQuestion() {
     shuffledOptionsPerQuestion[currentQuestionIndex] = shuffledOptions;
     currentCorrectAnswerIndex = shuffledOptions.indexOf(q.options[q.correctAnswer]);
     container.innerHTML = `
-        <div class="mb-4">
-            <h2 class="text-xl md:text-2xl font-semibold mb-6 text-center">প্রশ্ন ${currentQuestionIndex + 1}: ${q.question}</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                ${shuffledOptions
-                    .map(
-                        (opt, i) => `
-                    <button class="option-btn" onclick="selectAnswer(${i}, ${currentCorrectAnswerIndex})" data-index="${i}">
-                        <span class="option-prefix">${String.fromCharCode(65 + i)}.</span>
-                        <span>${opt}</span>
-                    </button>
-                `,
-                    )
-                    .join("")}
+        <div style="display: flex; flex-direction: column; height: 100%; overflow: hidden;">
+            <div style="flex-shrink: 0; margin-bottom: clamp(10px, 2vh, 15px);">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-semibold px-4 py-2 rounded-full" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-size: clamp(0.8rem, 1.2vw, 0.9rem);">প্রশ্ন ${currentQuestionIndex + 1}/${quizSet.questions.length}</span>
+                </div>
+                <h2 style="font-size: clamp(1.1rem, 2.5vw, 1.8rem); font-weight: 700; margin-bottom: clamp(15px, 3vh, 25px); line-height: 1.4; color: inherit;">${q.question}</h2>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
+                <div class="options-grid" style="flex: 1;">
+                    ${shuffledOptions
+                        .map(
+                            (opt, i) => `
+                        <button class="option-btn group" onclick="selectAnswer(${i}, ${currentCorrectAnswerIndex})" data-index="${i}">
+                            <span class="option-prefix">${String.fromCharCode(65 + i)}</span>
+                            <span class="option-text">${opt}</span>
+                        </button>
+                    `,
+                        )
+                        .join("")}
+                </div>
+                <button id="nextBtn" onclick="nextQuestion()" class="next-btn" disabled style="flex-shrink: 0;">পরবর্তী প্রশ্ন →</button>
             </div>
         </div>
-        <button id="nextBtn" onclick="nextQuestion()" class="action-btn w-full mt-6" disabled>পরবর্তী প্রশ্ন</button>`;
+        
+        <style>
+            .options-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: clamp(10px, 1.5vh, 18px);
+                width: 100%;
+                height: 100%;
+                align-content: center;
+            }
+            
+            .option-btn {
+                position: relative;
+                display: flex;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                padding: clamp(12px, 1.8vh, 20px) clamp(12px, 1.5vw, 18px);
+                border-radius: clamp(10px, 1.2vw, 16px);
+                border: 2px solid #e5e7eb;
+                background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s ease;
+                cursor: pointer;
+                font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+                font-weight: 500;
+                text-align: left;
+                overflow: hidden;
+                color: #1e293b;
+            }
+            
+            .option-prefix {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: clamp(30px, 3.5vw, 40px);
+                height: clamp(30px, 3.5vw, 40px);
+                border-radius: 50%;
+                background: white;
+                color: #1e293b;
+                font-weight: 800;
+                font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+                margin-right: clamp(10px, 1.2vw, 15px);
+                flex-shrink: 0;
+                box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+                border: 2px solid #1e293b;
+            }
+            
+            .option-text {
+                flex: 1;
+                line-height: 1.3;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
+            
+            .option-btn:hover:not(:disabled) {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+                border-color: #667eea;
+                background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 100%);
+            }
+            
+            .option-btn:disabled {
+                cursor: not-allowed;
+            }
+            
+            .option-btn.correct {
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+                border-color: #059669 !important;
+                color: white !important;
+                animation: correctPulse 0.6s ease;
+            }
+            
+            .option-btn.correct .option-prefix {
+                background: rgba(255, 255, 255, 0.95) !important;
+                color: #059669 !important;
+                box-shadow: 0 2px 8px rgba(255, 255, 255, 0.5);
+            }
+            
+            .option-btn.incorrect {
+                background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+                border-color: #dc2626 !important;
+                color: white !important;
+                animation: incorrectShake 0.5s ease;
+            }
+            
+            .option-btn.incorrect .option-prefix {
+                background: rgba(255, 255, 255, 0.95) !important;
+                color: #dc2626 !important;
+                box-shadow: 0 2px 8px rgba(255, 255, 255, 0.5);
+            }
+            
+            .next-btn {
+                width: 100%;
+                padding: clamp(12px, 1.8vh, 16px);
+                font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+                font-weight: 600;
+                border-radius: clamp(10px, 1.2vw, 16px);
+                border: none;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+                margin-top: clamp(12px, 2vh, 20px);
+            }
+            
+            .next-btn:not(:disabled) {
+                cursor: pointer;
+            }
+            
+            .next-btn:not(:disabled):hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            }
+            
+            .next-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+            
+            @keyframes correctPulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.02); }
+            }
+            
+            @keyframes incorrectShake {
+                0%, 100% { transform: translateX(0); }
+                25%, 75% { transform: translateX(-5px); }
+                50% { transform: translateX(5px); }
+            }
+            
+            body.dark-mode .option-btn {
+                background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+                border-color: #4b5563;
+                color: #f3f4f6;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            }
+            
+            body.dark-mode .option-prefix {
+                background: #1e293b;
+                color: white;
+                border-color: #60a5fa;
+                box-shadow: 0 3px 12px rgba(96, 165, 250, 0.3);
+            }
+            
+            body.dark-mode .option-btn:hover:not(:disabled) {
+                border-color: #60a5fa;
+                background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+                box-shadow: 0 8px 20px rgba(96, 165, 250, 0.2);
+            }
+            
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .options-grid {
+                    gap: 10px;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                .options-grid {
+                    grid-template-columns: 1fr;
+                    gap: 8px;
+                }
+                .option-text {
+                    -webkit-line-clamp: 2;
+                }
+            }
+            
+            @media (max-height: 700px) {
+                .option-text {
+                    -webkit-line-clamp: 2;
+                }
+            }
+        </style>
+    `;
 }
 
 window.selectAnswer = function (selectedIndex, correctBtnIndex) {
