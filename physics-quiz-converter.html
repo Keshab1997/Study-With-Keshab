@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Quiz to JSON Converter</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { 
+    font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif; 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+  }
+  .header h1 { font-size: 2rem; margin-bottom: 10px; }
+  .header p { opacity: 0.9; font-size: 1rem; }
+  
+  .meta-inputs {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+    padding: 20px 30px;
+    background: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+  }
+  .meta-inputs input {
+    padding: 12px 16px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Hind Siliguri', sans-serif;
+  }
+  .meta-inputs input:focus {
+    outline: none;
+    border-color: #667eea;
+  }
+  
+  .panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    height: 500px;
+  }
+  .panel {
+    display: flex;
+    flex-direction: column;
+  }
+  .panel-header {
+    background: #495057;
+    color: white;
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+  .panel-left .panel-header { background: #495057; }
+  .panel-right .panel-header { background: #28a745; }
+  
+  textarea, #output {
+    flex: 1;
+    padding: 20px;
+    border: none;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+    resize: none;
+    line-height: 1.6;
+  }
+  textarea {
+    background: #f8f9fa;
+  }
+  #output {
+    background: #f0fff4;
+    overflow-y: auto;
+    white-space: pre-wrap;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 15px;
+    padding: 25px 30px;
+    justify-content: center;
+    background: #f8f9fa;
+    border-top: 2px solid #e9ecef;
+  }
+  button {
+    padding: 14px 32px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-family: 'Hind Siliguri', sans-serif;
+  }
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  #btnConvert {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+  #btnCopy {
+    background: #28a745;
+    color: white;
+  }
+  #btnDownload {
+    background: #17a2b8;
+    color: white;
+  }
+  #btnClear {
+    background: #dc3545;
+    color: white;
+  }
+  
+  .help {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px 20px;
+    margin: 20px 30px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+  .help strong { color: #856404; }
+  
+  @media (max-width: 768px) {
+    .panels {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+    .panel {
+      height: 300px;
+    }
+    .meta-inputs {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>🔬 Physics Quiz to JSON Converter</h1>
+    <p>পদার্থবিজ্ঞান প্রশ্ন থেকে JSON ফাইল তৈরি করুন</p>
+  </div>
+  
+  <div class="help">
+    <strong>কীভাবে ব্যবহার করবেন:</strong><br>
+    ১. নিচের বক্সে আপনার প্রশ্নগুলো paste করুন (প্রশ্ন নম্বর, বিষয়, প্রশ্ন, বিকল্প, সঠিক উত্তর, ব্যাখ্যা)<br>
+    ২. Chapter Name এবং Class Number দিন<br>
+    ৩. "Convert to JSON" বাটনে ক্লিক করুন<br>
+    ৪. JSON ফাইল Download করুন বা Copy করুন
+  </div>
+  
+  <div class="meta-inputs">
+    <input id="chapterName" placeholder="Chapter Name (যেমন: সাধারণ বিজ্ঞান - পদার্থবিদ্যা)" value="সাধারণ বিজ্ঞান (পদার্থবিদ্যা)" />
+    <input id="classNumber" placeholder="Class Number (যেমন: 01)" value="01" />
+  </div>
+  
+  <div class="panels">
+    <div class="panel panel-left">
+      <div class="panel-header">📝 Input (প্রশ্ন Paste করুন)</div>
+      <textarea id="input" placeholder="এখানে আপনার প্রশ্নগুলো paste করুন..."></textarea>
+    </div>
+    <div class="panel panel-right">
+      <div class="panel-header">✅ Output (JSON)</div>
+      <textarea id="output" readonly placeholder="JSON output এখানে দেখাবে..."></textarea>
+    </div>
+  </div>
+  
+  <div class="actions">
+    <button id="btnConvert" onclick="convertToJSON()">⚡ Convert to JSON</button>
+    <button id="btnCopy" onclick="copyJSON()">📋 Copy JSON</button>
+    <button id="btnDownload" onclick="downloadJSON()">💾 Download JSON</button>
+    <button id="btnClear" onclick="clearAll()">🗑️ Clear All</button>
+  </div>
+</div>
+
+<script>
+function convertToJSON() {
+  const input = document.getElementById('input').value.trim();
+  const chapterName = document.getElementById('chapterName').value.trim();
+  const classNumber = document.getElementById('classNumber').value.trim().padStart(2, '0');
+  
+  if (!input) {
+    alert('অনুগ্রহ করে প্রশ্ন paste করুন!');
+    return;
+  }
+  
+  // Parse questions
+  const questions = [];
+  const questionBlocks = input.split(/={20,}/); // Split by separator lines
+  
+  questionBlocks.forEach(block => {
+    const lines = block.trim().split('\n').filter(line => line.trim());
+    if (lines.length < 3) return;
+    
+    let qNumber = '';
+    let subject = '';
+    let question = '';
+    let options = [];
+    let correctAnswer = '';
+    let explanation = '';
+    
+    let currentSection = '';
+    
+    lines.forEach(line => {
+      line = line.trim();
+      
+      // Question number
+      if (line.match(/^প্রশ্ন\s+(\d+)/)) {
+        qNumber = line.match(/^প্রশ্ন\s+(\d+)/)[1];
+      }
+      // Subject
+      else if (line.startsWith('বিষয়:')) {
+        subject = line.replace('বিষয়:', '').trim();
+      }
+      // Question text
+      else if (line.startsWith('প্রশ্ন:')) {
+        question = line.replace('প্রশ্ন:', '').trim();
+        currentSection = 'question';
+      }
+      // Options section
+      else if (line.startsWith('বিকল্পসমূহ:')) {
+        currentSection = 'options';
+      }
+      // Correct answer
+      else if (line.startsWith('সঠিক উত্তর:')) {
+        correctAnswer = line.replace('সঠিক উত্তর:', '').trim();
+        currentSection = '';
+      }
+      // Explanation
+      else if (line.startsWith('ব্যাখ্যা:')) {
+        explanation = line.replace('ব্যাখ্যা:', '').trim();
+        currentSection = 'explanation';
+      }
+      // Continue previous sections
+      else {
+        if (currentSection === 'question') {
+          question += ' ' + line;
+        } else if (currentSection === 'options') {
+          // Parse option like "A: কালো"
+          const optMatch = line.match(/^([A-D]):\s*(.+)/);
+          if (optMatch) {
+            options.push({
+              label: optMatch[1],
+              text: optMatch[2].trim()
+            });
+          }
+        } else if (currentSection === 'explanation') {
+          explanation += ' ' + line;
+        }
+      }
+    });
+    
+    if (question && options.length > 0) {
+      // Convert math symbols
+      question = convertMathSymbols(question);
+      explanation = convertMathSymbols(explanation);
+      options = options.map(opt => ({
+        ...opt,
+        text: convertMathSymbols(opt.text)
+      }));
+      
+      questions.push({
+        type: 'question',
+        qText: question,
+        options: options,
+        correctAnswer: correctAnswer,
+        explanation: explanation
+      });
+    }
+  });
+  
+  // Create final JSON structure
+  const result = {
+    chapterName: chapterName,
+    classNumber: classNumber,
+    sections: [
+      {
+        type: 'title',
+        content: chapterName + ' - ক্লাস ' + classNumber
+      },
+      ...questions
+    ]
+  };
+  
+  document.getElementById('output').value = JSON.stringify(result, null, 2);
+}
+
+function convertMathSymbols(text) {
+  // Convert common math symbols to HTML entities
+  text = text.replace(/×/g, '&times;');
+  text = text.replace(/÷/g, '&divide;');
+  text = text.replace(/≤/g, '&le;');
+  text = text.replace(/≥/g, '&ge;');
+  text = text.replace(/≠/g, '&ne;');
+  text = text.replace(/√/g, '&radic;');
+  text = text.replace(/π/g, '&pi;');
+  text = text.replace(/°/g, '&deg;');
+  text = text.replace(/²/g, '&sup2;');
+  text = text.replace(/³/g, '&sup3;');
+  
+  // Convert fractions like 1/2 to HTML fraction format
+  text = text.replace(/(\d+)\/(\d+)/g, "<span class='fraction'><span class='top'>$1</span><span class='bottom'>$2</span></span>");
+  
+  return text;
+}
+
+function copyJSON() {
+  const output = document.getElementById('output');
+  output.select();
+  document.execCommand('copy');
+  
+  const btn = document.getElementById('btnCopy');
+  const originalText = btn.textContent;
+  btn.textContent = '✅ Copied!';
+  setTimeout(() => {
+    btn.textContent = originalText;
+  }, 2000);
+}
+
+function downloadJSON() {
+  const output = document.getElementById('output').value;
+  if (!output) {
+    alert('প্রথমে Convert করুন!');
+    return;
+  }
+  
+  const classNumber = document.getElementById('classNumber').value.trim().padStart(2, '0');
+  const filename = `class${classNumber}.json`;
+  
+  const blob = new Blob([output], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+  
+  const btn = document.getElementById('btnDownload');
+  const originalText = btn.textContent;
+  btn.textContent = '✅ Downloaded!';
+  setTimeout(() => {
+    btn.textContent = originalText;
+  }, 2000);
+}
+
+function clearAll() {
+  if (confirm('সব কিছু মুছে ফেলবেন?')) {
+    document.getElementById('input').value = '';
+    document.getElementById('output').value = '';
+  }
+}
+
+// Auto-convert on input
+document.getElementById('input').addEventListener('input', () => {
+  if (document.getElementById('input').value.trim()) {
+    convertToJSON();
+  }
+});
+</script>
+
+</body>
+</html>

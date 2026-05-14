@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Universal Quiz Converter - JSON & Text</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { 
+    font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif; 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 1600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+  }
+  .header h1 { font-size: 2rem; margin-bottom: 10px; }
+  .header p { opacity: 0.9; font-size: 1rem; }
+  
+  .meta-inputs {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+    padding: 20px 30px;
+    background: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+  }
+  .meta-inputs input {
+    padding: 12px 16px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Hind Siliguri', sans-serif;
+  }
+  .meta-inputs input:focus {
+    outline: none;
+    border-color: #667eea;
+  }
+  
+  .panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    height: 550px;
+  }
+  .panel {
+    display: flex;
+    flex-direction: column;
+  }
+  .panel-header {
+    background: #495057;
+    color: white;
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .panel-left .panel-header { background: #495057; }
+  .panel-right .panel-header { background: #28a745; }
+  
+  .format-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }
+  
+  textarea, #output {
+    flex: 1;
+    padding: 20px;
+    border: none;
+    font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+    resize: none;
+    line-height: 1.6;
+  }
+  textarea {
+    background: #f8f9fa;
+  }
+  #output {
+    background: #f0fff4;
+    overflow-y: auto;
+    white-space: pre-wrap;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 15px;
+    padding: 25px 30px;
+    justify-content: center;
+    background: #f8f9fa;
+    border-top: 2px solid #e9ecef;
+    flex-wrap: wrap;
+  }
+  button {
+    padding: 14px 32px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-family: 'Hind Siliguri', sans-serif;
+  }
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  #btnConvert {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+  #btnCopy {
+    background: #28a745;
+    color: white;
+  }
+  #btnDownload {
+    background: #17a2b8;
+    color: white;
+  }
+  #btnClear {
+    background: #dc3545;
+    color: white;
+  }
+  
+  .help {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px 20px;
+    margin: 20px 30px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+  .help strong { color: #856404; }
+  .help code {
+    background: #f8f9fa;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #d63384;
+  }
+  
+  @media (max-width: 768px) {
+    .panels {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+    .panel {
+      height: 350px;
+    }
+    .meta-inputs {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>🔄 Universal Quiz Converter</h1>
+    <p>JSON বা Plain Text - যেকোনো ফরম্যাট থেকে JSON তৈরি করুন</p>
+  </div>
+  
+  <div class="help">
+    <strong>📌 সাপোর্টেড ফরম্যাট:</strong><br>
+    <strong>1. JSON Format:</strong> সরাসরি JSON paste করুন (যেমন: <code>{"chapterName": "...", "sections": [...]}</code>)<br>
+    <strong>2. Plain Text Format:</strong> প্রশ্ন নম্বর, বিষয়, প্রশ্ন, বিকল্প, উত্তর, ব্যাখ্যা সহ paste করুন<br>
+    <strong>✨ বিশেষত্ব:</strong> বাংলা সংখ্যা (০১২৩৪৫৬৭৮৯) স্বয়ংক্রিয়ভাবে ইংরেজি (0123456789) তে রূপান্তরিত হবে
+  </div>
+  
+  <div class="meta-inputs">
+    <input id="chapterName" placeholder="Chapter Name (যেমন: সাধারণ বিজ্ঞান - পদার্থবিদ্যা)" value="সাধারণ বিজ্ঞান (পদার্থবিদ্যা)" />
+    <input id="classNumber" placeholder="Class Number (যেমন: 01)" value="01" />
+  </div>
+  
+  <div class="panels">
+    <div class="panel panel-left">
+      <div class="panel-header">
+        <span>📝 Input (JSON বা Text Paste করুন)</span>
+        <span class="format-badge" id="formatDetected">Auto-Detect</span>
+      </div>
+      <textarea id="input" placeholder="এখানে JSON বা Plain Text paste করুন..."></textarea>
+    </div>
+    <div class="panel panel-right">
+      <div class="panel-header">
+        <span>✅ Output (JSON)</span>
+      </div>
+      <textarea id="output" readonly placeholder="JSON output এখানে দেখাবে..."></textarea>
+    </div>
+  </div>
+  
+  <div class="actions">
+    <button id="btnConvert" onclick="convertToJSON()">⚡ Convert to JSON</button>
+    <button id="btnCopy" onclick="copyJSON()">📋 Copy JSON</button>
+    <button id="btnDownload" onclick="downloadJSON()">💾 Download JSON</button>
+    <button id="btnClear" onclick="clearAll()">🗑️ Clear All</button>
+  </div>
+</div>
+
+<script>
+// Bangla to English digit conversion
+function convertBanglaToEnglish(text) {
+  const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+  const englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  
+  let result = text;
+  for (let i = 0; i < banglaDigits.length; i++) {
+    result = result.split(banglaDigits[i]).join(englishDigits[i]);
+  }
+  return result;
+}
+
+// Detect input format
+function detectFormat(input) {
+  input = input.trim();
+  
+  // Check if it contains both plain text and JSON
+  const hasPlainText = input.includes('প্রশ্ন') && (input.includes('বিকল্পসমূহ:') || input.match(/\([A-D]\)/));
+  const hasJSON = input.includes('{') && (input.includes('&quot;') || input.includes('"'));
+  
+  if (hasPlainText && hasJSON) {
+    return 'mixed';
+  }
+  
+  // Check if it's JSON
+  if (input.startsWith('{') || input.startsWith('[')) {
+    try {
+      JSON.parse(input);
+      return 'json';
+    } catch (e) {
+      // Not valid JSON, might be escaped JSON
+      if (input.includes('&quot;') || input.includes('&amp;')) {
+        return 'escaped-json';
+      }
+    }
+  }
+  
+  // Check if it's plain text format
+  if (hasPlainText) {
+    return 'plain-text';
+  }
+  
+  return 'unknown';
+}
+
+function convertToJSON() {
+  let input = document.getElementById('input').value.trim();
+  const chapterName = document.getElementById('chapterName').value.trim();
+  const classNumber = document.getElementById('classNumber').value.trim().padStart(2, '0');
+  
+  if (!input) {
+    alert('অনুগ্রহ করে কিছু paste করুন!');
+    return;
+  }
+  
+  // Convert Bangla digits to English
+  input = convertBanglaToEnglish(input);
+  
+  const format = detectFormat(input);
+  document.getElementById('formatDetected').textContent = 
+    format === 'json' ? 'JSON Format' : 
+    format === 'escaped-json' ? 'Escaped JSON' :
+    format === 'plain-text' ? 'Plain Text' : 
+    format === 'mixed' ? 'Mixed Format' : 'Unknown';
+  
+  let result;
+  
+  if (format === 'json') {
+    result = processJSON(input, chapterName, classNumber);
+  } else if (format === 'escaped-json') {
+    result = processEscapedJSON(input, chapterName, classNumber);
+  } else if (format === 'plain-text') {
+    result = processPlainText(input, chapterName, classNumber);
+  } else if (format === 'mixed') {
+    result = processMixedFormat(input, chapterName, classNumber);
+  } else {
+    alert('ফরম্যাট চিনতে পারছি না! অনুগ্রহ করে সঠিক ফরম্যাট ব্যবহার করুন।');
+    return;
+  }
+  
+  document.getElementById('output').value = JSON.stringify(result, null, 2);
+}
+
+function processJSON(input, chapterName, classNumber) {
+  try {
+    let data = JSON.parse(input);
+    
+    // Update chapter name and class number if provided
+    if (chapterName) data.chapterName = chapterName;
+    if (classNumber) data.classNumber = classNumber;
+    
+    // Convert Bangla digits in the entire JSON
+    let jsonString = JSON.stringify(data);
+    jsonString = convertBanglaToEnglish(jsonString);
+    
+    return JSON.parse(jsonString);
+  } catch (e) {
+    alert('JSON parse করতে সমস্যা হয়েছে!');
+    return null;
+  }
+}
+
+function processEscapedJSON(input, chapterName, classNumber) {
+  // Unescape HTML entities
+  let unescaped = input
+    .replace(/&quot;/g, '"')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#39;/g, "'");
+  
+  return processJSON(unescaped, chapterName, classNumber);
+}
+
+function processPlainText(input, chapterName, classNumber) {
+  const questions = [];
+  
+  // Split by separator lines or question pattern
+  const questionBlocks = input.split(/={20,}|(?=প্রশ্ন\s+\d+)/);
+  
+  questionBlocks.forEach(block => {
+    const lines = block.trim().split('\n').filter(line => line.trim());
+    if (lines.length < 3) return;
+    
+    let qNumber = '';
+    let question = '';
+    let options = [];
+    let correctAnswer = '';
+    let explanation = '';
+    
+    let currentSection = '';
+    
+    lines.forEach(line => {
+      line = line.trim();
+      
+      // Detect question number
+      if (line.match(/^প্রশ্ন\s+(\d+)/)) {
+        qNumber = line.match(/^প্রশ্ন\s+(\d+)/)[1];
+        currentSection = '';
+      }
+      // Skip subject line
+      else if (line.startsWith('বিষয়:')) {
+        // Skip
+      }
+      // Question text
+      else if (line.startsWith('প্রশ্ন:')) {
+        question = line.replace('প্রশ্ন:', '').trim();
+        currentSection = 'question';
+      }
+      // Options header
+      else if (line.startsWith('বিকল্পসমূহ:')) {
+        currentSection = 'options';
+      }
+      // Correct answer
+      else if (line.startsWith('সঠিক উত্তর:')) {
+        const answerText = line.replace('সঠিক উত্তর:', '').trim();
+        // Extract letter from (A), (B), etc.
+        const match = answerText.match(/\(([A-D])\)/);
+        if (match) {
+          correctAnswer = match[1];
+        }
+        currentSection = '';
+      }
+      // Explanation
+      else if (line.startsWith('ব্যাখ্যা:')) {
+        explanation = line.replace('ব্যাখ্যা:', '').trim();
+        currentSection = 'explanation';
+      }
+      // Continue sections
+      else {
+        if (currentSection === 'question') {
+          question += ' ' + line;
+        } else if (currentSection === 'options') {
+          // Match "A: text" or "  A: text"
+          const optMatch = line.match(/^\s*([A-D]):\s*(.+)/);
+          if (optMatch) {
+            options.push({
+              label: optMatch[1],
+              text: optMatch[2].trim()
+            });
+          }
+        } else if (currentSection === 'explanation') {
+          explanation += ' ' + line;
+        }
+      }
+    });
+    
+    if (question && options.length > 0) {
+      question = convertMathSymbols(question);
+      explanation = convertMathSymbols(explanation);
+      
+      // Build options HTML
+      const optionsHTML = options.map(opt => 
+        `<li>(${opt.label}) ${convertMathSymbols(opt.text)}</li>`
+      ).join('');
+      
+      const qText = `${qNumber}. ${question} <ul>${optionsHTML}</ul>`;
+      
+      questions.push({
+        type: 'question',
+        qText: qText,
+        correctAnswer: correctAnswer || 'A',
+        explanation: explanation
+      });
+    }
+  });
+  
+  return {
+    chapterName: chapterName,
+    classNumber: classNumber,
+    sections: [
+      {
+        type: 'title',
+        content: chapterName + ' - ক্লাস ' + classNumber
+      },
+      ...questions
+    ]
+  };
+}
+
+function processMixedFormat(input, chapterName, classNumber) {
+  // Separate plain text and JSON parts
+  const jsonMatch = input.match(/\{[\s\S]*\}/);
+  let jsonPart = null;
+  let plainTextPart = input;
+  
+  if (jsonMatch) {
+    const jsonString = jsonMatch[0];
+    // Remove JSON part from input
+    plainTextPart = input.replace(jsonString, '').trim();
+    
+    // Try to parse JSON (might be escaped)
+    try {
+      if (jsonString.includes('&quot;')) {
+        const unescaped = jsonString
+          .replace(/&quot;/g, '"')
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&#39;/g, "'");
+        jsonPart = JSON.parse(unescaped);
+      } else {
+        jsonPart = JSON.parse(jsonString);
+      }
+    } catch (e) {
+      console.error('JSON parse error:', e);
+    }
+  }
+  
+  // Process plain text questions
+  const plainTextResult = processPlainText(plainTextPart, chapterName, classNumber);
+  
+  // Merge with JSON if exists
+  if (jsonPart && jsonPart.sections) {
+    // Use JSON metadata but add plain text questions
+    return {
+      chapterName: jsonPart.chapterName || chapterName,
+      classNumber: jsonPart.classNumber || classNumber,
+      sections: [
+        ...jsonPart.sections,
+        ...plainTextResult.sections.slice(1) // Skip title from plain text
+      ]
+    };
+  }
+  
+  return plainTextResult;
+}
+
+function convertMathSymbols(text) {
+  // HTML entities
+  text = text.replace(/×/g, '&times;');
+  text = text.replace(/÷/g, '&divide;');
+  text = text.replace(/≤/g, '&le;');
+  text = text.replace(/≥/g, '&ge;');
+  text = text.replace(/≠/g, '&ne;');
+  text = text.replace(/√/g, '&radic;');
+  text = text.replace(/π/g, '&pi;');
+  text = text.replace(/°/g, '&deg;');
+  text = text.replace(/²/g, '&sup2;');
+  text = text.replace(/³/g, '&sup3;');
+  text = text.replace(/→/g, '&rarr;');
+  text = text.replace(/∴/g, '&there4;');
+  
+  // Fractions
+  text = text.replace(/(\d+)\/(\d+)/g, "<span class='fraction'><span class='top'>$1</span><span class='bottom'>$2</span></span>");
+  
+  return text;
+}
+
+function copyJSON() {
+  const output = document.getElementById('output');
+  output.select();
+  document.execCommand('copy');
+  
+  const btn = document.getElementById('btnCopy');
+  const originalText = btn.textContent;
+  btn.textContent = '✅ Copied!';
+  setTimeout(() => {
+    btn.textContent = originalText;
+  }, 2000);
+}
+
+function downloadJSON() {
+  const output = document.getElementById('output').value;
+  if (!output) {
+    alert('প্রথমে Convert করুন!');
+    return;
+  }
+  
+  const classNumber = document.getElementById('classNumber').value.trim().padStart(2, '0');
+  const filename = `class${classNumber}.json`;
+  
+  const blob = new Blob([output], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+  
+  const btn = document.getElementById('btnDownload');
+  const originalText = btn.textContent;
+  btn.textContent = '✅ Downloaded!';
+  setTimeout(() => {
+    btn.textContent = originalText;
+  }, 2000);
+}
+
+function clearAll() {
+  if (confirm('সব কিছু মুছে ফেলবেন?')) {
+    document.getElementById('input').value = '';
+    document.getElementById('output').value = '';
+    document.getElementById('formatDetected').textContent = 'Auto-Detect';
+  }
+}
+
+// Auto-convert on input
+document.getElementById('input').addEventListener('input', () => {
+  if (document.getElementById('input').value.trim()) {
+    convertToJSON();
+  } else {
+    document.getElementById('formatDetected').textContent = 'Auto-Detect';
+  }
+});
+</script>
+
+</body>
+</html>
