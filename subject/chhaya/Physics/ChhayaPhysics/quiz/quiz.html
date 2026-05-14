@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="../css/quiz_style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
@@ -46,7 +47,7 @@
             width: 100%;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 15px;
+            padding: 8px;
             height: 100vh;
             overflow: hidden;
         }
@@ -54,10 +55,10 @@
         .quiz-header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 20px 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 12px 20px;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             position: relative;
             flex-shrink: 0;
         }
@@ -68,15 +69,15 @@
         }
         
         #quiz-title {
-            font-size: 1.6rem;
+            font-size: clamp(1rem, 2vw, 1.3rem);
             font-weight: 700;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            line-height: 1.3;
+            line-height: 1.2;
         }
         
         body.dark-mode #quiz-title {
@@ -88,17 +89,17 @@
         .score-board {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 12px;
             flex-wrap: wrap;
         }
         
         .score-board span {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 1rem;
+            gap: 6px;
+            font-size: clamp(0.8rem, 1.2vw, 0.9rem);
             font-weight: 600;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 50px;
             background: rgba(0, 0, 0, 0.05);
         }
@@ -113,18 +114,18 @@
         
         .mode-toggle-btn {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
+            top: 10px;
+            right: 10px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             border: none;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -142,9 +143,9 @@
             flex: 1;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: clamp(20px, 3vh, 35px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: clamp(15px, 2.5vh, 25px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -158,7 +159,7 @@
         }
         
         .page-navigation {
-            margin-top: 15px;
+            margin-top: 8px;
             text-align: center;
             flex-shrink: 0;
         }
@@ -166,14 +167,15 @@
         .page-navigation .btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 30px;
+            gap: 8px;
+            padding: 8px 20px;
             border-radius: 50px;
             background: rgba(255, 255, 255, 0.95);
             color: #667eea;
             text-decoration: none;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
         }
         
@@ -190,20 +192,92 @@
         /* Custom Scrollbar - Remove since no scroll needed */
         
         @media (max-width: 768px) {
-            .quiz-page-container { padding: 10px; }
-            .quiz-header { padding: 15px 20px; margin-bottom: 15px; }
-            #quiz-title { font-size: 1.2rem; }
-            #quiz-container { padding: 15px; }
-            .score-board { gap: 12px; }
-            .score-board span { font-size: 0.9rem; padding: 6px 12px; }
-            .mode-toggle-btn { width: 35px; height: 35px; font-size: 1rem; top: 12px; right: 12px; }
+            .quiz-page-container { padding: 6px; }
+            .quiz-header { padding: 10px 15px; margin-bottom: 6px; border-radius: 12px; }
+            #quiz-title { font-size: clamp(0.9rem, 2.5vw, 1.1rem); margin-bottom: 6px; }
+            #quiz-container { padding: 12px; border-radius: 12px; }
+            .score-board { gap: 8px; }
+            .score-board span { font-size: clamp(0.75rem, 1.5vw, 0.85rem); padding: 5px 10px; }
+            .mode-toggle-btn { width: 32px; height: 32px; font-size: 0.9rem; top: 8px; right: 8px; }
+            .page-navigation { margin-top: 6px; }
+            .page-navigation .btn { padding: 6px 15px; font-size: 0.85rem; gap: 6px; }
+            .progress-bar-container { height: 6px; margin-top: 8px; }
         }
         
         @media (max-width: 480px) {
-            .quiz-page-container { padding: 8px; }
-            .quiz-header { padding: 12px 15px; }
-            #quiz-title { font-size: 1.1rem; }
-            #quiz-container { padding: 15px; }
+            .quiz-page-container { padding: 4px; height: 100dvh; }
+            .quiz-header { padding: 6px 10px; margin-bottom: 4px; border-radius: 8px; }
+            #quiz-title { display: none; }
+            #quiz-container { padding: 8px; border-radius: 8px; }
+            .score-board { gap: 6px; flex-wrap: nowrap; justify-content: space-between; width: 100%; }
+            .score-board span { font-size: 0.7rem; padding: 3px 6px; gap: 3px; }
+            .mode-toggle-btn { width: 26px; height: 26px; font-size: 0.75rem; top: 5px; right: 5px; }
+            .page-navigation { display: none; }
+            .progress-bar-container { height: 4px; margin-top: 6px; }
+        }
+        
+        /* Mobile Floating Navigation Buttons */
+        .mobile-nav-buttons {
+            display: none;
+        }
+        
+        @media (max-width: 480px) {
+            .mobile-nav-buttons {
+                display: flex;
+                position: fixed;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                gap: 10px;
+                z-index: 1000;
+                padding: 8px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 50px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            }
+            
+            body.dark-mode .mobile-nav-buttons {
+                background: rgba(31, 41, 55, 0.95);
+            }
+            
+            .mobile-nav-btn {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+            
+            .mobile-nav-btn:disabled {
+                opacity: 0.3;
+                cursor: not-allowed;
+            }
+            
+            .mobile-nav-btn.prev-btn {
+                background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+                color: white;
+            }
+            
+            .mobile-nav-btn.skip-btn {
+                background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+                color: white;
+            }
+            
+            .mobile-nav-btn.next-btn {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+            }
+            
+            .mobile-nav-btn:not(:disabled):active {
+                transform: scale(0.95);
+            }
         }
     </style>
 </head>
@@ -216,6 +290,9 @@
                 <span id="wrong-count">❌ 0</span>
                 <span id="timer">⏱️ 00:00</span>
             </div>
+            <div class="progress-bar-container">
+                <div id="progress-bar-fill" class="progress-bar-fill"></div>
+            </div>
             <button id="mode-toggle" class="mode-toggle-btn"><i class="fas fa-moon"></i></button>
         </header>
 
@@ -223,8 +300,32 @@
             <!-- কুইজ কন্টেন্ট এখানে লোড হবে -->
         </div>
 
+        <div id="quiz-navigation" class="quiz-navigation-container">
+            <div class="nav-controls">
+                <button id="prevBtn" onclick="previousQuestion()" class="nav-btn" disabled>← পূর্ববর্তী</button>
+                <button id="skipBtn" onclick="skipQuestion()" class="nav-btn" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">স্কিপ করুন</button>
+                <div id="question-grid" class="question-grid">
+                    <!-- প্রশ্ন নম্বর গ্রিড এখানে লোড হবে -->
+                </div>
+                <button id="nextBtnContainer" onclick="nextQuestion()" class="nav-btn" disabled>পরবর্তী →</button>
+            </div>
+        </div>
+
         <div class="page-navigation">
             <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> হোম</a>
+        </div>
+        
+        <!-- Mobile Floating Navigation -->
+        <div class="mobile-nav-buttons">
+            <button id="mobilePrevBtn" onclick="previousQuestion()" class="mobile-nav-btn prev-btn" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="mobileSkipBtn" onclick="skipQuestion()" class="mobile-nav-btn skip-btn">
+                <i class="fas fa-forward"></i>
+            </button>
+            <button id="mobileNextBtn" onclick="nextQuestion()" class="mobile-nav-btn next-btn" disabled>
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
     </main>
 

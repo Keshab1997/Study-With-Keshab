@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Text to JSON Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 30px;
+        }
+        
+        .section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        textarea {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: none;
+            min-height: 500px;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .controls {
+            padding: 0 30px 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .input-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-convert {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-convert:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-copy {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+        
+        .btn-copy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-download {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+        }
+        
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-clear {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+        
+        .btn-clear:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(239, 68, 68, 0.4);
+        }
+        
+        .stats {
+            padding: 20px 30px;
+            background: #f8fafc;
+            border-top: 2px solid #e0e0e0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #10b981;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 Quiz Text to JSON Converter</h1>
+            <p>আপনার text format quiz কে JSON format এ convert করুন</p>
+        </div>
+        
+        <div class="controls">
+            <div class="input-group">
+                <label for="chapterName">Chapter Name (অধ্যায়ের নাম):</label>
+                <input type="text" id="chapterName" placeholder="যেমন: সাধারণ বিজ্ঞান (পদার্থবিদ্যা)">
+            </div>
+            
+            <div class="input-group">
+                <label for="setName">Set Name (সেটের নাম):</label>
+                <input type="text" id="setName" placeholder="যেমন: Quiz Set 01: পদার্থবিদ্যা মৌলিক ধারণা">
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>📄 Input (Text Format)</h2>
+                <textarea id="inputText" placeholder="এখানে আপনার text format quiz paste করুন...
+
+উদাহরণ:
+প্রশ্ন 1
+বিষয়: পদার্থবিজ্ঞান
+প্রশ্ন: বায়ুমণ্ডলের অস্তিত্ব না থাকলে, আকাশের বর্ণ হত—
+বিকল্পসমূহ:
+  A: কালো
+  B: সাদা
+  C: নীল
+  D: লাল
+সঠিক উত্তর: (A) কালো
+ব্যাখ্যা: বায়ুমণ্ডল না থাকলে আলোর বিচ্ছুরণ ঘটবে না, তাই আকাশ কালো দেখাবে।
+
+=============================="></textarea>
+            </div>
+            
+            <div class="section">
+                <h2>✅ Output (JSON Format)</h2>
+                <textarea id="outputJson" readonly placeholder="JSON output এখানে দেখাবে..."></textarea>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="button-group">
+                <button class="btn-convert" onclick="convertToJson()">🔄 Convert করুন</button>
+                <button class="btn-copy" onclick="copyToClipboard()">📋 Copy করুন</button>
+                <button class="btn-download" onclick="downloadJson()">💾 Download করুন</button>
+                <button class="btn-clear" onclick="clearAll()">🗑️ Clear করুন</button>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="questionCount">0</div>
+                <div class="stat-label">মোট প্রশ্ন</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="characterCount">0</div>
+                <div class="stat-label">Characters</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="jsonSize">0 KB</div>
+                <div class="stat-label">JSON Size</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="toast" id="toast"></div>
+    
+    <script>
+        function convertToJson() {
+            const inputText = document.getElementById('inputText').value.trim();
+            const chapterName = document.getElementById('chapterName').value.trim();
+            const setName = document.getElementById('setName').value.trim();
+            
+            if (!inputText) {
+                showToast('❌ Input text খালি আছে!', 'error');
+                return;
+            }
+            
+            if (!chapterName || !setName) {
+                showToast('❌ Chapter Name এবং Set Name দিন!', 'error');
+                return;
+            }
+            
+            try {
+                const questions = parseQuestions(inputText);
+                
+                const jsonOutput = {
+                    chapterName: chapterName,
+                    setName: setName,
+                    questions: questions
+                };
+                
+                const jsonString = JSON.stringify(jsonOutput, null, 2);
+                document.getElementById('outputJson').value = jsonString;
+                
+                // Update stats
+                document.getElementById('questionCount').textContent = questions.length;
+                document.getElementById('characterCount').textContent = jsonString.length.toLocaleString();
+                document.getElementById('jsonSize').textContent = (new Blob([jsonString]).size / 1024).toFixed(2) + ' KB';
+                
+                showToast('✅ Successfully converted!', 'success');
+            } catch (error) {
+                showToast('❌ Error: ' + error.message, 'error');
+                console.error(error);
+            }
+        }
+        
+        function parseQuestions(text) {
+            const questions = [];
+            const blocks = text.split('==============================').filter(b => b.trim());
+            
+            blocks.forEach((block, index) => {
+                const lines = block.trim().split('\n').filter(l => l.trim());
+                
+                let questionObj = {
+                    id: index + 1,
+                    question: '',
+                    options: [],
+                    correctAnswer: 0,
+                    explanation: ''
+                };
+                
+                let currentSection = '';
+                let optionIndex = 0;
+                
+                for (let line of lines) {
+                    line = line.trim();
+                    
+                    // Skip question number line
+                    if (line.match(/^প্রশ্ন\s+\d+$/)) continue;
+                    
+                    // Skip subject line
+                    if (line.startsWith('বিষয়:')) continue;
+                    
+                    // Question
+                    if (line.startsWith('প্রশ্ন:')) {
+                        questionObj.question = line.replace('প্রশ্ন:', '').trim();
+                        currentSection = 'question';
+                        continue;
+                    }
+                    
+                    // Options section start
+                    if (line === 'বিকল্পসমূহ:') {
+                        currentSection = 'options';
+                        continue;
+                    }
+                    
+                    // Correct answer
+                    if (line.startsWith('সঠিক উত্তর:')) {
+                        const answerText = line.replace('সঠিক উত্তর:', '').trim();
+                        const match = answerText.match(/\(([A-D])\)/);
+                        if (match) {
+                            questionObj.correctAnswer = match[1].charCodeAt(0) - 65; // A=0, B=1, C=2, D=3
+                        }
+                        currentSection = 'answer';
+                        continue;
+                    }
+                    
+                    // Explanation
+                    if (line.startsWith('ব্যাখ্যা:')) {
+                        questionObj.explanation = line.replace('ব্যাখ্যা:', '').trim();
+                        currentSection = 'explanation';
+                        continue;
+                    }
+                    
+                    // Parse options (A:, B:, C:, D:)
+                    if (currentSection === 'options' && line.match(/^[A-D]:/)) {
+                        const optionText = line.substring(2).trim();
+                        questionObj.options.push(optionText);
+                        continue;
+                    }
+                    
+                    // Continue question text
+                    if (currentSection === 'question' && !line.startsWith('বিকল্পসমূহ:')) {
+                        questionObj.question += ' ' + line;
+                    }
+                    
+                    // Continue explanation text
+                    if (currentSection === 'explanation') {
+                        questionObj.explanation += ' ' + line;
+                    }
+                }
+                
+                // Clean up HTML entities
+                questionObj.question = decodeHtmlEntities(questionObj.question);
+                questionObj.explanation = decodeHtmlEntities(questionObj.explanation);
+                questionObj.options = questionObj.options.map(opt => decodeHtmlEntities(opt));
+                
+                if (questionObj.question && questionObj.options.length === 4) {
+                    questions.push(questionObj);
+                }
+            });
+            
+            return questions;
+        }
+        
+        function decodeHtmlEntities(text) {
+            const textarea = document.createElement('textarea');
+            textarea.innerHTML = text;
+            return textarea.value;
+        }
+        
+        function copyToClipboard() {
+            const output = document.getElementById('outputJson').value;
+            if (!output) {
+                showToast('❌ কোনো JSON নেই copy করার জন্য!', 'error');
+                return;
+            }
+            
+            navigator.clipboard.writeText(output).then(() => {
+                showToast('✅ JSON copied to clipboard!', 'success');
+            }).catch(err => {
+                showToast('❌ Copy failed!', 'error');
+            });
+        }
+        
+        function downloadJson() {
+            const output = document.getElementById('outputJson').value;
+            if (!output) {
+                showToast('❌ কোনো JSON নেই download করার জন্য!', 'error');
+                return;
+            }
+            
+            const setName = document.getElementById('setName').value.trim() || 'quiz';
+            const filename = setName.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.json';
+            
+            const blob = new Blob([output], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            showToast('✅ JSON downloaded!', 'success');
+        }
+        
+        function clearAll() {
+            if (confirm('সব data clear করতে চান?')) {
+                document.getElementById('inputText').value = '';
+                document.getElementById('outputJson').value = '';
+                document.getElementById('chapterName').value = '';
+                document.getElementById('setName').value = '';
+                document.getElementById('questionCount').textContent = '0';
+                document.getElementById('characterCount').textContent = '0';
+                document.getElementById('jsonSize').textContent = '0 KB';
+                showToast('✅ All cleared!', 'success');
+            }
+        }
+        
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.background = type === 'success' ? '#10b981' : '#ef4444';
+            toast.style.display = 'block';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Auto-update character count
+        document.getElementById('inputText').addEventListener('input', function() {
+            const count = this.value.length;
+            document.getElementById('characterCount').textContent = count.toLocaleString();
+        });
+    </script>
+</body>
+</html>

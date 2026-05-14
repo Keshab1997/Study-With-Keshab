@@ -266,7 +266,16 @@ body.dark-mode .loader { border-color: #4b5563; border-top-color: #60a5fa; }
 }
 #back-to-top:hover { background-color: #0056b3; }
 
-/* --- 7. Animations --- */
+/* Animations */
+@keyframes questionFlipIn {
+    0% { transform: rotateX(-90deg); opacity: 0; }
+    100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+.flip-in {
+    animation: questionFlipIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transform-origin: top;
+}
 @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 @keyframes shake { 0%, 100% { transform: translateX(0); } 25%, 75% { transform: translateX(-4px); } 50% { transform: translateX(4px); } }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -276,59 +285,142 @@ body.dark-mode .loader { border-color: #4b5563; border-top-color: #60a5fa; }
 
 /* For Tablets and larger phones (screen width <= 768px) */
 @media (max-width: 768px) {
-    .main-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
+    .quiz-navigation-container {
+        margin-top: 8px;
+        padding: 10px;
     }
-    .main-header h1 {
-        font-size: 2.2rem;
+    .nav-controls {
+        gap: 10px;
     }
-    .nav-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+    .nav-btn {
+        padding: 7px 14px;
+        font-size: 0.85rem;
     }
-    .card {
-        padding: 20px;
+    .question-grid {
+        grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+        gap: 5px;
+        max-width: 400px;
     }
-    #notepad .notepad-container {
-        flex-direction: column;
-        gap: 25px;
+    .grid-item {
+        width: 30px;
+        height: 30px;
+        font-size: 0.75rem;
     }
 }
 
 /* For smaller mobile devices (screen width <= 480px) */
 @media (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
-    .main-header h1 {
-        font-size: 1.8rem;
-    }
-    .main-header p {
-        font-size: 1rem;
-    }
-    .nav-button span {
-        font-size: 0.9em;
-    }
-    .card h2 {
-        font-size: 1.5rem;
-    }
-    #notepad .notepad-buttons {
-        flex-direction: column;
-    }
-    #notepad .btn {
-        width: 100%;
-    }
-    .quiz-page-container {
-        padding: 10px;
-    }
-    .option-btn {
-        padding: 12px;
-        font-size: 15px;
+    .quiz-navigation-container {
+        display: none;
     }
 }
-/* --- 9. Advanced Leaderboard Styles --- */
+/* Quiz Navigation Grid */
+.quiz-navigation-container {
+    margin-top: 10px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
+}
+
+body.dark-mode .quiz-navigation-container {
+    background: rgba(31, 41, 55, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.question-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(32px, 1fr));
+    gap: 6px;
+    max-width: 450px;
+    justify-content: center;
+}
+
+.grid-item {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid #e2e8f0;
+    background: white;
+    color: #475569;
+}
+
+.grid-item.active {
+    border-color: #667eea;
+    background: #eef2ff;
+    color: #667eea;
+    transform: scale(1.1);
+}
+
+.grid-item.answered {
+    background: #dcfce7;
+    border-color: #22c55e;
+    color: #16a34a;
+}
+
+body.dark-mode .grid-item {
+    background: #374151;
+    border-color: #4b5563;
+    color: #d1d5db;
+}
+
+body.dark-mode .grid-item.active {
+    border-color: #60a5fa;
+    background: #1e3a8a;
+    color: #60a5fa;
+}
+
+body.dark-mode .grid-item.answered {
+    background: #064e3b;
+    border-color: #10b981;
+    color: #34d399;
+}
+
+.grid-item.skipped {
+    background: #fef3c7;
+    border-color: #f59e0b;
+    color: #d97706;
+}
+
+body.dark-mode .grid-item.skipped {
+    background: #451a03;
+    border-color: #f59e0b;
+    color: #fbbf24;
+}
 
 .leaderboard-list {
     list-style: none;
@@ -687,19 +779,31 @@ body.dark-mode .result-section {
     border: 1px solid #374151;
 }
 
-/* Progress Bar (if any) */
-body.day-mode .progress-bar {
+/* Progress Bar */
+.progress-bar-container {
+    width: 100%;
+    height: 8px;
     background-color: #e2e8f0;
+    border-radius: 4px;
+    margin-top: 15px;
+    overflow: hidden;
 }
-body.dark-mode .progress-bar {
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.4s ease;
+}
+
+body.dark-mode .progress-bar-container {
     background-color: #374151;
 }
-body.day-mode .progress-bar-fill {
-    background-color: #3b82f6;
-}
+
 body.dark-mode .progress-bar-fill {
-    background-color: #60a5fa;
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
 }
+
 /* style.css ফাইলে যোগ করার জন্য নতুন স্টাইল */
 
 /* Dark Mode Toggle Button */

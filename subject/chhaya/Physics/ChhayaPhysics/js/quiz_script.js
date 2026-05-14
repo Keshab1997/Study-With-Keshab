@@ -13,6 +13,7 @@ let userAnswers = [];
 let shuffledOptionsPerQuestion = [];
 let timerInterval;
 let currentCorrectAnswerIndex;
+let quizStartTime;
 
 // Sound effects - Disable if files not found
 const correctSound = new Audio("../sounds/correct.mp3");
@@ -48,8 +49,13 @@ function initializeApp() {
     ) {
         document.getElementById("quiz-title").textContent = quizSet.setName || quizSet.chapterName;
         shuffleArray(quizSet.questions);
-        showQuestion();
-        setupKeyboard();
+        quizStartTime = Date.now();
+        
+        showSkeleton();
+        setTimeout(() => {
+            showQuestion();
+            setupKeyboard();
+        }, 800);
     } else {
         document.getElementById("quiz-container").innerHTML =
             "<p class='text-red-600 font-bold text-center'>দুঃখিত, প্রশ্ন সেট লোড করা যায়নি।</p>";
@@ -99,7 +105,71 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
+
+function showSkeleton() {
+    const container = document.getElementById("quiz-container");
+    if (!container) return;
+    container.innerHTML = `
+        <div style="display: flex; flex-direction: column; height: 100%; gap: 20px;">
+            <div class="skeleton" style="width: 60%; height: 30px; margin-bottom: 20px;"></div>
+            <div class="skeleton" style="width: 100%; height: 80px;"></div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; flex: 1;">
+                <div class="skeleton" style="height: 60px;"></div>
+                <div class="skeleton" style="height: 60px;"></div>
+                <div class="skeleton" style="height: 60px;"></div>
+                <div class="skeleton" style="height: 60px;"></div>
+            </div>
+            <div class="skeleton" style="width: 100%; height: 50px; margin-top: auto;"></div>
+        </div>
+    `;
+}
+
+function triggerConfetti() {
+    if (typeof confetti === "function") {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#667eea', '#764ba2', '#10b981', '#f59e0b']
+        });
+    }
+}
+
+function updateProgressBar() {
+    const progressBar = document.getElementById("progress-bar-fill");
+    if (progressBar && quizSet && quizSet.questions) {
+        const progress = (currentQuestionIndex / quizSet.questions.length) * 100;
+        progressBar.style.width = `${progress}%`;
+    }
+}
+
+function renderQuestionGrid() {
+    const grid = document.getElementById("question-grid");
+    if (!grid || !quizSet) return;
+
+    grid.innerHTML = quizSet.questions.map((_, i) => {
+        const isActive = i === currentQuestionIndex ? "active" : "";
+        const answer = userAnswers[i];
+        const isAnswered = answer !== undefined && answer !== "skipped" ? "answered" : "";
+        const isSkipped = answer === "skipped" ? "skipped" : "";
+        return `<div class="grid-item ${isActive} ${isAnswered} ${isSkipped}" onclick="jumpToQuestion(${i})">${i + 1}</div>`;
+    }).join("");
+
+    // Update desktop buttons
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtnContainer");
+    if (prevBtn) prevBtn.disabled = currentQuestionIndex === 0;
+    if (nextBtn) nextBtn.disabled = selectedAnswer === null;
+    
+    // Update mobile buttons
+    const mobilePrevBtn = document.getElementById("mobilePrevBtn");
+    const mobileNextBtn = document.getElementById("mobileNextBtn");
+    if (mobilePrevBtn) mobilePrevBtn.disabled = currentQuestionIndex === 0;
+    if (mobileNextBtn) mobileNextBtn.disabled = selectedAnswer === null;
+}
+
 function startTimer() {
+
     let seconds = 0;
     clearInterval(timerInterval);
     timerInterval = setInterval(() => {
@@ -114,6 +184,8 @@ function startTimer() {
 function showQuestion() {
     selectedAnswer = null;
     startTimer();
+    updateProgressBar();
+    renderQuestionGrid();
     const container = document.getElementById("quiz-container");
     const q = quizSet.questions[currentQuestionIndex];
     let shuffledOptions = [...q.options];
@@ -121,12 +193,12 @@ function showQuestion() {
     shuffledOptionsPerQuestion[currentQuestionIndex] = shuffledOptions;
     currentCorrectAnswerIndex = shuffledOptions.indexOf(q.options[q.correctAnswer]);
     container.innerHTML = `
-        <div style="display: flex; flex-direction: column; height: 100%; overflow: hidden;">
-            <div style="flex-shrink: 0; margin-bottom: clamp(10px, 2vh, 15px);">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-sm font-semibold px-4 py-2 rounded-full" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-size: clamp(0.8rem, 1.2vw, 0.9rem);">প্রশ্ন ${currentQuestionIndex + 1}/${quizSet.questions.length}</span>
+        <div class="flip-in" style="display: flex; flex-direction: column; height: 100%; overflow: hidden;">
+            <div style="flex-shrink: 0; margin-bottom: clamp(8px, 1.5vh, 12px);">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-semibold px-3 py-1 rounded-full" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-size: clamp(0.75rem, 1.2vw, 0.85rem);">প্রশ্ন ${currentQuestionIndex + 1}/${quizSet.questions.length}</span>
                 </div>
-                <h2 style="font-size: clamp(1.1rem, 2.5vw, 1.8rem); font-weight: 700; margin-bottom: clamp(15px, 3vh, 25px); line-height: 1.4; color: inherit;">${q.question}</h2>
+                <h2 style="font-size: clamp(0.95rem, 2.2vw, 1.5rem); font-weight: 700; margin-bottom: clamp(10px, 2vh, 18px); line-height: 1.3; color: inherit;">${q.question}</h2>
             </div>
             <div style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
                 <div class="options-grid" style="flex: 1;">
@@ -141,7 +213,6 @@ function showQuestion() {
                         )
                         .join("")}
                 </div>
-                <button id="nextBtn" onclick="nextQuestion()" class="next-btn" disabled style="flex-shrink: 0;">পরবর্তী প্রশ্ন →</button>
             </div>
         </div>
         
@@ -239,35 +310,6 @@ function showQuestion() {
                 box-shadow: 0 2px 8px rgba(255, 255, 255, 0.5);
             }
             
-            .next-btn {
-                width: 100%;
-                padding: clamp(12px, 1.8vh, 16px);
-                font-size: clamp(0.95rem, 1.3vw, 1.15rem);
-                font-weight: 600;
-                border-radius: clamp(10px, 1.2vw, 16px);
-                border: none;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-                margin-top: clamp(12px, 2vh, 20px);
-            }
-            
-            .next-btn:not(:disabled) {
-                cursor: pointer;
-            }
-            
-            .next-btn:not(:disabled):hover {
-                transform: translateY(-2px);
-                box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-            }
-            
-            .next-btn:disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
-            }
-            
             @keyframes correctPulse {
                 0%, 100% { transform: scale(1); }
                 50% { transform: scale(1.02); }
@@ -302,23 +344,73 @@ function showQuestion() {
             /* Responsive adjustments */
             @media (max-width: 768px) {
                 .options-grid {
-                    gap: 10px;
+                    gap: 8px;
+                }
+                .option-btn {
+                    padding: 10px 12px;
+                }
+                .option-prefix {
+                    width: 28px;
+                    height: 28px;
+                    font-size: 0.9rem;
+                    margin-right: 8px;
                 }
             }
             
             @media (max-width: 480px) {
                 .options-grid {
                     grid-template-columns: 1fr;
-                    gap: 8px;
+                    gap: 6px;
+                }
+                .option-btn {
+                    padding: 10px 12px;
+                    font-size: 0.9rem;
+                    min-height: 50px;
+                }
+                .option-prefix {
+                    width: 28px;
+                    height: 28px;
+                    font-size: 0.9rem;
+                    margin-right: 8px;
+                    border-width: 1.5px;
                 }
                 .option-text {
-                    -webkit-line-clamp: 2;
+                    -webkit-line-clamp: 3;
+                    font-size: 0.9rem;
+                }
+                /* Hide question badge on mobile */
+                .flip-in > div:first-child > div:first-child {
+                    display: none;
+                }
+                /* Make question text more compact */
+                .flip-in > div:first-child {
+                    margin-bottom: 10px;
+                }
+                .flip-in > div:first-child h2 {
+                    font-size: 1rem !important;
+                    margin-bottom: 10px !important;
+                    line-height: 1.3 !important;
                 }
             }
             
             @media (max-height: 700px) {
                 .option-text {
                     -webkit-line-clamp: 2;
+                }
+            }
+            
+            @media (max-height: 600px) {
+                .option-btn {
+                    padding: 6px 8px;
+                }
+                .option-prefix {
+                    width: 24px;
+                    height: 24px;
+                    font-size: 0.8rem;
+                }
+                .option-text {
+                    -webkit-line-clamp: 1;
+                    font-size: 0.8rem;
                 }
             }
         </style>
@@ -346,14 +438,21 @@ window.selectAnswer = function (selectedIndex, correctBtnIndex) {
     } else {
         correctCount++;
         correctSound.play().catch(e => console.warn('Sound play failed'));
+        // triggerConfetti(); // Disabled confetti animation
     }
     userAnswers[currentQuestionIndex] = selectedIndex;
     document.getElementById("correct-count").textContent = `✔️ ${correctCount}`;
     document.getElementById("wrong-count").textContent = `❌ ${wrongCount}`;
-    const nextBtn = document.getElementById("nextBtn");
+    
+    renderQuestionGrid();
+    const nextBtn = document.getElementById("nextBtnContainer");
+    const mobileNextBtn = document.getElementById("mobileNextBtn");
     if (nextBtn) {
         nextBtn.disabled = false;
         nextBtn.focus();
+    }
+    if (mobileNextBtn) {
+        mobileNextBtn.disabled = false;
     }
 };
 
@@ -367,12 +466,89 @@ function nextQuestion() {
     }
 }
 
+function previousQuestion() {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        selectedAnswer = userAnswers[currentQuestionIndex] !== undefined ? userAnswers[currentQuestionIndex] : null;
+        showQuestion();
+        if (selectedAnswer !== null && selectedAnswer !== "skipped") {
+            applyPreviousAnswer();
+        }
+    }
+}
+
+function skipQuestion() {
+    userAnswers[currentQuestionIndex] = "skipped";
+    selectedAnswer = "skipped";
+    renderQuestionGrid();
+    
+    // Enable next button for skipped questions
+    const nextBtn = document.getElementById("nextBtnContainer");
+    const mobileNextBtn = document.getElementById("mobileNextBtn");
+    if (nextBtn) {
+        nextBtn.disabled = false;
+        nextBtn.focus();
+    }
+    if (mobileNextBtn) {
+        mobileNextBtn.disabled = false;
+    }
+}
+
+function jumpToQuestion(index) {
+    currentQuestionIndex = index;
+    selectedAnswer = userAnswers[currentQuestionIndex] !== undefined ? userAnswers[currentQuestionIndex] : null;
+    showQuestion();
+    if (selectedAnswer !== null && selectedAnswer !== "skipped") {
+        applyPreviousAnswer();
+    }
+}
+
+function applyPreviousAnswer() {
+
+    const q = quizSet.questions[currentQuestionIndex];
+    const shuffledOptions = shuffledOptionsPerQuestion[currentQuestionIndex];
+    if (!shuffledOptions) return;
+
+    const correctBtnIndex = shuffledOptions.indexOf(q.options[q.correctAnswer]);
+    
+    document.querySelectorAll(".option-btn").forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === correctBtnIndex) {
+            btn.classList.add("correct");
+        }
+        if (i === selectedAnswer) {
+            if (i !== correctBtnIndex) {
+                btn.classList.add("incorrect");
+            }
+        }
+    });
+    
+    document.getElementById("nextBtnContainer").disabled = false;
+}
+
 // ===============================================
 // --- Result Display & Data Saving ---
 // ===============================================
 
+function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+}
+
+function calculateGrade(percentage) {
+    if (percentage >= 90) return "A+";
+    if (percentage >= 80) return "A";
+    if (percentage >= 70) return "B";
+    if (percentage >= 60) return "C";
+    if (percentage >= 50) return "D";
+    return "F";
+}
+
 function showFinalResult() {
     clearInterval(timerInterval);
+    const totalTimeSeconds = Math.floor((Date.now() - quizStartTime) / 1000);
+    const timeTaken = formatTime(totalTimeSeconds);
 
     if (quizSet.chapterName && quizSet.setName) {
         saveQuizResult(
@@ -391,45 +567,206 @@ function showFinalResult() {
 
     const totalQuestions = quizSet.questions.length;
     const percentage = ((correctCount / totalQuestions) * 100).toFixed(1);
+    const grade = calculateGrade(parseFloat(percentage));
     
     const container = document.getElementById("quiz-container");
     container.innerHTML = `
-        <div class="text-center space-y-5">
-            <h2 class="text-3xl font-bold text-green-600">🎉 কুইজ শেষ!</h2>
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md mx-auto">
-                <h3 class="text-2xl font-bold mb-4">আপনার ফলাফল</h3>
-                <div class="space-y-3 text-lg">
-                    <p><strong>অধ্যায়:</strong> ${quizSet.chapterName}</p>
-                    <p><strong>কুইজ সেট:</strong> ${quizSet.setName}</p>
-                    <div class="border-t border-b py-3 my-3">
-                        <p class="text-2xl font-bold text-blue-600">${correctCount} / ${totalQuestions}</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">সঠিক উত্তর</p>
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: clamp(10px, 3vh, 20px); overflow-y: auto;">
+            <div style="text-align: center; max-width: 600px; width: 100%;">
+                <h2 style="font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 700; color: #10b981; margin-bottom: clamp(15px, 3vh, 30px);">🎉 কুইজ সম্পন্ন!</h2>
+                
+                <div class="result-card" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: clamp(12px, 2vw, 20px); padding: clamp(15px, 3vh, 30px); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); margin-bottom: clamp(12px, 2vh, 20px);">
+                    <h3 style="font-size: clamp(1.1rem, 2.5vw, 1.6rem); font-weight: 700; margin-bottom: clamp(12px, 2vh, 20px); color: #1e293b;">আপনার ফলাফল</h3>
+                    
+                    <div style="margin-bottom: clamp(12px, 2vh, 20px); padding-bottom: clamp(12px, 2vh, 20px); border-bottom: 2px solid #e5e7eb;">
+                        <p style="font-size: clamp(0.85rem, 1.5vw, 1rem); color: #64748b; margin-bottom: 6px;"><strong>অধ্যায়:</strong> ${quizSet.chapterName}</p>
+                        <p style="font-size: clamp(0.85rem, 1.5vw, 1rem); color: #64748b;"><strong>কুইজ সেট:</strong> ${quizSet.setName}</p>
                     </div>
-                    <p class="text-green-600">✔️ সঠিক: ${correctCount}</p>
-                    <p class="text-red-600">❌ ভুল: ${wrongCount}</p>
-                    <p class="text-purple-600">📊 শতাংশ: ${percentage}%</p>
+                    
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: clamp(10px, 1.5vw, 15px); padding: clamp(15px, 2.5vh, 25px); margin-bottom: clamp(12px, 2vh, 20px);">
+                        <p style="font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 800; color: white; margin-bottom: 5px; line-height: 1;">${correctCount}/${totalQuestions}</p>
+                        <p style="font-size: clamp(0.85rem, 1.5vw, 1.1rem); color: rgba(255, 255, 255, 0.9);">সঠিক উত্তর</p>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(8px, 1.5vw, 15px); margin-bottom: clamp(12px, 2vh, 20px);">
+                        <div style="background: #f0fdf4; border-radius: clamp(8px, 1.2vw, 12px); padding: clamp(10px, 1.5vh, 15px);">
+                            <p style="font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 700; color: #10b981; margin-bottom: 3px;">✔️ ${correctCount}</p>
+                            <p style="font-size: clamp(0.75rem, 1.2vw, 0.9rem); color: #059669;">সঠিক</p>
+                        </div>
+                        <div style="background: #fef2f2; border-radius: clamp(8px, 1.2vw, 12px); padding: clamp(10px, 1.5vh, 15px);">
+                            <p style="font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 700; color: #ef4444; margin-bottom: 3px;">❌ ${wrongCount}</p>
+                            <p style="font-size: clamp(0.75rem, 1.2vw, 0.9rem); color: #dc2626;">ভুল</p>
+                        </div>
+                        <div style="background: #faf5ff; border-radius: clamp(8px, 1.2vw, 12px); padding: clamp(10px, 1.5vh, 15px);">
+                            <p style="font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 700; color: #8b5cf6; margin-bottom: 3px;">📊 ${percentage}%</p>
+                            <p style="font-size: clamp(0.75rem, 1.2vw, 0.9rem); color: #7c3aed;">শতাংশ</p>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: clamp(0.8rem, 1.3vw, 0.95rem); color: #64748b; font-style: italic;">✅ ফলাফল সফলভাবে সেভ হয়েছে</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: clamp(8px, 1.5vw, 12px);">
+                    <button onclick="showReview()" style="
+                        padding: clamp(10px, 1.8vh, 14px) clamp(15px, 2.5vw, 25px);
+                        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                        color: white;
+                        border: none;
+                        border-radius: clamp(8px, 1.2vw, 12px);
+                        font-size: clamp(0.85rem, 1.3vw, 1rem);
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(16, 185, 129, 0.3)';">📚 রিভিউ দেখুন</button>
+                    
+                    <a href="../index.html" style="
+                        padding: clamp(10px, 1.8vh, 14px) clamp(15px, 2.5vw, 25px);
+                        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+                        color: white;
+                        border: none;
+                        border-radius: clamp(8px, 1.2vw, 12px);
+                        font-size: clamp(0.85rem, 1.3vw, 1rem);
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+                        text-decoration: none;
+                        display: inline-block;
+                        text-align: center;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(59, 130, 246, 0.3)';">🏠 ড্যাশবোর্ড</a>
+                    
+                    <button onclick="location.reload()" style="
+                        padding: clamp(10px, 1.8vh, 14px) clamp(15px, 2.5vw, 25px);
+                        background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+                        color: white;
+                        border: none;
+                        border-radius: clamp(8px, 1.2vw, 12px);
+                        font-size: clamp(0.85rem, 1.3vw, 1rem);
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(100, 116, 139, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(100, 116, 139, 0.3)';">🔁 আবার দিন</button>
                 </div>
             </div>
-            <p class="text-gray-600 dark:text-gray-300">আপনার ফলাফল ড্যাশবোর্ড ও লিডারবোর্ডের জন্য সেভ করা হয়েছে।</p>
-            <div class="flex flex-wrap justify-center gap-3">
-                <button onclick="showReview()" class="action-btn green">রিভিউ দেখুন</button>
-                <a href="../index.html" class="action-btn">ড্যাশবোর্ডে ফিরে যান</a>
-                <button onclick="location.reload()" class="action-btn gray">🔁 আবার দিন</button>
-            </div>
-        </div>`;
+        </div>
+        
+        <style>
+            body.dark-mode .result-card {
+                background: rgba(31, 41, 55, 0.95) !important;
+            }
+            
+            @media (max-width: 480px) {
+                .result-card {
+                    padding: 12px !important;
+                    border-radius: 10px !important;
+                }
+            }
+        </style>
+    `;
 }
 
 function showReview() {
     const container = document.getElementById("quiz-container");
-    let reviewHTML = `<div class="space-y-4"><h2 class="text-2xl font-bold text-center text-blue-700 mb-4">📚 কুইজ রিভিউ</h2>`;
+    
+    let reviewHTML = `
+        <div style="height: 100%; display: flex; flex-direction: column; overflow: hidden;">
+            <div style="flex-shrink: 0; display: flex; justify-content: space-between; align-items: center; margin-bottom: clamp(10px, 2vh, 15px); padding-bottom: clamp(8px, 1.5vh, 12px); border-bottom: 2px solid #e5e7eb;">
+                <h2 style="font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 700; color: #667eea; margin: 0;">📚 কুইজ রিভিউ</h2>
+                <button onclick="showFinalResult()" style="
+                    padding: clamp(8px, 1.5vh, 12px) clamp(15px, 2.5vw, 20px);
+                    background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+                    color: white;
+                    border: none;
+                    border-radius: clamp(8px, 1vw, 10px);
+                    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                " onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';">
+                    ← ফিরে যান
+                </button>
+            </div>
+            
+            <div style="flex: 1; overflow-y: auto; padding-right: 5px;">
+    `;
+    
     quizSet.questions.forEach((q, i) => {
         const userAnswerIndex = userAnswers[i];
         const shuffledOptions = shuffledOptionsPerQuestion[i];
         const correctAnswerIndex = shuffledOptions.indexOf(q.options[q.correctAnswer]);
         const isCorrect = userAnswerIndex === correctAnswerIndex;
-        reviewHTML += `<div class="review-card text-left ${isCorrect ? "review-correct" : "review-incorrect"}"><h3 class="font-semibold mb-2">📝 প্রশ্ন ${i + 1}: ${q.question}</h3><p><strong>সঠিক উত্তর:</strong> ${q.options[q.correctAnswer]}</p><p><strong>আপনার উত্তর:</strong> <span class="font-bold ${isCorrect ? "text-green-700" : "text-red-700"}">${shuffledOptions[userAnswerIndex] ?? "উত্তর দেননি"}</span></p><p class="mt-2"><strong>ব্যাখ্যা:</strong> ${q.explanation || "কোনো ব্যাখ্যা নেই"}</p></div>`;
+        const isSkipped = userAnswerIndex === "skipped";
+        
+        let cardClass = isSkipped ? "review-skipped" : (isCorrect ? "review-correct" : "review-incorrect");
+        let borderColor = isSkipped ? "#f59e0b" : (isCorrect ? "#22c55e" : "#ef4444");
+        let bgColor = isSkipped ? "rgba(245, 158, 11, 0.05)" : (isCorrect ? "#f0fdf4" : "#fef2f2");
+        
+        if (document.body.classList.contains('dark-mode')) {
+            bgColor = isSkipped ? "rgba(245, 158, 11, 0.1)" : (isCorrect ? "#064e3b" : "#7f1d1d");
+        }
+        
+        reviewHTML += `
+            <div style="
+                background: ${bgColor};
+                border-left: 5px solid ${borderColor};
+                border-radius: clamp(8px, 1.2vw, 12px);
+                padding: clamp(12px, 2vh, 18px);
+                margin-bottom: clamp(10px, 1.5vh, 15px);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            ">
+                <h3 style="font-size: clamp(0.95rem, 1.5vw, 1.1rem); font-weight: 600; margin-bottom: clamp(8px, 1.2vh, 12px); color: inherit;">📝 প্রশ্ন ${i + 1}: ${q.question}</h3>
+                
+                <p style="margin-bottom: clamp(6px, 1vh, 8px); font-size: clamp(0.85rem, 1.3vw, 0.95rem);"><strong>সঠিক উত্তর:</strong> <span style="color: #059669; font-weight: 600;">${q.options[q.correctAnswer]}</span></p>
+                
+                <p style="margin-bottom: clamp(8px, 1.2vh, 12px); font-size: clamp(0.85rem, 1.3vw, 0.95rem);">
+                    <strong>আপনার উত্তর:</strong> 
+                    <span style="font-weight: 600; color: ${isSkipped ? '#f59e0b' : (isCorrect ? '#059669' : '#dc2626')};">
+                        ${isSkipped ? '⏭️ স্কিপ করেছেন' : (shuffledOptions[userAnswerIndex] ?? "উত্তর দেননি")}
+                    </span>
+                </p>
+                
+                ${q.explanation ? `<p style="margin-top: clamp(8px, 1.2vh, 12px); padding-top: clamp(8px, 1.2vh, 12px); border-top: 1px dashed rgba(0,0,0,0.1); font-size: clamp(0.8rem, 1.2vw, 0.9rem); color: #64748b;"><strong>ব্যাখ্যা:</strong> ${q.explanation}</p>` : ''}
+            </div>
+        `;
     });
-    reviewHTML += `<div class="text-center mt-6"><button onclick="location.reload()" class="action-btn gray">🔁 আবার দিন</button></div></div>`;
+    
+    reviewHTML += `
+            </div>
+        </div>
+        
+        <style>
+            body.dark-mode #quiz-container h2 {
+                color: #60a5fa !important;
+            }
+            
+            /* Custom Scrollbar */
+            #quiz-container > div > div:last-child::-webkit-scrollbar {
+                width: 6px;
+            }
+            
+            #quiz-container > div > div:last-child::-webkit-scrollbar-track {
+                background: rgba(0, 0, 0, 0.05);
+                border-radius: 10px;
+            }
+            
+            #quiz-container > div > div:last-child::-webkit-scrollbar-thumb {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border-radius: 10px;
+            }
+            
+            body.dark-mode #quiz-container > div > div:last-child::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.05);
+            }
+            
+            body.dark-mode #quiz-container > div > div:last-child::-webkit-scrollbar-thumb {
+                background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            }
+        </style>
+    `;
+    
     container.innerHTML = reviewHTML;
 }
 
@@ -533,10 +870,32 @@ function setupKeyboard() {
         ) {
             return;
         }
-        const nextBtn = document.getElementById("nextBtn");
+        
+        const nextBtn = document.getElementById("nextBtnContainer");
+        const prevBtn = document.getElementById("prevBtn");
+
+        // Enter for next
         if (event.key === "Enter" && nextBtn && !nextBtn.disabled) {
+            event.preventDefault();
             nextQuestion();
         }
+
+        // Arrow keys for navigation
+        if (event.key === "ArrowRight" && nextBtn && !nextBtn.disabled) {
+            event.preventDefault();
+            nextQuestion();
+        }
+        if (event.key === "ArrowLeft" && prevBtn && !prevBtn.disabled) {
+            event.preventDefault();
+            previousQuestion();
+        }
+
+        // S for skip
+        if (event.key.toLowerCase() === "s") {
+            event.preventDefault();
+            skipQuestion();
+        }
+
         if (selectedAnswer === null) {
             const keyMap = { 1: 0, 2: 1, 3: 2, 4: 3, a: 0, b: 1, c: 2, d: 3 };
             const index = keyMap[event.key.toLowerCase()];
@@ -550,3 +909,56 @@ function setupKeyboard() {
         }
     });
 }
+
+// ===============================================
+// --- Mobile Touch/Swipe Navigation ---
+// ===============================================
+
+let touchStartX = 0;
+let touchEndX = 0;
+let touchStartY = 0;
+let touchEndY = 0;
+
+function setupTouchNavigation() {
+    const container = document.getElementById("quiz-container");
+    if (!container) return;
+
+    container.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    container.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+    }, { passive: true });
+}
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+    
+    // Check if horizontal swipe is more than vertical
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > swipeThreshold) {
+        if (diffX > 0) {
+            // Swipe right - previous question
+            if (currentQuestionIndex > 0) {
+                previousQuestion();
+            }
+        } else {
+            // Swipe left - next question
+            if (selectedAnswer !== null && currentQuestionIndex < quizSet.questions.length - 1) {
+                nextQuestion();
+            } else if (selectedAnswer !== null && currentQuestionIndex === quizSet.questions.length - 1) {
+                showFinalResult();
+            }
+        }
+    }
+}
+
+// Call setupTouchNavigation after quiz loads
+document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(setupTouchNavigation, 1000);
+});
