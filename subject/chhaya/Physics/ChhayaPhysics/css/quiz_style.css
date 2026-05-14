@@ -1045,3 +1045,56 @@ td i { margin-right: 8px; }
 .dark-mode .review-card.review-skipped {
     background-color: rgba(245, 158, 11, 0.1);
 }
+
+
+/* ========================================= */
+/* Desktop Quiz Navigation Bar Fix (Long Line) */
+/* ========================================= */
+
+@media (min-width: 769px) {
+    .nav-controls {
+        flex-wrap: nowrap !important;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .question-grid {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        max-width: 100% !important;
+        overflow-x: auto;
+        padding: 5px 10px;
+        justify-content: flex-start;
+        scroll-behavior: smooth;
+        flex: 1;
+        margin: 0 10px;
+    }
+
+    .grid-item {
+        flex-shrink: 0;
+    }
+
+    .nav-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .question-grid::-webkit-scrollbar {
+        height: 6px;
+    }
+    .question-grid::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 10px;
+    }
+    .question-grid::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 10px;
+    }
+
+    body.dark-mode .question-grid::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    body.dark-mode .question-grid::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+    }
+}

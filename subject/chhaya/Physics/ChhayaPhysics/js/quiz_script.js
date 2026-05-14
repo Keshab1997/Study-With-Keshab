@@ -547,6 +547,17 @@ function calculateGrade(percentage) {
 
 function showFinalResult() {
     clearInterval(timerInterval);
+
+    // হেডার এবং নেভিগেশন ফিরিয়ে আনা
+    const header = document.querySelector('.quiz-header');
+    const quizNav = document.getElementById('quiz-navigation');
+    const pageNav = document.querySelector('.page-navigation');
+    const mobileNav = document.querySelector('.mobile-nav-buttons');
+    if (header) header.style.display = '';
+    if (quizNav) quizNav.style.display = '';
+    if (pageNav) pageNav.style.display = '';
+    if (mobileNav) mobileNav.style.display = '';
+
     const totalTimeSeconds = Math.floor((Date.now() - quizStartTime) / 1000);
     const timeTaken = formatTime(totalTimeSeconds);
 
@@ -571,103 +582,117 @@ function showFinalResult() {
     
     const container = document.getElementById("quiz-container");
     container.innerHTML = `
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: clamp(10px, 3vh, 20px); overflow-y: auto;">
-            <div style="text-align: center; max-width: 600px; width: 100%;">
-                <h2 style="font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 700; color: #10b981; margin-bottom: clamp(15px, 3vh, 30px);">🎉 কুইজ সম্পন্ন!</h2>
+        <div style="display: flex; flex-direction: column; align-items: center; height: 100%; padding: 5px; overflow-y: auto;">
+            <div style="text-align: center; max-width: 750px; width: 100%; margin: auto 0; padding: 10px 0;">
                 
-                <div class="result-card" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: clamp(12px, 2vw, 20px); padding: clamp(15px, 3vh, 30px); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); margin-bottom: clamp(12px, 2vh, 20px);">
-                    <h3 style="font-size: clamp(1.1rem, 2.5vw, 1.6rem); font-weight: 700; margin-bottom: clamp(12px, 2vh, 20px); color: #1e293b;">আপনার ফলাফল</h3>
+                <h2 style="font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 700; color: #10b981; margin-bottom: 10px;">🎉 কুইজ সম্পন্ন!</h2>
+                
+                <div class="result-card" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 12px; padding: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); margin-bottom: 15px;">
                     
-                    <div style="margin-bottom: clamp(12px, 2vh, 20px); padding-bottom: clamp(12px, 2vh, 20px); border-bottom: 2px solid #e5e7eb;">
-                        <p style="font-size: clamp(0.85rem, 1.5vw, 1rem); color: #64748b; margin-bottom: 6px;"><strong>অধ্যায়:</strong> ${quizSet.chapterName}</p>
-                        <p style="font-size: clamp(0.85rem, 1.5vw, 1rem); color: #64748b;"><strong>কুইজ সেট:</strong> ${quizSet.setName}</p>
-                    </div>
-                    
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: clamp(10px, 1.5vw, 15px); padding: clamp(15px, 2.5vh, 25px); margin-bottom: clamp(12px, 2vh, 20px);">
-                        <p style="font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 800; color: white; margin-bottom: 5px; line-height: 1;">${correctCount}/${totalQuestions}</p>
-                        <p style="font-size: clamp(0.85rem, 1.5vw, 1.1rem); color: rgba(255, 255, 255, 0.9);">সঠিক উত্তর</p>
-                    </div>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(8px, 1.5vw, 15px); margin-bottom: clamp(12px, 2vh, 20px);">
-                        <div style="background: #f0fdf4; border-radius: clamp(8px, 1.2vw, 12px); padding: clamp(10px, 1.5vh, 15px);">
-                            <p style="font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 700; color: #10b981; margin-bottom: 3px;">✔️ ${correctCount}</p>
-                            <p style="font-size: clamp(0.75rem, 1.2vw, 0.9rem); color: #059669;">সঠিক</p>
+                    <!-- Chapter & Set Info -->
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #e5e7eb; text-align: left;">
+                        <div style="flex: 1; min-width: 150px; overflow: hidden;">
+                            <span style="font-size: 0.7rem; color: #64748b; text-transform: uppercase; font-weight: 600;">অধ্যায়</span>
+                            <div style="font-size: 0.9rem; font-weight: 700; color: #1e293b; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${quizSet.chapterName}">${quizSet.chapterName}</div>
                         </div>
-                        <div style="background: #fef2f2; border-radius: clamp(8px, 1.2vw, 12px); padding: clamp(10px, 1.5vh, 15px);">
-                            <p style="font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 700; color: #ef4444; margin-bottom: 3px;">❌ ${wrongCount}</p>
-                            <p style="font-size: clamp(0.75rem, 1.2vw, 0.9rem); color: #dc2626;">ভুল</p>
-                        </div>
-                        <div style="background: #faf5ff; border-radius: clamp(8px, 1.2vw, 12px); padding: clamp(10px, 1.5vh, 15px);">
-                            <p style="font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 700; color: #8b5cf6; margin-bottom: 3px;">📊 ${percentage}%</p>
-                            <p style="font-size: clamp(0.75rem, 1.2vw, 0.9rem); color: #7c3aed;">শতাংশ</p>
+                        <div style="flex: 1; min-width: 150px; text-align: right; overflow: hidden;" class="set-name-box">
+                            <span style="font-size: 0.7rem; color: #64748b; text-transform: uppercase; font-weight: 600;">কুইজ সেট</span>
+                            <div style="font-size: 0.9rem; font-weight: 700; color: #1e293b; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${quizSet.setName}">${quizSet.setName}</div>
                         </div>
                     </div>
                     
-                    <p style="font-size: clamp(0.8rem, 1.3vw, 0.95rem); color: #64748b; font-style: italic;">✅ ফলাফল সফলভাবে সেভ হয়েছে</p>
+                    <!-- Score Section -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch;">
+                        
+                        <!-- Big Score Box -->
+                        <div style="flex: 1; min-width: 180px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; box-shadow: 0 4px 10px rgba(102, 126, 234, 0.2);">
+                            <div style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; line-height: 1;">${correctCount}/${totalQuestions}</div>
+                            <div style="font-size: 0.85rem; font-weight: 500; opacity: 0.9; margin-top: 4px;">সঠিক উত্তর</div>
+                        </div>
+                        
+                        <!-- 3 Small Stats Boxes -->
+                        <div style="flex: 1.5; min-width: 220px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                            <div style="background: #f0fdf4; border-radius: 10px; padding: 10px 5px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid #bbf7d0;">
+                                <div style="font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 800; color: #10b981;">✔️ ${correctCount}</div>
+                                <div style="font-size: 0.75rem; font-weight: 600; color: #059669; margin-top: 2px;">সঠিক</div>
+                            </div>
+                            <div style="background: #fef2f2; border-radius: 10px; padding: 10px 5px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid #fecaca;">
+                                <div style="font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 800; color: #ef4444;">❌ ${wrongCount}</div>
+                                <div style="font-size: 0.75rem; font-weight: 600; color: #dc2626; margin-top: 2px;">ভুল</div>
+                            </div>
+                            <div style="background: #faf5ff; border-radius: 10px; padding: 10px 5px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid #e9d5ff;">
+                                <div style="font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 800; color: #8b5cf6;">📊 ${percentage}%</div>
+                                <div style="font-size: 0.75rem; font-weight: 600; color: #7c3aed; margin-top: 2px;">শতাংশ</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 12px; font-size: 0.8rem; color: #10b981; font-weight: 600;">✅ ফলাফল সফলভাবে সেভ হয়েছে</div>
                 </div>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: clamp(8px, 1.5vw, 12px);">
-                    <button onclick="showReview()" style="
-                        padding: clamp(10px, 1.8vh, 14px) clamp(15px, 2.5vw, 25px);
-                        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-                        color: white;
-                        border: none;
-                        border-radius: clamp(8px, 1.2vw, 12px);
-                        font-size: clamp(0.85rem, 1.3vw, 1rem);
-                        font-weight: 600;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(16, 185, 129, 0.3)';">📚 রিভিউ দেখুন</button>
-                    
-                    <a href="../index.html" style="
-                        padding: clamp(10px, 1.8vh, 14px) clamp(15px, 2.5vw, 25px);
-                        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-                        color: white;
-                        border: none;
-                        border-radius: clamp(8px, 1.2vw, 12px);
-                        font-size: clamp(0.85rem, 1.3vw, 1rem);
-                        font-weight: 600;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-                        text-decoration: none;
-                        display: inline-block;
-                        text-align: center;
-                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(59, 130, 246, 0.3)';">🏠 ড্যাশবোর্ড</a>
-                    
-                    <button onclick="location.reload()" style="
-                        padding: clamp(10px, 1.8vh, 14px) clamp(15px, 2.5vw, 25px);
-                        background: linear-gradient(135deg, #64748b 0%, #475569 100%);
-                        color: white;
-                        border: none;
-                        border-radius: clamp(8px, 1.2vw, 12px);
-                        font-size: clamp(0.85rem, 1.3vw, 1rem);
-                        font-weight: 600;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                        box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
-                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(100, 116, 139, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(100, 116, 139, 0.3)';">🔁 আবার দিন</button>
+                <!-- Action Buttons -->
+                <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                    <button onclick="showReview()" class="res-btn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">📚 রিভিউ দেখুন</button>
+                    <a href="../index.html" class="res-btn" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); text-decoration: none; display: flex; align-items: center; justify-content: center;">🏠 ড্যাশবোর্ড</a>
+                    <button onclick="location.reload()" class="res-btn" style="background: linear-gradient(135deg, #64748b 0%, #475569 100%);">🔁 আবার দিন</button>
                 </div>
             </div>
         </div>
         
         <style>
+            .res-btn {
+                padding: 8px 16px;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                flex: 1;
+                min-width: 120px;
+                max-width: 180px;
+            }
+            .res-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            }
             body.dark-mode .result-card {
                 background: rgba(31, 41, 55, 0.95) !important;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3) !important;
             }
-            
-            @media (max-width: 480px) {
-                .result-card {
-                    padding: 12px !important;
-                    border-radius: 10px !important;
-                }
+            body.dark-mode .result-card > div:first-child {
+                border-bottom-color: #374151 !important;
+            }
+            body.dark-mode .result-card > div:first-child > div > div {
+                color: #f3f4f6 !important;
+            }
+            body.dark-mode .result-card > div:first-child > div > span {
+                color: #9ca3af !important;
+            }
+            body.dark-mode .result-card > div:nth-child(2) > div:nth-child(2) > div {
+                background: #374151 !important;
+                border-color: #4b5563 !important;
+            }
+            @media (max-width: 576px) {
+                .set-name-box { text-align: left !important; }
             }
         </style>
     `;
 }
 
 function showReview() {
+    // হেডার এবং নেভিগেশন হাইড করা
+    const header = document.querySelector('.quiz-header');
+    const quizNav = document.getElementById('quiz-navigation');
+    const pageNav = document.querySelector('.page-navigation');
+    const mobileNav = document.querySelector('.mobile-nav-buttons');
+    if (header) header.style.display = 'none';
+    if (quizNav) quizNav.style.display = 'none';
+    if (pageNav) pageNav.style.display = 'none';
+    if (mobileNav) mobileNav.style.display = 'none';
+
     const container = document.getElementById("quiz-container");
     
     let reviewHTML = `
@@ -695,7 +720,7 @@ function showReview() {
     
     quizSet.questions.forEach((q, i) => {
         const userAnswerIndex = userAnswers[i];
-        const shuffledOptions = shuffledOptionsPerQuestion[i];
+        const shuffledOptions = shuffledOptionsPerQuestion[i] || [...q.options];
         const correctAnswerIndex = shuffledOptions.indexOf(q.options[q.correctAnswer]);
         const isCorrect = userAnswerIndex === correctAnswerIndex;
         const isSkipped = userAnswerIndex === "skipped";

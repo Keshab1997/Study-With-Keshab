@@ -279,6 +279,117 @@
                 transform: scale(0.95);
             }
         }
+
+        /* ========================================= */
+        /* Mobile View Premium UI Update             */
+        /* ========================================= */
+        @media (max-width: 480px) {
+            body { padding: 0 !important; }
+            .quiz-page-container {
+                padding: 10px 10px 90px 10px !important;
+                height: 100dvh;
+            }
+
+            .quiz-header {
+                padding: 12px 15px !important;
+                border-radius: 16px !important;
+                margin-bottom: 12px !important;
+                display: grid !important;
+                grid-template-columns: 1fr auto;
+                align-items: center;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+            }
+            .score-board {
+                justify-content: flex-start !important;
+                gap: 8px !important;
+            }
+            .score-board span {
+                font-size: 0.85rem !important;
+                padding: 6px 10px !important;
+                border-radius: 8px !important;
+                background: rgba(0,0,0,0.04) !important;
+            }
+            body.dark-mode .score-board span { background: rgba(255,255,255,0.08) !important; }
+
+            .mode-toggle-btn {
+                position: static !important;
+                width: 36px !important;
+                height: 36px !important;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+            }
+
+            .progress-bar-container {
+                grid-column: 1 / -1;
+                margin-top: 12px !important;
+                height: 6px !important;
+                border-radius: 10px !important;
+            }
+
+            #quiz-container {
+                padding: 20px 15px !important;
+                border-radius: 20px !important;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.06) !important;
+                justify-content: flex-start;
+            }
+
+            .flip-in > div:first-child h2 {
+                font-size: 1.15rem !important;
+                line-height: 1.4 !important;
+                margin-bottom: 20px !important;
+            }
+
+            .options-grid { gap: 12px !important; }
+            .option-btn {
+                min-height: 55px !important;
+                padding: 12px 15px !important;
+                border-radius: 14px !important;
+                border-width: 2px !important;
+            }
+            .option-prefix {
+                width: 32px !important;
+                height: 32px !important;
+                font-size: 0.95rem !important;
+                margin-right: 12px !important;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
+            }
+
+            .mobile-nav-buttons {
+                bottom: 20px !important;
+                padding: 8px 12px !important;
+                border-radius: 100px !important;
+                width: 92% !important;
+                max-width: 380px;
+                justify-content: space-between !important;
+                gap: 10px !important;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+                background: rgba(255, 255, 255, 0.98) !important;
+                border: 1px solid rgba(0,0,0,0.05);
+            }
+            body.dark-mode .mobile-nav-buttons {
+                background: rgba(31, 41, 55, 0.98) !important;
+                border-color: rgba(255,255,255,0.05);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
+            }
+
+            .mobile-nav-btn {
+                width: 48px !important;
+                height: 48px !important;
+                font-size: 1.2rem !important;
+            }
+
+            .mobile-nav-btn.skip-btn {
+                flex: 1;
+                border-radius: 25px !important;
+                font-size: 1rem !important;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+            .mobile-nav-btn.skip-btn::after {
+                content: " স্কিপ";
+                font-family: 'Hind Siliguri', sans-serif;
+                margin-left: 5px;
+            }
+        }
     </style>
 </head>
 <body class="day-mode">
