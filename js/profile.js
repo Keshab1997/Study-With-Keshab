@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         tbody.innerHTML = '';
         activities.forEach(a => {
-            const dateStr = a.date ? a.date.toDate().toLocaleDateString('bn-BD', {
+            const dateStr = a.date ? a.date.toDate().toLocaleDateString('en-GB', {
                 day: 'numeric', month: 'short', year: 'numeric'
             }) : '—';
             const tr = document.createElement('tr');
