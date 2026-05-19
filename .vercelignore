@@ -1,0 +1,25 @@
+# Firebase
+.firebase/
+functions/
+firestore.rules
+storage.rules
+.firebaserc
+
+# Node
+node_modules/
+package-lock.json
+.kilo/
+
+# Git
+.git/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+
+# Build
+dist/
+build/
