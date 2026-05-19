@@ -277,6 +277,115 @@ body {
     flex-wrap: wrap;
 }
 
+/* Subject Progress */
+.subject-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.subject-progress-item {
+    background: var(--bg-light);
+    padding: 16px;
+    border-radius: 10px;
+}
+
+.subject-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.subject-name {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.subject-quiz-count {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.progress-bar-bg {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), #6ab0ff);
+    border-radius: 4px;
+    transition: width 0.6s ease;
+}
+
+.subject-progress-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+/* Quiz History Table */
+.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.quiz-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.quiz-table th {
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.quiz-table th:first-child {
+    border-radius: 8px 0 0 0;
+}
+
+.quiz-table th:last-child {
+    border-radius: 0 8px 0 0;
+}
+
+.quiz-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.quiz-table tr:hover td {
+    background: #f0f6ff;
+}
+
+.quiz-table tr:nth-child(even) td {
+    background: #fafbfc;
+}
+
+.quiz-table tr:nth-child(even):hover td {
+    background: #f0f6ff;
+}
+
+/* Account Settings */
+.account-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.account-actions .btn {
+    min-width: 200px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .profile-header {

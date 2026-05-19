@@ -24,6 +24,7 @@
   <body>
     <main>
       <div class="profile-container">
+        <!-- Profile Header -->
         <div class="profile-header">
           <div class="profile-avatar">
             <img id="profile-pic" src="images/default-avatar.png" alt="Profile" />
@@ -38,6 +39,7 @@
           </div>
         </div>
 
+        <!-- Stats Grid -->
         <div class="profile-stats">
           <div class="stat-card">
             <i class="fas fa-check-circle"></i>
@@ -50,6 +52,21 @@
             <p>মোট স্কোর</p>
           </div>
           <div class="stat-card">
+            <i class="fas fa-bullseye"></i>
+            <h3 id="avg-accuracy">0%</h3>
+            <p>সঠিকতার হার</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-fire"></i>
+            <h3 id="study-streak">0</h3>
+            <p>দিনের ধারাবাহিকতা</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-star"></i>
+            <h3 id="highest-score">0</h3>
+            <p>সর্বোচ্চ স্কোর</p>
+          </div>
+          <div class="stat-card">
             <i class="fas fa-calendar-alt"></i>
             <h3 id="member-since">0</h3>
             <p>সদস্য হয়েছেন</p>
@@ -57,6 +74,7 @@
         </div>
 
         <div class="profile-details">
+          <!-- Personal Info -->
           <div class="detail-section">
             <h2><i class="fas fa-user"></i> ব্যক্তিগত তথ্য</h2>
             <div class="detail-item">
@@ -88,14 +106,50 @@
             </div>
           </div>
 
+          <!-- Subject Progress -->
           <div class="detail-section">
-            <h2><i class="fas fa-history"></i> সাম্প্রতিক কার্যক্রম</h2>
-            <div id="recent-activity" class="activity-list">
-              <p>কোনো কার্যক্রম নেই</p>
+            <h2><i class="fas fa-book-open"></i> বিষয়ভিত্তিক অগ্রগতি</h2>
+            <div id="subject-progress" class="subject-grid">
+              <p>লোড হচ্ছে...</p>
+            </div>
+          </div>
+
+          <!-- Quiz History -->
+          <div class="detail-section">
+            <h2><i class="fas fa-history"></i> সব কুইজের ইতিহাস</h2>
+            <div class="table-wrapper">
+              <table class="quiz-table" id="quiz-history-table">
+                <thead>
+                  <tr>
+                    <th>বিষয়</th>
+                    <th>কুইজ</th>
+                    <th>স্কোর</th>
+                    <th>সঠিক</th>
+                    <th>তারিখ</th>
+                  </tr>
+                </thead>
+                <tbody id="quiz-history-body">
+                  <tr><td colspan="5">কোনো কুইজ দেওয়া হয়নি</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Account Settings -->
+          <div class="detail-section">
+            <h2><i class="fas fa-cog"></i> অ্যাকাউন্ট সেটিংস</h2>
+            <div class="account-actions">
+              <button id="change-password-btn" class="btn btn-primary">
+                <i class="fas fa-key"></i> পাসওয়ার্ড পরিবর্তন
+              </button>
+              <button id="delete-account-btn" class="btn btn-danger">
+                <i class="fas fa-trash"></i> অ্যাকাউন্ট মুছুন
+              </button>
             </div>
           </div>
         </div>
 
+        <!-- Footer Buttons -->
         <div class="profile-footer">
           <a href="index.html" class="btn btn-secondary">
             <i class="fas fa-home"></i> হোম পেজে ফিরে যান
