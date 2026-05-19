@@ -187,11 +187,19 @@
       // Google Signup
       const googleSignupBtn = document.getElementById("google-signup-btn");
       if (googleSignupBtn) {
+        const ADMIN_EMAIL = "keshabsarkar2018@gmail.com";
+
         googleSignupBtn.addEventListener("click", () => {
           const auth = firebase.auth();
           const db = firebase.firestore();
+
+          // Android Native Bridge Check
+          if (window.AndroidAuth && window.AndroidAuth.signInWithGoogle) {
+            window.AndroidAuth.signInWithGoogle();
+            return;
+          }
+
           const provider = new firebase.auth.GoogleAuthProvider();
-          const ADMIN_EMAIL = "keshabsarkar2018@gmail.com";
 
           auth.signInWithPopup(provider).then(result => {
             const user = result.user;
@@ -222,6 +230,41 @@
           });
         });
       }
+
+      // Android Native থেকে Google Sign-Up result রিসিভ করার ফাংশন
+      window.signUpWithGoogleCredential = function(idToken) {
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const credential = firebase.auth.GoogleAuthProvider.credential(idToken);
+
+        auth.signInWithCredential(credential).then(result => {
+          const user = result.user;
+          const userRef = db.collection('users').doc(user.uid);
+
+          return userRef.get().then(doc => {
+            const userData = {
+              uid: user.uid,
+              displayName: user.displayName,
+              email: user.email,
+              photoURL: user.photoURL,
+              lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+            };
+
+            if (!doc.exists) {
+              userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'student';
+              userData.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+            }
+
+            return userRef.set(userData, { merge: true });
+          });
+        }).then(() => {
+          window.location.href = 'index.html';
+        }).catch(error => {
+          console.error("Google Sign-Up error:", error);
+          errorMessage.textContent = "সাইন আপ করার সময় একটি সমস্যা হয়েছে।";
+          playErrorSound();
+        });
+      };
     </script>
 
     <!-- PWA এর জন্য Service Worker রেজিস্ট্রেশন -->
