@@ -482,17 +482,48 @@ body {
         min-width: unset;
     }
 
+    .table-wrapper {
+        margin: 0 -16px;
+        padding: 0 16px;
+        width: auto;
+    }
+
     .quiz-table {
         font-size: 12px;
+        min-width: 500px;
     }
 
     .quiz-table th,
     .quiz-table td {
         padding: 8px 10px;
+        white-space: nowrap;
+    }
+
+    .quiz-table th:nth-child(2),
+    .quiz-table td:nth-child(2) {
+        white-space: normal;
+        word-break: break-word;
+        max-width: 120px;
     }
 
     .subject-progress-item {
         padding: 12px;
+    }
+
+    .subject-progress-header {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .subject-name {
+        font-size: 14px;
+        word-break: break-word;
+    }
+
+    .subject-progress-footer {
+        flex-wrap: wrap;
+        gap: 4px;
+        font-size: 12px;
     }
 
     .profile-footer {
@@ -523,13 +554,27 @@ body {
         font-size: 11px;
     }
 
+    .table-wrapper {
+        margin: 0 -12px;
+        padding: 0 12px;
+    }
+
     .quiz-table {
         font-size: 11px;
+        min-width: 420px;
     }
 
     .quiz-table th,
     .quiz-table td {
-        padding: 6px 8px;
+        padding: 6px 6px;
+    }
+
+    .subject-name {
+        font-size: 13px;
+    }
+
+    .subject-quiz-count {
+        font-size: 11px;
     }
 
     .profile-header {
