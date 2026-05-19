@@ -28,6 +28,7 @@
 
     <!-- মূল CSS ফাইল -->
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/navigation.css" />
 
     <style>
       /* সূচিপত্র পেজের জন্য নির্দিষ্ট থিম */
@@ -122,120 +123,11 @@
         color: #3498db;
       }
 
-      /* ভিউ টগল বাটনের জন্য CSS */
-      .header-action-btn {
-        background: none;
-        border: none;
-        font-size: 1.3rem;
-        cursor: pointer;
-        padding: 5px 8px;
-        margin-left: 8px;
-        transition: color 0.3s ease;
-      }
-      .mobile-navigation-menu .toggle-view-btn i {
-        margin-right: 12px;
-        width: 20px;
-      }
+
     </style>
   </head>
   <body>
-    <header class="site-header">
-      <div class="header-grid container">
-        <a href="index.html" class="logo-link">
-          <img
-            src="images/logo.jpg"
-            alt="Study With Keshab Logo"
-            class="logo-img"
-          />
-        </a>
 
-        <nav class="primary-navigation">
-          <ul>
-            <li>
-              <a href="index.html"><i class="fas fa-home"></i> Home</a>
-            </li>
-            <li>
-              <a href="index.html#subjects"
-                ><i class="fas fa-book-open"></i> Subjects</a
-              >
-            </li>
-            <li>
-              <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
-            </li>
-            <li>
-              <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-            </li>
-            <li class="auth-link" id="guest-link-desktop">
-              <a href="login.html"
-                ><i class="fas fa-sign-in-alt"></i> Login / Sign up</a
-              >
-            </li>
-            <li
-              class="auth-link"
-              id="logout-link-desktop"
-              style="display: none"
-            >
-              <a href="#" id="logout-btn-desktop"
-                ><i class="fas fa-sign-out-alt"></i> Logout</a
-              >
-            </li>
-          </ul>
-        </nav>
-
-        <div class="header-actions">
-          <span id="user-name-display" class="nav-user-name"></span>
-          <button class="toggle-view-btn header-action-btn" title="ডেস্কটপ মোড">
-            <i class="fas fa-desktop"></i>
-          </button>
-          <button
-            class="mobile-nav-toggle"
-            aria-controls="mobile-navigation-menu"
-            aria-expanded="false"
-          >
-            <span class="sr-only">Menu</span>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <nav
-      id="mobile-navigation-menu"
-      class="mobile-navigation-menu"
-      data-visible="false"
-    >
-      <ul>
-        <li>
-          <a href="index.html"><i class="fas fa-home"></i> Home</a>
-        </li>
-        <li>
-          <a href="index.html#subjects"
-            ><i class="fas fa-book-open"></i> Subjects</a
-          >
-        </li>
-        <li>
-          <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
-        </li>
-        <li>
-          <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-        </li>
-        <li class="auth-link" id="guest-link-mobile">
-          <a href="login.html"
-            ><i class="fas fa-sign-in-alt"></i> Login / Sign up</a
-          >
-        </li>
-        <li class="auth-link" id="logout-link-mobile" style="display: none">
-          <a href="#" id="logout-btn-mobile"
-            ><i class="fas fa-sign-out-alt"></i> Logout</a
-          >
-        </li>
-        <li>
-          <a href="#" class="toggle-view-btn">
-            <i class="fas fa-desktop"></i>
-            <span class="toggle-view-text">ডেস্কটপ মোড</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
 
     <main class="toc-page">
       <div class="container">
@@ -920,77 +812,37 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="js/firebase-config.js"></script>
 
-    <!-- সাধারণ এবং অথেন্টিকেশন স্ক্রিপ্ট -->
-    <script src="js/script.js"></script>
+    <!-- Navigation JS (হেডার ও হ্যামবার্গার মেনু জেনারেট করে) -->
+    <script>
+      window.__MANUAL_ROOT_PATH__ = '';
+    </script>
+    <script src="js/navigation.js"></script>
+
+    <!-- অথেন্টিকেশন স্ক্রিপ্ট -->
+    <script src="js/auth.js"></script>
 
     <!-- এই পেজের জন্য নির্দিষ্ট স্ক্রিপ্ট -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // --- 1. অথেন্টিকেশন এবং পেজ প্রোটেকশন লজিক ---
         const auth = firebase.auth();
-        const guestLinksDesktop = document.getElementById("guest-link-desktop");
-        const logoutLinkDesktop = document.getElementById(
-          "logout-link-desktop"
-        );
-        const guestLinksMobile = document.getElementById("guest-link-mobile");
-        const logoutLinkMobile = document.getElementById("logout-link-mobile");
-        const userNameDisplay = document.getElementById("user-name-display");
 
         auth.onAuthStateChanged((user) => {
           if (!user) {
-            console.log("User not logged in. Redirecting...");
             window.location.href = "login.html";
             return;
           }
-          console.log("User is logged in:", user.displayName || user.email);
-          if (guestLinksDesktop) guestLinksDesktop.style.display = "none";
-          if (logoutLinkDesktop) logoutLinkDesktop.style.display = "list-item";
-          if (guestLinksMobile) guestLinksMobile.style.display = "none";
-          if (logoutLinkMobile) logoutLinkMobile.style.display = "list-item";
-          if (userNameDisplay) {
-            userNameDisplay.textContent = user.displayName
-              ? user.displayName.split(" ")[0]
-              : "User";
-          }
         });
 
-        // লগআউট ফাংশনালিটি
-        const setupLogout = (buttonId) => {
-          const logoutBtn = document.getElementById(buttonId);
-          if (logoutBtn) {
-            logoutBtn.addEventListener("click", (e) => {
-              e.preventDefault();
-              auth
-                .signOut()
-                .then(() => {
-                  console.log("User signed out successfully.");
-                  window.location.href = "login.html";
-                })
-                .catch((error) => {
-                  console.error("Sign out error", error);
-                });
-            });
-          }
-        };
-        setupLogout("logout-btn-desktop");
-        setupLogout("logout-btn-mobile");
-
-        // --- 2. ডেস্কটপ/মোবাইল মোড টগল লজিক ---
+        // ডেস্কটপ/মোবাইল মোড টগল লজিক
         const toggleBtns = document.querySelectorAll(".toggle-view-btn");
         const viewportMeta = document.getElementById("viewportMeta");
         let isDesktopView = localStorage.getItem("viewMode") === "desktop";
 
         function applyViewMode() {
-          const desktopBtn = document.querySelector(
-            ".header-action-btn.toggle-view-btn"
-          );
-          const mobileMenuText = document.querySelector(".toggle-view-text");
           const allIcons = document.querySelectorAll(".toggle-view-btn .fas");
 
           if (isDesktopView) {
             viewportMeta.setAttribute("content", "width=1280");
-            if (desktopBtn) desktopBtn.title = "মোবাইল মোড";
-            if (mobileMenuText) mobileMenuText.textContent = "মোবাইল মোড";
             allIcons.forEach((icon) => {
               icon.classList.remove("fa-desktop");
               icon.classList.add("fa-mobile-alt");
@@ -998,10 +850,8 @@
           } else {
             viewportMeta.setAttribute(
               "content",
-              "width=device-width, initial-scale=1.0"
+              "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
             );
-            if (desktopBtn) desktopBtn.title = "ডেস্কটপ মোড";
-            if (mobileMenuText) mobileMenuText.textContent = "ডেস্কটপ মোড";
             allIcons.forEach((icon) => {
               icon.classList.remove("fa-mobile-alt");
               icon.classList.add("fa-desktop");
