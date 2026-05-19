@@ -387,15 +387,80 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .profile-header {
-        flex-direction: column;
-        text-align: center;
-        padding: 30px 20px;
+@media (max-width: 1024px) {
+    .profile-container {
+        margin: 70px auto 30px;
+        padding: 16px;
     }
 
     .profile-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-card {
+        padding: 20px;
+    }
+
+    .stat-card i {
+        font-size: 32px;
+    }
+
+    .stat-card h3 {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        margin: 60px auto 20px;
+        padding: 12px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 16px;
+        gap: 20px;
+    }
+
+    .profile-avatar img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .profile-info h1 {
+        font-size: 22px;
+    }
+
+    .profile-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .stat-card i {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .stat-card h3 {
+        font-size: 22px;
+    }
+
+    .stat-card p {
+        font-size: 13px;
+    }
+
+    .detail-section {
+        padding: 20px 16px;
+    }
+
+    .detail-section h2 {
+        font-size: 18px;
+        margin-bottom: 18px;
     }
 
     .profile-actions {
@@ -405,9 +470,82 @@ body {
     .btn {
         width: 100%;
         justify-content: center;
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .account-actions {
+        flex-direction: column;
+    }
+
+    .account-actions .btn {
+        min-width: unset;
+    }
+
+    .quiz-table {
+        font-size: 12px;
+    }
+
+    .quiz-table th,
+    .quiz-table td {
+        padding: 8px 10px;
+    }
+
+    .subject-progress-item {
+        padding: 12px;
     }
 
     .profile-footer {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .stat-card {
+        padding: 12px 8px;
+    }
+
+    .stat-card i {
+        font-size: 22px;
+        margin-bottom: 6px;
+    }
+
+    .stat-card h3 {
+        font-size: 18px;
+    }
+
+    .stat-card p {
+        font-size: 11px;
+    }
+
+    .quiz-table {
+        font-size: 11px;
+    }
+
+    .quiz-table th,
+    .quiz-table td {
+        padding: 6px 8px;
+    }
+
+    .profile-header {
+        padding: 20px 12px;
+    }
+
+    .profile-avatar img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .profile-info h1 {
+        font-size: 18px;
+    }
+
+    .detail-section {
+        padding: 16px 12px;
     }
 }
