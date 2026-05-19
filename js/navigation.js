@@ -19,6 +19,7 @@ function loadNavigation() {
           <a href="${rootPath}about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a>
           <a href="${rootPath}contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
           <a href="${rootPath}index.html#cbt-exam-section" class="nav-link"><i class="fas fa-laptop-code"></i> CBT Exam</a>
+          <a href="${rootPath}ai-teacher.html" class="nav-link"><i class="fas fa-chalkboard-teacher"></i> AI Teacher</a>
           <a href="${rootPath}profile.html" id="desktop-profile" class="nav-link" style="display:none"><i class="fas fa-user"></i> Profile</a>
           <a href="${rootPath}admin.html" id="desktop-admin" class="nav-link" style="display:none"><i class="fas fa-user-shield"></i> Admin</a>
         </nav>
@@ -56,6 +57,7 @@ function loadNavigation() {
         <a href="${rootPath}about.html" class="mobile-link"><i class="fas fa-info-circle"></i> About</a>
         <a href="${rootPath}contact.html" class="mobile-link"><i class="fas fa-envelope"></i> Contact</a>
         <a href="${rootPath}index.html#cbt-exam-section" class="mobile-link"><i class="fas fa-laptop-code"></i> CBT Exam</a>
+        <a href="${rootPath}ai-teacher.html" class="mobile-link"><i class="fas fa-chalkboard-teacher"></i> AI Teacher</a>
         <a href="${rootPath}login.html" id="mobile-login" class="mobile-link"><i class="fas fa-sign-in-alt"></i> Login</a>
         <a href="${rootPath}profile.html" id="mobile-profile" class="mobile-link" style="display:none"><i class="fas fa-user"></i> Profile</a>
         <a href="${rootPath}admin.html" id="mobile-admin" class="mobile-link" style="display:none"><i class="fas fa-user-shield"></i> Admin</a>

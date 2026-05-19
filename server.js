@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const API_KEY = process.env.OPENROUTER_API_KEY || '';
+const CHATANYWHERE_API_KEY = process.env.CHATANYWHERE_API_KEY || 'sk-Nj9BwUPvlnKkPGct1XjWYO2x9Xe4Uch9q23iUYSQDatmfgPa';
 const MODELS = [
   'meta-llama/llama-3.3-70b-instruct:free',
   'qwen/qwen3-next-80b-a3b-instruct:free',
@@ -97,6 +98,38 @@ const server = http.createServer((req, res) => {
         apiReq.end();
       }
       tryModel(0);
+    });
+    return;
+  }
+
+  // AI Teacher endpoint
+  if (req.method === 'POST' && req.url === '/ai-teacher') {
+    let body = '';
+    req.on('data', d => body += d);
+    req.on('end', () => {
+      const { messages } = JSON.parse(body);
+      const payload = JSON.stringify({ model: 'gpt-4o-mini', messages, temperature: 0.7, max_tokens: 2000 });
+      const options = {
+        hostname: 'api.chatanywhere.tech',
+        path: '/v1/chat/completions',
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${CHATANYWHERE_API_KEY}`,
+          'Content-Type': 'application/json',
+          'Content-Length': Buffer.byteLength(payload)
+        }
+      };
+      const apiReq = https.request(options, apiRes => {
+        let data = '';
+        apiRes.on('data', d => data += d);
+        apiRes.on('end', () => {
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(data);
+        });
+      });
+      apiReq.on('error', e => { res.writeHead(500); res.end(JSON.stringify({ error: e.message })); });
+      apiReq.write(payload);
+      apiReq.end();
     });
     return;
   }

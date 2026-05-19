@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>AI শিক্ষক - Study With Keshab</title>
+  <meta name="description" content="Study With Keshab - AI শিক্ষক: যেকোনো প্রশ্নের সহজ ভাষায় ধাপে ধাপে উত্তর" />
+  <meta property="og:title" content="AI শিক্ষক - Study With Keshab" />
+  <meta property="og:description" content="AI শিক্ষক: যেকোনো প্রশ্নের সহজ ভাষায় ধাপে ধাপে উত্তর" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/icons/icon-192x192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/ai-teacher.css" />
+</head>
+<body>
+  <div id="navigation-placeholder"></div>
+
+  <main class="ai-teacher-page">
+    <div class="ai-teacher-container">
+      <!-- HEADER -->
+      <header class="ai-teacher-header">
+        <div class="ai-teacher-header-icon">
+          <i class="fas fa-chalkboard-teacher"></i>
+        </div>
+        <div>
+          <h2>AI শিক্ষক</h2>
+          <p class="subtitle">যেকোনো প্রশ্নের সহজ ও ধাপে ধাপে উত্তর</p>
+        </div>
+        <div class="subject-selector">
+          <select id="ai-teacher-subject" class="subject-select">
+            <option value="general">সাধারণ</option>
+            <option value="physics">পদার্থবিদ্যা</option>
+            <option value="chemistry">রসায়ন</option>
+            <option value="math">গণিত</option>
+            <option value="biology">জীববিজ্ঞান</option>
+            <option value="history">ইতিহাস</option>
+            <option value="geography">ভূগোল</option>
+            <option value="gk">সাধারণ জ্ঞান</option>
+          </select>
+        </div>
+        <div class="ai-teacher-header-actions">
+          <button id="ai-teacher-new-chat" class="header-btn" title="নতুন চ্যাট">
+            <i class="fas fa-plus"></i>
+            <span class="tooltip">নতুন চ্যাট</span>
+          </button>
+          <button id="ai-teacher-history" class="header-btn" title="ইতিহাস">
+            <i class="fas fa-history"></i>
+            <span class="tooltip">চ্যাট ইতিহাস</span>
+          </button>
+          <button id="ai-teacher-export" class="header-btn" title="এক্সপোর্ট">
+            <i class="fas fa-download"></i>
+            <span class="tooltip">চ্যাট ডাউনলোড</span>
+          </button>
+          <button id="ai-teacher-theme" class="header-btn" title="ডার্ক মোড">
+            <i class="fas fa-moon"></i>
+            <span class="tooltip">থিম পরিবর্তন</span>
+          </button>
+          <button id="ai-teacher-clear" class="header-btn" title="মুছুন">
+            <i class="fas fa-trash-alt"></i>
+            <span class="tooltip">কথোপকথন মুছুন</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- MESSAGES -->
+      <div id="ai-teacher-messages" class="ai-teacher-messages"></div>
+
+      <!-- INPUT -->
+      <div class="ai-teacher-input-area">
+        <form id="ai-teacher-form" autocomplete="off">
+          <div class="input-wrapper">
+            <button type="button" id="ai-teacher-voice" class="voice-btn" title="ভয়েস ইনপুট">
+              <i class="fas fa-microphone"></i>
+            </button>
+            <textarea
+              id="ai-teacher-input"
+              placeholder="আপনার প্রশ্ন লিখুন... (Ctrl+K)"
+              rows="1"
+            ></textarea>
+            <span id="char-count" class="char-count">0/2000</span>
+          </div>
+          <button type="submit" id="ai-teacher-send" disabled>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+        <div class="input-footer">
+          <span class="input-status"><i class="fas fa-keyboard"></i> Enter পাঠান · Shift+Enter নতুন লাইন · Ctrl+K ফোকাস</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- HISTORY PANEL -->
+  <div id="history-overlay" class="history-overlay"></div>
+  <div id="history-panel" class="history-panel">
+    <div class="history-header">
+      <span><i class="fas fa-history"></i> চ্যাট ইতিহাস</span>
+      <button id="history-close" class="history-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="history-list" class="history-list"></div>
+  </div>
+
+  <script src="js/ai-teacher.js"></script>
+</body>
+</html>
