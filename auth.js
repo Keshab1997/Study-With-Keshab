@@ -131,12 +131,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const db = firebase.firestore();
             const provider = new firebase.auth.GoogleAuthProvider();
             
-            // Android App এর জন্য signInWithRedirect ব্যবহার করুন
-            const isAndroidApp = /wv/.test(navigator.userAgent.toLowerCase());
+            // WebView-এ Google OAuth কাজ করে না (Google policy - disallowed_useragent)
+            const ua = navigator.userAgent.toLowerCase();
+            const isWebView = /wv/.test(ua) || (/android/.test(ua) && /version\/\d/.test(ua));
             
-            if (isAndroidApp) {
-                // Android WebView-এর জন্য Redirect মেথড
-                auth.signInWithRedirect(provider);
+            if (isWebView) {
+                alert('Google দিয়ে লগইন করতে Chrome browser ব্যবহার করুন।\n\nঅ্যাপের মেনু (⋮) থেকে "Open in Chrome" বা "Browser-এ খুলুন" সিলেক্ট করুন।');
+                return;
             } else {
                 // Browser-এর জন্য Popup মেথড
                 auth.signInWithPopup(provider).then(result => {
@@ -169,35 +170,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Redirect রিজাল্ট হ্যান্ডল করা (অ্যান্ড্রয়েড অ্যাপের জন্য)
-    firebase.auth().getRedirectResult().then(result => {
-        if (result.user) {
-            const user = result.user;
-            const db = firebase.firestore();
-            const userRef = db.collection('users').doc(user.uid);
-            const ADMIN_EMAIL = "keshabsarkar2018@gmail.com";
-            
-            return userRef.get().then(doc => {
-                const userData = {
-                    uid: user.uid,
-                    displayName: user.displayName,
-                    email: user.email,
-                    photoURL: user.photoURL,
-                    lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
-                };
-                
-                if (!doc.exists) {
-                    userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'student';
-                }
-                
-                return userRef.set(userData, { merge: true });
-            }).then(() => {
-                if(window.showToast) showToast('সফলভাবে লগইন হয়েছে!', 'success');
-                setTimeout(() => window.location.href = 'index.html', 500);
-            });
-        }
-    }).catch(error => {
-        console.error("Redirect রিজাল্ট এরর:", error);
+    // Redirect রিজাল্ট হ্যান্ডল করা (আর প্রয়োজন নেই - WebView-এ redirect কাজ করে না)
+    firebase.auth().getRedirectResult().catch(error => {
+        // silent - ignore redirect errors
     });
 
     document.body.addEventListener('click', function(e) {
