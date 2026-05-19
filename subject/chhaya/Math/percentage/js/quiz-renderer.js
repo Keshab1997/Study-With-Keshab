@@ -3,30 +3,36 @@ let quizSet = null;
 
 async function loadQuizData() {
     const urlParams = new URLSearchParams(window.location.search);
-    const setName = urlParams.get('set') || 'Qset1'; // ডিফল্ট Qset1
+    const setName = urlParams.get('set') || 'Qset1';
 
     try {
-        const response = await fetch(`../data/${setName}.json`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        // chapter-info.json থেকে chapterID নেওয়া হচ্ছে
+        const [quizRes, chapterRes] = await Promise.all([
+            fetch(`../data/${setName}.json`),
+            fetch(`../data/chapter-info.json`)
+        ]);
+
+        if (!quizRes.ok) throw new Error(`Quiz JSON not found: ${setName}.json`);
+
+        quizSet = await quizRes.json();
+
+        // chapterID inject করা হচ্ছে যাতে save/load একই key ব্যবহার করে
+        if (chapterRes.ok) {
+            const chapterInfo = await chapterRes.json();
+            quizSet.chapterID = chapterInfo.chapterID;
         }
-        quizSet = await response.json();
-        
-        // ডাটা লোড হওয়ার পর quiz_script.js এর initializeApp() কল করা হবে
+
         if (typeof initializeApp === 'function') {
             initializeApp();
-        } else {
-            console.error('initializeApp function not found in quiz_script.js');
         }
     } catch (error) {
         console.error("Quiz data load error:", error);
-        document.getElementById("quiz-container").innerHTML = 
-            `<div class="text-center text-red-600 font-bold">
+        document.getElementById("quiz-container").innerHTML =
+            `<div style="text-align:center;color:red;font-weight:bold;padding:20px;">
                 <p>কুইজ ডাটা পাওয়া যায়নি।</p>
-                <p class="text-sm mt-2">ফাইল: ${setName}.json</p>
+                <p style="font-size:0.85rem;margin-top:8px;">ফাইল: ${setName}.json</p>
             </div>`;
     }
 }
 
-// DOMContentLoaded এ loadQuizData কল করুন
 document.addEventListener("DOMContentLoaded", loadQuizData);

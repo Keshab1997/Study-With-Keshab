@@ -173,6 +173,34 @@
   }
   .cycle-btn:hover { background: #11998e; color: white; }
 
+  .load-section {
+    padding: 16px 30px;
+    background: #fffde7;
+    border-bottom: 2px solid #fff176;
+  }
+  .load-section textarea {
+    height: 90px;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    background: #fffff0;
+    resize: vertical;
+  }
+  .btn-load {
+    margin-top: 8px;
+    padding: 9px 20px;
+    background: linear-gradient(135deg, #f9a825, #f57f17);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .btn-load:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .load-status { font-size: 0.8rem; margin-top: 6px; min-height: 18px; }
+
   @media (max-width: 600px) {
     .grid-2 { grid-template-columns: 1fr; }
     .row-class { grid-template-columns: 50px 1fr 28px; }
@@ -187,6 +215,17 @@
   <div class="header">
     <h1>📋 Chapter Info JSON Converter</h1>
     <p>chapter-info.json তৈরি করুন — Google Drive link সরাসরি paste করুন</p>
+  </div>
+
+  <!-- Load Existing JSON -->
+  <div class="load-section">
+    <div class="section-title" style="margin-bottom:8px;">⚡ Load Existing JSON <span style="font-size:0.75rem;font-weight:400;color:#888;text-transform:none;">(পুরনো JSON paste করলে সব field auto-fill হবে)</span></div>
+    <textarea id="loadInput" placeholder='এখানে chapter-info.json এর content paste করুন...
+{"chapterID": "...", "chapterName": "...", ...}'></textarea>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <button class="btn-load" onclick="loadJSON()">📂 Load & Fill All Fields</button>
+      <span class="load-status" id="loadStatus"></span>
+    </div>
   </div>
 
   <!-- Basic Info -->
@@ -260,6 +299,51 @@
 
 </div>
 <script>
+// ─── Load Existing JSON → fill all fields ────────────────────────────────
+function loadJSON() {
+  const raw = document.getElementById('loadInput').value.trim();
+  const status = document.getElementById('loadStatus');
+  if (!raw) { status.style.color = '#dc3545'; status.textContent = '❌ কিছু paste করুন!'; return; }
+
+  // decode HTML entities (e.g. &quot; → ")
+  const decoded = raw.replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;/g, "'");
+
+  let data;
+  try { data = JSON.parse(decoded); }
+  catch(e) { status.style.color = '#dc3545'; status.textContent = '❌ Invalid JSON!'; return; }
+
+  // Basic fields
+  document.getElementById('chapterID').value   = data.chapterID   || '';
+  document.getElementById('chapterName').value = data.chapterName || '';
+  document.getElementById('description').value = data.description || '';
+  document.getElementById('logoURL').value      = data.logoURL     || '';
+  descEdited = !!data.description;
+
+  // Classes
+  document.getElementById('classList').innerHTML = '';
+  classCounter = 0;
+  (data.classes || []).forEach(c => addClass(c.id, c.title));
+
+  // Quizzes
+  document.getElementById('quizList').innerHTML = '';
+  quizCounter = 0;
+  (data.quizzes || []).forEach(q => addQuiz(q.set, q.title));
+
+  // PDFs
+  document.getElementById('pdfList').innerHTML = '';
+  pdfCounter = 0;
+  (data.pdfs || []).forEach(p => addPDF(p.driveID, p.title));
+
+  status.style.color = '#28a745';
+  const parts = [
+    `${(data.classes||[]).length} class`,
+    `${(data.quizzes||[]).length} quiz`,
+    `${(data.pdfs||[]).length} pdf`,
+  ];
+  status.textContent = `✅ Loaded! (${parts.join(', ')})`;
+  document.getElementById('loadInput').value = '';
+}
+
 // ─── Extract Google Drive file ID ─────────────────────────────────────────
 function extractDriveID(input) {
   input = input.trim();

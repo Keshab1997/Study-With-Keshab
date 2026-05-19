@@ -563,7 +563,7 @@ function showFinalResult() {
 
     if (quizSet.chapterName && quizSet.setName) {
         saveQuizResult(
-            quizSet.chapterName,
+            quizSet.chapterID || quizSet.chapterName,
             quizSet.setName,
             correctCount,
             wrongCount,
@@ -807,7 +807,7 @@ function showReview() {
  * @param {number} wrong - Number of wrong answers.
  * @param {number} totalQuestions - Total questions in the quiz.
  */
-function saveQuizResult(chapterName, setName, score, wrong, totalQuestions) {
+function saveQuizResult(chapterKey, setName, score, wrong, totalQuestions) {
     const user = firebase.auth().currentUser;
     if (!user) {
         console.error("User not logged in, cannot save score.");
@@ -816,11 +816,7 @@ function saveQuizResult(chapterName, setName, score, wrong, totalQuestions) {
 
     const db = firebase.firestore();
     const userDocRef = db.collection("users").doc(user.uid);
-
-    // অধ্যায়ের নাম এবং সেটের নামকে Firestore-এর জন্য নিরাপদ কী-তে রূপান্তর করি
-    const match = chapterName.match(/\(([^)]+)\)/);
-    const chapterKey = match ? match[1].replace(/\s+/g, "-") : chapterName.replace(/\s/g, "_");
-    const setKey = setName.replace(/\s/g, "_"); // "Quiz Set 1" -> "Quiz_Set_1"
+    const setKey = setName.replace(/\s/g, "_");
 
     db.runTransaction((transaction) => {
         return transaction.get(userDocRef).then((doc) => {

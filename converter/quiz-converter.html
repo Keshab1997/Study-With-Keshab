@@ -242,12 +242,15 @@
         <div class="controls">
             <div class="input-group">
                 <label for="chapterName">Chapter Name (অধ্যায়ের নাম):</label>
-                <input type="text" id="chapterName" placeholder="যেমন: সাধারণ বিজ্ঞান (পদার্থবিদ্যা)">
+                <input type="text" id="chapterName" placeholder="যেমন: শতাংশ (Percentage)">
             </div>
-            
             <div class="input-group">
                 <label for="setName">Set Name (সেটের নাম):</label>
-                <input type="text" id="setName" placeholder="যেমন: Quiz Set 01: পদার্থবিদ্যা মৌলিক ধারণা">
+                <input type="text" id="setName" placeholder="যেমন: Quiz Set 02">
+            </div>
+            <div class="input-group" style="max-width:180px;">
+                <label for="fileName">File Name <span style="color:#667eea;font-size:0.85rem;">.json</span></label>
+                <input type="text" id="fileName" placeholder="যেমন: Qset2" style="font-family:monospace;font-weight:700;">
             </div>
         </div>
         
@@ -346,7 +349,13 @@
         
         function parseQuestions(text) {
             const questions = [];
-            const blocks = text.split('==============================').filter(b => b.trim());
+            // প্রশ্ন N দিয়ে split করো, অথবা ====== দিয়ে
+            let blocks;
+            if (/^প্রশ্ন\s+\d+/m.test(text)) {
+                blocks = text.split(/(?=^প্রশ্ন\s+\d+\s*$)/m).filter(b => b.trim());
+            } else {
+                blocks = text.split(/={5,}/).filter(b => b.trim());
+            }
             
             blocks.forEach((block, index) => {
                 const lines = block.trim().split('\n').filter(l => l.trim());
@@ -460,8 +469,9 @@
                 return;
             }
             
+            const fileNameInput = document.getElementById('fileName').value.trim();
             const setName = document.getElementById('setName').value.trim() || 'quiz';
-            const filename = setName.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.json';
+            const filename = (fileNameInput || setName.replace(/[^a-z0-9]/gi, '_').toLowerCase()) + '.json';
             
             const blob = new Blob([output], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
