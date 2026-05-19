@@ -51,12 +51,17 @@
         line-height: 1.6;
       }
       .container {
-        max-width: 900px;
+        max-width: 1400px;
         margin: 0 auto;
         padding: 0 20px;
       }
       .toc-page {
         padding: 4rem 1rem;
+      }
+      @media (min-width: 1200px) {
+        .toc-page {
+          padding: 4rem 2rem;
+        }
       }
       .page-title {
         text-align: center;
@@ -65,13 +70,23 @@
         margin-bottom: 3rem;
         color: var(--text-color);
       }
+      .toc-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      @media (min-width: 900px) {
+        .toc-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
       .toc-section {
         background: var(--bg-white);
         border-radius: 12px;
-        margin-bottom: 2.5rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
         overflow: hidden;
         border: 1px solid var(--border-color);
+        break-inside: avoid;
       }
       .toc-header {
         background-color: var(--header-bg);
@@ -133,6 +148,7 @@
       <div class="container">
         <h1 class="page-title">📖 সূচিপত্র - ছায়া প্রকাশনী</h1>
 
+        <div class="toc-grid">
         <!-- SECTION A: GENERAL SCIENCE -->
         <section class="toc-section">
           <div class="toc-header">
@@ -800,6 +816,7 @@
             </ol>
           </div>
         </section>
+      </div>
       </div>
     </main>
 
