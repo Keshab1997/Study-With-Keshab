@@ -1,124 +1,194 @@
 {
-  "chapterName": "শতাংশ(Percentage)",
+  "chapterName": "শতাংশ (Percentage)",
   "classNumber": "02",
   "sections": [
     {
       "type": "title",
-      "content": "শতাংশ(percentage) - ক্লাস 02"
+      "content": "শতাংশ (Percentage) - ক্লাস 02"
     },
     {
-      "type": "question",
-      "qText": "1. একটি নার্সারিতে 5000 টি চারাগাছ রয়েছে, যার মধ্যে 5% হল গোলাপের এবং 1% হল গাঁদাফুলের চারাগাছ। কতগুলি অন্যান্য চারাগাছ রয়েছে? <ul><li>(A) 4750</li><li>(B) 4700</li><li>(C) 4250</li><li>(D) 4200</li></ul>",
-      "correctAnswer": "B",
-      "explanation": "মোট চারাগাছ = 5000। গোলাপ ও গাঁদাফুলের মোট শতাংশ = (5 + 1)% = 6%। অন্যান্য চারাগাছের শতাংশ = (100 - 6)% = 94%। অন্যান্য চারাগাছের সংখ্যা = 5000-এর 94% = (5000 &times; 94) / 100 = 4700।"
+      "type": "text",
+      "content": "শতকরা (Percentage) অধ্যায়ের পরবর্তী গুরুত্বপূর্ণ সূত্রগুলো নিচে সহজভাবে ব্যাখ্যা এবং উদাহরণের মাধ্যমে দেওয়া হলো। প্রতিটি সূত্রের সাথে একটি করে প্রশ্ন ও তার সমাধান দেওয়া হয়েছে যাতে তুমি অংকের ধরনটা সহজে বুঝতে পারো।"
     },
     {
-      "type": "question",
-      "qText": "2. শ্রেণিকক্ষ X-এ 30 জন ছাত্রের মধ্যে 24 জন প্রথম বিভাগে উত্তীর্ণ হয়। অন্য একটি শ্রেণিকক্ষ Y-এ 35 জন ছাত্রের মধ্যে 28 জন প্রথম বিভাগে উত্তীর্ণ হয়। কোন্ শ্রেণিকক্ষে বেশি শতাংশ ছাত্র প্রথম বিভাগে উত্তীর্ণ হয়েছে? <ul><li>(A) শ্রেণিকক্ষ X-এ</li><li>(B) শ্রেণিকক্ষ Y-এ</li><li>(C) উভয় শ্রেণিকক্ষেই সমান</li><li>(D) কোনোটিই নয়</li></ul>",
-      "correctAnswer": "C",
-      "explanation": "শ্রেণিকক্ষ X-এ পাশের হার = (<span class='fraction'><span class='top'>24</span><span class='bottom'>30</span></span>) &times; 100% = 80%। শ্রেণিকক্ষ Y-এ পাশের হার = (<span class='fraction'><span class='top'>28</span><span class='bottom'>35</span></span>) &times; 100% = (<span class='fraction'><span class='top'>4</span><span class='bottom'>5</span></span>) &times; 100% = 80%। উভয় শ্রেণিকক্ষেই পাশের হার সমান।"
+      "type": "title",
+      "content": "<strong>9. পরপর দুইবার পরিবর্তনের আরও কিছু সূত্র (Successive Change)</strong>"
     },
     {
-      "type": "question",
-      "qText": "3. কোনো একটি সংখ্যার 50% থেকে 50 বিয়োগ করলে 50 পাওয়া যায়। সংখ্যাটি হল— <ul><li>(A) 150</li><li>(B) 225</li><li>(C) 325</li><li>(D) 200</li></ul>",
-      "correctAnswer": "D",
-      "explanation": "ধরি সংখ্যাটি x। শর্তানুসারে, x-এর 50% - 50 = 50 বা, 0.5x = 100 বা, x = 100 / 0.5 = 200।"
+      "type": "text",
+      "content": "<strong>সূত্র (c):</strong> প্রথমে a% বৃদ্ধি ও পরে b% বৃদ্ধি পেলে, মোট বৃদ্ধি = {(a + b) + <span class='fraction'><span class='top'>ab</span><span class='bottom'>100</span></span>}%"
     },
     {
-      "type": "question",
-      "qText": "4. 25% এর 25% = ? <ul><li>(A) 6.25</li><li>(B) 0.625</li><li>(C) 0.0625</li><li>(D) 0.00625</li></ul>",
-      "correctAnswer": "C",
-      "explanation": "25% এর 25% = (<span class='fraction'><span class='top'>25</span><span class='bottom'>100</span></span>) &times; (<span class='fraction'><span class='top'>25</span><span class='bottom'>100</span></span>) = 0.25 &times; 0.25 = 0.0625।"
+      "type": "text",
+      "content": "<strong>প্রশ্ন:</strong> একটি জিনিসের দাম প্রথমে 10% বাড়ানো হলো এবং পরে আরও 20% বাড়ানো হলো। মোটের ওপর কত শতাংশ দাম বাড়ল?"
     },
     {
-      "type": "question",
-      "qText": "5. (1250 এর 0.07%) - (650 এর 0.02%) = ? <ul><li>(A) 0.545</li><li>(B) 0.615</li><li>(C) 0.625</li><li>(D) 0.745</li></ul>",
-      "correctAnswer": "D",
-      "explanation": "(1250 &times; 0.07 / 100) - (650 &times; 0.02 / 100) = 0.875 - 0.13 = 0.745।"
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> এখানে a = 10, b = 20।"
     },
     {
-      "type": "question",
-      "qText": "6. <span class='fraction'><span class='top'>3</span><span class='bottom'>4</span></span> -কে শতাংশে প্রকাশ করুন। <ul><li>(A) 0.75%</li><li>(B) 7.5%</li><li>(C) 60%</li><li>(D) 75%</li></ul>",
-      "correctAnswer": "D",
-      "explanation": "<span class='fraction'><span class='top'>3</span><span class='bottom'>4</span></span> -কে শতাংশে প্রকাশ করতে হলে 100 দিয়ে গুণ করতে হয়। (<span class='fraction'><span class='top'>3</span><span class='bottom'>4</span></span>) &times; 100% = 3 &times; 25% = 75%।"
+      "type": "text",
+      "content": "মোট বৃদ্ধি = {(10 + 20) + <span class='fraction'><span class='top'>10 &times; 20</span><span class='bottom'>100</span></span>} = 30 + 2 = 32%।"
     },
     {
-      "type": "question",
-      "qText": "7. 15 এর 150% + 75 এর 75% = ? <ul><li>(A) 75.75</li><li>(B) 78.75</li><li>(C) 135</li><li>(D) 281.25</li></ul>",
-      "correctAnswer": "B",
-      "explanation": "(15 &times; 150 / 100) + (75 &times; 75 / 100) = 22.5 + 56.25 = 78.75।"
+      "type": "text",
+      "content": "<strong>সূত্র (d):</strong> প্রথমে a% হ্রাস ও পরে b% হ্রাস পেলে, মোট হ্রাস = {(a + b) - <span class='fraction'><span class='top'>ab</span><span class='bottom'>100</span></span>}%"
     },
     {
-      "type": "question",
-      "qText": "8. ? এর 30% = 180 <ul><li>(A) 60</li><li>(B) 600</li><li>(C) 960</li><li>(D) 9000</li></ul>",
-      "correctAnswer": "B",
-      "explanation": "ধরি সংখ্যাটি x। x &times; <span class='fraction'><span class='top'>30</span><span class='bottom'>100</span></span> = 180 বা, x = (180 &times; 100) / 30 = 6 &times; 100 = 600।"
+      "type": "text",
+      "content": "<strong>প্রশ্ন:</strong> একটি জিনিসের দাম প্রথমে 10% কমানো হলো এবং পরে আরও 20% কমানো হলো। মোটের ওপর কত শতাংশ দাম কমল?"
     },
     {
-      "type": "question",
-      "qText": "9. 34 এর 250% এর 50% এর 80% = ? <ul><li>(A) 38</li><li>(B) 40</li><li>(C) 42.5</li><li>(D) কোনোটিই নয়</li></ul>",
-      "correctAnswer": "D",
-      "explanation": "34 &times; (<span class='fraction'><span class='top'>250</span><span class='bottom'>100</span></span>) &times; (<span class='fraction'><span class='top'>50</span><span class='bottom'>100</span></span>) &times; (<span class='fraction'><span class='top'>80</span><span class='bottom'>100</span></span>) = 34 &times; 2.5 &times; 0.5 &times; 0.8 = 34 &times; 1 = 34। যেহেতু 34 বিকল্পগুলোর মধ্যে নেই, তাই সঠিক উত্তর 'কোনোটিই নয়'।"
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> এখানে a = 10, b = 20।"
     },
     {
-      "type": "question",
-      "qText": "10. 7.2 কেজির কত শতাংশ হল 18 গ্রাম? <ul><li>(A) 0.0025</li><li>(B) 0.25</li><li>(C) 2.5</li><li>(D) 25</li></ul>",
-      "correctAnswer": "B",
-      "explanation": "7.2 কেজি = 7200 গ্রাম। ধরি, x% হল 18 গ্রাম। (x/100) &times; 7200 = 18 বা, 72x = 18 বা, x = <span class='fraction'><span class='top'>18</span><span class='bottom'>72</span></span> = <span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> = 0.25।"
+      "type": "text",
+      "content": "মোট হ্রাস = {(10 + 20) - <span class='fraction'><span class='top'>10 &times; 20</span><span class='bottom'>100</span></span>} = 30 - 2 = 28%।"
     },
     {
-      "type": "question",
-      "qText": "11. (480 এর 37.1%) - (280 এর ?%) = (322 এর 12%) <ul><li>(A) 37.6</li><li>(B) 39.6</li><li>(C) 49.8</li><li>(D) 52.4</li></ul>",
-      "correctAnswer": "C",
-      "explanation": "(480 &times; 37.1 / 100) - (280 &times; x / 100) = (322 &times; 12 / 100) বা, 178.08 - 2.8x = 38.64 বা, 2.8x = 178.08 - 38.64 = 139.44 বা, x = 139.44 / 2.8 = 49.8।"
+      "type": "text",
+      "content": "<strong>সূত্র (e):</strong> প্রথমে a% বৃদ্ধি ও পরে আবার a% বৃদ্ধি পেলে, মোট বৃদ্ধি = (2a + <span class='fraction'><span class='top'>a<sup>2</sup></span><span class='bottom'>100</span></span>)%"
     },
     {
-      "type": "question",
-      "qText": "12. (450 এর 0.9%) &divide; (250 এর 0.2%) = ? <ul><li>(A) 5.04</li><li>(B) 7.5</li><li>(C) 8.1</li><li>(D) 9.1</li></ul>",
-      "correctAnswer": "C",
-      "explanation": "(450 &times; 0.9 / 100) / (250 &times; 0.2 / 100) = (450 &times; 0.9) / (250 &times; 0.2) = 405 / 50 = 8.1।"
+      "type": "text",
+      "content": "<strong>প্রশ্ন:</strong> একটি দ্রব্যের দাম পরপর দুবার 10% করে বৃদ্ধি পেলে মোট কত শতাংশ বৃদ্ধি পাবে?"
     },
     {
-      "type": "question",
-      "qText": "13. নিম্নের কোন্ সংখ্যাটি 80-এর থেকে 60% কম? <ul><li>(A) 48</li><li>(B) 42</li><li>(C) 32</li><li>(D) 12</li></ul>",
-      "correctAnswer": "C",
-      "explanation": "80-এর 60% = (80 &times; 60) / 100 = 48। সংখ্যাটি হবে = 80 - 48 = 32।"
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> এখানে a = 10।"
     },
     {
-      "type": "question",
-      "qText": "14. একটি ক্লাসে 120 জনের মধ্যে 30% ছাত্রী হলে, ছাত্রদের সংখ্যা কত? <ul><li>(A) 90</li><li>(B) 84</li><li>(C) 36</li><li>(D) 72</li></ul>",
-      "correctAnswer": "B",
-      "explanation": "ছাত্রীর সংখ্যা = 120-এর 30% = (120 &times; 30) / 100 = 36। ছাত্রদের সংখ্যা = 120 - 36 = 84।"
+      "type": "text",
+      "content": "মোট বৃদ্ধি = (2 &times; 10 + <span class='fraction'><span class='top'>10<sup>2</sup></span><span class='bottom'>100</span></span>) = 20 + 1 = 21%।"
     },
     {
-      "type": "question",
-      "qText": "15. জানালার 0.28 অংশে কালো রং করা হল এবং 0.33 অংশে লাল রং করা হল। জানালার কত শতাংশ রং করা বাকি আছে? <ul><li>(A) 0.61</li><li>(B) 0.39</li><li>(C) 30.5</li><li>(D) 39</li></ul>",
-      "correctAnswer": "D",
-      "explanation": "মোট রং করা অংশ = 0.28 + 0.33 = 0.61 অংশ। রং করা বাকি আছে = (1 - 0.61) অংশ = 0.39 অংশ। শতাংশে প্রকাশ করলে = 0.39 &times; 100% = 39%।"
+      "type": "title",
+      "content": "<strong>10. জনসংখ্যার হ্রাস-বৃদ্ধি সংক্রান্ত সূত্র</strong>"
     },
     {
-      "type": "question",
-      "qText": "16. যদি একটি দ্রব্যের উপরে 8% ছাড় দিলে, ছাড়ের পরিমাণ হয় 2000 টাকা, তবে দ্রব্যটির মূল্য কত ছিল? <ul><li>(A) 20,000 টাকা</li><li>(B) 24,000 টাকা</li><li>(C) 25,000 টাকা</li><li>(D) 30,000 টাকা</li></ul>",
-      "correctAnswer": "C",
-      "explanation": "ধরি মূল্য x টাকা। x-এর 8% = 2000 বা, x &times; <span class='fraction'><span class='top'>8</span><span class='bottom'>100</span></span> = 2000 বা, x = (2000 &times; 100) / 8 = 250 &times; 100 = 25,000 টাকা।"
+      "type": "text",
+      "content": "এখানে P = বর্তমান জনসংখ্যা, r = বার্ষিক বৃদ্ধির হার, n = সময় (বছর)।"
     },
     {
-      "type": "question",
-      "qText": "17. 5% ছাড় দেওয়ার পর একটি দ্রব্যের বিক্রয়মূল্য হয় 1273 টাকা। সেটির বাজারদর কত? <ul><li>(A) 1340</li><li>(B) 1400</li><li>(C) 1600</li><li>(D) 1430</li></ul>",
-      "correctAnswer": "A",
-      "explanation": "ধরি বাজারদর x টাকা। 5% ছাড়ের পর মূল্য = x-এর 95% = 1273 বা, x &times; <span class='fraction'><span class='top'>95</span><span class='bottom'>100</span></span> = 1273 বা, x = (1273 &times; 100) / 95 = 1340 টাকা।"
+      "type": "text",
+      "content": "<strong>সূত্র (a) ও (b): n বছর পর জনসংখ্যা কত হবে?</strong>"
     },
     {
-      "type": "question",
-      "qText": "18. 5% ছাড় পাওয়ার পর একটি দ্রব্য 2850 টাকায় কেনা হলে, সেটির ধার্যমূল্য কত? <ul><li>(A) 2700 টাকা</li><li>(B) 3000 টাকা</li><li>(C) 3150 টাকা</li><li>(D) 2650 টাকা</li></ul>",
-      "correctAnswer": "B",
-      "explanation": "ধরি ধার্যমূল্য x টাকা। 5% ছাড়ের পর মূল্য = x-এর 95% = 2850 বা, x &times; <span class='fraction'><span class='top'>95</span><span class='bottom'>100</span></span> = 2850 বা, x = (2850 &times; 100) / 95 = 30 &times; 100 = 3000 টাকা।"
+      "type": "math",
+      "content": "বৃদ্ধির ক্ষেত্রে: P(1 + <span class='fraction'><span class='top'>r</span><span class='bottom'>100</span></span>)<sup>n</sup>"
     },
     {
-      "type": "question",
-      "qText": "19. দালালের কমিশন হিসেবে <span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span> % প্রাপ্য। সে যদি কমিশন হিসেবে 500 টাকা পায়, তবে জমিটির মূল্য কত? <ul><li>(A) 10,000 টাকা</li><li>(B) 2,00,000 টাকা</li><li>(C) 1,00,000 টাকা</li><li>(D) 50,000 টাকা</li></ul>",
-      "correctAnswer": "C",
-      "explanation": "ধরি জমির মূল্য x টাকা। x-এর <span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span> % = 500 বা, x &times; (<span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span>) / 100 = 500 বা, x / 200 = 500 বা, x = 500 &times; 200 = 1,00,000 টাকা।"
+      "type": "math",
+      "content": "হ্রাসের ক্ষেত্রে: P(1 - <span class='fraction'><span class='top'>r</span><span class='bottom'>100</span></span>)<sup>n</sup>"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সূত্র (c) ও (d): n বছর পূর্বে জনসংখ্যা কত ছিল?</strong>"
+    },
+    {
+      "type": "math",
+      "content": "বৃদ্ধির ক্ষেত্রে: <span class='fraction'><span class='top'>P</span><span class='bottom'>(1 + <span class='fraction'><span class='top'>r</span><span class='bottom'>100</span></span>)<sup>n</sup></span></span>"
+    },
+    {
+      "type": "math",
+      "content": "হ্রাসের ক্ষেত্রে: <span class='fraction'><span class='top'>P</span><span class='bottom'>(1 - <span class='fraction'><span class='top'>r</span><span class='bottom'>100</span></span>)<sup>n</sup></span></span>"
+    },
+    {
+      "type": "text",
+      "content": "<strong>উদাহরণ প্রশ্ন:</strong> একটি শহরের বর্তমান জনসংখ্যা 10,000। বার্ষিক বৃদ্ধির হার 10% হলে, 2 বছর পর জনসংখ্যা কত হবে?"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> 2 বছর পর জনসংখ্যা = 10000 &times; (1 + <span class='fraction'><span class='top'>10</span><span class='bottom'>100</span></span>)<sup>2</sup> = 10000 &times; (<span class='fraction'><span class='top'>11</span><span class='bottom'>10</span></span>)<sup>2</sup> = 10000 &times; <span class='fraction'><span class='top'>121</span><span class='bottom'>100</span></span> = 12,100 জন।"
+    },
+    {
+      "type": "title",
+      "content": "<strong>11. বর্গক্ষেত্র ও আয়তক্ষেত্রের ক্ষেত্রফলের হ্রাস-বৃদ্ধি</strong>"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সূত্র (a, b, c):</strong> যদি দৈর্ঘ্য a% এবং প্রস্থ b% পরিবর্তিত হয়, তবে ক্ষেত্রফলের পরিবর্তন হবে সূত্র 9-এর মতো।"
+    },
+    {
+      "type": "math",
+      "content": "<strong>সূত্র (f):</strong> যদি একদিকে a% বৃদ্ধি ও অন্যদিকে a% হ্রাস পায়, তবে ক্ষেত্রফল সব সময় হ্রাস পাবে। হ্রাসের হার = (<span class='fraction'><span class='top'>a<sup>2</sup></span><span class='bottom'>100</span></span>)%।"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সূত্র (g) ও (h): ক্ষেত্রফল অপরিবর্তিত রাখতে হলে—</strong>"
+    },
+    {
+      "type": "math",
+      "content": "একদিকের বাহু a% বৃদ্ধি পেলে, অন্যদিকের বাহু কমাতে হবে = (<span class='fraction'><span class='top'>a</span><span class='bottom'>100 + a</span></span> &times; 100)%"
+    },
+    {
+      "type": "math",
+      "content": "একদিকের বাহু a% হ্রাস পেলে, অন্যদিকের বাহু বাড়াতে হবে = (<span class='fraction'><span class='top'>a</span><span class='bottom'>100 - a</span></span> &times; 100)%"
+    },
+    {
+      "type": "text",
+      "content": "<strong>উদাহরণ প্রশ্ন:</strong> একটি আয়তক্ষেত্রের দৈর্ঘ্য 20% বৃদ্ধি করা হলো। ক্ষেত্রফল একই রাখতে প্রস্থ কত শতাংশ কমাতে হবে?"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> প্রস্থ কমাতে হবে = (<span class='fraction'><span class='top'>20</span><span class='bottom'>100 + 20</span></span> &times; 100)% = <span class='fraction'><span class='top'>20</span><span class='bottom'>120</span></span> &times; 100 = <span class='fraction'><span class='top'>100</span><span class='bottom'>6</span></span> = 16<span class='fraction'><span class='top'>2</span><span class='bottom'>3</span></span>%।"
+    },
+    {
+      "type": "title",
+      "content": "<strong>12. বৃত্তের ক্ষেত্রফলের হ্রাস-বৃদ্ধি</strong>"
+    },
+    {
+      "type": "text",
+      "content": "বৃত্তের ব্যাসার্ধ, ব্যাস বা পরিধি যেকোনো একটি x% পরিবর্তিত হলে ক্ষেত্রফলের পরিবর্তন হবে:"
+    },
+    {
+      "type": "math",
+      "content": "(a) বৃদ্ধির ক্ষেত্রে: (2x + <span class='fraction'><span class='top'>x<sup>2</sup></span><span class='bottom'>100</span></span>)%"
+    },
+    {
+      "type": "math",
+      "content": "(b) হ্রাসের ক্ষেত্রে: (2x - <span class='fraction'><span class='top'>x<sup>2</sup></span><span class='bottom'>100</span></span>)%"
+    },
+    {
+      "type": "text",
+      "content": "<strong>উদাহরণ প্রশ্ন:</strong> একটি বৃত্তের ব্যাসার্ধ 10% বৃদ্ধি পেলে ক্ষেত্রফল কত শতাংশ বাড়বে?"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> ক্ষেত্রফল বৃদ্ধি = (2 &times; 10 + <span class='fraction'><span class='top'>10<sup>2</sup></span><span class='bottom'>100</span></span>) = 20 + 1 = 21%।"
+    },
+    {
+      "type": "title",
+      "content": "<strong>13. প্রয়োজনীয় তথ্য (খরচ অপরিবর্তিত রাখার শর্টকাট)</strong>"
+    },
+    {
+      "type": "text",
+      "content": "যদি কোনো জিনিসের মূল্য বাড়ে বা কমে, তবে খরচ একই রাখতে ব্যবহারের পরিবর্তনের একটি সহজ ক্রম হলো:"
+    },
+    {
+      "type": "text",
+      "content": "16<span class='fraction'><span class='top'>2</span><span class='bottom'>3</span></span>%  ↔  20%  ↔  25%  ↔  33<span class='fraction'><span class='top'>1</span><span class='bottom'>3</span></span>%"
+    },
+    {
+      "type": "text",
+      "content": "<strong>নিয়ম:</strong> মূল্য যদি তালিকার একটি মান অনুযায়ী <strong>বাড়ে</strong>, তবে ব্যবহার কমাতে হবে তার <strong>আগের (বামদিকের)</strong> মান অনুযায়ী। আর মূল্য <strong>কমলে</strong>, ব্যবহার বাড়াতে হবে তার <strong>পরের (ডানদিকের)</strong> মান অনুযায়ী।"
+    },
+    {
+      "type": "text",
+      "content": "<strong>উদাহরণ:</strong>"
+    },
+    {
+      "type": "text",
+      "content": "1. চিনির মূল্য 25% বৃদ্ধি পেলে, ব্যবহার 20% কমাতে হবে (25-এর বামে 20 আছে)।"
+    },
+    {
+      "type": "text",
+      "content": "2. চিনির মূল্য 25% হ্রাস পেলে, ব্যবহার 33<span class='fraction'><span class='top'>1</span><span class='bottom'>3</span></span>% বাড়াতে হবে (25-এর ডানে 33<span class='fraction'><span class='top'>1</span><span class='bottom'>3</span></span> আছে)।"
+    },
+    {
+      "type": "text",
+      "content": "এই সূত্রগুলো ভালো করে আয়ত্ত করলে তুমি খুব দ্রুত অংকগুলো করতে পারবে। কোনো জায়গায় বুঝতে অসুবিধা হলে জানিও!"
     }
   ]
 }

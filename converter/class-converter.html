@@ -197,6 +197,9 @@ function convertFrac(expr) {
 // ─── LaTeX $...$ → renderer-compatible HTML ────────────────────────────────
 function latexToHTML(text) {
   if (!text) return text;
+  // $$...$$ block math first
+  text = text.replace(/\$\$([^$]+)\$\$/g, (_, inner) => convertMathExpr(inner));
+  // $...$ inline math
   text = text.replace(/\$([^$]+)\$/g, (_, inner) => convertMathExpr(inner));
   return text;
 }
@@ -209,6 +212,11 @@ function convertMathExpr(expr) {
   expr = expr.replace(/\\times/g, '&times;');
   expr = expr.replace(/\\%/g, '%');
   expr = expr.replace(/\\cdot/g, '&middot;');
+  expr = expr.replace(/\\leftrightarrow/g, ' \u2194 ');
+  expr = expr.replace(/\\rightarrow/g, ' \u2192 ');
+  expr = expr.replace(/\\leftarrow/g, ' \u2190 ');
+  // \{ \} → { }
+  expr = expr.replace(/\\\{/g, '{').replace(/\\\}/g, '}');
   // nested \frac
   expr = convertFrac(expr);
   // superscript: ^{n} or ^n
@@ -234,13 +242,20 @@ function cleanMarkdown(text) {
 
 // ─── Detect if a line is a pure math/formula line ──────────────────────────
 function isMathLine(text) {
-  // Contains LaTeX formula markers
-  if (/\\frac|\\times|\\left|\^\{/.test(text)) return true;
-  // Entire content is inside $...$
-  if (/^\$[^$]+\$$/.test(text)) return true;
-  // Fraction table: 1/2 = 50% or 1 = 100%
+  if (/\\frac|\\times|\\left|\^\{|\\leftrightarrow/.test(text)) return true;
+  if (/^\$\$[^$]+\$\$$/.test(text) || /^\$[^$]+\$$/.test(text)) return true;
   if (/^\d+(\/\d+)?\s*=\s*[\d.]+%$/.test(text)) return true;
+  // বাংলা সূত্র লাইন math
+  if (/^(সূত্র|বৃদ্ধির ক্ষেত্রে|হ্রাসের ক্ষেত্রে|একদিকের বাহু)/.test(text)) return true;
   return false;
+}
+
+// convertInlineFractions: all number/number → fraction
+function convertInlineFractions(text) {
+  if (!text) return text;
+  text = text.replace(/([\d.,]+)\/([\d.,]+)/g,
+    "<span class='fraction'><span class='top'>$1</span><span class='bottom'>$2</span></span>");
+  return text;
 }
 
 // ─── Split input into blocks (question blocks vs normal blocks) ─────────────
@@ -339,7 +354,7 @@ function parseQuestionBlock(lines) {
     ? `<ul>${options.map(o => `<li>${latexToHTML(cleanMarkdown(o))}</li>`).join('')}</ul>`
     : '';
   const qText = `${latexToHTML(cleanMarkdown(questionText))}${optionsHTML}`;
-  const explanation = explanationLines.map(l => latexToHTML(cleanMarkdown(l))).join('<br>');
+  const explanation = explanationLines.map(l => convertInlineFractions(latexToHTML(cleanMarkdown(l)))).join('<br>');
 
   return { type: 'question', qText, correctAnswer, explanation };
 }
@@ -383,6 +398,9 @@ function convertToJSON() {
       i++;
 
       if (!line) continue;
+
+      // --- সেপারেটর skip
+      if (/^-{3,}$/.test(line)) continue;
 
       if (line.startsWith('### ')) {
         flushList();

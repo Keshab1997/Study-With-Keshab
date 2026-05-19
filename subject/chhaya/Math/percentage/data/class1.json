@@ -7,169 +7,268 @@
       "content": "শতাংশ (Percentage) - ক্লাস 01"
     },
     {
-      "type": "title",
-      "content": "১. সাধারণ নিয়ম (Basic Rules)"
+      "type": "text",
+      "content": "শতকরা (Percentage) অধ্যায়ের এই গুরুত্বপূর্ণ সূত্রগুলো নিচে সহজভাবে ব্যাখ্যা এবং উদাহরণের মাধ্যমে দেওয়া হলো। প্রতিটি সূত্রের সাথে একটি করে প্রশ্ন ও তার সমাধান দেওয়া হয়েছে যাতে তুমি অংকের ধরনটা সহজে বুঝতে পারো।"
     },
     {
       "type": "text",
-      "content": "<strong>শতকরা থেকে ভগ্নাংশ:</strong> কোনো সংখ্যাকে শতকরা থেকে ভগ্নাংশে নিতে হলে 100 দিয়ে ভাগ করতে হয়।"
-    },
-    {
-      "type": "math",
-      "content": "যেমন: 20% = <span class='fraction'><span class='top'>20</span><span class='bottom'>100</span></span> = <span class='fraction'><span class='top'>1</span><span class='bottom'>5</span></span>"
-    },
-    {
-      "type": "text",
-      "content": "<strong>ভগ্নাংশ থেকে শতকরা:</strong> কোনো ভগ্নাংশকে শতকরায় প্রকাশ করতে 100 দিয়ে গুণ করতে হয়।"
-    },
-    {
-      "type": "math",
-      "content": "যেমন: <span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> = (<span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> &times; 100)% = 25%"
+      "content": "---"
     },
     {
       "type": "title",
-      "content": "২. বৃদ্ধির হার ও হ্রাসের হার (Percentage Increase/Decrease)"
+      "content": "<strong>1. শতকরার সংজ্ঞা ও প্রাথমিক ধারণা</strong>"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সূত্র:</strong> শতকরা মানে হলো প্রতি 100-তে কত। কোনো ভগ্নাংশের হর 100 হলে লবকে শতকরা হার বলে।"
     },
     {
       "type": "math",
-      "content": "Percentage Increase = <span class='fraction'><span class='top'>Increase Value</span><span class='bottom'>Original Value</span></span> &times; 100"
+      "content": "(a) x% = <span class='fraction'><span class='top'>x</span><span class='bottom'>100</span></span>"
     },
     {
       "type": "math",
-      "content": "Percentage Decrease = <span class='fraction'><span class='top'>Decrease Value</span><span class='bottom'>Original Value</span></span> &times; 100"
+      "content": "(b) <span class='fraction'><span class='top'>x</span><span class='bottom'>y</span></span>% = <span class='fraction'><span class='top'>x</span><span class='bottom'>y &times; 100</span></span>"
+    },
+    {
+      "type": "text",
+      "content": "<strong>উদাহরণ প্রশ্ন:</strong> 5% বলতে কী বোঝায়?"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> 5% মানে হলো 100 ভাগের মধ্যে 5 ভাগ। অর্থাৎ, <span class='fraction'><span class='top'>5</span><span class='bottom'>100</span></span> বা 0.05।"
+    },
+    {
+      "type": "text",
+      "content": "---"
     },
     {
       "type": "title",
-      "content": "৩. তুলনামূলক অংক (Comparison Rules)"
+      "content": "<strong>2. ভগ্নাংশ বা দশমিককে শতকরায় প্রকাশ</strong>"
     },
     {
       "type": "text",
-      "content": "পরীক্ষায় প্রায়ই আসে: \"A-এর আয় B-এর চেয়ে x% বেশি হলে, B-এর আয় A-এর চেয়ে কত শতাংশ কম?\""
-    },
-    {
-      "type": "text",
-      "content": "<strong>বেশি থেকে কম বের করার নিয়ম:</strong> (<span class='fraction'><span class='top'>x</span><span class='bottom'>100 + x</span></span> &times; 100)%"
-    },
-    {
-      "type": "text",
-      "content": "<strong>কম থেকে বেশি বের করার নিয়ম:</strong> (<span class='fraction'><span class='top'>x</span><span class='bottom'>100 - x</span></span> &times; 100)%"
-    },
-    {
-      "type": "text",
-      "content": "<em>উদাহরণ:</em> চিনির দাম 25% বেড়ে গেলে খরচ অপরিবর্তিত রাখতে ব্যবহার কত কমাতে হবে?"
+      "content": "<strong>সূত্র:</strong> কোনো সংখ্যাকে 100 দিয়ে গুণ করে পাশে % চিহ্ন দিলেই তা শতকরায় পরিণত হয়।"
     },
     {
       "type": "math",
-      "content": "<span class='fraction'><span class='top'>25</span><span class='bottom'>100 + 25</span></span> &times; 100 = <span class='fraction'><span class='top'>25</span><span class='bottom'>125</span></span> &times; 100 = 20%"
+      "content": "(a) <span class='fraction'><span class='top'>x</span><span class='bottom'>y</span></span> = (<span class='fraction'><span class='top'>x</span><span class='bottom'>y</span></span> &times; 100)%"
+    },
+    {
+      "type": "math",
+      "content": "(b) x = (x &times; 100)%"
+    },
+    {
+      "type": "text",
+      "content": "<strong>উদাহরণ প্রশ্ন:</strong> <span class='fraction'><span class='top'>3</span><span class='bottom'>4</span></span> কে শতকরায় প্রকাশ করো।"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> (<span class='fraction'><span class='top'>3</span><span class='bottom'>4</span></span> &times; 100)% = (3 &times; 25)% = 75%।"
+    },
+    {
+      "type": "text",
+      "content": "---"
     },
     {
       "type": "title",
-      "content": "৪. ক্রমাগত পরিবর্তন (Successive Percentage Change)"
+      "content": "<strong>3. কোনো সংখ্যার নির্দিষ্ট শতাংশ নির্ণয়</strong>"
     },
     {
       "type": "text",
-      "content": "যদি কোনো কিছুর মান প্রথমে x% বাড়ে এবং পরে y% বাড়ে, তবে মোট পরিবর্তন হবে:"
+      "content": "<strong>সূত্র:</strong> কোনো সংখ্যার x% = সংখ্যাটি &times; <span class='fraction'><span class='top'>x</span><span class='bottom'>100</span></span>"
     },
     {
       "type": "math",
-      "content": "সূত্র: (x + y + <span class='fraction'><span class='top'>xy</span><span class='bottom'>100</span></span>)%"
+      "content": "(a) x-এর y% = <span class='fraction'><span class='top'>xy</span><span class='bottom'>100</span></span>"
     },
     {
       "type": "text",
-      "content": "<strong>মনে রাখবে:</strong> বৃদ্ধি হলে + চিহ্ন এবং হ্রাস বা ছাড় হলে − চিহ্ন বসবে।"
+      "content": "<strong>উদাহরণ প্রশ্ন:</strong> 500 টাকার 20% কত?"
     },
     {
       "type": "text",
-      "content": "<em>উদাহরণ:</em> একটি জিনিসের দাম প্রথমে 20% বাড়ল এবং পরে 10% কমল। মোট পরিবর্তন কত?"
+      "content": "<strong>সমাধান:</strong> 500 &times; <span class='fraction'><span class='top'>20</span><span class='bottom'>100</span></span> = 5 &times; 20 = 100 টাকা।"
     },
     {
-      "type": "math",
-      "content": "20 − 10 + <span class='fraction'><span class='top'>20 &times; (−10)</span><span class='bottom'>100</span></span> = 10 − 2 = 8% বৃদ্ধি"
+      "type": "text",
+      "content": "---"
     },
     {
       "type": "title",
-      "content": "৫. জনসংখ্যা ও অবচয় (Population & Depreciation)"
+      "content": "<strong>4. কোনো সংখ্যার শতকরা মান দেওয়া থাকলে মূল সংখ্যা বের করা</strong>"
     },
     {
       "type": "text",
-      "content": "যদি বর্তমান জনসংখ্যা P হয় এবং বৃদ্ধির হার r% হয়, তবে:"
+      "content": "<strong>সূত্র:</strong> যদি কোনো সংখ্যার x% = y হয়, তবে—"
     },
     {
       "type": "math",
-      "content": "n বছর পর জনসংখ্যা = P(1 + <span class='fraction'><span class='top'>r</span><span class='bottom'>100</span></span>)<sup>n</sup>"
-    },
-    {
-      "type": "math",
-      "content": "n বছর আগে জনসংখ্যা = <span class='fraction'><span class='top'>P</span><span class='bottom'>(1 + <span class='fraction'><span class='top'>r</span><span class='bottom'>100</span></span>)<sup>n</sup></span></span>"
+      "content": "(a) সংখ্যাটি = <span class='fraction'><span class='top'>y</span><span class='bottom'>x</span></span> &times; 100"
     },
     {
       "type": "text",
-      "content": "<strong>দ্রষ্টব্য:</strong> যদি দাম কমে (যেমন মেশিনের দাম), তবে + চিহ্নের জায়গায় − বসবে।"
+      "content": "<strong>উদাহরণ প্রশ্ন:</strong> কোনো সংখ্যার 10% যদি 50 হয়, তবে সংখ্যাটি কত?"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> সংখ্যাটি = <span class='fraction'><span class='top'>50</span><span class='bottom'>10</span></span> &times; 100 = 5 &times; 100 = 500।"
+    },
+    {
+      "type": "text",
+      "content": "---"
     },
     {
       "type": "title",
-      "content": "৬. পরীক্ষা ও নম্বর সংক্রান্ত (Examination & Marks)"
+      "content": "<strong>5. বৃদ্ধি বা হ্রাসের পর পরিবর্তিত রাশি নির্ণয়</strong>"
     },
     {
       "type": "text",
-      "content": "পাস নম্বর এবং প্রাপ্ত নম্বরের পার্থক্য থেকে মোট নম্বর বের করার সূত্র:"
+      "content": "<strong>সূত্র:</strong> মূল রাশি x এবং পরিবর্তনের হার y% হলে—"
     },
     {
       "type": "math",
-      "content": "Total Marks = <span class='fraction'><span class='top'>Difference in marks</span><span class='bottom'>Difference in percentage</span></span> &times; 100"
+      "content": "(a) বৃদ্ধির ক্ষেত্রে পরিবর্তিত রাশি = x + <span class='fraction'><span class='top'>xy</span><span class='bottom'>100</span></span>"
+    },
+    {
+      "type": "math",
+      "content": "(b) হ্রাসের ক্ষেত্রে পরিবর্তিত রাশি = x - <span class='fraction'><span class='top'>xy</span><span class='bottom'>100</span></span>"
     },
     {
       "type": "text",
-      "content": "<em>উদাহরণ:</em> একজন ছাত্র 30% নম্বর পেয়ে 15 নম্বরের জন্য ফেল করল। অন্যজন 40% নম্বর পেয়ে পাস নম্বরের চেয়ে 35 নম্বর বেশি পেল। মোট নম্বর কত?"
+      "content": "<strong>উদাহরণ প্রশ্ন:</strong> 1000 টাকার বেতন 10% বৃদ্ধি পেলে নতুন বেতন কত হবে?"
     },
     {
-      "type": "math",
-      "content": "<span class='fraction'><span class='top'>15 + 35</span><span class='bottom'>40 − 30</span></span> &times; 100 = <span class='fraction'><span class='top'>50</span><span class='bottom'>10</span></span> &times; 100 = 500"
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> নতুন বেতন = 1000 + <span class='fraction'><span class='top'>1000 &times; 10</span><span class='bottom'>100</span></span> = 1000 + 100 = 1100 টাকা।"
+    },
+    {
+      "type": "text",
+      "content": "---"
     },
     {
       "type": "title",
-      "content": "৭. ভোট বা নির্বাচন সংক্রান্ত (Election Problems)"
+      "content": "<strong>6. মূল্যবৃদ্ধি ও প্রকৃত মূল্য নির্ণয়</strong>"
     },
     {
       "type": "text",
-      "content": "নির্বাচনে সাধারণত দুজন প্রার্থীর কথা বলা হয়। মোট ভোটার সবসময় 100% ধরতে হবে।"
-    },
-    {
-      "type": "text",
-      "content": "<em>উদাহরণ:</em> একজন প্রার্থী 60% ভোট পেয়ে 2000 ভোটে জিতলেন। মোট ভোটার কত?"
-    },
-    {
-      "type": "text",
-      "content": "জয়ী প্রার্থী পেলেন 60%, তাই পরাজিত প্রার্থী পেয়েছেন (100 − 60) = 40%।"
+      "content": "<strong>সূত্র:</strong> কোনো দ্রব্যের মূল্য x% বৃদ্ধি পেলে এবং মূল্যবৃদ্ধির পরিমাণ y টাকা হলে—"
     },
     {
       "type": "math",
-      "content": "পার্থক্য = 60% − 40% = 20% → 20% = 2000 → 100% = 10000"
-    },
-    {
-      "type": "title",
-      "content": "৮. গুরুত্বপূর্ণ ভগ্নাংশ-শতকরা মান (Fraction to % Table)"
+      "content": "(a) প্রকৃত বা আগের মূল্য = <span class='fraction'><span class='top'>y</span><span class='bottom'>x</span></span> &times; 100 টাকা।"
     },
     {
       "type": "text",
-      "content": "এই মানগুলো মুখস্থ থাকলে অংক অনেক দ্রুত করা যায়:"
+      "content": "<strong>উদাহরণ প্রশ্ন:</strong> চিনির দাম 5% বৃদ্ধি পাওয়ায় দাম 5 টাকা বেড়ে গেল। চিনির আগের দাম কত ছিল?"
     },
     {
-      "type": "list",
-      "items": [
-        "1 = 100%",
-        "<span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span> = 50%",
-        "<span class='fraction'><span class='top'>1</span><span class='bottom'>3</span></span> = 33.33%",
-        "<span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> = 25%",
-        "<span class='fraction'><span class='top'>1</span><span class='bottom'>5</span></span> = 20%",
-        "<span class='fraction'><span class='top'>1</span><span class='bottom'>6</span></span> = 16.66%",
-        "<span class='fraction'><span class='top'>1</span><span class='bottom'>8</span></span> = 12.5%",
-        "<span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span> = 10%"
-      ]
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> আগের মূল্য = <span class='fraction'><span class='top'>5</span><span class='bottom'>5</span></span> &times; 100 = 100 টাকা।"
     },
     {
-      "type": "box",
-      "content": "<strong>টিপস:</strong> RRB Group D পরীক্ষায় অনেক সময় বড় ক্যালকুলেশন থাকে না, বরং মাথা খাটিয়ে করার মতো অংক থাকে। তাই সূত্র মুখস্থ করার পাশাপাশি নিয়মিত প্র্যাকটিস করো। শুভকামনা রইল!"
+      "type": "text",
+      "content": "---"
+    },
+    {
+      "type": "title",
+      "content": "<strong>7. পূর্বের অবস্থায় ফিরে আসার নিয়ম</strong>"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সূত্র:</strong>"
+    },
+    {
+      "type": "math",
+      "content": "(a) কোনো রাশি x% হ্রাস পেলে, আগের অবস্থায় আনতে বৃদ্ধি করতে হবে = (<span class='fraction'><span class='top'>x</span><span class='bottom'>100 - x</span></span> &times; 100)%"
+    },
+    {
+      "type": "math",
+      "content": "(b) কোনো রাশি x% বৃদ্ধি পেলে, আগের অবস্থায় আনতে হ্রাস করতে হবে = (<span class='fraction'><span class='top'>x</span><span class='bottom'>100 + x</span></span> &times; 100)%"
+    },
+    {
+      "type": "text",
+      "content": "<strong>উদাহরণ প্রশ্ন:</strong> তেলের দাম 20% কমে গেল। আগের দামে ফিরে যেতে হলে বর্তমান দাম শতকরা কত বাড়াতে হবে?"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> বৃদ্ধি করতে হবে = (<span class='fraction'><span class='top'>20</span><span class='bottom'>100 - 20</span></span> &times; 100)% = (<span class='fraction'><span class='top'>20</span><span class='bottom'>80</span></span> &times; 100)% = 25%।"
+    },
+    {
+      "type": "text",
+      "content": "---"
+    },
+    {
+      "type": "title",
+      "content": "<strong>8. খরচ অপরিবর্তিত রাখার নিয়ম</strong>"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সূত্র:</strong>"
+    },
+    {
+      "type": "math",
+      "content": "(a) মূল্য x% বৃদ্ধি পেলে, খরচ একই রাখতে ব্যবহার কমাতে হবে = (<span class='fraction'><span class='top'>x</span><span class='bottom'>100 + x</span></span> &times; 100)%"
+    },
+    {
+      "type": "math",
+      "content": "(b) মূল্য x% হ্রাস পেলে, খরচ একই রাখতে ব্যবহার বাড়াতে হবে = (<span class='fraction'><span class='top'>x</span><span class='bottom'>100 - x</span></span> &times; 100)%"
+    },
+    {
+      "type": "text",
+      "content": "<strong>উদাহরণ প্রশ্ন:</strong> চিনির দাম 25% বেড়ে গেছে। চিনির খরচ না বাড়িয়ে ব্যবহার শতকরা কত কমাতে হবে?"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> ব্যবহার কমাতে হবে = (<span class='fraction'><span class='top'>25</span><span class='bottom'>100 + 25</span></span> &times; 100)% = (<span class='fraction'><span class='top'>25</span><span class='bottom'>125</span></span> &times; 100)% = 20%।"
+    },
+    {
+      "type": "text",
+      "content": "---"
+    },
+    {
+      "type": "title",
+      "content": "<strong>9. পরপর দুইবার পরিবর্তন (Successive Change)</strong>"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সূত্র:</strong>"
+    },
+    {
+      "type": "math",
+      "content": "(a) প্রথমে a% বৃদ্ধি ও পরে a% হ্রাস পেলে (বা উল্টোটা হলে), মোটের ওপর সব সময় হ্রাস পাবে। হ্রাসের হার = <span class='fraction'><span class='top'>a<sup>2</sup></span><span class='bottom'>100</span></span>%"
+    },
+    {
+      "type": "math",
+      "content": "(b) প্রথমে a% বৃদ্ধি ও পরে b% হ্রাস পেলে ফলাফল = (a - b - <span class='fraction'><span class='top'>ab</span><span class='bottom'>100</span></span>)%"
+    },
+    {
+      "type": "text",
+      "content": "<em>(ফলাফল '+' এলে লাভ/বৃদ্ধি এবং '-' এলে ক্ষতি/হ্রাস)</em>"
+    },
+    {
+      "type": "text",
+      "content": "<strong>উদাহরণ প্রশ্ন (a):</strong> একটি জিনিসের দাম প্রথমে 10% বাড়িয়ে পরে 10% কমানো হলো। মোটের ওপর কত পরিবর্তন হলো?"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> হ্রাস পাবে = <span class='fraction'><span class='top'>10<sup>2</sup></span><span class='bottom'>100</span></span> = <span class='fraction'><span class='top'>100</span><span class='bottom'>100</span></span> = 1%।"
+    },
+    {
+      "type": "text",
+      "content": "<strong>উদাহরণ প্রশ্ন (b):</strong> একটি জিনিসের দাম প্রথমে 20% বাড়ানো হলো এবং পরে 10% কমানো হলো। মোটের ওপর কত লাভ বা ক্ষতি হলো?"
+    },
+    {
+      "type": "text",
+      "content": "<strong>সমাধান:</strong> (20 - 10 - <span class='fraction'><span class='top'>20 &times; 10</span><span class='bottom'>100</span></span>)% = (10 - 2)% = 8%। যেহেতু উত্তর ধনাত্মক, তাই 8% বৃদ্ধি বা লাভ হয়েছে।"
+    },
+    {
+      "type": "text",
+      "content": "---"
+    },
+    {
+      "type": "text",
+      "content": "এই সূত্রগুলো নিয়মিত প্র্যাকটিস করলে তুমি যেকোনো শতকরার অংক খুব দ্রুত সমাধান করতে পারবে। ভালো করে মুখস্থ করে নিও!"
     }
   ]
 }

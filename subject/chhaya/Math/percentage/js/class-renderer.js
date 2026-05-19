@@ -69,7 +69,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             return text;
         }
         
-        contentArea.innerHTML = data.sections.map(section => {
+        contentArea.innerHTML = data.sections.map((section, idx) => {
+            // question serial count
+            const qIndex = data.sections.slice(0, idx).filter(s => s.type === 'question').length + 1;
             switch(section.type) {
                 case "title": return `<h3><strong>${convertFractions(section.content)}</strong></h3>`;
                 case "header": return `<h4><strong>${convertFractions(section.content)}</strong></h4>`;
@@ -78,26 +80,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                 case "box": return `<div class="content-box">${convertFractions(section.content)}</div>`;
                 case "list": return `<ul>${section.items.map(i => `<li>${convertFractions(i)}</li>`).join('')}</ul>`;
                 case "question": {
-                    // Extract correct answer if available
                     const correctAns = section.correctAnswer || '';
-                    
-                    // Convert fractions in question text and explanation
                     let qTextWithFractions = convertFractions(section.qText);
                     let explanationWithFractions = convertFractions(section.explanation);
-                    
-                    // Highlight correct answer in options
                     let qTextWithHighlight = qTextWithFractions;
                     if (correctAns) {
-                        // Add highlighting to the correct option
                         qTextWithHighlight = qTextWithHighlight.replace(
                             new RegExp(`<li>\\(${correctAns}\\)([^<]+)</li>`, 'g'),
                             `<li style="background: #d4edda; border-left: 4px solid #28a745; padding: 8px; margin: 5px 0; border-radius: 4px; font-weight: bold;">(${correctAns})$1 ✓</li>`
                         );
                     }
-                    
                     return `
                         <div class="question-item">
-                            <h3>প্রশ্ন</h3>
+                            <h3>প্রশ্ন ${qIndex}</h3>
                             <p>${qTextWithHighlight}</p>
                             ${correctAns ? `<div style="background: #fff3cd; padding: 10px; border-radius: 6px; margin: 10px 0; border-left: 4px solid #ffc107;"><strong>সঠিক উত্তর:</strong> (${correctAns})</div>` : ''}
                             <div class="explanation">${explanationWithFractions}</div>

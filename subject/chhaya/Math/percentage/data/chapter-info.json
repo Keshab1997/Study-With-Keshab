@@ -1,15 +1,15 @@
 {
-  "chapterID": "ChayyaMath",
+  "chapterID": "শতাংশ (Percentage)",
   "chapterName": "শতাংশ (Percentage)",
   "description": "শতাংশ (Percentage)-এর বিভিন্ন গুরুত্বপূর্ণ বিষয় এবং ধারণা নিয়ে এই অধ্যায়টি সাজানো হয়েছে।",
   "logoURL": "https://cdn-icons-png.flaticon.com/512/1763/1763477.png",
   "classes": [
     {
-      "title": "শতাংশ (Percentage) - ক্লাস 1",
+      "title": "শতাংশ (Percentage) সূত্র- ক্লাস 1",
       "id": "1"
     },
     {
-      "title": "শতাংশ (Percentage) - ক্লাস 2",
+      "title": "শতাংশ (Percentage) সূত্র- ক্লাস 2",
       "id": "2"
     },
     {
@@ -23,6 +23,10 @@
     {
       "title": "শতাংশ (Percentage) - ক্লাস 5",
       "id": "5"
+    },
+    {
+      "title": "শতাংশ (Percentage) - ক্লাস 6",
+      "id": "6"
     }
   ],
   "quizzes": [
@@ -33,12 +37,10 @@
     {
       "title": "Quiz Set 02",
       "set": "Qset2"
-    }
-  ],
-  "pdfs": [
+    },
     {
-      "title": "শতাংশ (Percentage) - PDF 1",
-      "driveID": "1ScBMw_gEaZsvJq7itgow2p5tZYR7JyfH"
+      "title": "Quiz Set 03",
+      "set": "Qset3"
     }
   ]
 }

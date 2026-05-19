@@ -1,10 +1,10 @@
 {
   "chapterName": "শতাংশ (Percentage)",
-  "classNumber": "01",
+  "classNumber": "03",
   "sections": [
     {
       "type": "title",
-      "content": "শতাংশ (Percentage) - ক্লাস 01"
+      "content": "শতাংশ (Percentage) - ক্লাস 03"
     },
     {
       "type": "question",
@@ -16,7 +16,7 @@
       "type": "question",
       "qText": "শ্রেণিকক্ষ X-এ 30 জন ছাত্রের মধ্যে 24 জন প্রথম বিভাগে উত্তীর্ণ হয়। অন্য একটি শ্রেণিকক্ষ Y-এ 35 জন ছাত্রের মধ্যে 28 জন প্রথম বিভাগে উত্তীর্ণ হয়। কোন্ শ্রেণিকক্ষে বেশি শতাংশ ছাত্র প্রথম বিভাগে উত্তীর্ণ হয়েছে?<ul><li>(A) শ্রেণিকক্ষ X-এ</li><li>(B) শ্রেণিকক্ষ Y-এ</li><li>(C) উভয় শ্রেণিকক্ষেই সমান</li><li>(D) কোনোটিই নয়</li></ul>",
       "correctAnswer": "C",
-      "explanation": "শ্রেণিকক্ষ X-এ পাশের হার = (24/30) × 100% = 80%।<br>শ্রেণিকক্ষ Y-এ পাশের হার = (28/35) × 100% = (4/5) × 100% = 80%।<br>উভয় শ্রেণিকক্ষেই পাশের হার সমান।"
+      "explanation": "শ্রেণিকক্ষ X-এ পাশের হার = (<span class='fraction'><span class='top'>24</span><span class='bottom'>30</span></span>) × 100% = 80%।<br>শ্রেণিকক্ষ Y-এ পাশের হার = (<span class='fraction'><span class='top'>28</span><span class='bottom'>35</span></span>) × 100% = (<span class='fraction'><span class='top'>4</span><span class='bottom'>5</span></span>) × 100% = 80%।<br>উভয় শ্রেণিকক্ষেই পাশের হার সমান।"
     },
     {
       "type": "question",
@@ -28,7 +28,7 @@
       "type": "question",
       "qText": "25% এর 25% = ?<ul><li>(A) 6.25</li><li>(B) 0.625</li><li>(C) 0.0625</li><li>(D) 0.00625</li></ul>",
       "correctAnswer": "C",
-      "explanation": "25% এর 25% = (25/100) × (25/100) = 0.25 × 0.25 = 0.0625।"
+      "explanation": "25% এর 25% = (<span class='fraction'><span class='top'>25</span><span class='bottom'>100</span></span>) × (<span class='fraction'><span class='top'>25</span><span class='bottom'>100</span></span>) = 0.25 × 0.25 = 0.0625।"
     },
     {
       "type": "question",
@@ -40,7 +40,7 @@
       "type": "question",
       "qText": "3/4 -কে শতাংশে প্রকাশ করুন।<ul><li>(A) 0.75%</li><li>(B) 7.5%</li><li>(C) 60%</li><li>(D) 75%</li></ul>",
       "correctAnswer": "D",
-      "explanation": "3/4 -কে শতাংশে প্রকাশ করতে হলে 100 দিয়ে গুণ করতে হয়।<br>(3/4) × 100% = 3 × 25% = 75%।"
+      "explanation": "<span class='fraction'><span class='top'>3</span><span class='bottom'>4</span></span> -কে শতাংশে প্রকাশ করতে হলে 100 দিয়ে গুণ করতে হয়।<br>(<span class='fraction'><span class='top'>3</span><span class='bottom'>4</span></span>) × 100% = 3 × 25% = 75%।"
     },
     {
       "type": "question",
@@ -52,19 +52,19 @@
       "type": "question",
       "qText": "? এর 30% = 180<ul><li>(A) 60</li><li>(B) 600</li><li>(C) 960</li><li>(D) 9000</li></ul>",
       "correctAnswer": "B",
-      "explanation": "ধরি সংখ্যাটি x।<br>x × 30/100 = 180<br>বা, x = (180 × 100) / 30 = 6 × 100 = 600।"
+      "explanation": "ধরি সংখ্যাটি x।<br>x × <span class='fraction'><span class='top'>30</span><span class='bottom'>100</span></span> = 180<br>বা, x = (180 × 100) / 30 = 6 × 100 = 600।"
     },
     {
       "type": "question",
       "qText": "34 এর 250% এর 50% এর 80% = ?<ul><li>(A) 38</li><li>(B) 40</li><li>(C) 42.5</li><li>(D) কোনোটিই নয়</li></ul>",
       "correctAnswer": "D",
-      "explanation": "34 × (250/100) × (50/100) × (80/100) = 34 × 2.5 × 0.5 × 0.8 = 34 × 1 = 34।<br>যেহেতু 34 বিকল্পগুলোর মধ্যে নেই, তাই সঠিক উত্তর 'কোনোটিই নয়'।"
+      "explanation": "34 × (<span class='fraction'><span class='top'>250</span><span class='bottom'>100</span></span>) × (<span class='fraction'><span class='top'>50</span><span class='bottom'>100</span></span>) × (<span class='fraction'><span class='top'>80</span><span class='bottom'>100</span></span>) = 34 × 2.5 × 0.5 × 0.8 = 34 × 1 = 34।<br>যেহেতু 34 বিকল্পগুলোর মধ্যে নেই, তাই সঠিক উত্তর 'কোনোটিই নয়'।"
     },
     {
       "type": "question",
       "qText": "7.2 কেজির কত শতাংশ হল 18 গ্রাম?<ul><li>(A) 0.0025</li><li>(B) 0.25</li><li>(C) 2.5</li><li>(D) 25</li></ul>",
       "correctAnswer": "B",
-      "explanation": "7.2 কেজি = 7200 গ্রাম।<br>ধরি, x% হল 18 গ্রাম।<br>(x/100) × 7200 = 18<br>বা, 72x = 18<br>বা, x = 18/72 = 1/4 = 0.25।"
+      "explanation": "7.2 কেজি = 7200 গ্রাম।<br>ধরি, x% হল 18 গ্রাম।<br>(x/100) × 7200 = 18<br>বা, 72x = 18<br>বা, x = <span class='fraction'><span class='top'>18</span><span class='bottom'>72</span></span> = <span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> = 0.25।"
     },
     {
       "type": "question",
@@ -100,25 +100,25 @@
       "type": "question",
       "qText": "যদি একটি দ্রব্যের উপরে 8% ছাড় দিলে, ছাড়ের পরিমাণ হয় 2000 টাকা, তবে দ্রব্যটির মূল্য কত ছিল?<ul><li>(A) 20,000 টাকা</li><li>(B) 24,000 টাকা</li><li>(C) 25,000 টাকা</li><li>(D) 30,000 টাকা</li></ul>",
       "correctAnswer": "C",
-      "explanation": "ধরি মূল্য x টাকা।<br>x-এর 8% = 2000<br>বা, x × 8/100 = 2000<br>বা, x = (2000 × 100) / 8 = 250 × 100 = 25,000 টাকা।"
+      "explanation": "ধরি মূল্য x টাকা।<br>x-এর 8% = 2000<br>বা, x × <span class='fraction'><span class='top'>8</span><span class='bottom'>100</span></span> = 2000<br>বা, x = (2000 × 100) / 8 = 250 × 100 = 25,000 টাকা।"
     },
     {
       "type": "question",
       "qText": "5% ছাড় দেওয়ার পর একটি দ্রব্যের বিক্রয়মূল্য হয় 1273 টাকা। সেটির বাজারদর কত?<ul><li>(A) 1340</li><li>(B) 1400</li><li>(C) 1600</li><li>(D) 1430</li></ul>",
       "correctAnswer": "A",
-      "explanation": "ধরি বাজারদর x টাকা।<br>5% ছাড়ের পর মূল্য = x-এর 95% = 1273<br>বা, x × 95/100 = 1273<br>বা, x = (1273 × 100) / 95 = 1340 টাকা।"
+      "explanation": "ধরি বাজারদর x টাকা।<br>5% ছাড়ের পর মূল্য = x-এর 95% = 1273<br>বা, x × <span class='fraction'><span class='top'>95</span><span class='bottom'>100</span></span> = 1273<br>বা, x = (1273 × 100) / 95 = 1340 টাকা।"
     },
     {
       "type": "question",
       "qText": "5% ছাড় পাওয়ার পর একটি দ্রব্য 2850 টাকায় কেনা হলে, সেটির ধার্যমূল্য কত?<ul><li>(A) 2700 টাকা</li><li>(B) 3000 টাকা</li><li>(C) 3150 টাকা</li><li>(D) 2650 টাকা</li></ul>",
       "correctAnswer": "B",
-      "explanation": "ধরি ধার্যমূল্য x টাকা।<br>5% ছাড়ের পর মূল্য = x-এর 95% = 2850<br>বা, x × 95/100 = 2850<br>বা, x = (2850 × 100) / 95 = 30 × 100 = 3000 টাকা।"
+      "explanation": "ধরি ধার্যমূল্য x টাকা।<br>5% ছাড়ের পর মূল্য = x-এর 95% = 2850<br>বা, x × <span class='fraction'><span class='top'>95</span><span class='bottom'>100</span></span> = 2850<br>বা, x = (2850 × 100) / 95 = 30 × 100 = 3000 টাকা।"
     },
     {
       "type": "question",
       "qText": "দালালের কমিশন হিসেবে 1/2 % প্রাপ্য। সে যদি কমিশন হিসেবে 500 টাকা পায়, তবে জমিটির মূল্য কত?<ul><li>(A) 10,000 টাকা</li><li>(B) 2,00,000 টাকা</li><li>(C) 1,00,000 টাকা</li><li>(D) 50,000 টাকা</li></ul>",
       "correctAnswer": "C",
-      "explanation": "ধরি জমির মূল্য x টাকা।<br>x-এর 1/2 % = 500<br>বা, x × (1/2) / 100 = 500<br>বা, x / 200 = 500<br>বা, x = 500 × 200 = 1,00,000 টাকা।"
+      "explanation": "ধরি জমির মূল্য x টাকা।<br>x-এর <span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span> % = 500<br>বা, x × (<span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span>) / 100 = 500<br>বা, x / 200 = 500<br>বা, x = 500 × 200 = 1,00,000 টাকা।"
     }
   ]
 }
