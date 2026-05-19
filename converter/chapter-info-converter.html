@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter Info JSON Converter</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    padding: 20px;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    padding: 28px 30px;
+    text-align: center;
+  }
+  .header h1 { font-size: 1.6rem; margin-bottom: 6px; }
+  .header p { opacity: 0.9; font-size: 0.9rem; }
+
+  .section { padding: 20px 30px; border-bottom: 1px solid #e9ecef; }
+  .section-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #495057;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .badge {
+    background: #11998e;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    text-transform: none;
+  }
+  .badge-optional {
+    font-size: 0.7rem;
+    background: #ffc107;
+    color: #333;
+    padding: 1px 6px;
+    border-radius: 8px;
+    margin-left: 4px;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  input, textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+  input:focus, textarea:focus { outline: none; border-color: #11998e; }
+  input.success { border-color: #28a745; }
+
+  label { font-size: 0.85rem; color: #666; margin-bottom: 4px; display: block; }
+  .hint { font-size: 0.78rem; color: #888; margin-top: 4px; }
+
+  .list-area { display: flex; flex-direction: column; gap: 8px; }
+  .row { display: grid; gap: 8px; align-items: center; }
+  .row-class { grid-template-columns: 60px 1fr 28px; }
+  .row-quiz  { grid-template-columns: 80px 1fr 28px; }
+  .row-pdf   { grid-template-columns: 1fr 1fr 28px; }
+  .row input { margin: 0; }
+
+  .btn-remove {
+    width: 28px; height: 28px;
+    background: #dc3545; color: white;
+    border: none; border-radius: 6px;
+    cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .btn-remove:hover { background: #c82333; }
+
+  .btn-add {
+    padding: 8px 16px;
+    background: #e8f5e9;
+    color: #11998e;
+    border: 2px dashed #11998e;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    margin-top: 6px;
+    transition: all 0.2s;
+  }
+  .btn-add:hover { background: #11998e; color: white; }
+
+  .drive-row { display: flex; gap: 8px; align-items: center; }
+  .drive-row input { flex: 1; }
+  .btn-extract {
+    padding: 10px 14px;
+    background: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    font-family: inherit;
+  }
+  .btn-extract:hover { background: #3367d6; }
+
+  .output-area { padding: 20px 30px; background: #f8f9fa; }
+  #output {
+    width: 100%;
+    height: 280px;
+    padding: 16px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    background: #f0fff4;
+    resize: vertical;
+    line-height: 1.5;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    padding: 20px 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-top: 2px solid #e9ecef;
+  }
+  .main-btn {
+    padding: 12px 26px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .main-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
+  #btnGenerate { background: linear-gradient(135deg, #11998e, #38ef7d); color: white; }
+  #btnCopy     { background: #28a745; color: white; }
+  #btnDownload { background: #17a2b8; color: white; }
+
+  .cycle-btn {
+    padding: 10px 12px;
+    background: #e8f5e9;
+    color: #11998e;
+    border: 2px solid #11998e;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .cycle-btn:hover { background: #11998e; color: white; }
+
+  @media (max-width: 600px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .row-class { grid-template-columns: 50px 1fr 28px; }
+    .row-quiz  { grid-template-columns: 70px 1fr 28px; }
+    .row-pdf   { grid-template-columns: 1fr 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>📋 Chapter Info JSON Converter</h1>
+    <p>chapter-info.json তৈরি করুন — Google Drive link সরাসরি paste করুন</p>
+  </div>
+
+  <!-- Basic Info -->
+  <div class="section">
+    <div class="section-title">📌 Basic Info</div>
+    <div class="grid-2" style="margin-bottom:12px;">
+      <div>
+        <label>Chapter ID (unique key)</label>
+        <input id="chapterID" placeholder="যেমন: PercentageMath" />
+      </div>
+      <div>
+        <label>Chapter Name (বাংলায়)</label>
+        <input id="chapterName" placeholder="যেমন: শতাংশ (Percentage)" />
+      </div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <label>
+        Description
+        <span style="font-size:0.75rem;color:#11998e;font-weight:600;">
+          ✨ Chapter Name দিলে auto-fill হবে
+        </span>
+      </label>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input id="description" placeholder="অধ্যায়ের সংক্ষিপ্ত বিবরণ" style="flex:1;" />
+        <button class="cycle-btn" id="btnCycleDesc" title="অন্য description দেখুন">🔄</button>
+      </div>
+    </div>
+    <div>
+      <label>Logo URL <span class="badge-optional">optional</span></label>
+      <input id="logoURL" placeholder="https://cdn-icons-png.flaticon.com/512/..." />
+      <p class="hint">Flaticon বা যেকোনো image URL দিন</p>
+    </div>
+  </div>
+
+  <!-- Classes -->
+  <div class="section">
+    <div class="section-title">
+      📚 Classes <span class="badge" id="classCount">0</span>
+    </div>
+    <div class="list-area" id="classList"></div>
+    <button class="btn-add" onclick="addClass()">+ ক্লাস যোগ করুন</button>
+    <p class="hint" style="margin-top:8px;">ID দিলে title স্বয়ংক্রিয় তৈরি হবে (চাইলে পরিবর্তন করুন)</p>
+  </div>
+
+  <!-- Quizzes -->
+  <div class="section">
+    <div class="section-title">🧠 Quizzes <span class="badge-optional">optional</span></div>
+    <div class="list-area" id="quizList"></div>
+    <button class="btn-add" onclick="addQuiz()">+ Quiz যোগ করুন</button>
+  </div>
+
+  <!-- PDFs -->
+  <div class="section">
+    <div class="section-title">📄 PDFs <span class="badge-optional">optional</span></div>
+    <div class="list-area" id="pdfList"></div>
+    <button class="btn-add" onclick="addPDF()">+ PDF যোগ করুন</button>
+    <p class="hint" style="margin-top:8px;">Google Drive share link সরাসরি paste করুন — ID স্বয়ংক্রিয় extract হবে</p>
+  </div>
+
+  <!-- Output -->
+  <div class="output-area">
+    <div class="section-title" style="margin-bottom:10px;">✅ Output JSON</div>
+    <textarea id="output" readonly placeholder="Generate বাটন চাপলে JSON এখানে দেখাবে..."></textarea>
+  </div>
+
+  <div class="actions">
+    <button class="main-btn" id="btnGenerate" onclick="generate()">⚡ Generate JSON</button>
+    <button class="main-btn" id="btnCopy" onclick="copyJSON()">📋 Copy JSON</button>
+    <button class="main-btn" id="btnDownload" onclick="downloadJSON()">💾 Download</button>
+  </div>
+
+</div>
+<script>
+// ─── Extract Google Drive file ID ─────────────────────────────────────────
+function extractDriveID(input) {
+  input = input.trim();
+  if (/^[a-zA-Z0-9_-]{25,}$/.test(input)) return input;
+  const patterns = [
+    /\/file\/d\/([a-zA-Z0-9_-]+)/,
+    /id=([a-zA-Z0-9_-]+)/,
+    /\/d\/([a-zA-Z0-9_-]+)/,
+    /open\?id=([a-zA-Z0-9_-]+)/,
+  ];
+  for (const p of patterns) {
+    const m = input.match(p);
+    if (m) return m[1];
+  }
+  return input;
+}
+
+// ─── Description auto-generate ────────────────────────────────────────────
+const descTemplates = [
+  (n) => `${n}-এর বিভিন্ন গুরুত্বপূর্ণ বিষয় এবং ধারণা নিয়ে এই অধ্যায়টি সাজানো হয়েছে।`,
+  (n) => `এই অধ্যায়ে ${n} সম্পর্কিত সকল গুরুত্বপূর্ণ নিয়ম, সূত্র ও উদাহরণ আলোচনা করা হয়েছে।`,
+  (n) => `RRB Group D পরীক্ষার জন্য ${n}-এর প্রয়োজনীয় শর্টকাট ও কৌশল এখানে দেওয়া হয়েছে।`,
+  (n) => `${n} বিষয়ক প্রশ্নোত্তর ও ব্যাখ্যাসহ সম্পূর্ণ প্র্যাকটিস সেট এই অধ্যায়ে রয়েছে।`,
+];
+let descIdx = 0;
+let descEdited = false;
+
+document.getElementById('description').addEventListener('input', () => {
+  descEdited = true;
+});
+
+// Single chapterName listener — handles both description + class titles
+document.getElementById('chapterName').addEventListener('input', () => {
+  const raw = document.getElementById('chapterName').value;
+  // auto-close unbalanced parentheses on the fly for title generation
+  const open = (raw.match(/\(/g) || []).length;
+  const close = (raw.match(/\)/g) || []).length;
+  const name = raw.trim() + ')'.repeat(Math.max(0, open - close));
+  if (!descEdited && name) {
+    document.getElementById('description').value =
+      descTemplates[descIdx % descTemplates.length](name);
+  }
+  document.getElementById('classList').querySelectorAll('.row').forEach(row => {
+    const inputs = row.querySelectorAll('input');
+    const id = inputs[0].value.trim();
+    if (id) inputs[1].value = `${name || 'অধ্যায়'} - ক্লাস ${id}`;
+  });
+});
+
+document.getElementById('btnCycleDesc').addEventListener('click', () => {
+  const name = document.getElementById('chapterName').value.trim();
+  if (!name) return;
+  descIdx++;
+  document.getElementById('description').value =
+    descTemplates[descIdx % descTemplates.length](name);
+  descEdited = false;
+});
+
+// ─── Class rows ───────────────────────────────────────────────────────────
+let classCounter = 0;
+
+function addClass(id, title) {
+  classCounter++;
+  const idx = classCounter;
+  const chName = document.getElementById('chapterName').value.trim() || 'অধ্যায়';
+  const resolvedId = id || String(idx);
+  const resolvedTitle = title || `${chName} - ক্লাস ${resolvedId}`;
+
+  const row = document.createElement('div');
+  row.className = 'row row-class';
+  row.innerHTML = `
+    <input type="number" min="1" placeholder="ID" value="${resolvedId}"
+      oninput="autoFillClassTitle(this)" style="text-align:center;" />
+    <input type="text" placeholder="Title" value="${resolvedTitle}" />
+    <button class="btn-remove" onclick="this.parentElement.remove();updateClassCount()">×</button>
+  `;
+  document.getElementById('classList').appendChild(row);
+  updateClassCount();
+}
+
+function autoFillClassTitle(idInput) {
+  const row = idInput.closest('.row');
+  const titleInput = row.querySelectorAll('input')[1];
+  const chName = document.getElementById('chapterName').value.trim() || 'অধ্যায়';
+  titleInput.value = `${chName} - ক্লাস ${idInput.value}`;
+  updateClassCount();
+}
+
+function updateClassCount() {
+  document.getElementById('classCount').textContent =
+    document.getElementById('classList').querySelectorAll('.row').length;
+}
+
+// ─── Quiz rows ────────────────────────────────────────────────────────────
+let quizCounter = 0;
+
+function addQuiz(set, title) {
+  quizCounter++;
+  const idx = quizCounter;
+  const autoSet = set || `Qset${idx}`;
+  const autoTitle = title || `Quiz Set ${String(idx).padStart(2, '0')}`;
+
+  const row = document.createElement('div');
+  row.className = 'row row-quiz';
+  row.innerHTML = `
+    <input type="text" placeholder="Set ID" value="${autoSet}" style="text-align:center;" />
+    <input type="text" placeholder="Quiz Title" value="${autoTitle}" />
+    <button class="btn-remove" onclick="this.parentElement.remove()">×</button>
+  `;
+  document.getElementById('quizList').appendChild(row);
+}
+
+// ─── PDF rows ─────────────────────────────────────────────────────────────
+let pdfCounter = 0;
+
+function addPDF(driveID, title) {
+  pdfCounter++;
+  const idx = pdfCounter;
+  const chName = document.getElementById('chapterName').value.trim() || 'অধ্যায়';
+  const autoTitle = title || `${chName} - PDF ${idx}`;
+  const autoID = driveID || '';
+
+  const row = document.createElement('div');
+  row.className = 'row row-pdf';
+  row.innerHTML = `
+    <div>
+      <input type="text" placeholder="PDF Title" value="${autoTitle}" />
+    </div>
+    <div class="drive-col">
+      <div class="drive-row">
+        <input type="text" placeholder="Google Drive link বা File ID paste করুন"
+          value="${autoID}" oninput="liveExtract(this)" />
+        <button class="btn-extract" onclick="extractAndShow(this)">Extract ID</button>
+      </div>
+      <p class="hint extracted-hint" style="color:#11998e;"></p>
+    </div>
+    <button class="btn-remove" onclick="this.parentElement.remove()">×</button>
+  `;
+  document.getElementById('pdfList').appendChild(row);
+}
+
+function liveExtract(input) {
+  const val = input.value.trim();
+  if (!val) return;
+  const id = extractDriveID(val);
+  const hint = input.closest('.drive-col').querySelector('.extracted-hint');
+  if (id !== val) {
+    hint.textContent = '✅ ID: ' + id;
+    input.dataset.extractedId = id;
+    input.classList.add('success');
+  } else {
+    hint.textContent = '';
+    input.dataset.extractedId = '';
+    input.classList.remove('success');
+  }
+}
+
+function extractAndShow(btn) {
+  const input = btn.previousElementSibling;
+  const id = extractDriveID(input.value);
+  input.value = id;
+  input.dataset.extractedId = id;
+  const hint = btn.closest('.drive-col').querySelector('.extracted-hint');
+  hint.textContent = '✅ Extracted: ' + id;
+  input.classList.add('success');
+}
+
+// ─── Generate JSON ────────────────────────────────────────────────────────
+function balanceBrackets(str) {
+  const open  = (str.match(/\(/g) || []).length;
+  const close = (str.match(/\)/g) || []).length;
+  return str + ')'.repeat(Math.max(0, open - close));
+}
+
+function generate() {
+  const chapterID   = document.getElementById('chapterID').value.trim();
+  const chapterName = balanceBrackets(document.getElementById('chapterName').value.trim());
+  const description = document.getElementById('description').value.trim();
+  const logoURL     = document.getElementById('logoURL').value.trim();
+
+  if (!chapterID || !chapterName) {
+    alert('Chapter ID এবং Chapter Name অবশ্যই দিতে হবে!');
+    return;
+  }
+
+  const classes = [];
+  document.getElementById('classList').querySelectorAll('.row').forEach(row => {
+    const inputs = row.querySelectorAll('input');
+    const id    = inputs[0].value.trim();
+    const title = inputs[1].value.trim();
+    if (id) classes.push({ title: balanceBrackets(title || `${chapterName} - ক্লাস ${id}`), id });
+  });
+
+  const quizzes = [];
+  document.getElementById('quizList').querySelectorAll('.row').forEach(row => {
+    const inputs = row.querySelectorAll('input');
+    const set   = inputs[0].value.trim();
+    const title = inputs[1].value.trim();
+    if (set) quizzes.push({ title, set });
+  });
+
+  const pdfs = [];
+  document.getElementById('pdfList').querySelectorAll('.row').forEach(row => {
+    const titleInput = row.querySelector('input[placeholder="PDF Title"]');
+    const driveInput = row.querySelector('input[placeholder*="Drive"]');
+    const title   = titleInput ? titleInput.value.trim() : '';
+    const rawVal  = driveInput ? driveInput.value.trim() : '';
+    const driveID = (driveInput && driveInput.dataset.extractedId) || extractDriveID(rawVal);
+    if (driveID) pdfs.push({ title, driveID });
+  });
+
+  const result = { chapterID, chapterName, description, logoURL, classes };
+  if (quizzes.length) result.quizzes = quizzes;
+  if (pdfs.length)    result.pdfs    = pdfs;
+
+  document.getElementById('output').value = JSON.stringify(result, null, 2);
+}
+
+// ─── Copy & Download ──────────────────────────────────────────────────────
+function copyJSON() {
+  const output = document.getElementById('output').value;
+  if (!output) { alert('প্রথমে Generate করুন!'); return; }
+  navigator.clipboard.writeText(output).then(() => {
+    const btn = document.getElementById('btnCopy');
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = orig, 2000);
+  });
+}
+
+function downloadJSON() {
+  const output = document.getElementById('output').value;
+  if (!output) { alert('প্রথমে Generate করুন!'); return; }
+  const blob = new Blob([output], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url;
+  a.download = 'chapter-info.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ─── Initial rows ─────────────────────────────────────────────────────────
+for (let i = 1; i <= 5; i++) addClass(String(i));
+addQuiz('Qset1', 'Quiz Set 01');
+addPDF();
+</script>
+</body>
+</html>

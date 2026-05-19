@@ -1,0 +1,175 @@
+{
+  "chapterName": "শতাংশ (Percentage)",
+  "classNumber": "01",
+  "sections": [
+    {
+      "type": "title",
+      "content": "শতাংশ (Percentage) - ক্লাস 01"
+    },
+    {
+      "type": "title",
+      "content": "১. সাধারণ নিয়ম (Basic Rules)"
+    },
+    {
+      "type": "text",
+      "content": "<strong>শতকরা থেকে ভগ্নাংশ:</strong> কোনো সংখ্যাকে শতকরা থেকে ভগ্নাংশে নিতে হলে 100 দিয়ে ভাগ করতে হয়।"
+    },
+    {
+      "type": "math",
+      "content": "যেমন: 20% = <span class='fraction'><span class='top'>20</span><span class='bottom'>100</span></span> = <span class='fraction'><span class='top'>1</span><span class='bottom'>5</span></span>"
+    },
+    {
+      "type": "text",
+      "content": "<strong>ভগ্নাংশ থেকে শতকরা:</strong> কোনো ভগ্নাংশকে শতকরায় প্রকাশ করতে 100 দিয়ে গুণ করতে হয়।"
+    },
+    {
+      "type": "math",
+      "content": "যেমন: <span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> = (<span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> &times; 100)% = 25%"
+    },
+    {
+      "type": "title",
+      "content": "২. বৃদ্ধির হার ও হ্রাসের হার (Percentage Increase/Decrease)"
+    },
+    {
+      "type": "math",
+      "content": "Percentage Increase = <span class='fraction'><span class='top'>Increase Value</span><span class='bottom'>Original Value</span></span> &times; 100"
+    },
+    {
+      "type": "math",
+      "content": "Percentage Decrease = <span class='fraction'><span class='top'>Decrease Value</span><span class='bottom'>Original Value</span></span> &times; 100"
+    },
+    {
+      "type": "title",
+      "content": "৩. তুলনামূলক অংক (Comparison Rules)"
+    },
+    {
+      "type": "text",
+      "content": "পরীক্ষায় প্রায়ই আসে: \"A-এর আয় B-এর চেয়ে x% বেশি হলে, B-এর আয় A-এর চেয়ে কত শতাংশ কম?\""
+    },
+    {
+      "type": "text",
+      "content": "<strong>বেশি থেকে কম বের করার নিয়ম:</strong> (<span class='fraction'><span class='top'>x</span><span class='bottom'>100 + x</span></span> &times; 100)%"
+    },
+    {
+      "type": "text",
+      "content": "<strong>কম থেকে বেশি বের করার নিয়ম:</strong> (<span class='fraction'><span class='top'>x</span><span class='bottom'>100 - x</span></span> &times; 100)%"
+    },
+    {
+      "type": "text",
+      "content": "<em>উদাহরণ:</em> চিনির দাম 25% বেড়ে গেলে খরচ অপরিবর্তিত রাখতে ব্যবহার কত কমাতে হবে?"
+    },
+    {
+      "type": "math",
+      "content": "<span class='fraction'><span class='top'>25</span><span class='bottom'>100 + 25</span></span> &times; 100 = <span class='fraction'><span class='top'>25</span><span class='bottom'>125</span></span> &times; 100 = 20%"
+    },
+    {
+      "type": "title",
+      "content": "৪. ক্রমাগত পরিবর্তন (Successive Percentage Change)"
+    },
+    {
+      "type": "text",
+      "content": "যদি কোনো কিছুর মান প্রথমে x% বাড়ে এবং পরে y% বাড়ে, তবে মোট পরিবর্তন হবে:"
+    },
+    {
+      "type": "math",
+      "content": "সূত্র: (x + y + <span class='fraction'><span class='top'>xy</span><span class='bottom'>100</span></span>)%"
+    },
+    {
+      "type": "text",
+      "content": "<strong>মনে রাখবে:</strong> বৃদ্ধি হলে + চিহ্ন এবং হ্রাস বা ছাড় হলে − চিহ্ন বসবে।"
+    },
+    {
+      "type": "text",
+      "content": "<em>উদাহরণ:</em> একটি জিনিসের দাম প্রথমে 20% বাড়ল এবং পরে 10% কমল। মোট পরিবর্তন কত?"
+    },
+    {
+      "type": "math",
+      "content": "20 − 10 + <span class='fraction'><span class='top'>20 &times; (−10)</span><span class='bottom'>100</span></span> = 10 − 2 = 8% বৃদ্ধি"
+    },
+    {
+      "type": "title",
+      "content": "৫. জনসংখ্যা ও অবচয় (Population & Depreciation)"
+    },
+    {
+      "type": "text",
+      "content": "যদি বর্তমান জনসংখ্যা P হয় এবং বৃদ্ধির হার r% হয়, তবে:"
+    },
+    {
+      "type": "math",
+      "content": "n বছর পর জনসংখ্যা = P(1 + <span class='fraction'><span class='top'>r</span><span class='bottom'>100</span></span>)<sup>n</sup>"
+    },
+    {
+      "type": "math",
+      "content": "n বছর আগে জনসংখ্যা = <span class='fraction'><span class='top'>P</span><span class='bottom'>(1 + <span class='fraction'><span class='top'>r</span><span class='bottom'>100</span></span>)<sup>n</sup></span></span>"
+    },
+    {
+      "type": "text",
+      "content": "<strong>দ্রষ্টব্য:</strong> যদি দাম কমে (যেমন মেশিনের দাম), তবে + চিহ্নের জায়গায় − বসবে।"
+    },
+    {
+      "type": "title",
+      "content": "৬. পরীক্ষা ও নম্বর সংক্রান্ত (Examination & Marks)"
+    },
+    {
+      "type": "text",
+      "content": "পাস নম্বর এবং প্রাপ্ত নম্বরের পার্থক্য থেকে মোট নম্বর বের করার সূত্র:"
+    },
+    {
+      "type": "math",
+      "content": "Total Marks = <span class='fraction'><span class='top'>Difference in marks</span><span class='bottom'>Difference in percentage</span></span> &times; 100"
+    },
+    {
+      "type": "text",
+      "content": "<em>উদাহরণ:</em> একজন ছাত্র 30% নম্বর পেয়ে 15 নম্বরের জন্য ফেল করল। অন্যজন 40% নম্বর পেয়ে পাস নম্বরের চেয়ে 35 নম্বর বেশি পেল। মোট নম্বর কত?"
+    },
+    {
+      "type": "math",
+      "content": "<span class='fraction'><span class='top'>15 + 35</span><span class='bottom'>40 − 30</span></span> &times; 100 = <span class='fraction'><span class='top'>50</span><span class='bottom'>10</span></span> &times; 100 = 500"
+    },
+    {
+      "type": "title",
+      "content": "৭. ভোট বা নির্বাচন সংক্রান্ত (Election Problems)"
+    },
+    {
+      "type": "text",
+      "content": "নির্বাচনে সাধারণত দুজন প্রার্থীর কথা বলা হয়। মোট ভোটার সবসময় 100% ধরতে হবে।"
+    },
+    {
+      "type": "text",
+      "content": "<em>উদাহরণ:</em> একজন প্রার্থী 60% ভোট পেয়ে 2000 ভোটে জিতলেন। মোট ভোটার কত?"
+    },
+    {
+      "type": "text",
+      "content": "জয়ী প্রার্থী পেলেন 60%, তাই পরাজিত প্রার্থী পেয়েছেন (100 − 60) = 40%।"
+    },
+    {
+      "type": "math",
+      "content": "পার্থক্য = 60% − 40% = 20% → 20% = 2000 → 100% = 10000"
+    },
+    {
+      "type": "title",
+      "content": "৮. গুরুত্বপূর্ণ ভগ্নাংশ-শতকরা মান (Fraction to % Table)"
+    },
+    {
+      "type": "text",
+      "content": "এই মানগুলো মুখস্থ থাকলে অংক অনেক দ্রুত করা যায়:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "1 = 100%",
+        "<span class='fraction'><span class='top'>1</span><span class='bottom'>2</span></span> = 50%",
+        "<span class='fraction'><span class='top'>1</span><span class='bottom'>3</span></span> = 33.33%",
+        "<span class='fraction'><span class='top'>1</span><span class='bottom'>4</span></span> = 25%",
+        "<span class='fraction'><span class='top'>1</span><span class='bottom'>5</span></span> = 20%",
+        "<span class='fraction'><span class='top'>1</span><span class='bottom'>6</span></span> = 16.66%",
+        "<span class='fraction'><span class='top'>1</span><span class='bottom'>8</span></span> = 12.5%",
+        "<span class='fraction'><span class='top'>1</span><span class='bottom'>10</span></span> = 10%"
+      ]
+    },
+    {
+      "type": "box",
+      "content": "<strong>টিপস:</strong> RRB Group D পরীক্ষায় অনেক সময় বড় ক্যালকুলেশন থাকে না, বরং মাথা খাটিয়ে করার মতো অংক থাকে। তাই সূত্র মুখস্থ করার পাশাপাশি নিয়মিত প্র্যাকটিস করো। শুভকামনা রইল!"
+    }
+  ]
+}

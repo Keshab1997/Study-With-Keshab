@@ -1,0 +1,490 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percentage Class JSON Converter</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 1600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+  }
+  .header h1 { font-size: 1.8rem; margin-bottom: 8px; }
+  .header p { opacity: 0.9; font-size: 0.95rem; }
+
+  .meta-inputs {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+    padding: 20px 30px;
+    background: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+  }
+  .meta-inputs input {
+    padding: 12px 16px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Hind Siliguri', sans-serif;
+  }
+  .meta-inputs input:focus { outline: none; border-color: #667eea; }
+
+  .panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 560px;
+  }
+  .panel { display: flex; flex-direction: column; }
+  .panel-header {
+    padding: 12px 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .panel-left .panel-header { background: #495057; }
+  .panel-right .panel-header { background: #28a745; }
+
+  textarea, #output {
+    flex: 1;
+    padding: 20px;
+    border: none;
+    font-size: 0.82rem;
+    font-family: 'Courier New', monospace;
+    resize: none;
+    line-height: 1.6;
+    overflow-y: auto;
+  }
+  textarea { background: #f8f9fa; }
+  #output { background: #f0fff4; white-space: pre-wrap; }
+
+  .actions {
+    display: flex;
+    gap: 15px;
+    padding: 20px 30px;
+    justify-content: center;
+    background: #f8f9fa;
+    border-top: 2px solid #e9ecef;
+    flex-wrap: wrap;
+  }
+  button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.2s;
+    font-family: 'Hind Siliguri', sans-serif;
+  }
+  button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+  #btnConvert { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+  #btnCopy { background: #28a745; color: white; }
+  #btnDownload { background: #17a2b8; color: white; }
+  #btnClear { background: #dc3545; color: white; }
+
+  .help {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px 20px;
+    margin: 20px 30px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    line-height: 1.9;
+  }
+  .help strong { color: #856404; }
+  .help code {
+    background: #f8f9fa;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #d63384;
+  }
+
+  @media (max-width: 768px) {
+    .panels { grid-template-columns: 1fr; height: auto; }
+    .panel { height: 350px; }
+    .meta-inputs { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>📐 Percentage Class JSON Converter</h1>
+    <p>Markdown / Plain Text → class-renderer.js compatible JSON</p>
+  </div>
+
+  <div class="help">
+    <strong>📌 সাপোর্টেড ইনপুট ফরম্যাট:</strong><br>
+    • <code>### শিরোনাম</code> → <code>title</code> &nbsp;|• <code>#### উপশিরোনাম</code> → <code>header</code><br>
+    • <code>* **বোল্ড:** টেক্সট</code> → <code>text</code> &nbsp;|• <code>* $সূত্র$</code> → <code>math</code><br>
+    • <code>* 1/2 = 50%</code> → <code>math</code> &nbsp;|• <code>**টিপস:**</code> → <code>box</code><br>
+    • LaTeX <code>$\frac{a}{b}$</code>, <code>$x^{n}$</code>, <code>$\times$</code> স্বয়ংক্রিয়ভাবে HTML-এ রূপান্তরিত হবে<br>
+    <strong>📝 প্রশ্ন ফরম্যাট (নিচের ফরম্যাটে দিলে স্বয়ংক্রিয় প্রশ্ন section তৈরি হবে):</strong><br>
+    <code>প্রশ্ন 1</code> &rarr; <code>বিষয়: গণিত</code> &rarr; <code>প্রশ্ন: ...</code> &rarr; <code>বিকল্পসমূহ:</code> &rarr; <code>&nbsp;&nbsp;A: ...</code> &rarr; <code>সঠিক উত্তর: (B) ...</code> &rarr; <code>ব্যাখ্যা: ...</code><br>
+    • প্রশ্নগুলো <code>======</code> দিয়ে আলাদা করতে হবে (না দিলেও চলবে)<br>
+    • সাধারণ নোট ও প্রশ্ন একসাথে মিশিয়ে দেওয়া যাবে, দুটোই ঠিকমতো convert হবে
+  </div>
+
+  <div class="meta-inputs">
+    <input id="chapterName" placeholder="Chapter Name" value="শতাংশ (Percentage)" />
+    <input id="classNumber" placeholder="Class Number (যেমন: 01)" value="01" />
+  </div>
+
+  <div class="panels">
+    <div class="panel panel-left">
+      <div class="panel-header">
+        <span>📝 Input (Markdown / Plain Text)</span>
+      </div>
+      <textarea id="input" placeholder="এখানে Markdown বা Plain Text paste করুন..."></textarea>
+    </div>
+    <div class="panel panel-right">
+      <div class="panel-header">
+        <span>✅ Output (class-renderer.js JSON)</span>
+      </div>
+      <textarea id="output" readonly placeholder="JSON output এখানে দেখাবে..."></textarea>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button id="btnConvert" onclick="convertToJSON()">⚡ Convert to JSON</button>
+    <button id="btnCopy" onclick="copyJSON()">📋 Copy JSON</button>
+    <button id="btnDownload" onclick="downloadJSON()">💾 Download JSON</button>
+    <button id="btnClear" onclick="clearAll()">🗑️ Clear All</button>
+  </div>
+</div>
+
+<script>
+// ─── Bangla digits → English ───────────────────────────────────────────────
+function bn2en(text) {
+  return text.replace(/[০-৯]/g, d => '০১২৩৪৫৬৭৮৯'.indexOf(d));
+}
+
+// ─── LaTeX \frac nested conversion (handles nested \frac inside \frac) ──────
+function convertFrac(expr) {
+  // Repeatedly replace innermost \frac{a}{b} until none left
+  let prev;
+  do {
+    prev = expr;
+    expr = expr.replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g,
+      "<span class='fraction'><span class='top'>$1</span><span class='bottom'>$2</span></span>");
+  } while (expr !== prev);
+  return expr;
+}
+
+// ─── LaTeX $...$ → renderer-compatible HTML ────────────────────────────────
+function latexToHTML(text) {
+  if (!text) return text;
+  text = text.replace(/\$([^$]+)\$/g, (_, inner) => convertMathExpr(inner));
+  return text;
+}
+
+function convertMathExpr(expr) {
+  expr = expr.trim();
+  expr = expr.replace(/\\left\(/g, '(').replace(/\\right\)/g, ')');
+  expr = expr.replace(/\\left\[/g, '[').replace(/\\right\]/g, ']');
+  expr = expr.replace(/\\text\{([^}]+)\}/g, '$1');
+  expr = expr.replace(/\\times/g, '&times;');
+  expr = expr.replace(/\\%/g, '%');
+  expr = expr.replace(/\\cdot/g, '&middot;');
+  // nested \frac
+  expr = convertFrac(expr);
+  // superscript: ^{n} or ^n
+  expr = expr.replace(/\^\{([^}]+)\}/g, '<sup>$1</sup>');
+  expr = expr.replace(/\^(\w)/g, '<sup>$1</sup>');
+  // simple numeric a/b not already inside a span
+  expr = expr.replace(/(?<!span[^>]{0,50})(\d+)\/(\d+)/g,
+    "<span class='fraction'><span class='top'>$1</span><span class='bottom'>$2</span></span>");
+  return expr;
+}
+
+// ─── Clean markdown bold/italic & HTML entities ────────────────────────────
+function cleanMarkdown(text) {
+  // decode ALL HTML entities first
+  text = text.replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+             .replace(/&amp;/g, '&').replace(/&lt;/g, '<')
+             .replace(/&gt;/g, '>').replace(/&#x27;/g, "'")
+             .replace(/&apos;/g, "'");
+  text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  text = text.replace(/(?<!\*|<[^>]*)\*([^*\n]+)\*(?!\*)/g, '<em>$1</em>');
+  return text;
+}
+
+// ─── Detect if a line is a pure math/formula line ──────────────────────────
+function isMathLine(text) {
+  // Contains LaTeX formula markers
+  if (/\\frac|\\times|\\left|\^\{/.test(text)) return true;
+  // Entire content is inside $...$
+  if (/^\$[^$]+\$$/.test(text)) return true;
+  // Fraction table: 1/2 = 50% or 1 = 100%
+  if (/^\d+(\/\d+)?\s*=\s*[\d.]+%$/.test(text)) return true;
+  return false;
+}
+
+// ─── Split input into blocks (question blocks vs normal blocks) ─────────────
+function splitBlocks(raw) {
+  // A question block starts with "প্রশ্ন N" on its own line
+  const blocks = [];
+  const lines = raw.split('\n');
+  let current = [];
+  let inQuestion = false;
+
+  for (const line of lines) {
+    const isQStart = /^প্রশ্ন\s+\d+\s*$/.test(line.trim());
+    const isSep = /^={5,}\s*$/.test(line.trim());
+
+    if (isSep) {
+      if (current.length) blocks.push({ isQuestion: inQuestion, lines: current });
+      current = [];
+      inQuestion = false;
+      continue;
+    }
+
+    if (isQStart) {
+      if (current.length) blocks.push({ isQuestion: inQuestion, lines: current });
+      current = [line];
+      inQuestion = true;
+      continue;
+    }
+
+    current.push(line);
+  }
+  if (current.length) blocks.push({ isQuestion: inQuestion, lines: current });
+  return blocks;
+}
+
+// ─── Parse a question block into a question section ──────────────────────────
+function parseQuestionBlock(lines) {
+  let questionText = '';
+  let options = [];
+  let correctAnswer = '';
+  let explanationLines = [];
+  let state = 'init'; // init | options | explanation
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) continue;
+
+    // Skip "প্রশ্ন N" header and "বিষয়:" line
+    if (/^প্রশ্ন\s+\d+$/.test(line)) continue;
+    if (/^বিষয়:/.test(line)) continue;
+
+    // "প্রশ্ন: ..." — the actual question text
+    if (/^প্রশ্ন:/.test(line)) {
+      questionText = line.replace(/^প্রশ্ন:\s*/, '').trim();
+      state = 'question';
+      continue;
+    }
+
+    // "বিকল্পসমূহ:" header
+    if (/^বিকল্পসমূহ:/.test(line)) {
+      state = 'options';
+      continue;
+    }
+
+    // Option lines: "  A: ..." or "A: ..."
+    if (state === 'options') {
+      const optMatch = line.match(/^([A-D]):\s*(.+)/);
+      if (optMatch) {
+        options.push(`(${optMatch[1]}) ${optMatch[2]}`);
+        continue;
+      }
+    }
+
+    // "সঠিক উত্তর: (B) ..."
+    if (/^সঠিক উত্তর:/.test(line)) {
+      const m = line.match(/\(([A-D])\)/);
+      if (m) correctAnswer = m[1];
+      state = 'explanation';
+      continue;
+    }
+
+    // "ব্যাখ্যা: ..."
+    if (/^ব্যাখ্যা:/.test(line)) {
+      const rest = line.replace(/^ব্যাখ্যা:\s*/, '').trim();
+      if (rest) explanationLines.push(rest);
+      state = 'explanation';
+      continue;
+    }
+
+    if (state === 'explanation') {
+      explanationLines.push(line);
+    }
+  }
+
+  // Build qText: question + options as HTML list
+  const optionsHTML = options.length
+    ? `<ul>${options.map(o => `<li>${latexToHTML(cleanMarkdown(o))}</li>`).join('')}</ul>`
+    : '';
+  const qText = `${latexToHTML(cleanMarkdown(questionText))}${optionsHTML}`;
+  const explanation = explanationLines.map(l => latexToHTML(cleanMarkdown(l))).join('<br>');
+
+  return { type: 'question', qText, correctAnswer, explanation };
+}
+
+// ─── Main converter ─────────────────────────────────────────────────────────
+function convertToJSON() {
+  let raw = document.getElementById('input').value;
+  const chapterName = document.getElementById('chapterName').value.trim();
+  const classNumber = document.getElementById('classNumber').value.trim().padStart(2, '0');
+
+  if (!raw.trim()) { alert('অনুগ্রহ করে কিছু paste করুন!'); return; }
+
+  raw = bn2en(raw);
+
+  const blocks = splitBlocks(raw);
+  const sections = [];
+
+  sections.push({ type: 'title', content: `${chapterName} - ক্লাস ${classNumber}` });
+
+  for (const block of blocks) {
+    if (block.isQuestion) {
+      sections.push(parseQuestionBlock(block.lines));
+      continue;
+    }
+
+    // Normal markdown block
+    const lines = block.lines;
+    let i = 0;
+    let listBuffer = [];
+
+    function flushList() {
+      if (listBuffer.length > 0) {
+        sections.push({ type: 'list', items: [...listBuffer] });
+        listBuffer = [];
+      }
+    }
+
+    while (i < lines.length) {
+      const rawLine = lines[i];
+      const line = rawLine.trim();
+      i++;
+
+      if (!line) continue;
+
+      if (line.startsWith('### ')) {
+        flushList();
+        sections.push({ type: 'title', content: latexToHTML(cleanMarkdown(line.replace(/^###\s*/, ''))) });
+        continue;
+      }
+
+      if (line.startsWith('#### ')) {
+        flushList();
+        sections.push({ type: 'header', content: latexToHTML(cleanMarkdown(line.replace(/^####\s*/, ''))) });
+        continue;
+      }
+
+      if (/^\*\*(টিপস|দ্রষ্টব্য|Note|নোট):/.test(line)) {
+        flushList();
+        sections.push({ type: 'box', content: latexToHTML(cleanMarkdown(line.replace(/^\*+/, '').trim())) });
+        continue;
+      }
+
+      if (/^(\s{4}|\t)[*\-]\s+/.test(rawLine)) {
+        const inner = rawLine.replace(/^(\s{4}|\t)[*\-]\s+/, '').trim();
+        const content = latexToHTML(cleanMarkdown(inner));
+        flushList();
+        sections.push({ type: isMathLine(inner) ? 'math' : 'text', content });
+        continue;
+      }
+
+      if (/^[*\-]\s+/.test(line)) {
+        const inner = line.replace(/^[*\-]\s+/, '').trim();
+        const content = latexToHTML(cleanMarkdown(inner));
+
+        if (/^\d+(\/\d+)?\s*=\s*[\d.]+%$/.test(inner)) {
+          flushList();
+          sections.push({ type: 'math', content });
+          continue;
+        }
+        if (isMathLine(inner)) {
+          flushList();
+          sections.push({ type: 'math', content });
+          continue;
+        }
+        flushList();
+        sections.push({ type: 'text', content });
+        continue;
+      }
+
+      flushList();
+      const content = latexToHTML(cleanMarkdown(line));
+      if (content) sections.push({ type: 'text', content });
+    }
+
+    flushList();
+  }
+
+  const result = { chapterName, classNumber, sections };
+  const jsonStr = JSON.stringify(result, null, 2);
+  document.getElementById('output').value = jsonStr;
+}
+
+function copyJSON() {
+  const output = document.getElementById('output').value;
+  if (!output) { alert('প্রথমে Convert করুন!'); return; }
+  navigator.clipboard.writeText(output).then(() => {
+    const btn = document.getElementById('btnCopy');
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = orig, 2000);
+  }).catch(() => {
+    // fallback
+    const out = document.getElementById('output');
+    out.select();
+    document.execCommand('copy');
+  });
+}
+
+function downloadJSON() {
+  const output = document.getElementById('output').value;
+  if (!output) { alert('প্রথমে Convert করুন!'); return; }
+  const classNumber = document.getElementById('classNumber').value.trim().padStart(2, '0');
+  const blob = new Blob([output], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `class${classNumber}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  const btn = document.getElementById('btnDownload');
+  const orig = btn.textContent;
+  btn.textContent = '✅ Downloaded!';
+  setTimeout(() => btn.textContent = orig, 2000);
+}
+
+function clearAll() {
+  if (confirm('সব কিছু মুছে ফেলবেন?')) {
+    document.getElementById('input').value = '';
+    document.getElementById('output').value = '';
+  }
+}
+
+document.getElementById('input').addEventListener('input', () => {
+  if (document.getElementById('input').value.trim()) convertToJSON();
+});
+</script>
+</body>
+</html>
