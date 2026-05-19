@@ -129,6 +129,14 @@ document.addEventListener('DOMContentLoaded', function() {
         googleLoginBtn.addEventListener('click', () => {
             const auth = firebase.auth();
             const db = firebase.firestore();
+            
+            // Android Native Bridge Check
+            if (window.AndroidAuth && window.AndroidAuth.signInWithGoogle) {
+                // Android native Google Sign-In ব্যবহার করা হবে
+                window.AndroidAuth.signInWithGoogle();
+                return;
+            }
+            
             const provider = new firebase.auth.GoogleAuthProvider();
             
             // WebView-এ Google OAuth কাজ করে না (Google policy - disallowed_useragent)
@@ -174,6 +182,40 @@ document.addEventListener('DOMContentLoaded', function() {
     firebase.auth().getRedirectResult().catch(error => {
         // silent - ignore redirect errors
     });
+
+    // Android Native থেকে Google Sign-In result রিসিভ করার ফাংশন
+    window.signInWithGoogleCredential = function(idToken) {
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const credential = firebase.auth.GoogleAuthProvider.credential(idToken);
+        
+        auth.signInWithCredential(credential).then(result => {
+            const user = result.user;
+            const userRef = db.collection('users').doc(user.uid);
+            
+            return userRef.get().then(doc => {
+                const userData = {
+                    uid: user.uid,
+                    displayName: user.displayName,
+                    email: user.email,
+                    photoURL: user.photoURL,
+                    lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+                };
+                
+                if (!doc.exists) {
+                    userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'student';
+                }
+                
+                return userRef.set(userData, { merge: true });
+            });
+        }).then(() => {
+            if(window.showToast) showToast('সফলভাবে লগইন হয়েছে!', 'success');
+            setTimeout(() => window.location.href = 'index.html', 500);
+        }).catch(error => {
+            console.error("Native Google Sign-In error:", error);
+            alert("লগইন করার সময় একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
+        });
+    };
 
     document.body.addEventListener('click', function(e) {
         if (e.target.id === 'mobile-logout' || e.target.closest('#mobile-logout')) {
