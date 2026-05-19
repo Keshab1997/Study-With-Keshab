@@ -333,12 +333,28 @@ body {
 .table-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
 }
 
 .quiz-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
+    min-width: 600px;
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .table-wrapper::after {
+        content: '← সোয়াইপ করুন →';
+        display: block;
+        text-align: center;
+        font-size: 12px;
+        color: var(--primary-color);
+        padding: 6px;
+        background: #f0f6ff;
+        border-top: 1px solid var(--border-color);
+    }
 }
 
 .quiz-table th {
@@ -482,12 +498,6 @@ body {
         min-width: unset;
     }
 
-    .table-wrapper {
-        margin: 0 -16px;
-        padding: 0 16px;
-        width: auto;
-    }
-
     .quiz-table {
         font-size: 12px;
         min-width: 500px;
@@ -552,11 +562,6 @@ body {
 
     .stat-card p {
         font-size: 11px;
-    }
-
-    .table-wrapper {
-        margin: 0 -12px;
-        padding: 0 12px;
     }
 
     .quiz-table {
