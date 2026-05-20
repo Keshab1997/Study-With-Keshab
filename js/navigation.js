@@ -2,7 +2,7 @@
 function loadNavigation() {
   // Check for manual override first
   const rootPath = window.__MANUAL_ROOT_PATH__ || (() => {
-    const pathDepth = window.location.pathname.split('/').filter(p => p && p !== 'index.html').length;
+    const pathDepth = window.location.pathname.split('/').filter(p => p && p !== 'index.html' && !p.includes('.')).length;
     return pathDepth > 1 ? '../../' : pathDepth === 1 ? '../' : '';
   })();
   
@@ -20,6 +20,7 @@ function loadNavigation() {
           <a href="${rootPath}contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
           <a href="${rootPath}index.html#cbt-exam-section" class="nav-link"><i class="fas fa-laptop-code"></i> CBT Exam</a>
           <a href="${rootPath}ai-teacher.html" class="nav-link"><i class="fas fa-chalkboard-teacher"></i> AI Teacher</a>
+          <a href="${rootPath}ai-notebook.html" class="nav-link"><i class="fas fa-feather"></i> নোটবুক</a>
           <a href="${rootPath}profile.html" id="desktop-profile" class="nav-link" style="display:none"><i class="fas fa-user"></i> Profile</a>
           <a href="${rootPath}admin.html" id="desktop-admin" class="nav-link" style="display:none"><i class="fas fa-user-shield"></i> Admin</a>
         </nav>
@@ -58,6 +59,7 @@ function loadNavigation() {
         <a href="${rootPath}contact.html" class="mobile-link"><i class="fas fa-envelope"></i> Contact</a>
         <a href="${rootPath}index.html#cbt-exam-section" class="mobile-link"><i class="fas fa-laptop-code"></i> CBT Exam</a>
         <a href="${rootPath}ai-teacher.html" class="mobile-link"><i class="fas fa-chalkboard-teacher"></i> AI Teacher</a>
+        <a href="${rootPath}ai-notebook.html" class="mobile-link"><i class="fas fa-feather"></i> নোটবুক</a>
         <a href="${rootPath}login.html" id="mobile-login" class="mobile-link"><i class="fas fa-sign-in-alt"></i> Login</a>
         <a href="${rootPath}profile.html" id="mobile-profile" class="mobile-link" style="display:none"><i class="fas fa-user"></i> Profile</a>
         <a href="${rootPath}admin.html" id="mobile-admin" class="mobile-link" style="display:none"><i class="fas fa-user-shield"></i> Admin</a>
@@ -107,7 +109,7 @@ if (document.readyState === 'loading') {
 // Page Transition Animation
 document.addEventListener('DOMContentLoaded', () => {
   const rootPath = window.__MANUAL_ROOT_PATH__ || (() => {
-    const pathDepth = window.location.pathname.split('/').filter(p => p && p !== 'index.html').length;
+    const pathDepth = window.location.pathname.split('/').filter(p => p && p !== 'index.html' && !p.includes('.')).length;
     return pathDepth > 1 ? '../../' : pathDepth === 1 ? '../' : '';
   })();
   
@@ -142,3 +144,11 @@ window.addEventListener('pageshow', () => {
     overlay.classList.remove('active');
   }
 });
+
+// Load notebook bot widget on all pages (except notebook page itself to avoid double widget)
+if (!window.location.pathname.includes('ai-notebook')) {
+  const nbScript = document.createElement('script');
+  nbScript.src = '/js/notebook-bot.js';
+  nbScript.defer = true;
+  document.body.appendChild(nbScript);
+}

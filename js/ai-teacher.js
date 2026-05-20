@@ -9,6 +9,7 @@ const CONFIG = {
   subjectKey: 'ai_teacher_subject',
   maxTokens: 2000,
   maxHistory: 20,
+  maxImageSize: 4 * 1024 * 1024,
 };
 
 const SYSTEM_PROMPT = `তুমি একজন পেশাদার AI শিক্ষক। তুমি "Study With Keshab" প্ল্যাটফর্মের শিক্ষার্থীদের পড়াতে সাহায্য করবে।
@@ -69,6 +70,14 @@ const SUGGESTIONS = {
   gk: ['সর্ববৃহৎ মহাদেশ কোনটি?', 'বাংলাদেশের রাজধানী কী?', 'জাতীয় পশু কোনটি?', 'সূর্যের নিকটতম গ্রহ কোনটি?'],
 };
 
+const PRESETS = [
+  { id: 'mcq', label: 'MCQ', icon: 'fa-list-check', prompt: 'এই বিষয়ে ৪টি অপশন সহ একটি MCQ প্রশ্ন তৈরি করো। উত্তরসহ ব্যাখ্যা দাও।\n\nপ্রশ্ন: ' },
+  { id: 'example', label: 'উদাহরণ', icon: 'fa-lightbulb', prompt: 'এ বিষয়টি বুঝানোর জন্য একটি বাস্তব উদাহরণ দাও। সহজ ভাষায় ব্যাখ্যা করো।\n\nবিষয়: ' },
+  { id: 'simplify', label: 'সহজভাবে', icon: 'fa-child-reaching', prompt: 'নিচের বিষয়টি খুব সহজ ভাষায় বুঝিয়ে দাও। কঠিন শব্দ ব্যবহার করবে না। ৫ বছর বাচ্চাকেও বুঝানো যায় এমন করে বলো।\n\nবিষয়: ' },
+  { id: 'summary', label: 'সারাংশ', icon: 'fa-compress', prompt: 'নিচের বিষয়টির একটি সংক্ষিপ্ত সারাংশ (৫-৭ লাইনে) লিখো। গুরুত্বপূর্ণ পয়েন্টগুলো উল্লেখ করো।\n\nবিষয়: ' },
+  { id: 'tips', label: 'টিপস', icon: 'fa-star', prompt: 'নিচের বিষয়টি সহজে মনে রাখার জন্য কিছু কার্যকরী টিপস ও কৌশল দাও। পড়ার সময় কী কী বিষয়ে খেয়াল রাখতে হবে তাও বলো।\n\nবিষয়: ' },
+];
+
 const WELCOME_CONTENT = `
   <div class="ai-teacher-welcome" id="welcome-screen">
     <div class="welcome-logo"><i class="fas fa-chalkboard-teacher"></i></div>
@@ -85,6 +94,8 @@ let state = {
   currentSubject: 'general',
   lastAiMessageId: null,
   activeSessionId: null,
+  attachedImage: null,
+  activePreset: null,
 };
 
 // ===== DOM REFS =====
@@ -99,8 +110,15 @@ function initDom() {
   dom.sendBtn = $('ai-teacher-send');
   dom.themeBtn = $('ai-teacher-theme');
   dom.voiceBtn = $('ai-teacher-voice');
+  dom.imageBtn = $('ai-teacher-image');
+  dom.imageInput = $('ai-teacher-image-input');
+  dom.imagePreview = $('image-preview');
   dom.subjectSelect = $('ai-teacher-subject');
   dom.charCount = $('char-count');
+  dom.presetsContainer = $('preset-actions');
+  dom.newChatBtn = $('ai-teacher-new-chat');
+  dom.historyBtn = $('ai-teacher-history');
+  dom.exportBtn = $('ai-teacher-export');
 }
 
 // ===== INIT =====
@@ -192,6 +210,19 @@ function generateSessionId() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 }
 
+function loadMessages() {
+  try {
+    const saved = localStorage.getItem(CONFIG.storageKey);
+    return saved ? JSON.parse(saved) : [];
+  } catch { return []; }
+}
+
+function saveMessages() {
+  try {
+    localStorage.setItem(CONFIG.storageKey, JSON.stringify(state.messages));
+  } catch {}
+}
+
 function getSessionTitle(messages) {
   const first = messages.find(m => m.role === 'user');
   if (!first) return 'নতুন চ্যাট';
@@ -274,45 +305,46 @@ function renderHistoryList() {
   const list = document.getElementById('history-list');
   if (!list) return;
   const sessions = loadSessions();
+  const countEl = document.getElementById('history-count');
+  if (countEl) countEl.textContent = sessions.length;
+
   if (sessions.length === 0) {
-    list.innerHTML = '<div class="history-empty"><i class="fas fa-comment-slash"></i><p>কোনো পুরনো চ্যাট নেই</p></div>';
+    list.innerHTML = '<div class="history-empty"><div class="history-empty-icon-wrap"><i class="fas fa-comment-slash"></i></div><p>কোনো পুরনো চ্যাট নেই</p><p style="font-size:0.75rem;opacity:0.5">আপনার চ্যাটগুলি এখানে সংরক্ষিত হবে</p></div>';
     return;
   }
   list.innerHTML = sessions.map(s => {
-    const date = new Date(s.timestamp).toLocaleDateString('bn-BD', { day: 'numeric', month: 'short' });
     const isActive = s.id === state.activeSessionId;
+    const timeAgo = getRelativeTime(s.timestamp);
     return `
       <div class="history-item ${isActive ? 'active' : ''}" data-id="${s.id}">
         <div class="history-item-icon"><i class="fas fa-comment-dots"></i></div>
         <div class="history-item-body">
-          <div class="history-item-title">${s.title}</div>
-          <div class="history-item-meta">${date} · ${s.messages.length} বার্তা</div>
+          <div class="history-item-title">${escapeHtml(s.title)}</div>
+          <div class="history-item-meta">
+            <i class="far fa-clock"></i> ${timeAgo}
+            <i class="fas fa-circle" style="font-size:3px"></i>
+            ${s.messages.length}টি বার্তা
+          </div>
         </div>
         <button class="history-delete-btn" data-id="${s.id}" title="মুছুন"><i class="fas fa-trash"></i></button>
-      </div>
-    `;
+      </div>`;
   }).join('');
 
+  // Attach click/delete handlers
   list.querySelectorAll('.history-item').forEach(el => {
-    el.addEventListener('click', () => loadSession(el.dataset.id));
+    el.addEventListener('click', (e) => {
+      if (e.target.closest('.history-delete-btn')) return;
+      loadSession(el.dataset.id);
+      closeHistoryPanel();
+    });
   });
   list.querySelectorAll('.history-delete-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => deleteSession(btn.dataset.id, e));
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      deleteSession(btn.dataset.id);
+      renderHistoryList();
+    });
   });
-}
-
-// ===== MESSAGES STORAGE =====
-function loadMessages() {
-  try {
-    const saved = localStorage.getItem(CONFIG.storageKey);
-    return saved ? JSON.parse(saved) : [];
-  } catch { return []; }
-}
-
-function saveMessages() {
-  try {
-    localStorage.setItem(CONFIG.storageKey, JSON.stringify(state.messages));
-  } catch {}
 }
 
 // ===== RENDER =====
@@ -371,7 +403,6 @@ function appendMessageDOM(msg, animate = true) {
     actionsHTML = `
       <div class="message-actions">
         <button class="msg-action-btn copy-btn" title="কপি"><i class="fas fa-copy"></i> কপি</button>
-        <button class="msg-action-btn tts-btn" title="শুনুন"><i class="fas fa-volume-up"></i> শুনুন</button>
         <button class="msg-action-btn regenerate-btn" title="পুনরায় উত্তর"><i class="fas fa-redo"></i> নতুন উত্তর</button>
       </div>
     `;
@@ -416,32 +447,23 @@ function formatTime(ts) {
 
 function formatMessageContent(text) {
   if (!text) return '';
-
-  // Extract \[...\] blocks FIRST, replace with placeholders to protect from paragraph splitting & escaping
   const mathBlocks = [];
   text = text.replace(/\\\[([\s\S]*?)\\\]/g, (_, m) => {
     const html = `<div class="math-block">${latexToHtml(m.trim())}</div>`;
     mathBlocks.push(html);
     return `%%MATHBLOCK_${mathBlocks.length - 1}%%`;
   });
-
   const paragraphs = text.split(/\n\n+/);
   let result = paragraphs.map(p => formatParagraph(p.trim())).join('');
-
-  // Restore math blocks
   mathBlocks.forEach((html, i) => {
     result = result.replace(`%%MATHBLOCK_${i}%%`, html);
   });
-
   return result;
 }
 
 function formatParagraph(text) {
   if (!text) return '';
-
-  // Pass through already-processed math blocks and placeholders
   if (text.startsWith('<div class="math-block"') || /^%%MATHBLOCK_\d+%%$/.test(text.trim())) return text;
-
   const stepPatterns = [
     /^প্রথমে[:\s,]/,
     /^তারপর[:\s,]/,
@@ -459,16 +481,12 @@ function formatParagraph(text) {
     /^টিপস[:\s]/,
     /^নিয়ম[:\s]/,
   ];
-
   const isStep = stepPatterns.some(p => p.test(text));
   const firstLineStep = stepPatterns.some(p => p.test(text.split('\n')[0]));
-
   const lines = text.split('\n').filter(l => l.trim());
-
   if (isStep && firstLineStep) {
     return formatStepBlock(text, lines);
   }
-
   const bareText = text.replace(/\\[\(\[\]]|\\[\)\]]/g, '').trim();
   const isMathEq = (/^[\s]*[0-9+\-×÷=()xya-zA-Z.%\s\/^{}_\\]+[\s]*$/.test(bareText)
     || /^\\\(.*\\\)$/.test(text.trim()))
@@ -476,18 +494,15 @@ function formatParagraph(text) {
     && /[0-9]/.test(text)
     && /[=+\-×÷]/.test(text)
     && !isStep;
-
   if (isMathEq) {
     const processed = processInlineMath(text, true);
     return `<div class="math-block">${processed}</div>`;
   }
-
   const isFormula = /^(সূত্র|Formula|নিয়ম|সূত্রমতে|আমরা জানি|প্রয়োগ)/i.test(text.trim());
   if (isFormula && text.length < 60) {
     const processed = processInlineMath(text);
     return `<div class="formula-box"><span class="formula-label">সূত্র</span>${processed}</div>`;
   }
-
   const bulletLines = lines.filter(l => /^[•\-*]\s/.test(l.trim()) || /^\[\d+\]/.test(l.trim()));
   if (bulletLines.length === lines.length && lines.length > 1) {
     const items = lines.map(l => {
@@ -496,7 +511,6 @@ function formatParagraph(text) {
     }).join('');
     return `<ul class="bullet-list">${items}</ul>`;
   }
-
   const numberList = lines.filter(l => /^\d+[\.\)]\s/.test(l.trim()));
   if (numberList.length === lines.length && lines.length > 1) {
     const items = lines.map(l => {
@@ -505,7 +519,6 @@ function formatParagraph(text) {
     }).join('');
     return `<ol class="math-list">${items}</ol>`;
   }
-
   const isMultiLineMath = lines.every(l => /[0-9=+\-×÷()xya-zA-Z.%\s\/^]/.test(l))
     && lines.length > 1
     && lines.some(l => /=/.test(l));
@@ -513,7 +526,6 @@ function formatParagraph(text) {
     const processed = lines.map(l => processInlineMath(l.trim())).join('<br>');
     return `<div class="math-block">${processed}</div>`;
   }
-
   const processed = processInlineMath(text);
   if (/<div class="math-block"/.test(processed) || /<pre>/.test(processed)) {
     return `<div class="paragraph">${processed}</div>`;
@@ -523,32 +535,16 @@ function formatParagraph(text) {
 
 function formatStepBlock(text, lines) {
   const stepIcons = {
-    'প্রথমে': '১',
-    'তারপর': '২',
-    'এখন': '৩',
-    'শেষে': '৪',
-    'অতএব': '৫',
-    'উপসংহার': '৫',
-    'সুতরাং': '৫',
-    'অর্থাৎ': '৬',
-    'তাহলে': '→',
-    'তাই': '→',
-    'মনে রাখো': '💡',
-    'টিপস': '💡',
-    'বিশেষ': '⭐',
-    'নিয়ম': '📌',
+    'প্রথমে': '১', 'তারপর': '২', 'এখন': '৩', 'শেষে': '৪',
+    'অতএব': '৫', 'উপসংহার': '৫', 'সুতরাং': '৫', 'অর্থাৎ': '৬',
+    'তাহলে': '→', 'তাই': '→', 'মনে রাখো': '💡', 'টিপস': '💡',
+    'বিশেষ': '⭐', 'নিয়ম': '📌',
   };
-
   let icon = '→';
   let label = lines[0];
   for (const [key, emoji] of Object.entries(stepIcons)) {
-    if (lines[0].includes(key)) {
-      icon = emoji;
-      label = key;
-      break;
-    }
+    if (lines[0].includes(key)) { icon = emoji; label = key; break; }
   }
-
   const processedLines = lines.map(l => processInlineMath(l));
   const stepTitle = processedLines[0];
   const restContent = processedLines.slice(1).join('<br>');
@@ -657,11 +653,6 @@ function bindMessageActions(div, msg) {
     });
   }
 
-  const ttsBtn = div.querySelector('.tts-btn');
-  if (ttsBtn) {
-    ttsBtn.addEventListener('click', () => speakText(msg.content, ttsBtn));
-  }
-
   const regenerateBtn = div.querySelector('.regenerate-btn');
   if (regenerateBtn) {
     regenerateBtn.addEventListener('click', () => regenerateLastAnswer());
@@ -728,39 +719,6 @@ function enableEditMode(div, msg) {
   textDiv.querySelector('.edit-cancel-btn').addEventListener('click', () => {
     textDiv.innerHTML = formatMessageContent(originalText);
   });
-}
-
-// ===== TEXT-TO-SPEECH =====
-function speakText(text, btn) {
-  if (!('speechSynthesis' in window)) {
-    showToast('আপনার ব্রাউজার টেক্সট-টু-স্পীচ সমর্থন করে না', 'error');
-    return;
-  }
-
-  if (speechSynthesis.speaking) {
-    speechSynthesis.cancel();
-    if (btn) btn.innerHTML = '<i class="fas fa-volume-up"></i> শুনুন';
-    return;
-  }
-
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'bn-BD';
-  utterance.rate = 0.9;
-  utterance.pitch = 1;
-
-  if (btn) {
-    btn.innerHTML = '<i class="fas fa-stop"></i> থামান';
-  }
-
-  utterance.onend = () => {
-    if (btn) btn.innerHTML = '<i class="fas fa-volume-up"></i> শুনুন';
-  };
-
-  utterance.onerror = () => {
-    if (btn) btn.innerHTML = '<i class="fas fa-volume-up"></i> শুনুন';
-  };
-
-  speechSynthesis.speak(utterance);
 }
 
 // ===== VOICE INPUT =====
@@ -881,21 +839,120 @@ function findLastUserIndexBefore(aiIdx) {
   return -1;
 }
 
+// ===== IMAGE ATTACHMENT =====
+function handleImageSelect(e) {
+  const file = e.target.files?.[0];
+  if (!file) return;
+  if (file.size > CONFIG.maxImageSize) {
+    showToast('ছবির সাইজ ৪MB-এর কম হতে হবে', 'error');
+    return;
+  }
+  if (!file.type.startsWith('image/')) {
+    showToast('শুধু ইমেজ ফাইল সিলেক্ট করুন', 'error');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    state.attachedImage = { data: ev.target.result, name: file.name, type: file.type };
+    showImagePreview();
+    showToast('ছবি সংযুক্ত হয়েছে', 'success');
+  };
+  reader.readAsDataURL(file);
+  e.target.value = '';
+}
+
+function showImagePreview() {
+  if (!dom.imagePreview || !state.attachedImage) return;
+  dom.imagePreview.innerHTML = `
+    <img src="${state.attachedImage.data}" alt="attached">
+    <button type="button" id="remove-image" class="remove-image-btn">&times;</button>
+  `;
+  dom.imagePreview.style.display = 'flex';
+  document.getElementById('remove-image')?.addEventListener('click', removeImage);
+}
+
+function removeImage() {
+  state.attachedImage = null;
+  if (dom.imagePreview) {
+    dom.imagePreview.innerHTML = '';
+    dom.imagePreview.style.display = 'none';
+  }
+  showToast('ছবি সরানো হয়েছে', 'info');
+}
+
+function addImageMessageToChat(imageData, caption) {
+  if (isWelcomeVisible()) dom.chatMessages.innerHTML = '';
+  const div = document.createElement('div');
+  div.className = 'ai-teacher-message user-message';
+  const time = formatTime(Date.now());
+  div.innerHTML = `
+    <div class="message-avatar"><i class="fas fa-user-graduate"></i></div>
+    <div class="message-content">
+      <div class="message-header">
+        <span class="message-sender">আপনি</span>
+        <span class="message-time">${time}</span>
+      </div>
+      <div class="message-text">
+        <div class="image-attachment-preview">
+          <img src="${imageData}" alt="attachment" onclick="window.open('${imageData}','_blank')" loading="lazy">
+        </div>
+        ${caption ? '<p style="margin:6px 0 0">' + escapeHtml(caption) + '</p>' : ''}
+      </div>
+    </div>
+  `;
+  dom.chatMessages.appendChild(div);
+  scrollToBottom();
+}
+
+// ===== PROMPT PRESETS =====
+function applyPreset(presetId) {
+  const preset = PRESETS.find(p => p.id === presetId);
+  if (!preset) return;
+  state.activePreset = preset;
+  const input = dom.chatInput;
+  input.value = preset.prompt;
+  input.focus();
+  autoResizeInput();
+  updateSendBtn();
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.toggle('active', b.dataset.preset === presetId));
+  showToast(`"${preset.label}" মোড সক্রিয়`, 'info');
+}
+
+function clearPreset() {
+  state.activePreset = null;
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+}
+
 // ===== SEND MESSAGE =====
 async function handleSubmit(e) {
   e.preventDefault();
   const question = dom.chatInput.value.trim();
-  if (!question || state.isProcessing) return;
+  if ((!question && !state.attachedImage) || state.isProcessing) return;
+
+  const hasImage = !!state.attachedImage;
+  const imageData = state.attachedImage?.data;
+  const currentPreset = state.activePreset;
 
   dom.chatInput.value = '';
   autoResizeInput();
   updateSendBtn();
+  if (hasImage) removeImage();
 
-  addMessage(question, 'user');
-  await sendToAPI(question);
+  if (hasImage) {
+    addImageMessageToChat(imageData, question || 'ছবিটি ব্যাখ্যা করুন');
+    const msg = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), content: question || 'ছবিটি ব্যাখ্যা করুন', role: 'user', subject: state.currentSubject, timestamp: Date.now(), edited: false, image: imageData };
+    state.messages.push(msg);
+    saveMessages();
+    await sendToAPI(msg.content, currentPreset);
+  } else {
+    addMessage(question, 'user');
+    await sendToAPI(question, currentPreset);
+  }
+
+  clearPreset();
 }
 
-async function sendToAPI(question) {
+async function sendToAPI(question, preset) {
   if (state.isProcessing) return;
   state.isProcessing = true;
   setInputState(true);
@@ -904,13 +961,19 @@ async function sendToAPI(question) {
   const subjectLabel = getSubjectLabel(state.currentSubject);
   const subjectInstruction = `শিক্ষার্থীর বর্তমান বিষয়: "${subjectLabel}"। এই বিষয় অনুযায়ী উত্তর দাও।`;
 
+  const presetInstruction = preset
+    ? `শিক্ষার্থী "${preset.label}" মোড ব্যবহার করছে। তার অনুরোধ অনুযায়ী উত্তর দাও।\n\n`
+    : '';
+
   const recentMessages = state.messages.slice(-CONFIG.maxHistory);
   const apiMessages = [
-    { role: 'system', content: SYSTEM_PROMPT + '\n\n' + subjectInstruction },
-    ...recentMessages.map(m => ({
-      role: m.role === 'user' ? 'user' : 'assistant',
-      content: m.content
-    }))
+    { role: 'system', content: presetInstruction + SYSTEM_PROMPT + '\n\n' + subjectInstruction },
+    ...recentMessages.map(m => {
+      if (m.image) {
+        return { role: 'user', content: [{ type: 'text', text: m.content }, { type: 'image_url', image_url: { url: m.image } }] };
+      }
+      return { role: m.role === 'user' ? 'user' : 'assistant', content: m.content };
+    })
   ];
 
   try {
@@ -1027,6 +1090,20 @@ function updateStreamingBubble(div, text) {
 
 function escapeHtml(t) {
   return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function getRelativeTime(ts) {
+  const now = Date.now();
+  const diff = now - ts;
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return 'এইমাত্র';
+  if (mins < 60) return `${mins} মিনিট আগে`;
+  const hours = Math.floor(mins / 60);
+  if (hours < 24) return `${hours} ঘন্টা আগে`;
+  const days = Math.floor(hours / 24);
+  if (days === 1) return 'গতকাল';
+  if (days < 7) return `${days} দিন আগে`;
+  return new Date(ts).toLocaleDateString('bn-BD', { day: 'numeric', month: 'short' });
 }
 
 // ===== FOLLOW-UP SUGGESTIONS =====
@@ -1219,7 +1296,16 @@ function showToast(message, type = 'info') {
 // ===== EVENT BINDING =====
 function bindEvents() {
   dom.chatForm.addEventListener('submit', handleSubmit);
-  dom.chatInput.addEventListener('input', autoResizeInput);
+
+  dom.chatInput.addEventListener('input', () => {
+    autoResizeInput();
+    updateSendBtn();
+  });
+
+  dom.chatInput.addEventListener('focus', () => {
+    setTimeout(scrollToBottom, 300);
+  });
+
   dom.chatInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -1227,25 +1313,19 @@ function bindEvents() {
     }
   });
 
+  if (dom.newChatBtn) dom.newChatBtn.addEventListener('click', startNewChat);
+  if (dom.historyBtn) dom.historyBtn.addEventListener('click', openHistoryPanel);
+  if (dom.exportBtn) dom.exportBtn.addEventListener('click', exportChat);
+  document.getElementById('history-close')?.addEventListener('click', closeHistoryPanel);
+  document.getElementById('history-overlay')?.addEventListener('click', closeHistoryPanel);
   dom.clearBtn.addEventListener('click', clearChat);
-
-  const exportBtn = $('ai-teacher-export');
-  if (exportBtn) exportBtn.addEventListener('click', exportChat);
-
-  const newChatBtn = $('ai-teacher-new-chat');
-  if (newChatBtn) newChatBtn.addEventListener('click', startNewChat);
-
-  const historyBtn = $('ai-teacher-history');
-  if (historyBtn) historyBtn.addEventListener('click', openHistoryPanel);
-
-  const historyClose = $('history-close');
-  if (historyClose) historyClose.addEventListener('click', closeHistoryPanel);
-
-  const overlay = $('history-overlay');
-  if (overlay) overlay.addEventListener('click', closeHistoryPanel);
 
   if (dom.themeBtn) dom.themeBtn.addEventListener('click', toggleTheme);
   if (dom.voiceBtn) dom.voiceBtn.addEventListener('click', toggleVoiceInput);
+  if (dom.imageBtn && dom.imageInput) {
+    dom.imageBtn.addEventListener('click', () => dom.imageInput.click());
+    dom.imageInput.addEventListener('change', handleImageSelect);
+  }
   if (dom.subjectSelect) {
     dom.subjectSelect.addEventListener('change', (e) => changeSubject(e.target.value));
   }
@@ -1256,9 +1336,25 @@ function bindEvents() {
       dom.chatInput.focus();
     }
     if (e.key === 'Escape') {
-      closeHistoryPanel();
       if (isListening) stopVoiceInput();
-      if (speechSynthesis.speaking) speechSynthesis.cancel();
+      closeHistoryPanel();
     }
   });
+
+  let touchStartY = 0;
+  dom.chatMessages.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  dom.chatMessages.addEventListener('touchend', () => {
+    const atTop = dom.chatMessages.scrollTop === 0;
+    if (atTop) {
+      dom.chatInput.blur();
+    }
+  }, { passive: true });
+}
+
+function updateSendBtn() {
+  if (!state.isProcessing) {
+    dom.sendBtn.disabled = !dom.chatInput.value.trim();
+  }
 }

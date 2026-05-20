@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content, viewport-fit=cover" />
   <title>AI শিক্ষক - Study With Keshab</title>
   <meta name="description" content="Study With Keshab - AI শিক্ষক: যেকোনো প্রশ্নের সহজ ভাষায় ধাপে ধাপে উত্তর" />
   <meta property="og:title" content="AI শিক্ষক - Study With Keshab" />
@@ -25,7 +25,7 @@
         <div class="ai-teacher-header-icon">
           <i class="fas fa-chalkboard-teacher"></i>
         </div>
-        <div>
+        <div class="ai-teacher-header-text">
           <h2>AI শিক্ষক</h2>
           <p class="subtitle">যেকোনো প্রশ্নের সহজ ও ধাপে ধাপে উত্তর</p>
         </div>
@@ -50,7 +50,7 @@
             <i class="fas fa-history"></i>
             <span class="tooltip">চ্যাট ইতিহাস</span>
           </button>
-          <button id="ai-teacher-export" class="header-btn" title="এক্সপোর্ট">
+          <button id="ai-teacher-export" class="header-btn header-btn--mobile-hide" title="এক্সপোর্ট">
             <i class="fas fa-download"></i>
             <span class="tooltip">চ্যাট ডাউনলোড</span>
           </button>
@@ -68,6 +68,18 @@
       <!-- MESSAGES -->
       <div id="ai-teacher-messages" class="ai-teacher-messages"></div>
 
+      <!-- PRESET ACTIONS -->
+      <div id="preset-actions" class="preset-actions">
+        <button class="preset-btn" data-preset="mcq" onclick="applyPreset('mcq')" title="MCQ তৈরি"><i class="fas fa-list-check"></i> MCQ</button>
+        <button class="preset-btn" data-preset="example" onclick="applyPreset('example')" title="উদাহরণ"><i class="fas fa-lightbulb"></i> উদাহরণ</button>
+        <button class="preset-btn" data-preset="simplify" onclick="applyPreset('simplify')" title="সহজভাবে"><i class="fas fa-child-reaching"></i> সহজভাবে</button>
+        <button class="preset-btn" data-preset="summary" onclick="applyPreset('summary')" title="সারাংশ"><i class="fas fa-compress"></i> সারাংশ</button>
+        <button class="preset-btn" data-preset="tips" onclick="applyPreset('tips')" title="টিপস"><i class="fas fa-star"></i> টিপস</button>
+      </div>
+
+      <!-- IMAGE PREVIEW -->
+      <div id="image-preview" class="image-preview" style="display:none"></div>
+
       <!-- INPUT -->
       <div class="ai-teacher-input-area">
         <form id="ai-teacher-form" autocomplete="off">
@@ -75,6 +87,10 @@
             <button type="button" id="ai-teacher-voice" class="voice-btn" title="ভয়েস ইনপুট">
               <i class="fas fa-microphone"></i>
             </button>
+            <button type="button" id="ai-teacher-image" class="voice-btn" title="ছবি সংযুক্ত করুন">
+              <i class="fas fa-image"></i>
+            </button>
+            <input type="file" id="ai-teacher-image-input" accept="image/*" capture="environment" style="display:none">
             <textarea
               id="ai-teacher-input"
               placeholder="আপনার প্রশ্ন লিখুন... (Ctrl+K)"
@@ -97,8 +113,12 @@
   <div id="history-overlay" class="history-overlay"></div>
   <div id="history-panel" class="history-panel">
     <div class="history-header">
-      <span><i class="fas fa-history"></i> চ্যাট ইতিহাস</span>
-      <button id="history-close" class="history-close-btn"><i class="fas fa-times"></i></button>
+      <div class="history-header-title">
+        <i class="fas fa-clock-rotate"></i>
+        <span>চ্যাট ইতিহাস</span>
+        <span class="history-header-badge" id="history-count">0</span>
+      </div>
+      <button id="history-close" class="history-close-btn"><i class="fas fa-xmark"></i></button>
     </div>
     <div id="history-list" class="history-list"></div>
   </div>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>আমার নোটবুক - Study With Keshab</title>
+  <meta name="description" content="Study With Keshab - আমার নোটবুক: AI-এর সাহায্যে নিজের নোট তৈরি করুন" />
+  <meta property="og:title" content="আমার নোটবুক - Study With Keshab" />
+  <meta property="og:description" content="AI-এর সাহায্যে নিজের নোট তৈরি করে সংরক্ষণ করুন" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/icons/icon-192x192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/ai-notebook.css" />
+</head>
+<body>
+  <div id="navigation-placeholder"></div>
+
+  <div class="notebook-page">
+    <div class="notebook-cover">
+      <h1><i class="fas fa-feather"></i> আমার নোটবুক</h1>
+      <p>AI তোমার পড়া শোনা নোট আকারে সাজিয়ে রাখে</p>
+      <div class="notebook-stats">
+        <span><i class="fas fa-file-alt"></i> <span id="nb-total">০</span>টি নোট</span>
+        <span><i class="fas fa-calendar-alt"></i> শেষ আপডেট: <span id="nb-last-update">--</span></span>
+      </div>
+    </div>
+
+    <div class="notebook-content" id="notebook-content">
+      <div class="notebook-sheet" id="notebook-sheet"></div>
+    </div>
+  </div>
+
+  <footer class="notebook-footer">
+    &copy; 2026 Study With Keshab &mdash; <i class="fas fa-feather"></i> AI নোটবুক
+  </footer>
+
+  <script src="js/navigation.js"></script>
+  <script src="js/notebook-bot.js"></script>
+  <script>
+    function renderNotebook() {
+      const sheet = document.getElementById('notebook-sheet');
+      const entries = window.NotebookBot ? NotebookBot.getEntries() : [];
+      const totalEl = document.getElementById('nb-total');
+      const lastUpdateEl = document.getElementById('nb-last-update');
+
+      if (totalEl) totalEl.textContent = entries.length;
+      if (lastUpdateEl && entries.length > 0) {
+        lastUpdateEl.textContent = NotebookBot.formatTime(entries[0].timestamp);
+      } else if (lastUpdateEl) {
+        lastUpdateEl.textContent = '--';
+      }
+
+      if (entries.length === 0) {
+        sheet.innerHTML = `
+          <div class="notebook-empty">
+            <div class="notebook-empty-icon-wrap" style="margin:0 auto;width:64px;height:64px;border-radius:50%;background:var(--notebook-accent-light);display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:var(--notebook-accent);margin-bottom:16px">
+              <i class="fas fa-feather"></i>
+            </div>
+            <h3>নোটবুক খালি</h3>
+            <p>পেজের নিচে ডানদিকের <i class="fas fa-feather"></i> বটন থেকে নোট যোগ করো</p>
+          </div>
+        `;
+        return;
+      }
+
+      sheet.innerHTML = entries.map((entry, idx) => {
+        const content = entry.content
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\n/g, '<br>');
+        return `
+          <div class="notebook-entry" data-id="${entry.id}" data-number="${entries.length - idx}">
+            <div class="entry-header">
+              <span class="entry-subject"><i class="fas fa-tag"></i> ${entry.subject || 'সাধারণ'}</span>
+              <span class="entry-date"><i class="far fa-clock"></i> ${NotebookBot.formatTime(entry.timestamp)}</span>
+            </div>
+            <div class="entry-body">${content}</div>
+            <div class="entry-actions">
+              <button class="entry-action-btn" onclick="deleteEntry('${entry.id}')" title="মুছুন">
+                <i class="fas fa-trash-alt"></i> মুছুন
+              </button>
+              <button class="entry-action-btn" onclick="copyEntry('${entry.id}')" title="কপি">
+                <i class="fas fa-copy"></i> কপি
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function deleteEntry(id) {
+      if (!confirm('এই নোটটি মুছবে?') || !window.NotebookBot) return;
+      NotebookBot.deleteEntry(id);
+      renderNotebook();
+    }
+
+    function copyEntry(id) {
+      if (!window.NotebookBot) return;
+      const entries = NotebookBot.getEntries();
+      const entry = entries.find(e => e.id === id);
+      if (!entry) return;
+      navigator.clipboard.writeText(entry.content).then(() => {
+        const btn = event.target.closest('.entry-action-btn');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> কপি হয়েছে';
+        setTimeout(() => btn.innerHTML = orig, 1500);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', renderNotebook);
+  </script>
+</body>
+</html>

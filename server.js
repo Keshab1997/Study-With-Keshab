@@ -134,6 +134,56 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // AI Notebook endpoint (NVIDIA NIM)
+  if (req.method === 'POST' && req.url === '/api/notebook-ai') {
+    let body = '';
+    req.on('data', d => body += d);
+    req.on('end', () => {
+      const { text, systemPrompt } = JSON.parse(body);
+      const payload = JSON.stringify({
+        model: 'google/gemma-3n-e2b-it',
+        messages: [
+          { role: 'system', content: systemPrompt || 'You are a notebook assistant. Format the student\'s learning into clean, structured notes in Bengali.' },
+          { role: 'user', content: text }
+        ],
+        max_tokens: 512,
+        temperature: 0.20,
+        top_p: 0.70,
+        frequency_penalty: 0.00,
+        presence_penalty: 0.00,
+        stream: false
+      });
+      const options = {
+        hostname: 'integrate.api.nvidia.com',
+        path: '/v1/chat/completions',
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer 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',
+          'Content-Type': 'application/json',
+          'Content-Length': Buffer.byteLength(payload)
+        }
+      };
+      const apiReq = https.request(options, apiRes => {
+        let data = '';
+        apiRes.on('data', d => data += d);
+        apiRes.on('end', () => {
+          try {
+            const json = JSON.parse(data);
+            const result = json.choices?.[0]?.message?.content || '';
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ result }));
+          } catch (e) {
+            res.writeHead(500); res.end(JSON.stringify({ error: data }));
+          }
+        });
+      });
+      apiReq.on('error', e => { res.writeHead(500); res.end(JSON.stringify({ error: e.message })); });
+      apiReq.write(payload);
+      apiReq.end();
+    });
+    return;
+  }
+
   // Static file server
   let filePath = path.join(__dirname, req.url === '/' ? '/subject/Math/Compound_Interest/class-json-converter.html' : req.url);
   fs.readFile(filePath, (err, data) => {
