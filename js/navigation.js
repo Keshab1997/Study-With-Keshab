@@ -145,10 +145,8 @@ window.addEventListener('pageshow', () => {
   }
 });
 
-// Load notebook bot widget on all pages (except notebook page itself to avoid double widget)
-if (!window.location.pathname.includes('ai-notebook')) {
-  const nbScript = document.createElement('script');
-  nbScript.src = '/js/notebook-bot.js';
-  nbScript.defer = true;
-  document.body.appendChild(nbScript);
-}
+// Load notebook bot widget on all pages
+const nbScript = document.createElement('script');
+nbScript.src = '/js/notebook-bot.js';
+nbScript.defer = true;
+document.body.appendChild(nbScript);

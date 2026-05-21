@@ -1,6 +1,11 @@
 (function () {
   'use strict';
 
+  // Auto-detect API base — route to Node server (port 3000) when running on Live Server
+  const API_BASE = (location.port === '5500' || location.port === '5501')
+    ? location.protocol + '//' + location.hostname + ':3000'
+    : location.origin;
+
   const STORAGE_KEY = 'swk_notebook_entries';
   const SYS_PROMPT = `তুমি একজন নোটবুক সহায়ক। ছাত্র যা বলবে, তা সুন্দরভাবে নোট আকারে ফরম্যাট করবে। নিচের নিয়ম অনুসরণ করো:
 
@@ -179,7 +184,7 @@
       messagesEl.scrollTop = messagesEl.scrollHeight;
 
       try {
-        const resp = await fetch('/api/notebook-ai', {
+        const resp = await fetch(API_BASE + '/api/notebook-ai', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ text, systemPrompt: SYS_PROMPT })

@@ -134,31 +134,27 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // AI Notebook endpoint (NVIDIA NIM)
+  // AI Notebook endpoint (ChatAnywhere gpt-4o-mini)
   if (req.method === 'POST' && req.url === '/api/notebook-ai') {
     let body = '';
     req.on('data', d => body += d);
     req.on('end', () => {
       const { text, systemPrompt } = JSON.parse(body);
       const payload = JSON.stringify({
-        model: 'google/gemma-3n-e2b-it',
+        model: 'gpt-4o-mini',
         messages: [
           { role: 'system', content: systemPrompt || 'You are a notebook assistant. Format the student\'s learning into clean, structured notes in Bengali.' },
           { role: 'user', content: text }
         ],
-        max_tokens: 512,
         temperature: 0.20,
-        top_p: 0.70,
-        frequency_penalty: 0.00,
-        presence_penalty: 0.00,
-        stream: false
+        max_tokens: 1024
       });
       const options = {
-        hostname: 'integrate.api.nvidia.com',
+        hostname: 'api.chatanywhere.tech',
         path: '/v1/chat/completions',
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer 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',
+          'Authorization': `Bearer ${CHATANYWHERE_API_KEY}`,
           'Content-Type': 'application/json',
           'Content-Length': Buffer.byteLength(payload)
         }

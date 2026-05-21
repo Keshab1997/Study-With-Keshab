@@ -4,15 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>আমার নোটবুক - Study With Keshab</title>
-  <meta name="description" content="Study With Keshab - আমার নোটবুক: AI-এর সাহায্যে নিজের নোট তৈরি করুন" />
+  <meta name="description" content="Study With Keshab - আমার নোটবুক: AI-এর সাহায্যে নোট, রুটিন ও রিমাইন্ডার তৈরি করুন" />
   <meta property="og:title" content="আমার নোটবুক - Study With Keshab" />
-  <meta property="og:description" content="AI-এর সাহায্যে নিজের নোট তৈরি করে সংরক্ষণ করুন" />
+  <meta property="og:description" content="AI-এর সাহায্যে নোট, রুটিন ও রিমাইন্ডার তৈরি করুন" />
   <link rel="icon" type="image/png" sizes="32x32" href="images/icons/icon-192x192.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navigation.css" />
   <link rel="stylesheet" href="css/ai-notebook.css" />
 </head>
 <body>
@@ -21,15 +22,103 @@
   <div class="notebook-page">
     <div class="notebook-cover">
       <h1><i class="fas fa-feather"></i> আমার নোটবুক</h1>
-      <p>AI তোমার পড়া শোনা নোট আকারে সাজিয়ে রাখে</p>
+      <p>AI তোমার পড়া শোনা নোট, রুটিন ও রিমাইন্ডার সাজিয়ে রাখে</p>
       <div class="notebook-stats">
         <span><i class="fas fa-file-alt"></i> <span id="nb-total">০</span>টি নোট</span>
         <span><i class="fas fa-calendar-alt"></i> শেষ আপডেট: <span id="nb-last-update">--</span></span>
       </div>
     </div>
 
-    <div class="notebook-content" id="notebook-content">
+    <!-- Tab Navigation -->
+    <div class="notebook-tabs">
+      <button class="notebook-tab active" data-tab="notes">
+        <i class="fas fa-pen-fancy"></i> আমার নোট
+      </button>
+      <button class="notebook-tab" data-tab="routine">
+        <i class="fas fa-calendar-week"></i> স্টাডি রুটিন
+      </button>
+      <button class="notebook-tab" data-tab="reminders">
+        <i class="fas fa-bell"></i> রিমাইন্ডার
+      </button>
+    </div>
+
+    <!-- ========== NOTES PANEL ========== -->
+    <div class="notebook-content tab-panel active" id="panel-notes">
       <div class="notebook-sheet" id="notebook-sheet"></div>
+    </div>
+
+    <!-- ========== ROUTINE PANEL ========== -->
+    <div class="notebook-content tab-panel" id="panel-routine" style="display:none">
+      <!-- এখন কী পড়বে -->
+      <div class="routine-now-card" id="routine-now-card">
+        <div class="routine-now-icon"><i class="fas fa-clock"></i></div>
+        <div class="routine-now-info">
+          <span class="routine-now-label">এখন কী পড়বে?</span>
+          <span class="routine-now-subject" id="routine-now-subject">—</span>
+          <span class="routine-now-time" id="routine-now-time"></span>
+        </div>
+      </div>
+
+      <!-- AI Generate Button -->
+      <div class="routine-ai-bar">
+        <button class="routine-ai-btn" id="routine-ai-btn">
+          <i class="fas fa-robot"></i> AI দিয়ে রুটিন তৈরি করো
+        </button>
+        <span class="routine-ai-hint">তোমার লক্ষ্য জানালে AI একটা স্টাডি রুটিন বানিয়ে দেবে</span>
+      </div>
+
+      <!-- Manual Add -->
+      <div class="routine-add-form" id="routine-add-form">
+        <h4><i class="fas fa-plus-circle"></i> নতুন রুটিন যোগ করো</h4>
+        <div class="routine-form-row">
+          <select id="r-day" class="routine-select">
+            <option value="সোমবার">সোমবার</option>
+            <option value="মঙ্গলবার">মঙ্গলবার</option>
+            <option value="বুধবার">বুধবার</option>
+            <option value="বৃহস্পতিবার">বৃহস্পতিবার</option>
+            <option value="শুক্রবার">শুক্রবার</option>
+            <option value="শনিবার">শনিবার</option>
+            <option value="রবিবার">রবিবার</option>
+          </select>
+          <select id="r-subject" class="routine-select">
+            <option value="পদার্থবিদ্যা">পদার্থবিদ্যা</option>
+            <option value="রসায়ন">রসায়ন</option>
+            <option value="গণিত">গণিত</option>
+            <option value="জীববিজ্ঞান">জীববিজ্ঞান</option>
+            <option value="ইতিহাস">ইতিহাস</option>
+            <option value="ভূগোল">ভূগোল</option>
+            <option value="ইংরেজি">ইংরেজি</option>
+            <option value="সাধারণ জ্ঞান">সাধারণ জ্ঞান</option>
+            <option value="কারেন্ট অ্যাফেয়ার্স">কারেন্ট অ্যাফেয়ার্স</option>
+            <option value="অন্যান্য">অন্যান্য</option>
+          </select>
+          <input type="time" id="r-start" class="routine-time" value="07:00" />
+          <span class="routine-to">থেকে</span>
+          <input type="time" id="r-end" class="routine-time" value="08:00" />
+          <select id="r-priority" class="routine-select routine-priority">
+            <option value="normal">🟢 সাধারণ</option>
+            <option value="high">🔴 গুরুত্বপূর্ণ</option>
+          </select>
+          <button class="routine-add-btn" id="routine-add-btn">
+            <i class="fas fa-check"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Routine Display by day -->
+      <div class="routine-sheet" id="routine-sheet"></div>
+    </div>
+
+    <!-- ========== REMINDERS PANEL ========== -->
+    <div class="notebook-content tab-panel" id="panel-reminders" style="display:none">
+      <div class="reminder-add-bar">
+        <input type="text" id="rem-text" class="reminder-input" placeholder="কীসের রিমাইন্ডার? (যেমন: পদার্থবিদ্যার গতির সূত্র রিভাইস করো)" />
+        <input type="datetime-local" id="rem-time" class="reminder-time" />
+        <button class="reminder-add-btn" id="reminder-add-btn">
+          <i class="fas fa-plus"></i> যোগ করো
+        </button>
+      </div>
+      <div class="reminder-list" id="reminder-list"></div>
     </div>
   </div>
 
@@ -37,8 +126,15 @@
     &copy; 2026 Study With Keshab &mdash; <i class="fas fa-feather"></i> AI নোটবুক
   </footer>
 
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="auth.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/notebook-bot.js"></script>
+  <script src="js/notebook-routine.js"></script>
   <script>
     function renderNotebook() {
       const sheet = document.getElementById('notebook-sheet');
@@ -110,6 +206,23 @@
     }
 
     document.addEventListener('DOMContentLoaded', renderNotebook);
+
+    // Tab switching
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabs = document.querySelectorAll('.notebook-tab');
+      const panels = document.querySelectorAll('.tab-panel');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.tab;
+          tabs.forEach(t => t.classList.remove('active'));
+          panels.forEach(p => p.style.display = 'none');
+          tab.classList.add('active');
+          const panel = document.getElementById('panel-' + target);
+          if (panel) panel.style.display = 'block';
+        });
+      });
+    });
   </script>
 </body>
 </html>
