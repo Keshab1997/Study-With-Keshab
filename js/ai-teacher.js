@@ -26,20 +26,20 @@ const SYSTEM_PROMPT = `তুমি একজন পেশাদার AI শি
 9. পড়ার টিপস ও শেখার কৌশল শেয়ার করবে
 
 গাণিতিক সমীকরণ লেখার নিয়ম (MATH FORMATTING - অবশ্যই মানতে হবে):
-- সমীকরণ inline লিখতে: \\( সমীকরণ \\) ব্যবহার করো। যেমন: \\( 2000 = x \\times \\frac{8}{100} \\)
-- সমীকরণ আলাদা লাইনে (display) লিখতে: \\[ সমীকরণ \\] ব্যবহার করো। যেমন: \\[ x = \\frac{2000 \\times 100}{8} \\]
+- সমীকরণ inline লিখতে: \\( সমীকরণ \\) ব্যবহার করো। যেমন: \\( 2000 = x \\times \\frac{8}{100} \\) 
+- সমীকরণ আলাদা লাইনে (display) লিখতে: \\[ সমীকরণ \\[ ব্যবহার করো। যেমন: \\[ x = \\frac{2000 \\times 100}{8} \\) 
 - ভগ্নাংশ: \\frac{লব}{হর} — যেমন \\frac{8}{100}
 - গুণ চিহ্ন: \\times
 - ভাগ চিহ্ন: \\div
-- বাংলা শব্দ সমীকরণে: \\text{মূল্য} — যেমন \\( \\text{মূল্য} \\times \\frac{8}{100} = 2000 \\)
-- প্রতিটি সমীকরণের ধাপ আলাদা \\[ \\] এ লিখবে
+- বাংলা শব্দ সমীকরণে: \\text{মূল্য} — যেমন \\( \\text{মূল্য} \\times \\frac{8}{100} = 2000 \\) 
+- প্রতিটি সমীকরণের ধাপ আলাদা \\[ \\[ এ লিখবে
 
 উত্তরের ফরম্যাট (FORMATTING RULES):
 - ধাপগুলো শুরু করবে এইভাবে: "প্রথমে:", "তারপর:", "এখন:", "শেষে:", "অতএব:", "সুতরাং:"
 - প্রতিটি ধাপ আলাদা অনুচ্ছেদে লিখবে। দুই ধাপের মাঝে একটি খালি লাইন রাখবে।
 - তালিকার জন্য "•" চিহ্ন ব্যবহার করবে
 - সংখ্যা তালিকার জন্য "1. ", "2. " ফরম্যাট ব্যবহার করবে
-- উত্তর শেষে ২-৩টি সম্পর্কিত প্রশ্ন সুপারিশ করবে "আরও জানতে চাইলে:" দিয়ে শুরু করে
+- উত্তর শেষে 2-3টি সম্পর্কিত প্রশ্ন সুপারিশ করবে "আরও জানতে চাইলে:" দিয়ে শুরু করে
 
 উত্তরের স্টাইল:
 - পড়তে ভালো লাগে এমন করে উত্তর দেবে
@@ -71,10 +71,10 @@ const SUGGESTIONS = {
 };
 
 const PRESETS = [
-  { id: 'mcq', label: 'MCQ', icon: 'fa-list-check', prompt: 'এই বিষয়ে ৪টি অপশন সহ একটি MCQ প্রশ্ন তৈরি করো। উত্তরসহ ব্যাখ্যা দাও।\n\nপ্রশ্ন: ' },
+  { id: 'mcq', label: 'MCQ', icon: 'fa-list-check', prompt: 'এই বিষয়ে 4টি অপশন সহ একটি MCQ প্রশ্ন তৈরি করো। উত্তরসহ ব্যাখ্যা দাও।\n\nপ্রশ্ন: ' },
   { id: 'example', label: 'উদাহরণ', icon: 'fa-lightbulb', prompt: 'এ বিষয়টি বুঝানোর জন্য একটি বাস্তব উদাহরণ দাও। সহজ ভাষায় ব্যাখ্যা করো।\n\nবিষয়: ' },
-  { id: 'simplify', label: 'সহজভাবে', icon: 'fa-child-reaching', prompt: 'নিচের বিষয়টি খুব সহজ ভাষায় বুঝিয়ে দাও। কঠিন শব্দ ব্যবহার করবে না। ৫ বছর বাচ্চাকেও বুঝানো যায় এমন করে বলো।\n\nবিষয়: ' },
-  { id: 'summary', label: 'সারাংশ', icon: 'fa-compress', prompt: 'নিচের বিষয়টির একটি সংক্ষিপ্ত সারাংশ (৫-৭ লাইনে) লিখো। গুরুত্বপূর্ণ পয়েন্টগুলো উল্লেখ করো।\n\nবিষয়: ' },
+  { id: 'simplify', label: 'সহজভাবে', icon: 'fa-child-reaching', prompt: 'নিচের বিষয়টি খুব সহজ ভাষায় বুঝিয়ে দাও। কঠিন শব্দ ব্যবহার করবে না। 5 বছর বাচ্চাকেও বুঝানো যায় এমন করে বলো।\n\nবিষয়: ' },
+  { id: 'summary', label: 'সারাংশ', icon: 'fa-compress', prompt: 'নিচের বিষয়টির একটি সংক্ষিপ্ত সারাংশ (5-7 লাইনে) লিখো। গুরুত্বপূর্ণ পয়েন্টগুলো উল্লেখ করো।\n\nবিষয়: ' },
   { id: 'tips', label: 'টিপস', icon: 'fa-star', prompt: 'নিচের বিষয়টি সহজে মনে রাখার জন্য কিছু কার্যকরী টিপস ও কৌশল দাও। পড়ার সময় কী কী বিষয়ে খেয়াল রাখতে হবে তাও বলো।\n\nবিষয়: ' },
 ];
 
@@ -118,7 +118,6 @@ function initDom() {
   dom.presetsContainer = $('preset-actions');
   dom.newChatBtn = $('ai-teacher-new-chat');
   dom.historyBtn = $('ai-teacher-history');
-  dom.exportBtn = $('ai-teacher-export');
 }
 
 // ===== INIT =====
@@ -442,7 +441,9 @@ function appendMessageDOM(msg, animate = true) {
 
 function formatTime(ts) {
   const d = new Date(ts);
-  return d.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
+  let time = d.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
+  time = time.replace(/[০-৯]/g, c => String('০১২৩৪৫৬৭৮৯'.indexOf(c)));
+  return time;
 }
 
 function formatMessageContent(text) {
@@ -535,8 +536,8 @@ function formatParagraph(text) {
 
 function formatStepBlock(text, lines) {
   const stepIcons = {
-    'প্রথমে': '১', 'তারপর': '২', 'এখন': '৩', 'শেষে': '৪',
-    'অতএব': '৫', 'উপসংহার': '৫', 'সুতরাং': '৫', 'অর্থাৎ': '৬',
+    'প্রথমে': '1', 'তারপর': '2', 'এখন': '3', 'শেষে': '4',
+    'অতএব': '5', 'উপসংহার': '5', 'সুতরাং': '5', 'অর্থাৎ': '6',
     'তাহলে': '→', 'তাই': '→', 'মনে রাখো': '💡', 'টিপস': '💡',
     'বিশেষ': '⭐', 'নিয়ম': '📌',
   };
@@ -615,7 +616,7 @@ function processInlineMath(text, skipEscape = false) {
   );
 
   // Standalone LaTeX expressions
-  text = text.replace(/(\\frac\{[^$]*?\}|\\text\{[^}]*\}|\\times|\\div|\\cdot|\\pm|\\sqrt\{[^}]*\})/g, (m) =>
+  text = text.replace(/(\\frac\{[^}]+\}\{[^}]+\}|\\text\{[^}]*\}|\\times|\\div|\\cdot|\\pm|\\sqrt\{[^}]*\})/g, (m) =>
     latexToHtml(m)
   );
 
@@ -844,7 +845,7 @@ function handleImageSelect(e) {
   const file = e.target.files?.[0];
   if (!file) return;
   if (file.size > CONFIG.maxImageSize) {
-    showToast('ছবির সাইজ ৪MB-এর কম হতে হবে', 'error');
+    showToast('ছবির সাইজ 4MB-এর কম হতে হবে', 'error');
     return;
   }
   if (!file.type.startsWith('image/')) {
@@ -1103,7 +1104,9 @@ function getRelativeTime(ts) {
   const days = Math.floor(hours / 24);
   if (days === 1) return 'গতকাল';
   if (days < 7) return `${days} দিন আগে`;
-  return new Date(ts).toLocaleDateString('bn-BD', { day: 'numeric', month: 'short' });
+  let d = new Date(ts).toLocaleDateString('bn-BD', { day: 'numeric', month: 'short' });
+  d = d.replace(/[০-৯]/g, c => String('০১২৩৪৫৬৭৮৯'.indexOf(c)));
+  return d;
 }
 
 // ===== FOLLOW-UP SUGGESTIONS =====
@@ -1212,7 +1215,8 @@ function exportChat() {
   }
   const lines = state.messages.map(m => {
     const role = m.role === 'user' ? 'আপনি' : 'AI শিক্ষক';
-    const time = new Date(m.timestamp).toLocaleString('bn-BD');
+    let time = new Date(m.timestamp).toLocaleString('bn-BD');
+    time = time.replace(/[০-৯]/g, c => String('০১২৩৪৫৬৭৮৯'.indexOf(c)));
     return `[${time}] ${role}:\n${m.content}\n`;
   });
   const blob = new Blob([lines.join('\n---\n\n')], { type: 'text/plain;charset=utf-8' });
@@ -1315,7 +1319,6 @@ function bindEvents() {
 
   if (dom.newChatBtn) dom.newChatBtn.addEventListener('click', startNewChat);
   if (dom.historyBtn) dom.historyBtn.addEventListener('click', openHistoryPanel);
-  if (dom.exportBtn) dom.exportBtn.addEventListener('click', exportChat);
   document.getElementById('history-close')?.addEventListener('click', closeHistoryPanel);
   document.getElementById('history-overlay')?.addEventListener('click', closeHistoryPanel);
   dom.clearBtn.addEventListener('click', clearChat);

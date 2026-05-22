@@ -32,14 +32,14 @@
 
 .desktop-nav {
   display: none;
-  gap: 5px;
+  gap: 2px;
   flex: 1;
   justify-content: center;
   align-items: center;
 }
 
 .nav-link {
-  padding: 8px 16px;
+  padding: 8px 12px;
   color: #fff;
   text-decoration: none;
   border-radius: 8px;
@@ -47,7 +47,9 @@
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  white-space: nowrap;
+  font-size: 0.9rem;
 }
 
 .nav-link i {

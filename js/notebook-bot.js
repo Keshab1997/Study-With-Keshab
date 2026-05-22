@@ -200,7 +200,7 @@
           noteDiv.style.border = '1px solid var(--notebook-accent)';
           noteDiv.style.borderLeft = '3px solid var(--notebook-accent)';
           noteDiv.style.maxWidth = '95%';
-          noteDiv.innerHTML = data.result.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+          noteDiv.innerHTML = typeof renderContent === 'function' ? renderContent(data.result) : data.result.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
           messagesEl.appendChild(noteDiv);
 
           // Save button

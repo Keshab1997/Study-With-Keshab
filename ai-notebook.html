@@ -133,6 +133,7 @@
   <script src="js/firebase-config.js"></script>
   <script src="auth.js"></script>
   <script src="js/navigation.js"></script>
+  <script src="js/math-utils.js"></script>
   <script src="js/notebook-bot.js"></script>
   <script src="js/notebook-routine.js"></script>
   <script>
@@ -163,9 +164,7 @@
       }
 
       sheet.innerHTML = entries.map((entry, idx) => {
-        const content = entry.content
-          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-          .replace(/\n/g, '<br>');
+        const content = renderContent(entry.content);
         return `
           <div class="notebook-entry" data-id="${entry.id}" data-number="${entries.length - idx}">
             <div class="entry-header">
