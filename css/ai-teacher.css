@@ -170,6 +170,18 @@ body:has(.ai-teacher-page) .nb-bot-popup {
   display: none;
 }
 
+.ai-chapter-context {
+  margin: 2px 0 0;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+}
+
 .ai-teacher-header-actions {
   margin-left: auto;
   display: flex;

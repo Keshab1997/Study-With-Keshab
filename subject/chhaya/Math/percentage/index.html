@@ -213,8 +213,31 @@
                             `;
                         }
 
-                        // ৫. রেন্ডারার ফাংশন কল করা (যদি প্রয়োজন হয়)
-                        if (typeof init === 'function') init(); 
+                        // ৫. AI Teacher link-এ এই চ্যাপ্টারের context auto যোগ করা
+                        const pathParts = window.location.pathname.split('/').filter(Boolean);
+                        const chapterFolder = pathParts[pathParts.length - 2] || data.chapterID;
+                        const subjectFolder = pathParts[pathParts.length - 3] || 'general';
+                        const subjectValue = subjectFolder.toLowerCase();
+                        const aiTeacherParams = new URLSearchParams({
+                            subject: subjectValue,
+                            chapter: chapterFolder,
+                            chapterName: data.chapterName,
+                            description: data.description || ''
+                        });
+                        const aiTeacherUrl = `../../../../ai-teacher.html?${aiTeacherParams.toString()}`;
+                        window.__AI_TEACHER_CONTEXT_URL__ = aiTeacherUrl;
+
+                        function updateAiTeacherLinks() {
+                            document.querySelectorAll('a[href$="ai-teacher.html"], a[href*="ai-teacher.html?"]').forEach(link => {
+                                link.href = aiTeacherUrl;
+                            });
+                        }
+                        updateAiTeacherLinks();
+                        setTimeout(updateAiTeacherLinks, 300);
+                        setTimeout(updateAiTeacherLinks, 1000);
+
+                        // ৬. রেন্ডারার ফাংশন কল করা (যদি প্রয়োজন হয়)
+                        if (typeof init === 'function') init();
                         
                         console.log("Chapter Loaded:", CURRENT_CHAPTER_NAME);
                         console.log("Title Updated:", newTitle);

@@ -95,6 +95,7 @@ let state = {
   lastAiMessageId: null,
   activeSessionId: null,
   attachedImage: null,
+  chapterContext: null,
   activePreset: null,
 };
 
@@ -125,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDom();
   initTheme();
   initSubject();
+  initChapterContext();
 
   // Restore active session or start fresh
   const savedActiveId = localStorage.getItem(CONFIG.activeSessionKey);
@@ -180,6 +182,65 @@ function initSubject() {
   if (dom.subjectSelect) {
     dom.subjectSelect.value = saved;
   }
+}
+
+// ===== CHAPTER CONTEXT =====
+function getChapterContextFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const subject = params.get('subject');
+  const chapter = params.get('chapter');
+  const chapterName = params.get('chapterName');
+  const description = params.get('description');
+
+  if (!subject && !chapter && !chapterName) return null;
+
+  return {
+    subject: subject || 'general',
+    chapter: chapter || '',
+    chapterName: chapterName || chapter || '',
+    description: description || '',
+  };
+}
+
+function initChapterContext() {
+  const context = getChapterContextFromUrl();
+  state.chapterContext = context;
+
+  if (!context) return;
+
+  if (context.subject) {
+    state.currentSubject = context.subject;
+    localStorage.setItem(CONFIG.subjectKey, context.subject);
+    if (dom.subjectSelect) dom.subjectSelect.value = context.subject;
+  }
+
+  const headerText = document.querySelector('.ai-teacher-header-text');
+  if (headerText && context.chapterName) {
+    const subjectLabel = getSubjectLabel(context.subject);
+    headerText.innerHTML = `
+      <h2>AI শিক্ষক</h2>
+      <p class="ai-chapter-context">${escapeHtml(subjectLabel)} · ${escapeHtml(context.chapterName)}</p>
+    `;
+  }
+
+  if (dom.chatInput && context.chapterName) {
+    dom.chatInput.placeholder = `${context.chapterName} নিয়ে প্রশ্ন লিখুন...`;
+  }
+}
+
+function getChapterInstruction() {
+  if (!state.chapterContext) return '';
+
+  const { subject, chapter, chapterName, description } = state.chapterContext;
+  return `
+
+শিক্ষার্থী এখন নির্দিষ্ট চ্যাপ্টার থেকে AI Teacher ব্যবহার করছে।
+Subject: ${getSubjectLabel(subject)}
+Chapter ID/Folder: ${chapter || 'উল্লেখ নেই'}
+Chapter Name: ${chapterName || 'উল্লেখ নেই'}
+Description: ${description || 'উল্লেখ নেই'}
+
+এই চ্যাপ্টারের context ধরে উত্তর দাও। প্রশ্ন অস্পষ্ট হলে ধরে নাও সেটি এই চ্যাপ্টার সম্পর্কিত। বাংলায় সহজভাবে step-by-step বুঝিয়ে দাও।`;
 }
 
 function changeSubject(value) {
@@ -589,6 +650,7 @@ function latexToHtml(latex) {
     .replace(/\\times/g, '×').replace(/\\div/g, '÷').replace(/\\cdot/g, '·')
     .replace(/\\pm/g, '±').replace(/\\leq/g, '≤').replace(/\\geq/g, '≥')
     .replace(/\\neq/g, '≠').replace(/\\approx/g, '≈').replace(/\\infty/g, '∞')
+    .replace(/\\%/g, '%')
     .replace(/\\left[\(\[{]/g, '(').replace(/\\right[\)\]}]/g, ')')
     .replace(/\\left\./g, '').replace(/\\right\./g, '');
 
@@ -619,6 +681,9 @@ function processInlineMath(text, skipEscape = false) {
   text = text.replace(/(\\frac\{[^}]+\}\{[^}]+\}|\\text\{[^}]*\}|\\times|\\div|\\cdot|\\pm|\\sqrt\{[^}]*\})/g, (m) =>
     latexToHtml(m)
   );
+
+  // Fix escaped percent
+  text = text.replace(/\\%/g, '%');
 
   text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   text = text.replace(/`{3}([\s\S]*?)`{3}/g, '<pre><code>$1</code></pre>');
@@ -960,7 +1025,7 @@ async function sendToAPI(question, preset) {
   showTypingIndicator();
 
   const subjectLabel = getSubjectLabel(state.currentSubject);
-  const subjectInstruction = `শিক্ষার্থীর বর্তমান বিষয়: "${subjectLabel}"। এই বিষয় অনুযায়ী উত্তর দাও।`;
+  const subjectInstruction = `শিক্ষার্থীর বর্তমান বিষয়: "${subjectLabel}"। এই বিষয় অনুযায়ী উত্তর দাও।${getChapterInstruction()}`;
 
   const presetInstruction = preset
     ? `শিক্ষার্থী "${preset.label}" মোড ব্যবহার করছে। তার অনুরোধ অনুযায়ী উত্তর দাও।\n\n`
