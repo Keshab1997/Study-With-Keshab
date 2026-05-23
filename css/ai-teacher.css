@@ -66,8 +66,8 @@
 }
 
 .ai-teacher-page {
-  height: calc(100vh - 70px);
-  height: calc(100dvh - 70px);
+  height: 100vh;
+  height: 100dvh;
   min-height: 0;
   background: var(--bg-page);
   font-family: 'Hind Siliguri', sans-serif;
@@ -81,7 +81,7 @@
   overscroll-behavior: none;
 }
 
-/* Keep AI Teacher page as an app shell below the normal navigation */
+/* AI Teacher page as a full-screen app shell */
 body:has(.ai-teacher-page) {
   padding: 0 !important;
   margin: 0 !important;
@@ -91,7 +91,7 @@ body:has(.ai-teacher-page) {
 }
 
 body:has(.ai-teacher-page) .site-header {
-  flex-shrink: 0;
+  display: none;
 }
 
 body:has(.ai-teacher-page) #navigation-placeholder {
@@ -1535,7 +1535,7 @@ body:has(.ai-teacher-page) #navigation-placeholder {
 /* Landscape phone optimization */
 @media (max-height: 500px) and (orientation: landscape) {
   .ai-teacher-page {
-    height: calc(100vh - 70px);
+    height: 100vh;
     min-height: 0;
   }
   .ai-teacher-container {
@@ -1678,8 +1678,8 @@ body:has(.ai-teacher-page) #navigation-placeholder {
 
 @media (max-width: 768px) {
   .ai-teacher-page {
-    height: calc(100vh - 70px);
-    height: calc(100dvh - 70px);
+    height: 100vh;
+    height: 100dvh;
     min-height: 0;
     padding: 0;
   }
@@ -1729,8 +1729,8 @@ body:has(.ai-teacher-page) #navigation-placeholder {
 
 @media (max-width: 480px) {
   .ai-teacher-page {
-    height: calc(100vh - 70px);
-    height: calc(100dvh - 70px);
+    height: 100vh;
+    height: 100dvh;
     min-height: 0;
   }
 
