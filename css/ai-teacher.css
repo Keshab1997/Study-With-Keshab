@@ -66,15 +66,15 @@
 }
 
 .ai-teacher-page {
-  min-height: 100vh;
-  height: 100vh;
-  height: 100dvh;
+  min-height: calc(100vh - 70px);
+  height: calc(100vh - 70px);
+  height: calc(100dvh - 70px);
   background: var(--bg-page);
   font-family: 'Hind Siliguri', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 70px 0 0;
   transition: background 0.4s;
   overflow: hidden;
 }
@@ -82,8 +82,8 @@
 .ai-teacher-container {
   width: 100%;
   max-width: 100%;
-  height: 100vh;
-  height: 100dvh;
+  height: calc(100vh - 70px);
+  height: calc(100dvh - 70px);
   max-height: none;
   background: var(--bg-container);
   border-radius: 0;
@@ -1654,8 +1654,21 @@
   border: 1px solid var(--divider);
 }
 
-/* ===== HISTORY PANEL MOBILE ===== */
 @media (max-width: 768px) {
+  .ai-teacher-page {
+    min-height: calc(100vh - 64px);
+    height: calc(100vh - 64px);
+    height: calc(100dvh - 64px);
+    padding-top: 64px;
+  }
+
+  .ai-teacher-container {
+    height: calc(100vh - 64px);
+    height: calc(100dvh - 64px);
+  }
+}
+
+
   .history-panel {
     width: 100vw;
     max-width: 100vw;
