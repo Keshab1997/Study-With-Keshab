@@ -103,7 +103,12 @@
             .color-pdf { border-color: #ef4444; } .color-pdf i { color: #ef4444; } .color-pdf span { color: #ef4444; } .color-pdf:hover { background: #fef2f2; }
             .color-quiz { border-color: #8b5cf6; } .color-quiz i { color: #8b5cf6; } .color-quiz span { color: #8b5cf6; } .color-quiz:hover { background: #faf5ff; }
             .color-leaderboard { border-color: #f97316; } .color-leaderboard i { color: #f97316; } .color-leaderboard span { color: #f97316; } .color-leaderboard:hover { background: #fff7ed; }
-            
+            .ai-teacher-cta { max-width: 1200px; margin: 0 auto 30px; padding: 0 20px; }
+            .ai-teacher-cta a { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 24px; border-radius: 18px; color: #fff; text-decoration: none; font-weight: 800; font-size: 1.1rem; background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%); box-shadow: 0 12px 26px rgba(59, 130, 246, 0.28); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+            .ai-teacher-cta a:hover { transform: translateY(-3px); box-shadow: 0 16px 32px rgba(59, 130, 246, 0.36); }
+            .ai-teacher-cta i { font-size: 1.4rem; }
+            .ai-teacher-cta small { display: block; font-size: 0.78rem; font-weight: 500; opacity: 0.9; margin-top: 2px; text-align: center; }
+
             @media (max-width: 768px) {
                 .chapter-banner-slot { padding-top: 70px; }
                 .chapter-banner {
@@ -124,6 +129,10 @@
                 .nav-button { padding: 20px 10px; min-height: 90px; }
                 .nav-button i { font-size: 1.6rem; margin-bottom: 8px; }
                 .nav-button span { font-size: 0.8rem; }
+                .ai-teacher-cta { padding: 0 15px; margin-bottom: 25px; }
+                .ai-teacher-cta a { padding: 16px 18px; font-size: 1rem; border-radius: 16px; }
+                .ai-teacher-cta i { font-size: 1.2rem; }
+                .ai-teacher-cta small { font-size: 0.72rem; }
                 body, main { overflow-x: hidden; }
                 .card { padding: 20px !important; }
             }
@@ -168,6 +177,16 @@
                 <span>লিডারবোর্ড</span>
             </a>
         </nav>
+
+        <div class="ai-teacher-cta">
+            <a href="../../../../ai-teacher.html" id="chapter-ai-teacher-link">
+                <i class="fa-solid fa-robot"></i>
+                <span>
+                    AI Teacher কে জিজ্ঞেস করো
+                    <small>এই অধ্যায়টা সহজভাবে বুঝে নাও</small>
+                </span>
+            </a>
+        </div>
 
         <main>
             <script>
@@ -222,7 +241,8 @@
                             subject: subjectValue,
                             chapter: chapterFolder,
                             chapterName: data.chapterName,
-                            description: data.description || ''
+                            description: data.description || '',
+                            ask: `${data.chapterName} অধ্যায়টা সহজভাবে বুঝিয়ে দাও`
                         });
                         const aiTeacherUrl = `../../../../ai-teacher.html?${aiTeacherParams.toString()}`;
                         window.__AI_TEACHER_CONTEXT_URL__ = aiTeacherUrl;

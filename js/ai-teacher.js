@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initSubject();
   initChapterContext();
+  initStarterQuestion();
 
   // Restore active session or start fresh
   const savedActiveId = localStorage.getItem(CONFIG.activeSessionKey);
@@ -226,6 +227,16 @@ function initChapterContext() {
   if (dom.chatInput && context.chapterName) {
     dom.chatInput.placeholder = `${context.chapterName} নিয়ে প্রশ্ন লিখুন...`;
   }
+}
+
+function initStarterQuestion() {
+  const params = new URLSearchParams(window.location.search);
+  const starterQuestion = params.get('ask');
+  if (!starterQuestion || !dom.chatInput) return;
+
+  dom.chatInput.value = starterQuestion;
+  autoResizeInput();
+  updateSendBtn();
 }
 
 function getChapterInstruction() {
