@@ -66,24 +66,42 @@
 }
 
 .ai-teacher-page {
-  min-height: calc(100vh - 70px);
   height: calc(100vh - 70px);
   height: calc(100dvh - 70px);
+  min-height: 0;
   background: var(--bg-page);
   font-family: 'Hind Siliguri', sans-serif;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  padding: 70px 0 0;
+  padding: 0;
+  box-sizing: border-box;
   transition: background 0.4s;
   overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* Keep AI Teacher page as an app shell below the normal navigation */
+body:has(.ai-teacher-page) {
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  overflow: hidden !important;
+}
+
+body:has(.ai-teacher-page) .site-header {
+  flex-shrink: 0;
+}
+
+body:has(.ai-teacher-page) #navigation-placeholder {
+  display: none;
 }
 
 .ai-teacher-container {
   width: 100%;
   max-width: 100%;
-  height: calc(100vh - 70px);
-  height: calc(100dvh - 70px);
+  height: 100%;
   max-height: none;
   background: var(--bg-container);
   border-radius: 0;
@@ -244,7 +262,8 @@
 
 /* ===== MESSAGES AREA ===== */
 .ai-teacher-messages {
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
   padding: 16px 20px;
   background: var(--bg-msg-area);
@@ -670,7 +689,7 @@
 
 /* ===== INPUT AREA ===== */
 .ai-teacher-input-area {
-  padding: 10px 16px 12px;
+  padding: 10px 16px calc(12px + env(safe-area-inset-bottom, 0px));
   background: var(--bg-container);
   border-top: 1px solid var(--divider);
   flex-shrink: 0;
@@ -1308,7 +1327,7 @@
   }
 
   .ai-teacher-input-area {
-    padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 4px));
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
   }
   #ai-teacher-form {
     gap: 6px;
@@ -1318,24 +1337,23 @@
     padding: 2px;
   }
   #ai-teacher-input {
-    padding: 9px 4px;
-    font-size: 0.92rem;
+    padding: 8px 4px;
+    font-size: 0.9rem;
   }
   #ai-teacher-send {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     border-radius: 10px;
     font-size: 14px;
   }
   .voice-btn {
-    width: 32px;
-    height: 32px;
-    font-size: 14px;
-    margin-left: 2px;
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+    margin-left: 1px;
   }
   .input-footer {
-    margin-top: 4px;
-    padding: 0 4px;
+    display: none;
   }
   .input-status {
     font-size: 0.6rem;
@@ -1516,8 +1534,12 @@
 
 /* Landscape phone optimization */
 @media (max-height: 500px) and (orientation: landscape) {
+  .ai-teacher-page {
+    height: calc(100vh - 70px);
+    min-height: 0;
+  }
   .ai-teacher-container {
-    height: 100vh;
+    height: 100%;
   }
   .ai-teacher-header {
     padding: 6px 12px;
@@ -1656,18 +1678,16 @@
 
 @media (max-width: 768px) {
   .ai-teacher-page {
-    min-height: calc(100vh - 64px);
-    height: calc(100vh - 64px);
-    height: calc(100dvh - 64px);
-    padding-top: 64px;
+    height: calc(100vh - 70px);
+    height: calc(100dvh - 70px);
+    min-height: 0;
+    padding: 0;
   }
 
   .ai-teacher-container {
-    height: calc(100vh - 64px);
-    height: calc(100dvh - 64px);
+    height: 100%;
+    min-height: 0;
   }
-}
-
 
   .history-panel {
     width: 100vw;
@@ -1705,6 +1725,82 @@
     height: 56px;
     font-size: 1.3rem;
   }
+}
+
+@media (max-width: 480px) {
+  .ai-teacher-page {
+    height: calc(100vh - 70px);
+    height: calc(100dvh - 70px);
+    min-height: 0;
+  }
+
+  .ai-teacher-header {
+    height: 42px;
+    min-height: 42px;
+  }
+
+  .preset-actions {
+    padding: 5px 8px 4px;
+  }
+
+  .ai-teacher-messages {
+    padding: 8px;
+  }
+}
+
+@media (max-height: 620px) {
+  .preset-actions {
+    display: none;
+  }
+
+  .ai-teacher-header {
+    height: 42px;
+    min-height: 42px;
+  }
+}
+
+/* ===== PAGE TRANSITION FIX ===== */
+.page-transition {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.transition-circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-transition.active .transition-circle {
+  transform: scale(30);
+}
+
+.transition-logo {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.5) rotate(-180deg);
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1;
+}
+
+.page-transition.active .transition-logo {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
 }
 
 /* ===== HISTORY PANEL ===== */
@@ -1836,8 +1932,8 @@
 }
 
 .history-empty-icon-wrap {
-  width: 64px;
-  height: 64px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background: var(--accent-light);
   display: flex;
