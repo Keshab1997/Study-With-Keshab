@@ -27,7 +27,7 @@ const SYSTEM_PROMPT = `তুমি একজন পেশাদার AI শি
 
 গাণিতিক সমীকরণ লেখার নিয়ম (MATH FORMATTING - অবশ্যই মানতে হবে):
 - সমীকরণ inline লিখতে: \\( সমীকরণ \\) ব্যবহার করো। যেমন: \\( 2000 = x \\times \\frac{8}{100} \\) 
-- সমীকরণ আলাদা লাইনে (display) লিখতে: \\[ সমীকরণ \\[ ব্যবহার করো। যেমন: \\[ x = \\frac{2000 \\times 100}{8} \\) 
+- সমীকরণ আলাদা লাইনে (display) লিখতে: \\[ সমীকরণ \\] ব্যবহার করো। যেমন: \\[ x = \\frac{2000 \\times 100}{8} \\] 
 - ভগ্নাংশ: \\frac{লব}{হর} — যেমন \\frac{8}{100}
 - গুণ চিহ্ন: \\times
 - ভাগ চিহ্ন: \\div
@@ -119,6 +119,7 @@ function initDom() {
   dom.presetsContainer = $('preset-actions');
   dom.newChatBtn = $('ai-teacher-new-chat');
   dom.historyBtn = $('ai-teacher-history');
+  dom.mathPreview = $('math-preview');
 }
 
 // ===== INIT =====
@@ -537,6 +538,13 @@ function formatMessageContent(text) {
 function formatParagraph(text) {
   if (!text) return '';
   if (text.startsWith('<div class="math-block"') || /^%%MATHBLOCK_\d+%%$/.test(text.trim())) return text;
+  // Handle markdown headings ### ## #
+  const headingMatch = text.match(/^(#{1,3})\s+(.+)/);
+  if (headingMatch) {
+    const level = headingMatch[1].length;
+    const tag = level === 1 ? 'h3' : level === 2 ? 'h4' : 'h5';
+    return `<${tag} class="md-heading">${processInlineMath(headingMatch[2])}</${tag}>`;
+  }
   const stepPatterns = [
     /^প্রথমে[:\s,]/,
     /^তারপর[:\s,]/,
@@ -630,6 +638,9 @@ function formatStepBlock(text, lines) {
 function latexToHtml(latex) {
   let result = latex;
 
+  // Normalize \dfrac, \tfrac, dfrac, tfrac -> \frac
+  result = result.replace(/\\?[dt]frac/g, '\\frac');
+
   // 1. \frac FIRST — before anything strips braces
   let prev;
   do {
@@ -688,8 +699,8 @@ function processInlineMath(text, skipEscape = false) {
     `<span class="math-inline">${latexToHtml(m.trim())}</span>`
   );
 
-  // Standalone LaTeX expressions
-  text = text.replace(/(\\frac\{[^}]+\}\{[^}]+\}|\\text\{[^}]*\}|\\times|\\div|\\cdot|\\pm|\\sqrt\{[^}]*\})/g, (m) =>
+  // Standalone LaTeX expressions (with or without backslash)
+  text = text.replace(/((?:\\[dt]?|[dt])?frac\{[^}]+\}\{[^}]+\}|\\text\{[^}]*\}|\\times|\\div|\\cdot|\\pm|\\sqrt\{[^}]*\})/g, (m) =>
     latexToHtml(m)
   );
 
@@ -1013,6 +1024,7 @@ async function handleSubmit(e) {
   dom.chatInput.value = '';
   autoResizeInput();
   updateSendBtn();
+  if (dom.mathPreview) dom.mathPreview.style.display = 'none';
   if (hasImage) removeImage();
 
   if (hasImage) {
@@ -1373,6 +1385,50 @@ function showToast(message, type = 'info') {
   }, 3000);
 }
 
+// ===== MATH PREVIEW =====
+function updateMathPreview() {
+  if (!dom.mathPreview) return;
+  const text = dom.chatInput.value.trim();
+  // Detect math: LaTeX with backslash, or plain math notation (dfrac, frac, ^, = with numbers)
+  const hasMath = /\\[dt]?frac|\\times|\\div|\\sqrt|\\text|\\\(|\\\[|[dt]?frac\{|\^{|\^[a-zA-Z0-9({]|\d+\/\d+|\d+\s*[+\-×÷=^]\s*\d+|[a-zA-Z]\s*[+\-×÷=^]\s*\d/.test(text);
+  if (!hasMath || !text) {
+    dom.mathPreview.style.display = 'none';
+    return;
+  }
+  dom.mathPreview.style.display = 'block';
+
+  // Process math delimiters properly before rendering
+  let preview = text;
+  // Display math: \[...\] -> math-block
+  preview = preview.replace(/\\\[[\s\S]*?\\\]/g, (m) => {
+    const inner = m.slice(2, -2).trim();
+    return '<div class="math-block">' + latexToHtml(inner) + '</div>';
+  });
+  // Inline math: \(...\) -> math-inline
+  preview = preview.replace(/\\\([\s\S]*?\\\)/g, (m) => {
+    const inner = m.slice(2, -2).trim();
+    return '<span class="math-inline">' + latexToHtml(inner) + '</span>';
+  });
+  // Parenthesized math expressions FIRST (before standalone LaTeX strips keywords)
+  // e.g. (64^{x+1} = dfrac{64}{4^x})
+  preview = preview.replace(/\(([^)]*(?:\^|_|\\[a-z]|[dt]?frac\{|times|div)[^)]*)\)/g, (m, inner) =>
+    '<span class="math-inline">' + latexToHtml(inner) + '</span>'
+  );
+  // Standalone LaTeX (no delimiters) - with or without backslash
+  preview = preview.replace(/((?:\\[dt]?|[dt])?frac\{[^}]+\}\{[^}]+\}|\\text\{[^}]*\}|\\times|\\div|\\cdot|\\pm|\\sqrt\{[^}]*\})/g, (m) =>
+    latexToHtml(m)
+  );
+
+  // Escape remaining plain text (only non-math parts), preserve newlines
+  const parts = preview.split(/(<div class="math-block">[\s\S]*?<\/div>|<span class="math-inline">[\s\S]*?<\/span>)/g);
+  preview = parts.map(part => {
+    if (part.startsWith('<div class="math-block">') || part.startsWith('<span class="math-inline">')) return part;
+    return escapeHtml(part).replace(/\n/g, '<br>');
+  }).join('');
+
+  dom.mathPreview.innerHTML = preview;
+}
+
 // ===== EVENT BINDING =====
 function bindEvents() {
   dom.chatForm.addEventListener('submit', handleSubmit);
@@ -1380,6 +1436,7 @@ function bindEvents() {
   dom.chatInput.addEventListener('input', () => {
     autoResizeInput();
     updateSendBtn();
+    updateMathPreview();
   });
 
   dom.chatInput.addEventListener('focus', () => {

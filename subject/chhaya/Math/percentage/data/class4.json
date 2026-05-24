@@ -1,0 +1,160 @@
+{
+  "chapterName": "শতাংশ (Percentage)",
+  "classNumber": "04",
+  "sections": [
+    {
+      "type": "title",
+      "content": "শতাংশ (Percentage) - ক্লাস 04"
+    },
+    {
+      "type": "question",
+      "qText": "যদি রামের আয়ের 35% হয় 17,500 টাকা, তবে তার আয়ের পরিমাণ কত?<ul><li>(A) 54,300</li><li>(B) 27,000</li><li>(C) 50,000</li><li>(D) 1,00,000</li></ul>",
+      "correctAnswer": "C",
+      "explanation": "ধরি, রামের মোট আয় x টাকা।<br>প্রশ্নানুসারে, x এর 35% = 17,500<br>বা, x * (<span class='fraction'><span class='top'>35</span><span class='bottom'>100</span></span>) = 17,500<br>বা, x = (17,500 * 100) / 35 = 50,000 টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "একজন বাসের এজেন্ট 2 1/2% হারে 300 টাকা কমিশন পায়। বিক্রীত টিকিটের মূল্য কত?<ul><li>(A) 12,000 টাকা</li><li>(B) 6,000 টাকা</li><li>(C) 18,000 টাকা</li><li>(D) 15,000 টাকা</li></ul>",
+      "correctAnswer": "A",
+      "explanation": "কমিশনের হার = 2.5%। ধরি বিক্রীত টিকিটের মূল্য x টাকা।<br>প্রশ্নানুসারে, x এর 2.5% = 300<br>বা, x * (<span class='fraction'><span class='top'>2.5</span><span class='bottom'>100</span></span>) = 300<br>বা, x = (300 * 100) / 2.5 = 12,000 টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "8040 এর 23% + 545 এর 42% = 3000 এর ?%<ul><li>(A) 56.17</li><li>(B) 63.54</li><li>(C) 69.27</li><li>(D) 71.04</li></ul>",
+      "correctAnswer": "C",
+      "explanation": "(8040 <em> <span class='fraction'><span class='top'>23</span><span class='bottom'>100</span></span>) + (545 </em> <span class='fraction'><span class='top'>42</span><span class='bottom'>100</span></span>) = 1849.2 + 228.9 = 2078.1<br>ধরি, 3000 এর x% = 2078.1<br>বা, 3000 * (x/100) = 2078.1<br>বা, 30x = 2078.1<br>বা, x = 2078.1 / 30 = 69.27"
+    },
+    {
+      "type": "question",
+      "qText": "8745 এর ?% = 5159.55<ul><li>(A) 47%</li><li>(B) 49%</li><li>(C) 54%</li><li>(D) কোনোটিই নয়</li></ul>",
+      "correctAnswer": "D",
+      "explanation": "ধরি, 8745 এর x% = 5159.55<br>বা, 8745 * (x/100) = 5159.55<br>বা, x = (5159.55 * 100) / 8745 = 515955 / 8745 = 59<br>যেহেতু অপশনে 59% নেই, তাই সঠিক উত্তর 'কোনোটিই নয়'।"
+    },
+    {
+      "type": "question",
+      "qText": "কোনো একটি সংখ্যার 31% যদি 46.5 হয়, তবে সংখ্যাটি হবে—<ul><li>(A) 150</li><li>(B) 155</li><li>(C) 160</li><li>(D) 165</li></ul>",
+      "correctAnswer": "A",
+      "explanation": "ধরি সংখ্যাটি x।<br>প্রশ্নানুসারে, x এর 31% = 46.5<br>বা, x * (<span class='fraction'><span class='top'>31</span><span class='bottom'>100</span></span>) = 46.5<br>বা, x = (46.5 * 100) / 31 = 4650 / 31 = 150"
+    },
+    {
+      "type": "question",
+      "qText": "(640 এর 0.5%) × (350 এর 1.3%) = ?<ul><li>(A) 12.56</li><li>(B) 13.44</li><li>(C) 14.44</li><li>(D) 14.56</li></ul>",
+      "correctAnswer": "D",
+      "explanation": "(640 <em> <span class='fraction'><span class='top'>0.5</span><span class='bottom'>100</span></span>) </em> (350 <em> <span class='fraction'><span class='top'>1.3</span><span class='bottom'>100</span></span>) = 3.2 </em> 4.55 = 14.56"
+    },
+    {
+      "type": "question",
+      "qText": "(363 এর 0.08% + 241 এর 0.6%) × 500 = ?<ul><li>(A) 84.62</li><li>(B) 86.82</li><li>(C) 846.2</li><li>(D) 868.2</li></ul>",
+      "correctAnswer": "D",
+      "explanation": "(363 <em> 0.0008 + 241 </em> 0.006) <em> 500 = (0.2904 + 1.446) </em> 500 = 1.7364 * 500 = 868.2"
+    },
+    {
+      "type": "question",
+      "qText": "5% এর 3%-এর মান কত?<ul><li>(A) 15%</li><li>(B) 1.5%</li><li>(C) 0.15%</li><li>(D) কোনোটিই নয়</li></ul>",
+      "correctAnswer": "C",
+      "explanation": "5% এর 3% = (<span class='fraction'><span class='top'>5</span><span class='bottom'>100</span></span>) * (<span class='fraction'><span class='top'>3</span><span class='bottom'>100</span></span>) = <span class='fraction'><span class='top'>15</span><span class='bottom'>10000</span></span> = 0.0015 = 0.15%"
+    },
+    {
+      "type": "question",
+      "qText": "একটি অফিসে 40% মহিলা কর্মী আছেন। মহিলা কর্মীদের মধ্যে 40% এবং পুরুষ কর্মীদের মধ্যে 60% আমার পক্ষে ভোট দিয়েছেন। আমি মোট কত শতাংশ ভোট পেয়েছি?<ul><li>(A) 24</li><li>(B) 42</li><li>(C) 50</li><li>(D) 52</li></ul>",
+      "correctAnswer": "D",
+      "explanation": "ধরি মোট কর্মী 100 জন। মহিলা কর্মী = 40 জন, পুরুষ কর্মী = 60 জন।<br>মহিলাদের ভোট = 40 এর 40% = 16<br>পুরুষদের ভোট = 60 এর 60% = 36<br>মোট ভোট = 16 + 36 = 52। অর্থাৎ 52% ভোট পেয়েছি।"
+    },
+    {
+      "type": "question",
+      "qText": "? এর 4% = 240<ul><li>(A) 60</li><li>(B) 6000</li><li>(C) 960</li><li>(D) 600</li></ul>",
+      "correctAnswer": "B",
+      "explanation": "ধরি সংখ্যাটি x।<br>x * (<span class='fraction'><span class='top'>4</span><span class='bottom'>100</span></span>) = 240<br>বা, x = (240 * 100) / 4 = 6000"
+    },
+    {
+      "type": "question",
+      "qText": "0.02 = ?%<ul><li>(A) 20</li><li>(B) 2</li><li>(C) 0.02</li><li>(D) 0.2</li></ul>",
+      "correctAnswer": "B",
+      "explanation": "দশমিককে শতাংশে নিতে 100 দিয়ে গুণ করতে হয়।<br>0.02 * 100 = 2%"
+    },
+    {
+      "type": "question",
+      "qText": "কোনো একটি সংখ্যার 80%-এর সাথে 80 যোগ করলে সেই সংখ্যাটিই পাওয়া যায়। সংখ্যাটি কত?<ul><li>(A) 200</li><li>(B) 320</li><li>(C) 400</li><li>(D) 480</li></ul>",
+      "correctAnswer": "C",
+      "explanation": "ধরি সংখ্যাটি x।<br>প্রশ্নানুসারে, x এর 80% + 80 = x<br>বা, 0.8x + 80 = x<br>বা, x - 0.8x = 80<br>বা, 0.2x = 80<br>বা, x = 80 / 0.2 = 400"
+    },
+    {
+      "type": "question",
+      "qText": "একটি টিনের পাত্রে 60 লিটার তেল ধরে। পাত্রে ছিদ্র থাকার জন্য 4 1/2 লিটার তেল পড়ে যায়। তাহলে টিনে কত তেল অবশিষ্ট ছিল?<ul><li>(A) 90.5%</li><li>(B) 86.5%</li><li>(C) 88.5%</li><li>(D) 92.5%</li></ul>",
+      "correctAnswer": "D",
+      "explanation": "তেল পড়ে গেছে = 4.5 লিটার।<br>অবশিষ্ট তেল = 60 - 4.5 = 55.5 লিটার।<br>অবশিষ্ট তেলের শতাংশ = (55.5 / 60) * 100 = 92.5%"
+    },
+    {
+      "type": "question",
+      "qText": "A-এর বেতন B-এর বেতনের তুলনায় 25% বেশি, তাহলে B-এর বেতন A-এর বেতনের তুলনায় কত কম?<ul><li>(A) 33 1/3%</li><li>(B) 25%</li><li>(C) 20%</li><li>(D) 16 2/3%</li></ul>",
+      "correctAnswer": "C",
+      "explanation": "ধরি B-এর বেতন 100 টাকা। তাহলে A-এর বেতন 125 টাকা।<br>B-এর বেতন A-এর থেকে কম = 125 - 100 = 25 টাকা।<br>শতকরা কম = (25 / 125) * 100 = 20%"
+    },
+    {
+      "type": "question",
+      "qText": "যদি দুটি সংখ্যা তৃতীয় একটি সংখ্যার তুলনায় যথাক্রমে 30% এবং 40% বেশি হয়, তবে প্রথম সংখ্যাটি দ্বিতীয় সংখ্যাটির কত শতাংশ?<ul><li>(A) 85</li><li>(B) 92.9</li><li>(C) 79 1/2</li><li>(D) 63 2/3</li></ul>",
+      "correctAnswer": "B",
+      "explanation": "ধরি তৃতীয় সংখ্যাটি 100। তাহলে প্রথম সংখ্যা = 130 এবং দ্বিতীয় সংখ্যা = 140।<br>প্রথম সংখ্যাটি দ্বিতীয়টির শতাংশ = (130 / 140) * 100 = 92.857... ≈ 92.9%"
+    },
+    {
+      "type": "question",
+      "qText": "1 মিনিট 12 সেকেন্ড, এক ঘণ্টার কত শতাংশ?<ul><li>(A) 2</li><li>(B) 10</li><li>(C) 12</li><li>(D) 20</li></ul>",
+      "correctAnswer": "A",
+      "explanation": "1 মিনিট 12 সেকেন্ড = 72 সেকেন্ড।<br>1 ঘণ্টা = 3600 সেকেন্ড।<br>শতাংশ = (72 / 3600) * 100 = 2%"
+    },
+    {
+      "type": "question",
+      "qText": "রমনের বেতন 10% হ্রাস পাওয়ার পর, তাকে আগের বেতনই দিতে গেলে, তার বেতন কত বৃদ্ধি করতে হবে?<ul><li>(A) 10%</li><li>(B) 11%</li><li>(C) 11 1/9%</li><li>(D) 12%</li></ul>",
+      "correctAnswer": "C",
+      "explanation": "ধরি আগের বেতন 100 টাকা। হ্রাস পাওয়ার পর বেতন = 90 টাকা।<br>আগের বেতনে ফিরতে বৃদ্ধি করতে হবে = 10 টাকা।<br>শতকরা বৃদ্ধি = (10 / 90) * 100 = <span class='fraction'><span class='top'>100</span><span class='bottom'>9</span></span> = 11 <span class='fraction'><span class='top'>1</span><span class='bottom'>9</span></span>%"
+    },
+    {
+      "type": "question",
+      "qText": "একটি সংখ্যাকে কত দিয়ে গুণ করলে, গুণফল সংখ্যাটির 35% হবে?<ul><li>(A) 7/20</li><li>(B) 3.5</li><li>(C) √7/20</li><li>(D) 5/20</li></ul>",
+      "correctAnswer": "A",
+      "explanation": "ধরি সংখ্যাটি x এবং গুণকটি k।<br>প্রশ্নানুসারে, x * k = x এর 35%<br>বা, x <em> k = x </em> (<span class='fraction'><span class='top'>35</span><span class='bottom'>100</span></span>)<br>বা, k = <span class='fraction'><span class='top'>35</span><span class='bottom'>100</span></span> = <span class='fraction'><span class='top'>7</span><span class='bottom'>20</span></span>"
+    },
+    {
+      "type": "question",
+      "qText": "বিকল্পের মধ্যে কোন সংখ্যাটির 20% হল 10?<ul><li>(A) 30</li><li>(B) 40</li><li>(C) 50</li><li>(D) 70</li></ul>",
+      "correctAnswer": "C",
+      "explanation": "ধরি সংখ্যাটি x।<br>x এর 20% = 10<br>বা, x * (<span class='fraction'><span class='top'>20</span><span class='bottom'>100</span></span>) = 10<br>বা, x/5 = 10<br>বা, x = 50"
+    },
+    {
+      "type": "question",
+      "qText": "একটি পরীক্ষায়, একজন ছাত্র মোট নম্বরের 20% পেয়ে 30 নম্বরের জন্য ফেল করে। আবার অন্য একজন ছাত্র মোট নম্বরের 32% পেয়ে ন্যূনতম পাস মার্কের থেকে 42 নম্বর বেশি পায়। পাস করতে গেলে কত শতাংশ নম্বর পেতে হবে?<ul><li>(A) 24%</li><li>(B) 25%</li><li>(C) 26%</li><li>(D) 28%</li></ul>",
+      "correctAnswer": "B",
+      "explanation": "ধরি মোট নম্বর T। পাস নম্বর P = 0.2T + 30 এবং P = 0.32T - 42।<br>0.32T - 42 = 0.2T + 30<br>বা, 0.12T = 72<br>বা, T = 600।<br>পাস নম্বর = 0.2 * 600 + 30 = 120 + 30 = 150।<br>পাস শতাংশ = (150 / 600) * 100 = 25%"
+    },
+    {
+      "type": "question",
+      "qText": "রাম তার মাসিক আয়ের 20% বাড়ির খরচের জন্য ব্যয় করে, বাকি টাকার 15% বইয়ের খরচে, এরপরে বাকি টাকার 30% জামাকাপড়ে খরচ করে এবং সবশেষে যা পড়ে থাকে তা সে সঞ্চয় করে। সে যদি মাসের শেষে 9520 টাকা সঞ্চয় করে, তবে তার মাসিক আয় কত?<ul><li>(A) 15,000 টাকা</li><li>(B) 10,000 টাকা</li><li>(C) 20,000 টাকা</li><li>(D) কোনোটিই নয়</li></ul>",
+      "correctAnswer": "C",
+      "explanation": "ধরি মাসিক আয় x টাকা।<br>বাড়ি ভাড়ার পর বাকি = 0.8x<br>বইয়ের পর বাকি = 0.8x * 0.85 = 0.68x<br>জামাকাপড়ের পর বাকি (সঞ্চয়) = 0.68x * 0.7 = 0.476x<br>প্রশ্নানুসারে, 0.476x = 9520<br>বা, x = 9520 / 0.476 = 20,000 টাকা।"
+    },
+    {
+      "type": "question",
+      "qText": "কোনো একটি সংখ্যার 42% এবং 28%-এর পার্থক্য 210 হলে, সেই সংখ্যাটির 59% কত?<ul><li>(A) 900</li><li>(B) 420</li><li>(C) 885</li><li>(D) কোনোটিই নয়</li></ul>",
+      "correctAnswer": "C",
+      "explanation": "শতাংশের পার্থক্য = 42% - 28% = 14%<br>ধরি সংখ্যাটি x।<br>x এর 14% = 210<br>বা, x = (210 * 100) / 14 = 1500<br>সংখ্যাটির 59% = 1500 * 0.59 = 885"
+    },
+    {
+      "type": "question",
+      "qText": "একটি নির্বাচনে একজন প্রার্থী প্রদত্ত ভোটের 40% পেয়ে বিজয়ী প্রার্থীর তুলনায় 298 টি ভোট কম পেয়ে পরাস্ত হন। মোট কতগুলি ভোট দেওয়া হয়েছিল?<ul><li>(A) 1360</li><li>(B) 1490</li><li>(C) 1520</li><li>(D) 1602</li></ul>",
+      "correctAnswer": "B",
+      "explanation": "পরাজিত প্রার্থী পান 40% ভোট। বিজয়ী প্রার্থী পান (100 - 40) = 60% ভোট।<br>ভোটের পার্থক্য = 60% - 40% = 20%<br>ধরি মোট ভোট x।<br>x এর 20% = 298<br>বা, x * (<span class='fraction'><span class='top'>20</span><span class='bottom'>100</span></span>) = 298<br>বা, x = 298 * 5 = 1490"
+    },
+    {
+      "type": "question",
+      "qText": "দুটি সংখ্যা তৃতীয় একটি সংখ্যার তুলনায় যথাক্রমে 30% এবং 37% কম। দ্বিতীয় সংখ্যাটি প্রথম সংখ্যার তুলনায় কত কম?<ul><li>(A) 15%</li><li>(B) 10%</li><li>(C) 25%</li><li>(D) 20%</li></ul>",
+      "correctAnswer": "B",
+      "explanation": "ধরি তৃতীয় সংখ্যাটি 100। তাহলে প্রথম সংখ্যা = 70 এবং দ্বিতীয় সংখ্যা = 63।<br>দ্বিতীয় সংখ্যাটি প্রথমটির থেকে কম = 70 - 63 = 7।<br>শতকরা কম = (7 / 70) * 100 = 10%"
+    },
+    {
+      "type": "question",
+      "qText": "400 এর 4% - 800 এর 2% = ?<ul><li>(A) 0</li><li>(B) 1</li><li>(C) 8</li><li>(D) 16</li></ul>",
+      "correctAnswer": "A",
+      "explanation": "400 এর 4% = 400 * (<span class='fraction'><span class='top'>4</span><span class='bottom'>100</span></span>) = 16<br>800 এর 2% = 800 * (<span class='fraction'><span class='top'>2</span><span class='bottom'>100</span></span>) = 16<br>পার্থক্য = 16 - 16 = 0"
+    }
+  ]
+}

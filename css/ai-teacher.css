@@ -2067,3 +2067,20 @@ body:has(.ai-teacher-page) .nb-bot-popup {
   color: var(--danger);
   transform: scale(1.1);
 }
+
+.md-heading { margin: 0.6em 0 0.3em; font-weight: 700; color: var(--primary, #6c63ff); }
+h3.md-heading { font-size: 1.05rem; }
+h4.md-heading { font-size: 0.97rem; }
+h5.md-heading { font-size: 0.92rem; }
+
+.math-preview {
+  margin: 0 0 6px;
+  padding: 8px 12px;
+  background: var(--math-bg, #f0eeff);
+  border-left: 3px solid var(--primary, #6c63ff);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: var(--text, #333);
+  min-height: 36px;
+  word-break: break-word;
+}
