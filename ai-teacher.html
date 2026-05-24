@@ -30,7 +30,7 @@
           <h2>AI শিক্ষক</h2>
         </div>
         <div class="subject-selector">
-          <select id="ai-teacher-subject" class="subject-select">
+          <select id="ai-teacher-subject" class="subject-select" aria-label="বিষয় নির্বাচন করুন">
             <option value="general">সাধারণ</option>
             <option value="physics">পদার্থবিদ্যা</option>
             <option value="chemistry">রসায়ন</option>
@@ -42,32 +42,32 @@
           </select>
         </div>
         <div class="ai-teacher-header-actions">
-          <a href="index.html" class="header-btn" title="হোম"><i class="fas fa-home"></i></a>
-          <button id="ai-teacher-new-chat" class="header-btn" title="নতুন চ্যাট">
+          <a href="index.html" class="header-btn" aria-label="হোম পেজে যান"><i class="fas fa-home"></i></a>
+          <button id="ai-teacher-new-chat" class="header-btn" aria-label="নতুন চ্যাট শুরু করুন">
             <i class="fas fa-plus"></i>
           </button>
-          <button id="ai-teacher-history" class="header-btn" title="ইতিহাস">
+          <button id="ai-teacher-history" class="header-btn" aria-label="চ্যাট ইতিহাস দেখুন">
             <i class="fas fa-history"></i>
           </button>
-          <button id="ai-teacher-theme" class="header-btn" title="ডার্ক মোড">
+          <button id="ai-teacher-theme" class="header-btn" aria-label="ডার্ক মোড টগল করুন">
             <i class="fas fa-moon"></i>
           </button>
-          <button id="ai-teacher-clear" class="header-btn" title="মুছুন">
+          <button id="ai-teacher-clear" class="header-btn" aria-label="কথোপকথন মুছুন">
             <i class="fas fa-trash-alt"></i>
           </button>
         </div>
       </header>
 
       <!-- MESSAGES -->
-      <div id="ai-teacher-messages" class="ai-teacher-messages"></div>
+      <div id="ai-teacher-messages" class="ai-teacher-messages" role="log" aria-label="কথোপকথন" aria-live="polite"></div>
 
       <!-- PRESET ACTIONS -->
-      <div id="preset-actions" class="preset-actions">
-        <button class="preset-btn" data-preset="mcq" onclick="applyPreset('mcq')" title="MCQ তৈরি"><i class="fas fa-list-check"></i> MCQ</button>
-        <button class="preset-btn" data-preset="example" onclick="applyPreset('example')" title="উদাহরণ"><i class="fas fa-lightbulb"></i> উদাহরণ</button>
-        <button class="preset-btn" data-preset="simplify" onclick="applyPreset('simplify')" title="সহজভাবে"><i class="fas fa-child-reaching"></i> সহজভাবে</button>
-        <button class="preset-btn" data-preset="summary" onclick="applyPreset('summary')" title="সারাংশ"><i class="fas fa-compress"></i> সারাংশ</button>
-        <button class="preset-btn" data-preset="tips" onclick="applyPreset('tips')" title="টিপস"><i class="fas fa-star"></i> টিপস</button>
+      <div id="preset-actions" class="preset-actions" role="toolbar" aria-label="চ্যাট প্রিসেট অপশন">
+        <button class="preset-btn" data-preset="mcq" onclick="applyPreset('mcq')" aria-label="MCQ প্রশ্ন তৈরি করুন"><i class="fas fa-list-check"></i> MCQ</button>
+        <button class="preset-btn" data-preset="example" onclick="applyPreset('example')" aria-label="উদাহরণ সহ বুঝিয়ে দিন"><i class="fas fa-lightbulb"></i> উদাহরণ</button>
+        <button class="preset-btn" data-preset="simplify" onclick="applyPreset('simplify')" aria-label="সহজ ভাষায় বুঝান"><i class="fas fa-child-reaching"></i> সহজভাবে</button>
+        <button class="preset-btn" data-preset="summary" onclick="applyPreset('summary')" aria-label="সারাংশ দেখান"><i class="fas fa-compress"></i> সারাংশ</button>
+        <button class="preset-btn" data-preset="tips" onclick="applyPreset('tips')" aria-label="শেখার টিপস দিন"><i class="fas fa-star"></i> টিপস</button>
       </div>
 
       <!-- IMAGE PREVIEW -->
@@ -78,41 +78,42 @@
         <div id="math-preview" class="math-preview" style="display:none"></div>
         <form id="ai-teacher-form" autocomplete="off">
           <div class="input-wrapper">
-            <button type="button" id="ai-teacher-voice" class="voice-btn" title="ভয়েস ইনপুট">
+            <button type="button" id="ai-teacher-voice" class="voice-btn" aria-label="ভয়েস ইনপুট চালু করুন">
               <i class="fas fa-microphone"></i>
             </button>
-            <button type="button" id="ai-teacher-image" class="voice-btn" title="ছবি সংযুক্ত করুন">
+            <button type="button" id="ai-teacher-image" class="voice-btn" aria-label="ছবি সংযুক্ত করুন">
               <i class="fas fa-image"></i>
             </button>
             <input type="file" id="ai-teacher-image-input" accept="image/*" capture="environment" style="display:none">
             <textarea
               id="ai-teacher-input"
+              aria-label="আপনার প্রশ্ন লিখুন"
               placeholder="আপনার প্রশ্ন লিখুন... (Ctrl+K)"
               rows="1"
             ></textarea>
-            <span id="char-count" class="char-count">0/2000</span>
+            <span id="char-count" class="char-count" aria-live="polite">0/2000</span>
           </div>
-          <button type="submit" id="ai-teacher-send" disabled>
+          <button type="submit" id="ai-teacher-send" disabled aria-label="বার্তা পাঠান">
             <i class="fas fa-paper-plane"></i>
           </button>
         </form>
         <div class="input-footer">
-          <span class="input-status"><i class="fas fa-keyboard"></i> Enter পাঠান · Shift+Enter নতুন লাইন · Ctrl+K ফোকাস</span>
+          <span class="input-status"><i class="fas fa-keyboard" aria-hidden="true"></i> Enter পাঠান · Shift+Enter নতুন লাইন · Ctrl+K ফোকাস</span>
         </div>
       </div>
     </div>
   </main>
 
   <!-- HISTORY PANEL -->
-  <div id="history-overlay" class="history-overlay"></div>
-  <div id="history-panel" class="history-panel">
+  <div id="history-overlay" class="history-overlay" aria-hidden="true"></div>
+  <div id="history-panel" class="history-panel" role="dialog" aria-label="চ্যাট ইতিহাস">
     <div class="history-header">
       <div class="history-header-title">
-        <i class="fas fa-clock-rotate"></i>
+        <i class="fas fa-clock-rotate" aria-hidden="true"></i>
         <span>চ্যাট ইতিহাস</span>
-        <span class="history-header-badge" id="history-count">0</span>
+        <span class="history-header-badge" id="history-count" aria-label="মোট চ্যাট সংখ্যা">0</span>
       </div>
-      <button id="history-close" class="history-close-btn"><i class="fas fa-xmark"></i></button>
+      <button id="history-close" class="history-close-btn" aria-label="ইতিহাস প্যানেল বন্ধ করুন"><i class="fas fa-xmark"></i></button>
     </div>
     <div id="history-list" class="history-list"></div>
   </div>

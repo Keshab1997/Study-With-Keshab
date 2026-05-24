@@ -81,11 +81,46 @@ const PRESETS = [
 const WELCOME_CONTENT = `
   <div class="ai-teacher-welcome" id="welcome-screen">
     <div class="welcome-logo"><i class="fas fa-chalkboard-teacher"></i></div>
-    <h3>AI শিক্ষককে প্রশ্ন করুন</h3>
-    <p>যেকোনো বিষয়ে আপনার প্রশ্ন লিখুন। AI শিক্ষক সহজ ভাষায় ধাপে ধাপে উত্তর দেবেন।</p>
+    <h3 id="welcome-title">AI শিক্ষককে প্রশ্ন করুন</h3>
+    <p id="welcome-text">যেকোনো বিষয়ে আপনার প্রশ্ন লিখুন। AI শিক্ষক সহজ ভাষায় ধাপে ধাপে উত্তর দেবেন।</p>
     <div class="ai-teacher-suggestions" id="welcome-suggestions"></div>
   </div>
 `;
+
+const WELCOME_MESSAGES = {
+  general: {
+    title: 'AI শিক্ষককে প্রশ্ন করুন',
+    text: 'যেকোনো বিষয়ে আপনার প্রশ্ন লিখুন। AI শিক্ষক সহজ ভাষায় ধাপে ধাপে উত্তর দেবেন।'
+  },
+  physics: {
+    title: 'পদার্থবিদ্যা শিখুন সহজে',
+    text: 'গতি, বল, শক্তি, আলো — যেকোনো পদার্থবিদ্যার প্রশ্ন করুন। সূত্র ও সমাধান ধাপে ধাপে বুঝিয়ে দেওয়া হবে।'
+  },
+  chemistry: {
+    title: 'রসায়ন সমাধান করুন',
+    text: 'পরমাণু, বিক্রিয়া, pH, জৈব যৌগ — রসায়নের যেকোনো জটিল বিষয় সহজভাবে শিখুন।'
+  },
+  math: {
+    title: 'গণিতের সমস্যা সমাধান করুন',
+    text: 'বীজগণিত, জ্যামিতি, ত্রিকোণমিতি — যেকোনো গাণিতিক সমস্যার সমাধান ধাপে ধাপে দেখুন।'
+  },
+  biology: {
+    title: 'জীববিজ্ঞান অন্বেষণ করুন',
+    text: 'কোষ, জিন, Evolution — জীববিজ্ঞানের আশ্চর্যজনক জগৎ সহজ ভাষায় জানুন।'
+  },
+  history: {
+    title: 'ইতিহাসের পাতা উল্টান',
+    text: 'ভারতবর্ষ ও বিশ্বের ইতিহাসের গুরুত্বপূর্ণ ঘটনা ও যুগ সম্পর্কে জানুন।'
+  },
+  geography: {
+    title: 'ভূগোল চিনুন',
+    text: 'পৃথিবীর ভূসংস্থান, জলবায়ু, দেশ-মহাদেশ — ভূগোল সম্পর্কে সব জানুন।'
+  },
+  gk: {
+    title: 'সাধারণ জ্ঞান বাড়ান',
+    text: 'বিজ্ঞান, সংস্কৃতি, খেলাধুলা — বিভিন্ন বিষয়ে আপনার সাধারণ জ্ঞান যাচাই ও বাড়ান।'
+  }
+};
 
 // ===== STATE =====
 let state = {
@@ -259,6 +294,7 @@ function changeSubject(value) {
   state.currentSubject = value;
   localStorage.setItem(CONFIG.subjectKey, value);
   if (isWelcomeVisible()) {
+    updateWelcomeContent();
     renderWelcomeSuggestions();
   }
 }
@@ -432,7 +468,16 @@ function render() {
 
 function showWelcome() {
   dom.chatMessages.innerHTML = WELCOME_CONTENT;
+  updateWelcomeContent();
   renderWelcomeSuggestions();
+}
+
+function updateWelcomeContent() {
+  const welcomeData = WELCOME_MESSAGES[state.currentSubject] || WELCOME_MESSAGES.general;
+  const titleEl = document.getElementById('welcome-title');
+  const textEl = document.getElementById('welcome-text');
+  if (titleEl) titleEl.textContent = welcomeData.title;
+  if (textEl) textEl.textContent = welcomeData.text;
 }
 
 function isWelcomeVisible() {
