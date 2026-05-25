@@ -192,6 +192,9 @@
               <button class="entry-action-btn" onclick="deleteEntry('${entry.id}')" title="মুছুন">
                 <i class="fas fa-trash-alt"></i> মুছুন
               </button>
+              <button class="entry-action-btn" onclick="editEntry('${entry.id}')" title="এডিট">
+                <i class="fas fa-edit"></i> এডিট
+              </button>
               <button class="entry-action-btn" onclick="copyEntry('${entry.id}')" title="কপি">
                 <i class="fas fa-copy"></i> কপি
               </button>
@@ -201,12 +204,71 @@
       }).join('');
     }
 
+    let currentEditId = null;
+    
+    function openEditModal(id) {
+      if (!window.NotebookBot) return;
+      const entries = NotebookBot.getEntries();
+      const entry = entries.find(e => e.id === id);
+      if (!entry) return;
+    
+      currentEditId = id;
+      document.getElementById('edit-subject').value = entry.subject || '';
+      document.getElementById('edit-content').value = entry.content || '';
+      updateCharCounter();
+      document.getElementById('edit-modal').classList.add('open');
+      document.getElementById('edit-content').focus();
+    }
+    
+    function updateCharCounter() {
+      const content = document.getElementById('edit-content').value;
+      const counter = document.getElementById('char-count');
+      counter.textContent = `${content.length} অক্ষর`;
+      counter.style.color = content.length > 1000 ? 'var(--notebook-red)' : 'var(--notebook-text)';
+    }
+    
+    function closeEditModal() {
+      document.getElementById('edit-modal').classList.remove('open');
+      currentEditId = null;
+    }
+    
+    function saveEditedEntry() {
+      if (!window.NotebookBot || !currentEditId) return;
+    
+      const subject = document.getElementById('edit-subject').value;
+      const content = document.getElementById('edit-content').value;
+    
+      if (!content.trim()) {
+        alert('নোটের কন্টেন্ট খালি হতে পারবে না');
+        return;
+      }
+    
+      NotebookBot.updateEntry(currentEditId, content, subject);
+      closeEditModal();
+      renderNotebook();
+      
+      // Show confirmation message
+      const saveBtn = document.getElementById('save-edit');
+      const origText = saveBtn.textContent;
+      saveBtn.textContent = 'সেভ হয়েছে!';
+      saveBtn.disabled = true;
+      
+      setTimeout(() => {
+        saveBtn.textContent = origText;
+        saveBtn.disabled = false;
+      }, 2000);
+    }
+    
+    function editEntry(id) {
+      openEditModal(id);
+    }
+    
     function deleteEntry(id) {
       if (!confirm('এই নোটটি মুছবে?') || !window.NotebookBot) return;
       NotebookBot.deleteEntry(id);
       renderNotebook();
     }
-
+    
     function copyEntry(id) {
       if (!window.NotebookBot) return;
       const entries = NotebookBot.getEntries();
@@ -220,13 +282,45 @@
       });
     }
 
+    // Edit Modal
+    const editModal = document.createElement('div');
+    editModal.id = 'edit-modal';
+    editModal.className = 'modal';
+    editModal.setAttribute('role', 'dialog');
+    editModal.setAttribute('aria-labelledby', 'modal-title');
+    editModal.setAttribute('aria-modal', 'true');
+    editModal.innerHTML = `
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modal-title">নোট এডিট করুন</h2>
+          <span class="modal-close" role="button" aria-label="বন্ধ করুন">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="edit-subject">বিষয়:</label>
+            <input type="text" id="edit-subject" class="form-control" placeholder="বিষয়">
+          </div>
+          <div class="form-group">
+            <label for="edit-content">নোট:</label>
+            <textarea id="edit-content" class="form-control" rows="10" placeholder="নোট লিখুন..." aria-describedby="char-count"></textarea>
+            <div id="char-count" class="char-counter">০ অক্ষর</div>
+          </div>
+          <div class="form-group">
+            <button type="button" id="save-edit" class="btn btn-primary" aria-label="পরিবর্তন সংরক্ষণ করুন">আপডেট করুন</button>
+            <button type="button" id="cancel-edit" class="btn btn-secondary" aria-label="বাতিল করুন">বাতিল</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(editModal);
+  
     document.addEventListener('DOMContentLoaded', renderNotebook);
 
     // Tab switching
     document.addEventListener('DOMContentLoaded', function() {
       const tabs = document.querySelectorAll('.notebook-tab');
       const panels = document.querySelectorAll('.tab-panel');
-
+  
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
           const target = tab.dataset.tab;
@@ -236,6 +330,36 @@
           const panel = document.getElementById('panel-' + target);
           if (panel) panel.style.display = 'block';
         });
+      });
+  
+      // Edit modal event listeners
+      const modal = document.getElementById('edit-modal');
+      const closeBtn = modal.querySelector('.modal-close');
+      const cancelBtn = document.getElementById('cancel-edit');
+      const saveBtn = document.getElementById('save-edit');
+      const contentField = document.getElementById('edit-content');
+  
+      closeBtn.addEventListener('click', closeEditModal);
+      cancelBtn.addEventListener('click', closeEditModal);
+      saveBtn.addEventListener('click', saveEditedEntry);
+      contentField.addEventListener('input', updateCharCounter);
+  
+      // Close modal when clicking outside
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeEditModal();
+        }
+      });
+  
+      // Keyboard support
+      document.addEventListener('keydown', function(e) {
+        if (modal.classList.contains('open')) {
+          if (e.key === 'Escape') {
+            closeEditModal();
+          } else if (e.key === 'Enter' && e.ctrlKey) {
+            saveEditedEntry();
+          }
+        }
       });
     });
   </script>
