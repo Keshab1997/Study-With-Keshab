@@ -61,7 +61,7 @@
 
 .notebook-cover {
   background: var(--notebook-cover);
-  padding: 40px 20px 30px;
+  padding: 48px 24px 36px;
   text-align: center;
   color: #fff;
   position: relative;
@@ -83,10 +83,11 @@
 
 .notebook-cover h1 {
   font-family: 'Baloo Da 2', cursive;
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin: 0;
   position: relative;
   z-index: 1;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .notebook-cover p {
@@ -98,12 +99,17 @@
 }
 
 .notebook-stats {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
-  gap: 30px;
-  margin-top: 16px;
+  gap: 24px;
+  margin-top: 18px;
   position: relative;
   z-index: 1;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  border-radius: 100px;
+  padding: 8px 24px;
+  border: 1px solid rgba(255,255,255,0.2);
 }
 
 .notebook-stats span {
@@ -118,42 +124,7 @@
   font-size: 0.9rem;
 }
 
-.notebook-tabs {
-  display: flex;
-  gap: 2px;
-  padding: 0 16px;
-  margin-top: -1px;
-  position: relative;
-  z-index: 2;
-}
-
-.notebook-tab {
-  padding: 10px 20px;
-  background: var(--notebook-tab-bg);
-  border: 1px solid var(--notebook-border);
-  border-top: none;
-  border-radius: 0 0 10px 10px;
-  cursor: pointer;
-  font-family: 'Hind Siliguri', sans-serif;
-  font-size: 0.82rem;
-  color: var(--notebook-text);
-  opacity: 0.6;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.notebook-tab:hover {
-  opacity: 0.8;
-}
-
-.notebook-tab.active {
-  opacity: 1;
-  background: var(--notebook-accent);
-  color: #fff;
-  border-color: var(--notebook-accent);
-}
+/* tabs defined below in TAB NAVIGATION section */
 
 .notebook-content {
   max-width: 800px;
@@ -186,6 +157,7 @@
   background: var(--notebook-tab-bg);
   border-radius: 12px;
   border: 1px solid var(--notebook-border);
+  border-left: 3px solid var(--notebook-accent);
   box-shadow: 0 1px 4px var(--notebook-shadow);
   transition: all 0.25s;
 }
@@ -553,7 +525,7 @@
 @media (max-width: 768px) {
   .notebook-cover h1 { font-size: 1.5rem; }
   .notebook-cover { padding: 30px 16px 24px; }
-  .notebook-stats { gap: 16px; flex-wrap: wrap; }
+  .notebook-stats { gap: 12px; flex-wrap: wrap; padding: 6px 16px; }
   .notebook-content { padding: 16px 12px 40px; }
   .notebook-entry { padding: 14px 14px 14px 50px; }
   .notebook-entry::before { left: 10px; font-size: 0.65rem; width: 24px; }
