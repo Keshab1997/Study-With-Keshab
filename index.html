@@ -2,7 +2,8 @@
 <html lang="bn">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" id="viewportMeta" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" id="viewportMeta" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' https: data:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://*.supabase.co https://*.firebaseio.com https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://fcmregistrations.googleapis.com wss://*.supabase.co; frame-src 'self' https:;" />
     <meta name="description" content="Study With Keshab - বাংলায় সেরা অনলাইন শিক্ষা প্ল্যাটফর্ম। Physics, Chemistry, Math, GK সহ সকল বিষয়ে ইন্টারেক্টিভ কুইজ, নোট এবং CBT পরীক্ষা।" />
     <meta name="keywords" content="অনলাইন শিক্ষা, বাংলা পড়াশোনা, কুইজ, CBT পরীক্ষা, Physics, Chemistry, Math" />
     <meta property="og:title" content="Study With Keshab - Learn Smart. Grow Strong." />
@@ -14,30 +15,33 @@
     <link rel="apple-touch-icon" sizes="180x180" href="images/icons/icon-192x192.png">
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#4a90e2" />
+    <link rel="preload" href="https://images.news18.com/static-bengali/uploads/2024/11/child-thinking-2024-11-a893b797ce3a82916201c999759c21f0.jpg" as="image" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+      media="print" onload="this.media='all'"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      media="print" onload="this.media='all'"
     />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/navigation.css" />
-    <link rel="stylesheet" href="css/notification.css" />
-    <link rel="stylesheet" href="css/cbt-styles.css" />
-    <link rel="stylesheet" href="css/hero-enhanced.css" />
-    <link rel="stylesheet" href="css/features-enhanced.css" />
-    <link rel="stylesheet" href="css/cbt-premium.css" />
-    <link rel="stylesheet" href="css/feedback-modern.css" />
-    <link rel="stylesheet" href="css/toast.css" />
-    <script src="js/toast.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/hero-animation.js"></script>
-    <script src="js/features-animation.js"></script>
-    <script src="js/feedback-modern.js"></script>
+    <link rel="stylesheet" href="css/notification.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="css/cbt-styles.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="css/hero-enhanced.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="css/features-enhanced.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="css/cbt-premium.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="css/feedback-modern.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="css/toast.css" media="print" onload="this.media='all'" />
+    <script src="js/toast.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/hero-animation.js" defer></script>
+    <script src="js/features-animation.js" defer></script>
+    <script src="js/feedback-modern.js" defer></script>
   </head>
   <body>
 
@@ -51,7 +55,9 @@
               <img
                 src="https://images.news18.com/static-bengali/uploads/2024/11/child-thinking-2024-11-a893b797ce3a82916201c999759c21f0.jpg"
                 alt="Happy Student"
-                loading="lazy"
+                width="600"
+                height="400"
+                fetchpriority="high"
               />
             </div>
           </div>
@@ -230,22 +236,22 @@
           <div class="features-grid">
             <div class="feature-item">
               <i class="fas fa-question-circle"></i>
-              <h4>ইন্টারেক্টিভ কুইজ</h4>
+              <h3>ইন্টারেক্টিভ কুইজ</h3>
               <p>প্রতিটি অধ্যায়ের পর নিজের জ্ঞান পরীক্ষা করুন।</p>
             </div>
             <div class="feature-item">
               <i class="fas fa-clone"></i>
-              <h4>ডিজিটাল ফ্ল্যাশকার্ড</h4>
+              <h3>ডিজিটাল ফ্ল্যাশকার্ড</h3>
               <p>কঠিন তথ্য ও সূত্র সহজে মনে রাখুন।</p>
             </div>
             <div class="feature-item">
               <i class="fas fa-gamepad"></i>
-              <h4>শিক্ষামূলক গেম</h4>
+              <h3>শিক্ষামূলক গেম</h3>
               <p>পড়াশোনা হোক খেলার ছলে, শেখা হবে মজাদার।</p>
             </div>
             <div class="feature-item">
               <i class="fas fa-file-pdf"></i>
-              <h4>PDF নোটস</h4>
+              <h3>PDF নোটস</h3>
               <p>গুরুত্বপূর্ণ নোটস ডাউনলোড করে অফলাইনে পড়ুন।</p>
             </div>
           </div>
@@ -285,7 +291,7 @@
                 </div>
               </div>
               <div class="feedback-form-group">
-                <label>বিষয় *</label>
+                <label for="feedback-category">বিষয় *</label>
                 <select id="feedback-category" required>
                   <option value="">বিষয় নির্বাচন করুন</option>
                   <option value="suggestion">পরামর্শ</option>
@@ -512,7 +518,7 @@
             icon.classList.add("fa-mobile-alt");
           });
         } else {
-          viewportMeta.setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no");
+          viewportMeta.setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=5.0");
           if (desktopBtn) desktopBtn.title = "ডেস্কটপ মোড";
           if (mobileMenuText) mobileMenuText.textContent = "ডেস্কটপ মোড";
           allIcons.forEach((icon) => {

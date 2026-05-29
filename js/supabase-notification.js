@@ -161,6 +161,9 @@ function setupModalListeners() {
 
     if(bellBtn && modal) {
         bellBtn.addEventListener('click', () => {
+            if (typeof window.requestNotificationPermission === 'function') {
+                window.requestNotificationPermission();
+            }
             modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
         });
     }

@@ -181,11 +181,16 @@ const server = http.createServer((req, res) => {
   }
 
   // Static file server
-  let filePath = path.join(__dirname, req.url === '/' ? '/subject/Math/Compound_Interest/class-json-converter.html' : req.url);
+  let filePath = path.join(__dirname, req.url === '/' ? '/index.html' : req.url);
   fs.readFile(filePath, (err, data) => {
     if (err) { res.writeHead(404); res.end('Not found'); return; }
     const ext = path.extname(filePath);
-    res.writeHead(200, { 'Content-Type': MIME[ext] || 'text/plain' });
+    const cacheMaxAge = ext === '.html' ? 0 : 31536000;
+    res.writeHead(200, {
+      'Content-Type': MIME[ext] || 'text/plain',
+      'Cache-Control': `public, max-age=${cacheMaxAge}`,
+      'X-Content-Type-Options': 'nosniff'
+    });
     res.end(data);
   });
 });

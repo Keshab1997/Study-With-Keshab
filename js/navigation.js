@@ -146,7 +146,14 @@ window.addEventListener('pageshow', () => {
 });
 
 // Load notebook bot widget on all pages
-const nbScript = document.createElement('script');
-nbScript.src = '/js/notebook-bot.js';
-nbScript.defer = true;
-document.body.appendChild(nbScript);
+function loadNotebookBot() {
+  const nbScript = document.createElement('script');
+  nbScript.src = '/js/notebook-bot.js';
+  nbScript.defer = true;
+  document.body.appendChild(nbScript);
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', loadNotebookBot);
+} else {
+  loadNotebookBot();
+}
