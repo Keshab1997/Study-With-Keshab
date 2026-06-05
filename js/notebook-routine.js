@@ -276,6 +276,14 @@
   }
 
   // ===== REMINDERS =====
+  function clearReminders() {
+    try {
+      localStorage.setItem(REMINDER_KEY, JSON.stringify([]));
+    } catch {}
+    reminders = [];
+    renderReminders();
+  }
+
   function renderReminders() {
     const list = document.getElementById('reminder-list');
     if (!list) return;
@@ -313,21 +321,32 @@
             <span class="reminder-text">${escapeHtml(r.text)}</span>
             <span class="reminder-time-display">📅 ${timeStr}</span>
           </div>
-          <button class="reminder-del" data-id="${r.id}" title="মুছুন">
-            <i class="fas fa-trash-alt"></i>
-          </button>
+          <div class="reminder-actions">
+            <button class="reminder-done" data-id="${r.id}" title="সম্পন্ন">
+              <i class="fas fa-check"></i>
+            </button>
+            <button class="reminder-del" data-id="${r.id}" title="মুছুন">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
         </div>`;
     }).join('');
 
+    function removeById(id) {
+      loadReminders();
+      reminders = reminders.filter(r => r.id !== id);
+      saveReminders();
+      renderReminders();
+    }
+
+    // Done handlers
+    list.querySelectorAll('.reminder-done').forEach(btn => {
+      btn.addEventListener('click', () => removeById(btn.dataset.id));
+    });
+
     // Delete handlers
     list.querySelectorAll('.reminder-del').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.dataset.id;
-        loadReminders();
-        reminders = reminders.filter(r => r.id !== id);
-        saveReminders();
-        renderReminders();
-      });
+      btn.addEventListener('click', () => removeById(btn.dataset.id));
     });
   }
 
@@ -376,24 +395,22 @@
   function checkReminders() {
     loadReminders();
     const now = Date.now();
-    let changed = false;
 
-    for (const r of reminders) {
-      // Fire notification if time is within last 60 seconds
-      if (r.time <= now && r.time > now - 60000) {
-        showReminderNotification(r);
-        changed = true;
-      }
+    const toFire = reminders.filter(r => r.time <= now && r.time > now - 60000);
+    for (const r of toFire) {
+      showReminderNotification(r);
     }
 
-    // Clean expired
-    const before = reminders.length;
-    reminders = reminders.filter(r => r.time > now - 60000);
-    if (reminders.length < before) {
-      changed = true;
+    // Remove fired reminders immediately to avoid repeated notifications
+    if (toFire.length > 0) {
+      const firedIds = new Set(toFire.map(r => r.id));
+      reminders = reminders.filter(r => !firedIds.has(r.id));
       saveReminders();
       renderReminders();
     }
+
+    // Clean very old reminders (safety)
+    reminders = reminders.filter(r => r.time > now - 60000);
   }
 
   function showReminderNotification(reminder) {
@@ -436,6 +453,16 @@
     // Reminder add button
     const remBtn = document.getElementById('reminder-add-btn');
     if (remBtn) remBtn.addEventListener('click', addReminder);
+
+    // Clear reminders button
+    const remClearBtn = document.getElementById('reminders-clear-btn');
+    if (remClearBtn) {
+      remClearBtn.addEventListener('click', () => {
+        const ok = confirm('সব রিমাইন্ডার মুছবে?');
+        if (!ok) return;
+        clearReminders();
+      });
+    }
 
     // Request notification permission upfront
     if ('Notification' in window && Notification.permission === 'default') {

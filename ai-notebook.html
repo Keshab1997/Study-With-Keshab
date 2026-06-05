@@ -44,6 +44,58 @@
 
     <!-- ========== NOTES PANEL ========== -->
     <div class="notebook-content tab-panel active" id="panel-notes">
+      <div class="notes-toolbar">
+        <div class="notes-search">
+          <i class="fas fa-search"></i>
+          <input type="text" id="note-search" class="notes-search-input" placeholder="নোট খুঁজো… (বিষয় বা লেখা)" />
+        </div>
+
+        <select id="note-subject-filter" class="notes-filter-select">
+          <option value="all">সব বিষয়</option>
+        </select>
+
+        <button class="notes-clear-btn" id="notes-clear-btn" title="সব নোট মুছুন">
+          <i class="fas fa-trash-alt"></i> সব মুছুন
+        </button>
+      </div>
+
+      <!-- Pen / Notebook-like drawing area -->
+      <div class="pen-notes-wrap" id="pen-notes-wrap">
+        <div class="pen-notes-header">
+          <div class="pen-notes-title">
+            <i class="fas fa-pen-nib"></i> খাতার মতো লিখো (পেন)
+          </div>
+          <div class="pen-notes-actions">
+            <select id="pen-subject" class="pen-notes-subject">
+              <option value="সাধারণ">সাধারণ</option>
+              <option value="পদার্থবিদ্যা">পদার্থবিদ্যা</option>
+              <option value="রসায়ন">রসায়ন</option>
+              <option value="গণিত">গণিত</option>
+              <option value="জীববিজ্ঞান">জীববিজ্ঞান</option>
+              <option value="ইতিহাস">ইতিহাস</option>
+              <option value="ভূগোল">ভূগোল</option>
+              <option value="ইংরেজি">ইংরেজি</option>
+              <option value="সাধারণ জ্ঞান">সাধারণ জ্ঞান</option>
+              <option value="কারেন্ট অ্যাফেয়ার্স">কারেন্ট অ্যাফেয়ার্স</option>
+              <option value="অন্যান্য">অন্যান্য</option>
+            </select>
+
+            <button class="pen-notes-btn" id="pen-clear-btn" title="পাতা খালি করো">
+              <i class="fas fa-eraser"></i> পরিষ্কার
+            </button>
+
+            <button class="pen-notes-btn pen-notes-save" id="pen-save-btn" title="লিখা সেভ করো">
+              <i class="fas fa-save"></i> সেভ
+            </button>
+          </div>
+        </div>
+
+        <div class="pen-paper">
+          <canvas id="pen-canvas"></canvas>
+        </div>
+        <div class="pen-notes-hint">টাচ/মাউস দিয়ে আঁকো। সেভ করলে ছবি হিসেবে নোটে চলে যাবে।</div>
+      </div>
+
       <div class="notebook-sheet" id="notebook-sheet"></div>
     </div>
 
@@ -117,6 +169,10 @@
         <button class="reminder-add-btn" id="reminder-add-btn">
           <i class="fas fa-plus"></i> যোগ করো
         </button>
+
+        <button class="notes-clear-btn" id="reminders-clear-btn" title="সব রিমাইন্ডার মুছুন">
+          <i class="fas fa-broom"></i> সব মুছুন
+        </button>
       </div>
       <div class="reminder-list" id="reminder-list"></div>
     </div>
@@ -153,11 +209,64 @@
         .replace(/([^>])$/, '$1</p>');
     }
 
+    // Make it available for widgets (so formatting is consistent everywhere)
+    window.renderContent = renderContent;
+
+    function togglePin(id) {
+      if (!window.NotebookBot) return;
+      NotebookBot.togglePin(id);
+      renderNotebook();
+    }
+
+    function getFilteredSortedEntries(entries) {
+      const searchEl = document.getElementById('note-search');
+      const subjectEl = document.getElementById('note-subject-filter');
+
+      const search = (searchEl && searchEl.value ? searchEl.value : '').trim().toLowerCase();
+      const subject = subjectEl ? subjectEl.value : 'all';
+
+      let filtered = entries;
+
+      if (subject && subject !== 'all') {
+        filtered = filtered.filter(e => (e.subject || 'সাধারণ') === subject);
+      }
+
+      if (search) {
+        filtered = filtered.filter(e => {
+          const subj = (e.subject || 'সাধারণ').toLowerCase();
+          const content = (e.content || '').toLowerCase();
+          return subj.includes(search) || content.includes(search);
+        });
+      }
+
+      filtered.sort((a, b) => {
+        const ap = a.pinned ? 1 : 0;
+        const bp = b.pinned ? 1 : 0;
+        if (bp !== ap) return bp - ap; // pinned first
+        return (b.timestamp || 0) - (a.timestamp || 0); // latest first
+      });
+
+      return filtered;
+    }
+
     function renderNotebook() {
       const sheet = document.getElementById('notebook-sheet');
-      const entries = window.NotebookBot ? NotebookBot.getEntries() : [];
+      let allEntries = window.NotebookBot ? NotebookBot.getEntries() : [];
       const totalEl = document.getElementById('nb-total');
       const lastUpdateEl = document.getElementById('nb-last-update');
+
+      // If canvas notes exist, we render them as <img> (content is a dataURL)
+
+      // Subject filter options (based on all entries, not just filtered)
+      const subjectEl = document.getElementById('note-subject-filter');
+      if (subjectEl) {
+        const uniqueSubjects = Array.from(new Set(allEntries.map(e => (e.subject || 'সাধারণ')))).sort((a, b) => a.localeCompare(b));
+        const current = subjectEl.value || 'all';
+        subjectEl.innerHTML = `<option value="all">সব বিষয়</option>` + uniqueSubjects.map(s => `<option value="${s}">${s}</option>`).join('');
+        if (uniqueSubjects.includes(current)) subjectEl.value = current;
+      }
+
+      let entries = getFilteredSortedEntries(allEntries);
 
       if (totalEl) totalEl.textContent = entries.length;
       if (lastUpdateEl && entries.length > 0) {
@@ -167,20 +276,27 @@
       }
 
       if (entries.length === 0) {
+        const searchEl = document.getElementById('note-search');
+        const subjectEl = document.getElementById('note-subject-filter');
+        const hasFilter = (searchEl && searchEl.value && searchEl.value.trim()) || (subjectEl && subjectEl.value !== 'all');
+
         sheet.innerHTML = `
           <div class="notebook-empty">
             <div class="notebook-empty-icon-wrap" style="margin:0 auto;width:64px;height:64px;border-radius:50%;background:var(--notebook-accent-light);display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:var(--notebook-accent);margin-bottom:16px">
-              <i class="fas fa-feather"></i>
+              <i class="fas ${hasFilter ? 'fa-magnifying-glass' : 'fa-feather'}"></i>
             </div>
-            <h3>নোটবুক খালি</h3>
-            <p>পেজের নিচে ডানদিকের <i class="fas fa-feather"></i> বটন থেকে নোট যোগ করো</p>
+            <h3>${hasFilter ? 'মিলেনি' : 'নোটবুক খালি'}</h3>
+            <p>${hasFilter ? 'সার্চ/ফিল্টার ঠিক করে আবার চেষ্টা করো' : 'পেজের নিচে ডানদিকের <i class="fas fa-feather"></i> বটন থেকে নোট যোগ করো'}</p>
           </div>
         `;
+        if (totalEl) totalEl.textContent = 0;
+        if (lastUpdateEl) lastUpdateEl.textContent = '--';
         return;
       }
 
       sheet.innerHTML = entries.map((entry, idx) => {
-        const content = renderContent(entry.content);
+        const isImage = typeof entry.content === 'string' && entry.content.startsWith('data:image');
+        const content = isImage ? `<img src="${entry.content}" alt="নোট ছবি" class="notebook-image-note" />` : renderContent(entry.content);
         return `
           <div class="notebook-entry" data-id="${entry.id}" data-number="${entries.length - idx}">
             <div class="entry-header">
@@ -195,7 +311,10 @@
               <button class="entry-action-btn" onclick="editEntry('${entry.id}')" title="এডিট">
                 <i class="fas fa-edit"></i> এডিট
               </button>
-              <button class="entry-action-btn" onclick="copyEntry('${entry.id}')" title="কপি">
+              <button class="entry-action-btn" onclick="togglePin('${entry.id}')" title="${entry.pinned ? 'পিন খুলুন' : 'পিন করুন'}">
+                <i class="${entry.pinned ? 'fas' : 'far'} fa-thumbtack"></i> ${entry.pinned ? 'পিনড' : 'পিন'}
+              </button>
+              <button class="entry-action-btn" onclick="copyEntry('${entry.id}', this)" title="কপি">
                 <i class="fas fa-copy"></i> কপি
               </button>
             </div>
@@ -269,16 +388,18 @@
       renderNotebook();
     }
     
-    function copyEntry(id) {
+    function copyEntry(id, btnEl) {
       if (!window.NotebookBot) return;
       const entries = NotebookBot.getEntries();
       const entry = entries.find(e => e.id === id);
       if (!entry) return;
+
       navigator.clipboard.writeText(entry.content).then(() => {
-        const btn = event.target.closest('.entry-action-btn');
+        const btn = btnEl;
+        if (!btn) return;
         const orig = btn.innerHTML;
         btn.innerHTML = '<i class="fas fa-check"></i> কপি হয়েছে';
-        setTimeout(() => btn.innerHTML = orig, 1500);
+        setTimeout(() => { btn.innerHTML = orig; }, 1500);
       });
     }
 
@@ -320,6 +441,141 @@
     document.addEventListener('DOMContentLoaded', function() {
       const tabs = document.querySelectorAll('.notebook-tab');
       const panels = document.querySelectorAll('.tab-panel');
+
+      // Pen canvas logic
+      const canvas = document.getElementById('pen-canvas');
+      const clearBtn = document.getElementById('pen-clear-btn');
+      const penSaveBtn = document.getElementById('pen-save-btn');
+      const subjectEl = document.getElementById('pen-subject');
+
+      if (canvas && clearBtn && penSaveBtn) {
+        const ctx = canvas.getContext('2d');
+
+        let drawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        // Fit canvas to container size
+        function resizeCanvas() {
+          const wrap = canvas.parentElement;
+          const rect = wrap.getBoundingClientRect();
+          const w = Math.max(320, Math.floor(rect.width));
+          const h = Math.max(420, Math.floor(rect.height));
+
+          const dpr = window.devicePixelRatio || 1;
+          canvas.width = Math.floor(w * dpr);
+          canvas.height = Math.floor(h * dpr);
+          canvas.style.width = w + 'px';
+          canvas.style.height = h + 'px';
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+          drawNotebookBackground(w, h);
+        }
+
+        function drawNotebookBackground(w, h) {
+          ctx.clearRect(0, 0, w, h);
+
+          // Background
+          ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--notebook-bg') || '#faf6f0';
+          ctx.fillRect(0, 0, w, h);
+
+          // Blue horizontal lines (khata style)
+          ctx.strokeStyle = 'rgba(139,92,246,0.22)';
+          ctx.lineWidth = 1;
+
+          const lineGap = 28; // notebook line spacing
+          for (let y = 18; y < h; y += lineGap) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(w, y);
+            ctx.stroke();
+          }
+
+          // Left margin line
+          ctx.strokeStyle = 'rgba(231,76,60,0.35)';
+          ctx.beginPath();
+          ctx.moveTo(38, 0);
+          ctx.lineTo(38, h);
+          ctx.stroke();
+        }
+
+        function getPos(e) {
+          const rect = canvas.getBoundingClientRect();
+          const clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+          const clientY = (e.touches && e.touches[0]) ? e.touches[0].clientY : e.clientY;
+          return { x: clientX - rect.left, y: clientY - rect.top };
+        }
+
+        function startDraw(e) {
+          drawing = true;
+          const p = getPos(e);
+          lastX = p.x;
+          lastY = p.y;
+          e.preventDefault();
+        }
+
+        function moveDraw(e) {
+          if (!drawing) return;
+          const p = getPos(e);
+
+          ctx.strokeStyle = '#1f2937';
+          ctx.lineWidth = 3;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+
+          ctx.beginPath();
+          ctx.moveTo(lastX, lastY);
+          ctx.lineTo(p.x, p.y);
+          ctx.stroke();
+
+          lastX = p.x;
+          lastY = p.y;
+          e.preventDefault();
+        }
+
+        function endDraw() {
+          drawing = false;
+        }
+
+        // events
+        canvas.addEventListener('mousedown', startDraw);
+        canvas.addEventListener('mousemove', moveDraw);
+        window.addEventListener('mouseup', endDraw);
+
+        canvas.addEventListener('touchstart', startDraw, { passive: false });
+        canvas.addEventListener('touchmove', moveDraw, { passive: false });
+        window.addEventListener('touchend', endDraw);
+
+        // init size + background
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        clearBtn.addEventListener('click', () => {
+          const rect = canvas.getBoundingClientRect();
+          drawNotebookBackground(rect.width, rect.height);
+        });
+
+        penSaveBtn.addEventListener('click', () => {
+          if (!window.NotebookBot) return;
+          const subject = subjectEl && subjectEl.value ? subjectEl.value : 'সাধারণ';
+
+          // If user hasn't drawn much, still allow; but we can just save image
+          const dataUrl = canvas.toDataURL('image/png');
+
+          NotebookBot.addEntry(dataUrl, subject);
+          renderNotebook();
+
+          // small feedback
+          penSaveBtn.disabled = true;
+          const orig = penSaveBtn.innerHTML;
+          penSaveBtn.innerHTML = '<i class="fas fa-check"></i> সেভ হয়েছে!';
+          setTimeout(() => {
+            penSaveBtn.innerHTML = orig;
+            penSaveBtn.disabled = false;
+          }, 1500);
+        });
+      }
+
   
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -351,6 +607,26 @@
         }
       });
   
+      // Notes toolbar events
+      const noteSearch = document.getElementById('note-search');
+      const subjectFilter = document.getElementById('note-subject-filter');
+      const notesClearBtn = document.getElementById('notes-clear-btn');
+
+      if (noteSearch) {
+        noteSearch.addEventListener('input', () => renderNotebook());
+      }
+      if (subjectFilter) {
+        subjectFilter.addEventListener('change', () => renderNotebook());
+      }
+      if (notesClearBtn) {
+        notesClearBtn.addEventListener('click', () => {
+          const ok = confirm('সব নোট মুছবে?');
+          if (!ok || !window.NotebookBot) return;
+          NotebookBot.clearAll();
+          renderNotebook();
+        });
+      }
+
       // Keyboard support
       document.addEventListener('keydown', function(e) {
         if (modal.classList.contains('open')) {

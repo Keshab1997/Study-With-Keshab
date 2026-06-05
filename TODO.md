@@ -1,0 +1,7 @@
+- [ ] Expose `renderContent` on `window` in `ai-notebook.html` and ensure consistent markdown rendering in widget and notebook
+- [ ] Add Notes search + subject filter UI in `ai-notebook.html`, update rendering logic accordingly
+- [ ] Add Pin/Unpin for notes (and pin-first sorting) via `NotebookBot` + UI in `ai-notebook.html`
+- [ ] Add Reminder “done” behavior and prevent repeated notifications by removing reminders after firing (`js/notebook-routine.js`)
+- [ ] Add “Clear all” buttons for Notes / Routine / Reminders in UI (and wiring)
+- [ ] Style new UI bits in `css/ai-notebook.css`
+- [ ] Sanity-check for JS errors by running the site (manual smoke test)

@@ -1118,6 +1118,12 @@
   opacity: 0.5;
 }
 
+.reminder-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .reminder-del {
   width: 32px;
   height: 32px;
@@ -1134,10 +1140,105 @@
   flex-shrink: 0;
   transition: all 0.2s;
 }
+
 .reminder-del:hover {
   opacity: 1;
   background: #fee2e2;
   color: #dc2626;
+}
+
+.reminder-done {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--notebook-text);
+  opacity: 0.3;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.reminder-done:hover {
+  opacity: 1;
+  background: rgba(39, 174, 96, 0.12);
+  color: #27ae60;
+}
+
+/* ===== NOTES TOOLBAR ===== */
+.notes-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--notebook-bg);
+  border: 1px solid var(--notebook-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.notes-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 220px;
+}
+
+.notes-search-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--notebook-border);
+  border-radius: 10px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.85rem;
+  background: var(--notebook-bg);
+  color: var(--notebook-text);
+  outline: none;
+}
+
+.notes-search-input:focus {
+  border-color: var(--notebook-accent);
+}
+
+.notes-filter-select {
+  padding: 10px 12px;
+  border: 1px solid var(--notebook-border);
+  border-radius: 10px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.85rem;
+  background: var(--notebook-bg);
+  color: var(--notebook-text);
+  cursor: pointer;
+}
+
+.notes-clear-btn {
+  padding: 10px 16px;
+  background: transparent;
+  color: var(--notebook-text);
+  border: 1px solid var(--notebook-border);
+  border-radius: 10px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.notes-clear-btn:hover {
+  border-color: var(--notebook-red);
+  color: var(--notebook-red);
+  background: rgba(231, 76, 60, 0.08);
 }
 
 /* ================================================================

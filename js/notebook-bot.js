@@ -45,7 +45,8 @@
       id: Date.now().toString(36) + Math.random().toString(36).slice(2, 4),
       content: content.trim(),
       subject: subject || 'সাধারণ',
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      pinned: false
     };
     entries.push(entry);
     saveEntries();
@@ -58,6 +59,22 @@
     saveEntries();
   };
 
+  NB.togglePin = function (id) {
+    loadEntries();
+    const entry = entries.find(e => e.id === id);
+    if (entry) {
+      entry.pinned = !entry.pinned;
+      // bump timestamp so pinned entries can also move in sort
+      entry.timestamp = Date.now();
+      saveEntries();
+    }
+  };
+
+  NB.clearAll = function () {
+    entries = [];
+    saveEntries();
+  };
+
   NB.updateEntry = function (id, content, subject) {
     loadEntries();
     const entry = entries.find(e => e.id === id);
@@ -65,6 +82,7 @@
       if (content) entry.content = content.trim();
       if (subject) entry.subject = subject;
       entry.timestamp = Date.now();
+      if (typeof entry.pinned !== 'boolean') entry.pinned = false;
       saveEntries();
     }
   };
@@ -200,7 +218,18 @@
           noteDiv.style.border = '1px solid var(--notebook-accent)';
           noteDiv.style.borderLeft = '3px solid var(--notebook-accent)';
           noteDiv.style.maxWidth = '95%';
-          noteDiv.innerHTML = typeof renderContent === 'function' ? renderContent(data.result) : data.result.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+
+          const formatter = (typeof window !== 'undefined' && typeof window.renderContent === 'function')
+            ? window.renderContent
+            : (typeof renderContent === 'function' ? renderContent : null);
+
+          noteDiv.innerHTML = formatter
+            ? formatter(data.result)
+            : data.result
+                .replace(/&/g, '&amp;').replace(/</g, '<').replace(/>/g, '>')
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+
           messagesEl.appendChild(noteDiv);
 
           // Save button
