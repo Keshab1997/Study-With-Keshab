@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "Study-With-Keshab Docs": {
+      "type": "sse",
+      "url": "https://gitmcp.io/Keshab1997/Study-With-Keshab"
+    }
+  }
+}
