@@ -1,7 +1,19 @@
-- [ ] Expose `renderContent` on `window` in `ai-notebook.html` and ensure consistent markdown rendering in widget and notebook
-- [ ] Add Notes search + subject filter UI in `ai-notebook.html`, update rendering logic accordingly
-- [ ] Add Pin/Unpin for notes (and pin-first sorting) via `NotebookBot` + UI in `ai-notebook.html`
-- [ ] Add Reminder “done” behavior and prevent repeated notifications by removing reminders after firing (`js/notebook-routine.js`)
-- [ ] Add “Clear all” buttons for Notes / Routine / Reminders in UI (and wiring)
-- [ ] Style new UI bits in `css/ai-notebook.css`
-- [ ] Sanity-check for JS errors by running the site (manual smoke test)
+# TODO
+
+## 1) manifest.json cleanup
+- ✅ Removed unsupported `orientation` field to fix: “Manifest: unknown 'orientation' value ignored.”
+
+
+## 2) auth.js syntax fix
+- ⚠️ auth.js currently parses successfully in Node (`new Function(...)`). Runtime “Unexpected token '}'” likely came from a previous build artifact or minified bundle; re-test in browser after other changes.
+
+- Fix SyntaxError near `auth.js:139` (Unexpected token '}' ).
+- Re-parse/verify JS after patch.
+
+## 3) index.html CSP update
+- ✅ Updated CSP `connect-src` to allow `https://www.googleapis.com` (required by identitytoolkit calls).
+
+
+## 4) Verification
+- Reload site / re-check DevTools console for removed errors.
+

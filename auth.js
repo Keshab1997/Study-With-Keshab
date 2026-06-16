@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const heroTitle = document.getElementById('hero-main-title');
         const heroDescription = document.getElementById('hero-main-description');
         
-        // Mobile Navigation Profile Elements
         const navUserHeader = document.getElementById('nav-user-header');
         const navUserName = document.getElementById('nav-user-name');
         const navProfileImg = document.getElementById('nav-profile-img');
@@ -73,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (userInfo) userInfo.style.display = 'flex';
             if (headerProfilePic) headerProfilePic.src = user.photoURL || 'images/default-avatar.png';
             
-            // Update Mobile Nav Profile
             if (navUserHeader) navUserHeader.style.display = 'block';
             if (navUserName) navUserName.textContent = user.displayName || 'User';
             if (navProfileImg) navProfileImg.src = user.photoURL || 'images/default-avatar.png';
@@ -108,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mobileLogout) mobileLogout.style.display = 'none';
             if (userInfo) userInfo.style.display = 'none';
             
-            // Hide Mobile Nav Profile
             if (navUserHeader) navUserHeader.style.display = 'none';
 
             if (heroTitle && heroDescription) {
@@ -121,22 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-
-            // PWA / standalone mode uses redirect, desktop browser uses popup
-            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-
-            if (isStandalone) {
-                auth.signInWithRedirect(provider);
-            } else {
-                auth.signInWithPopup(provider)
-                    .then(handleGoogleResult)
-                    .catch(error => {
-                        console.error("Google সাইন-ইন এর সময় সমস্যা:", error);
-                        alert("লগইন করার সময় একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
-                    });
-            }
-        });
-    }
 
     function handleGoogleSignIn(result) {
         const user = result.user;
@@ -159,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    const googleLoginBtn = document.getElementById('google-login-btn');
     if (googleLoginBtn) {
         const ADMIN_EMAIL = "keshabsarkar2018@gmail.com";
         const auth = firebase.auth();
@@ -193,7 +175,26 @@ document.addEventListener('DOMContentLoaded', function() {
     firebase.auth().getRedirectResult()
         .then(result => {
             if (result.user) {
-                return handleGoogleSignIn(result);
+                const ADMIN_EMAIL = "keshabsarkar2018@gmail.com";
+                const db = firebase.firestore();
+                const user = result.user;
+                const userRef = db.collection('users').doc(user.uid);
+
+                return userRef.get().then(doc => {
+                    const userData = {
+                        uid: user.uid,
+                        displayName: user.displayName,
+                        email: user.email,
+                        photoURL: user.photoURL,
+                        lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+                    };
+
+                    if (!doc.exists) {
+                        userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'student';
+                    }
+
+                    return userRef.set(userData, { merge: true });
+                });
             }
         })
         .then(() => {
@@ -211,6 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const auth = firebase.auth();
         const db = firebase.firestore();
         const credential = firebase.auth.GoogleAuthProvider.credential(idToken);
+        const ADMIN_EMAIL = "keshabsarkar2018@gmail.com";
         
         auth.signInWithCredential(credential).then(result => {
             const user = result.user;
