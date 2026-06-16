@@ -122,66 +122,89 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    const googleLoginBtn = document.getElementById('google-login-btn');
-    if (googleLoginBtn) { 
-        const ADMIN_EMAIL = "keshabsarkar2018@gmail.com";
-        
-        googleLoginBtn.addEventListener('click', () => {
-            const auth = firebase.auth();
-            const db = firebase.firestore();
-            
-            // Android Native Bridge Check
-            if (window.AndroidAuth && window.AndroidAuth.signInWithGoogle) {
-                // Android native Google Sign-In ব্যবহার করা হবে
-                window.AndroidAuth.signInWithGoogle();
-                return;
-            }
-            
-            const provider = new firebase.auth.GoogleAuthProvider();
-            
-            // WebView-এ Google OAuth কাজ করে না (Google policy - disallowed_useragent)
-            const ua = navigator.userAgent.toLowerCase();
-            const isWebView = /wv/.test(ua) || (/android/.test(ua) && /version\/\d/.test(ua));
-            
-            if (isWebView) {
-                alert('Google দিয়ে লগইন করতে Chrome browser ব্যবহার করুন।\n\nঅ্যাপের মেনু (⋮) থেকে "Open in Chrome" বা "Browser-এ খুলুন" সিলেক্ট করুন।');
-                return;
+            // PWA / standalone mode uses redirect, desktop browser uses popup
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+            if (isStandalone) {
+                auth.signInWithRedirect(provider);
             } else {
-                // Browser-এর জন্য Popup মেথড
-                auth.signInWithPopup(provider).then(result => {
-                    const user = result.user;
-                    const userRef = db.collection('users').doc(user.uid);
-                    
-                    return userRef.get().then(doc => {
-                        const userData = {
-                            uid: user.uid,
-                            displayName: user.displayName,
-                            email: user.email,
-                            photoURL: user.photoURL,
-                            lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
-                        };
-                        
-                        if (!doc.exists) {
-                            userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'student';
-                        }
-                        
-                        return userRef.set(userData, { merge: true });
+                auth.signInWithPopup(provider)
+                    .then(handleGoogleResult)
+                    .catch(error => {
+                        console.error("Google সাইন-ইন এর সময় সমস্যা:", error);
+                        alert("লগইন করার সময় একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
                     });
-                }).then(() => {
-                    if(window.showToast) showToast('সফলভাবে লগইন হয়েছে!', 'success');
-                    setTimeout(() => window.location.href = 'index.html', 500);
-                }).catch(error => {
-                    console.error("Google সাইন-ইন এর সময় সমস্যা:", error);
-                    alert("লগইন করার সময় একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
-                });
             }
         });
     }
-    
-    // Redirect রিজাল্ট হ্যান্ডল করা (আর প্রয়োজন নেই - WebView-এ redirect কাজ করে না)
-    firebase.auth().getRedirectResult().catch(error => {
-        // silent - ignore redirect errors
-    });
+
+    function handleGoogleSignIn(result) {
+        const user = result.user;
+        const userRef = db.collection('users').doc(user.uid);
+
+        return userRef.get().then(doc => {
+            const userData = {
+                uid: user.uid,
+                displayName: user.displayName,
+                email: user.email,
+                photoURL: user.photoURL,
+                lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+            };
+
+            if (!doc.exists) {
+                userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'student';
+            }
+
+            return userRef.set(userData, { merge: true });
+        });
+    }
+
+    if (googleLoginBtn) {
+        const ADMIN_EMAIL = "keshabsarkar2018@gmail.com";
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        googleLoginBtn.addEventListener('click', () => {
+            if (window.AndroidAuth && window.AndroidAuth.signInWithGoogle) {
+                window.AndroidAuth.signInWithGoogle();
+                return;
+            }
+
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+            if (isStandalone) {
+                auth.signInWithRedirect(provider);
+            } else {
+                auth.signInWithPopup(provider)
+                    .then(result => handleGoogleSignIn(result))
+                    .then(() => {
+                        if (window.showToast) showToast('সফলভাবে লগইন হয়েছে!', 'success');
+                        setTimeout(() => window.location.href = 'index.html', 500);
+                    })
+                    .catch(error => {
+                        console.error("Google সাইন-ইন এর সময় সমস্যা:", error);
+                        alert("লগইন করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+                    });
+            }
+        });
+    }
+
+    firebase.auth().getRedirectResult()
+        .then(result => {
+            if (result.user) {
+                return handleGoogleSignIn(result);
+            }
+        })
+        .then(() => {
+            if (firebase.auth().currentUser) {
+                if (window.showToast) showToast('সফলভাবে লগইন হয়েছে!', 'success');
+                setTimeout(() => window.location.href = 'index.html', 500);
+            }
+        })
+        .catch(error => {
+            console.error("Google redirect সাইন-ইন এর সময় সমস্যা:", error);
+        });
 
     // Android Native থেকে Google Sign-In result রিসিভ করার ফাংশন
     window.signInWithGoogleCredential = function(idToken) {
