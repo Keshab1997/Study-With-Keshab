@@ -162,10 +162,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
+            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
             const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
-            if (isStandalone) {
-                auth.signInWithRedirect(provider);
+            if (isStandalone || isMobile) {
+                // mobile ও PWA তে redirect use করো, কিন্তু আগে localStorage persistence set করো
+                auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+                    .then(() => auth.signInWithRedirect(provider))
+                    .catch(error => {
+                        console.error("Persistence set error:", error);
+                        auth.signInWithRedirect(provider);
+                    });
             } else {
                 auth.signInWithPopup(provider)
                     .then(result => handleGoogleSignIn(result))
