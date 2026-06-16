@@ -46,8 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     firebase.auth().onAuthStateChanged(function(user) {
-        // login page এ already logged in থাকলে redirect করো
-        if (user && document.getElementById('login-btn') && window.location.pathname.includes('login')) {
+        // login/signup page এ already logged in থাকলে redirect করো
+        const isAuthPage = ['login.html', 'signup.html'].some(p => window.location.pathname.endsWith(p));
+        if (user && isAuthPage) {
             window.location.href = 'index.html';
             return;
         }
@@ -127,6 +128,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleGoogleSignIn(result) {
         const user = result.user;
+        const ADMIN_EMAIL = "keshabsarkar2018@gmail.com";
+        const db = firebase.firestore();
         const userRef = db.collection('users').doc(user.uid);
 
         return userRef.get().then(doc => {
@@ -199,12 +202,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         userData.role = (user.email === ADMIN_EMAIL) ? 'admin' : 'student';
                     }
 
-                    return userRef.set(userData, { merge: true });
+                    return userRef.set(userData, { merge: true }).then(() => true); // ✅ redirect হয়েছে
                 });
             }
+            return false; // ✅ redirect হয়নি
         })
-        .then(() => {
-            if (firebase.auth().currentUser) {
+        .then((redirectHandled) => {
+            if (redirectHandled && firebase.auth().currentUser) {
                 if (window.showToast) showToast('সফলভাবে লগইন হয়েছে!', 'success');
                 setTimeout(() => window.location.href = 'index.html', 500);
             }
