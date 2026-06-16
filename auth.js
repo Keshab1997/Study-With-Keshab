@@ -46,6 +46,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     firebase.auth().onAuthStateChanged(function(user) {
+        // login page এ already logged in থাকলে redirect করো
+        if (user && document.getElementById('login-btn') && window.location.pathname.includes('login')) {
+            window.location.href = 'index.html';
+            return;
+        }
+
         const loginBtn = document.getElementById('login-btn');
         const mobileLogin = document.getElementById('mobile-login');
         const mobileProfile = document.getElementById('mobile-profile');
