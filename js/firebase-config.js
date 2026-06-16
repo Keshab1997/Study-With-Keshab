@@ -3,13 +3,13 @@
 // === সঠিক ফায়ারবেস কনফিগারেশন ===
 // এই সম্পূর্ণ কোডটি কপি করুন
 const firebaseConfig = {
-  apiKey: "AIzaSyBEhbEWRfuCh_wuXPiQdG8l5TW6L5Ssi1Y",
-  authDomain: "study-with-keshab.firebaseapp.com",
-  projectId: "study-with-keshab",
-  storageBucket: "study-with-keshab.firebasestorage.app",
-  messagingSenderId: "752692165545",
-  appId: "1:752692165545:web:219ff482874717c3ab22b8",
-  measurementId: "G-QH5ELRG2DE"
+  apiKey: "AIzaSyCHueqLK-KCMZw0dQRm6dAHS-ttTuIBNyo",
+  authDomain: "study-with-keshab-42f57.firebaseapp.com",
+  projectId: "study-with-keshab-42f57",
+  storageBucket: "study-with-keshab-42f57.firebasestorage.app",
+  messagingSenderId: "794788745747",
+  appId: "1:794788745747:web:8eccedb3591230fb3ae5e6",
+  measurementId: "G-Q5082RNS6H"
 };
 
 // Firebase শুরু করা হচ্ছে (এই লাইনটি যেমন আছে তেমনই থাকবে)
