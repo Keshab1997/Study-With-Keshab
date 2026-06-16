@@ -120,15 +120,15 @@
       const clickSound = document.getElementById("click-sound");
       const errorSound = document.getElementById("error-sound");
 
+      function playErrorSound() {
+        errorSound.currentTime = 0;
+        errorSound.play();
+      }
+
       signupButton.addEventListener("click", () => {
         const name = nameInput.value.trim();
         const email = emailInput.value.trim();
         const password = passwordInput.value;
-
-        function playErrorSound() {
-          errorSound.currentTime = 0;
-          errorSound.play();
-        }
 
         if (!name || !email || !password) {
           errorMessage.textContent = "দয়া করে সব ঘর পূরণ করুন।";
